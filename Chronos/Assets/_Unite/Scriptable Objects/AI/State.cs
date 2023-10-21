@@ -22,7 +22,7 @@ namespace Unite
         [SerializeField]
         private StateTransition[] transitions;
 
-        private void UpdateState(IStateMachine stateMachine)
+        public void UpdateState(IStateMachine stateMachine)
         {
             PerformActions(stateMachine);
             CheckTransitions(stateMachine);
