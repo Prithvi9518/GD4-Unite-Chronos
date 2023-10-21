@@ -28,9 +28,6 @@ namespace Unite
         private void Awake()
         {
             currentState = startingState;
-
-            Debug.Log("starting state is: " + currentState.name);
-
             navMeshAgent = GetComponent<NavMeshAgent>();
         }
 
@@ -43,7 +40,6 @@ namespace Unite
         {
             if (state == remainState) return;
 
-            Debug.Log("Setting state to: " + state.name);
             currentState = state;
         }
 

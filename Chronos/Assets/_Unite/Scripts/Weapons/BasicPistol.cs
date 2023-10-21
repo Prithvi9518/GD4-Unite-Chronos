@@ -15,15 +15,12 @@ namespace Unite
 
         [SerializeField] private ParticleSystem muzzleFlashEffect;
 
-        private PlayerInputActions inputActions;
-        private PlayerInputActions.DefaultActions defaultActions;
+        [SerializeField]
+        private PlayerInputHandler inputHandler;
 
         private void Awake()
         {
-            inputActions = new PlayerInputActions();
-            defaultActions = inputActions.Default;
-
-            defaultActions.Shoot.performed += ctx =>
+            inputHandler.DefaultActions.Shoot.performed += ctx =>
             {
                 if (canShoot)
                     StartCoroutine(Shoot());
@@ -36,7 +33,7 @@ namespace Unite
 
             canShoot = false;
 
-            while (defaultActions.Shoot.IsPressed())
+            while (inputHandler.DefaultActions.Shoot.IsPressed())
             {
                 PlayMuzzleFlash();
                 FireRaycast();
@@ -66,12 +63,6 @@ namespace Unite
         private void OnEnable()
         {
             canShoot = true; // prevents shooting from being locked after switching to a new weapon
-            defaultActions.Enable();
-        }
-
-        private void OnDisable()
-        {
-            defaultActions.Disable();
         }
 
         public void DoDamage(GameObject target)

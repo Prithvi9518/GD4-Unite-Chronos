@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 609550444324819521}
   - component: {fileID: 7480401482090755493}
   - component: {fileID: 8031641169999057488}
+  - component: {fileID: 3992034454332637635}
   m_Layer: 0
   m_Name: PrototypeEnemy
   m_TagString: Untagged
@@ -77,8 +78,8 @@ NavMeshAgent:
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1
-  m_Height: 2.02
-  m_BaseOffset: 0.99
+  m_Height: 1.88
+  m_BaseOffset: 0.91
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
 --- !u!114 &7480401482090755493
@@ -107,6 +108,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d788a9d3d65fd741b9bf6f0de458794, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &3992034454332637635
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3558868164770317498}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5931133a10ea39e4f82726eefd6b00df, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 0}
+  detectionRange: 11.8
+  startingState: {fileID: 11400000, guid: 9495fa7bcc68a3d469fe4a72e5940639, type: 2}
+  remainState: {fileID: 11400000, guid: 72468647a83f1bf488b9575ef0eb8602, type: 2}
 --- !u!1 &3839755471682540438
 GameObject:
   m_ObjectHideFlags: 0
