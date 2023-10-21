@@ -24,6 +24,8 @@ namespace Unite
 
         public void UpdateState(IStateMachine stateMachine)
         {
+            Debug.Log("Updating state");
+
             PerformActions(stateMachine);
             CheckTransitions(stateMachine);
         }

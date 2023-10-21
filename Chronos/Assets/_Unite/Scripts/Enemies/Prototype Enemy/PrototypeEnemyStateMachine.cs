@@ -6,15 +6,31 @@ namespace Unite
     public class PrototypeEnemyStateMachine : MonoBehaviour, IStateMachine
     {
         [SerializeField]
+        private Transform target;
+
+        [SerializeField]
+        private float detectionRange;
+
+        [SerializeField]
         private State startingState;
 
-        private State currentState;
+        // Dummy state used to remain in the same state if needed
+        [SerializeField]
+        private State remainState;
 
+        private State currentState;
         private NavMeshAgent navMeshAgent;
+
+        public Transform Target => target;
+        public float DetectionRange => detectionRange;
+        public NavMeshAgent Agent => navMeshAgent;
 
         private void Awake()
         {
             currentState = startingState;
+
+            Debug.Log("starting state is: " + currentState.name);
+
             navMeshAgent = GetComponent<NavMeshAgent>();
         }
 
@@ -25,7 +41,16 @@ namespace Unite
 
         public void SetCurrentState(State state)
         {
+            if (state == remainState) return;
+
+            Debug.Log("Setting state to: " + state.name);
             currentState = state;
+        }
+
+        private void OnDrawGizmos()
+        {
+            Gizmos.color = Color.red;
+            Gizmos.DrawWireSphere(transform.position, detectionRange);
         }
     }
 }
