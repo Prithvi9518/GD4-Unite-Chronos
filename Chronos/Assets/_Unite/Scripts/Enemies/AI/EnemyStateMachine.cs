@@ -7,6 +7,9 @@ namespace Unite
     public class EnemyStateMachine : MonoBehaviour, IStateMachine
     {
         [SerializeField]
+        private EnemyData enemyData;
+
+        [SerializeField]
         private Transform target;
 
         [SerializeField]
@@ -20,6 +23,7 @@ namespace Unite
         private NavMeshAgent navMeshAgent;
         private IDetectTarget targetDetector;
 
+        public EnemyData EnemyData => enemyData;
         public Transform Target => target;
         public NavMeshAgent Agent => navMeshAgent;
         public IDetectTarget TargetDetector => targetDetector;
