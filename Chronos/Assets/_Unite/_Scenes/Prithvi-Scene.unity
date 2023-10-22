@@ -864,16 +864,16 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1120533419225629414, guid: 5fb67f19b2978eb4492f212e881ccb41,
+        type: 3}
+      propertyPath: target
+      value: 
+      objectReference: {fileID: 8149036866024840372}
     - target: {fileID: 3558868164770317498, guid: 5fb67f19b2978eb4492f212e881ccb41,
         type: 3}
       propertyPath: m_Name
       value: PrototypeEnemy
       objectReference: {fileID: 0}
-    - target: {fileID: 3992034454332637635, guid: 5fb67f19b2978eb4492f212e881ccb41,
-        type: 3}
-      propertyPath: target
-      value: 
-      objectReference: {fileID: 8149036866024840372}
     - target: {fileID: 7425407370580710186, guid: 5fb67f19b2978eb4492f212e881ccb41,
         type: 3}
       propertyPath: m_LocalPosition.x

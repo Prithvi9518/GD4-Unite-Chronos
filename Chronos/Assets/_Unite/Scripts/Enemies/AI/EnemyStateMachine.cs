@@ -3,13 +3,11 @@ using UnityEngine.AI;
 
 namespace Unite
 {
-    public class PrototypeEnemyStateMachine : MonoBehaviour, IStateMachine
+    [RequireComponent(typeof(NavMeshAgent), typeof(IDetectTarget))]
+    public class EnemyStateMachine : MonoBehaviour, IStateMachine
     {
         [SerializeField]
         private Transform target;
-
-        [SerializeField]
-        private float detectionRange;
 
         [SerializeField]
         private State startingState;
@@ -20,15 +18,17 @@ namespace Unite
 
         private State currentState;
         private NavMeshAgent navMeshAgent;
+        private IDetectTarget targetDetector;
 
         public Transform Target => target;
-        public float DetectionRange => detectionRange;
         public NavMeshAgent Agent => navMeshAgent;
+        public IDetectTarget TargetDetector => targetDetector;
 
         private void Awake()
         {
             currentState = startingState;
             navMeshAgent = GetComponent<NavMeshAgent>();
+            targetDetector = GetComponent<IDetectTarget>();
         }
 
         private void Update()
@@ -41,12 +41,6 @@ namespace Unite
             if (state == remainState) return;
 
             currentState = state;
-        }
-
-        private void OnDrawGizmos()
-        {
-            Gizmos.color = Color.red;
-            Gizmos.DrawWireSphere(transform.position, detectionRange);
         }
     }
 }

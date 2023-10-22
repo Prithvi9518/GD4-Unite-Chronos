@@ -10,15 +10,18 @@ namespace Unite
         [SerializeField] private float range = 100f;
         [SerializeField] private float damage = 25f;
 
-        [SerializeField] private float timeBetweenShots = 0.5f;
-        private bool canShoot = true;
+        [SerializeField]
+        private float timeBetweenShots = 0.5f;
 
-        [SerializeField] private ParticleSystem muzzleFlashEffect;
+        [SerializeField]
+        private ParticleSystem muzzleFlashEffect;
 
         [SerializeField]
         private PlayerInputHandler inputHandler;
 
-        private void Awake()
+        private bool canShoot = true;
+
+        private void Start()
         {
             inputHandler.DefaultActions.Shoot.performed += ctx =>
             {
