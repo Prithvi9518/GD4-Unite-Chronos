@@ -9,6 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 70c64d9e85cb0a646ae36880cf95451f, type: 3}
-  m_Name: ChasePlayerAction
+  m_Script: {fileID: 11500000, guid: a1a08d06c9da2124598b32bdcc363235, type: 3}
+  m_Name: TimeStopAbility
   m_EditorClassIdentifier: 
+  abilityName: Time Stop
+  sprite: {fileID: 0}
+  activeTimeMs: 6
+  cooldownTimeMs: 6
+  timeManager: {fileID: 0}

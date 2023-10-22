@@ -7,6 +7,9 @@ namespace Unite
     {
         private Health enemyHealth;
 
+        private bool isStoringDamage;
+        private float storedDamage;
+
         private void Awake()
         {
             enemyHealth = GetComponent<Health>();
@@ -14,20 +17,33 @@ namespace Unite
 
         public void TakeDamage(float damage)
         {
+            if (isStoringDamage)
+            {
+                storedDamage += damage;
+                return;
+            }
+
             enemyHealth.DecreaseHealth(damage);
 
-            // do some other logic
-
-            // die
             if (enemyHealth.GetHealth() <= 0)
             {
                 Die();
             }
         }
-
-        public void Die()
+        private void Die()
         {
             Destroy(gameObject);
+        }
+
+        public void ToggleStoredDamage(bool storeDamage)
+        {
+            isStoringDamage = storeDamage;
+        }
+
+        public void ApplyStoredDamage()
+        {
+            TakeDamage(storedDamage);
+            storedDamage = 0;
         }
     }
 }
