@@ -21,17 +21,20 @@ namespace Unite
 
         private State currentState;
         private NavMeshAgent navMeshAgent;
+        private CharacterController characterController;
         private IDetectTarget targetDetector;
 
         public EnemyData EnemyData => enemyData;
         public Transform Target => target;
         public NavMeshAgent Agent => navMeshAgent;
+        public CharacterController CharacterController => characterController;
         public IDetectTarget TargetDetector => targetDetector;
 
         private void Awake()
         {
             currentState = startingState;
             navMeshAgent = GetComponent<NavMeshAgent>();
+            characterController = GetComponent<CharacterController>();
             targetDetector = GetComponent<IDetectTarget>();
         }
 
@@ -45,6 +48,12 @@ namespace Unite
             if (state == remainState) return;
 
             currentState = state;
+        }
+
+        private void OnDrawGizmos()
+        {
+            Gizmos.color = Color.red;
+            Gizmos.DrawWireSphere(transform.position, enemyData.MeleeAttackRange);
         }
     }
 }

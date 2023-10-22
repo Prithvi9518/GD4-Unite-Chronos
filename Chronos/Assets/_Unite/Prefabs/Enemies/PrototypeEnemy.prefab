@@ -59,7 +59,7 @@ CapsuleCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.5
-  m_Height: 2
+  m_Height: 2.12
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!195 &609550444324819521
@@ -135,6 +135,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9efca4e78e8adcc42a94b981d3629650, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemyData: {fileID: 11400000, guid: 42cbcc67256bd304cabbf7d5791e933c, type: 2}
   target: {fileID: 0}
   startingState: {fileID: 11400000, guid: 9495fa7bcc68a3d469fe4a72e5940639, type: 2}
   remainState: {fileID: 11400000, guid: 72468647a83f1bf488b9575ef0eb8602, type: 2}
