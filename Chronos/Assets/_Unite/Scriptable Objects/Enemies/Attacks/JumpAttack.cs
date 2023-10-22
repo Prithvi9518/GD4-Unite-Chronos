@@ -3,13 +3,13 @@ using UnityEngine;
 
 namespace Unite
 {
-    [CreateAssetMenu(fileName ="JumpAttack", menuName ="Unite/Scriptable Objects/Enemies/Attacks/Jump Attack")]
+    [CreateAssetMenu(fileName = "JumpAttack", menuName = "Unite/Scriptable Objects/Enemies/Attacks/Jump Attack")]
     public class JumpAttack : AttackData
     {
         [SerializeField]
         private AnimationCurve heightCurve;
 
-        [SerializeField] 
+        [SerializeField]
         private float jumpSpeed;
 
         public override bool CanUseAttack(EnemyStateMachine enemy)
@@ -24,12 +24,6 @@ namespace Unite
 
         private IEnumerator JumpAttackCoroutine(EnemyStateMachine enemy)
         {
-            if (isPaused)
-            {
-                yield return new WaitWhile(() => isPaused);
-            }
-            Debug.Log("Coroutine is running");
-
             enemy.Agent.enabled = false;
 
             Vector3 startPos = enemy.transform.position;
@@ -49,4 +43,3 @@ namespace Unite
         }
     }
 }
-
