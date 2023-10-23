@@ -12,11 +12,10 @@ namespace Unite
         public void SetupAttackDict(List<AttackData> attacks)
         {
             attackDictionary.Clear();
-            foreach(AttackData attack in attacks)
+            foreach (AttackData attack in attacks)
             {
                 attackDictionary.Add(attack.AttackType, attack);
             }
         }
     }
 }
-

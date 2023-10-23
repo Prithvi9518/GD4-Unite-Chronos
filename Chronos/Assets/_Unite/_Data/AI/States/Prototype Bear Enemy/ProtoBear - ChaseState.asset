@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf9d2c506935ec843a13d0c97316fe6b, type: 3}
+  m_Name: ProtoBear - ChaseState
+  m_EditorClassIdentifier: 
+  actions:
+  - {fileID: 11400000, guid: 40b0c66a416e77e41932f97fcd7bc52a, type: 2}
+  transitions:
+  - condition: {fileID: 11400000, guid: cabf6af08e1a3b042bdb171821c3ee4c, type: 2}
+    trueState: {fileID: 11400000, guid: 72468647a83f1bf488b9575ef0eb8602, type: 2}
+    falseState: {fileID: 11400000, guid: 38998b48e58f30b48b18b1065df04156, type: 2}
+  - condition: {fileID: 11400000, guid: a920365844f131843af57bfa1339cfdc, type: 2}
+    trueState: {fileID: 11400000, guid: 38998b48e58f30b48b18b1065df04156, type: 2}
+    falseState: {fileID: 11400000, guid: 72468647a83f1bf488b9575ef0eb8602, type: 2}

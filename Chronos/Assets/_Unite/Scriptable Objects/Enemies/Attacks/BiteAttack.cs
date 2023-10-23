@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace Unite
 {
-    [CreateAssetMenu(fileName ="BiteAttack", menuName ="Unite/Scriptable Objects/Enemies/Attacks/Bite")]
+    [CreateAssetMenu(fileName = "BiteAttack", menuName = "Unite/Scriptable Objects/Enemies/Attacks/Bite")]
     public class BiteAttack : AttackData
     {
         public override bool CanUseAttack(EnemyStateMachine enemy)
@@ -17,4 +17,3 @@ namespace Unite
         }
     }
 }
-

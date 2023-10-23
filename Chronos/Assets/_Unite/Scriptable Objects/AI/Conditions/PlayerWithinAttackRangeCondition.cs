@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace Unite
@@ -12,19 +11,30 @@ namespace Unite
         private EnemyStateMachine enemy;
         private AttackData attack;
 
-
         public override bool VerifyCondition(IStateMachine stateMachine)
         {
             if (enemy == null)
                 enemy = stateMachine as EnemyStateMachine;
 
-            if(attack == null)
+            if (attack == null)
             {
                 enemy.AttackHandler.Attacks.TryGetValue(attackType, out attack);
             }
 
             return Vector3.Distance(enemy.transform.position,
                 enemy.Target.transform.position) <= attack.AttackRange;
+        }
+
+        private void OnEnable()
+        {
+            enemy = null;
+            attack = null;
+        }
+
+        private void OnDisable()
+        {
+            enemy = null;
+            attack = null;
         }
     }
 }

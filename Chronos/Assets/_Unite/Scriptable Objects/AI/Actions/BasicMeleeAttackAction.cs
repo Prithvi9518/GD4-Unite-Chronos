@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace Unite
 {
-    [CreateAssetMenu(fileName ="BasicMeleeAttack", menuName ="Unite/Scriptable Objects/AI/Actions/Basic Melee Attack")]
+    [CreateAssetMenu(fileName = "BasicMeleeAttack", menuName = "Unite/Scriptable Objects/AI/Actions/Basic Melee Attack")]
     public class BasicMeleeAttackAction : Action
     {
         [SerializeField]
@@ -16,7 +16,7 @@ namespace Unite
             if (enemy == null)
                 enemy = stateMachine as EnemyStateMachine;
 
-            if(attack == null)
+            if (attack == null)
             {
                 enemy.AttackHandler.Attacks.TryGetValue(attackType, out attack);
             }
@@ -25,6 +25,17 @@ namespace Unite
 
             attack.DoAttack(enemy);
         }
+
+        private void OnEnable()
+        {
+            enemy = null;
+            attack = null;
+        }
+
+        private void OnDisable()
+        {
+            enemy = null;
+            attack = null;
+        }
     }
 }
-
