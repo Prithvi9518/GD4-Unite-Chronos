@@ -6,18 +6,24 @@ namespace Unite
     public class BasicMeleeAttackAction : Action
     {
         [SerializeField]
-        private AttackData attackData;
+        private AttackType attackType;
 
         private EnemyStateMachine enemy;
+        private AttackData attack;
 
         public override void ExecuteAction(IStateMachine stateMachine)
         {
             if (enemy == null)
                 enemy = stateMachine as EnemyStateMachine;
 
-            if (!attackData.CanUseAttack(enemy)) return;
+            if(attack == null)
+            {
+                enemy.AttackHandler.Attacks.TryGetValue(attackType, out attack);
+            }
 
-            attackData.DoAttack(enemy);
+            if (!attack.CanUseAttack(enemy)) return;
+
+            attack.DoAttack(enemy);
         }
     }
 }

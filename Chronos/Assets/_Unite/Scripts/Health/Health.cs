@@ -10,6 +10,11 @@ namespace Unite
         [SerializeField]
         private float currentHealth;
 
+        // If we are setting up an entity using a Scriptable Object file
+        // then we won't set up initial values in the Start method to avoid race conditions.
+        [SerializeField]
+        private bool setupFromScriptableObject;
+
         public float MaxHealth
         {
             get => maxHealth;
@@ -20,14 +25,18 @@ namespace Unite
             }
         }
 
-        private void Awake()
+        public void Start()
         {
-            currentHealth = MaxHealth;
+            if (setupFromScriptableObject) return;
+
+            currentHealth = maxHealth;
         }
 
-        public float GetHealth()
+        public float CurrentHealth => currentHealth;
+
+        public void ResetHealth()
         {
-            return currentHealth;
+            currentHealth = maxHealth;
         }
 
         public void AddHealth(float amount)
@@ -42,4 +51,3 @@ namespace Unite
         }
     }
 }
-

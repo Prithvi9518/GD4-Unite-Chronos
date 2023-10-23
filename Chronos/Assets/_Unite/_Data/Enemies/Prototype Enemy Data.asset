@@ -12,5 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32caeaf3c47dcc4429d179743c38ac91, type: 3}
   m_Name: Prototype Enemy Data
   m_EditorClassIdentifier: 
-  MeleeAttackRange: 7.34
-  MeleeAttackDamage: 20
+  baseHealth: 100
+  baseDamage: 5
+  attacks:
+  - {fileID: 11400000, guid: 08807d5a9e7c686468ca872a389978f1, type: 2}
+  startingState: {fileID: 11400000, guid: 9495fa7bcc68a3d469fe4a72e5940639, type: 2}
+  remainState: {fileID: 11400000, guid: 72468647a83f1bf488b9575ef0eb8602, type: 2}

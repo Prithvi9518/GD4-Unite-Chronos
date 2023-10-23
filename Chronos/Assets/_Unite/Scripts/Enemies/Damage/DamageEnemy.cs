@@ -25,7 +25,7 @@ namespace Unite
 
             enemyHealth.DecreaseHealth(damage);
 
-            if (enemyHealth.GetHealth() <= 0)
+            if (enemyHealth.CurrentHealth <= 0)
             {
                 Die();
             }
