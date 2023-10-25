@@ -1,8 +1,13 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 namespace Unite
 {
+    [RequireComponent(typeof(Health))]
+    [RequireComponent(typeof(EnemyStateMachine))]
+    [RequireComponent(typeof(EnemyAttackHandler))]
+    [RequireComponent(typeof(NavMeshAgent))]
     public class ProtoEnemySetup : MonoBehaviour, ISetupEnemy
     {
         [SerializeField]
@@ -41,7 +46,7 @@ namespace Unite
 
         public void SetupStateMachine(EnemyData enemyData)
         {
-            enemyStateMachine.SetupStates(enemyData);
+            enemyStateMachine.PerformSetup(enemyData);
         }
     }
 }

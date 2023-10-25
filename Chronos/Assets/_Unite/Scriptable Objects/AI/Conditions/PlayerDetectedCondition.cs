@@ -14,7 +14,7 @@ namespace Unite
                 enemy = stateMachine as EnemyStateMachine;
             }
 
-            return enemy.TargetDetector.IsTargetDetected(enemy.Target);
+            return enemy.EnemyData.DetectionLogic.IsTargetDetected(enemy.Target);
         }
     }
 }

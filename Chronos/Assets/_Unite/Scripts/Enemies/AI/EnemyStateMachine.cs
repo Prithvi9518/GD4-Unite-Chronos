@@ -3,7 +3,6 @@ using UnityEngine.AI;
 
 namespace Unite
 {
-    [RequireComponent(typeof(NavMeshAgent), typeof(IDetectTarget))]
     public class EnemyStateMachine : MonoBehaviour, IStateMachine
     {
         private EnemyData enemyData;
@@ -17,24 +16,18 @@ namespace Unite
         private State remainState;
 
         private State currentState;
+
         private NavMeshAgent navMeshAgent;
-        private CharacterController characterController;
-        private IDetectTarget targetDetector;
         private EnemyAttackHandler enemyAttackHandler;
 
         public EnemyData EnemyData => enemyData;
         public Transform Target => target;
         public NavMeshAgent Agent => navMeshAgent;
-        public CharacterController CharacterController => characterController;
-        public IDetectTarget TargetDetector => targetDetector;
-
         public EnemyAttackHandler AttackHandler => enemyAttackHandler;
 
         private void Awake()
         {
             navMeshAgent = GetComponent<NavMeshAgent>();
-            characterController = GetComponent<CharacterController>();
-            targetDetector = GetComponent<IDetectTarget>();
             enemyAttackHandler = GetComponent<EnemyAttackHandler>();
         }
 
@@ -43,9 +36,10 @@ namespace Unite
             currentState.UpdateState(this);
         }
 
-        public void SetupStates(EnemyData enemyData)
+        public void PerformSetup(EnemyData enemyData)
         {
             this.enemyData = enemyData;
+            this.enemyData.DetectionLogic.StoreEnemyInfo(this);
 
             startingState = enemyData.StartState;
             remainState = enemyData.RemainState;

@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   baseHealth: 200
   baseDamage: 10
+  detectionLogic: {fileID: 11400000, guid: 68cccda6bd521464ea442561eb628512, type: 2}
   attacks:
   - {fileID: 11400000, guid: 088c2401fa239a54680923a76fbe3c1d, type: 2}
   startingState: {fileID: 11400000, guid: 1e199744920386744996284e918f904c, type: 2}

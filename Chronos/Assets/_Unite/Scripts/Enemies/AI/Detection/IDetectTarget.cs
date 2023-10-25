@@ -11,4 +11,3 @@ namespace Unite
         public bool IsTargetDetected(Transform target);
     }
 }
-

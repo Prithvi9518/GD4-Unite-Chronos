@@ -13,6 +13,10 @@ namespace Unite
         [SerializeField]
         private float baseDamage;
 
+        [Header("Target Detection Configuration")]
+        [SerializeField]
+        private EnemyDetectionData detectionLogic;
+
         [Header("Attack Configuration")]
         [SerializeField]
         private List<AttackData> attacks;
@@ -28,6 +32,8 @@ namespace Unite
 
         public State StartState => startingState;
         public State RemainState => remainState;
+
+        public EnemyDetectionData DetectionLogic => detectionLogic;
 
         private void OnEnable()
         {
