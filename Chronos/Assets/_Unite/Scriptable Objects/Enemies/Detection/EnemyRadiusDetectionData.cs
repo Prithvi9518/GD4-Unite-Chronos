@@ -8,16 +8,9 @@ namespace Unite
         [SerializeField]
         private float detectionRadius;
 
-        private EnemyStateMachine enemyStateMachine;
-
-        public override void StoreEnemyInfo(EnemyStateMachine enemy)
+        public override bool IsTargetDetected(EnemyStateMachine enemy)
         {
-            enemyStateMachine = enemy;
-        }
-
-        public override bool IsTargetDetected(Transform target)
-        {
-            return Vector3.Distance(enemyStateMachine.transform.position, target.position) <= detectionRadius;
+            return Vector3.Distance(enemy.transform.position, enemy.Target.position) <= detectionRadius;
         }
     }
 }

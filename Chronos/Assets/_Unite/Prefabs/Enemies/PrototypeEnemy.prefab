@@ -17,13 +17,14 @@ GameObject:
   - component: {fileID: 6473489194210929062}
   - component: {fileID: 700428801153787936}
   - component: {fileID: 1914295275598132946}
+  - component: {fileID: 442739084985044500}
   m_Layer: 0
   m_Name: PrototypeEnemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &7425407370580710186
 Transform:
   m_ObjectHideFlags: 0
@@ -160,6 +161,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 86e05cce025d1eb41a34432883fe0e42, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &442739084985044500
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3558868164770317498}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 58c46901d98d26948a224c618f384b39, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &3839755471682540438

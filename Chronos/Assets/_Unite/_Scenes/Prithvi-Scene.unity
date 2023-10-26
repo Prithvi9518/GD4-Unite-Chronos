@@ -977,11 +977,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: PrototypeEnemy
       objectReference: {fileID: 0}
-    - target: {fileID: 3558868164770317498, guid: 5fb67f19b2978eb4492f212e881ccb41,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 7425407370580710186, guid: 5fb67f19b2978eb4492f212e881ccb41,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1032,8 +1027,7 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 6421972924173753865, guid: 5fb67f19b2978eb4492f212e881ccb41, type: 3}
+    m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []

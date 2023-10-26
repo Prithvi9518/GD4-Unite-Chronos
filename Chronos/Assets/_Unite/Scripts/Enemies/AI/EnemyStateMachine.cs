@@ -5,8 +5,6 @@ namespace Unite
 {
     public class EnemyStateMachine : MonoBehaviour, IStateMachine
     {
-        private EnemyData enemyData;
-
         [SerializeField]
         private Transform target;
 
@@ -18,17 +16,20 @@ namespace Unite
         private State currentState;
 
         private NavMeshAgent navMeshAgent;
-        private EnemyAttackHandler enemyAttackHandler;
 
-        public EnemyData EnemyData => enemyData;
+        private EnemyAttackHandler enemyAttackHandler;
+        private EnemyDetectionHandler enemyDetectionHandler;
+
         public Transform Target => target;
         public NavMeshAgent Agent => navMeshAgent;
         public EnemyAttackHandler AttackHandler => enemyAttackHandler;
+        public EnemyDetectionHandler DetectionHandler => enemyDetectionHandler;
 
         private void Awake()
         {
             navMeshAgent = GetComponent<NavMeshAgent>();
             enemyAttackHandler = GetComponent<EnemyAttackHandler>();
+            enemyDetectionHandler = GetComponent<EnemyDetectionHandler>();
         }
 
         private void Update()
@@ -38,9 +39,6 @@ namespace Unite
 
         public void PerformSetup(EnemyData enemyData)
         {
-            this.enemyData = enemyData;
-            this.enemyData.DetectionLogic.StoreEnemyInfo(this);
-
             startingState = enemyData.StartState;
             remainState = enemyData.RemainState;
 

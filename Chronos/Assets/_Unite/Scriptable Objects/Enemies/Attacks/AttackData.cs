@@ -16,23 +16,11 @@ namespace Unite
         [SerializeField]
         protected float attackCooldown;
 
-        protected float timeWhenLastAttacked;
-
         public AttackType AttackType => attackType;
         public float AttackRange => attackRange;
 
-        public abstract bool CanUseAttack(EnemyStateMachine enemy);
+        public float AttackCooldown => attackCooldown;
 
-        public abstract void DoAttack(EnemyStateMachine enemy);
-
-        private void OnEnable()
-        {
-            timeWhenLastAttacked = 0;
-        }
-
-        private void OnDisable()
-        {
-            timeWhenLastAttacked = 0;
-        }
+        public abstract void Attack(EnemyStateMachine enemy);
     }
 }

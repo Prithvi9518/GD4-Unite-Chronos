@@ -15,13 +15,11 @@ namespace Unite
 
         [Header("Target Detection Configuration")]
         [SerializeField]
-        private EnemyDetectionData detectionLogic;
+        private EnemyDetectionData detectionData;
 
         [Header("Attack Configuration")]
         [SerializeField]
         private List<AttackData> attacks;
-
-        private float damage;
 
         [Header("State Machine Configuration")]
         [SerializeField]
@@ -33,17 +31,7 @@ namespace Unite
         public State StartState => startingState;
         public State RemainState => remainState;
 
-        public EnemyDetectionData DetectionLogic => detectionLogic;
-
-        private void OnEnable()
-        {
-            damage = baseDamage;
-        }
-
-        private void OnDisable()
-        {
-            damage = baseDamage;
-        }
+        public EnemyDetectionData DetectionData => detectionData;
 
         public virtual void SetupEnemy(ISetupEnemy enemy)
         {
@@ -51,6 +39,7 @@ namespace Unite
             enemy.SetupBaseDamage(baseDamage);
             enemy.SetupAttacks(attacks);
             enemy.SetupStateMachine(this);
+            enemy.SetupDetection(detectionData);
         }
     }
 }

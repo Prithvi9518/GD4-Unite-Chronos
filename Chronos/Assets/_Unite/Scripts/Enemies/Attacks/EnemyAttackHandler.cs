@@ -5,16 +5,16 @@ namespace Unite
 {
     public class EnemyAttackHandler : MonoBehaviour
     {
-        private Dictionary<AttackType, AttackData> attackDictionary = new();
+        private Dictionary<AttackType, Attack> attackDictionary = new();
 
-        public Dictionary<AttackType, AttackData> Attacks => attackDictionary;
+        public Dictionary<AttackType, Attack> Attacks => attackDictionary;
 
         public void SetupAttackDict(List<AttackData> attacks)
         {
             attackDictionary.Clear();
-            foreach (AttackData attack in attacks)
+            foreach (AttackData attackData in attacks)
             {
-                attackDictionary.Add(attack.AttackType, attack);
+                attackDictionary.Add(attackData.AttackType, new Attack(attackData));
             }
         }
     }

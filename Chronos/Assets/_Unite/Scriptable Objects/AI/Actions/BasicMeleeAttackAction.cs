@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Unite
@@ -8,34 +9,15 @@ namespace Unite
         [SerializeField]
         private AttackType attackType;
 
-        private EnemyStateMachine enemy;
-        private AttackData attack;
-
         public override void ExecuteAction(IStateMachine stateMachine)
         {
-            if (enemy == null)
-                enemy = stateMachine as EnemyStateMachine;
+            EnemyStateMachine enemy = stateMachine as EnemyStateMachine;
 
-            if (attack == null)
-            {
-                enemy.AttackHandler.Attacks.TryGetValue(attackType, out attack);
-            }
+            Attack attack = enemy.AttackHandler.Attacks.GetValueOrDefault(attackType, null);
 
-            if (!attack.CanUseAttack(enemy)) return;
+            if (!attack.CanUseAttack()) return;
 
             attack.DoAttack(enemy);
-        }
-
-        private void OnEnable()
-        {
-            enemy = null;
-            attack = null;
-        }
-
-        private void OnDisable()
-        {
-            enemy = null;
-            attack = null;
         }
     }
 }

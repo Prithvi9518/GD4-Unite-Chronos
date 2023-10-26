@@ -8,7 +8,8 @@ namespace Unite
     [RequireComponent(typeof(EnemyStateMachine))]
     [RequireComponent(typeof(EnemyAttackHandler))]
     [RequireComponent(typeof(NavMeshAgent))]
-    public class ProtoEnemySetup : MonoBehaviour, ISetupEnemy
+    [RequireComponent(typeof(EnemyDetectionHandler))]
+    public class BaseEnemySetup : MonoBehaviour, ISetupEnemy
     {
         [SerializeField]
         private EnemyData enemyData;
@@ -16,12 +17,14 @@ namespace Unite
         private Health enemyHealth;
         private EnemyStateMachine enemyStateMachine;
         private EnemyAttackHandler enemyAttackHandler;
+        private EnemyDetectionHandler enemyDetectionHandler;
 
         private void Awake()
         {
             enemyHealth = GetComponent<Health>();
             enemyStateMachine = GetComponent<EnemyStateMachine>();
             enemyAttackHandler = GetComponent<EnemyAttackHandler>();
+            enemyDetectionHandler = GetComponent<EnemyDetectionHandler>();
         }
 
         private void Start()
@@ -47,6 +50,11 @@ namespace Unite
         public void SetupStateMachine(EnemyData enemyData)
         {
             enemyStateMachine.PerformSetup(enemyData);
+        }
+
+        public void SetupDetection(EnemyDetectionData detectionData)
+        {
+            enemyDetectionHandler.SetupDetectionData(detectionData);
         }
     }
 }
