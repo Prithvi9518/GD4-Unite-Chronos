@@ -67,7 +67,7 @@ namespace Unite
 
         private void PerformExitActions(IStateMachine stateMachine)
         {
-            foreach (Action action in updateActions)
+            foreach (Action action in exitActions)
             {
                 action.ExecuteAction(stateMachine);
             }

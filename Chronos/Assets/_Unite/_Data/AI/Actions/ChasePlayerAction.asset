@@ -9,11 +9,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1e8a5b46930279543980c2d7ec0d6797, type: 3}
-  m_Name: Bear - Bite Attack
+  m_Script: {fileID: 11500000, guid: 70c64d9e85cb0a646ae36880cf95451f, type: 3}
+  m_Name: ChasePlayerAction
   m_EditorClassIdentifier: 
-  attackType: 1
-  damage: 15
-  attackRange: 3
-  attackCooldown: 1.5
-  animatorTriggerName: Attack3

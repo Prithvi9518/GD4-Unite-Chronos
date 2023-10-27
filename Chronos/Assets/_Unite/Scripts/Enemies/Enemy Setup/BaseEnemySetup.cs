@@ -10,6 +10,7 @@ namespace Unite
     [RequireComponent(typeof(EnemyAttackHandler))]
     [RequireComponent(typeof(NavMeshAgent))]
     [RequireComponent(typeof(EnemyDetectionHandler))]
+    [RequireComponent(typeof(EnemyAnimationHandler))]
     public class BaseEnemySetup : MonoBehaviour, ISetupEnemy
     {
         [SerializeField]

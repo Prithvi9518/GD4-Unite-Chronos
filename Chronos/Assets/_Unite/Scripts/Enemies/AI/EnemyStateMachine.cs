@@ -20,16 +20,20 @@ namespace Unite
         private EnemyAttackHandler enemyAttackHandler;
         private EnemyDetectionHandler enemyDetectionHandler;
 
+        private EnemyAnimationHandler animationHandler;
+
         public Transform Target => target;
         public NavMeshAgent Agent => navMeshAgent;
         public EnemyAttackHandler AttackHandler => enemyAttackHandler;
         public EnemyDetectionHandler DetectionHandler => enemyDetectionHandler;
+        public EnemyAnimationHandler AnimationHandler => animationHandler;
 
         private void Awake()
         {
             navMeshAgent = GetComponent<NavMeshAgent>();
             enemyAttackHandler = GetComponent<EnemyAttackHandler>();
             enemyDetectionHandler = GetComponent<EnemyDetectionHandler>();
+            animationHandler = GetComponent<EnemyAnimationHandler>();
         }
 
         private void Update()
@@ -43,6 +47,7 @@ namespace Unite
             remainState = enemyData.RemainState;
 
             currentState = startingState;
+            currentState.EnterState(this);
         }
 
         public void SetCurrentState(State state)

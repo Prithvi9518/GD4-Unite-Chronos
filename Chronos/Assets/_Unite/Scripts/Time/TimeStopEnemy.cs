@@ -30,6 +30,7 @@ namespace Unite
         public void HandleTimeStopEvent(bool isTimeStopped)
         {
             agent.enabled = !isTimeStopped;
+            enemyStateMachine.AnimationHandler.ToggleAnimator(!isTimeStopped);
             enemyStateMachine.enabled = !isTimeStopped;
 
             enemyDamager.ToggleStoredDamage(isTimeStopped);
