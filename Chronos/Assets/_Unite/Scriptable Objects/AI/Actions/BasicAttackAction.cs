@@ -3,8 +3,8 @@ using UnityEngine;
 
 namespace Unite
 {
-    [CreateAssetMenu(fileName = "BasicMeleeAttack", menuName = "Unite/Scriptable Objects/AI/Actions/Basic Melee Attack")]
-    public class BasicMeleeAttackAction : Action
+    [CreateAssetMenu(fileName = "BasicAttack", menuName = "Unite/Scriptable Objects/AI/Actions/Basic Attack")]
+    public class BasicAttackAction : Action
     {
         [SerializeField]
         private AttackType attackType;

@@ -2,9 +2,10 @@ using UnityEngine;
 
 namespace Unite
 {
+    [RequireComponent(typeof(Animator))]
     public class EnemyAnimationHandler : MonoBehaviour
     {
-        Animator animator;
+        private Animator animator;
 
         private void Awake()
         {
@@ -16,7 +17,7 @@ namespace Unite
             animator.SetBool(boolName, value);
         }
 
-        public void SetAnimationTrigger(string triggerName, bool isActive) 
+        public void SetAnimationTrigger(string triggerName, bool isActive)
         {
             if (isActive)
                 animator.SetTrigger(triggerName);
@@ -30,4 +31,3 @@ namespace Unite
         }
     }
 }
-
