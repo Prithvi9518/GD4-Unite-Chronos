@@ -16,21 +16,58 @@ namespace Unite
     [CreateAssetMenu(fileName = "State", menuName = "Unite/Scriptable Objects/AI/State")]
     public class State : ScriptableObject
     {
+        [Header("Actions")]
+        [Tooltip("Actions performed only once when entering the state.")]
         [SerializeField]
-        private Action[] actions;
+        private Action[] enterActions;
 
+        [Tooltip("Actions performed on every update.")]
+        [SerializeField]
+        private Action[] updateActions;
+
+        [Tooltip("Actions performed only once when exiting the state.")]
+        [SerializeField]
+        private Action[] exitActions;
+
+        [Header("Transitions")]
         [SerializeField]
         private StateTransition[] transitions;
 
+        public void EnterState(IStateMachine stateMachine)
+        {
+            PerformEnterActions(stateMachine);
+        }
+
         public void UpdateState(IStateMachine stateMachine)
         {
-            PerformActions(stateMachine);
+            PerformUpdateActions(stateMachine);
             CheckTransitions(stateMachine);
         }
 
-        private void PerformActions(IStateMachine stateMachine)
+        public void ExitState(IStateMachine stateMachine)
         {
-            foreach (Action action in actions)
+            PerformExitActions(stateMachine);
+        }
+
+        private void PerformEnterActions(IStateMachine stateMachine)
+        {
+            foreach (Action action in enterActions)
+            {
+                action.ExecuteAction(stateMachine);
+            }
+        }
+
+        private void PerformUpdateActions(IStateMachine stateMachine)
+        {
+            foreach (Action action in updateActions)
+            {
+                action.ExecuteAction(stateMachine);
+            }
+        }
+
+        private void PerformExitActions(IStateMachine stateMachine)
+        {
+            foreach (Action action in updateActions)
             {
                 action.ExecuteAction(stateMachine);
             }

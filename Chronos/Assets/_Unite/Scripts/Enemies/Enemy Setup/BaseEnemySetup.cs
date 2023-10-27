@@ -5,6 +5,7 @@ using UnityEngine.AI;
 namespace Unite
 {
     [RequireComponent(typeof(Health))]
+    [RequireComponent(typeof(EnemyDamager))]
     [RequireComponent(typeof(EnemyStateMachine))]
     [RequireComponent(typeof(EnemyAttackHandler))]
     [RequireComponent(typeof(NavMeshAgent))]

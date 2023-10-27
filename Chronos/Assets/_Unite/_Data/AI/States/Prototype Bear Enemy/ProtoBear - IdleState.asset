@@ -12,7 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf9d2c506935ec843a13d0c97316fe6b, type: 3}
   m_Name: ProtoBear - IdleState
   m_EditorClassIdentifier: 
-  actions: []
+  enterActions: []
+  updateActions: []
+  exitActions: []
   transitions:
   - condition: {fileID: 11400000, guid: cabf6af08e1a3b042bdb171821c3ee4c, type: 2}
     trueState: {fileID: 11400000, guid: 27c0f3a0943802e40b5284cefb5d1f2b, type: 2}

@@ -49,7 +49,9 @@ namespace Unite
         {
             if (state == remainState) return;
 
+            currentState.ExitState(this);
             currentState = state;
+            currentState.EnterState(this);
         }
     }
 }
