@@ -29,9 +29,13 @@ namespace Unite
         [SerializeField]
         private Action[] exitActions;
 
-        [Header("Transitions")]
+        [Header("Condition-Based Transitions")]
         [SerializeField]
-        private StateTransition[] transitions;
+        private StateTransition[] conditionBasedTransitions;
+
+        [Header("Event-Based Transitions")]
+        [SerializeField]
+        private StateEventTransition[] eventTransitions;
 
         public void EnterState(IStateMachine stateMachine)
         {
@@ -41,12 +45,24 @@ namespace Unite
         public void UpdateState(IStateMachine stateMachine)
         {
             PerformUpdateActions(stateMachine);
-            CheckTransitions(stateMachine);
+            CheckConditionalTransitions(stateMachine);
         }
 
         public void ExitState(IStateMachine stateMachine)
         {
             PerformExitActions(stateMachine);
+        }
+
+        public void CheckEventTransitions(IStateMachine stateMachine, StateEvent stateEvent)
+        {
+            foreach (StateEventTransition transition in eventTransitions)
+            {
+                if (transition.Event == stateEvent)
+                {
+                    Debug.Log("hey");
+                    stateMachine.SetCurrentState(transition.ToState);
+                }
+            }
         }
 
         private void PerformEnterActions(IStateMachine stateMachine)
@@ -73,9 +89,9 @@ namespace Unite
             }
         }
 
-        private void CheckTransitions(IStateMachine stateMachine)
+        private void CheckConditionalTransitions(IStateMachine stateMachine)
         {
-            foreach (StateTransition transition in transitions)
+            foreach (StateTransition transition in conditionBasedTransitions)
             {
                 bool conditionSatisfied = transition.Condition.VerifyCondition(stateMachine);
 

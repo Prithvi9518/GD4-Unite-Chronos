@@ -6,17 +6,21 @@ namespace Unite
     public class EnemyDamager : MonoBehaviour, ITakeDamage
     {
         private Health enemyHealth;
+        private EnemyStateMachine enemyStateMachine;
 
         private bool delayDeath;
 
         private void Awake()
         {
             enemyHealth = GetComponent<Health>();
+            enemyStateMachine = GetComponent<EnemyStateMachine>();
         }
 
         public void TakeDamage(float damage)
         {
             enemyHealth.DecreaseHealth(damage);
+
+            enemyStateMachine.TriggerStateEvent(StateEvent.EnemyTookDamage);
 
             if (enemyHealth.CurrentHealth <= 0 && !delayDeath)
             {

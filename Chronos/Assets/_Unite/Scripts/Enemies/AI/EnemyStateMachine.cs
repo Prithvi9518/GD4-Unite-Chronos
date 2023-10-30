@@ -53,5 +53,10 @@ namespace Unite
             currentState = state;
             currentState.EnterState(this);
         }
+
+        public void TriggerStateEvent(StateEvent stateEvent)
+        {
+            currentState.CheckEventTransitions(this, stateEvent);
+        }
     }
 }
