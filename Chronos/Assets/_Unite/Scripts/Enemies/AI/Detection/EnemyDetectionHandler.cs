@@ -2,23 +2,23 @@ using UnityEngine;
 
 namespace Unite
 {
-    public class EnemyDetectionHandler : MonoBehaviour, IDetectTarget
+    public class EnemyDetectionHandler : MonoBehaviour
     {
         [SerializeField]
         private Transform target;
 
-        private EnemyDetectionData detectionData;
+        private IDetectTarget detectionLogic;
 
         public Transform Target => target;
 
-        public void SetupDetectionData(EnemyDetectionData data)
+        private void Awake()
         {
-            detectionData = data;
+            detectionLogic = GetComponent<IDetectTarget>();
         }
 
         public bool IsTargetDetected()
         {
-            return detectionData.IsTargetDetected(this);
+            return detectionLogic.IsTargetDetected(target);
         }
     }
 }

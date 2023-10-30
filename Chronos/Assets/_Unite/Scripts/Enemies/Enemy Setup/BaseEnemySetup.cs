@@ -53,10 +53,5 @@ namespace Unite
         {
             enemyStateMachine.PerformSetup(enemyData);
         }
-
-        public void SetupDetection(EnemyDetectionData detectionData)
-        {
-            enemyDetectionHandler.SetupDetectionData(detectionData);
-        }
     }
 }

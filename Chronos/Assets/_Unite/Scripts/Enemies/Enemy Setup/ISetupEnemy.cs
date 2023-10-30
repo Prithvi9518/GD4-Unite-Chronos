@@ -11,7 +11,5 @@ namespace Unite
         public void SetupStateMachine(EnemyData enemyData);
 
         public void SetupAttacks(List<AttackData> attacks);
-
-        public void SetupDetection(EnemyDetectionData detectionData);
     }
 }

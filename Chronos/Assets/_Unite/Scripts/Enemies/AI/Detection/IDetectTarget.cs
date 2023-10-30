@@ -1,7 +1,9 @@
+using UnityEngine;
+
 namespace Unite
 {
     public interface IDetectTarget
     {
-        public bool IsTargetDetected();
+        public bool IsTargetDetected(Transform target);
     }
 }
