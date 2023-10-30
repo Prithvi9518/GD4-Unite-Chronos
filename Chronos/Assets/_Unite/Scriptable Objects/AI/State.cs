@@ -59,7 +59,6 @@ namespace Unite
             {
                 if (transition.Event == stateEvent)
                 {
-                    Debug.Log("hey");
                     stateMachine.SetCurrentState(transition.ToState);
                 }
             }

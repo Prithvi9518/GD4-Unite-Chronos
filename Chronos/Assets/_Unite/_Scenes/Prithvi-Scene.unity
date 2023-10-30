@@ -455,6 +455,56 @@ Transform:
   - {fileID: 723881783}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1474953212
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1474953214}
+  - component: {fileID: 1474953213}
+  m_Layer: 0
+  m_Name: Time Stop VFX
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1474953213
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1474953212}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 65825a1e685bf6d46b5a30ca167b4900, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  volume: {fileID: 832575518}
+  color: {r: 1, g: 1, b: 1, a: 0}
+  contrast: 14
+  hueShift: 87
+  saturation: 59
+  postExposure: 0
+--- !u!4 &1474953214
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1474953212}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -1.6318719, y: 4.581981, z: 6.5832205}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1943680279
 GameObject:
   m_ObjectHideFlags: 0
@@ -954,6 +1004,11 @@ PrefabInstance:
       propertyPath: inputHandler
       value: 
       objectReference: {fileID: 8817170068317750799}
+    - target: {fileID: 3320336557053487253, guid: b98c5e8efa2f9c14a98d46ecfa6c92a3,
+        type: 3}
+      propertyPath: m_RenderPostProcessing
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1264,3 +1319,4 @@ SceneRoots:
   - {fileID: 6277531130479704560}
   - {fileID: 38124227324743373}
   - {fileID: 2557604357663983068}
+  - {fileID: 1474953214}
