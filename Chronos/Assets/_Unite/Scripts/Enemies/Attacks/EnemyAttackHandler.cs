@@ -33,9 +33,9 @@ namespace Unite
             }
         }
 
-        public void InvokeDamageDealtEvent(AttackData attackData)
+        public void DealDamage(AttackType attackType)
         {
-            Attack attackToUse = attackDictionary.GetValueOrDefault(attackData.AttackType, null);
+            Attack attackToUse = attackDictionary.GetValueOrDefault(attackType, null);
 
             if (attackToUse == null) return;
 
@@ -43,7 +43,7 @@ namespace Unite
 
             float totalDamageDealt = baseDamage + attackToUse.AttackData.AttackDamage;
 
-            if(targetDamageable == null)
+            if (targetDamageable == null)
             {
                 targetDamageable = detectionHandler.Target.GetComponent<ITakeDamage>();
             }

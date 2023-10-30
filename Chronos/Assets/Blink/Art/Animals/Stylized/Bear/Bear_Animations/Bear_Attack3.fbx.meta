@@ -93,7 +93,7 @@ ModelImporter:
       curves: []
       events:
       - time: 0.21631205
-        functionName: InvokeDamageDealtEvent
+        functionName: HandleAttackAnimationEvent
         data: 
         objectReferenceParameter: {fileID: 11400000, guid: 088c2401fa239a54680923a76fbe3c1d,
           type: 2}

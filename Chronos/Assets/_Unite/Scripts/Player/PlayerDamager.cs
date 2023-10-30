@@ -1,6 +1,5 @@
 using UnityEngine;
 
-
 namespace Unite
 {
     [RequireComponent(typeof(Health))]
@@ -15,9 +14,8 @@ namespace Unite
 
         public void TakeDamage(float damage)
         {
-            Debug.Log("Inside TakeDamage");
             playerHealth.DecreaseHealth(damage);
-            if(playerHealth.CurrentHealth <= 0)
+            if (playerHealth.CurrentHealth <= 0)
             {
                 Die();
             }
@@ -25,8 +23,7 @@ namespace Unite
 
         private void Die()
         {
-            Debug.Log("Dead");
+            Debug.Log("Player Dead");
         }
     }
 }
-
