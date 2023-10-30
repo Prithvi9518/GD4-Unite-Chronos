@@ -16,7 +16,7 @@ namespace Unite
             Attack attack = enemy.AttackHandler.Attacks.GetValueOrDefault(attackType, null);
 
             return Vector3.Distance(enemy.transform.position,
-                enemy.Target.transform.position) <= attack.AttackData.AttackRange;
+                enemy.DetectionHandler.Target.position) <= attack.AttackData.AttackRange;
         }
     }
 }

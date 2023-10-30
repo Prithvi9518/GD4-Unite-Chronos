@@ -5,9 +5,6 @@ namespace Unite
 {
     public class EnemyStateMachine : MonoBehaviour, IStateMachine
     {
-        [SerializeField]
-        private Transform target;
-
         private State startingState;
 
         // Dummy state used to remain in the same state if needed
@@ -19,10 +16,8 @@ namespace Unite
 
         private EnemyAttackHandler enemyAttackHandler;
         private EnemyDetectionHandler enemyDetectionHandler;
-
         private EnemyAnimationHandler animationHandler;
 
-        public Transform Target => target;
         public NavMeshAgent Agent => navMeshAgent;
         public EnemyAttackHandler AttackHandler => enemyAttackHandler;
         public EnemyDetectionHandler DetectionHandler => enemyDetectionHandler;

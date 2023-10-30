@@ -7,8 +7,7 @@ namespace Unite
     {
         private Health enemyHealth;
 
-        private bool isStoringDamage;
-        private float storedDamage;
+        private bool delayDeath;
 
         private void Awake()
         {
@@ -17,33 +16,34 @@ namespace Unite
 
         public void TakeDamage(float damage)
         {
-            if (isStoringDamage)
-            {
-                storedDamage += damage;
-                return;
-            }
-
             enemyHealth.DecreaseHealth(damage);
 
-            if (enemyHealth.CurrentHealth <= 0)
+            if (enemyHealth.CurrentHealth <= 0 && !delayDeath)
             {
                 Die();
             }
         }
+
         private void Die()
         {
             Destroy(gameObject);
         }
 
-        public void ToggleStoredDamage(bool storeDamage)
+        public void ToggleDelayDeath(bool value)
         {
-            isStoringDamage = storeDamage;
+            delayDeath = value;
+            if (!delayDeath)
+            {
+                CheckDiedAfterDelay();
+            }
         }
 
-        public void ApplyStoredDamage()
+        private void CheckDiedAfterDelay()
         {
-            TakeDamage(storedDamage);
-            storedDamage = 0;
+            if (enemyHealth.CurrentHealth <= 0)
+            {
+                Die();
+            }
         }
     }
 }

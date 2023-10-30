@@ -4,6 +4,6 @@ namespace Unite
 {
     public abstract class EnemyDetectionData : ScriptableObject
     {
-        public abstract bool IsTargetDetected(EnemyStateMachine enemy);
+        public abstract bool IsTargetDetected(EnemyDetectionHandler enemy);
     }
 }

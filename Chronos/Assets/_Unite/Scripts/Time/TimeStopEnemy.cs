@@ -33,12 +33,7 @@ namespace Unite
             enemyStateMachine.AnimationHandler.ToggleAnimator(!isTimeStopped);
             enemyStateMachine.enabled = !isTimeStopped;
 
-            enemyDamager.ToggleStoredDamage(isTimeStopped);
-
-            if (!isTimeStopped)
-                enemyDamager.ApplyStoredDamage();
+            enemyDamager.ToggleDelayDeath(isTimeStopped);
         }
-
     }
 }
-

@@ -4,13 +4,12 @@ namespace Unite
 {
     public class EnemyDetectionHandler : MonoBehaviour, IDetectTarget
     {
-        private EnemyDetectionData detectionData;
-        private EnemyStateMachine enemyStateMachine;
+        [SerializeField]
+        private Transform target;
 
-        private void Awake()
-        {
-            enemyStateMachine = GetComponent<EnemyStateMachine>();
-        }
+        private EnemyDetectionData detectionData;
+
+        public Transform Target => target;
 
         public void SetupDetectionData(EnemyDetectionData data)
         {
@@ -19,7 +18,7 @@ namespace Unite
 
         public bool IsTargetDetected()
         {
-            return detectionData.IsTargetDetected(enemyStateMachine);
+            return detectionData.IsTargetDetected(this);
         }
     }
 }
