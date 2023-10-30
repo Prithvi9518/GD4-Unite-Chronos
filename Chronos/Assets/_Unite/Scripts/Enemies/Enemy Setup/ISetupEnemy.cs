@@ -6,10 +6,8 @@ namespace Unite
     {
         public void SetupHealth(float maxHealth);
 
-        public void SetupBaseDamage(float baseDamage);
-
         public void SetupStateMachine(EnemyData enemyData);
 
-        public void SetupAttacks(List<AttackData> attacks);
+        public void SetupAttacks(float baseDamage, List<AttackData> attacks);
     }
 }

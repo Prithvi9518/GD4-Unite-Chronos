@@ -154,6 +154,8 @@ GameObject:
   - component: {fileID: 1382876627269084449}
   - component: {fileID: 6369512394015400636}
   - component: {fileID: 6490297160089012221}
+  - component: {fileID: 305144721195887007}
+  - component: {fileID: 916965400791086416}
   m_Layer: 8
   m_Name: PlayerCapsule
   m_TagString: Player
@@ -395,3 +397,30 @@ MonoBehaviour:
   abilityData: {fileID: 11400000, guid: 2471bd37096d62c45bf8a15ccebb959b, type: 2}
   inputAction: {fileID: 8549021824876068116, guid: ddadf06b494043f438f6169ee368f5ee,
     type: 3}
+--- !u!114 &305144721195887007
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7830948257419484268}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f9d7fb04460bac44bb2cd5d405cae89c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 100
+  currentHealth: 0
+  setupFromScriptableObject: 0
+--- !u!114 &916965400791086416
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7830948257419484268}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e24375ddc9a36f499908f54e8e7ae5b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

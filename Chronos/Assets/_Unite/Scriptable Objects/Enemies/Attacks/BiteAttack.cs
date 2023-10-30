@@ -10,7 +10,6 @@ namespace Unite
 
         public override void Attack(EnemyStateMachine enemy)
         {
-            Debug.Log("Bite");
             enemy.AnimationHandler.SetAnimationTrigger(animatorTriggerName, true);
         }
     }

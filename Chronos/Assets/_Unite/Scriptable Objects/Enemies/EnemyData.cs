@@ -30,8 +30,7 @@ namespace Unite
         public virtual void SetupEnemy(ISetupEnemy enemy)
         {
             enemy.SetupHealth(baseHealth);
-            enemy.SetupBaseDamage(baseDamage);
-            enemy.SetupAttacks(attacks);
+            enemy.SetupAttacks(baseDamage, attacks);
             enemy.SetupStateMachine(this);
         }
     }

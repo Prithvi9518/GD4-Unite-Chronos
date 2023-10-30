@@ -18,7 +18,7 @@ namespace Unite
 
         public AttackType AttackType => attackType;
         public float AttackRange => attackRange;
-
+        public float AttackDamage => damage;
         public float AttackCooldown => attackCooldown;
 
         public abstract void Attack(EnemyStateMachine enemy);

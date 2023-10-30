@@ -19,6 +19,11 @@ namespace Unite
             return timeWhenLastAttacked + attackData.AttackCooldown < Time.time;
         }
 
+        public bool IsTargetInAttackRange(EnemyDetectionHandler enemy)
+        {
+            return Vector3.Distance(enemy.transform.position, enemy.Target.position) <= attackData.AttackRange;
+        }
+
         public void DoAttack(EnemyStateMachine enemy)
         {
             attackData.Attack(enemy);

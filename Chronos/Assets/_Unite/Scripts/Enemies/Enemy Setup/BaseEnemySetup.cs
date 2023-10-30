@@ -34,13 +34,9 @@ namespace Unite
             enemyData.SetupEnemy(this);
         }
 
-        public void SetupAttacks(List<AttackData> attacks)
+        public void SetupAttacks(float baseDamage, List<AttackData> attacks)
         {
-            enemyAttackHandler.SetupAttackDict(attacks);
-        }
-
-        public void SetupBaseDamage(float baseDamage)
-        {
+            enemyAttackHandler.PerformSetup(baseDamage, attacks);
         }
 
         public void SetupHealth(float maxHealth)
