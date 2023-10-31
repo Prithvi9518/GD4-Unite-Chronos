@@ -1,13 +1,10 @@
 using UnityEngine;
-using UnityEngine.AI;
 
 namespace Unite
 {
     public class TimeStopEnemy : MonoBehaviour, ITimeStopSubscriber
     {
-        private EnemyStateMachine enemyStateMachine;
-        private NavMeshAgent agent;
-        private EnemyDamager enemyDamager;
+        private Enemy enemy;
 
         private void OnEnable()
         {
@@ -22,18 +19,16 @@ namespace Unite
 
         private void Awake()
         {
-            agent = GetComponent<NavMeshAgent>();
-            enemyStateMachine = GetComponent<EnemyStateMachine>();
-            enemyDamager = GetComponent<EnemyDamager>();
+            enemy = GetComponent<Enemy>();
         }
 
         public void HandleTimeStopEvent(bool isTimeStopped)
         {
-            agent.enabled = !isTimeStopped;
-            enemyStateMachine.AnimationHandler.ToggleAnimator(!isTimeStopped);
-            enemyStateMachine.enabled = !isTimeStopped;
+            enemy.Agent.enabled = !isTimeStopped;
+            enemy.AnimationHandler.ToggleAnimator(!isTimeStopped);
+            enemy.StateMachine.enabled = !isTimeStopped;
 
-            enemyDamager.ToggleDelayDeath(isTimeStopped);
+            enemy.Damager.ToggleDelayDeath(isTimeStopped);
         }
     }
 }

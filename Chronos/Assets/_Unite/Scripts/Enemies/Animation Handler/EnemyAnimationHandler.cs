@@ -8,6 +8,8 @@ namespace Unite
         private Animator animator;
         private EnemyAttackHandler attackHandler;
 
+        public Animator Animator => animator;
+
         private void Awake()
         {
             animator = GetComponent<Animator>();

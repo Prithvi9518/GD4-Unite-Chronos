@@ -58,8 +58,6 @@ namespace Unite
 
         private IEnumerator Shoot()
         {
-            Debug.Log("Invoking Shoot coroutine");
-
             canShoot = false;
 
             while (inputHandler.DefaultActions.Shoot.IsPressed())
@@ -142,7 +140,6 @@ namespace Unite
             ITakeDamage damageable = target.transform.GetComponent<ITakeDamage>();
             if (damageable == null) return;
 
-            Debug.Log(damageable.ToString());
             damageable.TakeDamage(damage);
         }
 

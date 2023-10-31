@@ -9,7 +9,11 @@ namespace Unite
 
         private IDetectTarget detectionLogic;
 
-        public Transform Target => target;
+        public Transform Target
+        {
+            get { return target; }
+            set { target = value; }
+        }
 
         private void Awake()
         {

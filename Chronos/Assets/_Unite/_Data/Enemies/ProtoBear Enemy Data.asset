@@ -12,9 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32caeaf3c47dcc4429d179743c38ac91, type: 3}
   m_Name: ProtoBear Enemy Data
   m_EditorClassIdentifier: 
-  baseHealth: 200
-  baseDamage: 10
-  detectionData: {fileID: 11400000, guid: 68cccda6bd521464ea442561eb628512, type: 2}
+  baseHealth: 50
+  baseDamage: 5
   attacks:
   - {fileID: 11400000, guid: 088c2401fa239a54680923a76fbe3c1d, type: 2}
   startingState: {fileID: 11400000, guid: 1e199744920386744996284e918f904c, type: 2}

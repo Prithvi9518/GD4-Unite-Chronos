@@ -12,23 +12,16 @@ namespace Unite
 
         private State currentState;
 
-        private NavMeshAgent navMeshAgent;
+        private Enemy enemy;
 
-        private EnemyAttackHandler enemyAttackHandler;
-        private EnemyDetectionHandler enemyDetectionHandler;
-        private EnemyAnimationHandler animationHandler;
-
-        public NavMeshAgent Agent => navMeshAgent;
-        public EnemyAttackHandler AttackHandler => enemyAttackHandler;
-        public EnemyDetectionHandler DetectionHandler => enemyDetectionHandler;
-        public EnemyAnimationHandler AnimationHandler => animationHandler;
+        public NavMeshAgent Agent => enemy.Agent;
+        public EnemyDetectionHandler DetectionHandler => enemy.DetectionHandler;
+        public EnemyAttackHandler AttackHandler => enemy.AttackHandler;
+        public EnemyAnimationHandler AnimationHandler => enemy.AnimationHandler;
 
         private void Awake()
         {
-            navMeshAgent = GetComponent<NavMeshAgent>();
-            enemyAttackHandler = GetComponent<EnemyAttackHandler>();
-            enemyDetectionHandler = GetComponent<EnemyDetectionHandler>();
-            animationHandler = GetComponent<EnemyAnimationHandler>();
+            enemy = GetComponent<Enemy>();
         }
 
         private void Update()
