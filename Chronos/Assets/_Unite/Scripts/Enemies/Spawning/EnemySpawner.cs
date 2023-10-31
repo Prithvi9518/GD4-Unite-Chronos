@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
@@ -28,20 +29,20 @@ namespace Unite
         private Dictionary<int, IObjectPool<Enemy>> enemyPoolDictionary = new();
 
         private int numCurrentlySpawned;
-        private float timeWhenLastSpawned;
 
         private Vector3 spawnPosition;
 
-        private bool isSpawning = true;
+        private IEnumerator spawnCoroutine;
 
         private void Awake()
         {
             SetupEnemyPools();
         }
 
-        private void Update()
+        private void Start()
         {
-            SpawnEnemies();
+            spawnCoroutine = SpawnEnemiesCoroutine();
+            StartCoroutine(spawnCoroutine);
         }
 
         private void OnEnable()
@@ -55,21 +56,17 @@ namespace Unite
             TimeStopManager.Instance.ToggleTimeStop -= HandleTimeStopEvent;
         }
 
-        private void SpawnEnemies()
+        private IEnumerator SpawnEnemiesCoroutine()
         {
-            if (!CanSpawn()) return;
-
-            SpawnRandomEnemy();
-
-            timeWhenLastSpawned = Time.time;
-            numCurrentlySpawned++;
-        }
-
-        private bool CanSpawn()
-        {
-            return numCurrentlySpawned < maxSpawnedAtATime
-                && timeWhenLastSpawned + spawnDelay < Time.time
-                && isSpawning;
+            while (true)
+            {
+                yield return new WaitForSeconds(spawnDelay);
+                if (numCurrentlySpawned < maxSpawnedAtATime)
+                {
+                    SpawnRandomEnemy();
+                    numCurrentlySpawned++;
+                }
+            }
         }
 
         private void SpawnRandomEnemy()
@@ -105,7 +102,6 @@ namespace Unite
         {
             for (int i = 0; i < enemyScriptableObjects.Count; i++)
             {
-                Debug.Log($"i = {i}");
                 IObjectPool<Enemy> enemyPool = new ObjectPool<Enemy>(
                     () => CreateEnemy(i - 1),
                     OnGetEnemy,
@@ -118,7 +114,6 @@ namespace Unite
 
         private Enemy CreateEnemy(int index)
         {
-            Debug.Log($"index = {index}");
             Enemy enemy = Instantiate(enemyScriptableObjects[index].EnemyPrefab);
             return enemy;
         }
@@ -148,7 +143,14 @@ namespace Unite
 
         public void HandleTimeStopEvent(bool isTimeStopped)
         {
-            isSpawning = !isTimeStopped;
+            if (isTimeStopped)
+            {
+                StopCoroutine(spawnCoroutine);
+            }
+            else
+            {
+                StartCoroutine(spawnCoroutine);
+            }
         }
     }
 }
