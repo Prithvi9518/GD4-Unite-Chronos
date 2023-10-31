@@ -15,6 +15,9 @@ namespace Unite
         public void TakeDamage(float damage)
         {
             playerHealth.DecreaseHealth(damage);
+
+            Debug.Log($"Health: {playerHealth.CurrentHealth}/{playerHealth.MaxHealth}");
+
             if (playerHealth.CurrentHealth <= 0)
             {
                 Die();

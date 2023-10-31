@@ -7,13 +7,13 @@ namespace Unite
     public class BasicAttackAction : Action
     {
         [SerializeField]
-        private AttackType attackType;
+        private AttackName attackName;
 
         public override void ExecuteAction(IStateMachine stateMachine)
         {
             EnemyStateMachine enemy = stateMachine as EnemyStateMachine;
 
-            Attack attack = enemy.AttackHandler.Attacks.GetValueOrDefault(attackType, null);
+            Attack attack = enemy.AttackHandler.Attacks.GetValueOrDefault(attackName, null);
 
             if (!attack.CanUseAttack()) return;
 

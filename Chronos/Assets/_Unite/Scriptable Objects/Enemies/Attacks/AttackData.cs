@@ -5,22 +5,24 @@ namespace Unite
     public abstract class AttackData : ScriptableObject
     {
         [SerializeField]
-        private AttackType attackType;
+        private AttackName attackName;
 
         [SerializeField]
         private float damage;
 
         [SerializeField]
-        private float attackRange;
+        protected float attackRange;
 
         [SerializeField]
         protected float attackCooldown;
 
-        public AttackType AttackType => attackType;
+        public AttackName AttackName => attackName;
         public float AttackRange => attackRange;
         public float AttackDamage => damage;
         public float AttackCooldown => attackCooldown;
 
         public abstract void Attack(EnemyStateMachine enemy);
+
+        public abstract bool CheckDealDamage(EnemyStateMachine enemy);
     }
 }

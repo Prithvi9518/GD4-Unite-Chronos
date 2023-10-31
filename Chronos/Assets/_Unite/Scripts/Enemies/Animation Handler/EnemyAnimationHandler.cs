@@ -40,7 +40,7 @@ namespace Unite
         /// <param name="attackData"></param>
         public void HandleAttackAnimationEvent(AttackData attackData)
         {
-            attackHandler.DealDamage(attackData.AttackType);
+            attackHandler.CheckAndDealDamage(attackData.AttackName);
         }
     }
 }

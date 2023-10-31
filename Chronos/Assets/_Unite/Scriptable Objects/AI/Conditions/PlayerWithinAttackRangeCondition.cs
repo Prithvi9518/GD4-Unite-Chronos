@@ -7,15 +7,17 @@ namespace Unite
     public class PlayerWithinAttackRangeCondition : Condition
     {
         [SerializeField]
-        private AttackType attackType;
+        private AttackName attackName;
 
         public override bool VerifyCondition(IStateMachine stateMachine)
         {
             EnemyStateMachine enemy = stateMachine as EnemyStateMachine;
 
-            Attack attack = enemy.AttackHandler.Attacks.GetValueOrDefault(attackType, null);
+            Attack attack = enemy.AttackHandler.Attacks.GetValueOrDefault(attackName, null);
 
-            return attack.IsTargetInAttackRange(enemy.DetectionHandler);
+            float distance = Vector3.Distance(enemy.transform.position, enemy.DetectionHandler.Target.position);
+
+            return distance <= attack.AttackData.AttackRange;
         }
     }
 }
