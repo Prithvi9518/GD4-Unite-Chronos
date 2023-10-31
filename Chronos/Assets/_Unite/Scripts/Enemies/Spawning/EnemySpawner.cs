@@ -5,10 +5,10 @@ using UnityEngine.Pool;
 
 namespace Unite
 {
-    public class EnemySpawner : MonoBehaviour
+    public class EnemySpawner : MonoBehaviour, ITimeStopSubscriber
     {
         [SerializeField]
-        private List<Enemy> enemyPrefabs;
+        private List<EnemyData> enemyScriptableObjects;
 
         [SerializeField]
         private Transform player;
@@ -25,16 +25,18 @@ namespace Unite
         [SerializeField]
         private float spawnDelay;
 
-        private IObjectPool<Enemy> enemyPool;
+        private Dictionary<int, IObjectPool<Enemy>> enemyPoolDictionary = new();
 
         private int numCurrentlySpawned;
         private float timeWhenLastSpawned;
 
         private Vector3 spawnPosition;
 
+        private bool isSpawning = true;
+
         private void Awake()
         {
-            enemyPool = new ObjectPool<Enemy>(() => CreateEnemy(0), OnGetEnemy, OnReleaseEnemy, OnDestroyEnemy);
+            SetupEnemyPools();
         }
 
         private void Update()
@@ -42,11 +44,22 @@ namespace Unite
             SpawnEnemies();
         }
 
+        private void OnEnable()
+        {
+            TimeStopManager.Instance.ToggleTimeStop += HandleTimeStopEvent;
+        }
+
+        private void OnDisable()
+        {
+            if (TimeStopManager.Instance == null) return;
+            TimeStopManager.Instance.ToggleTimeStop -= HandleTimeStopEvent;
+        }
+
         private void SpawnEnemies()
         {
-            if(!CanSpawn()) return;
+            if (!CanSpawn()) return;
 
-            SpawnRandomEnemy(Random.Range(0, enemyPrefabs.Count));
+            SpawnRandomEnemy();
 
             timeWhenLastSpawned = Time.time;
             numCurrentlySpawned++;
@@ -55,13 +68,19 @@ namespace Unite
         private bool CanSpawn()
         {
             return numCurrentlySpawned < maxSpawnedAtATime
-                && timeWhenLastSpawned + spawnDelay < Time.time;
+                && timeWhenLastSpawned + spawnDelay < Time.time
+                && isSpawning;
         }
 
-        private void SpawnRandomEnemy(int spawnIndex)
+        private void SpawnRandomEnemy()
         {
-            Enemy enemy = enemyPool.Get();
-            enemy.SetEnemyPool(enemyPool);
+            int randomIndex = Random.Range(0, enemyScriptableObjects.Count);
+
+            Enemy enemy = enemyPoolDictionary[randomIndex].Get();
+
+            enemy.SetEnemyPool(enemyPoolDictionary[randomIndex]);
+            enemyScriptableObjects[randomIndex].SetupEnemy(enemy);
+            enemy.DetectionHandler.Target = player;
 
             spawnPosition = GetRandomPositionAroundPlayer();
 
@@ -82,9 +101,25 @@ namespace Unite
             return randomPosition;
         }
 
-        private Enemy CreateEnemy(int prefabIndex)
+        private void SetupEnemyPools()
         {
-            Enemy enemy = Instantiate(enemyPrefabs[prefabIndex]);
+            for (int i = 0; i < enemyScriptableObjects.Count; i++)
+            {
+                Debug.Log($"i = {i}");
+                IObjectPool<Enemy> enemyPool = new ObjectPool<Enemy>(
+                    () => CreateEnemy(i - 1),
+                    OnGetEnemy,
+                    OnReleaseEnemy,
+                    OnDestroyEnemy
+                );
+                enemyPoolDictionary.Add(i, enemyPool);
+            }
+        }
+
+        private Enemy CreateEnemy(int index)
+        {
+            Debug.Log($"index = {index}");
+            Enemy enemy = Instantiate(enemyScriptableObjects[index].EnemyPrefab);
             return enemy;
         }
 
@@ -109,6 +144,11 @@ namespace Unite
         {
             Gizmos.color = Color.red;
             Gizmos.DrawLine(player.transform.position, spawnPosition);
+        }
+
+        public void HandleTimeStopEvent(bool isTimeStopped)
+        {
+            isSpawning = !isTimeStopped;
         }
     }
 }

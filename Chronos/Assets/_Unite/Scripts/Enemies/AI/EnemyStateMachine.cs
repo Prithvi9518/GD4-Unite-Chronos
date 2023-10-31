@@ -29,10 +29,10 @@ namespace Unite
             currentState.UpdateState(this);
         }
 
-        public void PerformSetup(EnemyData enemyData)
+        public void PerformSetup(State start, State remain)
         {
-            startingState = enemyData.StartState;
-            remainState = enemyData.RemainState;
+            startingState = start;
+            remainState = remain;
 
             currentState = startingState;
             currentState.EnterState(this);

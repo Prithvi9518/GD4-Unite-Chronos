@@ -6,6 +6,9 @@ namespace Unite
     [CreateAssetMenu(fileName = "EnemyData", menuName = "Unite/Scriptable Objects/Enemies/Base Enemy Data")]
     public class EnemyData : ScriptableObject
     {
+        [SerializeField]
+        private Enemy enemyPrefab;
+
         [Header("Stats")]
         [SerializeField]
         private float baseHealth;
@@ -24,14 +27,17 @@ namespace Unite
         [SerializeField]
         private State remainState;
 
+        public Enemy EnemyPrefab => enemyPrefab;
         public State StartState => startingState;
         public State RemainState => remainState;
 
-        public virtual void SetupEnemy(ISetupEnemy enemy)
+        public virtual void SetupEnemy(Enemy enemy)
         {
-            enemy.SetupHealth(baseHealth);
-            enemy.SetupAttacks(baseDamage, attacks);
-            enemy.SetupStateMachine(this);
+            enemy.Health.MaxHealth = baseHealth;
+            enemy.Health.ResetHealth();
+
+            enemy.AttackHandler.PerformSetup(baseDamage, attacks);
+            enemy.StateMachine.PerformSetup(startingState, remainState);
         }
     }
 }

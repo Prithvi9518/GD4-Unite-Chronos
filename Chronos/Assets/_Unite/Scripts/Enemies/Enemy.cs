@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.Pool;
@@ -12,11 +11,8 @@ namespace Unite
     [RequireComponent(typeof(NavMeshAgent))]
     [RequireComponent(typeof(EnemyDetectionHandler))]
     [RequireComponent(typeof(EnemyAnimationHandler))]
-    public class Enemy : MonoBehaviour, ISetupEnemy
+    public class Enemy : MonoBehaviour
     {
-        [SerializeField]
-        private EnemyData enemyData;
-
         private Health enemyHealth;
         private EnemyDamager enemyDamager;
 
@@ -29,6 +25,7 @@ namespace Unite
 
         private IObjectPool<Enemy> enemyPool;
 
+        public Health Health => enemyHealth;
         public NavMeshAgent Agent => navMeshAgent;
         public EnemyStateMachine StateMachine => enemyStateMachine;
         public EnemyDetectionHandler DetectionHandler => enemyDetectionHandler;
@@ -49,32 +46,6 @@ namespace Unite
             enemyAnimationHandler = GetComponent<EnemyAnimationHandler>();
         }
 
-        private void Start()
-        {
-            enemyData.SetupEnemy(this);
-        }
-
-        public void SetupAttacks(float baseDamage, List<AttackData> attacks)
-        {
-            enemyAttackHandler.PerformSetup(baseDamage, attacks);
-        }
-
-        public void SetupHealth(float maxHealth)
-        {
-            enemyHealth.MaxHealth = maxHealth;
-            enemyHealth.ResetHealth();
-        }
-
-        public void SetupStateMachine(EnemyData enemyData)
-        {
-            enemyStateMachine.PerformSetup(enemyData);
-        }
-
-        public void SetTarget(Transform target)
-        {
-            enemyDetectionHandler.Target = target;
-        }
-
         public void SetEnemyPool(IObjectPool<Enemy> pool)
         {
             enemyPool = pool;
@@ -87,9 +58,6 @@ namespace Unite
 
             enemyAnimationHandler.Animator.enabled = true;
 
-            enemyStateMachine.enabled = true;
-            enemyStateMachine.PerformSetup(enemyData);
-
             enemyHealth.ResetHealth();
         }
 
@@ -99,4 +67,3 @@ namespace Unite
         }
     }
 }
-

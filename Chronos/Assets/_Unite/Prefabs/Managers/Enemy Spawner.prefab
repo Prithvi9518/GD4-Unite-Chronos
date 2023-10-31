@@ -44,10 +44,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 581e54464723e8c46a3ea4e90c0e2a66, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyPrefabs:
-  - {fileID: 603884850238085797, guid: 98cc76baea390914e879e82b92f521bb, type: 3}
+  enemyScriptableObjects:
+  - {fileID: 11400000, guid: c4922ab8d4ca0ea4aada3f6134f000f1, type: 2}
   player: {fileID: 0}
   maxSpawnedAtATime: 5
   minSpawnDistanceFromPlayer: 20
   maxSpawnDistanceFromPlayer: 40
-  spawnDelay: 3
+  spawnDelay: 2
