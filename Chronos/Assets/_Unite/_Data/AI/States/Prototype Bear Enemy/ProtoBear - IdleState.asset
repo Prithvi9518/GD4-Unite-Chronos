@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf9d2c506935ec843a13d0c97316fe6b, type: 3}
+  m_Name: ProtoBear - IdleState
+  m_EditorClassIdentifier: 
+  enterActions:
+  - {fileID: 11400000, guid: 0701ced560331e24a97bbab944986975, type: 2}
+  - {fileID: 11400000, guid: 4bda614696e4c2442afe14aa4e4cc01a, type: 2}
+  updateActions: []
+  exitActions:
+  - {fileID: 11400000, guid: 7ca655f7edffcbe45914b85d80dd4658, type: 2}
+  - {fileID: 11400000, guid: 15d1c37643ac7cc43a0a2b75fe5bb866, type: 2}
+  conditionBasedTransitions:
+  - condition: {fileID: 11400000, guid: cabf6af08e1a3b042bdb171821c3ee4c, type: 2}
+    trueState: {fileID: 11400000, guid: 27c0f3a0943802e40b5284cefb5d1f2b, type: 2}
+    falseState: {fileID: 11400000, guid: 72468647a83f1bf488b9575ef0eb8602, type: 2}
+  eventTransitions:
+  - stateEvent: 0
+    toState: {fileID: 11400000, guid: 27c0f3a0943802e40b5284cefb5d1f2b, type: 2}
