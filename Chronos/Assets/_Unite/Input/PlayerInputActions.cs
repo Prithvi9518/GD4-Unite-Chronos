@@ -606,6 +606,34 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""Demo"",
+            ""id"": ""75f93afc-614b-466d-9b08-0eb2342dd0f6"",
+            ""actions"": [
+                {
+                    ""name"": ""SpawnEnemy"",
+                    ""type"": ""Button"",
+                    ""id"": ""c632d4b9-d246-4af3-883e-4fde40b0efd1"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""8e70c39d-374d-4f90-b653-4b2ab578f710"",
+                    ""path"": ""<Keyboard>/tab"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SpawnEnemy"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": []
@@ -627,6 +655,9 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         m_UI_RightClick = m_UI.FindAction("RightClick", throwIfNotFound: true);
         m_UI_TrackedDevicePosition = m_UI.FindAction("TrackedDevicePosition", throwIfNotFound: true);
         m_UI_TrackedDeviceOrientation = m_UI.FindAction("TrackedDeviceOrientation", throwIfNotFound: true);
+        // Demo
+        m_Demo = asset.FindActionMap("Demo", throwIfNotFound: true);
+        m_Demo_SpawnEnemy = m_Demo.FindAction("SpawnEnemy", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -864,6 +895,52 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         }
     }
     public UIActions @UI => new UIActions(this);
+
+    // Demo
+    private readonly InputActionMap m_Demo;
+    private List<IDemoActions> m_DemoActionsCallbackInterfaces = new List<IDemoActions>();
+    private readonly InputAction m_Demo_SpawnEnemy;
+    public struct DemoActions
+    {
+        private @PlayerInputActions m_Wrapper;
+        public DemoActions(@PlayerInputActions wrapper) { m_Wrapper = wrapper; }
+        public InputAction @SpawnEnemy => m_Wrapper.m_Demo_SpawnEnemy;
+        public InputActionMap Get() { return m_Wrapper.m_Demo; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(DemoActions set) { return set.Get(); }
+        public void AddCallbacks(IDemoActions instance)
+        {
+            if (instance == null || m_Wrapper.m_DemoActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_DemoActionsCallbackInterfaces.Add(instance);
+            @SpawnEnemy.started += instance.OnSpawnEnemy;
+            @SpawnEnemy.performed += instance.OnSpawnEnemy;
+            @SpawnEnemy.canceled += instance.OnSpawnEnemy;
+        }
+
+        private void UnregisterCallbacks(IDemoActions instance)
+        {
+            @SpawnEnemy.started -= instance.OnSpawnEnemy;
+            @SpawnEnemy.performed -= instance.OnSpawnEnemy;
+            @SpawnEnemy.canceled -= instance.OnSpawnEnemy;
+        }
+
+        public void RemoveCallbacks(IDemoActions instance)
+        {
+            if (m_Wrapper.m_DemoActionsCallbackInterfaces.Remove(instance))
+                UnregisterCallbacks(instance);
+        }
+
+        public void SetCallbacks(IDemoActions instance)
+        {
+            foreach (var item in m_Wrapper.m_DemoActionsCallbackInterfaces)
+                UnregisterCallbacks(item);
+            m_Wrapper.m_DemoActionsCallbackInterfaces.Clear();
+            AddCallbacks(instance);
+        }
+    }
+    public DemoActions @Demo => new DemoActions(this);
     public interface IDefaultActions
     {
         void OnShoot(InputAction.CallbackContext context);
@@ -882,5 +959,9 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         void OnRightClick(InputAction.CallbackContext context);
         void OnTrackedDevicePosition(InputAction.CallbackContext context);
         void OnTrackedDeviceOrientation(InputAction.CallbackContext context);
+    }
+    public interface IDemoActions
+    {
+        void OnSpawnEnemy(InputAction.CallbackContext context);
     }
 }

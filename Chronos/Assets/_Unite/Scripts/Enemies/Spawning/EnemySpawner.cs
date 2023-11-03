@@ -2,12 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.InputSystem;
 using UnityEngine.Pool;
 
 namespace Unite
 {
     public class EnemySpawner : MonoBehaviour, ITimeStopSubscriber
     {
+        private enum EnemySpawnMode
+        {
+            Demo,
+            Interval
+        }
+
         [SerializeField]
         private List<EnemyData> enemyScriptableObjects;
 
@@ -15,7 +22,18 @@ namespace Unite
         private Transform player;
 
         [SerializeField]
-        private int maxSpawnedAtATime;
+        private EnemySpawnMode spawnMode;
+
+        [Header("Demo Spawn Mode Settings")]
+        [SerializeField]
+        private InputActionReference demoSpawnInputAction;
+
+        [SerializeField]
+        private float demoSpawnDistance;
+
+        [Header("Interval Spawn Mode Settings")]
+        [SerializeField]
+        private int enemiesSpawnedAtOnce;
 
         [SerializeField]
         private float minSpawnDistanceFromPlayer;
@@ -27,11 +45,6 @@ namespace Unite
         private float spawnDelay;
 
         private Dictionary<int, IObjectPool<Enemy>> enemyPoolDictionary = new();
-
-        private int numCurrentlySpawned;
-
-        private Vector3 spawnPosition;
-
         private IEnumerator spawnCoroutine;
 
         private void Awake()
@@ -41,30 +54,55 @@ namespace Unite
 
         private void Start()
         {
-            spawnCoroutine = SpawnEnemiesCoroutine();
-            StartCoroutine(spawnCoroutine);
+            if (spawnMode == EnemySpawnMode.Interval)
+            {
+                spawnCoroutine = SpawnEnemiesAtInterval();
+                StartCoroutine(spawnCoroutine);
+            }
         }
 
         private void OnEnable()
         {
             TimeStopManager.Instance.ToggleTimeStop += HandleTimeStopEvent;
+
+            demoSpawnInputAction.action.performed += DoDemoSpawning;
+            demoSpawnInputAction.action.Enable();
         }
 
         private void OnDisable()
         {
             if (TimeStopManager.Instance == null) return;
             TimeStopManager.Instance.ToggleTimeStop -= HandleTimeStopEvent;
+
+            demoSpawnInputAction.action.performed -= DoDemoSpawning;
+            demoSpawnInputAction.action.Disable();
         }
 
-        private IEnumerator SpawnEnemiesCoroutine()
+        private void DoDemoSpawning(InputAction.CallbackContext ctx)
+        {
+            if (spawnMode != EnemySpawnMode.Demo) return;
+
+            Vector3 spawnPos = player.position + player.forward * demoSpawnDistance;
+            int randomIndex = Random.Range(0, enemyScriptableObjects.Count);
+
+            Enemy enemy = GetAndSetupEnemy(randomIndex);
+
+            NavMeshHit hit;
+            if (NavMesh.SamplePosition(spawnPos, out hit, 2f, -1))
+            {
+                enemy.Agent.Warp(hit.position);
+                enemy.transform.LookAt(player.position);
+            }
+        }
+
+        private IEnumerator SpawnEnemiesAtInterval()
         {
             while (true)
             {
                 yield return new WaitForSeconds(spawnDelay);
-                if (numCurrentlySpawned < maxSpawnedAtATime)
+                for (int i = 0; i < enemiesSpawnedAtOnce; i++)
                 {
                     SpawnRandomEnemy();
-                    numCurrentlySpawned++;
                 }
             }
         }
@@ -73,19 +111,26 @@ namespace Unite
         {
             int randomIndex = Random.Range(0, enemyScriptableObjects.Count);
 
-            Enemy enemy = enemyPoolDictionary[randomIndex].Get();
+            Enemy enemy = GetAndSetupEnemy(randomIndex);
 
-            enemy.SetEnemyPool(enemyPoolDictionary[randomIndex]);
-            enemyScriptableObjects[randomIndex].SetupEnemy(enemy);
-            enemy.DetectionHandler.Target = player;
-
-            spawnPosition = GetRandomPositionAroundPlayer();
+            Vector3 spawnPosition = GetRandomPositionAroundPlayer();
 
             NavMeshHit hit;
             if (NavMesh.SamplePosition(spawnPosition, out hit, 2f, -1))
             {
                 enemy.Agent.Warp(hit.position);
             }
+        }
+
+        private Enemy GetAndSetupEnemy(int index)
+        {
+            Enemy enemy = enemyPoolDictionary[index].Get();
+
+            enemy.SetEnemyPool(enemyPoolDictionary[index]);
+            enemyScriptableObjects[index].SetupEnemy(enemy);
+            enemy.DetectionHandler.Target = player;
+
+            return enemy;
         }
 
         private Vector3 GetRandomPositionAroundPlayer()
@@ -127,7 +172,6 @@ namespace Unite
         private void OnReleaseEnemy(Enemy enemy)
         {
             enemy.gameObject.SetActive(false);
-            numCurrentlySpawned--;
         }
 
         private void OnDestroyEnemy(Enemy enemy)
@@ -135,14 +179,10 @@ namespace Unite
             Destroy(enemy.gameObject);
         }
 
-        private void OnDrawGizmos()
-        {
-            Gizmos.color = Color.red;
-            Gizmos.DrawLine(player.transform.position, spawnPosition);
-        }
-
         public void HandleTimeStopEvent(bool isTimeStopped)
         {
+            if (spawnCoroutine == null) return;
+
             if (isTimeStopped)
             {
                 StopCoroutine(spawnCoroutine);

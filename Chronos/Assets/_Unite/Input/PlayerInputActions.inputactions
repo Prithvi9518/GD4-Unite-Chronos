@@ -584,6 +584,34 @@
                     "isPartOfComposite": false
                 }
             ]
+        },
+        {
+            "name": "Demo",
+            "id": "75f93afc-614b-466d-9b08-0eb2342dd0f6",
+            "actions": [
+                {
+                    "name": "SpawnEnemy",
+                    "type": "Button",
+                    "id": "c632d4b9-d246-4af3-883e-4fde40b0efd1",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "8e70c39d-374d-4f90-b653-4b2ab578f710",
+                    "path": "<Keyboard>/tab",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "SpawnEnemy",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
         }
     ],
     "controlSchemes": []
