@@ -791,7 +791,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 9485b0c79d11e2e4d0007da98d76c639, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 7
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 9485b0c79d11e2e4d0007da98d76c639, type: 3}
       propertyPath: m_LocalPosition.z
@@ -3348,10 +3348,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 5039316509912092033, guid: a3ed30051e417d041a752cad01a65ad6,
         type: 3}
       insertIndex: -1
-      addedObject: {fileID: 6771621062491698010}
-    - targetCorrespondingSourceObject: {fileID: 5039316509912092033, guid: a3ed30051e417d041a752cad01a65ad6,
-        type: 3}
-      insertIndex: -1
       addedObject: {fileID: 6870321071152773473}
   m_SourcePrefab: {fileID: 100100000, guid: a3ed30051e417d041a752cad01a65ad6, type: 3}
 --- !u!1 &2238514846734428079 stripped
@@ -3360,37 +3356,6 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 6557226549254908462}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &6771621062491698010
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2238514846734428079}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7a5ac11cc976e418e8d13136b07e1f52, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_AgentTypeID: -1372625422
-  m_CollectObjects: 0
-  m_Size: {x: 10, y: 10, z: 10}
-  m_Center: {x: 0, y: 2, z: 0}
-  m_LayerMask:
-    serializedVersion: 2
-    m_Bits: 71
-  m_UseGeometry: 0
-  m_DefaultArea: 0
-  m_GenerateLinks: 0
-  m_IgnoreNavMeshAgent: 1
-  m_IgnoreNavMeshObstacle: 1
-  m_OverrideTileSize: 0
-  m_TileSize: 256
-  m_OverrideVoxelSize: 0
-  m_VoxelSize: 0.7166667
-  m_MinRegionArea: 2
-  m_NavMeshData: {fileID: 23800000, guid: d5412246163102c4484e07e5acbef74d, type: 2}
-  m_BuildHeightMesh: 0
 --- !u!114 &6870321071152773473
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3420,7 +3385,7 @@ MonoBehaviour:
   m_OverrideVoxelSize: 0
   m_VoxelSize: 0.16666667
   m_MinRegionArea: 2
-  m_NavMeshData: {fileID: 23800000, guid: ace7b71bc91ced1408e5a4ce0d44df05, type: 2}
+  m_NavMeshData: {fileID: 23800000, guid: da61534365790e84f9eea3bb8375b797, type: 2}
   m_BuildHeightMesh: 0
 --- !u!4 &7772297201308148988 stripped
 Transform:
@@ -3600,7 +3565,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 9485b0c79d11e2e4d0007da98d76c639, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 7
+      value: -11
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 9485b0c79d11e2e4d0007da98d76c639, type: 3}
       propertyPath: m_LocalPosition.z
