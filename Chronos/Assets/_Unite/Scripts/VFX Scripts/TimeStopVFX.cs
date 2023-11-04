@@ -32,13 +32,13 @@ namespace Unite
 
         private void OnEnable()
         {
-            TimeStopManager.Instance.ToggleTimeStop += HandleTimeStopEvent;
+            TimeStopManager.Instance.OnToggleTimeStop += HandleTimeStopEvent;
         }
 
         private void OnDisable()
         {
             if (TimeStopManager.Instance == null) return;
-            TimeStopManager.Instance.ToggleTimeStop -= HandleTimeStopEvent;
+            TimeStopManager.Instance.OnToggleTimeStop -= HandleTimeStopEvent;
         }
 
         private void Start()

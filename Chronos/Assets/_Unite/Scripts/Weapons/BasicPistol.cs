@@ -28,6 +28,9 @@ namespace Unite
 
         private ObjectPool<TrailRenderer> trailPool;
 
+        public delegate void HandleBasicPistolShoot();
+        public static event HandleBasicPistolShoot OnBasicPistolShoot;
+
         private void Start()
         {
             trailPool = new ObjectPool<TrailRenderer>(CreateTrail);
@@ -64,10 +67,16 @@ namespace Unite
             {
                 PlayMuzzleFlash();
                 FireRaycast();
+                InvokePistolShootEvent();
                 yield return new WaitForSeconds(timeBetweenShots);
             }
 
             canShoot = true;
+        }
+
+        private void InvokePistolShootEvent()
+        {
+            OnBasicPistolShoot?.Invoke();
         }
 
         private void PlayMuzzleFlash()
