@@ -19,7 +19,7 @@ namespace Unite
             }
         }
 
-        public event Action<bool> ToggleTimeStop;
+        public event Action<bool> OnToggleTimeStop;
 
         private void Awake()
         {
@@ -36,7 +36,7 @@ namespace Unite
 
         public void TriggerTimeStop(bool isTimeStopped)
         {
-            ToggleTimeStop?.Invoke(isTimeStopped);
+            OnToggleTimeStop?.Invoke(isTimeStopped);
         }
     }
 }

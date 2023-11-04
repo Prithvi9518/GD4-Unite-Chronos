@@ -63,7 +63,7 @@ namespace Unite
 
         private void OnEnable()
         {
-            TimeStopManager.Instance.ToggleTimeStop += HandleTimeStopEvent;
+            TimeStopManager.Instance.OnToggleTimeStop += HandleTimeStopEvent;
 
             demoSpawnInputAction.action.performed += DoDemoSpawning;
             demoSpawnInputAction.action.Enable();
@@ -72,7 +72,7 @@ namespace Unite
         private void OnDisable()
         {
             if (TimeStopManager.Instance == null) return;
-            TimeStopManager.Instance.ToggleTimeStop -= HandleTimeStopEvent;
+            TimeStopManager.Instance.OnToggleTimeStop -= HandleTimeStopEvent;
 
             demoSpawnInputAction.action.performed -= DoDemoSpawning;
             demoSpawnInputAction.action.Disable();
