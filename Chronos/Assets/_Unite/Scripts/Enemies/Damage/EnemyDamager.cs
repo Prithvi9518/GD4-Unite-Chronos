@@ -19,9 +19,9 @@ namespace Unite
         public void TakeDamage(float damage)
         {
             enemyHealth.DecreaseHealth(damage);
-
+            enemy.UIHandler.UpdateHealthBar(enemyHealth.CurrentHealth, enemyHealth.MaxHealth);
             enemy.StateMachine.TriggerStateEvent(StateEvent.EnemyTookDamage);
-
+            
             if (enemyHealth.CurrentHealth <= 0 && !delayDeath)
             {
                 Die();

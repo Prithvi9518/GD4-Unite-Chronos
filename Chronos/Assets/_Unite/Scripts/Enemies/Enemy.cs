@@ -11,6 +11,7 @@ namespace Unite
     [RequireComponent(typeof(NavMeshAgent))]
     [RequireComponent(typeof(EnemyDetectionHandler))]
     [RequireComponent(typeof(EnemyAnimationHandler))]
+    [RequireComponent(typeof(EnemyUIHandler))]
     public class Enemy : MonoBehaviour
     {
         private Health enemyHealth;
@@ -22,6 +23,7 @@ namespace Unite
         private EnemyAttackHandler enemyAttackHandler;
         private EnemyDetectionHandler enemyDetectionHandler;
         private EnemyAnimationHandler enemyAnimationHandler;
+        private EnemyUIHandler enemyUIHandler;
 
         private IObjectPool<Enemy> enemyPool;
 
@@ -31,6 +33,7 @@ namespace Unite
         public EnemyDetectionHandler DetectionHandler => enemyDetectionHandler;
         public EnemyAttackHandler AttackHandler => enemyAttackHandler;
         public EnemyAnimationHandler AnimationHandler => enemyAnimationHandler;
+        public EnemyUIHandler UIHandler => enemyUIHandler;
         public EnemyDamager Damager => enemyDamager;
 
         private void Awake()
@@ -44,6 +47,7 @@ namespace Unite
             enemyAttackHandler = GetComponent<EnemyAttackHandler>();
             enemyDetectionHandler = GetComponent<EnemyDetectionHandler>();
             enemyAnimationHandler = GetComponent<EnemyAnimationHandler>();
+            enemyUIHandler = GetComponent<EnemyUIHandler>();
         }
 
         public void SetEnemyPool(IObjectPool<Enemy> pool)
@@ -63,7 +67,8 @@ namespace Unite
 
         public void OnEnemyDeath()
         {
-            enemyPool.Release(this);
+            gameObject.SetActive(false);
+            enemyPool?.Release(this);
         }
     }
 }

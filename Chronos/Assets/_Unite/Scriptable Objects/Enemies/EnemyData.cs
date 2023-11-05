@@ -28,13 +28,13 @@ namespace Unite
         private State remainState;
 
         public Enemy EnemyPrefab => enemyPrefab;
-        public State StartState => startingState;
-        public State RemainState => remainState;
 
         public virtual void SetupEnemy(Enemy enemy)
         {
             enemy.Health.MaxHealth = baseHealth;
             enemy.Health.ResetHealth();
+            
+            enemy.UIHandler.UpdateHealthBar(enemy.Health.CurrentHealth, enemy.Health.MaxHealth);
 
             enemy.AttackHandler.PerformSetup(baseDamage, attacks);
             enemy.StateMachine.PerformSetup(startingState, remainState);

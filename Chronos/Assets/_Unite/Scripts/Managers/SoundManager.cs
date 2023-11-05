@@ -25,12 +25,14 @@ namespace Unite
         {
             if (isTimeStopped)
             {
+                if (Camera.main == null) return;
                 PlaySound(soundReferences.TimeStopSFX, Camera.main.transform.position);
             }
         }
 
         private void PlayBasicPistolShootSound()
         {
+            if (Camera.main == null) return;
             PlaySound(soundReferences.PistolShootSFX, Camera.main.transform.position);
         }
 

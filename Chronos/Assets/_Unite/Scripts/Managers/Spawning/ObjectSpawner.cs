@@ -51,9 +51,7 @@ namespace Unite
                 if (!Physics.Raycast(rayOrigin, Vector3.down, out hit))
                     continue;
 
-                float terrainHeight = terrain.SampleHeight(new Vector3(sampleX, 0, sampleZ));
-
-                GameObject spawnedObject = (GameObject)PrefabUtility.InstantiatePrefab(prefabToSpawn, transform);
+                GameObject spawnedObject = Instantiate(prefabToSpawn, transform);
 
                 spawnedObject.transform.position = hit.point;
 
@@ -63,9 +61,10 @@ namespace Unite
                     Space.Self
                 );
 
+                Quaternion initialObjectRotation = spawnedObject.transform.rotation;
                 spawnedObject.transform.rotation = Quaternion.Lerp(
-                    transform.rotation,
-                    transform.rotation * Quaternion.FromToRotation(spawnedObject.transform.up, hit.normal),
+                    initialObjectRotation,
+                    initialObjectRotation * Quaternion.FromToRotation(spawnedObject.transform.up, hit.normal),
                     rotateTowardsNormal
                 );
 
