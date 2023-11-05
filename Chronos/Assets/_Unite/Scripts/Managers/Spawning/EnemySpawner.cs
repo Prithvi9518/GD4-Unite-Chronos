@@ -149,9 +149,8 @@ namespace Unite
             {
                 IObjectPool<Enemy> enemyPool = new ObjectPool<Enemy>(
                     () => CreateEnemy(i - 1),
-                    OnGetEnemy,
-                    OnReleaseEnemy,
-                    OnDestroyEnemy
+                    actionOnGet:OnGetEnemy,
+                    actionOnDestroy:OnDestroyEnemy
                 );
                 enemyPoolDictionary.Add(i, enemyPool);
             }
@@ -167,11 +166,6 @@ namespace Unite
         {
             enemy.gameObject.SetActive(true);
             enemy.OnGetFromPool(player.transform);
-        }
-
-        private void OnReleaseEnemy(Enemy enemy)
-        {
-            enemy.gameObject.SetActive(false);
         }
 
         private void OnDestroyEnemy(Enemy enemy)
