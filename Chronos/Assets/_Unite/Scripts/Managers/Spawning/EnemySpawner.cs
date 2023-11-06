@@ -11,6 +11,7 @@ namespace Unite
     {
         private enum EnemySpawnMode
         {
+            Debug,
             Demo,
             Interval
         }
@@ -24,12 +25,12 @@ namespace Unite
         [SerializeField]
         private EnemySpawnMode spawnMode;
 
-        [Header("Demo Spawn Mode Settings")]
+        [Header("Debug Spawn Mode Settings")]
         [SerializeField]
-        private InputActionReference demoSpawnInputAction;
+        private InputActionReference debugSpawnModeAction;
 
         [SerializeField]
-        private float demoSpawnDistance;
+        private float debugSpawnDistance;
 
         [Header("Interval Spawn Mode Settings")]
         [SerializeField]
@@ -54,19 +55,17 @@ namespace Unite
 
         private void Start()
         {
-            if (spawnMode == EnemySpawnMode.Interval)
-            {
-                spawnCoroutine = SpawnEnemiesAtInterval();
-                StartCoroutine(spawnCoroutine);
-            }
+            if (spawnMode != EnemySpawnMode.Interval) return;
+            spawnCoroutine = SpawnEnemiesAtInterval();
+            StartCoroutine(spawnCoroutine);
         }
 
         private void OnEnable()
         {
             TimeStopManager.Instance.OnToggleTimeStop += HandleTimeStopEvent;
 
-            demoSpawnInputAction.action.performed += DoDemoSpawning;
-            demoSpawnInputAction.action.Enable();
+            debugSpawnModeAction.action.performed += DoDebugSpawning;
+            debugSpawnModeAction.action.Enable();
         }
 
         private void OnDisable()
@@ -74,25 +73,22 @@ namespace Unite
             if (TimeStopManager.Instance == null) return;
             TimeStopManager.Instance.OnToggleTimeStop -= HandleTimeStopEvent;
 
-            demoSpawnInputAction.action.performed -= DoDemoSpawning;
-            demoSpawnInputAction.action.Disable();
+            debugSpawnModeAction.action.performed -= DoDebugSpawning;
+            debugSpawnModeAction.action.Disable();
         }
 
-        private void DoDemoSpawning(InputAction.CallbackContext ctx)
+        private void DoDebugSpawning(InputAction.CallbackContext ctx)
         {
             if (spawnMode != EnemySpawnMode.Demo) return;
 
-            Vector3 spawnPos = player.position + player.forward * demoSpawnDistance;
+            Vector3 spawnPos = player.position + player.forward * debugSpawnDistance;
             int randomIndex = Random.Range(0, enemyScriptableObjects.Count);
 
             Enemy enemy = GetAndSetupEnemy(randomIndex);
 
-            NavMeshHit hit;
-            if (NavMesh.SamplePosition(spawnPos, out hit, 2f, -1))
-            {
-                enemy.Agent.Warp(hit.position);
-                enemy.transform.LookAt(player.position);
-            }
+            if (!NavMesh.SamplePosition(spawnPos, out var hit, 2f, -1)) return;
+            enemy.Agent.Warp(hit.position);
+            enemy.transform.LookAt(player.position);
         }
 
         private IEnumerator SpawnEnemiesAtInterval()

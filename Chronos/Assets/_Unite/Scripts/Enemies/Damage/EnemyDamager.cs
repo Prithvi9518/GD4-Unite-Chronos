@@ -30,7 +30,7 @@ namespace Unite
 
         private void Die()
         {
-            enemy.OnEnemyDeath();
+            enemy.StateMachine.TriggerStateEvent(StateEvent.EnemyDead);
         }
 
         public void ToggleDelayDeath(bool value)

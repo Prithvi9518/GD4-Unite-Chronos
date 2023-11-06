@@ -23,4 +23,6 @@ MonoBehaviour:
   - condition: {fileID: 11400000, guid: a920365844f131843af57bfa1339cfdc, type: 2}
     trueState: {fileID: 11400000, guid: 72468647a83f1bf488b9575ef0eb8602, type: 2}
     falseState: {fileID: 11400000, guid: 27c0f3a0943802e40b5284cefb5d1f2b, type: 2}
-  eventTransitions: []
+  eventTransitions:
+  - stateEvent: 1
+    toState: {fileID: 11400000, guid: 4c5ea2ddd79e89048988653b64da2ac4, type: 2}
