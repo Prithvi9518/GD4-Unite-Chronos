@@ -65,9 +65,6 @@ namespace Unite
             enemyHealth.ResetHealth();
         }
 
-        /// <summary>
-        /// called by an animation event after the death animation plays
-        /// </summary>
         public void OnEnemyDeath()
         {
             gameObject.SetActive(false);

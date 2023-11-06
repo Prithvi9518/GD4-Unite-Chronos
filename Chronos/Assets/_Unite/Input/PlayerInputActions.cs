@@ -608,13 +608,31 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
             ]
         },
         {
-            ""name"": ""Demo"",
+            ""name"": ""Spawn"",
             ""id"": ""75f93afc-614b-466d-9b08-0eb2342dd0f6"",
             ""actions"": [
                 {
-                    ""name"": ""SpawnEnemy"",
+                    ""name"": ""IndividualEnemy"",
                     ""type"": ""Button"",
                     ""id"": ""c632d4b9-d246-4af3-883e-4fde40b0efd1"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""DemoWave"",
+                    ""type"": ""Button"",
+                    ""id"": ""fa96f2b4-67c4-40e9-8de0-d86d3d3dbddb"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""DemoBoss"",
+                    ""type"": ""Button"",
+                    ""id"": ""91b52cf0-1371-44a8-862a-a43acd2400c2"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -629,7 +647,29 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""SpawnEnemy"",
+                    ""action"": ""IndividualEnemy"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""eef009e9-cb16-4783-8a12-83be7b4e8b65"",
+                    ""path"": ""<Keyboard>/tab"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""DemoWave"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""566bd012-9cab-4b14-89a0-923d1f951489"",
+                    ""path"": ""<Keyboard>/b"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""DemoBoss"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -655,9 +695,11 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         m_UI_RightClick = m_UI.FindAction("RightClick", throwIfNotFound: true);
         m_UI_TrackedDevicePosition = m_UI.FindAction("TrackedDevicePosition", throwIfNotFound: true);
         m_UI_TrackedDeviceOrientation = m_UI.FindAction("TrackedDeviceOrientation", throwIfNotFound: true);
-        // Demo
-        m_Demo = asset.FindActionMap("Demo", throwIfNotFound: true);
-        m_Demo_SpawnEnemy = m_Demo.FindAction("SpawnEnemy", throwIfNotFound: true);
+        // Spawn
+        m_Spawn = asset.FindActionMap("Spawn", throwIfNotFound: true);
+        m_Spawn_IndividualEnemy = m_Spawn.FindAction("IndividualEnemy", throwIfNotFound: true);
+        m_Spawn_DemoWave = m_Spawn.FindAction("DemoWave", throwIfNotFound: true);
+        m_Spawn_DemoBoss = m_Spawn.FindAction("DemoBoss", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -896,51 +938,67 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
     }
     public UIActions @UI => new UIActions(this);
 
-    // Demo
-    private readonly InputActionMap m_Demo;
-    private List<IDemoActions> m_DemoActionsCallbackInterfaces = new List<IDemoActions>();
-    private readonly InputAction m_Demo_SpawnEnemy;
-    public struct DemoActions
+    // Spawn
+    private readonly InputActionMap m_Spawn;
+    private List<ISpawnActions> m_SpawnActionsCallbackInterfaces = new List<ISpawnActions>();
+    private readonly InputAction m_Spawn_IndividualEnemy;
+    private readonly InputAction m_Spawn_DemoWave;
+    private readonly InputAction m_Spawn_DemoBoss;
+    public struct SpawnActions
     {
         private @PlayerInputActions m_Wrapper;
-        public DemoActions(@PlayerInputActions wrapper) { m_Wrapper = wrapper; }
-        public InputAction @SpawnEnemy => m_Wrapper.m_Demo_SpawnEnemy;
-        public InputActionMap Get() { return m_Wrapper.m_Demo; }
+        public SpawnActions(@PlayerInputActions wrapper) { m_Wrapper = wrapper; }
+        public InputAction @IndividualEnemy => m_Wrapper.m_Spawn_IndividualEnemy;
+        public InputAction @DemoWave => m_Wrapper.m_Spawn_DemoWave;
+        public InputAction @DemoBoss => m_Wrapper.m_Spawn_DemoBoss;
+        public InputActionMap Get() { return m_Wrapper.m_Spawn; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
         public bool enabled => Get().enabled;
-        public static implicit operator InputActionMap(DemoActions set) { return set.Get(); }
-        public void AddCallbacks(IDemoActions instance)
+        public static implicit operator InputActionMap(SpawnActions set) { return set.Get(); }
+        public void AddCallbacks(ISpawnActions instance)
         {
-            if (instance == null || m_Wrapper.m_DemoActionsCallbackInterfaces.Contains(instance)) return;
-            m_Wrapper.m_DemoActionsCallbackInterfaces.Add(instance);
-            @SpawnEnemy.started += instance.OnSpawnEnemy;
-            @SpawnEnemy.performed += instance.OnSpawnEnemy;
-            @SpawnEnemy.canceled += instance.OnSpawnEnemy;
+            if (instance == null || m_Wrapper.m_SpawnActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_SpawnActionsCallbackInterfaces.Add(instance);
+            @IndividualEnemy.started += instance.OnIndividualEnemy;
+            @IndividualEnemy.performed += instance.OnIndividualEnemy;
+            @IndividualEnemy.canceled += instance.OnIndividualEnemy;
+            @DemoWave.started += instance.OnDemoWave;
+            @DemoWave.performed += instance.OnDemoWave;
+            @DemoWave.canceled += instance.OnDemoWave;
+            @DemoBoss.started += instance.OnDemoBoss;
+            @DemoBoss.performed += instance.OnDemoBoss;
+            @DemoBoss.canceled += instance.OnDemoBoss;
         }
 
-        private void UnregisterCallbacks(IDemoActions instance)
+        private void UnregisterCallbacks(ISpawnActions instance)
         {
-            @SpawnEnemy.started -= instance.OnSpawnEnemy;
-            @SpawnEnemy.performed -= instance.OnSpawnEnemy;
-            @SpawnEnemy.canceled -= instance.OnSpawnEnemy;
+            @IndividualEnemy.started -= instance.OnIndividualEnemy;
+            @IndividualEnemy.performed -= instance.OnIndividualEnemy;
+            @IndividualEnemy.canceled -= instance.OnIndividualEnemy;
+            @DemoWave.started -= instance.OnDemoWave;
+            @DemoWave.performed -= instance.OnDemoWave;
+            @DemoWave.canceled -= instance.OnDemoWave;
+            @DemoBoss.started -= instance.OnDemoBoss;
+            @DemoBoss.performed -= instance.OnDemoBoss;
+            @DemoBoss.canceled -= instance.OnDemoBoss;
         }
 
-        public void RemoveCallbacks(IDemoActions instance)
+        public void RemoveCallbacks(ISpawnActions instance)
         {
-            if (m_Wrapper.m_DemoActionsCallbackInterfaces.Remove(instance))
+            if (m_Wrapper.m_SpawnActionsCallbackInterfaces.Remove(instance))
                 UnregisterCallbacks(instance);
         }
 
-        public void SetCallbacks(IDemoActions instance)
+        public void SetCallbacks(ISpawnActions instance)
         {
-            foreach (var item in m_Wrapper.m_DemoActionsCallbackInterfaces)
+            foreach (var item in m_Wrapper.m_SpawnActionsCallbackInterfaces)
                 UnregisterCallbacks(item);
-            m_Wrapper.m_DemoActionsCallbackInterfaces.Clear();
+            m_Wrapper.m_SpawnActionsCallbackInterfaces.Clear();
             AddCallbacks(instance);
         }
     }
-    public DemoActions @Demo => new DemoActions(this);
+    public SpawnActions @Spawn => new SpawnActions(this);
     public interface IDefaultActions
     {
         void OnShoot(InputAction.CallbackContext context);
@@ -960,8 +1018,10 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         void OnTrackedDevicePosition(InputAction.CallbackContext context);
         void OnTrackedDeviceOrientation(InputAction.CallbackContext context);
     }
-    public interface IDemoActions
+    public interface ISpawnActions
     {
-        void OnSpawnEnemy(InputAction.CallbackContext context);
+        void OnIndividualEnemy(InputAction.CallbackContext context);
+        void OnDemoWave(InputAction.CallbackContext context);
+        void OnDemoBoss(InputAction.CallbackContext context);
     }
 }

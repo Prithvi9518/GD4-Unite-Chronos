@@ -16,8 +16,7 @@ namespace Unite
 
         private void Start()
         {
-            enemyData.SetupEnemy(enemy);
-            enemy.DetectionHandler.Target = target;
+            enemyData.SetupEnemy(enemy, target);
         }
     }
 }

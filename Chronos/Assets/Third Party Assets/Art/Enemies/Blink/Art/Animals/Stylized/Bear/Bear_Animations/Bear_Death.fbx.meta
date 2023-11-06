@@ -93,7 +93,7 @@ ModelImporter:
       curves: []
       events:
       - time: 1
-        functionName: OnEnemyDeath
+        functionName: HandleDeathAnimationEvent
         data: 
         objectReferenceParameter: {instanceID: 0}
         floatParameter: 0

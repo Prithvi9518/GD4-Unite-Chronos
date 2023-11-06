@@ -90578,11 +90578,6 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 8149036866024840372}
-    - target: {fileID: 3016900527937032735, guid: bf4ea1c0bb5be2d408fa4e6f43b0ec30,
-        type: 3}
-      propertyPath: spawnMode
-      value: 2
-      objectReference: {fileID: 0}
     - target: {fileID: 8626974069182189472, guid: bf4ea1c0bb5be2d408fa4e6f43b0ec30,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -90673,11 +90668,6 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 6018679921857641988, guid: 1487009f5d44505499e7248b83bc45b7,
-        type: 3}
-      propertyPath: target
-      value: 
-      objectReference: {fileID: 8149036866024840372}
     - target: {fileID: 6214948609774581183, guid: 1487009f5d44505499e7248b83bc45b7,
         type: 3}
       propertyPath: m_LocalPosition.x

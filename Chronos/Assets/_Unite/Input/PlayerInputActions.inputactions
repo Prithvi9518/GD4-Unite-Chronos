@@ -586,13 +586,31 @@
             ]
         },
         {
-            "name": "Demo",
+            "name": "Spawn",
             "id": "75f93afc-614b-466d-9b08-0eb2342dd0f6",
             "actions": [
                 {
-                    "name": "SpawnEnemy",
+                    "name": "IndividualEnemy",
                     "type": "Button",
                     "id": "c632d4b9-d246-4af3-883e-4fde40b0efd1",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "DemoWave",
+                    "type": "Button",
+                    "id": "fa96f2b4-67c4-40e9-8de0-d86d3d3dbddb",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "DemoBoss",
+                    "type": "Button",
+                    "id": "91b52cf0-1371-44a8-862a-a43acd2400c2",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -607,7 +625,29 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "SpawnEnemy",
+                    "action": "IndividualEnemy",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "eef009e9-cb16-4783-8a12-83be7b4e8b65",
+                    "path": "<Keyboard>/tab",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "DemoWave",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "566bd012-9cab-4b14-89a0-923d1f951489",
+                    "path": "<Keyboard>/b",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "DemoBoss",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

@@ -29,7 +29,7 @@ namespace Unite
 
         public Enemy EnemyPrefab => enemyPrefab;
 
-        public virtual void SetupEnemy(Enemy enemy)
+        public virtual void SetupEnemy(Enemy enemy, Transform target)
         {
             enemy.Health.MaxHealth = baseHealth;
             enemy.Health.ResetHealth();
@@ -37,6 +37,7 @@ namespace Unite
             enemy.UIHandler.UpdateHealthBar(enemy.Health.CurrentHealth, enemy.Health.MaxHealth);
 
             enemy.AttackHandler.PerformSetup(baseDamage, attacks);
+            enemy.DetectionHandler.Target = target;
             enemy.StateMachine.PerformSetup(startingState, remainState);
         }
     }
