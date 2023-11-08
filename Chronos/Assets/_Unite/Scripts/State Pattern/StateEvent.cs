@@ -2,7 +2,8 @@ namespace Unite
 {
     public enum StateEvent
     {
-        EnemyTookDamage
+        EnemyTookDamage,
+        EnemyDead
     }
 }
 

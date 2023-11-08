@@ -7,6 +7,10 @@ namespace Unite
     {
         private Health playerHealth;
 
+        public delegate void HandlePlayerDamaged(float currentHealth, float maxHealth);
+
+        public static event HandlePlayerDamaged OnPlayerDamaged;
+
         private void Awake()
         {
             playerHealth = GetComponent<Health>();
@@ -15,8 +19,8 @@ namespace Unite
         public void TakeDamage(float damage)
         {
             playerHealth.DecreaseHealth(damage);
-
-            Debug.Log($"Health: {playerHealth.CurrentHealth}/{playerHealth.MaxHealth}");
+            
+            OnPlayerDamaged?.Invoke(playerHealth.CurrentHealth, playerHealth.MaxHealth);
 
             if (playerHealth.CurrentHealth <= 0)
             {
@@ -26,7 +30,6 @@ namespace Unite
 
         private void Die()
         {
-            Debug.Log("Player Dead");
         }
     }
 }

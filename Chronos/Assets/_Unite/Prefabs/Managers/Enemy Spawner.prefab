@@ -47,11 +47,18 @@ MonoBehaviour:
   enemyScriptableObjects:
   - {fileID: 11400000, guid: c4922ab8d4ca0ea4aada3f6134f000f1, type: 2}
   player: {fileID: 0}
-  spawnMode: 0
-  demoSpawnInputAction: {fileID: -4672010861962342767, guid: ddadf06b494043f438f6169ee368f5ee,
+  minSpawnDistanceFromPlayer: 10
+  maxSpawnDistanceFromPlayer: 10
+  spawnMode: 1
+  individualSpawnModeAction: {fileID: -4672010861962342767, guid: ddadf06b494043f438f6169ee368f5ee,
     type: 3}
-  demoSpawnDistance: 7
+  individualSpawnDistance: 7
+  demoBossEnemyData: {fileID: 11400000, guid: e185510254f72fb49866808c358944bd, type: 2}
+  bossSpawnDistance: 9
+  numSpawnedInDemoWave: 3
+  spawnDemoWaveAction: {fileID: 5369814152343894760, guid: ddadf06b494043f438f6169ee368f5ee,
+    type: 3}
+  spawnDemoBossAction: {fileID: 5987612403372013958, guid: ddadf06b494043f438f6169ee368f5ee,
+    type: 3}
   enemiesSpawnedAtOnce: 3
-  minSpawnDistanceFromPlayer: 20
-  maxSpawnDistanceFromPlayer: 40
   spawnDelay: 6

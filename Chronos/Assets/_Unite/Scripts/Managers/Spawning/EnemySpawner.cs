@@ -11,6 +11,7 @@ namespace Unite
     {
         private enum EnemySpawnMode
         {
+            Individual,
             Demo,
             Interval
         }
@@ -20,26 +21,42 @@ namespace Unite
 
         [SerializeField]
         private Transform player;
-
-        [SerializeField]
-        private EnemySpawnMode spawnMode;
-
-        [Header("Demo Spawn Mode Settings")]
-        [SerializeField]
-        private InputActionReference demoSpawnInputAction;
-
-        [SerializeField]
-        private float demoSpawnDistance;
-
-        [Header("Interval Spawn Mode Settings")]
-        [SerializeField]
-        private int enemiesSpawnedAtOnce;
-
+        
         [SerializeField]
         private float minSpawnDistanceFromPlayer;
 
         [SerializeField]
         private float maxSpawnDistanceFromPlayer;
+
+        [SerializeField]
+        private EnemySpawnMode spawnMode;
+
+        [Header("Individual Spawn Mode Settings")]
+        [SerializeField]
+        private InputActionReference individualSpawnModeAction;
+
+        [SerializeField]
+        private float individualSpawnDistance;
+
+        [Header("Demo Spawn Mode Settings")] 
+        [SerializeField] 
+        private EnemyData demoBossEnemyData;
+
+        [SerializeField]
+        private float bossSpawnDistance;
+
+        [SerializeField]
+        private int numSpawnedInDemoWave;
+
+        [SerializeField]
+        private InputActionReference spawnDemoWaveAction;
+
+        [SerializeField] 
+        private InputActionReference spawnDemoBossAction;
+
+        [Header("Interval Spawn Mode Settings")]
+        [SerializeField]
+        private int enemiesSpawnedAtOnce;
 
         [SerializeField]
         private float spawnDelay;
@@ -54,19 +71,23 @@ namespace Unite
 
         private void Start()
         {
-            if (spawnMode == EnemySpawnMode.Interval)
-            {
-                spawnCoroutine = SpawnEnemiesAtInterval();
-                StartCoroutine(spawnCoroutine);
-            }
+            if (spawnMode != EnemySpawnMode.Interval) return;
+            spawnCoroutine = SpawnEnemiesAtInterval();
+            StartCoroutine(spawnCoroutine);
         }
 
         private void OnEnable()
         {
             TimeStopManager.Instance.OnToggleTimeStop += HandleTimeStopEvent;
 
-            demoSpawnInputAction.action.performed += DoDemoSpawning;
-            demoSpawnInputAction.action.Enable();
+            individualSpawnModeAction.action.performed += DoIndividualSpawning;
+            individualSpawnModeAction.action.Enable();
+
+            spawnDemoWaveAction.action.performed += SpawnDemoWave;
+            spawnDemoWaveAction.action.Enable();
+
+            spawnDemoBossAction.action.performed += SpawnDemoBoss;
+            spawnDemoBossAction.action.Enable();
         }
 
         private void OnDisable()
@@ -74,25 +95,53 @@ namespace Unite
             if (TimeStopManager.Instance == null) return;
             TimeStopManager.Instance.OnToggleTimeStop -= HandleTimeStopEvent;
 
-            demoSpawnInputAction.action.performed -= DoDemoSpawning;
-            demoSpawnInputAction.action.Disable();
+            individualSpawnModeAction.action.performed -= DoIndividualSpawning;
+            individualSpawnModeAction.action.Disable();
+            
+            spawnDemoWaveAction.action.performed -= SpawnDemoWave;
+            spawnDemoWaveAction.action.Disable();
+            
+            spawnDemoBossAction.action.performed -= SpawnDemoBoss;
+            spawnDemoBossAction.action.Disable();
         }
 
-        private void DoDemoSpawning(InputAction.CallbackContext ctx)
+        private void DoIndividualSpawning(InputAction.CallbackContext ctx)
         {
-            if (spawnMode != EnemySpawnMode.Demo) return;
+            if (spawnMode != EnemySpawnMode.Individual) return;
 
-            Vector3 spawnPos = player.position + player.forward * demoSpawnDistance;
+            Vector3 spawnPos = player.position + player.forward * individualSpawnDistance;
             int randomIndex = Random.Range(0, enemyScriptableObjects.Count);
 
             Enemy enemy = GetAndSetupEnemy(randomIndex);
 
-            NavMeshHit hit;
-            if (NavMesh.SamplePosition(spawnPos, out hit, 2f, -1))
+            if (!NavMesh.SamplePosition(spawnPos, out var hit, 2f, -1)) return;
+            enemy.Agent.Warp(hit.position);
+            enemy.transform.LookAt(player.position);
+        }
+
+        private void SpawnDemoWave(InputAction.CallbackContext ctx)
+        {
+            if (spawnMode != EnemySpawnMode.Demo) return;
+            
+            for (int i = 0; i < numSpawnedInDemoWave; i++)
             {
-                enemy.Agent.Warp(hit.position);
-                enemy.transform.LookAt(player.position);
+                SpawnRandomEnemy();
             }
+        }
+
+        private void SpawnDemoBoss(InputAction.CallbackContext ctx)
+        {
+            if (spawnMode != EnemySpawnMode.Demo) return;
+            
+            Vector3 spawnPos = player.position + player.forward * bossSpawnDistance;
+            
+            Enemy enemy = Instantiate(demoBossEnemyData.EnemyPrefab);
+            demoBossEnemyData.SetupEnemy(enemy, player);
+            
+            
+            if (!NavMesh.SamplePosition(spawnPos, out var hit, 2f, -1)) return;
+            enemy.Agent.Warp(hit.position);
+            enemy.transform.LookAt(player.position);
         }
 
         private IEnumerator SpawnEnemiesAtInterval()
@@ -113,7 +162,19 @@ namespace Unite
 
             Enemy enemy = GetAndSetupEnemy(randomIndex);
 
-            Vector3 spawnPosition = GetRandomPositionAroundPlayer();
+            Vector3 spawnPosition = new Vector3();
+
+            switch (spawnMode)
+            {
+                case EnemySpawnMode.Interval:
+                    spawnPosition = GetRandomPositionAroundPlayer();
+                    break;
+                case EnemySpawnMode.Demo:
+                    spawnPosition = GetRandomPositionInFrontOfPlayer();
+                    break;
+                default:
+                    break;
+            }
 
             NavMeshHit hit;
             if (NavMesh.SamplePosition(spawnPosition, out hit, 2f, -1))
@@ -127,8 +188,7 @@ namespace Unite
             Enemy enemy = enemyPoolDictionary[index].Get();
 
             enemy.SetEnemyPool(enemyPoolDictionary[index]);
-            enemyScriptableObjects[index].SetupEnemy(enemy);
-            enemy.DetectionHandler.Target = player;
+            enemyScriptableObjects[index].SetupEnemy(enemy, player);
 
             return enemy;
         }
@@ -138,8 +198,19 @@ namespace Unite
             float randomDistance = Random.Range(minSpawnDistanceFromPlayer, maxSpawnDistanceFromPlayer);
 
             Vector2 randomPointInCircle = Random.insideUnitCircle.normalized * randomDistance;
+            
             Vector3 randomPosition = player.position + new Vector3(randomPointInCircle.x, 0, randomPointInCircle.y);
+            return randomPosition;
+        }
+        
+        private Vector3 GetRandomPositionInFrontOfPlayer()
+        {
+            float randomDistance = Random.Range(minSpawnDistanceFromPlayer, maxSpawnDistanceFromPlayer);
 
+            Quaternion randomAngle = Quaternion.Euler(0, Random.Range(-90, 91), 0);
+            Vector3 direction = randomAngle * player.forward;
+
+            Vector3 randomPosition = player.position + (direction * randomDistance);
             return randomPosition;
         }
 

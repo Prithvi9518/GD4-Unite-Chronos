@@ -6,14 +6,14 @@ namespace Unite
     public class EnemyAnimationHandler : MonoBehaviour
     {
         private Animator animator;
-        private EnemyAttackHandler attackHandler;
+        private Enemy enemy;
 
         public Animator Animator => animator;
 
         private void Awake()
         {
             animator = GetComponent<Animator>();
-            attackHandler = GetComponent<EnemyAttackHandler>();
+            enemy = GetComponent<Enemy>();
         }
 
         public void SetAnimationBool(string boolName, bool value)
@@ -42,7 +42,15 @@ namespace Unite
         /// <param name="attackData"></param>
         public void HandleAttackAnimationEvent(AttackData attackData)
         {
-            attackHandler.CheckAndDealDamage(attackData.AttackName);
+            enemy.AttackHandler.CheckAndDealDamage(attackData.AttackName);
+        }
+
+        /// <summary>
+        /// This method is called when a death animation event is triggered
+        /// </summary>
+        public void HandleDeathAnimationEvent()
+        {
+            enemy.OnEnemyDeath();
         }
     }
 }
