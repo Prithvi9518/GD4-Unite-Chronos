@@ -64,6 +64,8 @@ namespace Unite
         private Dictionary<int, IObjectPool<Enemy>> enemyPoolDictionary = new();
         private IEnumerator spawnCoroutine;
 
+        private bool isSpawning;
+
         private void Awake()
         {
             SetupEnemyPools();
@@ -72,14 +74,13 @@ namespace Unite
         private void Start()
         {
             if (spawnMode != EnemySpawnMode.Interval) return;
-            spawnCoroutine = SpawnEnemiesAtInterval();
-            StartCoroutine(spawnCoroutine);
+            
+            isSpawning = true;
+            StartCoroutine(SpawnEnemiesAtInterval());
         }
 
         private void OnEnable()
         {
-            TimeStopManager.Instance.OnToggleTimeStop += HandleTimeStopEvent;
-
             individualSpawnModeAction.action.performed += DoIndividualSpawning;
             individualSpawnModeAction.action.Enable();
 
@@ -93,7 +94,6 @@ namespace Unite
         private void OnDisable()
         {
             if (TimeStopManager.Instance == null) return;
-            TimeStopManager.Instance.OnToggleTimeStop -= HandleTimeStopEvent;
 
             individualSpawnModeAction.action.performed -= DoIndividualSpawning;
             individualSpawnModeAction.action.Disable();
@@ -149,6 +149,8 @@ namespace Unite
             while (true)
             {
                 yield return new WaitForSeconds(spawnDelay);
+
+                if (!isSpawning) continue;
                 for (int i = 0; i < enemiesSpawnedAtOnce; i++)
                 {
                     SpawnRandomEnemy();
@@ -246,16 +248,7 @@ namespace Unite
 
         public void HandleTimeStopEvent(bool isTimeStopped)
         {
-            if (spawnCoroutine == null) return;
-
-            if (isTimeStopped)
-            {
-                StopCoroutine(spawnCoroutine);
-            }
-            else
-            {
-                StartCoroutine(spawnCoroutine);
-            }
+            isSpawning = !isTimeStopped;
         }
     }
 }

@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3265541545658858942}
   - component: {fileID: 1570014172363623772}
+  - component: {fileID: 5306181781053980736}
   m_Layer: 0
   m_Name: Sound Manager
   m_TagString: Untagged
@@ -45,3 +46,32 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   soundReferences: {fileID: 11400000, guid: a7b59f9aceab13643a102ff7e5c216b9, type: 2}
+--- !u!114 &5306181781053980736
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2053555835514513575}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3caa1423186148019255dafbeb99faec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  description: Time stop event listener
+  gameEvent: {fileID: 11400000, guid: 3cabbd1187974e040a2c4a58bde42e1b, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1570014172363623772}
+        m_TargetAssemblyTypeName: Unite.SoundManager, Assembly-CSharp
+        m_MethodName: HandleTimeStopEvent
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2

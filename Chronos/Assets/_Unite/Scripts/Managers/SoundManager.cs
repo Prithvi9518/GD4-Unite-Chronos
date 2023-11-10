@@ -10,14 +10,12 @@ namespace Unite
 
         private void Start()
         {
-            TimeStopManager.Instance.OnToggleTimeStop += HandleTimeStopEvent;
             BasicPistol.OnBasicPistolShoot += PlayBasicPistolShootSound;
         }
 
         private void OnDisable()
         {
             if (TimeStopManager.Instance == null) return;
-            TimeStopManager.Instance.OnToggleTimeStop -= HandleTimeStopEvent;
             BasicPistol.OnBasicPistolShoot -= PlayBasicPistolShootSound;
         }
 

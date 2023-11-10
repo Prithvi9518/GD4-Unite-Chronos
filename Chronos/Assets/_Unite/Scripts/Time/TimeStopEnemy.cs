@@ -6,17 +6,6 @@ namespace Unite
     {
         private Enemy enemy;
 
-        private void OnEnable()
-        {
-            TimeStopManager.Instance.OnToggleTimeStop += HandleTimeStopEvent;
-        }
-
-        private void OnDisable()
-        {
-            if (TimeStopManager.Instance == null) return;
-            TimeStopManager.Instance.OnToggleTimeStop -= HandleTimeStopEvent;
-        }
-
         private void Awake()
         {
             enemy = GetComponent<Enemy>();

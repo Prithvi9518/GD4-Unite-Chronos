@@ -7,7 +7,6 @@ namespace Unite
     {
         private HashSet<ParameterisedGameEventListener<T>> listeners = new HashSet<ParameterisedGameEventListener<T>>();
 
-        [ContextMenu("Raise Event")]
         public virtual void Raise(T data)
         {
             foreach (var listener in listeners)

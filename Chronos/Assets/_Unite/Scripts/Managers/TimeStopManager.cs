@@ -18,8 +18,8 @@ namespace Unite
                 return instance;
             }
         }
-
-        public event Action<bool> OnToggleTimeStop;
+        [SerializeField]
+        private BoolGameEvent onToggleTimeStop;
 
         private void Awake()
         {
@@ -36,7 +36,7 @@ namespace Unite
 
         public void TriggerTimeStop(bool isTimeStopped)
         {
-            OnToggleTimeStop?.Invoke(isTimeStopped);
+            onToggleTimeStop.Raise(isTimeStopped);
         }
     }
 }
