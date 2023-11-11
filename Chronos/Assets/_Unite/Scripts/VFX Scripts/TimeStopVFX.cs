@@ -30,17 +30,6 @@ namespace Unite
         private Color defaultColor;
         private float defaultContrast, defaultHueShift, defaultSaturation, defaultPostExposure;
 
-        private void OnEnable()
-        {
-            TimeStopManager.Instance.OnToggleTimeStop += HandleTimeStopEvent;
-        }
-
-        private void OnDisable()
-        {
-            if (TimeStopManager.Instance == null) return;
-            TimeStopManager.Instance.OnToggleTimeStop -= HandleTimeStopEvent;
-        }
-
         private void Start()
         {
             if(volume.profile.TryGet<ColorAdjustments>(out ColorAdjustments ca))
