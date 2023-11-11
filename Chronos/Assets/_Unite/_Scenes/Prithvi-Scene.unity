@@ -863,6 +863,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Interaction Manager
       objectReference: {fileID: 0}
+    - target: {fileID: 875404377358643893, guid: a0dc1ceed0286824482fcde77ef08b27,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3038496663315079293, guid: a0dc1ceed0286824482fcde77ef08b27,
         type: 3}
       propertyPath: cam
