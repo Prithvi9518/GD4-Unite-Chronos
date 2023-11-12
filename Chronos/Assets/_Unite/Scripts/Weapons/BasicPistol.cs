@@ -33,14 +33,9 @@ namespace Unite
         private void Start()
         {
             trailPool = new ObjectPool<TrailRenderer>(CreateTrail);
-
-            inputHandler.DefaultActions.Shoot.performed += ctx =>
-            {
-                if (canShoot)
-                    StartCoroutine(Shoot());
-            };
+            SubscribeToShootAction();
         }
-
+        
         private TrailRenderer CreateTrail()
         {
             GameObject instance = new GameObject("Bullet Trail");
@@ -141,6 +136,15 @@ namespace Unite
         private void OnEnable()
         {
             canShoot = true; // prevents shooting from being locked after switching to a new weapon
+        }
+
+        private void SubscribeToShootAction()
+        {
+            inputHandler.DefaultActions.Shoot.performed += ctx =>
+            {
+                if (canShoot)
+                    StartCoroutine(Shoot());
+            };
         }
 
         public void DoDamage(GameObject target)

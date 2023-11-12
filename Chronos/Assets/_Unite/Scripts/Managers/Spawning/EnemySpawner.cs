@@ -1,9 +1,11 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.InputSystem;
 using UnityEngine.Pool;
+using Random = UnityEngine.Random;
 
 namespace Unite
 {
@@ -73,10 +75,8 @@ namespace Unite
 
         private void Start()
         {
-            if (spawnMode != EnemySpawnMode.Interval) return;
-            
-            isSpawning = true;
-            StartCoroutine(SpawnEnemiesAtInterval());
+            if (player == null) return;
+            StartSpawning();
         }
 
         private void OnEnable()
@@ -103,6 +103,14 @@ namespace Unite
             
             spawnDemoBossAction.action.performed -= SpawnDemoBoss;
             spawnDemoBossAction.action.Disable();
+        }
+
+        private void StartSpawning()
+        {
+            if (spawnMode != EnemySpawnMode.Interval) return;
+            
+            isSpawning = true;
+            StartCoroutine(SpawnEnemiesAtInterval());
         }
 
         private void DoIndividualSpawning(InputAction.CallbackContext ctx)

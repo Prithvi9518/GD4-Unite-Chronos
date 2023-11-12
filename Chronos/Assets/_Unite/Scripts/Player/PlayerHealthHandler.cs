@@ -3,7 +3,7 @@ using UnityEngine;
 namespace Unite
 {
     [RequireComponent(typeof(Health))]
-    public class PlayerDamager : MonoBehaviour, ITakeDamage
+    public class PlayerHealthHandler : MonoBehaviour, ITakeDamage
     {
         private Health playerHealth;
 
