@@ -10,7 +10,7 @@ namespace Unite
         private void Awake()
         {
             slider = GetComponent<Slider>();
-            PlayerDamager.OnPlayerDamaged += UpdateHealthBar;
+            PlayerHealthHandler.OnPlayerDamaged += UpdateHealthBar;
         }
 
         private void UpdateHealthBar(float currentHealth, float maxHealth)
