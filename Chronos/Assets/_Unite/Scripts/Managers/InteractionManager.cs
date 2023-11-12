@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 namespace Unite
@@ -23,6 +24,8 @@ namespace Unite
 
         private void Update()
         {
+            if (inputHandler == null) return;
+            
             ResetSelection();
 
             selector.CheckSelection(rayProvider.ProvideRay());
@@ -32,7 +35,7 @@ namespace Unite
 
             DoInteraction();
         }
-
+        
         private void DoInteraction()
         {
             if (currentSelection == null) return; 

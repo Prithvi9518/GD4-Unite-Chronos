@@ -8,16 +8,17 @@ namespace Unite
         [SerializeField]
         private SoundReferences soundReferences;
 
+        private Camera cam;
+
         private void Start()
         {
-            TimeStopManager.Instance.OnToggleTimeStop += HandleTimeStopEvent;
+            cam = Camera.main;
             BasicPistol.OnBasicPistolShoot += PlayBasicPistolShootSound;
         }
 
         private void OnDisable()
         {
             if (TimeStopManager.Instance == null) return;
-            TimeStopManager.Instance.OnToggleTimeStop -= HandleTimeStopEvent;
             BasicPistol.OnBasicPistolShoot -= PlayBasicPistolShootSound;
         }
 
@@ -32,8 +33,15 @@ namespace Unite
 
         private void PlayBasicPistolShootSound()
         {
-            if (Camera.main == null) return;
-            PlaySound(soundReferences.PistolShootSFX, Camera.main.transform.position);
+            if (cam == null)
+            {
+                Camera mainCam = Camera.main;
+                if (mainCam == null)
+                    return;
+                else
+                    cam = mainCam;
+            }
+            PlaySound(soundReferences.PistolShootSFX, cam.transform.position);
         }
 
         private void PlaySound(AudioClip audioClip, Vector3 position, float volume = 1f)
