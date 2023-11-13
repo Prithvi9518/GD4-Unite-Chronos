@@ -7,10 +7,9 @@ namespace Unite
     {
         private Health playerHealth;
 
-        public delegate void HandlePlayerDamaged(float currentHealth, float maxHealth);
-
-        public static event HandlePlayerDamaged OnPlayerDamaged;
-
+        [SerializeField]
+        private PlayerHealthInfoEvent onPlayerDamaged;
+        
         private void Awake()
         {
             playerHealth = GetComponent<Health>();
@@ -20,7 +19,7 @@ namespace Unite
         {
             playerHealth.DecreaseHealth(damage);
             
-            OnPlayerDamaged?.Invoke(playerHealth.CurrentHealth, playerHealth.MaxHealth);
+            onPlayerDamaged.Raise(new PlayerHealthInfo(playerHealth.CurrentHealth, playerHealth.MaxHealth));
 
             if (playerHealth.CurrentHealth <= 0)
             {

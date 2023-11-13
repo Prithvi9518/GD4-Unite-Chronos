@@ -11,13 +11,6 @@ namespace Unite
 {
     public class EnemySpawner : MonoBehaviour, ITimeStopSubscriber
     {
-        private enum EnemySpawnMode
-        {
-            Individual,
-            Demo,
-            Interval
-        }
-
         [SerializeField]
         private List<EnemyData> enemyScriptableObjects;
 

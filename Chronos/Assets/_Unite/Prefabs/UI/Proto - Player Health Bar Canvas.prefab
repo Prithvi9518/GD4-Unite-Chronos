@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 6138685380739927357}
   - component: {fileID: 4660469787680390906}
   - component: {fileID: 4012058381331060986}
+  - component: {fileID: 1595746962548086255}
   m_Layer: 5
   m_Name: Player Health Bar
   m_TagString: Untagged
@@ -102,6 +103,35 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e0d57aa29956d7469811b30c7923654, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1595746962548086255
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1515176810987421476}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a9fe41982ec64c639d656119782cbf2d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  description: Event handling player damage
+  gameEvent: {fileID: 11400000, guid: 3f99ffecf7d5f6d41820c73d802c0c98, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 4012058381331060986}
+        m_TargetAssemblyTypeName: Unite.PlayerHealthBar, Assembly-CSharp
+        m_MethodName: UpdateHealthBar
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &2296311707882670334
 GameObject:
   m_ObjectHideFlags: 0

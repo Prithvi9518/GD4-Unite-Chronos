@@ -6,16 +6,15 @@ namespace Unite
     public class PlayerHealthBar : MonoBehaviour
     {
         private Slider slider;
-
+        
         private void Awake()
         {
             slider = GetComponent<Slider>();
-            PlayerHealthHandler.OnPlayerDamaged += UpdateHealthBar;
         }
 
-        private void UpdateHealthBar(float currentHealth, float maxHealth)
+        public void UpdateHealthBar(PlayerHealthInfo healthInfo)
         {
-            slider.value = currentHealth / maxHealth;
+            slider.value = healthInfo.CurrentHealth / healthInfo.MaxHealth;
         }
     }
 }

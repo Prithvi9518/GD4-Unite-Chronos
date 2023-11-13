@@ -6,7 +6,7 @@ namespace Unite
     {
         private PlayerInputHandler inputHandler;
         private PlayerHealthHandler healthHandler;
-        
+
         public PlayerInputHandler InputHandler => inputHandler;
         public PlayerHealthHandler HealthHandler => healthHandler;
 
@@ -18,7 +18,7 @@ namespace Unite
             inputHandler = GetComponent<PlayerInputHandler>();
             healthHandler = GetComponent<PlayerHealthHandler>();
             
-            ReferenceManager.Instance.Player = this;
+            ReferenceManager.Player = this;
             OnPlayerReady?.Invoke();
         }
     }
