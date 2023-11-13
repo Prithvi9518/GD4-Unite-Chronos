@@ -10,16 +10,12 @@ namespace Unite
         public PlayerInputHandler InputHandler => inputHandler;
         public PlayerHealthHandler HealthHandler => healthHandler;
 
-        public delegate void HandlePlayerReady();
-        public static event HandlePlayerReady OnPlayerReady;
-
         private void Awake()
         {
             inputHandler = GetComponent<PlayerInputHandler>();
             healthHandler = GetComponent<PlayerHealthHandler>();
             
             ReferenceManager.Player = this;
-            OnPlayerReady?.Invoke();
         }
     }
 }

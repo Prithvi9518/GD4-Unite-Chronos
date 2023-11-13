@@ -22,6 +22,12 @@ namespace Unite
             selector = GetComponent<ISelector>();
         }
 
+        private void Start()
+        {
+            if (inputHandler != null) return;
+            inputHandler = ReferenceManager.Player.InputHandler;
+        }
+
         private void Update()
         {
             if (inputHandler == null) return;

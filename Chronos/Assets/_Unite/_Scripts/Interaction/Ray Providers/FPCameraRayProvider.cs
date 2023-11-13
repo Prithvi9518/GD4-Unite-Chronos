@@ -8,9 +8,16 @@ namespace Unite
         [SerializeField]
         private Camera cam;
 
+        private void Start()
+        {
+            if (cam != null) return;
+            cam = Camera.main;
+        }
+
         public Ray ProvideRay()
         {
-            return new Ray(cam.transform.position, cam.transform.forward);
+            var camTransform = cam.transform;
+            return new Ray(camTransform.position, camTransform.forward);
         }
     }
 }

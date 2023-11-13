@@ -11,7 +11,6 @@ namespace Unite
         public override void ExecuteAction(IStateMachine stateMachine)
         {
             EnemyStateMachine enemy = stateMachine as EnemyStateMachine;
-
             enemy.Agent.enabled = agentEnabled;
         }
     }

@@ -20,6 +20,8 @@ namespace Unite
         private EnemyStateMachine enemyStateMachine;
         private NavMeshAgent navMeshAgent;
 
+        private Collider collider;
+
         private EnemyAttackHandler enemyAttackHandler;
         private EnemyDetectionHandler enemyDetectionHandler;
         private EnemyAnimationHandler enemyAnimationHandler;
@@ -30,6 +32,7 @@ namespace Unite
         public Health Health => enemyHealth;
         public NavMeshAgent Agent => navMeshAgent;
         public EnemyStateMachine StateMachine => enemyStateMachine;
+        public Collider Collider => collider;
         public EnemyDetectionHandler DetectionHandler => enemyDetectionHandler;
         public EnemyAttackHandler AttackHandler => enemyAttackHandler;
         public EnemyAnimationHandler AnimationHandler => enemyAnimationHandler;
@@ -43,6 +46,8 @@ namespace Unite
 
             navMeshAgent = GetComponent<NavMeshAgent>();
             enemyStateMachine = GetComponent<EnemyStateMachine>();
+
+            collider = GetComponent<Collider>();
 
             enemyAttackHandler = GetComponent<EnemyAttackHandler>();
             enemyDetectionHandler = GetComponent<EnemyDetectionHandler>();
@@ -59,6 +64,7 @@ namespace Unite
         {
             enemyDetectionHandler.Target = target;
             navMeshAgent.enabled = true;
+            collider.enabled = true;
 
             enemyAnimationHandler.Animator.enabled = true;
 

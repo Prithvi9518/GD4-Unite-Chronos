@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -68,7 +67,12 @@ namespace Unite
 
         private void Start()
         {
-            if (player == null) return;
+            if (player == null)
+            {
+                player = ReferenceManager.Player.transform;
+            }
+            
+            if (player == null) return; // in case the ReferenceManager does not have a reference to the player yet
             StartSpawning();
         }
 
