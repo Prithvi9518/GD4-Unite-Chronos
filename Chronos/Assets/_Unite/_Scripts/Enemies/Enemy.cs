@@ -1,8 +1,10 @@
+using Unite.Core;
+using Unite.Enemies.AI;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.Pool;
 
-namespace Unite
+namespace Unite.Enemies
 {
     [RequireComponent(typeof(Health))]
     [RequireComponent(typeof(EnemyDamager))]

@@ -1,7 +1,9 @@
 using System.Collections.Generic;
+using Unite.Core.DamageInterfaces;
+using Unite.Enemies.AI;
 using UnityEngine;
 
-namespace Unite
+namespace Unite.Enemies
 {
     public class EnemyAttackHandler : MonoBehaviour
     {

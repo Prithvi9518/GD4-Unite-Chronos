@@ -1,8 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-namespace Unite
+namespace Unite.Team
 {
     [System.Serializable]
     public enum RoleType

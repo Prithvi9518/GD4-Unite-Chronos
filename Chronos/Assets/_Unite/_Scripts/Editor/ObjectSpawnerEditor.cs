@@ -1,7 +1,8 @@
+using Unite.Utils;
 using UnityEditor;
 using UnityEngine;
 
-namespace Unite
+namespace Unite.EditorScripts
 {
     [CustomEditor(typeof(ObjectSpawner))]
     public class ObjectSpawnerEditor : Editor
