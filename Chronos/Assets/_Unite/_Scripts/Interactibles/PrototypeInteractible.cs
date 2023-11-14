@@ -1,6 +1,7 @@
+using Unite.Core.InteractionSystem;
 using UnityEngine;
 
-namespace Unite.Core.InteractionSystem
+namespace Unite.Interactibles
 {
     public class PrototypeInteractible : MonoBehaviour, IInteractible
     {

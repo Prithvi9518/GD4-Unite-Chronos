@@ -10,6 +10,10 @@
 /[Ll]ogs/
 /[Uu]ser[Ss]ettings/
 
+# Ignore TestScenes directory and meta file
+/[Aa]ssets/_Unite/_Scenes/TestScenes/
+/[Aa]ssets/_Unite/_Scenes/TestScenes.meta
+
 # MemoryCaptures can get excessive in size.
 # They also could contain extremely sensitive data
 /[Mm]emoryCaptures/
