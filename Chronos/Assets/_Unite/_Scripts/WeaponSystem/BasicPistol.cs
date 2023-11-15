@@ -20,9 +20,6 @@ namespace Unite.WeaponSystem
         private ParticleSystem muzzleFlashEffect;
 
         [SerializeField]
-        private PlayerInputHandler inputHandler;
-
-        [SerializeField]
         private BulletTrailData bulletTrailData;
 
         private bool canShoot = true;
@@ -35,7 +32,60 @@ namespace Unite.WeaponSystem
         private void Start()
         {
             trailPool = new ObjectPool<TrailRenderer>(CreateTrail);
-            SubscribeToShootAction();
+        }
+        
+        private void OnEnable()
+        {
+            canShoot = true; // prevents shooting from being locked after switching to a new weapon
+        }
+        
+        public void RespondToShootActionEvent()
+        {
+            if (!canShoot) return;
+            StartCoroutine(Shoot());
+        }
+        
+        private IEnumerator Shoot()
+        {
+            canShoot = false;
+            
+            PlayMuzzleFlash();
+            FireRaycast();
+            InvokePistolShootEvent();
+            yield return new WaitForSeconds(timeBetweenShots);
+
+            canShoot = true;
+        }
+        
+        private void InvokePistolShootEvent()
+        {
+            OnBasicPistolShoot?.Invoke();
+        }
+        
+        private void FireRaycast()
+        {
+            RaycastHit hit;
+            bool raycast = Physics.Raycast(cam.transform.position, cam.transform.forward, out hit, range);
+
+            if (!raycast)
+            {
+                StartCoroutine(PlayBulletTrail(
+                        muzzleFlashEffect.transform.position,
+                        muzzleFlashEffect.transform.position + (cam.transform.forward * bulletTrailData.MissDistance),
+                        new RaycastHit()
+                    )
+                );
+                return;
+            }
+
+            StartCoroutine(PlayBulletTrail(
+                    muzzleFlashEffect.transform.position,
+                    hit.point,
+                    hit
+                )
+            );
+
+            DoDamage(hit.transform.gameObject);
         }
         
         private TrailRenderer CreateTrail()
@@ -54,57 +104,11 @@ namespace Unite.WeaponSystem
 
             return trail;
         }
-
-        private IEnumerator Shoot()
-        {
-            canShoot = false;
-
-            while (inputHandler.DefaultActions.Shoot.IsPressed())
-            {
-                PlayMuzzleFlash();
-                FireRaycast();
-                InvokePistolShootEvent();
-                yield return new WaitForSeconds(timeBetweenShots);
-            }
-
-            canShoot = true;
-        }
-
-        private void InvokePistolShootEvent()
-        {
-            OnBasicPistolShoot?.Invoke();
-        }
-
+        
         private void PlayMuzzleFlash()
         {
             if (muzzleFlashEffect == null) return;
             muzzleFlashEffect.Play();
-        }
-
-        private void FireRaycast()
-        {
-            RaycastHit hit;
-            bool raycast = Physics.Raycast(cam.transform.position, cam.transform.forward, out hit, range);
-
-            if (!raycast)
-            {
-                StartCoroutine(PlayBulletTrail(
-                    muzzleFlashEffect.transform.position,
-                    muzzleFlashEffect.transform.position + (cam.transform.forward * bulletTrailData.MissDistance),
-                    new RaycastHit()
-                    )
-                );
-                return;
-            }
-
-            StartCoroutine(PlayBulletTrail(
-                muzzleFlashEffect.transform.position,
-                hit.point,
-                hit
-                )
-            );
-
-            DoDamage(hit.transform.gameObject);
         }
 
         private IEnumerator PlayBulletTrail(Vector3 startPos, Vector3 endPos, RaycastHit hit)
@@ -133,20 +137,6 @@ namespace Unite.WeaponSystem
             instance.emitting = false;
             instance.gameObject.SetActive(false);
             trailPool.Release(instance);
-        }
-
-        private void OnEnable()
-        {
-            canShoot = true; // prevents shooting from being locked after switching to a new weapon
-        }
-
-        private void SubscribeToShootAction()
-        {
-            inputHandler.DefaultActions.Shoot.performed += ctx =>
-            {
-                if (canShoot)
-                    StartCoroutine(Shoot());
-            };
         }
 
         public void DoDamage(GameObject target)

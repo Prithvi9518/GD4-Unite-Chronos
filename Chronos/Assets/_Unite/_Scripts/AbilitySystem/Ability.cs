@@ -1,28 +1,14 @@
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 namespace Unite.AbilitySystem
 {
     public class Ability : MonoBehaviour
     {
         [SerializeField] private AbilityData abilityData;
-        [SerializeField] private InputActionReference inputAction;
 
         private AbilityState currentState;
         private float remainingActiveTimeMs;
         private float remainingCooldownTimeMs;
-
-        private void OnEnable()
-        {
-            inputAction.action.performed += ProcessActivation;
-            inputAction.action.Enable();
-        }
-
-        private void OnDisable()
-        {
-            inputAction.action.performed -= ProcessActivation;
-            inputAction.action.Disable();
-        }
 
         private void Update()
         {
@@ -41,16 +27,13 @@ namespace Unite.AbilitySystem
             }
         }
 
-        private void ProcessActivation(InputAction.CallbackContext ctx)
+        public void ProcessActivation()
         {
             if (currentState != AbilityState.Ready) return;
-
-            if (inputAction.action.WasPressedThisFrame())
-            {
-                abilityData.Activate();
-                remainingActiveTimeMs = abilityData.ActiveTimeMs();
-                currentState = AbilityState.Active;
-            }
+            
+            abilityData.Activate();
+            remainingActiveTimeMs = abilityData.ActiveTimeMs();
+            currentState = AbilityState.Active;
         }
 
         private void ProcessActiveState()

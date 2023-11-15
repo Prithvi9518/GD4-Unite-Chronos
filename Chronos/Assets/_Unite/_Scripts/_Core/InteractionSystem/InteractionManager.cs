@@ -1,4 +1,3 @@
-using Unite.Core.Player;
 using UnityEngine;
 
 namespace Unite.Core.InteractionSystem
@@ -11,9 +10,6 @@ namespace Unite.Core.InteractionSystem
         [SerializeField]
         private SelectionResponse[] selectionResponses;
 
-        [SerializeField]
-        private PlayerInputHandler inputHandler;
-
         private Transform currentSelection;
 
         private void Awake()
@@ -22,37 +18,22 @@ namespace Unite.Core.InteractionSystem
             selector = GetComponent<ISelector>();
         }
 
-        private void Start()
-        {
-            if (inputHandler != null) return;
-            inputHandler = ReferenceManager.Player.InputHandler;
-        }
-
         private void Update()
         {
-            if (inputHandler == null) return;
-            
             ResetSelection();
 
             selector.CheckSelection(rayProvider.ProvideRay());
             currentSelection = selector.GetSelection();
 
             ExecuteSelectionResponses();
-
-            DoInteraction();
         }
         
-        private void DoInteraction()
+        public void DoInteraction()
         {
             if (currentSelection == null) return; 
 
             IInteractible interactible = currentSelection.GetComponent<IInteractible>();
-            if (interactible == null) return;
-
-            if (inputHandler.DefaultActions.Interact.triggered)
-            {
-                interactible.Interact();
-            }
+            interactible?.Interact();
         }
 
         private void ExecuteSelectionResponses()
