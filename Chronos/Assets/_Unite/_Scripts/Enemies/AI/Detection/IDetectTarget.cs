@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Unite
+namespace Unite.Enemies.AI
 {
     public interface IDetectTarget
     {

@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 576117802952625990}
   - component: {fileID: 3038496663315079293}
   - component: {fileID: 3266584797239294019}
+  - component: {fileID: 2403393340032525486}
   m_Layer: 0
   m_Name: Interaction Manager
   m_TagString: Untagged
@@ -78,3 +79,33 @@ MonoBehaviour:
   layerMask:
     serializedVersion: 2
     m_Bits: 64
+--- !u!114 &2403393340032525486
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 875404377358643893}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b9893a878b6442144bd9c1283a2b4b18, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  description: Listens for player interaction event
+  gameEvent: {fileID: 11400000, guid: 4caf9711aebb32145bfca5c1c7e1ffb8, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 576117802952625990}
+        m_TargetAssemblyTypeName: Unite.Core.InteractionSystem.InteractionManager,
+          Assembly-CSharp
+        m_MethodName: DoInteraction
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2

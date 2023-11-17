@@ -1,7 +1,8 @@
+using Unite.EventSystem;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Unite
+namespace Unite.UI
 {
     public class PlayerHealthBar : MonoBehaviour
     {
@@ -12,7 +13,7 @@ namespace Unite
             slider = GetComponent<Slider>();
         }
 
-        public void UpdateHealthBar(PlayerHealthInfo healthInfo)
+        public void UpdateHealthBar(HealthInfo healthInfo)
         {
             slider.value = healthInfo.CurrentHealth / healthInfo.MaxHealth;
         }

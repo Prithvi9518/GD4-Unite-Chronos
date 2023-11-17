@@ -1,4 +1,4 @@
-namespace Unite
+namespace Unite.Team
 {
     [System.Serializable]
     public class DepartmentRole

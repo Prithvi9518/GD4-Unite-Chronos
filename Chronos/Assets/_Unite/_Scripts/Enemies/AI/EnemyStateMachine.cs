@@ -1,7 +1,8 @@
+using Unite.StatePattern;
 using UnityEngine;
 using UnityEngine.AI;
 
-namespace Unite
+namespace Unite.Enemies.AI
 {
     public class EnemyStateMachine : MonoBehaviour, IStateMachine
     {

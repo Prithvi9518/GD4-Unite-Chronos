@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Unite
+namespace Unite.Enemies
 {
     [RequireComponent(typeof(Animator))]
     public class EnemyAnimationHandler : MonoBehaviour

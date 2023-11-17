@@ -1,6 +1,7 @@
+using Unite.Enemies.AI;
 using UnityEngine;
 
-namespace Unite
+namespace Unite.Enemies
 {
     public class Attack
     {
