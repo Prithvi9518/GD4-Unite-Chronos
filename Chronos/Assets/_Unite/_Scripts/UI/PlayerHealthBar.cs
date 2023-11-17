@@ -1,4 +1,4 @@
-using Unite.Core.EventSystem;
+using Unite.EventSystem;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -13,7 +13,7 @@ namespace Unite.UI
             slider = GetComponent<Slider>();
         }
 
-        public void UpdateHealthBar(PlayerHealthInfo healthInfo)
+        public void UpdateHealthBar(HealthInfo healthInfo)
         {
             slider.value = healthInfo.CurrentHealth / healthInfo.MaxHealth;
         }

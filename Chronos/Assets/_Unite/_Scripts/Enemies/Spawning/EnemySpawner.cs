@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unite.EventSystem;
 using Unite.TimeStop;
 using UnityEngine;
 using UnityEngine.AI;
@@ -56,6 +57,10 @@ namespace Unite.Enemies.Spawning
         [SerializeField]
         private float spawnDelay;
 
+        [Header("Spawner Ready Event")]
+        [SerializeField]
+        private EnemySpawnerEvent onSpawnerReady;
+
         private Dictionary<int, IObjectPool<Enemy>> enemyPoolDictionary = new();
         private IEnumerator spawnCoroutine;
 
@@ -64,17 +69,21 @@ namespace Unite.Enemies.Spawning
         private void Awake()
         {
             SetupEnemyPools();
+            onSpawnerReady.Raise(this);
         }
 
-        private void Start()
+        public void Initialize(Player.Player p)
+        { 
+            player = p.transform;
+        }
+
+        public void StartSpawning()
         {
-            if (player == null)
-            {
-                player = ReferenceManager.Player.transform;
-            }
+            if (player == null) return;
+            if (spawnMode != EnemySpawnMode.Interval) return;
             
-            if (player == null) return; // in case the ReferenceManager does not have a reference to the player yet
-            StartSpawning();
+            isSpawning = true;
+            StartCoroutine(SpawnEnemiesAtInterval());
         }
 
         private void OnEnable()
@@ -101,14 +110,6 @@ namespace Unite.Enemies.Spawning
             
             spawnDemoBossAction.action.performed -= SpawnDemoBoss;
             spawnDemoBossAction.action.Disable();
-        }
-
-        private void StartSpawning()
-        {
-            if (spawnMode != EnemySpawnMode.Interval) return;
-            
-            isSpawning = true;
-            StartCoroutine(SpawnEnemiesAtInterval());
         }
 
         private void DoIndividualSpawning(InputAction.CallbackContext ctx)

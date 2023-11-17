@@ -63,6 +63,7 @@ MonoBehaviour:
     type: 3}
   enemiesSpawnedAtOnce: 3
   spawnDelay: 6
+  onSpawnerReady: {fileID: 11400000, guid: e8d65d27332f0fd4081c94f659d82864, type: 2}
 --- !u!114 &7654160340194470667
 MonoBehaviour:
   m_ObjectHideFlags: 0

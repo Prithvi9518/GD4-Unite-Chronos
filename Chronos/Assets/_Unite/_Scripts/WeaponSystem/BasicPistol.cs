@@ -1,6 +1,5 @@
 using System.Collections;
 using Unite.Core.DamageInterfaces;
-using Unite.Core.Player;
 using UnityEngine;
 using UnityEngine.Pool;
 

@@ -430,7 +430,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e24375ddc9a36f499908f54e8e7ae5b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  onPlayerDamaged: {fileID: 11400000, guid: 3f99ffecf7d5f6d41820c73d802c0c98, type: 2}
+  onDamaged: {fileID: 11400000, guid: 3f99ffecf7d5f6d41820c73d802c0c98, type: 2}
 --- !u!114 &3664281855645159123
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -443,6 +443,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d775e3c1477a4a68bd9adecf0756502a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  onPlayerReady: {fileID: 11400000, guid: 805e5580eb6823248afa5b554b93ceea, type: 2}
 --- !u!114 &1122760746944149535
 MonoBehaviour:
   m_ObjectHideFlags: 0
