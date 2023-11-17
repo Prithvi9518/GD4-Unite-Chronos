@@ -1,5 +1,6 @@
 using System.Collections;
 using Unite.Core.DamageInterfaces;
+using Unite.EventSystem;
 using UnityEngine;
 using UnityEngine.Pool;
 
@@ -21,12 +22,12 @@ namespace Unite.WeaponSystem
         [SerializeField]
         private BulletTrailData bulletTrailData;
 
+        [SerializeField]
+        private GameEvent onBasicPistolShoot;
+
         private bool canShoot = true;
 
         private ObjectPool<TrailRenderer> trailPool;
-
-        public delegate void HandleBasicPistolShoot();
-        public static event HandleBasicPistolShoot OnBasicPistolShoot;
 
         private void Start()
         {
@@ -58,7 +59,7 @@ namespace Unite.WeaponSystem
         
         private void InvokePistolShootEvent()
         {
-            OnBasicPistolShoot?.Invoke();
+            onBasicPistolShoot.Raise();
         }
         
         private void FireRaycast()

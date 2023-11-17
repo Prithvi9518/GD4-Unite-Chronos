@@ -1,5 +1,4 @@
 using Unite.TimeStop;
-using Unite.WeaponSystem;
 using UnityEngine;
 
 
@@ -15,38 +14,27 @@ namespace Unite.SoundScripts
         private void Start()
         {
             cam = Camera.main;
-            BasicPistol.OnBasicPistolShoot += PlayBasicPistolShootSound;
-        }
-
-        private void OnDisable()
-        {
-            if (TimeStopManager.Instance == null) return;
-            BasicPistol.OnBasicPistolShoot -= PlayBasicPistolShootSound;
         }
 
         public void HandleTimeStopEvent(bool isTimeStopped)
         {
-            if (isTimeStopped)
-            {
-                if (Camera.main == null) return;
-                PlaySound(soundReferences.TimeStopSFX, Camera.main.transform.position);
-            }
+            if (!isTimeStopped) return;
+            if (cam == null) return;
+            PlaySoundAtPosition(soundReferences.TimeStopSFX, cam.transform.position);
         }
 
-        private void PlayBasicPistolShootSound()
+        public void HandleBasicPistolShootEvent()
         {
             if (cam == null)
             {
-                Camera mainCam = Camera.main;
-                if (mainCam == null)
-                    return;
-                else
-                    cam = mainCam;
+                cam = Camera.main;
             }
-            PlaySound(soundReferences.PistolShootSFX, cam.transform.position);
+            if (cam == null) return;
+            
+            PlaySoundAtPosition(soundReferences.PistolShootSFX, cam.transform.position);
         }
 
-        private void PlaySound(AudioClip audioClip, Vector3 position, float volume = 1f)
+        private void PlaySoundAtPosition(AudioClip audioClip, Vector3 position, float volume = 1f)
         {
             AudioSource.PlayClipAtPoint(audioClip, position, volume);
         }
