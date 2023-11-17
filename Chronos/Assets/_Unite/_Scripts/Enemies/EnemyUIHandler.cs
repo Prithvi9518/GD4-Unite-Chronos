@@ -1,6 +1,7 @@
+using Unite.UI;
 using UnityEngine;
 
-namespace Unite
+namespace Unite.Enemies
 {
     public class EnemyUIHandler : MonoBehaviour
     {

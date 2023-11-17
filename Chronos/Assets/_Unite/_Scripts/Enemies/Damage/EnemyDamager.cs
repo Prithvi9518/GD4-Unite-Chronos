@@ -1,6 +1,9 @@
+using Unite.Core;
+using Unite.Core.DamageInterfaces;
+using Unite.StatePattern;
 using UnityEngine;
 
-namespace Unite
+namespace Unite.Enemies
 {
     [RequireComponent(typeof(Health))]
     public class EnemyDamager : MonoBehaviour, ITakeDamage

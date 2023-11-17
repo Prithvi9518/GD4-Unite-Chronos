@@ -1,7 +1,7 @@
 using UnityEngine;
 
 
-namespace Unite
+namespace Unite.Enemies.AI
 {
     public class EnemyRadiusDetection : MonoBehaviour, IDetectTarget
     {
