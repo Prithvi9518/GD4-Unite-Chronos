@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Unite.Core.StatSystem
+namespace Unite.StatSystem
 {
     [System.Serializable]
     public class StatInfo

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Unite.Core.StatSystem
+namespace Unite.StatSystem
 {
     [CreateAssetMenu(fileName = "StatType", menuName = "Unite/Scriptable Objects/Stat Type")]
     public class StatTypeSO : ScriptableObject

@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using Unite.Core.StatSystem;
+using Unite.StatSystem;
 using UnityEngine;
 
 namespace Unite.Player
