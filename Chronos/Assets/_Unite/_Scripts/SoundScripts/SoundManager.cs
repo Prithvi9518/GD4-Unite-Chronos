@@ -9,29 +9,29 @@ namespace Unite.SoundScripts
         [SerializeField]
         private SoundReferences soundReferences;
 
-        private Camera cam;
+        public static SoundManager Instance { get; private set; }
 
-        private void Start()
+        private void Awake()
         {
-            cam = Camera.main;
+            if (Instance != null && Instance != this)
+            {
+                Destroy(this);
+            }
+            else
+            {
+                Instance = this;
+            }
         }
 
         public void HandleTimeStopEvent(bool isTimeStopped)
         {
             if (!isTimeStopped) return;
-            if (cam == null) return;
-            PlaySoundAtPosition(soundReferences.TimeStopSFX, cam.transform.position);
+            PlaySoundAtPosition(soundReferences.TimeStopSFX, Camera.main.transform.position);
         }
 
-        public void HandleBasicPistolShootEvent()
+        public void PlaySoundAtCameraPosition(AudioClip audioClip, float volume = 1f)
         {
-            if (cam == null)
-            {
-                cam = Camera.main;
-            }
-            if (cam == null) return;
-            
-            PlaySoundAtPosition(soundReferences.PistolShootSFX, cam.transform.position);
+            PlaySoundAtPosition(audioClip, Camera.main.transform.position, volume);
         }
 
         private void PlaySoundAtPosition(AudioClip audioClip, Vector3 position, float volume = 1f)

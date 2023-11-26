@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Unite.Enemies.AI
 {
-    [CreateAssetMenu(fileName = "PlayerWithinAttackRangeCondition", menuName = "Unite/Scriptable Objects/AI/Conditions/PlayerWithinAttackRange")]
+    [CreateAssetMenu(fileName = "PlayerWithinAttackRangeCondition", menuName = "AI/Conditions/PlayerWithinAttackRange")]
     public class PlayerWithinAttackRangeCondition : Condition
     {
         [SerializeField]

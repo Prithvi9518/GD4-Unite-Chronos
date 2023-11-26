@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace Unite.Core.InteractionSystem
 {
-    [CreateAssetMenu(fileName ="PrototypeSelectionResponse", menuName ="Unite/Scriptable Objects/Interaction/PrototypeSelectionResponse")]
+    [CreateAssetMenu(fileName ="PrototypeSelectionResponse", menuName ="Interaction/PrototypeSelectionResponse")]
     public class PrototypeSelectionResponse : SelectionResponse
     {
         public override void OnSelect(Transform transform)

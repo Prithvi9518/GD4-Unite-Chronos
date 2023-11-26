@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Unite.Enemies.AI
 {
-    [CreateAssetMenu(fileName = "SetEnemyAnimatorTrigger", menuName = "Unite/Scriptable Objects/AI/Actions/SetEnemyAnimatorTrigger")]
+    [CreateAssetMenu(fileName = "SetEnemyAnimatorTrigger", menuName = "AI/Actions/SetEnemyAnimatorTrigger")]
     public class SetEnemyAnimatorTriggerAction : Action
     {
         [SerializeField]

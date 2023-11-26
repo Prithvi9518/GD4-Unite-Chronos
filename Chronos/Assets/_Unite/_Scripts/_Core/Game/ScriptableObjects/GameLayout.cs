@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace Unite.Core.Game
 {
-    [CreateAssetMenu(fileName = "GameLayout", menuName = "Unite/Scriptable Objects/Game/Layout")]
+    [CreateAssetMenu(fileName = "GameLayout", menuName = "Game/Layout")]
     public class GameLayout : ScriptableObject
     {
         #region Title and Level Layout

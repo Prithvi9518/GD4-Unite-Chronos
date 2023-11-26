@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Unite.Enemies.AI
 {
-    [CreateAssetMenu(fileName = "BasicAttack", menuName = "Unite/Scriptable Objects/AI/Actions/Basic Attack")]
+    [CreateAssetMenu(fileName = "BasicAttack", menuName = "AI/Actions/Basic Attack")]
     public class BasicAttackAction : Action
     {
         [SerializeField]

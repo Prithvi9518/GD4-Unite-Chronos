@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Unite.Enemies.AI
 {
-    [CreateAssetMenu(fileName ="ToggleNavMeshAgentAction", menuName ="Unite/Scriptable Objects/AI/Actions/Toggle Nav Mesh Agent")]
+    [CreateAssetMenu(fileName ="ToggleNavMeshAgentAction", menuName ="AI/Actions/Toggle Nav Mesh Agent")]
     public class ToggleNavMeshAgentAction : Action
     {
         [SerializeField]

@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Unite.Player
 {
-    [CreateAssetMenu(fileName = "PlayerData", menuName = "Unite/Scriptable Objects/Player Data")]
+    [CreateAssetMenu(fileName = "PlayerData", menuName = "Player Data")]
     public class PlayerData : ScriptableObject
     {
         [Header("Health Configuration")] 
