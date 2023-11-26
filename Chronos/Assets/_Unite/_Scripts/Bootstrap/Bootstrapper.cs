@@ -1,4 +1,5 @@
-﻿using Unite.Core.Game;
+﻿using System;
+using Unite.Core.Game;
 using Unite.Enemies.Spawning;
 using Unite.Managers;
 using UnityEngine;
@@ -9,7 +10,12 @@ namespace Unite.Bootstrap
     {
         private Player.Player player;
         private EnemySpawner enemySpawner;
-        
+
+        private void Start()
+        {
+            DontDestroyOnLoad(this);
+        }
+
         public void HandlePlayerReadyEvent(Player.Player p)
         {
             player = p;

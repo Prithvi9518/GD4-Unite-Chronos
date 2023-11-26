@@ -32,5 +32,11 @@ namespace Unite.Player
             
             onPlayerReady.Raise(this);
         }
+
+        public void OnPlayerDead()
+        {
+            inputHandler.enabled = false;
+            healthHandler.enabled = false;
+        }
     }
 }
