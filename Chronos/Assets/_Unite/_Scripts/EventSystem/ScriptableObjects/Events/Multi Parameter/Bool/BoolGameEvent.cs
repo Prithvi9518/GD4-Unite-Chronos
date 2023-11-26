@@ -2,7 +2,7 @@
 
 namespace Unite.EventSystem
 {
-    [CreateAssetMenu(fileName = "BoolGameEvent", menuName = "Unite/Scriptable Objects/Events/BoolGameEvent")]
+    [CreateAssetMenu(fileName = "BoolGameEvent", menuName = "Events/BoolGameEvent")]
     public class BoolGameEvent : ParameterisedGameEvent<bool>
     { }
 }

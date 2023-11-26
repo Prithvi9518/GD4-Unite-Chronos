@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Unite.Enemies
 {
-    [CreateAssetMenu(fileName = "BiteAttack", menuName = "Unite/Scriptable Objects/Enemies/Attacks/Bite")]
+    [CreateAssetMenu(fileName = "BiteAttack", menuName = "Enemies/Attacks/Bite")]
     public class BiteAttack : AttackData
     {
         [SerializeField]

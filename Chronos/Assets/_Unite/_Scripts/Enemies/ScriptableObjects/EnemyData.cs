@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Unite.Enemies
 {
-    [CreateAssetMenu(fileName = "EnemyData", menuName = "Unite/Scriptable Objects/Enemies/Base Enemy Data")]
+    [CreateAssetMenu(fileName = "EnemyData", menuName = "Enemies/Base Enemy Data")]
     public class EnemyData : ScriptableObject
     {
         [SerializeField]

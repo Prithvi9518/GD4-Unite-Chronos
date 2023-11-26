@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Unite.AbilitySystem
 {
-    [CreateAssetMenu(fileName ="TimeStopAbility", menuName ="Unite/Scriptable Objects/Abilities/Time Stop")]
+    [CreateAssetMenu(fileName ="TimeStopAbility", menuName ="Abilities/Time Stop")]
     public class TimeStopAbility : AbilityData
     {
         public override void Activate()

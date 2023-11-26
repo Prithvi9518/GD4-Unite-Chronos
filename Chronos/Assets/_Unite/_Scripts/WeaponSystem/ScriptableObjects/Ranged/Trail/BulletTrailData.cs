@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace Unite.WeaponSystem
 {
-    [CreateAssetMenu(fileName = "BulletTrailData", menuName = "Unite/Scriptable Objects/Weapons/Ranged/Bullet Trail")]
+    [CreateAssetMenu(fileName = "BulletTrailData", menuName = "Weapons/Bullet Trail")]
     public class BulletTrailData : ScriptableObject
     {
         [Header("TrailRenderer Configuration")]

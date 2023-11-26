@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Unite.Enemies.AI
 {
-    [CreateAssetMenu(fileName = "ToggleColliderAction", menuName = "Unite/Scriptable Objects/AI/Actions/Toggle Collider")]
+    [CreateAssetMenu(fileName = "ToggleColliderAction", menuName = "AI/Actions/Toggle Collider")]
     public class ToggleColliderAction : Action
     {
         [SerializeField] 

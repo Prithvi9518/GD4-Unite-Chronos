@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Unite.EventSystem
 {
-    [CreateAssetMenu(fileName = "GameEvent", menuName = "Unite/Scriptable Objects/Events/GameEvent")]
+    [CreateAssetMenu(fileName = "GameEvent", menuName = "Events/GameEvent")]
     public class GameEvent : ScriptableObject
     {
         private HashSet<GameEventListener> listeners = new HashSet<GameEventListener>();

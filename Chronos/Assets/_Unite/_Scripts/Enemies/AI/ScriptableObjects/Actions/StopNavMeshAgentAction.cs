@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Unite.Enemies.AI
 {
-    [CreateAssetMenu(fileName ="StopNavMeshAgent", menuName ="Unite/Scriptable Objects/AI/Actions/StopNavMeshAgent")]
+    [CreateAssetMenu(fileName ="StopNavMeshAgent", menuName ="AI/Actions/StopNavMeshAgent")]
     public class StopNavMeshAgentAction : Action
     {
         [SerializeField]

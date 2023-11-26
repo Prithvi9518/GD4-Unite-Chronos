@@ -2,7 +2,7 @@
 
 namespace Unite.EventSystem
 {
-    [CreateAssetMenu(fileName = "PlayerHealthInfoGameEvent", menuName = "Unite/Scriptable Objects/Events/HealthInfo")]
+    [CreateAssetMenu(fileName = "PlayerHealthInfoGameEvent", menuName = "Events/HealthInfo")]
     public class HealthInfoEvent : ParameterisedGameEvent<HealthInfo>
     {
     }

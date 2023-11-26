@@ -13,7 +13,7 @@ namespace Unite.StatePattern
     /// <seealso cref="IStateMachine"/>
     /// </summary>
 
-    [CreateAssetMenu(fileName = "State", menuName = "Unite/Scriptable Objects/AI/State")]
+    [CreateAssetMenu(fileName = "State", menuName = "AI/State")]
     public class State : ScriptableObject
     {
         [Header("Actions")]
