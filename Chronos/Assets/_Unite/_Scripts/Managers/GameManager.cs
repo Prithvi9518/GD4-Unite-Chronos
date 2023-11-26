@@ -42,6 +42,9 @@ namespace Unite.Managers
                 case GameState.Start:
                     HandleGameStart();
                     break;
+                case GameState.PlayerDead:
+                    Debug.Log("Player Dead");
+                    break;
                 default:
                     break;
             }

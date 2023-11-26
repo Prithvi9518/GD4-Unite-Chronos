@@ -1,5 +1,6 @@
 using Unite.Core;
 using Unite.Core.DamageInterfaces;
+using Unite.Core.Game;
 using Unite.EventSystem;
 using UnityEngine;
 
@@ -12,6 +13,9 @@ namespace Unite.Player
 
         [SerializeField]
         private HealthInfoEvent onDamaged;
+
+        [SerializeField] 
+        private GameStateEvent onPlayerDied;
         
         private void Awake()
         {
@@ -32,6 +36,7 @@ namespace Unite.Player
 
         private void Die()
         {
+            onPlayerDied.Raise(GameState.PlayerDead);
         }
     }
 }
