@@ -159,6 +159,7 @@ GameObject:
   - component: {fileID: 3664281855645159123}
   - component: {fileID: 1122760746944149535}
   - component: {fileID: 4017848504832524091}
+  - component: {fileID: 8346692834355741810}
   m_Layer: 8
   m_Name: Player
   m_TagString: Player
@@ -418,7 +419,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 100
   currentHealth: 0
-  setupFromScriptableObject: 0
+  setupFromScriptableObject: 1
 --- !u!114 &916965400791086416
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -488,3 +489,32 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7fcb94a6089f408dad9b2e71ada9a84b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &8346692834355741810
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7830948257419484268}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dd2df735215b4ee881969e0f27b50bdd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  description: Disable input and health when dead
+  gameEvent: {fileID: 11400000, guid: 0169bee3104c3364391b67dc8094ffe1, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 3664281855645159123}
+        m_TargetAssemblyTypeName: Unite.Player.Player, Assembly-CSharp
+        m_MethodName: OnPlayerDead
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2

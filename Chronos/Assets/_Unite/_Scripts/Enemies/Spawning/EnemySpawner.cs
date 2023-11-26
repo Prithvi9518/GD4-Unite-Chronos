@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unite.EventSystem;
@@ -48,6 +49,10 @@ namespace Unite.Enemies.Spawning
         private void Awake()
         {
             SetupEnemyPools();
+        }
+
+        private void Start()
+        {
             onSpawnerReady.Raise(this);
         }
 

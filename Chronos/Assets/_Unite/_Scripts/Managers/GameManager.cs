@@ -44,7 +44,6 @@ namespace Unite.Managers
                     HandleGameStart();
                     break;
                 case GameState.PlayerDead:
-                    HandleRestart();
                     break;
                 default:
                     break;

@@ -22,6 +22,12 @@ namespace Unite.Player
             playerHealth = GetComponent<Health>();
         }
 
+        public void PerformSetup(float baseHealth)
+        {
+            playerHealth.MaxHealth = baseHealth;
+            playerHealth.ResetHealth();
+        }
+
         public void TakeDamage(float damage)
         {
             playerHealth.DecreaseHealth(damage);
