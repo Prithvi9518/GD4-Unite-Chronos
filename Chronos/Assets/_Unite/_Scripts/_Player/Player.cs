@@ -1,4 +1,6 @@
-﻿using Unite.EventSystem;
+﻿using System;
+using StarterAssets;
+using Unite.EventSystem;
 using UnityEngine;
 
 namespace Unite.Player
@@ -17,6 +19,7 @@ namespace Unite.Player
         private PlayerInputHandler inputHandler;
         private PlayerHealthHandler healthHandler;
         private PlayerStatsHandler statsHandler;
+        private FirstPersonController controller;
 
         public PlayerInputHandler InputHandler => inputHandler;
         public PlayerHealthHandler HealthHandler => healthHandler;
@@ -27,10 +30,20 @@ namespace Unite.Player
             inputHandler = GetComponent<PlayerInputHandler>();
             healthHandler = GetComponent<PlayerHealthHandler>();
             statsHandler = GetComponent<PlayerStatsHandler>();
-            
+            controller = GetComponent<FirstPersonController>();
+        }
+
+        private void Start()
+        {
             playerData.SetupPlayer(this);
-            
             onPlayerReady.Raise(this);
+        }
+
+        public void OnPlayerDead()
+        {
+            inputHandler.enabled = false;
+            healthHandler.enabled = false;
+            controller.enabled = false;
         }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using Unite.Core.Game;
 using Unite.Enemies.Spawning;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace Unite.Managers
 {
@@ -42,6 +43,8 @@ namespace Unite.Managers
                 case GameState.Start:
                     HandleGameStart();
                     break;
+                case GameState.PlayerDead:
+                    break;
                 default:
                     break;
             }
@@ -54,6 +57,12 @@ namespace Unite.Managers
             
             enemySpawner.Initialize(player);
             enemySpawner.StartSpawning();
+        }
+
+        private void HandleRestart()
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+            SetGameState(GameState.Start);
         }
     }
 }
