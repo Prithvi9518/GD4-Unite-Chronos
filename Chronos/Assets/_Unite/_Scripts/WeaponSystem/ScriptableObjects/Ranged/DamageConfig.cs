@@ -1,9 +1,11 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace Unite.WeaponSystem
 {
     [CreateAssetMenu(fileName = "DamageConfig", menuName = "Weapons/Damage Config")]
-    public class DamageConfig : ScriptableObject
+    public class DamageConfig : ScriptableObject, ICloneable
     {
         [SerializeField] 
         private ParticleSystem.MinMaxCurve damageCurve;
@@ -16,6 +18,14 @@ namespace Unite.WeaponSystem
         public float GetDamage(float distance = 0)
         {
             return damageCurve.Evaluate(distance, Random.value);
+        }
+
+        public object Clone()
+        {
+            DamageConfig config = CreateInstance<DamageConfig>();
+
+            config.damageCurve = damageCurve;
+            return config;
         }
     }
 }

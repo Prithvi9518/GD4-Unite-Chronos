@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace Unite.StatSystem
 {
-    [CreateAssetMenu(fileName = "StatType", menuName = "Stat Type")]
+    [CreateAssetMenu(fileName = "StatType", menuName = "Stats/Stat Type")]
     public class StatTypeSO : ScriptableObject
     {
         [SerializeField] 

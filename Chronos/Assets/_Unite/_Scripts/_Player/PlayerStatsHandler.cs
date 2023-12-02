@@ -6,20 +6,28 @@ namespace Unite.Player
 {
     public class PlayerStatsHandler : MonoBehaviour
     {
-        private Dictionary<StatTypeSO, StatInfo> playerStats = new();
+        private Dictionary<StatTypeSO, Stat> playerStats = new();
 
-        public void PerformSetup(List<StatInfo> baseStats)
+        public void PerformSetup(BaseStats baseStats)
         {
             playerStats.Clear();
-            foreach (var stat in baseStats)
+            foreach (var stat in baseStats.Stats)
             {
-                playerStats.Add(stat.StatType, stat);
+                playerStats.Add(stat.StatType, new Stat(stat.Value));
             }
         }
 
-        public StatInfo GetStatInfo(StatTypeSO statType)
+        public Stat GetStat(StatTypeSO statType)
         {
             return playerStats.TryGetValue(statType, out var statInfo) ? statInfo : null;
+        }
+
+        public void AddModifier(StatTypeSO statType, StatModifier modifier)
+        {
+            if (playerStats.TryGetValue(statType, out Stat stat))
+            {
+                stat.AddModifier(modifier);
+            }
         }
     }
 }
