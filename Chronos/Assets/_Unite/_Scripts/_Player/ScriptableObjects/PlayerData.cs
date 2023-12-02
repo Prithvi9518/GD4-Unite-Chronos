@@ -13,7 +13,7 @@ namespace Unite.Player
         
         [Header("Player Base Stats Configuration")]
         [SerializeField]
-        private List<StatInfo> playerBaseStats;
+        private BaseStats playerBaseStats;
 
         public void SetupPlayer(Player player)
         {
