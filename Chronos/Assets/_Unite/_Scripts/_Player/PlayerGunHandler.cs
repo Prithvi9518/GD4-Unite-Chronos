@@ -31,8 +31,10 @@ namespace Unite.Player
             GunData gun = gunDictionary[gunType];
             
             if (gun == null) return;
-            activeGun = gun;
-            gun.Spawn(gunParent, this);
+            activeGun = gun.Clone() as GunData;
+            if (activeGun == null) return;
+            
+            activeGun.Spawn(gunParent, this);
         }
 
         private void Update()
@@ -46,6 +48,11 @@ namespace Unite.Player
         public void SetInputHandler(PlayerInputHandler playerInputHandler)
         {
             inputHandler = playerInputHandler;
+        }
+
+        public void ApplyModifier(IGunModifier gunModifier)
+        {
+            gunModifier.Apply(activeGun);
         }
 
         private void SetupGunDictionary()

@@ -1,13 +1,15 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using Unite.Core.DamageInterfaces;
 using Unite.SoundScripts;
 using UnityEngine;
 using UnityEngine.Pool;
+using Random = UnityEngine.Random;
 
 namespace Unite.WeaponSystem
 {
     [CreateAssetMenu(fileName = "GunData", menuName = "Weapons/Gun")]
-    public class GunData : ScriptableObject
+    public class GunData : ScriptableObject, ICloneable
     {
         [SerializeField] 
         private GunType gunType;
@@ -43,6 +45,7 @@ namespace Unite.WeaponSystem
         private ObjectPool<TrailRenderer> trailPool;
 
         public GunType GunType => gunType;
+        public ShootData ShootData => shootData;
 
         public void Spawn(Transform parent, MonoBehaviour monoBehaviour)
         {
@@ -166,6 +169,24 @@ namespace Unite.WeaponSystem
             instance.emitting = false;
             instance.gameObject.SetActive(false);
             trailPool.Release(instance);
+        }
+
+        public object Clone()
+        {
+            GunData clone = CreateInstance<GunData>();
+            clone.gunType = gunType;
+            clone.gunName = gunName;
+            clone.name = name;
+            clone.damageConfig = damageConfig.Clone() as DamageConfig;
+            clone.shootData = shootData.Clone() as ShootData;
+            clone.audioConfig = audioConfig.Clone() as GunAudioConfig;
+            clone.bulletTrailData = bulletTrailData.Clone() as BulletTrailData;
+
+            clone.modelPrefab = modelPrefab;
+            clone.spawnPoint = spawnPoint;
+            clone.spawnRotation = spawnRotation;
+            
+            return clone;
         }
     }
 }
