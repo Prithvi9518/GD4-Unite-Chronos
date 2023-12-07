@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using Unite.Core.DamageInterfaces;
+using Unite.ImpactSystem;
 using Unite.SoundScripts;
 using Unite.WeaponSystem.ImpactEffects;
 using UnityEngine;
@@ -39,6 +40,9 @@ namespace Unite.WeaponSystem
         [SerializeField] 
         private GunAudioConfig audioConfig;
 
+        [SerializeField] 
+        private ImpactType impactType;
+
         private MonoBehaviour activeMonoBehaviour;
         private GameObject model;
         private float lastShootTime;
@@ -48,6 +52,16 @@ namespace Unite.WeaponSystem
 
         public GunType GunType => gunType;
         public ShootData ShootData => shootData;
+
+        public void SetImpactType(ImpactType type)
+        {
+            impactType = type;
+        }
+
+        public void SetBulletImpactEffects(IImpactHandler[] effects)
+        {
+            bulletImpactEffects = effects;
+        }
 
         public void Spawn(Transform parent, MonoBehaviour monoBehaviour)
         {
@@ -112,6 +126,13 @@ namespace Unite.WeaponSystem
 
         private void HandleBulletImpact(RaycastHit hit, float distance)
         {
+            SurfaceManager.Instance.HandleImpact(
+                hit.collider.gameObject, 
+                hit.point,
+                hit.normal, 
+                impactType
+            );
+            
             if (hit.collider.TryGetComponent(out ITakeDamage damageable))
             {
                 damageable.TakeDamage(damageConfig.GetDamage(distance));

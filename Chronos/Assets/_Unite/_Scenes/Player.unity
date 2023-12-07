@@ -254,18 +254,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3664281855645159123, guid: 8f8fe7d1085e92f4b9852a9e8a1c5bb9,
-        type: 3}
-      propertyPath: buffToTest
-      value: 
-      objectReference: {fileID: 11400000, guid: d6d3da7497002474887f82f1abde1ee5,
-        type: 2}
-    - target: {fileID: 3664281855645159123, guid: 8f8fe7d1085e92f4b9852a9e8a1c5bb9,
-        type: 3}
-      propertyPath: statToTest
-      value: 
-      objectReference: {fileID: 11400000, guid: e3c3053948b1ae541ba29e94f4eba659,
-        type: 2}
     - target: {fileID: 5598415455948328408, guid: 8f8fe7d1085e92f4b9852a9e8a1c5bb9,
         type: 3}
       propertyPath: gunParent
@@ -295,11 +283,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 703265206956267590, guid: b98c5e8efa2f9c14a98d46ecfa6c92a3,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 1957592657991867441, guid: b98c5e8efa2f9c14a98d46ecfa6c92a3,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -354,11 +337,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: MainCamera
-      objectReference: {fileID: 0}
-    - target: {fileID: 7326832320968384822, guid: b98c5e8efa2f9c14a98d46ecfa6c92a3,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
