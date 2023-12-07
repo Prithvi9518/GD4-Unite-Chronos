@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using Unite.WeaponSystem;
+using Unite.WeaponSystem.Modifiers;
 using UnityEngine;
 
 namespace Unite.Player
