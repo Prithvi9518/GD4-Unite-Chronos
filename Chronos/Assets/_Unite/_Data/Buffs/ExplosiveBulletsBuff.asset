@@ -15,7 +15,7 @@ MonoBehaviour:
   buffName: 
   description: 
   impactType: {fileID: 11400000, guid: 2077bd12e0754724da8bfc0e355914a3, type: 2}
-  radius: 10
+  radius: 5
   damageFalloff:
     serializedVersion: 2
     m_Curve:
@@ -40,5 +40,5 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  baseExplosionDamage: 20
+  baseExplosionDamage: 40
   maxEnemiesAffected: 5
