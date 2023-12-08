@@ -136,11 +136,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Enemy Spawner
       objectReference: {fileID: 0}
-    - target: {fileID: 22931836866374717, guid: bf4ea1c0bb5be2d408fa4e6f43b0ec30,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 8626974069182189472, guid: bf4ea1c0bb5be2d408fa4e6f43b0ec30,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -214,7 +209,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &323440607
 Transform:
   m_ObjectHideFlags: 0
