@@ -47,22 +47,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyScriptableObjects:
   - {fileID: 11400000, guid: c4922ab8d4ca0ea4aada3f6134f000f1, type: 2}
-  player: {fileID: 0}
-  minSpawnDistanceFromPlayer: 10
-  maxSpawnDistanceFromPlayer: 10
-  spawnMode: 2
-  individualSpawnModeAction: {fileID: -4672010861962342767, guid: ddadf06b494043f438f6169ee368f5ee,
-    type: 3}
-  individualSpawnDistance: 7
-  demoBossEnemyData: {fileID: 11400000, guid: c4922ab8d4ca0ea4aada3f6134f000f1, type: 2}
-  bossSpawnDistance: 9
-  numSpawnedInDemoWave: 3
-  spawnDemoWaveAction: {fileID: 5369814152343894760, guid: ddadf06b494043f438f6169ee368f5ee,
-    type: 3}
-  spawnDemoBossAction: {fileID: 5987612403372013958, guid: ddadf06b494043f438f6169ee368f5ee,
-    type: 3}
-  enemiesSpawnedAtOnce: 3
-  spawnDelay: 6
+  minSpawnDistanceFromPlayer: 15
+  maxSpawnDistanceFromPlayer: 25
+  enemiesSpawnedAtOnce: 2
+  maxEnemiesSpawned: 20
+  spawnDelay: 5
   onSpawnerReady: {fileID: 11400000, guid: e8d65d27332f0fd4081c94f659d82864, type: 2}
 --- !u!114 &7654160340194470667
 MonoBehaviour:

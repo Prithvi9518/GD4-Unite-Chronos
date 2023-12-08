@@ -1,5 +1,6 @@
 using Unite.Core;
 using Unite.Core.DamageInterfaces;
+using Unite.Core.Game;
 using Unite.EventSystem;
 using UnityEngine;
 
@@ -12,10 +13,19 @@ namespace Unite.Player
 
         [SerializeField]
         private HealthInfoEvent onDamaged;
+
+        [SerializeField] 
+        private GameStateEvent onPlayerDied;
         
         private void Awake()
         {
             playerHealth = GetComponent<Health>();
+        }
+
+        public void PerformSetup(float baseHealth)
+        {
+            playerHealth.MaxHealth = baseHealth;
+            playerHealth.ResetHealth();
         }
 
         public void TakeDamage(float damage)
@@ -32,6 +42,7 @@ namespace Unite.Player
 
         private void Die()
         {
+            onPlayerDied.Raise(GameState.PlayerDead);
         }
     }
 }

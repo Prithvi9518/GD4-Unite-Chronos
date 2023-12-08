@@ -3,7 +3,7 @@ using UnityEngine.SceneManagement;
 
 namespace Unite.Core.Game
 {
-    [CreateAssetMenu(fileName = "GameScene", menuName = "Unite/Scriptable Objects/Game/Scene")]
+    [CreateAssetMenu(fileName = "GameScene", menuName = "Game/Scene")]
     public class GameScene : ScriptableObject
     {
         [Header("Scene Info")]

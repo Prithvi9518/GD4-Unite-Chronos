@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Unite.EventSystem
 {
-    [CreateAssetMenu(fileName = "EnemySpawnerEvent", menuName = "Unite/Scriptable Objects/Events/EnemySpawner")]
+    [CreateAssetMenu(fileName = "EnemySpawnerEvent", menuName = "Events/EnemySpawner")]
     public class EnemySpawnerEvent : ParameterisedGameEvent<EnemySpawner>
     {
     }

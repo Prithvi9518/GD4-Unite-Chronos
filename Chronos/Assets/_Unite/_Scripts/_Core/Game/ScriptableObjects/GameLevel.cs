@@ -4,7 +4,7 @@ using UnityEngine.Rendering;
 
 namespace Unite.Core.Game
 {
-    [CreateAssetMenu(fileName = "GameLevel", menuName = "Unite/Scriptable Objects/Game/Level")]
+    [CreateAssetMenu(fileName = "GameLevel", menuName = "Game/Level")]
     public class GameLevel : ScriptableObject
     {
         [Header("Scenes")]

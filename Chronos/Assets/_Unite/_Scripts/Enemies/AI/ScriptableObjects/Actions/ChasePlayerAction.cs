@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Unite.Enemies.AI
 {
-    [CreateAssetMenu(fileName = "ChasePlayerAction", menuName = "Unite/Scriptable Objects/AI/Actions/ChasePlayerAction")]
+    [CreateAssetMenu(fileName = "ChasePlayerAction", menuName = "AI/Actions/ChasePlayerAction")]
     public class ChasePlayerAction : Action
     {
         public override void ExecuteAction(IStateMachine stateMachine)

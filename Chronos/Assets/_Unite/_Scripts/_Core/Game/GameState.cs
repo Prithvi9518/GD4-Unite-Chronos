@@ -3,6 +3,7 @@
     public enum GameState
     {
         Bootstrap,
-        Start
+        Start,
+        PlayerDead
     }
 }
