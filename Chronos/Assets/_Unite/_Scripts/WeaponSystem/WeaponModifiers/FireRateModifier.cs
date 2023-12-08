@@ -1,4 +1,4 @@
-﻿namespace Unite.WeaponSystem
+﻿namespace Unite.WeaponSystem.Modifiers
 {
     [System.Serializable]
     public class FireRateModifier : IGunModifier

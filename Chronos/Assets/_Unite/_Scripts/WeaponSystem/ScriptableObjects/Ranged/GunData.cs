@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections;
 using Unite.Core.DamageInterfaces;
+using Unite.ImpactSystem;
 using Unite.SoundScripts;
+using Unite.WeaponSystem.ImpactEffects;
 using UnityEngine;
 using UnityEngine.Pool;
 using Random = UnityEngine.Random;
@@ -38,14 +40,28 @@ namespace Unite.WeaponSystem
         [SerializeField] 
         private GunAudioConfig audioConfig;
 
+        [SerializeField] 
+        private ImpactType impactType;
+
         private MonoBehaviour activeMonoBehaviour;
         private GameObject model;
         private float lastShootTime;
         private ParticleSystem shootParticleSystem;
         private ObjectPool<TrailRenderer> trailPool;
+        private IImpactHandler[] bulletImpactEffects = Array.Empty<IImpactHandler>();
 
         public GunType GunType => gunType;
         public ShootData ShootData => shootData;
+
+        public void SetImpactType(ImpactType type)
+        {
+            impactType = type;
+        }
+
+        public void SetBulletImpactEffects(IImpactHandler[] effects)
+        {
+            bulletImpactEffects = effects;
+        }
 
         public void Spawn(Transform parent, MonoBehaviour monoBehaviour)
         {
@@ -108,13 +124,23 @@ namespace Unite.WeaponSystem
             return shootDirection;
         }
 
-        private void TryDealDamage(RaycastHit hit, float distance)
+        private void HandleBulletImpact(RaycastHit hit, float distance)
         {
-            if (hit.collider == null) return;
-
+            SurfaceManager.Instance.HandleImpact(
+                hit.collider.gameObject, 
+                hit.point,
+                hit.normal, 
+                impactType
+            );
+            
             if (hit.collider.TryGetComponent(out ITakeDamage damageable))
             {
                 damageable.TakeDamage(damageConfig.GetDamage(distance));
+            }
+
+            foreach (IImpactHandler impactHandler in bulletImpactEffects)
+            {
+                impactHandler.HandleImpact(hit.collider, hit.point, hit.normal, this);
             }
         }
 
@@ -161,8 +187,11 @@ namespace Unite.WeaponSystem
             }
 
             instance.transform.position = end;
-            
-            TryDealDamage(hit, distance);
+
+            if (hit.collider != null)
+            {
+                HandleBulletImpact(hit, distance);
+            }
 
             yield return new WaitForSeconds(bulletTrailData.Duration);
             yield return null;

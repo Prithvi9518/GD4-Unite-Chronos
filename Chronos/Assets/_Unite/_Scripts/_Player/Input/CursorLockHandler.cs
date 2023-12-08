@@ -13,7 +13,7 @@ namespace Unite.Player
             }
             else
             {
-                
+                Cursor.visible = false;
             }
         }
     }

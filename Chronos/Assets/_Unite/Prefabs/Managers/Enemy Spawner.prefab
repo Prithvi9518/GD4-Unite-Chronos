@@ -49,9 +49,9 @@ MonoBehaviour:
   - {fileID: 11400000, guid: c4922ab8d4ca0ea4aada3f6134f000f1, type: 2}
   minSpawnDistanceFromPlayer: 15
   maxSpawnDistanceFromPlayer: 25
-  enemiesSpawnedAtOnce: 3
+  enemiesSpawnedAtOnce: 2
   maxEnemiesSpawned: 20
-  spawnDelay: 10
+  spawnDelay: 5
   onSpawnerReady: {fileID: 11400000, guid: e8d65d27332f0fd4081c94f659d82864, type: 2}
 --- !u!114 &7654160340194470667
 MonoBehaviour:
