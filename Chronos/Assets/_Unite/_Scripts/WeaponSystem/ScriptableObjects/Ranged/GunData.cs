@@ -47,6 +47,7 @@ namespace Unite.WeaponSystem
         private GameObject model;
         private float lastShootTime;
         private ParticleSystem shootParticleSystem;
+        private GameObject trailsGameObject;
         private ObjectPool<TrailRenderer> trailPool;
         private IImpactHandler[] bulletImpactEffects = Array.Empty<IImpactHandler>();
 
@@ -67,7 +68,29 @@ namespace Unite.WeaponSystem
         {
             activeMonoBehaviour = monoBehaviour;
             lastShootTime = 0;
-            trailPool = new ObjectPool<TrailRenderer>(CreateTrail);
+
+            trailsGameObject = new GameObject("Bullet Trails")
+            {
+                transform =
+                {
+                    position = Vector3.zero
+                }
+            };
+            trailsGameObject.transform.SetParent(null);
+
+            trailPool = new ObjectPool<TrailRenderer>(
+                CreateTrail,
+                trail =>
+                {
+                    trail.transform.parent = null;
+                },
+                trail =>
+                {
+                    trail.enabled = false;
+                    trail.transform.parent = trailsGameObject.transform;
+                },
+                DestroyTrailData
+            );
 
             model = Instantiate(modelPrefab, parent, false);
             model.transform.localPosition = spawnPoint;
@@ -157,15 +180,24 @@ namespace Unite.WeaponSystem
 
             trail.emitting = false;
             trail.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off;
+            trail.transform.SetParent(trailsGameObject.transform);
 
             return trail;
+        }
+
+        private void DestroyTrailData(TrailRenderer trail)
+        {
+            Destroy(trail.gameObject);
         }
 
         private IEnumerator FireBulletWithTrail(Vector3 start, Vector3 end, RaycastHit hit)
         {
             TrailRenderer instance = trailPool.Get();
-            instance.gameObject.SetActive(true);
             instance.transform.position = start;
+            instance.transform.rotation = Quaternion.identity;
+            instance.Clear();
+            instance.gameObject.SetActive(true);
+            instance.enabled = true;
 
             yield return null; // avoid position carry-over from last frame if reused
 

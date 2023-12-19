@@ -223,8 +223,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55919ac34a26952479f3fc91f777b2fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MoveSpeed: 4
-  SprintSpeed: 6
+  MoveSpeed: 10
+  SprintSpeed: 15
   RotationSpeed: 1
   SpeedChangeRate: 10
   JumpHeight: 1.2
@@ -533,4 +533,6 @@ MonoBehaviour:
   gunParent: {fileID: 0}
   guns:
   - {fileID: 11400000, guid: c9ac30643562cb748a989e9fa9059aa6, type: 2}
+  onPlayerShootAction: {fileID: 11400000, guid: f2691b8fa703ec64f81ce7484cffa2f7,
+    type: 2}
   activeGun: {fileID: 0}
