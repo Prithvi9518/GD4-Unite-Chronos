@@ -46,6 +46,9 @@ namespace Unite.WeaponSystem
         private MonoBehaviour activeMonoBehaviour;
         private GameObject model;
         private float lastShootTime;
+        private float initialClickTime;
+        private float stopShootingTime;
+        private bool wantedToShootLastFrame;
         private ParticleSystem shootParticleSystem;
         private GameObject trailsGameObject;
         private ObjectPool<TrailRenderer> trailPool;
@@ -99,16 +102,46 @@ namespace Unite.WeaponSystem
             shootParticleSystem = model.GetComponentInChildren<ParticleSystem>();
         }
 
+        public void Tick(bool wantsToShoot)
+        {
+            model.transform.localRotation = Quaternion.Slerp(
+                model.transform.localRotation,
+                Quaternion.Euler(spawnRotation),
+                Time.deltaTime * shootData.RecoilRecoverySpeed
+            );
+            
+            if (wantsToShoot)
+            {
+                wantedToShootLastFrame = true;
+                Shoot();
+            }
+            else if (!wantsToShoot && wantedToShootLastFrame)
+            {
+                stopShootingTime = Time.time;
+                wantedToShootLastFrame = false;
+            }
+        }
+
         public void Shoot()
         {
+            if (Time.time - lastShootTime - shootData.FireRate > Time.deltaTime)
+            {
+                float lastDuration = Mathf.Clamp(0, stopShootingTime - initialClickTime, shootData.MaxSpreadTime);
+                float lerpTime = (shootData.RecoilRecoverySpeed - (Time.time - stopShootingTime)) / shootData.RecoilRecoverySpeed;
+                
+                initialClickTime = Time.time - Mathf.Lerp(0, lastDuration, Mathf.Clamp01(lerpTime));
+            }
+            
             if (!(Time.time > shootData.FireRate + lastShootTime)) return;
             
             lastShootTime = Time.time;
                 
             shootParticleSystem.Play();
             audioConfig.PlayShootingAudioClip();
-                
-            var shootDirection = GetShootDirection();
+
+            Vector3 bulletSpread = shootData.GetSpread(Time.time - initialClickTime);
+            model.transform.forward += model.transform.TransformDirection(bulletSpread);
+            Vector3 shootDirection = model.transform.forward;
 
             Vector3 start = shootParticleSystem.transform.position;
 
@@ -133,18 +166,6 @@ namespace Unite.WeaponSystem
                     )
                 );
             }
-        }
-
-        private Vector3 GetShootDirection()
-        {
-            Vector3 shootDirection = shootParticleSystem.transform.forward
-                                     + new Vector3(
-                                         Random.Range(-shootData.BulletSpread.x, shootData.BulletSpread.x),
-                                         Random.Range(-shootData.BulletSpread.y, shootData.BulletSpread.y),
-                                         Random.Range(-shootData.BulletSpread.z, shootData.BulletSpread.z)
-                                     );
-            shootDirection.Normalize();
-            return shootDirection;
         }
 
         private void HandleBulletImpact(RaycastHit hit, float distance)
