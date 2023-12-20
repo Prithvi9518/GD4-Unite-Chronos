@@ -59,9 +59,12 @@ namespace Unite.Player
 
         private void CheckAndHandleShootAction()
         {
-            if (!inputHandler.IsShootActionPressed()) return;
-            
-            activeGun.Shoot();
+            if (activeGun == null) return;
+
+            bool isShootActionPressed = inputHandler.IsShootActionPressed();
+            activeGun.Tick(isShootActionPressed);
+
+            if (!isShootActionPressed) return;
             onPlayerShootAction.Raise();
         }
 
