@@ -4,10 +4,12 @@ namespace Unite.Enemies.Spawning
 {
     public class BoxSpawnPositionProvider : MonoBehaviour, IProvideSpawnPosition
     {
+        [SerializeField]
+        private BoxCollider collider;
+
         [SerializeField] 
         private float offset;
         
-        private BoxCollider collider;
         private Bounds bounds;
 
         private void Awake()
