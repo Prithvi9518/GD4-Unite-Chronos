@@ -3,8 +3,7 @@ using Unity.Services.Core;
 
 public class CustomUserID : MonoBehaviour
 {
-    public string[] userIDs; // Array of predefined user IDs
-
+    public string[] userIDs;
     private int currentIndex = 0;
 
     void Start()
