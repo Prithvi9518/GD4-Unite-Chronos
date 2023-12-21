@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 using Random = UnityEngine.Random;
@@ -21,7 +20,7 @@ namespace Unite.Enemies.Spawning
             remainingCurrency = currencyToSpend;
         }
 
-        public void SpawnEnemies(Vector3 spawnPosition, Transform playerTransform)
+        public void SpawnEnemies(IProvideSpawnPosition spawnPositionProvider, Transform playerTransform)
         {
             List<EnemyData> validEnemiesToSpawn = new List<EnemyData>(enemies);
             while (remainingCurrency > 0 && validEnemiesToSpawn.Count > 0)
@@ -32,7 +31,8 @@ namespace Unite.Enemies.Spawning
 
                 if (remainingCurrency - enemyCost >= 0)
                 {
-                    SpawnEnemy(enemyData, spawnPosition, playerTransform);
+                    var spawnPos = spawnPositionProvider.GetSpawnPosition();
+                    SpawnEnemy(enemyData, spawnPos, playerTransform);
                     remainingCurrency -= enemyCost;
                 }
                 else if (remainingCurrency - enemyCost < 0)
