@@ -2,7 +2,7 @@
 
 namespace Unite.BuffSystem
 {
-    public class TestingBuffPickup : MonoBehaviour
+    public class BuffPickup : MonoBehaviour
     {
         [SerializeField]
         private BuffScriptableObject buff;
