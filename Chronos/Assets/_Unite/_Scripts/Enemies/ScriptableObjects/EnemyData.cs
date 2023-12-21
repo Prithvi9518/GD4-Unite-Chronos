@@ -17,6 +17,10 @@ namespace Unite.Enemies
         [SerializeField]
         private float baseDamage;
 
+        [Header("Spawn Cost")] 
+        [SerializeField]
+        private float cost;
+
         [Header("Attack Configuration")]
         [SerializeField]
         private List<AttackData> attacks;
@@ -29,6 +33,7 @@ namespace Unite.Enemies
         private State remainState;
 
         public Enemy EnemyPrefab => enemyPrefab;
+        public float Cost => cost;
 
         public virtual void SetupEnemy(Enemy enemy, Transform target)
         {
