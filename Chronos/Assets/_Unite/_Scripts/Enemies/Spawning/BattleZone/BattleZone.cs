@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Unite.BuffSystem;
+using UnityEngine;
 
 namespace Unite.Enemies.Spawning
 {
@@ -9,6 +10,7 @@ namespace Unite.Enemies.Spawning
         
         private BattleState battleState;
         private EnemyWaveSpawner waveSpawner;
+        private BuffSpawner buffSpawner;
         private IProvideSpawnPosition spawnPositionProvider;
         private Transform playerTransform;
         private int currentWaveIndex;
@@ -17,6 +19,7 @@ namespace Unite.Enemies.Spawning
         {
             battleState = BattleState.Idle;
             waveSpawner = GetComponent<EnemyWaveSpawner>();
+            buffSpawner = GetComponent<BuffSpawner>();
             spawnPositionProvider = GetComponent<IProvideSpawnPosition>();
 
             currentWaveIndex = 0;
@@ -60,6 +63,7 @@ namespace Unite.Enemies.Spawning
         private void EndBattle()
         {
             battleState = BattleState.End;
+            buffSpawner.SpawnBuff();
             Debug.Log("Battle ended");
         }
     }
