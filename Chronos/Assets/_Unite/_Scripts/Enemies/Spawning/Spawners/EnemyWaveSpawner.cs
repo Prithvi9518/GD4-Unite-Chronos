@@ -7,39 +7,36 @@ namespace Unite.Enemies.Spawning
 {
     public class EnemyWaveSpawner : MonoBehaviour
     {
-        [SerializeField]
-        private EnemyData[] enemies;
+        private int numEnemiesAlive;
 
-        [SerializeField]
-        private int currencyToSpend;
-
-        private int remainingCurrency;
-
-        private void Start()
+        public int NumEnemiesAlive => numEnemiesAlive;
+        
+        public void SpawnEnemies(EnemyWave enemyWave, IProvideSpawnPosition spawnPositionProvider, Transform playerTransform)
         {
-            remainingCurrency = currencyToSpend;
-        }
-
-        public void SpawnEnemies(IProvideSpawnPosition spawnPositionProvider, Transform playerTransform)
-        {
-            List<EnemyData> validEnemiesToSpawn = new List<EnemyData>(enemies);
-            while (remainingCurrency > 0 && validEnemiesToSpawn.Count > 0)
+            numEnemiesAlive = 0;
+            
+            int availableCurrency = enemyWave.CurrencyToSpend;
+            List<EnemyData> validEnemiesToSpawn = new List<EnemyData>(enemyWave.Enemies);
+            
+            while (availableCurrency > 0 && validEnemiesToSpawn.Count > 0)
             {
                 int enemyIndex = Random.Range(0, validEnemiesToSpawn.Count);
                 EnemyData enemyData = validEnemiesToSpawn[enemyIndex];
                 int enemyCost = enemyData.Cost;
 
-                if (remainingCurrency - enemyCost >= 0)
+                if (availableCurrency - enemyCost >= 0)
                 {
                     var spawnPos = spawnPositionProvider.GetSpawnPosition();
                     SpawnEnemy(enemyData, spawnPos, playerTransform);
-                    remainingCurrency -= enemyCost;
+                    
+                    numEnemiesAlive++;
+                    availableCurrency -= enemyCost;
                 }
-                else if (remainingCurrency - enemyCost < 0)
+                else if (availableCurrency - enemyCost < 0)
                 {
                     validEnemiesToSpawn.Remove(enemyData);
                 }
-                else if (remainingCurrency <= 0)
+                else if (availableCurrency <= 0)
                     break;
             }
         }
@@ -57,6 +54,11 @@ namespace Unite.Enemies.Spawning
             {
                 enemy.Agent.Warp(hit.position);
             }
+        }
+
+        public void DecrementEnemiesAliveCount()
+        {
+            numEnemiesAlive--;
         }
     }
 }
