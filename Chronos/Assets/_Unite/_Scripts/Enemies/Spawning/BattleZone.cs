@@ -18,7 +18,7 @@ namespace Unite.Enemies.Spawning
             if (battleState != BattleState.Idle) return;
             
             Debug.Log("Start Battle");
-            waveSpawner.SpawnEnemy(transform.position, player.transform);
+            waveSpawner.SpawnEnemies(transform.position, player.transform);
             battleState = BattleState.Active;
         }
 
