@@ -15,7 +15,7 @@ namespace Unite.Enemies.Spawning
         {
             if (other.TryGetComponent(out Player.Player player))
             {
-                battleZone.StartBattle();
+                battleZone.StartBattle(player);
             }
         }
     }
