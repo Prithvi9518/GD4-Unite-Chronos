@@ -51,8 +51,19 @@ namespace StarterAssets
 		[Tooltip("How far in degrees can you move the camera down")]
 		public float BottomClamp = -90.0f;
 
-		// cinemachine
-		private float _cinemachineTargetPitch;
+
+
+        public AudioClip[] footstepSounds; // Array to hold footstep sound clips
+        public float minTimeBetweenFootsteps = 0.3f; // Minimum time between footstep sounds
+        public float maxTimeBetweenFootsteps = 0.6f; // Maximum time between footstep sounds
+
+        private AudioSource audioSource; // Reference to the Audio Source component
+        private bool isWalking = false; // Flag to track if the player is walking
+        private float timeSinceLastFootstep; // Time since the last footstep sound
+
+
+        // cinemachine
+        private float _cinemachineTargetPitch;
 
 		// player
 		private float _speed;
@@ -93,7 +104,10 @@ namespace StarterAssets
 			{
 				_mainCamera = GameObject.FindGameObjectWithTag("MainCamera");
 			}
-		}
+
+            audioSource = GetComponent<AudioSource>(); // Get the Audio Source component
+
+        }
 
 		private void Start()
 		{
@@ -153,14 +167,16 @@ namespace StarterAssets
 
 		private void Move()
 		{
-			// set target speed based on move speed, sprint speed and if sprint is pressed
-			float targetSpeed = _input.sprint ? SprintSpeed : MoveSpeed;
+         //   isWalking = true;
+        
+        // set target speed based on move speed, sprint speed and if sprint is pressed
+        float targetSpeed = _input.sprint ? SprintSpeed : MoveSpeed;
 
 			// a simplistic acceleration and deceleration designed to be easy to remove, replace, or iterate upon
 
 			// note: Vector2's == operator uses approximation so is not floating point error prone, and is cheaper than magnitude
 			// if there is no input, set the target speed to 0
-			if (_input.move == Vector2.zero) targetSpeed = 0.0f;
+			if (_input.move == Vector2.zero) targetSpeed = 0.0f; isWalking = false ;
 
 			// a reference to the players current horizontal velocity
 			float currentHorizontalSpeed = new Vector3(_controller.velocity.x, 0.0f, _controller.velocity.z).magnitude;
@@ -174,7 +190,7 @@ namespace StarterAssets
 				// creates curved result rather than a linear one giving a more organic speed change
 				// note T in Lerp is clamped, so we don't need to clamp our speed
 				_speed = Mathf.Lerp(currentHorizontalSpeed, targetSpeed * inputMagnitude, Time.deltaTime * SpeedChangeRate);
-
+				 isWalking = true;
 				// round speed to 3 decimal places
 				_speed = Mathf.Round(_speed * 1000f) / 1000f;
 			}
@@ -185,20 +201,56 @@ namespace StarterAssets
 
 			// normalise input direction
 			Vector3 inputDirection = new Vector3(_input.move.x, 0.0f, _input.move.y).normalized;
-
+		
 			// note: Vector2's != operator uses approximation so is not floating point error prone, and is cheaper than magnitude
 			// if there is a move input rotate player when the player is moving
 			if (_input.move != Vector2.zero)
 			{
 				// move
 				inputDirection = transform.right * _input.move.x + transform.forward * _input.move.y;
-			}
+        
+            }
 
 			// move the player
 			_controller.Move(inputDirection.normalized * (_speed * Time.deltaTime) + new Vector3(0.0f, _verticalVelocity, 0.0f) * Time.deltaTime);
-		}
 
-		private void JumpAndGravity()
+
+
+            // Check if the player is walking
+            if (isWalking)
+            {
+                // Check if enough time has passed to play the next footstep sound
+                if (Time.time - timeSinceLastFootstep >= Random.Range(minTimeBetweenFootsteps, maxTimeBetweenFootsteps))
+                {
+                    // Play a random footstep sound from the array
+                    AudioClip footstepSound = footstepSounds[Random.Range(0, footstepSounds.Length)];
+                    audioSource.PlayOneShot(footstepSound);
+					audioSource.loop = true;
+
+                    timeSinceLastFootstep = Time.time; // Update the time since the last footstep sound
+                }
+            }
+
+			else
+			{
+				StopWalking();
+			}
+
+
+        }
+
+      
+            
+
+        // Call this method when the player stops walking
+        public void StopWalking()
+        {
+            isWalking = false;
+        }
+    
+
+
+    private void JumpAndGravity()
 		{
 			if (Grounded)
 			{
