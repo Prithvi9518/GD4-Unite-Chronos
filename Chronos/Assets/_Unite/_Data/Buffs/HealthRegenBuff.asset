@@ -9,6 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d1691e4d5fc041b4af4add500454b7a2, type: 3}
-  m_Name: OnPlayerDamaged
+  m_Script: {fileID: 11500000, guid: aba57f7a6c1849889489b669fa899bae, type: 3}
+  m_Name: HealthRegenBuff
   m_EditorClassIdentifier: 
+  buffName: Health Regen
+  description: 
+  regenerationPercentage: 5
+  intervalInSeconds: 2

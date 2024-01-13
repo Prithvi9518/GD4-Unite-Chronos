@@ -115,7 +115,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a9fe41982ec64c639d656119782cbf2d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  description: Event handling player damage
+  description: Event handling player health change
   gameEvent: {fileID: 11400000, guid: 3f99ffecf7d5f6d41820c73d802c0c98, type: 2}
   response:
     m_PersistentCalls:

@@ -433,7 +433,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e24375ddc9a36f499908f54e8e7ae5b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  onDamaged: {fileID: 11400000, guid: 3f99ffecf7d5f6d41820c73d802c0c98, type: 2}
+  onHealthChanged: {fileID: 11400000, guid: 3f99ffecf7d5f6d41820c73d802c0c98, type: 2}
   onPlayerDied: {fileID: 11400000, guid: 0169bee3104c3364391b67dc8094ffe1, type: 2}
 --- !u!114 &3664281855645159123
 MonoBehaviour:

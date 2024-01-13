@@ -9,9 +9,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e86186ae0d342f5a08b9b500f79496f, type: 3}
-  m_Name: PlayerBaseStats
+  m_Script: {fileID: 11500000, guid: d1691e4d5fc041b4af4add500454b7a2, type: 3}
+  m_Name: OnPlayerHealthChanged
   m_EditorClassIdentifier: 
-  baseStats:
-  - statType: {fileID: 11400000, guid: e3c3053948b1ae541ba29e94f4eba659, type: 2}
-    value: 7

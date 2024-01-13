@@ -15,8 +15,6 @@ namespace Unite.Player
         private FirstPersonController controller;
         private PlayerStatsHandler statsHandler;
 
-        public FirstPersonController Controller => controller;
-
         private void Awake()
         {
             controller = GetComponent<FirstPersonController>();
