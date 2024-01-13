@@ -1,4 +1,5 @@
-﻿using Unite.Player;
+﻿using Unite.EventSystem;
+using Unite.Player;
 using Unite.StatSystem;
 using UnityEngine;
 
@@ -12,10 +13,16 @@ namespace Unite.BuffSystem
         
         [SerializeField]
         private StatModifier modifier;
+
+        [SerializeField]
+        private GameEvent onStatBuffed;
         
         public override void ApplyBuff(Player.Player player)
         {
             player.GetComponent<PlayerStatsHandler>().AddModifier(statType, modifier);
+            
+            if (onStatBuffed == null) return;
+            onStatBuffed.Raise();
         }
     }
 }

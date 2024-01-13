@@ -1,6 +1,7 @@
 using Unite.Core;
 using Unite.Enemies.AI;
 using Unite.EventSystem;
+using Unite.ItemDropSystem;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.Pool;
@@ -32,6 +33,7 @@ namespace Unite.Enemies
         private EnemyDetectionHandler enemyDetectionHandler;
         private EnemyAnimationHandler enemyAnimationHandler;
         private EnemyUIHandler enemyUIHandler;
+        private EnemyDropHandler dropHandler;
 
         private IObjectPool<Enemy> enemyPool;
 
@@ -63,6 +65,7 @@ namespace Unite.Enemies
             enemyDetectionHandler = GetComponent<EnemyDetectionHandler>();
             enemyAnimationHandler = GetComponent<EnemyAnimationHandler>();
             enemyUIHandler = GetComponent<EnemyUIHandler>();
+            dropHandler = GetComponent<EnemyDropHandler>();
 
             isAlive = true;
         }
@@ -87,6 +90,7 @@ namespace Unite.Enemies
 
         public void OnEnemyDeath()
         {
+            dropHandler.DropItems();
             onEnemyDead.Raise();
             isAlive = false;
             gameObject.SetActive(false);

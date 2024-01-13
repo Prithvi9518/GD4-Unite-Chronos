@@ -8,6 +8,7 @@ namespace Unite.Player
     [RequireComponent(typeof(PlayerHealthHandler))]
     [RequireComponent(typeof(PlayerStatsHandler))]
     [RequireComponent(typeof(PlayerGunHandler))]
+    [RequireComponent(typeof(PlayerMovementHandler))]
     public class Player : MonoBehaviour
     {
         [SerializeField]
@@ -20,9 +21,9 @@ namespace Unite.Player
         private PlayerHealthHandler healthHandler;
         private PlayerStatsHandler statsHandler;
         private PlayerGunHandler gunHandler;
+        private PlayerMovementHandler movementHandler;
         private FirstPersonController controller;
 
-        public PlayerInputHandler InputHandler => inputHandler;
         public PlayerHealthHandler HealthHandler => healthHandler;
         public PlayerStatsHandler StatsHandler => statsHandler;
         public PlayerGunHandler GunHandler => gunHandler;
@@ -37,6 +38,8 @@ namespace Unite.Player
             
             gunHandler = GetComponent<PlayerGunHandler>();
             gunHandler.SetInputHandler(inputHandler);
+
+            movementHandler = GetComponent<PlayerMovementHandler>();
             
             controller = GetComponent<FirstPersonController>();
         }
@@ -44,6 +47,7 @@ namespace Unite.Player
         private void Start()
         {
             playerData.SetupPlayer(this);
+            movementHandler.UpdateSpeedValue();
             onPlayerReady.Raise(this);
         }
 

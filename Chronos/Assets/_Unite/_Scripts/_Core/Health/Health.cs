@@ -1,9 +1,12 @@
+using System;
 using UnityEngine;
 
 namespace Unite.Core
 {
     public class Health : MonoBehaviour
     {
+        private static float TOLERANCE = 0.00001f;
+        
         [SerializeField]
         private float maxHealth;
 
@@ -48,6 +51,11 @@ namespace Unite.Core
         {
             if (currentHealth == 0) return;
             currentHealth = (currentHealth - amount >= 0) ? currentHealth - amount : 0;
+        }
+
+        public bool IsAtFullHealth()
+        {
+            return Math.Abs(currentHealth - maxHealth) < TOLERANCE;
         }
     }
 }
