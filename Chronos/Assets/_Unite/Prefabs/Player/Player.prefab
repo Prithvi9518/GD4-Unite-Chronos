@@ -163,6 +163,7 @@ GameObject:
   - component: {fileID: 5598415455948328408}
   - component: {fileID: 3410028712527800426}
   - component: {fileID: 8927038806717455799}
+  - component: {fileID: 7965607547047861193}
   m_Layer: 8
   m_Name: Player
   m_TagString: Player
@@ -573,6 +574,35 @@ MonoBehaviour:
         m_TargetAssemblyTypeName: Unite.Player.PlayerMovementHandler, Assembly-CSharp
         m_MethodName: UpdateSpeedValue
         m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &7965607547047861193
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7830948257419484268}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aec3e8464b3542b28d0b497d7ba1dd49, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  description: Listen for health pickup
+  gameEvent: {fileID: 11400000, guid: 20c8037a35a612c4cb15f277481cd94c, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 916965400791086416}
+        m_TargetAssemblyTypeName: Unite.Player.PlayerHealthHandler, Assembly-CSharp
+        m_MethodName: AddHealth
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine

@@ -34,6 +34,12 @@ namespace Unite.Player
             playerHealth.ResetHealth();
         }
 
+        public void AddHealth(float amount)
+        {
+            playerHealth.AddHealth(amount);
+            onHealthChanged.Raise(new HealthInfo(playerHealth.CurrentHealth, playerHealth.MaxHealth));
+        }
+
         public void TakeDamage(float damage)
         {
             playerHealth.DecreaseHealth(damage);
