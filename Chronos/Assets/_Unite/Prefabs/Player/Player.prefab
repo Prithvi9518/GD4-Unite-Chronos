@@ -161,6 +161,8 @@ GameObject:
   - component: {fileID: 4017848504832524091}
   - component: {fileID: 8346692834355741810}
   - component: {fileID: 5598415455948328408}
+  - component: {fileID: 3410028712527800426}
+  - component: {fileID: 8927038806717455799}
   m_Layer: 8
   m_Name: Player
   m_TagString: Player
@@ -536,3 +538,46 @@ MonoBehaviour:
   onPlayerShootAction: {fileID: 11400000, guid: f2691b8fa703ec64f81ce7484cffa2f7,
     type: 2}
   activeGun: {fileID: 0}
+--- !u!114 &3410028712527800426
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7830948257419484268}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fcc3cb4bb4344b2c9acfe7a11454ba64, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speedStatType: {fileID: 11400000, guid: e3c3053948b1ae541ba29e94f4eba659, type: 2}
+  sprintSpeedIncrement: 5
+--- !u!114 &8927038806717455799
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7830948257419484268}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b9893a878b6442144bd9c1283a2b4b18, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  description: Listens for speed buff to increment speed
+  gameEvent: {fileID: 11400000, guid: 3a96d85c560e54f43a8880c91dd758fa, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 3410028712527800426}
+        m_TargetAssemblyTypeName: Unite.Player.PlayerMovementHandler, Assembly-CSharp
+        m_MethodName: UpdateSpeedValue
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2

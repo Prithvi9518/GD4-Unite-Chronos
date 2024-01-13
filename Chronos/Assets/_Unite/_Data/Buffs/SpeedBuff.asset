@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 83ee30211ead4643b1404ded65afaf98, type: 3}
-  m_Name: SomeStatBuff
+  m_Name: SpeedBuff
   m_EditorClassIdentifier: 
   buffName: 
   description: 
@@ -18,3 +18,4 @@ MonoBehaviour:
   modifier:
     modifierType: 0
     value: 10
+  onStatBuffed: {fileID: 11400000, guid: 3a96d85c560e54f43a8880c91dd758fa, type: 2}

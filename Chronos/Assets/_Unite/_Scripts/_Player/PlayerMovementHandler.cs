@@ -7,24 +7,30 @@ namespace Unite.Player
     public class PlayerMovementHandler : MonoBehaviour
     {
         [SerializeField]
-        private StatTypeSO speedStat;
+        private StatTypeSO speedStatType;
         
         [SerializeField]
         private float sprintSpeedIncrement;
         
         private FirstPersonController controller;
+        private PlayerStatsHandler statsHandler;
 
         public FirstPersonController Controller => controller;
 
         private void Awake()
         {
             controller = GetComponent<FirstPersonController>();
+            statsHandler = GetComponent<PlayerStatsHandler>();
         }
 
-        public void UpdateSpeedValue(float newValue)
+        public void UpdateSpeedValue()
         {
-            controller.MoveSpeed = newValue;
-            controller.SprintSpeed = controller.MoveSpeed + sprintSpeedIncrement;
+            Stat speedStat = statsHandler.GetStat(speedStatType);
+            if (speedStat == null) return;
+
+            float baseSpeed = speedStat.Value;
+            controller.MoveSpeed = baseSpeed;
+            controller.SprintSpeed = baseSpeed + sprintSpeedIncrement;
         }
     }
 }
