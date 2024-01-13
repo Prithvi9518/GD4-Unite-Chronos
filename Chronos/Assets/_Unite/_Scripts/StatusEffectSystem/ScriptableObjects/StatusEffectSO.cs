@@ -23,6 +23,9 @@ namespace Unite.StatusEffectSystem
         [SerializeField]
         private GameObject effectParticles;
 
+        public float DamageOverTime => damageOverTime;
+        public float IntervalInSeconds => intervalInSeconds;
+        public float LifetimeInSeconds => lifetimeInSeconds;
         public GameObject EffectParticles => effectParticles;
     }
 }

@@ -65,7 +65,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Health Regen!
+  m_text: Poison Bullets!
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -74,8 +74,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4279472949
-  m_fontColor: {r: 0.20925625, g: 0.5754717, b: 0.07329121, a: 1}
+    rgba: 4293206444
+  m_fontColor: {r: 0.6738384, g: 0.13105197, b: 0.8962264, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -195,7 +195,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 74117f645ca87544896e430b75e9a316, type: 2}
+  - {fileID: 2100000, guid: 68d9464d0cd4fbf48a81abf378167c7f, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -331,7 +331,7 @@ GameObject:
   - component: {fileID: 6402671008850746234}
   - component: {fileID: 8478175927266792398}
   m_Layer: 0
-  m_Name: HealthRegenBuff
+  m_Name: PoisonBulletsBuff
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -387,4 +387,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0fce76f9619c472d8fa4d3289626aeb9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buff: {fileID: 11400000, guid: 7b05430156884e34b90f7fb3ac465ef0, type: 2}
+  buff: {fileID: 11400000, guid: f241a1635167f9d4a96c1eced9ae71b3, type: 2}

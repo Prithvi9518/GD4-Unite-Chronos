@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: PoisonStatusEffect
   m_EditorClassIdentifier: 
   effectName: Poison
-  damageOverTime: 5
+  damageOverTime: 8
   movementPenalty: 0
-  intervalInSeconds: 1.5
+  intervalInSeconds: 1
   lifetimeInSeconds: 20
   effectParticles: {fileID: 5639025379679746219, guid: 2f77993eac95be84786eceb7d8ba3a2d,
     type: 3}
