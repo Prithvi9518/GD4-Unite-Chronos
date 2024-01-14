@@ -48,7 +48,7 @@ SphereCollider:
     m_Bits: 1024
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 1015
   m_LayerOverridePriority: 0
   m_IsTrigger: 1
   m_ProvidesContacts: 0
@@ -68,7 +68,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f5eb74019c14df282058a427d4879eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 5
+  speed: 15
+  autoDestroyTimeInSeconds: 8
 --- !u!54 &7660068901238823953
 Rigidbody:
   m_ObjectHideFlags: 0

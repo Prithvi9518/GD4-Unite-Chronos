@@ -1,5 +1,6 @@
 ﻿using Unite.Core.DamageInterfaces;
 using UnityEngine;
+using UnityEngine.Pool;
 
 namespace Unite.Enemies.Projectiles
 {
@@ -8,35 +9,50 @@ namespace Unite.Enemies.Projectiles
         [SerializeField]
         private float speed;
 
+        [SerializeField]
+        private float autoDestroyTimeInSeconds;
+
         private Rigidbody rb;
 
-        private IHandleAttacks attackHandler;
-        private Attack attack;
+        private float damage;
+
+        private ObjectPool<Projectile> projectilePool;
+
+        public float Speed => speed;
+        public Rigidbody Rigidbody => rb;
 
         private void Awake()
         {
             rb = GetComponent<Rigidbody>();
         }
 
-        private void Update()
+        private void Start()
         {
-            rb.AddForce(Vector3.forward * speed);
+            CancelInvoke(nameof(Disable));
+            Invoke(nameof(Disable), autoDestroyTimeInSeconds);
         }
 
         private void OnTriggerEnter(Collider other)
         {
             if (!other.TryGetComponent(out ITakeDamage damageable)) return;
 
-            float damage = attackHandler.GetTotalDamage(attack);
             damageable.TakeDamage(damage);
-            
-            Destroy(gameObject);
+
+            Disable();
         }
 
-        public void PerformSetup(IHandleAttacks handler, Attack attack)
+        public void PerformSetup(float damageAmount, ObjectPool<Projectile> pool)
         {
-            attackHandler = handler;
-            this.attack = attack;
+            damage = damageAmount;
+            projectilePool = pool;
+        }
+
+        private void Disable()
+        {
+            CancelInvoke(nameof(Disable));
+            rb.velocity = Vector3.zero;
+            gameObject.SetActive(false);
+            projectilePool.Release(this);
         }
     }
 }

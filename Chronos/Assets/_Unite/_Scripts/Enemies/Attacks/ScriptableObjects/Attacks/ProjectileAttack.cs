@@ -7,7 +7,7 @@ namespace Unite.Enemies
     {
         public override void Attack(Enemy enemy)
         {
-            enemy.ProjectileShooter.PerformSetup(enemy.AttackHandler, this.AttackName);
+            enemy.ProjectileShooter.PerformSetup(enemy.AttackHandler.GetTotalDamage(this));
             enemy.ProjectileShooter.ShootProjectile();
         }
 

@@ -2,6 +2,6 @@
 {
     public interface IHandleAttacks
     {
-        public float GetTotalDamage(Attack attack);
+        public float GetTotalDamage(AttackData attack);
     }
 }

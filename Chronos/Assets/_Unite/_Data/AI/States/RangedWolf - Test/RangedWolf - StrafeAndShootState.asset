@@ -13,12 +13,11 @@ MonoBehaviour:
   m_Name: RangedWolf - StrafeAndShootState
   m_EditorClassIdentifier: 
   enterActions:
-  - {fileID: 11400000, guid: 4288c7d10167fff4aa444df9614053c6, type: 2}
+  - {fileID: 11400000, guid: f717ecdd965391e4f9b728c065a9c000, type: 2}
   updateActions:
   - {fileID: 11400000, guid: bfa6cf2614e3995479b835bcbf103dd6, type: 2}
   exitActions:
-  - {fileID: 11400000, guid: a1b7af9161d987f4cbb734af72522660, type: 2}
-  - {fileID: 11400000, guid: 664d2bff2b3b5ed4399ef66220397957, type: 2}
+  - {fileID: 11400000, guid: 8b6c116ad9bfae6428f47aa6a5ab73d3, type: 2}
   conditionBasedTransitions:
   - condition: {fileID: 11400000, guid: 2957f1c16dade6b4daf3bebf8fd29b5b, type: 2}
     trueState: {fileID: 11400000, guid: 72468647a83f1bf488b9575ef0eb8602, type: 2}

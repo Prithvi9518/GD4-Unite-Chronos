@@ -33,9 +33,9 @@ namespace Unite.Enemies
             }
         }
 
-        public float GetTotalDamage(Attack attack)
+        public float GetTotalDamage(AttackData attack)
         {
-            return baseDamage + attack.AttackData.AttackDamage;
+            return baseDamage + attack.AttackDamage;
         }
 
         public void CheckAndDealDamage(AttackName attackName)
@@ -45,7 +45,7 @@ namespace Unite.Enemies
             if (attackToUse == null) return;
             if (!attackToUse.CheckDealDamage(enemy)) return;
 
-            float totalDamageDealt = GetTotalDamage(attackToUse);
+            float totalDamageDealt = GetTotalDamage(attackToUse.AttackData);
 
             if (targetDamageable == null)
             {

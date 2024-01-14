@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using Unite.Enemies.AI;
+using UnityEngine;
+using UnityEngine.Pool;
 
 namespace Unite.Enemies.Projectiles
 {
@@ -10,19 +12,42 @@ namespace Unite.Enemies.Projectiles
         [SerializeField]
         private Transform projectileSpawnPoint;
 
-        private EnemyAttackHandler attackHandler;
-        private Attack attack;
+        private ObjectPool<Projectile> projectilePool;
+
+        private EnemyDetectionHandler detectionHandler;
+        private float damage;
+
+        private void Awake()
+        {
+            projectilePool = new ObjectPool<Projectile>(CreateProjectile,
+                actionOnGet:GetProjectileFromPool);
+
+            detectionHandler = GetComponent<EnemyDetectionHandler>();
+        }
+
+        private Projectile CreateProjectile()
+        {
+            return Instantiate(projectilePrefab, projectileSpawnPoint.position, Quaternion.identity);
+        }
+        
+        private void GetProjectileFromPool(Projectile projectile)
+        {
+            projectile.gameObject.SetActive(true);
+            projectile.transform.position = projectileSpawnPoint.position;
+            projectile.transform.rotation = transform.rotation;
+            projectile.PerformSetup(damage, projectilePool);
+        }
 
         public void ShootProjectile()
         {
-            Projectile projectile = Instantiate(projectilePrefab, projectileSpawnPoint.position, Quaternion.identity);
-            projectile.PerformSetup(attackHandler, attack);
+            Projectile projectile = projectilePool.Get();
+            Vector3 shootDir = (detectionHandler.Target.position - transform.position).normalized;
+            projectile.Rigidbody.AddForce(shootDir * projectile.Speed, ForceMode.VelocityChange);
         }
 
-        public void PerformSetup(EnemyAttackHandler handler, AttackName attackName)
+        public void PerformSetup(float damageAmount)
         {
-            attackHandler = handler;
-            attack = attackHandler.Attacks[attackName];
+            damage = damageAmount;
         }
     }
 }
