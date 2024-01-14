@@ -6,6 +6,7 @@ namespace Unite.EventSystem
     public class GameEventListener : MonoBehaviour
     {
         [SerializeField] 
+        [TextArea(2,10)]
         private string description;
 
         [SerializeField] 

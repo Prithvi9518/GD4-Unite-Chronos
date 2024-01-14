@@ -3,6 +3,7 @@ using System.Collections;
 using Unite.Core.DamageInterfaces;
 using Unite.ImpactSystem;
 using Unite.SoundScripts;
+using Unite.StatusEffectSystem;
 using Unite.WeaponSystem.ImpactEffects;
 using UnityEngine;
 using UnityEngine.Pool;
@@ -56,6 +57,7 @@ namespace Unite.WeaponSystem
 
         public GunType GunType => gunType;
         public ShootData ShootData => shootData;
+        public DamageConfig DamageConfig => damageConfig;
 
         public void SetImpactType(ImpactType type)
         {
@@ -180,6 +182,11 @@ namespace Unite.WeaponSystem
             if (hit.collider.TryGetComponent(out ITakeDamage damageable))
             {
                 damageable.TakeDamage(damageConfig.GetDamage(distance));
+            }
+            if (hit.collider.TryGetComponent(out IStatusEffectable effectable))
+            {
+                if(damageConfig.StatusEffect != null)
+                    effectable.ApplyStatusEffect(damageConfig.StatusEffect);
             }
 
             foreach (IImpactHandler impactHandler in bulletImpactEffects)
