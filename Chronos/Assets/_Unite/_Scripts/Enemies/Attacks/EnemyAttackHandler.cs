@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using Unite.Core.DamageInterfaces;
-using Unite.Enemies.AI;
 using UnityEngine;
 
 namespace Unite.Enemies
@@ -9,14 +8,14 @@ namespace Unite.Enemies
     {
         private float baseDamage;
 
-        private EnemyStateMachine enemyStateMachine;
+        private Enemy enemy;
         private ITakeDamage targetDamageable;
 
         public Dictionary<AttackName, Attack> Attacks { get; } = new();
 
         private void Awake()
         {
-            enemyStateMachine = GetComponent<EnemyStateMachine>();
+            enemy = GetComponent<Enemy>();
         }
 
         public void PerformSetup(float baseDamage, List<AttackData> attacks)
@@ -39,13 +38,13 @@ namespace Unite.Enemies
             Attack attackToUse = Attacks.GetValueOrDefault(attackName, null);
 
             if (attackToUse == null) return;
-            if (!attackToUse.CheckDealDamage(enemyStateMachine)) return;
+            if (!attackToUse.CheckDealDamage(enemy)) return;
 
             float totalDamageDealt = baseDamage + attackToUse.AttackData.AttackDamage;
 
             if (targetDamageable == null)
             {
-                targetDamageable = enemyStateMachine.DetectionHandler.Target.GetComponent<ITakeDamage>();
+                targetDamageable = enemy.DetectionHandler.Target.GetComponent<ITakeDamage>();
             }
 
             targetDamageable.TakeDamage(totalDamageDealt);

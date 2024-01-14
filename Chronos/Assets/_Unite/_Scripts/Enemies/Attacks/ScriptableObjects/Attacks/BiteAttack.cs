@@ -1,4 +1,3 @@
-using Unite.Enemies.AI;
 using UnityEngine;
 
 namespace Unite.Enemies
@@ -9,12 +8,12 @@ namespace Unite.Enemies
         [SerializeField]
         private string animatorTriggerName;
 
-        public override void Attack(EnemyStateMachine enemy)
+        public override void Attack(Enemy enemy)
         {
             enemy.AnimationHandler.SetAnimationTrigger(animatorTriggerName, true);
         }
 
-        public override bool CheckDealDamage(EnemyStateMachine enemy)
+        public override bool CheckDealDamage(Enemy enemy)
         {
             return Vector3.Distance(enemy.transform.position, enemy.DetectionHandler.Target.position) <= attackRange;
         }

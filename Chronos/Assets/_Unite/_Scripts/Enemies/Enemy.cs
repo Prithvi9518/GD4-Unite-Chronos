@@ -1,5 +1,7 @@
 using Unite.Core;
 using Unite.Enemies.AI;
+using Unite.Enemies.Movement;
+using Unite.Enemies.Projectiles;
 using Unite.EventSystem;
 using Unite.ItemDropSystem;
 using UnityEngine;
@@ -35,6 +37,10 @@ namespace Unite.Enemies
         private EnemyUIHandler enemyUIHandler;
         private EnemyDropHandler dropHandler;
 
+        private StrafeHandler strafeHandler;
+
+        private IShootProjectile projectileShooter;
+
         private IObjectPool<Enemy> enemyPool;
 
         private bool isAlive;
@@ -48,6 +54,8 @@ namespace Unite.Enemies
         public EnemyAnimationHandler AnimationHandler => enemyAnimationHandler;
         public EnemyUIHandler UIHandler => enemyUIHandler;
         public EnemyDamager Damager => enemyDamager;
+        public StrafeHandler StrafeHandler => strafeHandler;
+        public IShootProjectile ProjectileShooter => projectileShooter;
 
         public bool IsAlive => isAlive;
 
@@ -66,6 +74,10 @@ namespace Unite.Enemies
             enemyAnimationHandler = GetComponent<EnemyAnimationHandler>();
             enemyUIHandler = GetComponent<EnemyUIHandler>();
             dropHandler = GetComponent<EnemyDropHandler>();
+
+            strafeHandler = GetComponent<StrafeHandler>();
+            
+            projectileShooter = GetComponent<IShootProjectile>();
 
             isAlive = true;
         }

@@ -1,4 +1,3 @@
-using Unite.Enemies.AI;
 using UnityEngine;
 
 namespace Unite.Enemies
@@ -22,8 +21,8 @@ namespace Unite.Enemies
         public float AttackDamage => damage;
         public float AttackCooldown => attackCooldown;
 
-        public abstract void Attack(EnemyStateMachine enemy);
+        public abstract void Attack(Enemy enemy);
 
-        public abstract bool CheckDealDamage(EnemyStateMachine enemy);
+        public abstract bool CheckDealDamage(Enemy enemy);
     }
 }

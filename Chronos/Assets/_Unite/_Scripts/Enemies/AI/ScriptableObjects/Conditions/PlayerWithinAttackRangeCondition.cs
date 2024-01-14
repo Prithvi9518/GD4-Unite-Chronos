@@ -10,9 +10,9 @@ namespace Unite.Enemies.AI
         [SerializeField]
         private AttackName attackName;
 
-        public override bool VerifyCondition(IStateMachine stateMachine)
+        public override bool VerifyCondition(BaseStateMachine baseStateMachine)
         {
-            EnemyStateMachine enemy = stateMachine as EnemyStateMachine;
+            EnemyStateMachine enemy = baseStateMachine as EnemyStateMachine;
 
             Attack attack = enemy.AttackHandler.Attacks.GetValueOrDefault(attackName, null);
 

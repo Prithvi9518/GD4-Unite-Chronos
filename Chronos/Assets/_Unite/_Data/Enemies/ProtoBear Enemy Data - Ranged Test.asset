@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 32caeaf3c47dcc4429d179743c38ac91, type: 3}
-  m_Name: ProtoBear Enemy Data - LOS Test
+  m_Name: ProtoBear Enemy Data - Ranged Test
   m_EditorClassIdentifier: 
   enemyPrefab: {fileID: 603884850238085797, guid: f1c63b6a73d3d344bae440555124a050,
     type: 3}
@@ -18,6 +18,6 @@ MonoBehaviour:
   baseDamage: 5
   cost: 5
   attacks:
-  - {fileID: 11400000, guid: 088c2401fa239a54680923a76fbe3c1d, type: 2}
-  startingState: {fileID: 11400000, guid: 1e199744920386744996284e918f904c, type: 2}
+  - {fileID: 11400000, guid: 2f64b15e20a6b2545b95207a1a776c50, type: 2}
+  startingState: {fileID: 11400000, guid: c86b6a726a5935f4cbb9067d7a22b7ab, type: 2}
   remainState: {fileID: 11400000, guid: 72468647a83f1bf488b9575ef0eb8602, type: 2}
