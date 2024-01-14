@@ -39,7 +39,7 @@ namespace Unite.Enemies
 
         private StrafeHandler strafeHandler;
 
-        private IShootProjectile projectileShooter;
+        private DefaultProjectileShooter projectileShooter;
 
         private IObjectPool<Enemy> enemyPool;
 
@@ -55,7 +55,7 @@ namespace Unite.Enemies
         public EnemyUIHandler UIHandler => enemyUIHandler;
         public EnemyDamager Damager => enemyDamager;
         public StrafeHandler StrafeHandler => strafeHandler;
-        public IShootProjectile ProjectileShooter => projectileShooter;
+        public DefaultProjectileShooter ProjectileShooter => projectileShooter;
 
         public bool IsAlive => isAlive;
 
@@ -77,7 +77,7 @@ namespace Unite.Enemies
 
             strafeHandler = GetComponent<StrafeHandler>();
             
-            projectileShooter = GetComponent<IShootProjectile>();
+            projectileShooter = GetComponent<DefaultProjectileShooter>();
 
             isAlive = true;
         }

@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Unite.Enemies
 {
-    public class EnemyAttackHandler : MonoBehaviour
+    public class EnemyAttackHandler : MonoBehaviour, IHandleAttacks
     {
         private float baseDamage;
 
@@ -33,6 +33,11 @@ namespace Unite.Enemies
             }
         }
 
+        public float GetTotalDamage(Attack attack)
+        {
+            return baseDamage + attack.AttackData.AttackDamage;
+        }
+
         public void CheckAndDealDamage(AttackName attackName)
         {
             Attack attackToUse = Attacks.GetValueOrDefault(attackName, null);
@@ -40,7 +45,7 @@ namespace Unite.Enemies
             if (attackToUse == null) return;
             if (!attackToUse.CheckDealDamage(enemy)) return;
 
-            float totalDamageDealt = baseDamage + attackToUse.AttackData.AttackDamage;
+            float totalDamageDealt = GetTotalDamage(attackToUse);
 
             if (targetDamageable == null)
             {
