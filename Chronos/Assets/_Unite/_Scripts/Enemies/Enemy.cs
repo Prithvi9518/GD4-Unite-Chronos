@@ -22,7 +22,10 @@ namespace Unite.Enemies
     {
         [SerializeField]
         private GameEvent onEnemyDead;
-        
+
+        [SerializeField]
+        private EnemyEvent onEnemyDeadUpdateMetric;
+
         private Health enemyHealth;
         private EnemyDamager enemyDamager;
 
@@ -45,6 +48,8 @@ namespace Unite.Enemies
 
         private bool isAlive;
 
+        public string DisplayName { get; set; }
+        
         public Health Health => enemyHealth;
         public NavMeshAgent Agent => navMeshAgent;
         public EnemyStateMachine StateMachine => enemyStateMachine;
@@ -104,6 +109,7 @@ namespace Unite.Enemies
         {
             dropHandler.DropItems();
             onEnemyDead.Raise();
+            onEnemyDeadUpdateMetric.Raise(this);
             isAlive = false;
             gameObject.SetActive(false);
             enemyPool?.Release(this);
