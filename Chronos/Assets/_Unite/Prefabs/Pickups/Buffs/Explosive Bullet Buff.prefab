@@ -332,7 +332,7 @@ GameObject:
   - component: {fileID: 8478175927266792398}
   m_Layer: 6
   m_Name: Explosive Bullet Buff
-  m_TagString: Untagged
+  m_TagString: Interactible
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -387,4 +387,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0fce76f9619c472d8fa4d3289626aeb9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  displayName: Explosive Bullets
+  interactibleData: {fileID: 11400000, guid: 534f2a8930b3fa748864f3f03b3e9194, type: 2}
+  onInteractUpdateMetrics: {fileID: 11400000, guid: 4350ef6a4b505d444af86da74c683cd7,
+    type: 2}
   buff: {fileID: 11400000, guid: 9488b2cf930831b4fa7abe5d7ecc2412, type: 2}

@@ -387,6 +387,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 39bcda1878c24cd39e56db6939249118, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  displayName: Health Pack
   interactibleData: {fileID: 11400000, guid: 743501f858e9cda45bbb96593a2309a6, type: 2}
+  onInteractUpdateMetrics: {fileID: 11400000, guid: 4350ef6a4b505d444af86da74c683cd7,
+    type: 2}
   healthAmount: 15
   onHealthPickedUp: {fileID: 11400000, guid: 20c8037a35a612c4cb15f277481cd94c, type: 2}

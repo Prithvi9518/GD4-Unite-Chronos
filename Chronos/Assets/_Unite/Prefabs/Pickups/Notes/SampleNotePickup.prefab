@@ -387,5 +387,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ef8aed7230b49d1bffb9b2eb62c55eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  displayName: Sample Note
   interactibleData: {fileID: 11400000, guid: 743501f858e9cda45bbb96593a2309a6, type: 2}
+  onInteractUpdateMetrics: {fileID: 11400000, guid: 4350ef6a4b505d444af86da74c683cd7,
+    type: 2}
   noteData: {fileID: 11400000, guid: 3da3e040d14eae246868dfebc6b48cf8, type: 2}

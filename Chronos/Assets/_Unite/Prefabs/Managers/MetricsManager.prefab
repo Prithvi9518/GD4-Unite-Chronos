@@ -10,6 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 4233565400913462287}
   - component: {fileID: 303567549767911825}
+  - component: {fileID: 3671194530802289970}
+  - component: {fileID: 8536253429512273844}
   m_Layer: 0
   m_Name: MetricsManager
   m_TagString: Untagged
@@ -44,3 +46,61 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1504ba91aac44f318ef12bc16ed4cf94, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &3671194530802289970
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8406494442177672980}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1b0c5d950f554fd693ab3b6f50cb307c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  description: Listen for enemy death and update metrics
+  gameEvent: {fileID: 11400000, guid: ae39bee4f6c65b944bdfa318bae5f4be, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 303567549767911825}
+        m_TargetAssemblyTypeName: Unite.Metrics.MetricsManager, Assembly-CSharp
+        m_MethodName: UpdateDefeatedEnemies
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &8536253429512273844
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8406494442177672980}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 48eacbef94954a83b84f1542b1c64cc7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  description: Listen for interaction and update metrics
+  gameEvent: {fileID: 11400000, guid: 4350ef6a4b505d444af86da74c683cd7, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 303567549767911825}
+        m_TargetAssemblyTypeName: Unite.Metrics.MetricsManager, Assembly-CSharp
+        m_MethodName: UpdateInteractedObjects
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
