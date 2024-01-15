@@ -42,7 +42,7 @@ namespace Unite.Enemies.Projectiles
         {
             Projectile projectile = projectilePool.Get();
             Vector3 shootDir = (detectionHandler.Target.position - transform.position).normalized;
-            projectile.Rigidbody.AddForce(shootDir * projectile.Speed, ForceMode.VelocityChange);
+            projectile.Rigidbody.AddForce(shootDir * projectile.MoveSpeed, ForceMode.VelocityChange);
         }
 
         public void PerformSetup(float damageAmount)

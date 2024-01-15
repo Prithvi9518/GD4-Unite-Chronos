@@ -1,13 +1,15 @@
-﻿using Unite.Core.DamageInterfaces;
+﻿using System;
+using Unite.Core.DamageInterfaces;
+using Unite.TimeStop;
 using UnityEngine;
 using UnityEngine.Pool;
 
 namespace Unite.Enemies.Projectiles
 {
-    public class Projectile : MonoBehaviour
+    public class Projectile : MonoBehaviour, ITimeStopSubscriber
     {
         [SerializeField]
-        private float speed;
+        private float moveSpeed;
 
         [SerializeField]
         private float autoDestroyTimeInSeconds;
@@ -18,7 +20,9 @@ namespace Unite.Enemies.Projectiles
 
         private ObjectPool<Projectile> projectilePool;
 
-        public float Speed => speed;
+        private Vector3 velocityBeforeTimeStop;
+
+        public float MoveSpeed => moveSpeed;
         public Rigidbody Rigidbody => rb;
 
         private void Awake()
@@ -34,6 +38,7 @@ namespace Unite.Enemies.Projectiles
 
         private void OnTriggerEnter(Collider other)
         {
+            Debug.Log("on trigger enter");
             if (!other.TryGetComponent(out ITakeDamage damageable)) return;
 
             damageable.TakeDamage(damage);
@@ -53,6 +58,21 @@ namespace Unite.Enemies.Projectiles
             rb.velocity = Vector3.zero;
             gameObject.SetActive(false);
             projectilePool.Release(this);
+        }
+
+        public void HandleTimeStopEvent(bool isTimeStopped)
+        {
+            if (isTimeStopped)
+            {
+                velocityBeforeTimeStop = rb.velocity;
+                rb.velocity = Vector3.zero;
+                CancelInvoke(nameof(Disable));
+            }
+            else
+            {
+                rb.velocity = velocityBeforeTimeStop;
+                Invoke(nameof(Disable), autoDestroyTimeInSeconds);
+            }
         }
     }
 }
