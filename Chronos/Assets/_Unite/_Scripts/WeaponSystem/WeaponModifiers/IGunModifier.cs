@@ -1,4 +1,4 @@
-﻿namespace Unite.WeaponSystem
+﻿namespace Unite.WeaponSystem.Modifiers
 {
     public interface IGunModifier
     {

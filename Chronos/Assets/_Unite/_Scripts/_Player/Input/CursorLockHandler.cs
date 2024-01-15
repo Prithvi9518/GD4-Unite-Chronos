@@ -4,17 +4,10 @@ namespace Unite.Player
 {
     public class CursorLockHandler : MonoBehaviour
     {
-        private void OnApplicationFocus(bool hasFocus)
+        private void Start()
         {
-            if (hasFocus)
-            {
-                Cursor.lockState = CursorLockMode.Locked;
-                Cursor.visible = false;
-            }
-            else
-            {
-                
-            }
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
         }
     }
 }

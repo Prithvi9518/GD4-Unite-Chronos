@@ -1,5 +1,7 @@
 using Unite.Core;
 using Unite.Enemies.AI;
+using Unite.EventSystem;
+using Unite.ItemDropSystem;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.Pool;
@@ -16,6 +18,9 @@ namespace Unite.Enemies
     [RequireComponent(typeof(EnemyUIHandler))]
     public class Enemy : MonoBehaviour
     {
+        [SerializeField]
+        private GameEvent onEnemyDead;
+        
         private Health enemyHealth;
         private EnemyDamager enemyDamager;
 
@@ -28,8 +33,11 @@ namespace Unite.Enemies
         private EnemyDetectionHandler enemyDetectionHandler;
         private EnemyAnimationHandler enemyAnimationHandler;
         private EnemyUIHandler enemyUIHandler;
+        private EnemyDropHandler dropHandler;
 
         private IObjectPool<Enemy> enemyPool;
+
+        private bool isAlive;
 
         public Health Health => enemyHealth;
         public NavMeshAgent Agent => navMeshAgent;
@@ -40,6 +48,8 @@ namespace Unite.Enemies
         public EnemyAnimationHandler AnimationHandler => enemyAnimationHandler;
         public EnemyUIHandler UIHandler => enemyUIHandler;
         public EnemyDamager Damager => enemyDamager;
+
+        public bool IsAlive => isAlive;
 
         private void Awake()
         {
@@ -55,6 +65,9 @@ namespace Unite.Enemies
             enemyDetectionHandler = GetComponent<EnemyDetectionHandler>();
             enemyAnimationHandler = GetComponent<EnemyAnimationHandler>();
             enemyUIHandler = GetComponent<EnemyUIHandler>();
+            dropHandler = GetComponent<EnemyDropHandler>();
+
+            isAlive = true;
         }
 
         public void SetEnemyPool(IObjectPool<Enemy> pool)
@@ -71,10 +84,15 @@ namespace Unite.Enemies
             enemyAnimationHandler.Animator.enabled = true;
 
             enemyHealth.ResetHealth();
+            
+            isAlive = true;
         }
 
         public void OnEnemyDeath()
         {
+            dropHandler.DropItems();
+            onEnemyDead.Raise();
+            isAlive = false;
             gameObject.SetActive(false);
             enemyPool?.Release(this);
         }

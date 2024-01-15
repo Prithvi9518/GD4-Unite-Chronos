@@ -34,7 +34,7 @@ namespace Unite.SoundScripts
             PlaySoundAtPosition(audioClip, Camera.main.transform.position, volume);
         }
 
-        private void PlaySoundAtPosition(AudioClip audioClip, Vector3 position, float volume = 1f)
+        public void PlaySoundAtPosition(AudioClip audioClip, Vector3 position, float volume = 1f)
         {
             AudioSource.PlayClipAtPoint(audioClip, position, volume);
         }

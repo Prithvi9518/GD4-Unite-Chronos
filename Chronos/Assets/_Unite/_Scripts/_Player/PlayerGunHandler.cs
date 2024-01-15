@@ -1,5 +1,7 @@
 ﻿using System.Collections.Generic;
+using Unite.EventSystem;
 using Unite.WeaponSystem;
+using Unite.WeaponSystem.Modifiers;
 using UnityEngine;
 
 namespace Unite.Player
@@ -15,6 +17,9 @@ namespace Unite.Player
 
         [SerializeField]
         private List<GunData> guns;
+
+        [SerializeField] 
+        private GameEvent onPlayerShootAction;
 
         [Header("Filled at Runtime")] 
         [SerializeField]
@@ -39,10 +44,7 @@ namespace Unite.Player
 
         private void Update()
         {
-            if (inputHandler.IsShootActionPressed())
-            {
-                activeGun.Shoot();
-            }
+            CheckAndHandleShootAction();
         }
 
         public void SetInputHandler(PlayerInputHandler playerInputHandler)
@@ -53,6 +55,17 @@ namespace Unite.Player
         public void ApplyModifier(IGunModifier gunModifier)
         {
             gunModifier.Apply(activeGun);
+        }
+
+        private void CheckAndHandleShootAction()
+        {
+            if (activeGun == null) return;
+
+            bool isShootActionPressed = inputHandler.IsShootActionPressed();
+            activeGun.Tick(isShootActionPressed);
+
+            if (!isShootActionPressed) return;
+            onPlayerShootAction.Raise();
         }
 
         private void SetupGunDictionary()

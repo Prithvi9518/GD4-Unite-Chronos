@@ -1,7 +1,10 @@
 ﻿using System;
 using System.Collections;
 using Unite.Core.DamageInterfaces;
+using Unite.ImpactSystem;
 using Unite.SoundScripts;
+using Unite.StatusEffectSystem;
+using Unite.WeaponSystem.ImpactEffects;
 using UnityEngine;
 using UnityEngine.Pool;
 using Random = UnityEngine.Random;
@@ -38,20 +41,61 @@ namespace Unite.WeaponSystem
         [SerializeField] 
         private GunAudioConfig audioConfig;
 
+        [SerializeField] 
+        private ImpactType impactType;
+
         private MonoBehaviour activeMonoBehaviour;
         private GameObject model;
         private float lastShootTime;
+        private float initialClickTime;
+        private float stopShootingTime;
+        private bool wantedToShootLastFrame;
         private ParticleSystem shootParticleSystem;
+        private GameObject trailsGameObject;
         private ObjectPool<TrailRenderer> trailPool;
+        private IImpactHandler[] bulletImpactEffects = Array.Empty<IImpactHandler>();
 
         public GunType GunType => gunType;
         public ShootData ShootData => shootData;
+        public DamageConfig DamageConfig => damageConfig;
+
+        public void SetImpactType(ImpactType type)
+        {
+            impactType = type;
+        }
+
+        public void SetBulletImpactEffects(IImpactHandler[] effects)
+        {
+            bulletImpactEffects = effects;
+        }
 
         public void Spawn(Transform parent, MonoBehaviour monoBehaviour)
         {
             activeMonoBehaviour = monoBehaviour;
             lastShootTime = 0;
-            trailPool = new ObjectPool<TrailRenderer>(CreateTrail);
+
+            trailsGameObject = new GameObject("Bullet Trails")
+            {
+                transform =
+                {
+                    position = Vector3.zero
+                }
+            };
+            trailsGameObject.transform.SetParent(null);
+
+            trailPool = new ObjectPool<TrailRenderer>(
+                CreateTrail,
+                trail =>
+                {
+                    trail.transform.parent = null;
+                },
+                trail =>
+                {
+                    trail.enabled = false;
+                    trail.transform.parent = trailsGameObject.transform;
+                },
+                DestroyTrailData
+            );
 
             model = Instantiate(modelPrefab, parent, false);
             model.transform.localPosition = spawnPoint;
@@ -60,16 +104,46 @@ namespace Unite.WeaponSystem
             shootParticleSystem = model.GetComponentInChildren<ParticleSystem>();
         }
 
+        public void Tick(bool wantsToShoot)
+        {
+            model.transform.localRotation = Quaternion.Slerp(
+                model.transform.localRotation,
+                Quaternion.Euler(spawnRotation),
+                Time.deltaTime * shootData.RecoilRecoverySpeed
+            );
+            
+            if (wantsToShoot)
+            {
+                wantedToShootLastFrame = true;
+                Shoot();
+            }
+            else if (!wantsToShoot && wantedToShootLastFrame)
+            {
+                stopShootingTime = Time.time;
+                wantedToShootLastFrame = false;
+            }
+        }
+
         public void Shoot()
         {
+            if (Time.time - lastShootTime - shootData.FireRate > Time.deltaTime)
+            {
+                float lastDuration = Mathf.Clamp(0, stopShootingTime - initialClickTime, shootData.MaxSpreadTime);
+                float lerpTime = (shootData.RecoilRecoverySpeed - (Time.time - stopShootingTime)) / shootData.RecoilRecoverySpeed;
+                
+                initialClickTime = Time.time - Mathf.Lerp(0, lastDuration, Mathf.Clamp01(lerpTime));
+            }
+            
             if (!(Time.time > shootData.FireRate + lastShootTime)) return;
             
             lastShootTime = Time.time;
                 
             shootParticleSystem.Play();
             audioConfig.PlayShootingAudioClip();
-                
-            var shootDirection = GetShootDirection();
+
+            Vector3 bulletSpread = shootData.GetSpread(Time.time - initialClickTime);
+            model.transform.forward += model.transform.TransformDirection(bulletSpread);
+            Vector3 shootDirection = model.transform.forward;
 
             Vector3 start = shootParticleSystem.transform.position;
 
@@ -96,25 +170,28 @@ namespace Unite.WeaponSystem
             }
         }
 
-        private Vector3 GetShootDirection()
+        private void HandleBulletImpact(RaycastHit hit, float distance)
         {
-            Vector3 shootDirection = shootParticleSystem.transform.forward
-                                     + new Vector3(
-                                         Random.Range(-shootData.BulletSpread.x, shootData.BulletSpread.x),
-                                         Random.Range(-shootData.BulletSpread.y, shootData.BulletSpread.y),
-                                         Random.Range(-shootData.BulletSpread.z, shootData.BulletSpread.z)
-                                     );
-            shootDirection.Normalize();
-            return shootDirection;
-        }
-
-        private void TryDealDamage(RaycastHit hit, float distance)
-        {
-            if (hit.collider == null) return;
-
+            SurfaceManager.Instance.HandleImpact(
+                hit.collider.gameObject, 
+                hit.point,
+                hit.normal, 
+                impactType
+            );
+            
             if (hit.collider.TryGetComponent(out ITakeDamage damageable))
             {
                 damageable.TakeDamage(damageConfig.GetDamage(distance));
+            }
+            if (hit.collider.TryGetComponent(out IStatusEffectable effectable))
+            {
+                if(damageConfig.StatusEffect != null)
+                    effectable.ApplyStatusEffect(damageConfig.StatusEffect);
+            }
+
+            foreach (IImpactHandler impactHandler in bulletImpactEffects)
+            {
+                impactHandler.HandleImpact(hit.collider, hit.point, hit.normal, this);
             }
         }
 
@@ -131,15 +208,24 @@ namespace Unite.WeaponSystem
 
             trail.emitting = false;
             trail.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off;
+            trail.transform.SetParent(trailsGameObject.transform);
 
             return trail;
+        }
+
+        private void DestroyTrailData(TrailRenderer trail)
+        {
+            Destroy(trail.gameObject);
         }
 
         private IEnumerator FireBulletWithTrail(Vector3 start, Vector3 end, RaycastHit hit)
         {
             TrailRenderer instance = trailPool.Get();
-            instance.gameObject.SetActive(true);
             instance.transform.position = start;
+            instance.transform.rotation = Quaternion.identity;
+            instance.Clear();
+            instance.gameObject.SetActive(true);
+            instance.enabled = true;
 
             yield return null; // avoid position carry-over from last frame if reused
 
@@ -161,8 +247,11 @@ namespace Unite.WeaponSystem
             }
 
             instance.transform.position = end;
-            
-            TryDealDamage(hit, distance);
+
+            if (hit.collider != null)
+            {
+                HandleBulletImpact(hit, distance);
+            }
 
             yield return new WaitForSeconds(bulletTrailData.Duration);
             yield return null;

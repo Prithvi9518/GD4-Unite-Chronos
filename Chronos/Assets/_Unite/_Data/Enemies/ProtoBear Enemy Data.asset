@@ -16,6 +16,7 @@ MonoBehaviour:
     type: 3}
   baseHealth: 100
   baseDamage: 5
+  cost: 5
   attacks:
   - {fileID: 11400000, guid: 088c2401fa239a54680923a76fbe3c1d, type: 2}
   startingState: {fileID: 11400000, guid: 1e199744920386744996284e918f904c, type: 2}

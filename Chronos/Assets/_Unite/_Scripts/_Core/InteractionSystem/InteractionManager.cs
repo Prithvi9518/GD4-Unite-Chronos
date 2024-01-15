@@ -1,3 +1,4 @@
+using Unite.Interactibles;
 using UnityEngine;
 
 namespace Unite.Core.InteractionSystem
@@ -32,8 +33,8 @@ namespace Unite.Core.InteractionSystem
         {
             if (currentSelection == null) return; 
 
-            IInteractible interactible = currentSelection.GetComponent<IInteractible>();
-            interactible?.Interact();
+            if (!currentSelection.TryGetComponent(out InteractibleObject interactible)) return;
+            interactible.HandleInteraction();
         }
 
         private void ExecuteSelectionResponses()
