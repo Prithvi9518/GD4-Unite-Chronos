@@ -8,13 +8,13 @@ namespace Unite.Enemies.AI
     public class PlayerWithinAttackRangeCondition : Condition
     {
         [SerializeField]
-        private AttackName attackName;
+        private AttackData attackData;
 
         public override bool VerifyCondition(BaseStateMachine baseStateMachine)
         {
             EnemyStateMachine enemy = baseStateMachine as EnemyStateMachine;
 
-            Attack attack = enemy.AttackHandler.Attacks.GetValueOrDefault(attackName, null);
+            Attack attack = enemy.AttackHandler.Attacks.GetValueOrDefault(attackData.name, null);
 
             return attack.AttackData.WithinAttackRange(enemy.transform, enemy.DetectionHandler.Target);
         }

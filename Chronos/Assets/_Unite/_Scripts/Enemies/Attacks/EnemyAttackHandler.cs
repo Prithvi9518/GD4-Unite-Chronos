@@ -11,7 +11,7 @@ namespace Unite.Enemies
         private Enemy enemy;
         private ITakeDamage targetDamageable;
 
-        public Dictionary<AttackName, Attack> Attacks { get; } = new();
+        public Dictionary<string, Attack> Attacks { get; } = new();
 
         private void Awake()
         {
@@ -29,7 +29,7 @@ namespace Unite.Enemies
             Attacks.Clear();
             foreach (AttackData attackData in attacks)
             {
-                Attacks.Add(attackData.AttackName, new Attack(attackData));
+                Attacks.Add(attackData.name, new Attack(attackData));
             }
         }
 
@@ -38,9 +38,9 @@ namespace Unite.Enemies
             return baseDamage + attack.AttackDamage;
         }
 
-        public void CheckAndDealDamage(AttackName attackName)
+        public void CheckAndDealDamage(AttackData attackData)
         {
-            Attack attackToUse = Attacks.GetValueOrDefault(attackName, null);
+            Attack attackToUse = Attacks.GetValueOrDefault(attackData.name, null);
 
             if (attackToUse == null) return;
             if (!attackToUse.CheckDealDamage(enemy)) return;

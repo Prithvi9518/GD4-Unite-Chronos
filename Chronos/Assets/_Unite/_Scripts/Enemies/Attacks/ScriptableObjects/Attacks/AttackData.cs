@@ -5,9 +5,6 @@ namespace Unite.Enemies
     public abstract class AttackData : ScriptableObject
     {
         [SerializeField]
-        private AttackName attackName;
-
-        [SerializeField]
         private float damage;
 
         [SerializeField]
@@ -22,7 +19,6 @@ namespace Unite.Enemies
         [SerializeField]
         protected float attackCooldown;
 
-        public AttackName AttackName => attackName;
         public float AttackRange => attackRange;
         public float MinAttackRange => minAttackRange;
         public float MaxAttackRange => maxAttackRange;

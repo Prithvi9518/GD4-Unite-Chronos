@@ -8,12 +8,12 @@ namespace Unite.Enemies.AI
     public class BasicAttackAction : Action
     {
         [SerializeField]
-        private AttackName attackName;
+        private AttackData attackData;
 
         public override void ExecuteAction(BaseStateMachine baseStateMachine)
         {
             Attack attack = baseStateMachine.GetComponent<EnemyAttackHandler>().
-                Attacks.GetValueOrDefault(attackName, null);
+                Attacks.GetValueOrDefault(attackData.name, null);
 
             if (!attack.CanUseAttack()) return;
 
