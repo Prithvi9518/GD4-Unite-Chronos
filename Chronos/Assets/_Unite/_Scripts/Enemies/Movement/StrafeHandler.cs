@@ -21,6 +21,12 @@ namespace Unite.Enemies.Movement
         [SerializeField]
         private float lookRotationFactor;
 
+        [SerializeField]
+        private float strafeVectorRotationInDegrees;
+
+        [SerializeField]
+        private float maxStrafeMagnitudeDelta;
+
         private NavMeshAgent agent;
 
         private bool isStrafing;
@@ -39,7 +45,6 @@ namespace Unite.Enemies.Movement
         {
             if (!isStrafing) return;
             
-            // Debug.Log("strafing");
             Strafe();
             FaceTarget(detectionHandler.Target);
         }
@@ -54,6 +59,13 @@ namespace Unite.Enemies.Movement
                 Vector3 strafePosition = strafeLeftTransform.position;
                 if (strafeDirection == 1)
                     strafePosition = strafeRightTransform.position;
+
+                // Rotate the strafe position vector slightly towards the target,
+                // so the AI strafes while also moving towards the target at the same time
+                strafePosition = Vector3.RotateTowards(strafePosition,
+                    detectionHandler.Target.position,
+                    Mathf.Deg2Rad * strafeVectorRotationInDegrees,
+                    maxStrafeMagnitudeDelta);
                 
                 agent.SetDestination(new Vector3(strafePosition.x, transform.position.y,
                     strafePosition.z));

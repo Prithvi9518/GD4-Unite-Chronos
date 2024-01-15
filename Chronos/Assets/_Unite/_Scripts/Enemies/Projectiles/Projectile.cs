@@ -38,7 +38,6 @@ namespace Unite.Enemies.Projectiles
 
         private void OnTriggerEnter(Collider other)
         {
-            Debug.Log("on trigger enter");
             if (!other.TryGetComponent(out ITakeDamage damageable)) return;
 
             damageable.TakeDamage(damage);
