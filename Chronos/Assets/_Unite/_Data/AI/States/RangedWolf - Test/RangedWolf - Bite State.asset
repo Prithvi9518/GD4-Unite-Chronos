@@ -10,18 +10,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bf9d2c506935ec843a13d0c97316fe6b, type: 3}
-  m_Name: RangedWolf - StrafeAndShootState
+  m_Name: RangedWolf - Bite State
   m_EditorClassIdentifier: 
   enterActions:
-  - {fileID: 11400000, guid: f717ecdd965391e4f9b728c065a9c000, type: 2}
-  - {fileID: 11400000, guid: f56684ae98e24f44892bdf55ac5eb8e4, type: 2}
+  - {fileID: 11400000, guid: 4288c7d10167fff4aa444df9614053c6, type: 2}
   updateActions:
-  - {fileID: 11400000, guid: bfa6cf2614e3995479b835bcbf103dd6, type: 2}
+  - {fileID: 11400000, guid: e13151b931a528846930f961bf6df6ce, type: 2}
   exitActions:
-  - {fileID: 11400000, guid: 8b6c116ad9bfae6428f47aa6a5ab73d3, type: 2}
-  - {fileID: 11400000, guid: 908d6f603740b8a49b3c6a367ebe7d54, type: 2}
+  - {fileID: 11400000, guid: a1b7af9161d987f4cbb734af72522660, type: 2}
+  - {fileID: 11400000, guid: 664d2bff2b3b5ed4399ef66220397957, type: 2}
   conditionBasedTransitions:
-  - condition: {fileID: 11400000, guid: 2957f1c16dade6b4daf3bebf8fd29b5b, type: 2}
+  - condition: {fileID: 11400000, guid: a920365844f131843af57bfa1339cfdc, type: 2}
     trueState: {fileID: 11400000, guid: 72468647a83f1bf488b9575ef0eb8602, type: 2}
     falseState: {fileID: 11400000, guid: c86b6a726a5935f4cbb9067d7a22b7ab, type: 2}
   eventTransitions:

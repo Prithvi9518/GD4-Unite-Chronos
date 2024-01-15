@@ -32,5 +32,13 @@ namespace Unite.Enemies
         public abstract void Attack(Enemy enemy);
 
         public abstract bool CheckDealDamage(Enemy enemy);
+
+        public bool WithinAttackRange(Transform attacker, Transform target)
+        {
+            float distance = Vector3.Distance(attacker.transform.position, target.position);
+
+            return distance <= maxAttackRange &&
+                   distance >= minAttackRange;
+        }
     }
 }

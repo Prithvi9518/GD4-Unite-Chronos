@@ -21,6 +21,10 @@ namespace Unite.Enemies.Movement
         [SerializeField]
         private float lookRotationFactor;
 
+        [Header("Move Towards Target Configuration")]
+        [SerializeField]
+        private bool moveTowardsTarget;
+        
         [SerializeField]
         private float strafeVectorRotationInDegrees;
 
@@ -60,12 +64,15 @@ namespace Unite.Enemies.Movement
                 if (strafeDirection == 1)
                     strafePosition = strafeRightTransform.position;
 
-                // Rotate the strafe position vector slightly towards the target,
-                // so the AI strafes while also moving towards the target at the same time
-                strafePosition = Vector3.RotateTowards(strafePosition,
-                    detectionHandler.Target.position,
-                    Mathf.Deg2Rad * strafeVectorRotationInDegrees,
-                    maxStrafeMagnitudeDelta);
+                if (moveTowardsTarget)
+                {
+                    // Rotate the strafe position vector slightly towards the target,
+                    // so the AI strafes while also moving towards the target at the same time
+                    strafePosition = Vector3.RotateTowards(strafePosition,
+                        detectionHandler.Target.position,
+                        Mathf.Deg2Rad * strafeVectorRotationInDegrees,
+                        maxStrafeMagnitudeDelta);
+                }
                 
                 agent.SetDestination(new Vector3(strafePosition.x, transform.position.y,
                     strafePosition.z));

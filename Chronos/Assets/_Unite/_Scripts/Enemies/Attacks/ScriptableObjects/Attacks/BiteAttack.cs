@@ -15,7 +15,7 @@ namespace Unite.Enemies
 
         public override bool CheckDealDamage(Enemy enemy)
         {
-            return Vector3.Distance(enemy.transform.position, enemy.DetectionHandler.Target.position) <= attackRange;
+            return WithinAttackRange(enemy.transform, enemy.DetectionHandler.Target);
         }
     }
 }
