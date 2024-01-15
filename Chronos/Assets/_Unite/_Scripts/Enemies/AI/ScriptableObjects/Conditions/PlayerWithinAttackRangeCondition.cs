@@ -18,7 +18,8 @@ namespace Unite.Enemies.AI
 
             float distance = Vector3.Distance(enemy.transform.position, enemy.DetectionHandler.Target.position);
 
-            return distance <= attack.AttackData.AttackRange;
+            return distance <= attack.AttackData.MaxAttackRange &&
+                   distance >= attack.AttackData.MinAttackRange;
         }
     }
 }

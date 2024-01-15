@@ -15,5 +15,7 @@ MonoBehaviour:
   attackName: 1
   damage: 15
   attackRange: 3
+  minAttackRange: 3
+  maxAttackRange: 3
   attackCooldown: 1.5
   animatorTriggerName: Attack3
