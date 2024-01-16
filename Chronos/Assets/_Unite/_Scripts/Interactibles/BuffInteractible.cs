@@ -1,8 +1,9 @@
-﻿using UnityEngine;
+﻿using Unite.BuffSystem;
+using UnityEngine;
 
-namespace Unite.BuffSystem
+namespace Unite.Interactibles
 {
-    public class BuffPickup : MonoBehaviour
+    public class BuffInteractible : InteractibleObject
     {
         [SerializeField]
         private BuffScriptableObject buff;
@@ -11,7 +12,7 @@ namespace Unite.BuffSystem
         {
             if (!other.TryGetComponent(out Player.Player player)) return;
             buff.ApplyBuff(player);
-            Destroy(gameObject);
+            HandleInteraction();
         }
     }
 }

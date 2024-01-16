@@ -19,6 +19,11 @@ namespace Unite.Enemies
             enemy.StateMachine.enabled = !isTimeStopped;
 
             enemy.Damager.ToggleDelayDeath(isTimeStopped);
+
+            if (enemy.StrafeHandler == null) return;
+            enemy.StrafeHandler.enabled = !isTimeStopped;
+            if (enemy.ProjectileShooter == null) return;
+            enemy.ProjectileShooter.enabled = !isTimeStopped;
         }
     }
 }

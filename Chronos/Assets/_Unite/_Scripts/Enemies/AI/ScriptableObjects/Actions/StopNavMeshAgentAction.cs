@@ -1,5 +1,6 @@
 using Unite.StatePattern;
 using UnityEngine;
+using UnityEngine.AI;
 
 namespace Unite.Enemies.AI
 {
@@ -9,10 +10,10 @@ namespace Unite.Enemies.AI
         [SerializeField]
         private bool isStopped;
 
-        public override void ExecuteAction(IStateMachine stateMachine)
+        public override void ExecuteAction(BaseStateMachine baseStateMachine)
         {
-            EnemyStateMachine enemy = stateMachine as EnemyStateMachine;
-            enemy.Agent.isStopped = isStopped;
+            NavMeshAgent agent = baseStateMachine.GetComponent<NavMeshAgent>();
+            agent.isStopped = isStopped;
         }
     }
 }
