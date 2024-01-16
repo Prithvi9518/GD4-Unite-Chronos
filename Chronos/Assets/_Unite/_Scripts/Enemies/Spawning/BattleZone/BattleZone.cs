@@ -7,19 +7,26 @@ namespace Unite.Enemies.Spawning
     {
         [SerializeField] 
         private EnemyWave[] enemyWaves;
+
+        [SerializeField]
+        private BattleZoneBarrier barrier;
+        
+        [SerializeField]
+        private Transform buffSpawnPosition;
         
         private BattleState battleState;
         private EnemyWaveSpawner waveSpawner;
-        private BuffSpawner buffSpawner;
         private IProvideSpawnPosition spawnPositionProvider;
         private Transform playerTransform;
         private int currentWaveIndex;
+
+        public BattleZoneBarrier Barrier => barrier;
+        public BattleState BattleState => battleState;
         
         private void Awake()
         {
             battleState = BattleState.Idle;
             waveSpawner = GetComponent<EnemyWaveSpawner>();
-            buffSpawner = GetComponent<BuffSpawner>();
             spawnPositionProvider = GetComponent<IProvideSpawnPosition>();
 
             currentWaveIndex = 0;
@@ -63,8 +70,8 @@ namespace Unite.Enemies.Spawning
         private void EndBattle()
         {
             battleState = BattleState.End;
-            buffSpawner.SpawnBuff();
-            Debug.Log("Battle ended");
+            BuffSpawnManager.Instance.SpawnBuff(buffSpawnPosition);
+            barrier.ToggleBarrierColliders(false);
         }
     }
 }

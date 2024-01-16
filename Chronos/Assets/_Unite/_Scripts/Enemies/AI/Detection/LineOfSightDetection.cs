@@ -25,11 +25,7 @@ namespace Unite.Enemies.AI
             Collider[] results = new Collider[1];
             var size = Physics.OverlapSphereNonAlloc(transform.position, detectionRadius, results, targetMask);
             
-            Debug.Log($"size = {size}");
-            
             if (size <= 0) return false;
-            
-            Debug.Log($"results[0] = {results[0].name}");
             
             Transform detectedTransform = results[0].transform;
             if (detectedTransform != target) return false;

@@ -32,6 +32,7 @@ namespace Unite.Player
         public void PerformSetup(float baseHealth)
         {
             dead = false;
+            regenEnabled = false;
             playerHealth.MaxHealth = baseHealth;
             playerHealth.ResetHealth();
         }
@@ -56,12 +57,19 @@ namespace Unite.Player
             Die(attacker, attack);
         }
         
-        public void StartRegeneration(float regenPercentage, float intervalInSeconds)
+        public void ApplyRegeneration(float regenPercentage, float intervalInSeconds)
         {
-            regenEnabled = true;
-            regenerationPercent = regenPercentage;
-            regenerationIntervalInSeconds = intervalInSeconds;
-            regenerationCoroutine = StartCoroutine(RegenerationCoroutine());
+            if (!regenEnabled)
+            {
+                regenEnabled = true;
+                regenerationPercent = regenPercentage;
+                regenerationIntervalInSeconds = intervalInSeconds;
+                regenerationCoroutine = StartCoroutine(RegenerationCoroutine());
+            }
+            else
+            {
+                regenerationPercent += regenPercentage;
+            }
         }
         
         private void Die(IAttacker attacker, IDoDamage attack)
