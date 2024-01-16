@@ -325,6 +325,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   onEnemyDead: {fileID: 11400000, guid: 3a49211014138434191f26abf323814c, type: 2}
+  onEnemyDeadUpdateMetric: {fileID: 0}
 --- !u!114 &1866322867266178728
 MonoBehaviour:
   m_ObjectHideFlags: 0
