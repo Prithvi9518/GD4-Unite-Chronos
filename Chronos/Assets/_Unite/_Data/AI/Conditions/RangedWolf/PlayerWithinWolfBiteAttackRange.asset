@@ -9,12 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1e8a5b46930279543980c2d7ec0d6797, type: 3}
-  m_Name: Bear - Bite Attack
+  m_Script: {fileID: 11500000, guid: edd58731802466248957d55d4dc13e5b, type: 3}
+  m_Name: PlayerWithinWolfBiteAttackRange
   m_EditorClassIdentifier: 
-  damage: 15
-  attackRange: 3
-  minAttackRange: 0
-  maxAttackRange: 3.2
-  attackCooldown: 1.5
-  animatorTriggerName: Attacking
+  attackData: {fileID: 11400000, guid: 1502a46974defc64d814e9b74557a08c, type: 2}
