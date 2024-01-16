@@ -1,7 +1,10 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Unite.Enemies;
 using Unite.EventSystem;
+using Unite.Interactibles;
 using UnityEngine;
+using UnityEngine.Analytics;
 
 namespace Unite.Managers
 {
@@ -30,6 +33,20 @@ namespace Unite.Managers
         public void TimeStopUsed()
         {
             // Send analytics event
+        }
+
+        public void OnInteractWithInteractible(InteractibleObject interactible)
+        {
+            Dictionary<string, object> data = new Dictionary<string, object>();
+            data.Add("Name", interactible.DisplayName);
+            // Add more data..
+            
+            // Send analytics event
+        }
+
+        private void OnDestroy()
+        {
+            Analytics.FlushEvents();
         }
     }
 }
