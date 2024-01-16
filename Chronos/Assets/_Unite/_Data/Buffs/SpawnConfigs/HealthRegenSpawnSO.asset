@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2aba68c99a7e4ad6a0745c10b80a880b, type: 3}
+  m_Name: HealthRegenSpawnSO
+  m_EditorClassIdentifier: 
+  buffPrefab: {fileID: 5211760446356415697, guid: 04ed8a4901ebc8941a783caa6f3104c2,
+    type: 3}
+  unlimitedSpawning: 1
+  spawnLimit: 0
+  minWeight: 0.1
+  maxWeight: 0.15
