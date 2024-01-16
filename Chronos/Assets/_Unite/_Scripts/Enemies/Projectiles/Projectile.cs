@@ -1,5 +1,4 @@
-﻿using System;
-using Unite.Core.DamageInterfaces;
+﻿using Unite.Core.DamageInterfaces;
 using Unite.TimeStop;
 using UnityEngine;
 using UnityEngine.Pool;

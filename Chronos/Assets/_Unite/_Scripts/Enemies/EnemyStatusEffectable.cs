@@ -1,5 +1,4 @@
-﻿using Unite.Core;
-using Unite.StatusEffectSystem;
+﻿using Unite.StatusEffectSystem;
 using UnityEngine;
 
 namespace Unite.Enemies

@@ -1,9 +1,10 @@
-﻿using UnityEngine;
+﻿using Unite.Core.DamageInterfaces;
+using UnityEngine;
 
 namespace Unite.StatusEffectSystem
 {
     [CreateAssetMenu(fileName = "StatusEffect", menuName = "StatusEffects/Status Effect SO")]
-    public class StatusEffectSO : ScriptableObject
+    public class StatusEffectSO : ScriptableObject, IDoDamage
     {
         [SerializeField]
         private string effectName;

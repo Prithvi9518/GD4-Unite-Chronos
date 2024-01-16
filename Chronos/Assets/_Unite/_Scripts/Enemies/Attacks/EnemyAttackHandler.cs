@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Unite.Enemies
 {
-    public class EnemyAttackHandler : MonoBehaviour, IHandleAttacks
+    public class EnemyAttackHandler : MonoBehaviour
     {
         private float baseDamage;
 

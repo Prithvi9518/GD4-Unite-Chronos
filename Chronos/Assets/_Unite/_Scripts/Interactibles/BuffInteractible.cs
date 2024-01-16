@@ -1,7 +1,7 @@
-﻿using Unite.Interactibles;
+﻿using Unite.BuffSystem;
 using UnityEngine;
 
-namespace Unite.BuffSystem
+namespace Unite.Interactibles
 {
     public class BuffInteractible : InteractibleObject
     {

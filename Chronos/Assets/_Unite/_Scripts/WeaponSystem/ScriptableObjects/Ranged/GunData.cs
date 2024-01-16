@@ -12,7 +12,7 @@ using Random = UnityEngine.Random;
 namespace Unite.WeaponSystem
 {
     [CreateAssetMenu(fileName = "GunData", menuName = "Weapons/Gun")]
-    public class GunData : ScriptableObject, ICloneable
+    public class GunData : ScriptableObject, ICloneable, IDoDamage
     {
         [SerializeField] 
         private GunType gunType;

@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 4233565400913462287}
   - component: {fileID: 303567549767911825}
   - component: {fileID: 3671194530802289970}
-  - component: {fileID: 8536253429512273844}
+  - component: {fileID: 4490751792797544299}
   m_Layer: 0
-  m_Name: MetricsManager
+  m_Name: AnalyticsManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -58,14 +58,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b0c5d950f554fd693ab3b6f50cb307c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  description: Listen for enemy death and update metrics
+  description: Listen for enemy death and update analytics
   gameEvent: {fileID: 11400000, guid: ae39bee4f6c65b944bdfa318bae5f4be, type: 2}
   response:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 303567549767911825}
         m_TargetAssemblyTypeName: Unite.Metrics.MetricsManager, Assembly-CSharp
-        m_MethodName: UpdateDefeatedEnemies
+        m_MethodName: EnemyDefeated
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -75,7 +75,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &8536253429512273844
+--- !u!114 &4490751792797544299
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -84,18 +84,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 8406494442177672980}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 48eacbef94954a83b84f1542b1c64cc7, type: 3}
+  m_Script: {fileID: 11500000, guid: b9893a878b6442144bd9c1283a2b4b18, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  description: Listen for interaction and update metrics
-  gameEvent: {fileID: 11400000, guid: 4350ef6a4b505d444af86da74c683cd7, type: 2}
+  description: Listen for time stop usage and update analytics
+  gameEvent: {fileID: 11400000, guid: 318aa66efde8aad468093016fe43f917, type: 2}
   response:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 303567549767911825}
-        m_TargetAssemblyTypeName: Unite.Metrics.MetricsManager, Assembly-CSharp
-        m_MethodName: UpdateInteractedObjects
-        m_Mode: 0
+        m_TargetAssemblyTypeName: Unite.Managers.AnalyticsManager, Assembly-CSharp
+        m_MethodName: TimeStopUsed
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine

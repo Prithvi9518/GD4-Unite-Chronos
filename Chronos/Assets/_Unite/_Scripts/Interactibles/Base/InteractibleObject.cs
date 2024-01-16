@@ -1,5 +1,4 @@
-﻿using Unite.EventSystem;
-using Unite.SoundScripts;
+﻿using Unite.SoundScripts;
 using UnityEngine;
 
 namespace Unite.Interactibles
@@ -12,9 +11,6 @@ namespace Unite.Interactibles
         [SerializeField]
         protected InteractibleSO interactibleData;
 
-        [SerializeField]
-        private InteractibleObjectEvent onInteractUpdateMetrics;
-
         public string DisplayName => displayName;
         
         public virtual void HandleInteraction()
@@ -23,9 +19,6 @@ namespace Unite.Interactibles
             
             if(interactibleData.EventOnInteract != null)
                 interactibleData.EventOnInteract.Raise();
-            
-            if(onInteractUpdateMetrics != null)
-                onInteractUpdateMetrics.Raise(this);
             
             if (interactibleData.AudioToPlayOnInteract != null)
             {
