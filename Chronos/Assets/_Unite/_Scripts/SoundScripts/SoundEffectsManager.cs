@@ -4,12 +4,12 @@ using UnityEngine;
 
 namespace Unite.SoundScripts
 {
-    public class SoundManager : MonoBehaviour, ITimeStopSubscriber
+    public class SoundEffectsManager : MonoBehaviour, ITimeStopSubscriber
     {
         [SerializeField]
         private SoundReferences soundReferences;
 
-        public static SoundManager Instance { get; private set; }
+        public static SoundEffectsManager Instance { get; private set; }
 
         private void Awake()
         {

@@ -16,7 +16,7 @@ namespace Unite.SoundScripts
 
         public void PlayShootingAudioClip()
         {
-            SoundManager.Instance.PlaySoundAtCameraPosition(fireClips[Random.Range(0, fireClips.Length)], volume);
+            SoundEffectsManager.Instance.PlaySoundAtCameraPosition(fireClips[Random.Range(0, fireClips.Length)], volume);
         }
 
         public object Clone()

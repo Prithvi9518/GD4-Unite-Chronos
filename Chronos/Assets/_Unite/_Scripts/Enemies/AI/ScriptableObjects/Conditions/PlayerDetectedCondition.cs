@@ -6,9 +6,9 @@ namespace Unite.Enemies.AI
     [CreateAssetMenu(fileName = "PlayerDetectedCondition", menuName = "AI/Conditions/PlayerDetectedCondition")]
     public class PlayerDetectedCondition : Condition
     {
-        public override bool VerifyCondition(IStateMachine stateMachine)
+        public override bool VerifyCondition(BaseStateMachine baseStateMachine)
         {
-            EnemyStateMachine enemy = stateMachine as EnemyStateMachine;
+            EnemyStateMachine enemy = baseStateMachine as EnemyStateMachine;
 
             return enemy.DetectionHandler.IsTargetDetected();
         }

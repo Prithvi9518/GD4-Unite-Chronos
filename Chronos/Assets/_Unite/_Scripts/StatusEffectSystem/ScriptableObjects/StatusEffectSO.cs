@@ -1,9 +1,10 @@
-﻿using UnityEngine;
+﻿using Unite.Core.DamageInterfaces;
+using UnityEngine;
 
 namespace Unite.StatusEffectSystem
 {
     [CreateAssetMenu(fileName = "StatusEffect", menuName = "StatusEffects/Status Effect SO")]
-    public class StatusEffectSO : ScriptableObject
+    public class StatusEffectSO : ScriptableObject, IDoDamage
     {
         [SerializeField]
         private string effectName;
@@ -27,5 +28,9 @@ namespace Unite.StatusEffectSystem
         public float IntervalInSeconds => intervalInSeconds;
         public float LifetimeInSeconds => lifetimeInSeconds;
         public GameObject EffectParticles => effectParticles;
+        public string GetName()
+        {
+            return effectName;
+        }
     }
 }

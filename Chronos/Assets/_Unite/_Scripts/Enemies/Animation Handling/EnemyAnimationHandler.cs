@@ -42,7 +42,7 @@ namespace Unite.Enemies
         /// <param name="attackData"></param>
         public void HandleAttackAnimationEvent(AttackData attackData)
         {
-            enemy.AttackHandler.CheckAndDealDamage(attackData.AttackName);
+            enemy.AttackHandler.CheckAndDealDamage(attackData);
         }
 
         /// <summary>

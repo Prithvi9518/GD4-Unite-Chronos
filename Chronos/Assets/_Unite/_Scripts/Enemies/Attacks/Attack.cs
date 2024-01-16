@@ -1,4 +1,3 @@
-using Unite.Enemies.AI;
 using UnityEngine;
 
 namespace Unite.Enemies
@@ -20,13 +19,13 @@ namespace Unite.Enemies
             return timeWhenLastAttacked + attackData.AttackCooldown < Time.time;
         }
 
-        public void DoAttack(EnemyStateMachine enemy)
+        public void DoAttack(Enemy enemy)
         {
             attackData.Attack(enemy);
             timeWhenLastAttacked = Time.time;
         }
 
-        public bool CheckDealDamage(EnemyStateMachine enemy)
+        public bool CheckDealDamage(Enemy enemy)
         {
             return attackData.CheckDealDamage(enemy);
         }

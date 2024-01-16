@@ -1,5 +1,6 @@
 ﻿using Unite.Core.Game;
 using Unite.Enemies.Spawning;
+using Unite.EventSystem;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -8,6 +9,16 @@ namespace Unite.Managers
     public class GameManager : MonoBehaviour
     {
         public static GameManager Instance { get; private set; }
+        
+        [SerializeField] 
+        private GameEvent onGameStart;
+        
+        [SerializeField] 
+        private GameEvent onGameWin;
+        
+        [SerializeField] 
+        private GameEvent onGameLose;
+        
         private GameState currentState;
 
         private Player.Player player;
@@ -63,6 +74,12 @@ namespace Unite.Managers
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
             SetGameState(GameState.Start);
+        }
+
+        public void HandleLose()
+        {
+            SetGameState(GameState.PlayerDead);
+            Debug.Log("LOSE");
         }
     }
 }
