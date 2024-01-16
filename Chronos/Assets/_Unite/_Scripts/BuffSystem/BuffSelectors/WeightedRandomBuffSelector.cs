@@ -10,18 +10,18 @@ namespace Unite.BuffSystem
         [SerializeField] 
         private List<BuffSpawnSO> buffSpawnConfigs;
 
-        private BuffSpawnConfig[] selectableBuffConfigs;
-        private float[] weights;
+        private List<BuffSpawnConfig> selectableBuffConfigs;
+        private List<float> weights;
 
         private void Awake()
         {
-            selectableBuffConfigs = new BuffSpawnConfig[buffSpawnConfigs.Count];
-            for(int i = 0; i < selectableBuffConfigs.Length; i++)
+            selectableBuffConfigs = new();
+            foreach(var buffSpawn in buffSpawnConfigs)
             {
-                selectableBuffConfigs[i] = new BuffSpawnConfig(buffSpawnConfigs[i]);
+                selectableBuffConfigs.Add(new BuffSpawnConfig(buffSpawn));
             }
             
-            weights = new float[selectableBuffConfigs.Length];
+            weights = new();
         }
 
         public override GameObject SelectBuff()
@@ -30,7 +30,7 @@ namespace Unite.BuffSystem
 
             float value = Random.value;
             
-            for (int i = 0; i < weights.Length; i++)
+            for (int i = 0; i < weights.Count; i++)
             {
                 if (!(value < weights[i])) continue;
                 
@@ -43,6 +43,7 @@ namespace Unite.BuffSystem
                 }
 
                 value -= weights[i];
+                selectableBuffConfigs.Remove(buffSpawnConfig);
             }
 
             foreach (var buffConfig in selectableBuffConfigs)
@@ -58,14 +59,17 @@ namespace Unite.BuffSystem
 
         private void ResetWeights()
         {
+            weights.Clear();
             float totalWeight = 0;
-            for (int i = 0; i < selectableBuffConfigs.Length; i++)
+            
+            for (int i = 0; i < selectableBuffConfigs.Count; i++)
             {
-                weights[i] = selectableBuffConfigs[i].BuffSpawn.GetWeight();
-                totalWeight += weights[i];
+                float weight = selectableBuffConfigs[i].BuffSpawn.GetWeight();
+                weights.Add(weight);
+                totalWeight += weight;
             }
 
-            for (int i = 0; i < weights.Length; i++)
+            for (int i = 0; i < weights.Count; i++)
             {
                 weights[i] /= totalWeight;
             }
