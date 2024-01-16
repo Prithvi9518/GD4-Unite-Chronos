@@ -12,10 +12,10 @@ namespace Unite.Enemies.AI
         [SerializeField]
         private bool isActive;
 
-        public override void ExecuteAction(IStateMachine stateMachine)
+        public override void ExecuteAction(BaseStateMachine baseStateMachine)
         {
-            EnemyStateMachine enemy = stateMachine as EnemyStateMachine;
-            enemy.AnimationHandler.SetAnimationTrigger(enemyState.ToString(), isActive);
+            EnemyAnimationHandler animationHandler = baseStateMachine.GetComponent<EnemyAnimationHandler>();
+            animationHandler.SetAnimationTrigger(enemyState.ToString(), isActive);
         }
     }
 }
