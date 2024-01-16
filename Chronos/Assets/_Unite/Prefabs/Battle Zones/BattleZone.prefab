@@ -17,7 +17,6 @@ GameObject:
   - component: {fileID: 3993637666093003771}
   - component: {fileID: 2273707757184720841}
   - component: {fileID: 4877613233622902978}
-  - component: {fileID: 6630368225420698971}
   m_Layer: 2
   m_Name: BattleZone
   m_TagString: Untagged
@@ -147,6 +146,7 @@ MonoBehaviour:
     - {fileID: 11400000, guid: c4922ab8d4ca0ea4aada3f6134f000f1, type: 2}
     currencyToSpend: 20
   barrier: {fileID: 1159803270756167839}
+  buffSpawnPosition: {fileID: 7364726228433758888}
 --- !u!114 &3993637666093003771
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -202,20 +202,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &6630368225420698971
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1051650736430058868}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0b5117ecfe484a4d942325cc7b63203c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  buffSelector: {fileID: 133842160089550991}
-  spawnPosition: {fileID: 7364726228433758888}
 --- !u!1 &1142593071301380988
 GameObject:
   m_ObjectHideFlags: 0

@@ -13,7 +13,6 @@ namespace Unite.BuffSystem
         private BuffSpawnConfig[] selectableBuffConfigs;
         private float[] weights;
 
-
         private void Awake()
         {
             selectableBuffConfigs = new BuffSpawnConfig[buffSpawnConfigs.Count];
@@ -46,7 +45,15 @@ namespace Unite.BuffSystem
                 value -= weights[i];
             }
 
-            return selectableBuffConfigs[0].BuffSpawn.BuffPrefab;
+            foreach (var buffConfig in selectableBuffConfigs)
+            {
+                if(!buffConfig.CanSpawn) continue;
+                GameObject buffToSpawn = buffConfig.BuffSpawn.BuffPrefab;
+                buffConfig.UpdateCanSpawn();
+                return buffToSpawn;
+            }
+
+            return null;
         }
 
         private void ResetWeights()
