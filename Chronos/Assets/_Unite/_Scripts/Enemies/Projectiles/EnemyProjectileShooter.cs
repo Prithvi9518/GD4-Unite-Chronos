@@ -4,7 +4,7 @@ using UnityEngine.Pool;
 
 namespace Unite.Enemies.Projectiles
 {
-    public class DefaultProjectileShooter : MonoBehaviour, IShootProjectile
+    public class EnemyProjectileShooter : MonoBehaviour, IShootProjectile
     {
         [SerializeField]
         private Projectile projectilePrefab;
@@ -15,6 +15,8 @@ namespace Unite.Enemies.Projectiles
         private ObjectPool<Projectile> projectilePool;
 
         private EnemyDetectionHandler detectionHandler;
+        private EnemyAttackHandler attackHandler;
+        private AttackData attack;
         private float damage;
 
         private void Awake()
@@ -35,7 +37,7 @@ namespace Unite.Enemies.Projectiles
             projectile.gameObject.SetActive(true);
             projectile.transform.position = projectileSpawnPoint.position;
             projectile.transform.rotation = transform.rotation;
-            projectile.PerformSetup(damage, projectilePool);
+            projectile.PerformSetup(damage, projectilePool, attackHandler, attack);
         }
 
         public void ShootProjectile()
@@ -45,8 +47,10 @@ namespace Unite.Enemies.Projectiles
             projectile.Rigidbody.AddForce(shootDir * projectile.MoveSpeed, ForceMode.VelocityChange);
         }
 
-        public void PerformSetup(float damageAmount)
+        public void PerformSetup(float damageAmount, EnemyAttackHandler enemyAttackHandler, AttackData projectileAttack)
         {
+            attackHandler = enemyAttackHandler;
+            attack = projectileAttack;
             damage = damageAmount;
         }
     }

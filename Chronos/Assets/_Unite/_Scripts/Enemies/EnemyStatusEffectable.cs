@@ -1,4 +1,5 @@
-﻿using Unite.StatusEffectSystem;
+﻿using Unite.Core.DamageInterfaces;
+using Unite.StatusEffectSystem;
 using UnityEngine;
 
 namespace Unite.Enemies
@@ -15,6 +16,7 @@ namespace Unite.Enemies
         private float nextEffectUpdateTime;
 
         private EnemyDamager damager;
+        private IAttacker effectUser;
 
         private void Awake()
         {
@@ -27,9 +29,10 @@ namespace Unite.Enemies
             HandleEffect();
         }
 
-        public void ApplyStatusEffect(StatusEffectSO statusEffect)
+        public void ApplyStatusEffect(StatusEffectSO statusEffect, IAttacker attacker)
         {
             RemoveEffect();
+            effectUser = attacker;
             effectData = statusEffect;
             effectParticles = Instantiate(effectData.EffectParticles, particleParentTransform);
         }
@@ -53,7 +56,7 @@ namespace Unite.Enemies
                 timeSinceEffectApplied < nextEffectUpdateTime) return;
             
             nextEffectUpdateTime += effectData.IntervalInSeconds;
-            damager.TakeDamage(effectData.DamageOverTime);
+            damager.TakeDamage(effectData.DamageOverTime, effectUser, effectData);
         }
     }
 }

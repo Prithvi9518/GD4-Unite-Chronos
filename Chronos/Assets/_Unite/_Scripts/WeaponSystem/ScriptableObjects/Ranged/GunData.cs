@@ -43,7 +43,9 @@ namespace Unite.WeaponSystem
 
         [SerializeField] 
         private ImpactType impactType;
-
+        
+        private IAttacker shooter;
+        
         private MonoBehaviour activeMonoBehaviour;
         private GameObject model;
         private float lastShootTime;
@@ -55,6 +57,7 @@ namespace Unite.WeaponSystem
         private ObjectPool<TrailRenderer> trailPool;
         private IImpactHandler[] bulletImpactEffects = Array.Empty<IImpactHandler>();
 
+        public IAttacker Shooter => shooter;
         public GunType GunType => gunType;
         public ShootData ShootData => shootData;
         public DamageConfig DamageConfig => damageConfig;
@@ -73,6 +76,8 @@ namespace Unite.WeaponSystem
         {
             activeMonoBehaviour = monoBehaviour;
             lastShootTime = 0;
+
+            shooter = activeMonoBehaviour.GetComponent<IAttacker>();
 
             trailsGameObject = new GameObject("Bullet Trails")
             {
@@ -181,12 +186,12 @@ namespace Unite.WeaponSystem
             
             if (hit.collider.TryGetComponent(out ITakeDamage damageable))
             {
-                damageable.TakeDamage(damageConfig.GetDamage(distance));
+                damageable.TakeDamage(damageConfig.GetDamage(distance), shooter, this);
             }
             if (hit.collider.TryGetComponent(out IStatusEffectable effectable))
             {
                 if(damageConfig.StatusEffect != null)
-                    effectable.ApplyStatusEffect(damageConfig.StatusEffect);
+                    effectable.ApplyStatusEffect(damageConfig.StatusEffect, shooter);
             }
 
             foreach (IImpactHandler impactHandler in bulletImpactEffects)
@@ -276,6 +281,11 @@ namespace Unite.WeaponSystem
             clone.spawnRotation = spawnRotation;
             
             return clone;
+        }
+
+        public string GetName()
+        {
+            return name;
         }
     }
 }

@@ -15,6 +15,8 @@ namespace Unite.Enemies.Projectiles
 
         private Rigidbody rb;
 
+        private IAttacker shooter;
+        private IDoDamage damager;
         private float damage;
 
         private ObjectPool<Projectile> projectilePool;
@@ -39,15 +41,18 @@ namespace Unite.Enemies.Projectiles
         {
             if (!other.TryGetComponent(out ITakeDamage damageable)) return;
 
-            damageable.TakeDamage(damage);
+            damageable.TakeDamage(damage, shooter, damager);
 
             Disable();
         }
 
-        public void PerformSetup(float damageAmount, ObjectPool<Projectile> pool)
+        public void PerformSetup(float damageAmount, ObjectPool<Projectile> pool,
+            IAttacker attackingEntity, IDoDamage shotWith)
         {
             damage = damageAmount;
             projectilePool = pool;
+            shooter = attackingEntity;
+            damager = shotWith;
         }
 
         private void Disable()

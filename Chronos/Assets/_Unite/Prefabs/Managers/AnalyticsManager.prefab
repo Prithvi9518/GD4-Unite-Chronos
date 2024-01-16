@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 303567549767911825}
   - component: {fileID: 3671194530802289970}
   - component: {fileID: 4490751792797544299}
+  - component: {fileID: 5884764464449563489}
   m_Layer: 0
   m_Name: AnalyticsManager
   m_TagString: Untagged
@@ -96,6 +97,35 @@ MonoBehaviour:
         m_TargetAssemblyTypeName: Unite.Managers.AnalyticsManager, Assembly-CSharp
         m_MethodName: TimeStopUsed
         m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &5884764464449563489
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8406494442177672980}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8454bb00c1744be7bf191d92bff8d173, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  description: Listen for player death
+  gameEvent: {fileID: 11400000, guid: 0ec4d1d64eee90c4db590c8fca997412, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 303567549767911825}
+        m_TargetAssemblyTypeName: Unite.Managers.AnalyticsManager, Assembly-CSharp
+        m_MethodName: PlayerDied
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine

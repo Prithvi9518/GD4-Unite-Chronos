@@ -19,7 +19,7 @@ namespace Unite.Enemies
             enemy = GetComponent<Enemy>();
         }
 
-        public void TakeDamage(float damage)
+        public void TakeDamage(float damage, IAttacker attacker, IDoDamage attack)
         {
             enemyHealth.DecreaseHealth(damage);
             enemy.UIHandler.UpdateHealthBar(enemyHealth.CurrentHealth, enemyHealth.MaxHealth);

@@ -1,8 +1,9 @@
+using Unite.Core.DamageInterfaces;
 using UnityEngine;
 
 namespace Unite.Enemies
 {
-    public abstract class AttackData : ScriptableObject
+    public abstract class AttackData : ScriptableObject, IDoDamage
     {
         [SerializeField]
         private float damage;
@@ -35,6 +36,11 @@ namespace Unite.Enemies
 
             return distance <= maxAttackRange &&
                    distance >= minAttackRange;
+        }
+
+        public string GetName()
+        {
+            return name;
         }
     }
 }

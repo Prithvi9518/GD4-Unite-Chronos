@@ -28,5 +28,9 @@ namespace Unite.StatusEffectSystem
         public float IntervalInSeconds => intervalInSeconds;
         public float LifetimeInSeconds => lifetimeInSeconds;
         public GameObject EffectParticles => effectParticles;
+        public string GetName()
+        {
+            return effectName;
+        }
     }
 }

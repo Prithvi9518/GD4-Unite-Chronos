@@ -9,12 +9,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1e8a5b46930279543980c2d7ec0d6797, type: 3}
-  m_Name: Bear - Bite Attack
+  m_Script: {fileID: 11500000, guid: 6b1a457211424b28ba802c80f162bcb4, type: 3}
+  m_Name: OnPlayerDiedSendInfo
   m_EditorClassIdentifier: 
-  damage: 15
-  attackRange: 3
-  minAttackRange: 0
-  maxAttackRange: 3.2
-  attackCooldown: 1.5
-  animatorTriggerName: Attack3

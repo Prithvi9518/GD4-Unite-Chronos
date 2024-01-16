@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Unite.Enemies
 {
-    public class EnemyAttackHandler : MonoBehaviour
+    public class EnemyAttackHandler : MonoBehaviour, IAttacker
     {
         private float baseDamage;
 
@@ -52,7 +52,12 @@ namespace Unite.Enemies
                 targetDamageable = enemy.DetectionHandler.Target.GetComponent<ITakeDamage>();
             }
 
-            targetDamageable.TakeDamage(totalDamageDealt);
+            targetDamageable.TakeDamage(totalDamageDealt, this, attackData);
+        }
+
+        public string GetName()
+        {
+            return enemy.DisplayName;
         }
     }
 }

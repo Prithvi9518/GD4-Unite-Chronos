@@ -22,7 +22,7 @@ namespace Unite.Interactibles
             
             if (interactibleData.AudioToPlayOnInteract != null)
             {
-                SoundManager.Instance.PlaySoundAtPosition(
+                SoundEffectsManager.Instance.PlaySoundAtPosition(
                     interactibleData.AudioToPlayOnInteract,
                     transform.position
                 );
