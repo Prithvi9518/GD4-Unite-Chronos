@@ -56,7 +56,7 @@ Transform:
   m_GameObject: {fileID: 366627273966919912}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 4, y: 0, z: 0}
+  m_LocalPosition: {x: 4, y: 0, z: 2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -118,7 +118,7 @@ Transform:
   m_GameObject: {fileID: 3966912671416177686}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4, y: 0, z: 0}
+  m_LocalPosition: {x: -4, y: 0, z: 2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -993,7 +993,7 @@ NavMeshAgent:
   m_AgentTypeID: 0
   m_Radius: 1.72
   m_Speed: 5.5
-  m_Acceleration: 7
+  m_Acceleration: 5.5
   avoidancePriority: 50
   m_AngularSpeed: 120
   m_StoppingDistance: 2
@@ -1188,7 +1188,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 921c67753b1642f6833dc5bcfcdb9421, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  detectionRadius: 8.41
+  detectionRadius: 25
   angleInDegrees: 114
   targetMask:
     serializedVersion: 2
@@ -1225,12 +1225,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   strafeLeftTransform: {fileID: 7480279031841734819}
   strafeRightTransform: {fileID: 921200324920819913}
-  minStrafeTime: 0.25
-  maxStrafeTime: 0.5
+  minStrafeTime: 0.3
+  maxStrafeTime: 0.7
   lookRotationFactor: 20
-  moveTowardsTarget: 1
-  strafeVectorRotationInDegrees: 30
-  maxStrafeMagnitudeDelta: 2
 --- !u!4 &8751026398522235538 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7292658344771522932, guid: f5b41ba4c79702547a89de7544b80656,
