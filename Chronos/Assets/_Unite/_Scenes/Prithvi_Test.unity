@@ -1777,6 +1777,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1677257973}
   - component: {fileID: 1677257974}
+  - component: {fileID: 1677257975}
   m_Layer: 0
   m_Name: TestSpawner
   m_TagString: Untagged
@@ -1812,6 +1813,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyData: {fileID: 11400000, guid: 40f2860b1606c944b8454b665260b753, type: 2}
+  playerTag: Player
+--- !u!114 &1677257975
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1677257972}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd535e0832d64474979b97a237dac58a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyData: {fileID: 11400000, guid: c4922ab8d4ca0ea4aada3f6134f000f1, type: 2}
   playerTag: Player
 --- !u!1001 &1716130396
 PrefabInstance:
