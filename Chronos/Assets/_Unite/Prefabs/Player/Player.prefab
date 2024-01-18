@@ -220,6 +220,10 @@ MonoBehaviour:
   CinemachineCameraTarget: {fileID: 3521743551879148046}
   TopClamp: 89
   BottomClamp: -89
+  footstepSounds:
+  - {fileID: 8300000, guid: 6e73fb6ab0b44a0439d4e4b36966a1e9, type: 3}
+  minTimeBetweenFootsteps: 0.3
+  maxTimeBetweenFootsteps: 0.6
 --- !u!114 &3009636763676068522
 MonoBehaviour:
   m_ObjectHideFlags: 0
