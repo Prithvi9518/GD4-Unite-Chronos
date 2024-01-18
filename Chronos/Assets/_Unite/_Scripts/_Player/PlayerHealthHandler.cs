@@ -1,7 +1,6 @@
 using System.Collections;
 using Unite.Core;
 using Unite.Core.DamageInterfaces;
-using Unite.Core.Game;
 using Unite.EventSystem;
 using UnityEngine;
 
@@ -14,7 +13,7 @@ namespace Unite.Player
         private HealthInfoEvent onHealthChanged;
         
         [SerializeField] 
-        private GameStateEvent onPlayerDied;
+        private PlayerDiedInfoEvent onPlayerDied;
         
         private Health playerHealth;
 
@@ -22,6 +21,8 @@ namespace Unite.Player
         private float regenerationIntervalInSeconds;
         private float regenerationPercent;
         private Coroutine regenerationCoroutine;
+
+        private bool dead;
         
         private void Awake()
         {
@@ -30,6 +31,8 @@ namespace Unite.Player
 
         public void PerformSetup(float baseHealth)
         {
+            dead = false;
+            regenEnabled = false;
             playerHealth.MaxHealth = baseHealth;
             playerHealth.ResetHealth();
         }
@@ -40,28 +43,41 @@ namespace Unite.Player
             onHealthChanged.Raise(new HealthInfo(playerHealth.CurrentHealth, playerHealth.MaxHealth));
         }
 
-        public void TakeDamage(float damage)
+        public void TakeDamage(float damage, IAttacker attacker, IDoDamage attack)
         {
+            if (dead) return;
+            
             playerHealth.DecreaseHealth(damage);
             
             onHealthChanged.Raise(new HealthInfo(playerHealth.CurrentHealth, playerHealth.MaxHealth));
 
-            if (!(playerHealth.CurrentHealth <= 0)) return;
+            if (playerHealth.CurrentHealth > 0) return;
+            
             StopRegeneration();
-            Die();
+            Die(attacker, attack);
         }
         
-        public void StartRegeneration(float regenPercentage, float intervalInSeconds)
+        public void ApplyRegeneration(float regenPercentage, float intervalInSeconds)
         {
-            regenEnabled = true;
-            regenerationPercent = regenPercentage;
-            regenerationIntervalInSeconds = intervalInSeconds;
-            regenerationCoroutine = StartCoroutine(RegenerationCoroutine());
+            if (!regenEnabled)
+            {
+                regenEnabled = true;
+                regenerationPercent = regenPercentage;
+                regenerationIntervalInSeconds = intervalInSeconds;
+                regenerationCoroutine = StartCoroutine(RegenerationCoroutine());
+            }
+            else
+            {
+                regenerationPercent += regenPercentage;
+            }
         }
         
-        private void Die()
+        private void Die(IAttacker attacker, IDoDamage attack)
         {
-            onPlayerDied.Raise(GameState.PlayerDead);
+            if (dead) return;
+            
+            dead = true;
+            onPlayerDied.Raise(new PlayerDiedInfo(transform.position, attacker.GetName(), attack.GetName()));
         }
 
         private void StopRegeneration()

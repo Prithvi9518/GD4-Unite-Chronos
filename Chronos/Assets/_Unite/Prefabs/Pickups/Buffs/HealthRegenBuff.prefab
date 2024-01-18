@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6508907741909291689}
   - component: {fileID: 8231093938457581803}
   - component: {fileID: 5964454986317864606}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -145,7 +145,7 @@ GameObject:
   - component: {fileID: 7188886524937219745}
   - component: {fileID: 2037440137532920159}
   - component: {fileID: 7184330873229244588}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Buff Visual
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -229,7 +229,7 @@ GameObject:
   - component: {fileID: 1295980557047337109}
   - component: {fileID: 3398949451962628370}
   - component: {fileID: 6145739424306439541}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -330,9 +330,9 @@ GameObject:
   - component: {fileID: 3384578278424203740}
   - component: {fileID: 6402671008850746234}
   - component: {fileID: 8478175927266792398}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: HealthRegenBuff
-  m_TagString: Untagged
+  m_TagString: Interactible
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -387,4 +387,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0fce76f9619c472d8fa4d3289626aeb9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  displayName: Health Regeneration
+  interactibleData: {fileID: 11400000, guid: 534f2a8930b3fa748864f3f03b3e9194, type: 2}
+  onInteractUpdateAnalytics: {fileID: 11400000, guid: 13708a900b70425458ffed7409591384,
+    type: 2}
   buff: {fileID: 11400000, guid: 7b05430156884e34b90f7fb3ac465ef0, type: 2}

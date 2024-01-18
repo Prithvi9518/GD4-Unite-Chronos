@@ -11,8 +11,7 @@ GameObject:
   - component: {fileID: 2242609000087142959}
   - component: {fileID: 13949460584985988}
   - component: {fileID: 525627590596728318}
-  - component: {fileID: 5747921227450835631}
-  m_Layer: 8
+  m_Layer: 10
   m_Name: Capsule
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -84,29 +83,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!136 &5747921227450835631
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1566186201376321974}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Height: 1.9999999
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &3521743551879148046
 GameObject:
   m_ObjectHideFlags: 0
@@ -116,7 +92,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7193556267176459641}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: PlayerCameraRoot
   m_TagString: CinemachineTarget
   m_Icon: {fileID: 0}
@@ -159,12 +135,13 @@ GameObject:
   - component: {fileID: 3664281855645159123}
   - component: {fileID: 1122760746944149535}
   - component: {fileID: 4017848504832524091}
-  - component: {fileID: 8346692834355741810}
   - component: {fileID: 5598415455948328408}
   - component: {fileID: 3410028712527800426}
   - component: {fileID: 8927038806717455799}
   - component: {fileID: 7965607547047861193}
-  m_Layer: 8
+  - component: {fileID: 2737736031819437442}
+  - component: {fileID: 4267668601376857013}
+  m_Layer: 10
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -435,7 +412,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   onHealthChanged: {fileID: 11400000, guid: 3f99ffecf7d5f6d41820c73d802c0c98, type: 2}
-  onPlayerDied: {fileID: 11400000, guid: 0169bee3104c3364391b67dc8094ffe1, type: 2}
+  onPlayerDied: {fileID: 11400000, guid: 0ec4d1d64eee90c4db590c8fca997412, type: 2}
 --- !u!114 &3664281855645159123
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -491,35 +468,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7fcb94a6089f408dad9b2e71ada9a84b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &8346692834355741810
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7830948257419484268}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dd2df735215b4ee881969e0f27b50bdd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  description: Disable input and health when dead
-  gameEvent: {fileID: 11400000, guid: 0169bee3104c3364391b67dc8094ffe1, type: 2}
-  response:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 3664281855645159123}
-        m_TargetAssemblyTypeName: Unite.Player.Player, Assembly-CSharp
-        m_MethodName: OnPlayerDead
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!114 &5598415455948328408
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -603,6 +551,58 @@ MonoBehaviour:
         m_TargetAssemblyTypeName: Unite.Player.PlayerHealthHandler, Assembly-CSharp
         m_MethodName: AddHealth
         m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!136 &2737736031819437442
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7830948257419484268}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Height: 1.9999999
+  m_Direction: 1
+  m_Center: {x: 0, y: 1, z: 0}
+--- !u!114 &4267668601376857013
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7830948257419484268}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8454bb00c1744be7bf191d92bff8d173, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  description: Listen for player death and disable player
+  gameEvent: {fileID: 11400000, guid: 0ec4d1d64eee90c4db590c8fca997412, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 3664281855645159123}
+        m_TargetAssemblyTypeName: Unite.Player.Player, Assembly-CSharp
+        m_MethodName: OnPlayerDead
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine

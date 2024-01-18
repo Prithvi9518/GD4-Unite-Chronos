@@ -8,17 +8,15 @@ namespace Unite.Enemies.AI
     public class PlayerWithinAttackRangeCondition : Condition
     {
         [SerializeField]
-        private AttackName attackName;
+        private AttackData attackData;
 
-        public override bool VerifyCondition(IStateMachine stateMachine)
+        public override bool VerifyCondition(BaseStateMachine baseStateMachine)
         {
-            EnemyStateMachine enemy = stateMachine as EnemyStateMachine;
+            EnemyStateMachine enemy = baseStateMachine as EnemyStateMachine;
 
-            Attack attack = enemy.AttackHandler.Attacks.GetValueOrDefault(attackName, null);
+            Attack attack = enemy.AttackHandler.Attacks.GetValueOrDefault(attackData.name, null);
 
-            float distance = Vector3.Distance(enemy.transform.position, enemy.DetectionHandler.Target.position);
-
-            return distance <= attack.AttackData.AttackRange;
+            return attack.AttackData.WithinAttackRange(enemy.transform, enemy.DetectionHandler.Target);
         }
     }
 }

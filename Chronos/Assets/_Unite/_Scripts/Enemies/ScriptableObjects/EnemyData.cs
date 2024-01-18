@@ -8,6 +8,9 @@ namespace Unite.Enemies
     public class EnemyData : ScriptableObject
     {
         [SerializeField]
+        private string displayName;
+        
+        [SerializeField]
         private Enemy enemyPrefab;
 
         [Header("Stats")]
@@ -32,11 +35,13 @@ namespace Unite.Enemies
         [SerializeField]
         private State remainState;
 
+        public string DisplayName => displayName;
         public Enemy EnemyPrefab => enemyPrefab;
         public int Cost => cost;
 
         public virtual void SetupEnemy(Enemy enemy, Transform target)
         {
+            enemy.DisplayName = displayName;
             enemy.Health.MaxHealth = baseHealth;
             enemy.Health.ResetHealth();
             
