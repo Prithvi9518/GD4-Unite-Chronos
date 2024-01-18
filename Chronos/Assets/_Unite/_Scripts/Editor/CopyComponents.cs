@@ -1,10 +1,7 @@
-namespace Unite.Utils
-{
-  using UnityEngine;
-
 using UnityEngine;
+using UnityEditor;
 
-namespace Unite.Utils
+namespace Unite.EditorScripts
 {
     public class CopyComponents : MonoBehaviour
     {
@@ -70,10 +67,8 @@ namespace Unite.Utils
         void SaveAsPrefab(GameObject obj, string prefabPath)
         {
             // Create a prefab from the GameObject and save it as an asset
-            GameObject prefab = UnityEditor.PrefabUtility.SaveAsPrefabAssetAndConnect(obj, prefabPath, UnityEditor.InteractionMode.UserAction);
+            GameObject prefab = PrefabUtility.SaveAsPrefabAssetAndConnect(obj, prefabPath, InteractionMode.UserAction);
             Debug.Log("Prefab saved at: " + prefabPath);
         }
     }
-}
-
 }

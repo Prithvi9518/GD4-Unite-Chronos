@@ -5,13 +5,13 @@ namespace Unite.EventSystem
 {
     public abstract class ParameterisedGameEvent<T> : ScriptableObject
     {
-        private HashSet<ParameterisedGameEventListener<T>> listeners = new HashSet<ParameterisedGameEventListener<T>>();
+        private List<ParameterisedGameEventListener<T>> listeners = new();
 
         public virtual void Raise(T data)
         {
-            foreach (var listener in listeners)
+            for (int i = 0; i < listeners.Count; i++)
             {
-                listener.OnEventRaised(data);
+                listeners[i].OnEventRaised(data);
             }
         }
 

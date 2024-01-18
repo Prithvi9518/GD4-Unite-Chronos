@@ -2012,35 +2012,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 5321494451942624536, guid: 537f767aac39cd444b02269614c527f0,
-        type: 3}
-      propertyPath: buffSpawnConfigs.Array.size
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 5321494451942624536, guid: 537f767aac39cd444b02269614c527f0,
-        type: 3}
-      propertyPath: buffSpawnConfigs.Array.data[0]
-      value: 
-      objectReference: {fileID: 11400000, guid: a6e650076510483439a7128393f9ae48,
-        type: 2}
-    - target: {fileID: 5321494451942624536, guid: 537f767aac39cd444b02269614c527f0,
-        type: 3}
-      propertyPath: buffSpawnConfigs.Array.data[1]
-      value: 
-      objectReference: {fileID: 11400000, guid: bbda70ae62084a8449713a8fcbc60aac,
-        type: 2}
-    - target: {fileID: 5321494451942624536, guid: 537f767aac39cd444b02269614c527f0,
-        type: 3}
-      propertyPath: buffSpawnConfigs.Array.data[2]
-      value: 
-      objectReference: {fileID: 11400000, guid: a3b5d6ff473d2bf4ea4c6b8587619eff,
-        type: 2}
-    - target: {fileID: 5321494451942624536, guid: 537f767aac39cd444b02269614c527f0,
-        type: 3}
-      propertyPath: buffSpawnConfigs.Array.data[3]
-      value: 
-      objectReference: {fileID: 11400000, guid: fe742ed8ba053bc49939de77bf192a46,
-        type: 2}
     - target: {fileID: 8684938787646551098, guid: 537f767aac39cd444b02269614c527f0,
         type: 3}
       propertyPath: m_Name

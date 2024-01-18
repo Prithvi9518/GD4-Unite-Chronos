@@ -13,6 +13,8 @@ namespace Unite.Enemies
 
         private bool delayDeath;
 
+        public bool DelayDeath => delayDeath;
+
         private void Awake()
         {
             enemyHealth = GetComponent<Health>();
