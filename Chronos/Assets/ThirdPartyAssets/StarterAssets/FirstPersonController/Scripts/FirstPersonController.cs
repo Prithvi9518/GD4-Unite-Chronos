@@ -106,8 +106,7 @@ namespace StarterAssets
 				_mainCamera = GameObject.FindGameObjectWithTag("MainCamera");
 			}
 
-            audioSource = GetComponent<AudioSource>(); // Get the Audio Source component
-
+            audioSource = MusicManager.Instance.GetComponent<AudioSource>(); // Get the Audio Source component
         }
 
 		private void Start()
