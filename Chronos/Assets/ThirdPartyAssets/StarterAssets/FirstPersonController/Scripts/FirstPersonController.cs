@@ -190,13 +190,13 @@ namespace StarterAssets
 				// creates curved result rather than a linear one giving a more organic speed change
 				// note T in Lerp is clamped, so we don't need to clamp our speed
 				_speed = Mathf.Lerp(currentHorizontalSpeed, targetSpeed * inputMagnitude, Time.deltaTime * SpeedChangeRate);
-				 isWalking = true;
+				 isWalking = true; //--
 				// round speed to 3 decimal places
 				_speed = Mathf.Round(_speed * 1000f) / 1000f;
 			}
 			else
 			{
-				_speed = targetSpeed;
+				_speed = targetSpeed; 
 			}
 
 			// normalise input direction
@@ -207,29 +207,30 @@ namespace StarterAssets
 			if (_input.move != Vector2.zero)
 			{
 				// move
-				inputDirection = transform.right * _input.move.x + transform.forward * _input.move.y;
-        
+				inputDirection = transform.right * _input.move.x + transform.forward * _input.move.y; //--
+
             }
 
 			// move the player
-			_controller.Move(inputDirection.normalized * (_speed * Time.deltaTime) + new Vector3(0.0f, _verticalVelocity, 0.0f) * Time.deltaTime);
+			_controller.Move(inputDirection.normalized * (_speed * Time.deltaTime) + new Vector3(0.0f, _verticalVelocity, 0.0f) * Time.deltaTime); //--
+
+            bool wasWalking = isWalking; // Store the previous state of isWalking
+            isWalking = _speed > 0.0f; // Update isWalking based on the current speed
 
 
-
-            // Check if the player is walking
-            if (isWalking)
+            if (isWalking != wasWalking)
             {
-                // Check if enough time has passed to play the next footstep sound
-                if (Time.time - timeSinceLastFootstep >= Random.Range(minTimeBetweenFootsteps, maxTimeBetweenFootsteps))
+                if (isWalking)
                 {
-                    // Play a random footstep sound from the array
-                    AudioClip footstepSound = footstepSounds[Random.Range(0, footstepSounds.Length)];
-                    audioSource.PlayOneShot(footstepSound);
-					audioSource.loop = true;
-
-                    timeSinceLastFootstep = Time.time; // Update the time since the last footstep sound
+                    // Player started walking, play a footstep sound
+                    PlayFootstepSound();
                 }
+                // Optionally, you can handle the case when the player stops walking here
             }
+        
+
+             
+            
 
 			else
 			{
@@ -239,8 +240,21 @@ namespace StarterAssets
 
         }
 
-      
-            
+        private void PlayFootstepSound()
+        {
+            if (Time.time - timeSinceLastFootstep >= Random.Range(minTimeBetweenFootsteps, maxTimeBetweenFootsteps))
+            {
+                // Play a random footstep sound from the array
+                AudioClip footstepSound = footstepSounds[Random.Range(0, footstepSounds.Length)];
+                audioSource.PlayOneShot(footstepSound);
+
+
+                timeSinceLastFootstep = Time.time; // Update the time since the last footstep sound
+            }
+        }
+
+
+
 
         // Call this method when the player stops walking
         public void StopWalking()

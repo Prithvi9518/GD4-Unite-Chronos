@@ -304,12 +304,12 @@ PrefabInstance:
     - target: {fileID: 2008568357695375787, guid: 8f8fe7d1085e92f4b9852a9e8a1c5bb9,
         type: 3}
       propertyPath: maxTimeBetweenFootsteps
-      value: 0.1
+      value: 0.6
       objectReference: {fileID: 0}
     - target: {fileID: 2008568357695375787, guid: 8f8fe7d1085e92f4b9852a9e8a1c5bb9,
         type: 3}
       propertyPath: minTimeBetweenFootsteps
-      value: 0.1
+      value: 0.3
       objectReference: {fileID: 0}
     - target: {fileID: 2008568357695375787, guid: 8f8fe7d1085e92f4b9852a9e8a1c5bb9,
         type: 3}
@@ -319,6 +319,21 @@ PrefabInstance:
     - target: {fileID: 2008568357695375787, guid: 8f8fe7d1085e92f4b9852a9e8a1c5bb9,
         type: 3}
       propertyPath: footstepSounds.Array.data[0]
+      value: 
+      objectReference: {fileID: 8300000, guid: 6e73fb6ab0b44a0439d4e4b36966a1e9, type: 3}
+    - target: {fileID: 2008568357695375787, guid: 8f8fe7d1085e92f4b9852a9e8a1c5bb9,
+        type: 3}
+      propertyPath: footstepSounds.Array.data[1]
+      value: 
+      objectReference: {fileID: 8300000, guid: 6e73fb6ab0b44a0439d4e4b36966a1e9, type: 3}
+    - target: {fileID: 2008568357695375787, guid: 8f8fe7d1085e92f4b9852a9e8a1c5bb9,
+        type: 3}
+      propertyPath: footstepSounds.Array.data[2]
+      value: 
+      objectReference: {fileID: 8300000, guid: 6e73fb6ab0b44a0439d4e4b36966a1e9, type: 3}
+    - target: {fileID: 2008568357695375787, guid: 8f8fe7d1085e92f4b9852a9e8a1c5bb9,
+        type: 3}
+      propertyPath: footstepSounds.Array.data[3]
       value: 
       objectReference: {fileID: 8300000, guid: 6e73fb6ab0b44a0439d4e4b36966a1e9, type: 3}
     - target: {fileID: 2668442523629295177, guid: 8f8fe7d1085e92f4b9852a9e8a1c5bb9,
@@ -388,6 +403,10 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 7830948257419484268, guid: 8f8fe7d1085e92f4b9852a9e8a1c5bb9,
         type: 3}
       insertIndex: -1
+      addedObject: {fileID: 1368556849}
+    - targetCorrespondingSourceObject: {fileID: 7830948257419484268, guid: 8f8fe7d1085e92f4b9852a9e8a1c5bb9,
+        type: 3}
+      insertIndex: -1
       addedObject: {fileID: 1368556830}
   m_SourcePrefab: {fileID: 100100000, guid: 8f8fe7d1085e92f4b9852a9e8a1c5bb9, type: 3}
 --- !u!4 &541885091 stripped
@@ -416,7 +435,7 @@ AudioSource:
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -498,6 +517,18 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &1368556849
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1368556814}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a9d2612fcb74b9b419c7e6333232a7d9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1939346272
 PrefabInstance:
   m_ObjectHideFlags: 0
