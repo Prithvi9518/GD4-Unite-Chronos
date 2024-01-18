@@ -1777,6 +1777,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1677257973}
   - component: {fileID: 1677257974}
+  - component: {fileID: 1677257975}
   m_Layer: 0
   m_Name: TestSpawner
   m_TagString: Untagged
@@ -1812,6 +1813,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyData: {fileID: 11400000, guid: 40f2860b1606c944b8454b665260b753, type: 2}
+  playerTag: Player
+--- !u!114 &1677257975
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1677257972}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd535e0832d64474979b97a237dac58a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyData: {fileID: 11400000, guid: c4922ab8d4ca0ea4aada3f6134f000f1, type: 2}
   playerTag: Player
 --- !u!1001 &1716130396
 PrefabInstance:
@@ -1997,35 +2012,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 5321494451942624536, guid: 537f767aac39cd444b02269614c527f0,
-        type: 3}
-      propertyPath: buffSpawnConfigs.Array.size
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 5321494451942624536, guid: 537f767aac39cd444b02269614c527f0,
-        type: 3}
-      propertyPath: buffSpawnConfigs.Array.data[0]
-      value: 
-      objectReference: {fileID: 11400000, guid: a6e650076510483439a7128393f9ae48,
-        type: 2}
-    - target: {fileID: 5321494451942624536, guid: 537f767aac39cd444b02269614c527f0,
-        type: 3}
-      propertyPath: buffSpawnConfigs.Array.data[1]
-      value: 
-      objectReference: {fileID: 11400000, guid: bbda70ae62084a8449713a8fcbc60aac,
-        type: 2}
-    - target: {fileID: 5321494451942624536, guid: 537f767aac39cd444b02269614c527f0,
-        type: 3}
-      propertyPath: buffSpawnConfigs.Array.data[2]
-      value: 
-      objectReference: {fileID: 11400000, guid: a3b5d6ff473d2bf4ea4c6b8587619eff,
-        type: 2}
-    - target: {fileID: 5321494451942624536, guid: 537f767aac39cd444b02269614c527f0,
-        type: 3}
-      propertyPath: buffSpawnConfigs.Array.data[3]
-      value: 
-      objectReference: {fileID: 11400000, guid: fe742ed8ba053bc49939de77bf192a46,
-        type: 2}
     - target: {fileID: 8684938787646551098, guid: 537f767aac39cd444b02269614c527f0,
         type: 3}
       propertyPath: m_Name
