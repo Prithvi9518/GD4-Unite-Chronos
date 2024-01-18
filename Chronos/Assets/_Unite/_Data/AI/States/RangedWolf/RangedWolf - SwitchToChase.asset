@@ -9,8 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2000634b43fee7d40923be6960ac4c28, type: 3}
-  m_Name: RangedWolf - MeleeAttackAction
+  m_Script: {fileID: 11500000, guid: 6eb7fd7159ef429c8754efccb11feb83, type: 3}
+  m_Name: RangedWolf - SwitchToChase
   m_EditorClassIdentifier: 
-  attackData: {fileID: 11400000, guid: 1502a46974defc64d814e9b74557a08c, type: 2}
-  attackSoundEffect: {fileID: 8300000, guid: 16e9e9a13c557404a93a815cf9987d20, type: 3}
+  state: {fileID: 11400000, guid: c86b6a726a5935f4cbb9067d7a22b7ab, type: 2}
+  hasDelay: 0
+  delayInSeconds: 0
