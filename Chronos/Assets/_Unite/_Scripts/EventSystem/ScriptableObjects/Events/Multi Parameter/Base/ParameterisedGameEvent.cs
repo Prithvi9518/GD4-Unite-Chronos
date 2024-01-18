@@ -9,7 +9,7 @@ namespace Unite.EventSystem
 
         public virtual void Raise(T data)
         {
-            for (int i = 0; i < listeners.Count; i++)
+            for (int i = listeners.Count - 1; i >= 0; i--)
             {
                 listeners[i].OnEventRaised(data);
             }
