@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Unite.SoundScripts;
+using UnityEngine;
 #if ENABLE_INPUT_SYSTEM
 using UnityEngine.InputSystem;
 #endif
@@ -246,7 +247,7 @@ namespace StarterAssets
             {
                 // Play a random footstep sound from the array
                 AudioClip footstepSound = footstepSounds[Random.Range(0, footstepSounds.Length)];
-                audioSource.PlayOneShot(footstepSound);
+				SoundEffectsManager.Instance.PlaySoundAtCameraPosition(footstepSound);
 
 
                 timeSinceLastFootstep = Time.time; // Update the time since the last footstep sound
