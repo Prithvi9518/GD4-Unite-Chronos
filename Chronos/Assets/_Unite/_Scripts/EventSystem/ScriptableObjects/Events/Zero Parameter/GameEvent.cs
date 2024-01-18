@@ -11,7 +11,7 @@ namespace Unite.EventSystem
         [ContextMenu("Raise Event")]
         public virtual void Raise()
         {
-            for (int i = 0; i < listeners.Count; i++)
+            for (int i = listeners.Count - 1; i >= 0; i--)
             {
                 listeners[i].OnEventRaised();
             }

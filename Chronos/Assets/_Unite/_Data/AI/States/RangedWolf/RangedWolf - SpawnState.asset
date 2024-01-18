@@ -10,14 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bf9d2c506935ec843a13d0c97316fe6b, type: 3}
-  m_Name: RangedWolf - DieState
+  m_Name: RangedWolf - SpawnState
   m_EditorClassIdentifier: 
   enterActions:
-  - {fileID: 11400000, guid: 4288c7d10167fff4aa444df9614053c6, type: 2}
-  - {fileID: 11400000, guid: 65dda0452dcaa5843b3f42cd65d6e35b, type: 2}
-  - {fileID: 11400000, guid: 2719a14803259894e9911e6d4f405834, type: 2}
-  updateActions:
-  - {fileID: 11400000, guid: 2719a14803259894e9911e6d4f405834, type: 2}
+  - {fileID: 11400000, guid: 7c3956ab4145d1242bb2056a0beb3161, type: 2}
+  - {fileID: 11400000, guid: be7cf1f3030a3c949b9676e544c6d1e2, type: 2}
+  updateActions: []
   exitActions: []
   conditionBasedTransitions: []
-  eventTransitions: []
+  eventTransitions:
+  - stateEvent: 1
+    toState: {fileID: 11400000, guid: a899c097012295f4788570e3cc318282, type: 2}
