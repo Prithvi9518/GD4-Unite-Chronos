@@ -243,12 +243,23 @@ namespace StarterAssets
 
         private void PlayFootstepSound()
         {
-            if (Time.time - timeSinceLastFootstep >= Random.Range(minTimeBetweenFootsteps, maxTimeBetweenFootsteps))
+            if (Grounded && Time.time - timeSinceLastFootstep >= Random.Range(minTimeBetweenFootsteps, maxTimeBetweenFootsteps))
             {
-                // Play a random footstep sound from the array
+                // Play a random footstep sound from the array using SoundEffectsManager
                 AudioClip footstepSound = footstepSounds[Random.Range(0, footstepSounds.Length)];
-				SoundEffectsManager.Instance.PlaySoundAtCameraPosition(footstepSound);
 
+                // Check if the audio source is playing
+                if (!audioSource.isPlaying)
+                {
+                    // If not playing, play the footstep sound at full volume
+                    SoundEffectsManager.Instance.PlaySoundAtCameraPosition(footstepSound);
+                }
+                else
+                {
+                    // If playing, play the footstep sound at a lower volume
+                    float volume = 0.5f; // Adjust the volume as needed
+                    SoundEffectsManager.Instance.PlaySoundAtCameraPosition(footstepSound, volume);
+                }
 
                 timeSinceLastFootstep = Time.time; // Update the time since the last footstep sound
             }
