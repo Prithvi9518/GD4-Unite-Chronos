@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Unite.DialogueSystem
 {
@@ -15,13 +16,20 @@ namespace Unite.DialogueSystem
         [SerializeField]
         private AudioClip audio;
 
-        [Header("Set a delay between lines if this line is part of a sequence:")]
+        [Header("Next Dialogue Delay Settings")]
+        [Header("Set delay to audio clip length + some offset:")]
+        [SerializeField]
+        private bool setDelayToClipLength;
+        [SerializeField]
+        private float delayOffset;
+        
+        [Header("Manually set the delay if needed:")]
         [SerializeField] 
-        private float nextLineDelayInSeconds;
+        private float manualDelay;
 
         public string SpeakerName => speakerName;
         public string Text => text;
         public AudioClip Audio => audio;
-        public float NextLineDelayInSeconds => nextLineDelayInSeconds;
+        public float NextLineDelayInSeconds => (setDelayToClipLength) ? audio.length + delayOffset : manualDelay;
     }
 }

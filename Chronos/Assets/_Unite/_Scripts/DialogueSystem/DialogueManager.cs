@@ -4,9 +4,12 @@ using UnityEngine;
 
 namespace Unite.DialogueSystem
 {
+    [RequireComponent(typeof(AudioSource))]
     public class DialogueManager : MonoBehaviour
     {
         public static DialogueManager Instance { get; private set; }
+
+        private AudioSource audioSource;
 
         private void Awake()
         {
@@ -17,6 +20,7 @@ namespace Unite.DialogueSystem
             }
 
             Instance = this;
+            audioSource = GetComponent<AudioSource>();
         }
 
         public void PlayDialogue(DialogueSO dialogue)
@@ -24,29 +28,13 @@ namespace Unite.DialogueSystem
             StartCoroutine(DialogueLinesCoroutine(dialogue.Lines));
         }
 
-        // public void PlayDialogue(DialogueSequenceSO dialogueSequence)
-        // {
-        //     StartCoroutine(DialogueSequenceCoroutine(dialogueSequence.Dialogues));
-        // }
-
         private void PlayDialogueLine(DialogueLine line)
         {
             Debug.Log($"{line.SpeakerName} : {line.Text}");
+            audioSource.Stop();
+            audioSource.PlayOneShot(line.Audio);
         }
 
-        // private IEnumerator DialogueSequenceCoroutine(List<DialogueSO> dialogues)
-        // {
-        //     for (int i = 0; i < dialogues.Count; i++)
-        //     {
-        //         bool hasNextDialogue = i < dialogues.Count - 1;
-        //         
-        //         PlayDialogue(dialogues[i]);
-        //         
-        //         if(!hasNextDialogue) continue;
-        //         yield return new WaitForSeconds(dialogues[i].NextDialogueDelayInSeconds);
-        //     }
-        // }
-        
         private IEnumerator DialogueLinesCoroutine(List<DialogueLine> lines)
         {
             for (int i = 0; i < lines.Count; i++)
@@ -56,6 +44,7 @@ namespace Unite.DialogueSystem
                 PlayDialogueLine(lines[i]);
                 
                 if(!hasNextDialogue) continue;
+                if(lines[i].NextLineDelayInSeconds == 0) continue;
                 yield return new WaitForSeconds(lines[i].NextLineDelayInSeconds);
             }
         }
