@@ -21,24 +21,42 @@ namespace Unite.DialogueSystem
 
         public void PlayDialogue(DialogueSO dialogue)
         {
-            Debug.Log($"{dialogue.SpeakerName} : {dialogue.DialogueText}");
+            StartCoroutine(DialogueLinesCoroutine(dialogue.Lines));
         }
 
-        public void PlayDialogue(DialogueSequenceSO dialogueSequence)
+        // public void PlayDialogue(DialogueSequenceSO dialogueSequence)
+        // {
+        //     StartCoroutine(DialogueSequenceCoroutine(dialogueSequence.Dialogues));
+        // }
+
+        private void PlayDialogueLine(DialogueLine line)
         {
-            StartCoroutine(DialogueSequenceCoroutine(dialogueSequence.Dialogues));
+            Debug.Log($"{line.SpeakerName} : {line.Text}");
         }
 
-        private IEnumerator DialogueSequenceCoroutine(List<DialogueSO> dialogues)
+        // private IEnumerator DialogueSequenceCoroutine(List<DialogueSO> dialogues)
+        // {
+        //     for (int i = 0; i < dialogues.Count; i++)
+        //     {
+        //         bool hasNextDialogue = i < dialogues.Count - 1;
+        //         
+        //         PlayDialogue(dialogues[i]);
+        //         
+        //         if(!hasNextDialogue) continue;
+        //         yield return new WaitForSeconds(dialogues[i].NextDialogueDelayInSeconds);
+        //     }
+        // }
+        
+        private IEnumerator DialogueLinesCoroutine(List<DialogueLine> lines)
         {
-            for (int i = 0; i < dialogues.Count; i++)
+            for (int i = 0; i < lines.Count; i++)
             {
-                bool hasNextDialogue = i < dialogues.Count - 1;
+                bool hasNextDialogue = i < lines.Count - 1;
                 
-                PlayDialogue(dialogues[i]);
+                PlayDialogueLine(lines[i]);
                 
                 if(!hasNextDialogue) continue;
-                yield return new WaitForSeconds(dialogues[i].NextDialogueDelayInSeconds);
+                yield return new WaitForSeconds(lines[i].NextLineDelayInSeconds);
             }
         }
     }

@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3169fdde3ded437b9d20f31f184bec8e, type: 3}
   m_Name: TestDialogue2
   m_EditorClassIdentifier: 
-  speakerName: Ava
-  dialogueText: Test Dialogue 2
-  dialogueAudio: {fileID: 0}
-  nextDialogueDelayInSeconds: 6
+  lines:
+  - speakerName: Matthew
+    text: Test Dialogue 4
+    audio: {fileID: 0}
+    nextLineDelayInSeconds: 5

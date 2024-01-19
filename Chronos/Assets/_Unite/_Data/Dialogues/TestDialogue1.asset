@@ -12,7 +12,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3169fdde3ded437b9d20f31f184bec8e, type: 3}
   m_Name: TestDialogue1
   m_EditorClassIdentifier: 
-  speakerName: Ava
-  dialogueText: Test Dialogue 1
-  dialogueAudio: {fileID: 0}
-  nextDialogueDelayInSeconds: 3
+  lines:
+  - speakerName: Ava
+    text: Test dialogue 1
+    audio: {fileID: 0}
+    nextLineDelayInSeconds: 3
+  - speakerName: Ava
+    text: Test dialogue 2
+    audio: {fileID: 0}
+    nextLineDelayInSeconds: 1
+  - speakerName: Ava
+    text: Test dialogue 3
+    audio: {fileID: 0}
+    nextLineDelayInSeconds: 1

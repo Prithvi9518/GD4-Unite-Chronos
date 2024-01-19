@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 namespace Unite.DialogueSystem
 {
@@ -6,22 +7,8 @@ namespace Unite.DialogueSystem
     public class DialogueSO : ScriptableObject
     {
         [SerializeField]
-        private string speakerName;
+        private List<DialogueLine> lines;
 
-        [SerializeField]
-        [TextArea]
-        private string dialogueText;
-
-        [SerializeField]
-        private AudioClip dialogueAudio;
-
-        [Header("Set a delay between dialogues if this dialogue is part of a sequence:")]
-        [SerializeField] 
-        private float nextDialogueDelayInSeconds;
-
-        public string SpeakerName => speakerName;
-        public string DialogueText => dialogueText;
-        public AudioClip DialogueAudio => dialogueAudio;
-        public float NextDialogueDelayInSeconds => nextDialogueDelayInSeconds;
+        public List<DialogueLine> Lines => lines;
     }
 }
