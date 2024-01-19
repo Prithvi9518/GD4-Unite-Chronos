@@ -1,7 +1,7 @@
 ﻿using Unite.EventSystem;
 using UnityEngine;
 
-namespace Unite.Interactibles
+namespace Unite.InteractionSystem
 {
     public class HealthInteractible : InteractibleObject
     {

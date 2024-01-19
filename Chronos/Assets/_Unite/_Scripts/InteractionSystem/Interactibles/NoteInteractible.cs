@@ -1,7 +1,7 @@
 ﻿using Unite.Notes;
 using UnityEngine;
 
-namespace Unite.Interactibles
+namespace Unite.InteractionSystem
 {
     public class NoteInteractible : InteractibleObject
     {

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Unite.Core.InteractionSystem
+namespace Unite.InteractionSystem
 {
     [CreateAssetMenu(fileName ="PrototypeSelectionResponse", menuName ="Interaction/PrototypeSelectionResponse")]
     public class PrototypeSelectionResponse : SelectionResponse

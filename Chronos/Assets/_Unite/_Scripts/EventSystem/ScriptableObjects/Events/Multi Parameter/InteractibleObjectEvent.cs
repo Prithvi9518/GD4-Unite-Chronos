@@ -1,4 +1,4 @@
-﻿using Unite.Interactibles;
+﻿using Unite.InteractionSystem;
 using UnityEngine;
 
 namespace Unite.EventSystem

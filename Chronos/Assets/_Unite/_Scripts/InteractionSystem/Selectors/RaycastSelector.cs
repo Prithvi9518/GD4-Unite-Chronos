@@ -1,7 +1,7 @@
 using UnityEngine;
 
 
-namespace Unite.Core.InteractionSystem
+namespace Unite.InteractionSystem
 {
     public class RaycastSelector : MonoBehaviour, ISelector
     {

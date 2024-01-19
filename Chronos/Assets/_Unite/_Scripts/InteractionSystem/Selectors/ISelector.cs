@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Unite.Core.InteractionSystem
+namespace Unite.InteractionSystem
 {
     public interface ISelector
     {
