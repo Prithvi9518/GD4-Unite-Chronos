@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Unite.InteractionSystem
 {
-    public class InteractibleObject : MonoBehaviour
+    public class InteractibleObject : MonoBehaviour, IProvideInteractText
     {
         [SerializeField] 
         private string displayName;
@@ -37,6 +37,11 @@ namespace Unite.InteractionSystem
             
             if (!interactibleData.DestroyAfterInteract) return;
             Destroy(gameObject);
+        }
+
+        public string GetInteractText()
+        {
+            return interactibleData.InteractText;
         }
     }
 }

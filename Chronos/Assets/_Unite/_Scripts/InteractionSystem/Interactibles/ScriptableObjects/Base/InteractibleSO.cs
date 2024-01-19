@@ -15,8 +15,12 @@ namespace Unite.InteractionSystem
         [SerializeField]
         private bool destroyAfterInteract;
 
+        [SerializeField]
+        private string interactText;
+
         public GameEvent EventOnInteract => eventOnInteract;
         public bool DestroyAfterInteract => destroyAfterInteract;
         public AudioClip AudioToPlayOnInteract => audioToPlayOnInteract;
+        public string InteractText => interactText;
     }
 }
