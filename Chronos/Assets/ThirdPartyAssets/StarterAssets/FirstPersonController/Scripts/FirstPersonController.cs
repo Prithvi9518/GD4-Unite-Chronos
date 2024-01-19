@@ -105,8 +105,6 @@ namespace StarterAssets
 			{
 				_mainCamera = GameObject.FindGameObjectWithTag("MainCamera");
 			}
-
-            audioSource = MusicManager.Instance.GetComponent<AudioSource>(); // Get the Audio Source component
         }
 
 		private void Start()
@@ -122,6 +120,8 @@ namespace StarterAssets
 			// reset our timeouts on start
 			_jumpTimeoutDelta = JumpTimeout;
 			_fallTimeoutDelta = FallTimeout;
+			
+			audioSource = MusicManager.Instance.GetComponent<AudioSource>(); // Get the Audio Source component
 		}
 
 		private void Update()

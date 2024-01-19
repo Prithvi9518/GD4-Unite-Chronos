@@ -41,7 +41,7 @@ namespace Unite.InteractionSystem
 
         public string GetInteractText()
         {
-            return interactibleData.InteractText;
+            return interactibleData == null ? string.Empty : interactibleData.InteractText;
         }
     }
 }
