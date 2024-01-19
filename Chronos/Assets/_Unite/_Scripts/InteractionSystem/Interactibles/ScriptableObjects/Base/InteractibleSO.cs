@@ -1,7 +1,7 @@
 ﻿using Unite.EventSystem;
 using UnityEngine;
 
-namespace Unite.Interactibles
+namespace Unite.InteractionSystem
 {
     [CreateAssetMenu(fileName = "InteractibleSO", menuName = "Interactibles/InteractibleSO")]
     public class InteractibleSO : ScriptableObject

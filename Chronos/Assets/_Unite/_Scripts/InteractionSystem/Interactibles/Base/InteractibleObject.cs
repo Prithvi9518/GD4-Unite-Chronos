@@ -2,7 +2,7 @@
 using Unite.SoundScripts;
 using UnityEngine;
 
-namespace Unite.Interactibles
+namespace Unite.InteractionSystem
 {
     public class InteractibleObject : MonoBehaviour
     {
