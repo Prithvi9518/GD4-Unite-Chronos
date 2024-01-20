@@ -18,6 +18,10 @@ namespace Unite.Enemies
     [RequireComponent(typeof(EnemyDetectionHandler))]
     [RequireComponent(typeof(EnemyAnimationHandler))]
     [RequireComponent(typeof(EnemyUIHandler))]
+    [RequireComponent(typeof(EnemyDropHandler))]
+    [RequireComponent(typeof(LineOfSightDetection))]
+    [RequireComponent(typeof(TimeStopEnemy))]
+    [RequireComponent(typeof(EnemyStatusEffectable))]
     public class Enemy : MonoBehaviour
     {
         [SerializeField]
