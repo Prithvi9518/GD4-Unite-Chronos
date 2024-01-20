@@ -38,6 +38,20 @@ namespace Unite.Enemies
                    distance >= minAttackRange;
         }
 
+        public bool OutsideLowerRange(Transform attacker, Transform target)
+        {
+            float distance = Vector3.Distance(attacker.transform.position, target.position);
+
+            return distance < minAttackRange;
+        }
+        
+        public bool OutsideUpperRange(Transform attacker, Transform target)
+        {
+            float distance = Vector3.Distance(attacker.transform.position, target.position);
+
+            return distance > maxAttackRange;
+        }
+
         public string GetName()
         {
             return name;

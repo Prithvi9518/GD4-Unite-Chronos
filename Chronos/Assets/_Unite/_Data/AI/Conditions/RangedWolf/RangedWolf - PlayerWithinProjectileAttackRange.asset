@@ -9,7 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 22f600f54d9b41bbba9d3f5c80a54db0, type: 3}
-  m_Name: RangedWolf - EnableStrafeAction
+  m_Script: {fileID: 11500000, guid: edd58731802466248957d55d4dc13e5b, type: 3}
+  m_Name: RangedWolf - PlayerWithinProjectileAttackRange
   m_EditorClassIdentifier: 
-  active: 1
+  attackData: {fileID: 11400000, guid: 2f64b15e20a6b2545b95207a1a776c50, type: 2}

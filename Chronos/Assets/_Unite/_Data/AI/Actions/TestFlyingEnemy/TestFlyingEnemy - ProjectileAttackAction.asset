@@ -1,0 +1,16 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2000634b43fee7d40923be6960ac4c28, type: 3}
+  m_Name: TestFlyingEnemy - ProjectileAttackAction
+  m_EditorClassIdentifier: 
+  attackData: {fileID: 11400000, guid: b532357219802474b8a1b43163779f4a, type: 2}
+  attackSoundEffect: {fileID: 0}

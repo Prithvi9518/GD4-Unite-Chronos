@@ -12,7 +12,7 @@ namespace Unite.Enemies.AI
 
         public override bool VerifyCondition(BaseStateMachine baseStateMachine)
         {
-            EnemyStateMachine enemy = baseStateMachine as EnemyStateMachine;
+            Enemy enemy = baseStateMachine.GetComponent<Enemy>();
 
             Attack attack = enemy.AttackHandler.Attacks.GetValueOrDefault(attackData.name, null);
 

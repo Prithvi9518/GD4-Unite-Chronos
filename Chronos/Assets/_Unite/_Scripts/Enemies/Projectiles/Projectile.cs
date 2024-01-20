@@ -8,16 +8,18 @@ namespace Unite.Enemies.Projectiles
     public class Projectile : MonoBehaviour, ITimeStopSubscriber
     {
         [SerializeField]
-        private float moveSpeed;
+        protected float moveSpeed;
 
         [SerializeField]
         private float autoDestroyTimeInSeconds;
 
-        private Rigidbody rb;
+        protected Rigidbody rb;
 
         private IAttacker shooter;
         private IDoDamage damager;
         private float damage;
+
+        protected Transform projectileTarget;
 
         private ObjectPool<Projectile> projectilePool;
 
@@ -47,14 +49,21 @@ namespace Unite.Enemies.Projectiles
         }
 
         public void PerformSetup(float damageAmount, ObjectPool<Projectile> pool,
-            IAttacker attackingEntity, IDoDamage shotWith)
+            IAttacker attackingEntity, IDoDamage shotWith, Transform target)
         {
             damage = damageAmount;
             projectilePool = pool;
             shooter = attackingEntity;
             damager = shotWith;
+            projectileTarget = target;
         }
 
+        public virtual void Spawn()
+        {
+            Vector3 shootDir = (projectileTarget.position - transform.position).normalized;
+            rb.AddForce(shootDir * moveSpeed, ForceMode.VelocityChange);
+        }
+        
         private void Disable()
         {
             CancelInvoke(nameof(Disable));
@@ -63,7 +72,7 @@ namespace Unite.Enemies.Projectiles
             projectilePool.Release(this);
         }
 
-        public void HandleTimeStopEvent(bool isTimeStopped)
+        public virtual void HandleTimeStopEvent(bool isTimeStopped)
         {
             if (isTimeStopped)
             {

@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf9d2c506935ec843a13d0c97316fe6b, type: 3}
+  m_Name: TestFlyingEnemy - ShootState
+  m_EditorClassIdentifier: 
+  enterActions:
+  - {fileID: 11400000, guid: 4288c7d10167fff4aa444df9614053c6, type: 2}
+  updateActions:
+  - {fileID: 11400000, guid: f3c2e3f676d552f4c9786db782faaf79, type: 2}
+  exitActions:
+  - {fileID: 11400000, guid: a1b7af9161d987f4cbb734af72522660, type: 2}
+  conditionBasedTransitions:
+  - condition: {fileID: 11400000, guid: 44a0d579eee553c4685676955ce78ce0, type: 2}
+    trueState: {fileID: 11400000, guid: 72468647a83f1bf488b9575ef0eb8602, type: 2}
+    falseState: {fileID: 11400000, guid: 1e0aa0685985d4c4c8f08ebe5162b386, type: 2}
+  - condition: {fileID: 11400000, guid: cabf6af08e1a3b042bdb171821c3ee4c, type: 2}
+    trueState: {fileID: 11400000, guid: 72468647a83f1bf488b9575ef0eb8602, type: 2}
+    falseState: {fileID: 11400000, guid: 1e0aa0685985d4c4c8f08ebe5162b386, type: 2}
+  - condition: {fileID: 11400000, guid: 2ccd55f39a8b9634e982ade73c39e115, type: 2}
+    trueState: {fileID: 11400000, guid: 97d6a4d5f1cafd54699ab6ecac6358ea, type: 2}
+    falseState: {fileID: 11400000, guid: 72468647a83f1bf488b9575ef0eb8602, type: 2}
+  eventTransitions:
+  - stateEvent: 1
+    toState: {fileID: 11400000, guid: a899c097012295f4788570e3cc318282, type: 2}
