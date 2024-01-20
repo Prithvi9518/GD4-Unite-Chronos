@@ -37,14 +37,15 @@ namespace Unite.Enemies.Projectiles
             projectile.gameObject.SetActive(true);
             projectile.transform.position = projectileSpawnPoint.position;
             projectile.transform.rotation = transform.rotation;
-            projectile.PerformSetup(damage, projectilePool, attackHandler, attack);
+            projectile.PerformSetup(damage, projectilePool, attackHandler, attack, detectionHandler.Target);
         }
 
         public void ShootProjectile()
         {
             Projectile projectile = projectilePool.Get();
-            Vector3 shootDir = (detectionHandler.Target.position - transform.position).normalized;
-            projectile.Rigidbody.AddForce(shootDir * projectile.MoveSpeed, ForceMode.VelocityChange);
+            // Vector3 shootDir = (detectionHandler.Target.position - transform.position).normalized;
+            // projectile.Rigidbody.AddForce(shootDir * projectile.MoveSpeed, ForceMode.VelocityChange);
+            projectile.Spawn();
         }
 
         public void PerformSetup(float damageAmount, EnemyAttackHandler enemyAttackHandler, AttackData projectileAttack)

@@ -12,17 +12,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf9d2c506935ec843a13d0c97316fe6b, type: 3}
   m_Name: TestFlyingEnemy - ShootState
   m_EditorClassIdentifier: 
-  enterActions: []
+  enterActions:
+  - {fileID: 11400000, guid: 4288c7d10167fff4aa444df9614053c6, type: 2}
   updateActions:
   - {fileID: 11400000, guid: f3c2e3f676d552f4c9786db782faaf79, type: 2}
-  exitActions: []
+  exitActions:
+  - {fileID: 11400000, guid: a1b7af9161d987f4cbb734af72522660, type: 2}
   conditionBasedTransitions:
-  - condition: {fileID: 11400000, guid: 2957f1c16dade6b4daf3bebf8fd29b5b, type: 2}
+  - condition: {fileID: 11400000, guid: 44a0d579eee553c4685676955ce78ce0, type: 2}
     trueState: {fileID: 11400000, guid: 72468647a83f1bf488b9575ef0eb8602, type: 2}
-    falseState: {fileID: 11400000, guid: c86b6a726a5935f4cbb9067d7a22b7ab, type: 2}
+    falseState: {fileID: 11400000, guid: 1e0aa0685985d4c4c8f08ebe5162b386, type: 2}
   - condition: {fileID: 11400000, guid: cabf6af08e1a3b042bdb171821c3ee4c, type: 2}
     trueState: {fileID: 11400000, guid: 72468647a83f1bf488b9575ef0eb8602, type: 2}
-    falseState: {fileID: 11400000, guid: c86b6a726a5935f4cbb9067d7a22b7ab, type: 2}
+    falseState: {fileID: 11400000, guid: 1e0aa0685985d4c4c8f08ebe5162b386, type: 2}
   eventTransitions:
   - stateEvent: 1
     toState: {fileID: 11400000, guid: a899c097012295f4788570e3cc318282, type: 2}

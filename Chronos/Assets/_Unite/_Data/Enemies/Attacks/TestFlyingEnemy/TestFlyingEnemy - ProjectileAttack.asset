@@ -12,9 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb2a63f03b0b4b02a8c926110792244c, type: 3}
   m_Name: TestFlyingEnemy - ProjectileAttack
   m_EditorClassIdentifier: 
-  attackName: 0
   damage: 10
   attackRange: 25
-  minAttackRange: 13
-  maxAttackRange: 25
+  minAttackRange: 9
+  maxAttackRange: 13
   attackCooldown: 2.5
