@@ -26,7 +26,6 @@ namespace Unite.Enemies
             if (targetDamageable != null) return;
             if (!other.TryGetComponent(out ITakeDamage damageable)) return;
             targetDamageable = damageable;
-            Debug.Log($"OnTriggerEnter. targetDamageable = {targetDamageable}");
             StartCoroutine(DealDamageCoroutine());
         }
 
@@ -34,7 +33,6 @@ namespace Unite.Enemies
         {
             if (!other.TryGetComponent(out ITakeDamage damageable)) return;
             targetDamageable = null;
-            Debug.Log($"OnTriggerExit. targetDamageable = {targetDamageable}");
         }
 
         private IEnumerator DealDamageCoroutine()
@@ -44,7 +42,6 @@ namespace Unite.Enemies
             while (targetDamageable != null)
             {
                 targetDamageable.TakeDamage(damage, attacker, attack);
-                Debug.Log("dealing damage");
                 yield return wait;
             }
         }
