@@ -167,6 +167,6 @@ MonoBehaviour:
     m_RotationOrder: 4
   yOffset: 1
   homingMoveSpeed: 1.5
-  minNoise: {x: -1.5, y: -0.25}
-  maxNoise: {x: 1.5, y: 0.25}
+  minNoise: {x: -2.5, y: -0.5}
+  maxNoise: {x: 2.5, y: 0.5}
   endHomingTime: 0.8
