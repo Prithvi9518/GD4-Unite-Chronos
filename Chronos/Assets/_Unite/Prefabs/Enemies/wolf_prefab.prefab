@@ -629,7 +629,7 @@ Transform:
   m_GameObject: {fileID: 2763913391718625835}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: -1}
-  m_LocalPosition: {x: 3, y: 0, z: 0.76}
+  m_LocalPosition: {x: 3, y: 0, z: 2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1044,7 +1044,7 @@ Transform:
   m_GameObject: {fileID: 4648144370494697660}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: -1}
-  m_LocalPosition: {x: -3, y: 0, z: 0.76000977}
+  m_LocalPosition: {x: -3, y: 0, z: 2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1688,6 +1688,7 @@ GameObject:
   - component: {fileID: 4186415281523133281}
   - component: {fileID: 4621101131845364489}
   - component: {fileID: 1851676359527777922}
+  - component: {fileID: 6947267606168539781}
   m_Layer: 0
   m_Name: wolf_prefab
   m_TagString: Untagged
@@ -1927,6 +1928,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 6947267606168539781}
+        m_TargetAssemblyTypeName: Unite.Enemies.FireBreathHandler, Assembly-CSharp
+        m_MethodName: HandleTimeStopEvent
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1851915562440507606
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2006,6 +2019,19 @@ MonoBehaviour:
   minStrafeTime: 0.3
   maxStrafeTime: 0.7
   lookRotationFactor: 20
+--- !u!114 &6947267606168539781
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9148235068772753322}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c73546a288594bcbb9471118d39bc105, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawnPoint: {fileID: 5622186310611089350}
 --- !u!1001 &7508162708892058716
 PrefabInstance:
   m_ObjectHideFlags: 0

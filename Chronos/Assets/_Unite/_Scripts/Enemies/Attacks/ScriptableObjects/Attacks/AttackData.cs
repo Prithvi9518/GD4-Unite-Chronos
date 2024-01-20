@@ -6,7 +6,7 @@ namespace Unite.Enemies
     public abstract class AttackData : ScriptableObject, IDoDamage
     {
         [SerializeField]
-        private float damage;
+        protected float damage;
 
         [SerializeField]
         protected float attackRange;
