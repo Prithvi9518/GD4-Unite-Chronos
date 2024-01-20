@@ -9,7 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 22f600f54d9b41bbba9d3f5c80a54db0, type: 3}
-  m_Name: RangedWolf - DisableStrafeAction
+  m_Script: {fileID: 11500000, guid: ac4f08fb3a3346f98b8840b594cfa017, type: 3}
+  m_Name: TestFlyingEnemy - PlayerBelowMinProjectileRange
   m_EditorClassIdentifier: 
-  active: 0
+  attackToCheck: {fileID: 11400000, guid: b532357219802474b8a1b43163779f4a, type: 2}
+  checkLowerRange: 1
+  checkUpperRange: 0
