@@ -6,12 +6,12 @@ namespace Unite.Enemies.Spawning
     public class EnemyWave
     {
         [SerializeField]
-        private EnemyData[] enemies;
+        private EnemySpawnConfig[] enemySpawns;
 
         [SerializeField]
         private int currencyToSpend;
 
-        public EnemyData[] Enemies => enemies;
+        public EnemySpawnConfig[] EnemySpawns => enemySpawns;
         public int CurrencyToSpend => currencyToSpend;
     }
 }

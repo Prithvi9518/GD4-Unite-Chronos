@@ -32,6 +32,7 @@ namespace Unite.Enemies
         private void Update()
         {
             if (!fireBreathActive) return;
+            if (attack == null) return;
             if (timer >= attack.DurationInSeconds)
             {
                 OnCompleteFireBreath();

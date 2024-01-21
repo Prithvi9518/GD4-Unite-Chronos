@@ -139,12 +139,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyWaves:
-  - enemies:
-    - {fileID: 11400000, guid: c4922ab8d4ca0ea4aada3f6134f000f1, type: 2}
-    currencyToSpend: 10
-  - enemies:
-    - {fileID: 11400000, guid: c4922ab8d4ca0ea4aada3f6134f000f1, type: 2}
-    currencyToSpend: 20
+  - enemySpawns:
+    - enemyData: {fileID: 11400000, guid: 9ab990075b745984fa13e233d5cb8f6c, type: 2}
+      minWeight: 0
+      maxWeight: 0
+    - enemyData: {fileID: 11400000, guid: 40f2860b1606c944b8454b665260b753, type: 2}
+      minWeight: 0
+      maxWeight: 0
+    currencyToSpend: 15
   barrier: {fileID: 1159803270756167839}
   buffSpawnPosition: {fileID: 7364726228433758888}
 --- !u!114 &3993637666093003771
