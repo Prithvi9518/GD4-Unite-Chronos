@@ -1688,7 +1688,6 @@ GameObject:
   - component: {fileID: 4186415281523133281}
   - component: {fileID: 4621101131845364489}
   - component: {fileID: 1851676359527777922}
-  - component: {fileID: 6947267606168539781}
   m_Layer: 0
   m_Name: wolf_prefab
   m_TagString: Untagged
@@ -1928,7 +1927,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 6947267606168539781}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: Unite.Enemies.FireBreathHandler, Assembly-CSharp
         m_MethodName: HandleTimeStopEvent
         m_Mode: 0
@@ -2019,19 +2018,6 @@ MonoBehaviour:
   minStrafeTime: 0.3
   maxStrafeTime: 0.7
   lookRotationFactor: 20
---- !u!114 &6947267606168539781
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9148235068772753322}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c73546a288594bcbb9471118d39bc105, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  spawnPoint: {fileID: 5622186310611089350}
 --- !u!1001 &7508162708892058716
 PrefabInstance:
   m_ObjectHideFlags: 0

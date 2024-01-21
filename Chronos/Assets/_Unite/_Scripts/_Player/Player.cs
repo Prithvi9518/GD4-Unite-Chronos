@@ -27,6 +27,8 @@ namespace Unite.Player
         public PlayerHealthHandler HealthHandler => healthHandler;
         public PlayerStatsHandler StatsHandler => statsHandler;
         public PlayerGunHandler GunHandler => gunHandler;
+        public PlayerInputHandler InputHandler => inputHandler;
+        public PlayerMovementHandler MovementHandler => movementHandler;
 
         private void Awake()
         {
@@ -35,9 +37,7 @@ namespace Unite.Player
             healthHandler = GetComponent<PlayerHealthHandler>();
             
             statsHandler = GetComponent<PlayerStatsHandler>();
-            
             gunHandler = GetComponent<PlayerGunHandler>();
-            gunHandler.SetInputHandler(inputHandler);
 
             movementHandler = GetComponent<PlayerMovementHandler>();
             
@@ -47,7 +47,6 @@ namespace Unite.Player
         private void Start()
         {
             playerData.SetupPlayer(this);
-            movementHandler.UpdateSpeedValue();
             onPlayerReady.Raise(this);
         }
 

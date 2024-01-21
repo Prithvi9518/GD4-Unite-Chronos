@@ -13,6 +13,9 @@ namespace Unite.Enemies.Projectiles
         [SerializeField]
         private float autoDestroyTimeInSeconds;
 
+        [SerializeField]
+        protected float yOffset = 1f;
+
         protected Rigidbody rb;
 
         private IAttacker shooter;
@@ -60,7 +63,8 @@ namespace Unite.Enemies.Projectiles
 
         public virtual void Spawn()
         {
-            Vector3 shootDir = (projectileTarget.position - transform.position).normalized;
+            Vector3 targetPosWithOffset = projectileTarget.position + (Vector3.up * yOffset);
+            Vector3 shootDir = (targetPosWithOffset - transform.position).normalized;
             rb.AddForce(shootDir * moveSpeed, ForceMode.VelocityChange);
         }
         

@@ -2,6 +2,7 @@ using System.Collections;
 using Unite.Core;
 using Unite.Core.DamageInterfaces;
 using Unite.EventSystem;
+using Unite.StatSystem;
 using UnityEngine;
 
 namespace Unite.Player
@@ -10,12 +11,16 @@ namespace Unite.Player
     public class PlayerHealthHandler : MonoBehaviour, ITakeDamage
     {
         [SerializeField]
+        private StatTypeSO healthStatType;
+        
+        [SerializeField]
         private HealthInfoEvent onHealthChanged;
         
         [SerializeField] 
         private PlayerDiedInfoEvent onPlayerDied;
         
         private Health playerHealth;
+        private PlayerStatsHandler statsHandler;
 
         private bool regenEnabled;
         private float regenerationIntervalInSeconds;
@@ -27,14 +32,27 @@ namespace Unite.Player
         private void Awake()
         {
             playerHealth = GetComponent<Health>();
+            statsHandler = GetComponent<PlayerStatsHandler>();
         }
 
-        public void PerformSetup(float baseHealth)
+        public void PerformSetup()
         {
             dead = false;
             regenEnabled = false;
-            playerHealth.MaxHealth = baseHealth;
+            // playerHealth.MaxHealth = baseHealth;
+            // playerHealth.ResetHealth();
+            
+            playerHealth.MaxHealth = statsHandler.GetStat(healthStatType).Value;
             playerHealth.ResetHealth();
+        }
+
+        public void UpdateMaxHealthFromStats()
+        {
+            Debug.Log($"Old max health = {playerHealth.MaxHealth}");
+            playerHealth.MaxHealth = statsHandler.GetStat(healthStatType).Value;
+            playerHealth.ResetHealth();
+            onHealthChanged.Raise(new HealthInfo(playerHealth.CurrentHealth, playerHealth.MaxHealth));
+            Debug.Log($"New max health = {playerHealth.MaxHealth}");
         }
 
         public void AddHealth(float amount)
