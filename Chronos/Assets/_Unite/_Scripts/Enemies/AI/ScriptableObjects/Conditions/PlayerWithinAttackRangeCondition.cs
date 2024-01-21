@@ -16,7 +16,8 @@ namespace Unite.Enemies.AI
 
             Attack attack = enemy.AttackHandler.Attacks.GetValueOrDefault(attackData.name, null);
 
-            return attack.AttackData.WithinAttackRange(enemy.transform, enemy.DetectionHandler.Target);
+            return attack.AttackData.WithinAttackRange(enemy.transform, enemy.DetectionHandler.Target)
+                && enemy.DetectionHandler.IsTargetDetected();
         }
     }
 }
