@@ -7,7 +7,6 @@ using Unite.StatusEffectSystem;
 using Unite.WeaponSystem.ImpactEffects;
 using UnityEngine;
 using UnityEngine.Pool;
-using Random = UnityEngine.Random;
 
 namespace Unite.WeaponSystem
 {
@@ -57,15 +56,23 @@ namespace Unite.WeaponSystem
         private ObjectPool<TrailRenderer> trailPool;
         private IImpactHandler[] bulletImpactEffects = Array.Empty<IImpactHandler>();
 
+        private float baseDamage;
+
         public IAttacker Shooter => shooter;
         public GunType GunType => gunType;
         public ShootData ShootData => shootData;
         public DamageConfig DamageConfig => damageConfig;
+        public float BaseDamage => baseDamage;
 
         public void SetImpactType(ImpactType type)
         {
             impactType = type;
         }
+
+        public void UpdateBaseDamage(float updatedValue)
+        {
+            baseDamage = updatedValue;
+        } 
 
         public void SetBulletImpactEffects(IImpactHandler[] effects)
         {
@@ -186,7 +193,8 @@ namespace Unite.WeaponSystem
             
             if (hit.collider.TryGetComponent(out ITakeDamage damageable))
             {
-                damageable.TakeDamage(damageConfig.GetDamage(distance), shooter, this);
+                damageable.TakeDamage(baseDamage + damageConfig.GetDamage(distance),
+                    shooter, this);
             }
             if (hit.collider.TryGetComponent(out IStatusEffectable effectable))
             {
