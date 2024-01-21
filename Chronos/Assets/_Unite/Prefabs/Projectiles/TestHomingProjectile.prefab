@@ -106,8 +106,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e33215bc8984aaa8c60854ddb81a42e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 7
+  moveSpeed: 6
   autoDestroyTimeInSeconds: 8
+  yOffset: 1
   positionCurve:
     serializedVersion: 2
     m_Curve:
@@ -165,8 +166,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  yOffset: 1
-  homingMoveSpeed: 1.5
+  homingMoveSpeed: 1
   minNoise: {x: -2.5, y: -0.5}
   maxNoise: {x: 2.5, y: 0.5}
-  endHomingTime: 0.8
+  endHomingTime: 0.9
