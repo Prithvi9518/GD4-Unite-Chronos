@@ -142,6 +142,7 @@ GameObject:
   - component: {fileID: 2737736031819437442}
   - component: {fileID: 4267668601376857013}
   - component: {fileID: 4960232441435446589}
+  - component: {fileID: 1147848741315275180}
   m_Layer: 10
   m_Name: Player
   m_TagString: Player
@@ -419,6 +420,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e24375ddc9a36f499908f54e8e7ae5b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  healthStatType: {fileID: 11400000, guid: ad2dfbb043f144e47ab39a253aae9d32, type: 2}
   onHealthChanged: {fileID: 11400000, guid: 3f99ffecf7d5f6d41820c73d802c0c98, type: 2}
   onPlayerDied: {fileID: 11400000, guid: 0ec4d1d64eee90c4db590c8fca997412, type: 2}
 --- !u!114 &3664281855645159123
@@ -715,3 +717,32 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &1147848741315275180
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7830948257419484268}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b9893a878b6442144bd9c1283a2b4b18, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  description: Listen for max health increase buff, and update health from stats
+  gameEvent: {fileID: 11400000, guid: 07303a44832c24f4489b7d88ecf8666b, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 916965400791086416}
+        m_TargetAssemblyTypeName: Unite.Player.PlayerHealthHandler, Assembly-CSharp
+        m_MethodName: UpdateMaxHealthFromStats
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
