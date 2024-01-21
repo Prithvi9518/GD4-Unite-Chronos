@@ -10,12 +10,18 @@ namespace Unite.ItemDropSystem
         [SerializeField]
         private Transform dropPoint;
 
+        [SerializeField]
+        private LayerMask layerMask;
+
+        [SerializeField]
+        private float yOffset;
+
         public void DropItems()
         {
             int probability = Random.Range(0, 2);
             if (probability == 0) return;
-
-            Instantiate(item, dropPoint.position, Quaternion.identity);
+            
+            Instantiate(item, dropPoint.position + (Vector3.up * yOffset), Quaternion.identity);
         }
     }
 }
