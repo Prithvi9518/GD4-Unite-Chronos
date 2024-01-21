@@ -43,8 +43,6 @@ namespace Unite.Enemies.Projectiles
         public void ShootProjectile()
         {
             Projectile projectile = projectilePool.Get();
-            // Vector3 shootDir = (detectionHandler.Target.position - transform.position).normalized;
-            // projectile.Rigidbody.AddForce(shootDir * projectile.MoveSpeed, ForceMode.VelocityChange);
             projectile.Spawn();
         }
 

@@ -12,9 +12,6 @@ namespace Unite.Enemies.Projectiles
         private AnimationCurve noiseCurve;
 
         [SerializeField]
-        private float yOffset = 1f;
-
-        [SerializeField]
         private float homingMoveSpeed;
 
         [SerializeField]
