@@ -11,7 +11,7 @@ PrefabInstance:
     - target: {fileID: 5233824133387811624, guid: 19c5b0e44d15f444080276e369ddbe61,
         type: 3}
       propertyPath: m_Name
-      value: TestHomingProjectile
+      value: BaseHomingProjectile
       objectReference: {fileID: 0}
     - target: {fileID: 5281376840612990595, guid: 19c5b0e44d15f444080276e369ddbe61,
         type: 3}
@@ -106,7 +106,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e33215bc8984aaa8c60854ddb81a42e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  id: BaseHomingProjectile
   moveSpeed: 6
+  statusEffect: {fileID: 0}
   autoDestroyTimeInSeconds: 8
   yOffset: 1
   positionCurve:

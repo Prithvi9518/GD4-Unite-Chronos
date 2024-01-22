@@ -1,4 +1,5 @@
-﻿using Unite.Enemies.AI;
+﻿using System.Collections.Generic;
+using Unite.Enemies.AI;
 using Unite.Projectiles;
 using Unite.TimeStop;
 using UnityEngine;
@@ -10,7 +11,7 @@ namespace Unite.Enemies
     {
         [SerializeField]
         private Transform projectileSpawnPoint;
-
+        
         [Header("Charge Settings")]
         [SerializeField]
         private bool hasChargeTime;
@@ -18,8 +19,12 @@ namespace Unite.Enemies
         [SerializeField]
         private float chargeTimeInSeconds;
 
+        [SerializeField]
+        private List<Projectile> allProjectiles;
+
         private Projectile projectilePrefab;
-        private ObjectPool<Projectile> projectilePool;
+        
+        private Dictionary<string, ObjectPool<Projectile>> pools = new();
 
         private EnemyDetectionHandler detectionHandler;
         private EnemyAttackHandler attackHandler;
@@ -31,8 +36,7 @@ namespace Unite.Enemies
 
         private void Awake()
         {
-            projectilePool = new ObjectPool<Projectile>(CreateProjectile,
-                actionOnGet:GetProjectileFromPool);
+            SetupPools();
 
             detectionHandler = GetComponent<EnemyDetectionHandler>();
         }
@@ -54,21 +58,33 @@ namespace Unite.Enemies
             }
         }
 
-        private Projectile CreateProjectile()
+        private void SetupPools()
         {
-            return Instantiate(projectilePrefab, projectileSpawnPoint.position, Quaternion.identity);
+            foreach (var projectile in allProjectiles)
+            {
+                ObjectPool<Projectile> projectilePool = new ObjectPool<Projectile>(
+                    () => CreateProjectile(projectile),
+                    actionOnGet:GetProjectileFromPool);
+                pools.Add(projectile.ID, projectilePool);
+            }
+        }
+
+        private Projectile CreateProjectile(Projectile prefab)
+        {
+            return Instantiate(prefab, projectileSpawnPoint.position, Quaternion.identity);
         }
         
         private void GetProjectileFromPool(Projectile projectile)
         {
             projectile.gameObject.SetActive(true);
             projectile.transform.SetPositionAndRotation(projectileSpawnPoint.position, transform.rotation);
-            projectile.PerformSetup(damage, projectilePool, attackHandler, attack, detectionHandler.Target);
+            projectile.PerformSetup(damage, pools[projectile.ID], attackHandler, attack, detectionHandler.Target);
         }
 
         private void SpawnProjectile()
         {
-            Projectile projectile = projectilePool.Get();
+            if (projectilePrefab == null) return;
+            Projectile projectile = pools[projectilePrefab.ID].Get();
             projectile.Spawn();
         }
         
@@ -90,6 +106,8 @@ namespace Unite.Enemies
             attack = projectileAttack;
             damage = damageAmount;
             projectilePrefab = projectileAttack.ProjectilePrefab;
+            isCharging = false;
+            chargeTimer = 0;
         }
 
         public void HandleTimeStopEvent(bool isTimeStopped)

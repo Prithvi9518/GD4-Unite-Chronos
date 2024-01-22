@@ -532,7 +532,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 3410028712527800426}
         m_TargetAssemblyTypeName: Unite.Player.PlayerMovementHandler, Assembly-CSharp
-        m_MethodName: UpdateSpeedValue
+        m_MethodName: UpdateSpeedFromStats
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

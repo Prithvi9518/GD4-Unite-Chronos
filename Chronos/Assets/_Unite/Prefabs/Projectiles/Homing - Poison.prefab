@@ -118,6 +118,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4576218606953127573, guid: f49152e371d642345a206988ed476037,
         type: 3}
+      propertyPath: id
+      value: HomingPoison
+      objectReference: {fileID: 0}
+    - target: {fileID: 4576218606953127573, guid: f49152e371d642345a206988ed476037,
+        type: 3}
       propertyPath: moveSpeed
       value: 5.5
       objectReference: {fileID: 0}

@@ -2002,9 +2002,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a0eaf65b1f774bfc8240f6913ee1ca56, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  projectilePrefab: {fileID: 4560575582364889884, guid: 19c5b0e44d15f444080276e369ddbe61,
-    type: 3}
   projectileSpawnPoint: {fileID: 5622186310611089350}
+  hasChargeTime: 1
+  chargeTimeInSeconds: 1.5
+  allProjectiles:
+  - {fileID: 4576218606953127573, guid: f49152e371d642345a206988ed476037, type: 3}
+  - {fileID: 4560575582364889884, guid: 19c5b0e44d15f444080276e369ddbe61, type: 3}
+  - {fileID: 7504039316711356205, guid: 261e39dd7dd638043aaedc4d4c5bc177, type: 3}
+  - {fileID: 7504039316711356205, guid: dc5f4bb641307b649a5ee1ed9c290aec, type: 3}
+  - {fileID: 7292118741814319701, guid: e610c3153947b9b4d9548ce3162ca2c3, type: 3}
+  - {fileID: 7292118741814319701, guid: 708b178c0507fdc42bc27e16fdc91ca3, type: 3}
 --- !u!114 &1851676359527777922
 MonoBehaviour:
   m_ObjectHideFlags: 0

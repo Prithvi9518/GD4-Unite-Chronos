@@ -69,8 +69,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f5eb74019c14df282058a427d4879eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  id: BaseProjectile
   moveSpeed: 15
+  statusEffect: {fileID: 0}
   autoDestroyTimeInSeconds: 8
+  yOffset: 1
 --- !u!114 &6585187452214920138
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f48c379774dd45fe835c812144c54121, type: 3}
-  m_Name: Enemy - PoisonStatusEffect
+  m_Name: Enemy - FreezeStatusEffect
   m_EditorClassIdentifier: 
-  effectName: Poison
-  damageOverTime: 1.5
-  movementPenalty: 0
-  intervalInSeconds: 1.5
-  lifetimeInSeconds: 10
+  effectName: Freeze
+  damageOverTime: 0
+  slowdownPenalty: -4
+  intervalInSeconds: 0
+  lifetimeInSeconds: 6
   effectParticles: {fileID: 0}

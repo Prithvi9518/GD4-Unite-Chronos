@@ -9,12 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f48c379774dd45fe835c812144c54121, type: 3}
-  m_Name: Enemy - PoisonStatusEffect
+  m_Script: {fileID: 11500000, guid: edd58731802466248957d55d4dc13e5b, type: 3}
+  m_Name: TestFlyingEnemy - PlayerWithinRegularAttackRange
   m_EditorClassIdentifier: 
-  effectName: Poison
-  damageOverTime: 1.5
-  movementPenalty: 0
-  intervalInSeconds: 1.5
-  lifetimeInSeconds: 10
-  effectParticles: {fileID: 0}
+  attackData: {fileID: 11400000, guid: 910426997222adb48858a10966f9118d, type: 2}
