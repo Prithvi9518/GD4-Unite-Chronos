@@ -1,4 +1,5 @@
 ﻿using Unite.Core.DamageInterfaces;
+using Unite.StatusEffectSystem;
 using Unite.TimeStop;
 using UnityEngine;
 using UnityEngine.Pool;
@@ -9,6 +10,9 @@ namespace Unite.Projectiles
     {
         [SerializeField]
         protected float moveSpeed;
+        
+        [SerializeField]
+        protected StatusEffectSO statusEffect;
 
         [SerializeField]
         private float autoDestroyTimeInSeconds;
@@ -45,9 +49,13 @@ namespace Unite.Projectiles
         private void OnTriggerEnter(Collider other)
         {
             if (!other.TryGetComponent(out ITakeDamage damageable)) return;
-
             damageable.TakeDamage(damage, shooter, damager);
 
+            if (other.TryGetComponent(out IStatusEffectable effectable))
+            {
+                effectable.ApplyStatusEffect(statusEffect, shooter);
+            }
+                
             Disable();
         }
 
