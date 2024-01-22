@@ -2003,8 +2003,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   projectileSpawnPoint: {fileID: 5622186310611089350}
-  hasChargeTime: 0
-  chargeTimeInSeconds: 0
+  hasChargeTime: 1
+  chargeTimeInSeconds: 1.5
   allProjectiles:
   - {fileID: 4576218606953127573, guid: f49152e371d642345a206988ed476037, type: 3}
   - {fileID: 4560575582364889884, guid: 19c5b0e44d15f444080276e369ddbe61, type: 3}

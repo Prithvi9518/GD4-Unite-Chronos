@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb2a63f03b0b4b02a8c926110792244c, type: 3}
   m_Name: TestFlyingEnemy - RegularProjectileAttack - SlowDown
   m_EditorClassIdentifier: 
-  damage: 9
+  damage: 6
   minAttackRange: 1
-  maxAttackRange: 12
-  attackCooldown: 2.5
+  maxAttackRange: 9
+  attackCooldown: 3
   projectilePrefab: {fileID: 7292118741814319701, guid: 708b178c0507fdc42bc27e16fdc91ca3,
     type: 3}

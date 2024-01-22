@@ -83,6 +83,7 @@ namespace Unite.Enemies
 
         private void SpawnProjectile()
         {
+            if (projectilePrefab == null) return;
             Projectile projectile = pools[projectilePrefab.ID].Get();
             projectile.Spawn();
         }

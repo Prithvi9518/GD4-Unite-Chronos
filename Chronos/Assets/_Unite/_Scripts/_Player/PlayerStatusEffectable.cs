@@ -22,8 +22,10 @@ namespace Unite.Player
                 nextEffectUpdateTime = 0;
             }
         }
-        
+
         private PlayerHealthHandler healthHandler;
+        private PlayerMovementHandler movementHandler;
+        
         private Dictionary<StatusEffectSO, StatusEffectInfo> effectsDict = new();
         
         private void Update()
@@ -35,11 +37,15 @@ namespace Unite.Player
         public void ApplyStatusEffect(StatusEffectSO statusEffect, IAttacker attacker)
         {
             StatusEffectInfo info = new StatusEffectInfo(statusEffect, attacker);
-            
+
             if (effectsDict.ContainsKey(statusEffect))
+            {
                 effectsDict.Remove(statusEffect);
+                movementHandler.ModifySpeed(info.effectData.SlowdownPenalty * -1);
+            }
             
             effectsDict.Add(statusEffect, info);
+            movementHandler.ModifySpeed(info.effectData.SlowdownPenalty);
         }
 
         public void RemoveEffect()
@@ -57,22 +63,24 @@ namespace Unite.Player
                 if (info.timeSinceEffectApplied >= info.effectData.LifetimeInSeconds)
                 {
                     effectsDict.Remove(info.effectData);
+                    movementHandler.ModifySpeed(info.effectData.SlowdownPenalty * -1);
                     continue;
                 }
                 
                 if(info.timeSinceEffectApplied < info.nextEffectUpdateTime) continue;
                 info.nextEffectUpdateTime += info.effectData.IntervalInSeconds;
                 
-                if(info.effectData.DamageOverTime == 0) continue;
-                healthHandler.TakeDamage(info.effectData.DamageOverTime, info.effectUser, info.effectData);
-                
-                if(info.effectData.SlowdownPenalty == 0) continue;
+                if(info.effectData.DamageOverTime != 0)
+                {
+                    healthHandler.TakeDamage(info.effectData.DamageOverTime, info.effectUser, info.effectData);
+                }
             }
         }
 
         public void PerformSetup(Player p)
         {
             healthHandler = p.HealthHandler;
+            movementHandler = p.MovementHandler;
         }
     }
 }

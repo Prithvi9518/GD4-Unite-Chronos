@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb2a63f03b0b4b02a8c926110792244c, type: 3}
   m_Name: TestFlyingEnemy - HomingProjectileAttack - Poison
   m_EditorClassIdentifier: 
-  damage: 6
-  minAttackRange: 13
+  damage: 4
+  minAttackRange: 11
   maxAttackRange: 20
   attackCooldown: 3
   projectilePrefab: {fileID: 7504039316711356205, guid: 261e39dd7dd638043aaedc4d4c5bc177,
