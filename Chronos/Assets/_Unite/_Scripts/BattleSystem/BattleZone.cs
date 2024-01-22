@@ -6,6 +6,9 @@ namespace Unite.BattleSystem
 {
     public class BattleZone : MonoBehaviour
     {
+        [SerializeField]
+        private string displayName;
+        
         [SerializeField] 
         private EnemyWave[] enemyWaves;
 
@@ -21,9 +24,10 @@ namespace Unite.BattleSystem
         private Transform playerTransform;
         private int currentWaveIndex;
 
+        public string DisplayName => displayName;
         public BattleZoneBarrier Barrier => barrier;
         public BattleState BattleState => battleState;
-        
+
         private void Awake()
         {
             battleState = BattleState.Idle;
@@ -51,6 +55,14 @@ namespace Unite.BattleSystem
             playerTransform = player.transform;
             waveSpawner.SpawnEnemies(enemyWaves[currentWaveIndex], spawnPositionProvider, playerTransform);
             battleState = BattleState.Active;
+            
+            BattleTracker.SetCurrentBattleZone(this);
+        }
+
+        public int GetCurrentWave()
+        {
+            if (battleState != BattleState.Active) return -1;
+            return currentWaveIndex + 1;
         }
 
         private bool AreAllEnemiesDeadInCurrentWave()
