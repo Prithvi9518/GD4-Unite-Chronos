@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Unite.Enemies.Spawning
+namespace Unite.BattleSystem
 {
     public class BattleZoneTrigger : MonoBehaviour
     {

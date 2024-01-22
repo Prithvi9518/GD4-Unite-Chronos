@@ -1,4 +1,4 @@
-﻿namespace Unite.Enemies.Spawning
+﻿namespace Unite.BattleSystem
 {
     public enum BattleState
     {

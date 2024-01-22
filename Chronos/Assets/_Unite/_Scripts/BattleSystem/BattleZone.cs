@@ -1,7 +1,8 @@
 ﻿using Unite.BuffSystem;
+using Unite.Enemies.Spawning;
 using UnityEngine;
 
-namespace Unite.Enemies.Spawning
+namespace Unite.BattleSystem
 {
     public class BattleZone : MonoBehaviour
     {
@@ -35,22 +36,18 @@ namespace Unite.Enemies.Spawning
         private void Update()
         {
             if(battleState != BattleState.Active) return;
-            if (AreAllEnemiesDeadInCurrentWave())
-            {
-                Debug.Log($"All enemies dead in wave {currentWaveIndex + 1}");
-
-                if (currentWaveIndex + 1 >= enemyWaves.Length)
-                    EndBattle();
-                else
-                    SpawnNextWave();
-            }
+            if (!AreAllEnemiesDeadInCurrentWave()) return;
+            
+            if (currentWaveIndex + 1 >= enemyWaves.Length)
+                EndBattle();
+            else
+                SpawnNextWave();
         }
 
         public void StartBattle(Player.Player player)
         {
             if (battleState != BattleState.Idle) return;
             
-            Debug.Log("Start Battle");
             playerTransform = player.transform;
             waveSpawner.SpawnEnemies(enemyWaves[currentWaveIndex], spawnPositionProvider, playerTransform);
             battleState = BattleState.Active;
