@@ -9,6 +9,9 @@ namespace Unite.Projectiles
     public class Projectile : MonoBehaviour, ITimeStopSubscriber
     {
         [SerializeField]
+        private string id;
+        
+        [SerializeField]
         protected float moveSpeed;
         
         [SerializeField]
@@ -32,6 +35,7 @@ namespace Unite.Projectiles
 
         private Vector3 velocityBeforeTimeStop;
 
+        public string ID => id;
         public float MoveSpeed => moveSpeed;
         public Rigidbody Rigidbody => rb;
 
@@ -50,10 +54,11 @@ namespace Unite.Projectiles
         {
             if (!other.TryGetComponent(out ITakeDamage damageable)) return;
             damageable.TakeDamage(damage, shooter, damager);
-
+            
             if (other.TryGetComponent(out IStatusEffectable effectable))
             {
-                effectable.ApplyStatusEffect(statusEffect, shooter);
+                if(statusEffect != null)
+                    effectable.ApplyStatusEffect(statusEffect, shooter);
             }
                 
             Disable();

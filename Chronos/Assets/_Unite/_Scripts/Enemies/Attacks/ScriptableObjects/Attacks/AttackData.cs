@@ -9,9 +9,6 @@ namespace Unite.Enemies
         protected float damage;
 
         [SerializeField]
-        protected float attackRange;
-        
-        [SerializeField]
         protected float minAttackRange;
         
         [SerializeField]
@@ -20,7 +17,6 @@ namespace Unite.Enemies
         [SerializeField]
         protected float attackCooldown;
 
-        public float AttackRange => attackRange;
         public float MinAttackRange => minAttackRange;
         public float MaxAttackRange => maxAttackRange;
         public float AttackDamage => damage;

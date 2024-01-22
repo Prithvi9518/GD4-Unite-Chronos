@@ -1,4 +1,5 @@
-﻿using Unite.Core.DamageInterfaces;
+﻿using System.Collections.Generic;
+using Unite.Core.DamageInterfaces;
 using Unite.StatusEffectSystem;
 using UnityEngine;
 
@@ -6,46 +7,67 @@ namespace Unite.Player
 {
     public class PlayerStatusEffectable : MonoBehaviour, IStatusEffectable
     {
+        private class StatusEffectInfo
+        {
+            public StatusEffectSO effectData;
+            public IAttacker effectUser;
+            public float timeSinceEffectApplied;
+            public float nextEffectUpdateTime;
+
+            public StatusEffectInfo(StatusEffectSO se, IAttacker attacker)
+            {
+                effectData = se;
+                effectUser = attacker;
+                timeSinceEffectApplied = 0;
+                nextEffectUpdateTime = 0;
+            }
+        }
+        
         private PlayerHealthHandler healthHandler;
-        
-        private StatusEffectSO effectData;
-        private IAttacker effectUser;
-        
-        private float timeSinceEffectApplied;
-        private float nextEffectUpdateTime;
+        private Dictionary<StatusEffectSO, StatusEffectInfo> effectsDict = new();
         
         private void Update()
         {
-            if (effectData == null) return;
+            if (effectsDict.Count == 0) return;
             HandleEffect();
         }
         
         public void ApplyStatusEffect(StatusEffectSO statusEffect, IAttacker attacker)
         {
-            RemoveEffect();
-            effectUser = attacker;
-            effectData = statusEffect;
+            StatusEffectInfo info = new StatusEffectInfo(statusEffect, attacker);
+            
+            if (effectsDict.ContainsKey(statusEffect))
+                effectsDict.Remove(statusEffect);
+            
+            effectsDict.Add(statusEffect, info);
         }
 
         public void RemoveEffect()
         {
-            effectData = null;
         }
 
         public void HandleEffect()
         {
-            timeSinceEffectApplied += Time.deltaTime;
-            if (timeSinceEffectApplied >= effectData.LifetimeInSeconds)
+            List<StatusEffectInfo> values = new List<StatusEffectInfo>(effectsDict.Values);
+            for (int i = 0; i < values.Count; i++)
             {
-                RemoveEffect();
-                return;
+                StatusEffectInfo info = values[i];
+                
+                info.timeSinceEffectApplied += Time.deltaTime;
+                if (info.timeSinceEffectApplied >= info.effectData.LifetimeInSeconds)
+                {
+                    effectsDict.Remove(info.effectData);
+                    continue;
+                }
+                
+                if(info.timeSinceEffectApplied < info.nextEffectUpdateTime) continue;
+                info.nextEffectUpdateTime += info.effectData.IntervalInSeconds;
+                
+                if(info.effectData.DamageOverTime == 0) continue;
+                healthHandler.TakeDamage(info.effectData.DamageOverTime, info.effectUser, info.effectData);
+                
+                if(info.effectData.SlowdownPenalty == 0) continue;
             }
-
-            if (effectData.DamageOverTime == 0 ||
-                timeSinceEffectApplied < nextEffectUpdateTime) return;
-            
-            nextEffectUpdateTime += effectData.IntervalInSeconds;
-            healthHandler.TakeDamage(effectData.DamageOverTime, effectUser, effectData);
         }
 
         public void PerformSetup(Player p)

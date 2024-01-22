@@ -1,5 +1,6 @@
 ﻿using Unite.Core.DamageInterfaces;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Unite.StatusEffectSystem
 {
@@ -13,7 +14,7 @@ namespace Unite.StatusEffectSystem
         private float damageOverTime;
 
         [SerializeField]
-        private float movementPenalty;
+        private float slowdownPenalty;
         
         [SerializeField]
         private float intervalInSeconds;
@@ -25,6 +26,7 @@ namespace Unite.StatusEffectSystem
         private GameObject effectParticles;
 
         public float DamageOverTime => damageOverTime;
+        public float SlowdownPenalty => slowdownPenalty;
         public float IntervalInSeconds => intervalInSeconds;
         public float LifetimeInSeconds => lifetimeInSeconds;
         public GameObject EffectParticles => effectParticles;

@@ -112,10 +112,15 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4560575582364889884, guid: 19c5b0e44d15f444080276e369ddbe61,
+        type: 3}
+      propertyPath: id
+      value: RedFire
+      objectReference: {fileID: 0}
     - target: {fileID: 5233824133387811624, guid: 19c5b0e44d15f444080276e369ddbe61,
         type: 3}
       propertyPath: m_Name
-      value: Fire
+      value: Red Fire
       objectReference: {fileID: 0}
     - target: {fileID: 5281376840612990595, guid: 19c5b0e44d15f444080276e369ddbe61,
         type: 3}

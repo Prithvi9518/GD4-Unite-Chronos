@@ -9,7 +9,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: edd58731802466248957d55d4dc13e5b, type: 3}
-  m_Name: TestFlyingEnemy - PlayerWithinProjectileAttackRange
+  m_Script: {fileID: 11500000, guid: f48c379774dd45fe835c812144c54121, type: 3}
+  m_Name: Enemy - FreezeStatusEffect
   m_EditorClassIdentifier: 
-  attackData: {fileID: 11400000, guid: b532357219802474b8a1b43163779f4a, type: 2}
+  effectName: Freeze
+  damageOverTime: 0
+  slowdownPenalty: 4
+  intervalInSeconds: 0
+  lifetimeInSeconds: 10
+  effectParticles: {fileID: 0}
