@@ -9,9 +9,6 @@ namespace Unite.Enemies
     public class EnemyProjectileShooter : MonoBehaviour, IShootProjectile, ITimeStopSubscriber
     {
         [SerializeField]
-        private Projectile projectilePrefab;
-
-        [SerializeField]
         private Transform projectileSpawnPoint;
 
         [Header("Charge Settings")]
@@ -21,6 +18,7 @@ namespace Unite.Enemies
         [SerializeField]
         private float chargeTimeInSeconds;
 
+        private Projectile projectilePrefab;
         private ObjectPool<Projectile> projectilePool;
 
         private EnemyDetectionHandler detectionHandler;
@@ -86,11 +84,12 @@ namespace Unite.Enemies
             }
         }
 
-        public void PerformSetup(float damageAmount, EnemyAttackHandler enemyAttackHandler, AttackData projectileAttack)
+        public void PerformSetup(float damageAmount, EnemyAttackHandler enemyAttackHandler, ProjectileAttack projectileAttack)
         {
             attackHandler = enemyAttackHandler;
             attack = projectileAttack;
             damage = damageAmount;
+            projectilePrefab = projectileAttack.ProjectilePrefab;
         }
 
         public void HandleTimeStopEvent(bool isTimeStopped)
