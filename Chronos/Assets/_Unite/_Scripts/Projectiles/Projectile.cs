@@ -3,7 +3,7 @@ using Unite.TimeStop;
 using UnityEngine;
 using UnityEngine.Pool;
 
-namespace Unite.Enemies.Projectiles
+namespace Unite.Projectiles
 {
     public class Projectile : MonoBehaviour, ITimeStopSubscriber
     {

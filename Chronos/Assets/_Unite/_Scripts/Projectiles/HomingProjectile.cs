@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using Random = UnityEngine.Random;
 
-namespace Unite.Enemies.Projectiles
+namespace Unite.Projectiles
 {
     public class HomingProjectile : Projectile
     {

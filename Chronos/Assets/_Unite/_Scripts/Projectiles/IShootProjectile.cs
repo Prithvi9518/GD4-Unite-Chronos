@@ -1,4 +1,4 @@
-﻿namespace Unite.Enemies.Projectiles
+﻿namespace Unite.Projectiles
 {
     public interface IShootProjectile
     {

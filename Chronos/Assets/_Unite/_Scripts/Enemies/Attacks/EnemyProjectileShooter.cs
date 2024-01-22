@@ -1,8 +1,9 @@
 ﻿using Unite.Enemies.AI;
+using Unite.Projectiles;
 using UnityEngine;
 using UnityEngine.Pool;
 
-namespace Unite.Enemies.Projectiles
+namespace Unite.Enemies
 {
     public class EnemyProjectileShooter : MonoBehaviour, IShootProjectile
     {
