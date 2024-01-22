@@ -1,7 +1,6 @@
 using Unite.Core;
 using Unite.Enemies.AI;
 using Unite.Enemies.Movement;
-using Unite.Enemies.Projectiles;
 using Unite.EventSystem;
 using Unite.ItemDropSystem;
 using UnityEngine;
