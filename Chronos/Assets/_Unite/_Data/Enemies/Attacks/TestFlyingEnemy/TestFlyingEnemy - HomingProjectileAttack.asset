@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fb2a63f03b0b4b02a8c926110792244c, type: 3}
-  m_Name: TestFlyingEnemy - ProjectileAttack
+  m_Name: TestFlyingEnemy - HomingProjectileAttack
   m_EditorClassIdentifier: 
   damage: 10
   attackRange: 25
   minAttackRange: 9
   maxAttackRange: 13
   attackCooldown: 2.5
-  projectilePrefab: {fileID: 7504039316711356205, guid: dc5f4bb641307b649a5ee1ed9c290aec,
+  projectilePrefab: {fileID: 7504039316711356205, guid: 261e39dd7dd638043aaedc4d4c5bc177,
     type: 3}
