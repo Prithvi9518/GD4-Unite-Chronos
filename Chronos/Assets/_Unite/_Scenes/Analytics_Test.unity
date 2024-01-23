@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028334, g: 0.22571328, b: 0.3069217, a: 1}
+  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2824,8 +2824,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e24375ddc9a36f499908f54e8e7ae5b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  onDamaged: {fileID: 11400000, guid: 3f99ffecf7d5f6d41820c73d802c0c98, type: 2}
-  onPlayerDied: {fileID: 11400000, guid: 0169bee3104c3364391b67dc8094ffe1, type: 2}
+  onHealthChanged: {fileID: 0}
+  onPlayerDied: {fileID: 0}
 --- !u!114 &1122760745665039199
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3248,6 +3248,7 @@ GameObject:
   - component: {fileID: 4017848503016737915}
   - component: {fileID: 8346692836306401074}
   - component: {fileID: 5598415457756315288}
+  - component: {fileID: 8346692836306401075}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -3284,6 +3285,20 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &8346692836306401075
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7830948257751002924}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fcc3cb4bb4344b2c9acfe7a11454ba64, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speedStatType: {fileID: 0}
+  sprintSpeedIncrement: 0
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
