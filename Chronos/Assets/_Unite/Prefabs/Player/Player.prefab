@@ -395,6 +395,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   abilityData: {fileID: 11400000, guid: 2471bd37096d62c45bf8a15ccebb959b, type: 2}
+  onAbilityInstantiate: {fileID: 11400000, guid: 86b034bc771ca394ead3563794c31a44,
+    type: 2}
 --- !u!114 &305144721195887007
 MonoBehaviour:
   m_ObjectHideFlags: 0
