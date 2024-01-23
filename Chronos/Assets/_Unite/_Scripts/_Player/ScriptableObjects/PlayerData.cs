@@ -15,7 +15,7 @@ namespace Unite.Player
             player.StatsHandler.PerformSetup(playerBaseStats);
             player.HealthHandler.PerformSetup();
             player.MovementHandler.UpdateSpeedFromStats();
-            player.GunHandler.PerformSetup(player.InputHandler, player.StatsHandler);
+            player.GunHandler.PerformSetup(player.StatsHandler);
             player.StatusEffectable.PerformSetup(player);
         }
     }

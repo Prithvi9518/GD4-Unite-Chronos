@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Unite.Player
+namespace Unite.Core.Input
 {
     public class CursorLockHandler : MonoBehaviour
     {

@@ -1,5 +1,6 @@
 ﻿using Unite.BuffSystem;
 using Unite.Enemies.Spawning;
+using Unite.EventSystem;
 using UnityEngine;
 
 namespace Unite.BattleSystem
@@ -17,6 +18,15 @@ namespace Unite.BattleSystem
         
         [SerializeField]
         private Transform buffSpawnPosition;
+
+        [SerializeField]
+        private BattleZoneInfoEvent onStartBattle;
+        
+        [SerializeField]
+        private BattleZoneInfoEvent onMoveToNextWave;
+
+        [SerializeField]
+        private GameEvent onFinishBattle;
         
         private BattleState battleState;
         private EnemyWaveSpawner waveSpawner;
@@ -57,6 +67,8 @@ namespace Unite.BattleSystem
             battleState = BattleState.Active;
             
             BattleTracker.SetCurrentBattleZone(this);
+            
+            onStartBattle.Raise(new BattleZoneInfo(displayName, GetCurrentWave()));
         }
 
         public int GetCurrentWave()
@@ -74,6 +86,8 @@ namespace Unite.BattleSystem
         {
             currentWaveIndex++;
             waveSpawner.SpawnEnemies(enemyWaves[currentWaveIndex], spawnPositionProvider, playerTransform);
+            
+            onMoveToNextWave.Raise(new BattleZoneInfo(displayName, GetCurrentWave()));
         }
 
         private void EndBattle()
@@ -81,6 +95,8 @@ namespace Unite.BattleSystem
             battleState = BattleState.End;
             BuffSpawnManager.Instance.SpawnBuff(buffSpawnPosition);
             barrier.ToggleBarrierColliders(false);
+            
+            onFinishBattle.Raise();
         }
     }
 }

@@ -10,8 +10,7 @@ namespace Unite.InteractionSystem
         public override void HandleInteraction()
         {
             base.HandleInteraction();
-            
-            Debug.Log($"{noteData.Title} : {noteData.Content}");
+            noteData.OnInteractWithNote.Raise(noteData);
         }
     }
 }

@@ -53,6 +53,15 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""JournalOpen"",
+                    ""type"": ""Button"",
+                    ""id"": ""da6345cf-42fd-4dcb-acad-f4c79c45ad6d"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -86,6 +95,17 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Ability 1"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""2e84cc8d-2ef8-4fb5-868c-bc37cd84213e"",
+                    ""path"": ""<Keyboard>/tab"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""JournalOpen"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -683,6 +703,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         m_Default_Shoot = m_Default.FindAction("Shoot", throwIfNotFound: true);
         m_Default_Interact = m_Default.FindAction("Interact", throwIfNotFound: true);
         m_Default_Ability1 = m_Default.FindAction("Ability 1", throwIfNotFound: true);
+        m_Default_JournalOpen = m_Default.FindAction("JournalOpen", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -764,6 +785,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
     private readonly InputAction m_Default_Shoot;
     private readonly InputAction m_Default_Interact;
     private readonly InputAction m_Default_Ability1;
+    private readonly InputAction m_Default_JournalOpen;
     public struct DefaultActions
     {
         private @PlayerInputActions m_Wrapper;
@@ -771,6 +793,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         public InputAction @Shoot => m_Wrapper.m_Default_Shoot;
         public InputAction @Interact => m_Wrapper.m_Default_Interact;
         public InputAction @Ability1 => m_Wrapper.m_Default_Ability1;
+        public InputAction @JournalOpen => m_Wrapper.m_Default_JournalOpen;
         public InputActionMap Get() { return m_Wrapper.m_Default; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -789,6 +812,9 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
             @Ability1.started += instance.OnAbility1;
             @Ability1.performed += instance.OnAbility1;
             @Ability1.canceled += instance.OnAbility1;
+            @JournalOpen.started += instance.OnJournalOpen;
+            @JournalOpen.performed += instance.OnJournalOpen;
+            @JournalOpen.canceled += instance.OnJournalOpen;
         }
 
         private void UnregisterCallbacks(IDefaultActions instance)
@@ -802,6 +828,9 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
             @Ability1.started -= instance.OnAbility1;
             @Ability1.performed -= instance.OnAbility1;
             @Ability1.canceled -= instance.OnAbility1;
+            @JournalOpen.started -= instance.OnJournalOpen;
+            @JournalOpen.performed -= instance.OnJournalOpen;
+            @JournalOpen.canceled -= instance.OnJournalOpen;
         }
 
         public void RemoveCallbacks(IDefaultActions instance)
@@ -1004,6 +1033,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         void OnShoot(InputAction.CallbackContext context);
         void OnInteract(InputAction.CallbackContext context);
         void OnAbility1(InputAction.CallbackContext context);
+        void OnJournalOpen(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {

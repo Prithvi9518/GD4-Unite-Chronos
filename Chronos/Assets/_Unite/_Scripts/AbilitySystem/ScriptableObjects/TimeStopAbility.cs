@@ -14,11 +14,13 @@ namespace Unite.AbilitySystem
         {
             TimeStopManager.Instance.TriggerTimeStop(true);
             onUpdateAnalytics.Raise();
+            onAbilityActivate.Raise();
         }
 
         public override void Deactivate()
         {
             TimeStopManager.Instance.TriggerTimeStop(false);
+            onAbilityDeactivate.Raise();
         }
     }
 }

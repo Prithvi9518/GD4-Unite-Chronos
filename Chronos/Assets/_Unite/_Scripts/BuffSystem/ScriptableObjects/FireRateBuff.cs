@@ -10,6 +10,8 @@ namespace Unite.BuffSystem
         private float amount;
         public override void ApplyBuff(Player.Player player)
         {
+            base.ApplyBuff(player);
+            
             FireRateModifier modifier = new FireRateModifier(amount);
             player.GunHandler.ApplyModifier(modifier);
         }

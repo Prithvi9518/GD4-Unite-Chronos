@@ -19,6 +19,8 @@ namespace Unite.BuffSystem
         
         public override void ApplyBuff(Player.Player player)
         {
+            base.ApplyBuff(player);
+            
             player.GetComponent<PlayerStatsHandler>().AddModifier(statType, modifier);
             
             if (onStatBuffed == null) return;
