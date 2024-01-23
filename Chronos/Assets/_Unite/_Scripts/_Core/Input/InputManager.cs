@@ -1,4 +1,3 @@
-using StarterAssets;
 using Unite.EventSystem;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -16,6 +15,10 @@ namespace Unite.Core.Input
         [Header("Event for use ability action")]
         [SerializeField] 
         private GameEvent onPlayerUseAbilityAction;
+
+        [Header("Event for journal open")]
+        [SerializeField]
+        private GameEvent onJournalOpenAction;
         
         private PlayerInputActions playerInput;
         private PlayerInputActions.DefaultActions defaultActions;
@@ -62,16 +65,23 @@ namespace Unite.Core.Input
             onPlayerInteractAction.Raise();
         }
 
+        private void RaiseJournalOpenEvent(InputAction.CallbackContext ctx)
+        {
+            onJournalOpenAction.Raise();
+        }
+
         private void SubscribeToActions()
         {
             defaultActions.Ability1.performed += RaisePlayerUseAbilityEvent;
             defaultActions.Interact.performed += RaisePlayerInteractEvent;
+            defaultActions.JournalOpen.performed += RaiseJournalOpenEvent;
         }
 
         private void UnsubscribeToActions()
         {
             defaultActions.Ability1.performed -= RaisePlayerUseAbilityEvent;
             defaultActions.Interact.performed -= RaisePlayerInteractEvent;
+            defaultActions.JournalOpen.performed -= RaiseJournalOpenEvent;
         }
         
         public bool IsShootActionPressed() => defaultActions.Shoot.IsPressed();
