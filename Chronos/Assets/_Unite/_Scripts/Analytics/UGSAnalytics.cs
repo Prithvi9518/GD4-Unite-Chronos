@@ -25,7 +25,8 @@ public class UGSAnalytics : MonoBehaviour
     {
         int currentLevel = Random.Range(1, 4); // Gets a random number from 1-3
 
-        // Define Custom Parameters
+        // Create a dictionary of custom parameters with the key "levelName"
+        // and a value of the form "levelX," where X is the randomly generated level number.
         Dictionary<string, object> parameters = new Dictionary<string, object>()
         {
             { "levelName", "level" + currentLevel.ToString()}
