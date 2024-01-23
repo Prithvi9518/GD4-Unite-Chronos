@@ -1,3 +1,4 @@
+using StarterAssets;
 using Unite.EventSystem;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -37,19 +38,17 @@ namespace Unite.Core.Input
             playerInput = new PlayerInputActions();
             defaultActions = playerInput.Default;
             uiActions = playerInput.UI;
+            
+            SwitchToDefaultActionMap();
         }
 
         private void OnEnable()
         {
-            defaultActions.Enable();
-            uiActions.Enable();
             SubscribeToActions();
         }
 
         private void OnDisable()
         {
-            defaultActions.Disable();
-            uiActions.Disable();
             UnsubscribeToActions();
         }
         
@@ -88,6 +87,5 @@ namespace Unite.Core.Input
             defaultActions.Disable();
             uiActions.Enable();
         }
-        
     }
 }

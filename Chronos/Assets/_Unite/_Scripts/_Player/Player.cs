@@ -56,5 +56,15 @@ namespace Unite.Player
             gunHandler.enabled = false;
             controller.enabled = false;
         }
+
+        public void DisableController()
+        {
+            controller.enabled = false;
+        }
+
+        public void EnableController()
+        {
+            controller.enabled = true;
+        }
     }
 }
