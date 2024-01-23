@@ -1,13 +1,14 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
-using Random = UnityEngine.Random;
 
 namespace Unite.Enemies.Spawning
 {
     public class EnemyWaveSpawner : MonoBehaviour
     {
         private int numEnemiesAlive;
+
+        private ISelectEnemy enemySelector = new WeightedRandomEnemySelector();
 
         public int NumEnemiesAlive => numEnemiesAlive;
         
@@ -16,12 +17,12 @@ namespace Unite.Enemies.Spawning
             numEnemiesAlive = 0;
             
             int availableCurrency = enemyWave.CurrencyToSpend;
-            List<EnemyData> validEnemiesToSpawn = new List<EnemyData>(enemyWave.Enemies);
+            List<EnemySpawnConfig> validEnemiesToSpawn = new List<EnemySpawnConfig>(enemyWave.EnemySpawns);
             
             while (availableCurrency > 0 && validEnemiesToSpawn.Count > 0)
             {
-                int enemyIndex = Random.Range(0, validEnemiesToSpawn.Count);
-                EnemyData enemyData = validEnemiesToSpawn[enemyIndex];
+                EnemySpawnConfig enemySpawn = enemySelector.SelectEnemySpawn(validEnemiesToSpawn);
+                EnemyData enemyData = enemySpawn.EnemyData;
                 int enemyCost = enemyData.Cost;
 
                 if (availableCurrency - enemyCost >= 0)
@@ -34,7 +35,7 @@ namespace Unite.Enemies.Spawning
                 }
                 else if (availableCurrency - enemyCost < 0)
                 {
-                    validEnemiesToSpawn.Remove(enemyData);
+                    validEnemiesToSpawn.Remove(enemySpawn);
                 }
                 else if (availableCurrency <= 0)
                     break;

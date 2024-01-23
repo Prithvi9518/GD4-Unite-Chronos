@@ -37,7 +37,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  duration: 0.05
+  duration: 0.015
   minVertexDistance: 0.1
   color:
     serializedVersion: 2
@@ -70,4 +70,4 @@ MonoBehaviour:
     m_NumColorKeys: 2
     m_NumAlphaKeys: 2
   missDistance: 50
-  simulationSpeed: 50
+  simulationSpeed: 70

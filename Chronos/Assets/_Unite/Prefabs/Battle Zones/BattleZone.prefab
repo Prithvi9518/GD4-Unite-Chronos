@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 3993637666093003771}
   - component: {fileID: 2273707757184720841}
   - component: {fileID: 4877613233622902978}
-  m_Layer: 2
+  m_Layer: 11
   m_Name: BattleZone
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -58,7 +58,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1051650736430058868}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -139,12 +139,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyWaves:
-  - enemies:
-    - {fileID: 11400000, guid: c4922ab8d4ca0ea4aada3f6134f000f1, type: 2}
-    currencyToSpend: 10
-  - enemies:
-    - {fileID: 11400000, guid: c4922ab8d4ca0ea4aada3f6134f000f1, type: 2}
-    currencyToSpend: 20
+  - enemySpawns:
+    - enemyData: {fileID: 11400000, guid: 9ab990075b745984fa13e233d5cb8f6c, type: 2}
+      minWeight: 0
+      maxWeight: 0
+    - enemyData: {fileID: 11400000, guid: 40f2860b1606c944b8454b665260b753, type: 2}
+      minWeight: 0
+      maxWeight: 0
+    currencyToSpend: 15
   barrier: {fileID: 1159803270756167839}
   buffSpawnPosition: {fileID: 7364726228433758888}
 --- !u!114 &3993637666093003771
@@ -212,7 +214,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5201749862298376334}
   - component: {fileID: 1159803270756167839}
-  m_Layer: 2
+  m_Layer: 11
   m_Name: Barrier
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -268,7 +270,7 @@ GameObject:
   - component: {fileID: 7448730732760159804}
   - component: {fileID: 7024829516203640870}
   - component: {fileID: 5663137159827766118}
-  m_Layer: 2
+  m_Layer: 11
   m_Name: Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -370,7 +372,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7364726228433758888}
-  m_Layer: 2
+  m_Layer: 11
   m_Name: BuffSpawnPoint
   m_TagString: Untagged
   m_Icon: {fileID: 3936346786652291628, guid: 0000000000000000d000000000000000, type: 0}
@@ -402,7 +404,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1151748675716579272}
   - component: {fileID: 4102846773518474679}
-  m_Layer: 2
+  m_Layer: 11
   m_Name: SpawnArea
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -457,7 +459,7 @@ GameObject:
   - component: {fileID: 5460800620661047490}
   - component: {fileID: 7524986555627692992}
   - component: {fileID: 3875511246636525721}
-  m_Layer: 2
+  m_Layer: 11
   m_Name: Wall (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -562,7 +564,7 @@ GameObject:
   - component: {fileID: 4716293596082086494}
   - component: {fileID: 5043144010168837972}
   - component: {fileID: 3589093037045854124}
-  m_Layer: 2
+  m_Layer: 11
   m_Name: Wall (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -667,7 +669,7 @@ GameObject:
   - component: {fileID: 2629165728890116730}
   - component: {fileID: 9109264272236113061}
   - component: {fileID: 8544921531296960510}
-  m_Layer: 2
+  m_Layer: 11
   m_Name: Wall (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -770,7 +772,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1817840224550684386}
   - component: {fileID: 133842160089550991}
-  m_Layer: 2
+  m_Layer: 11
   m_Name: TestBuffSelector
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -816,7 +818,7 @@ GameObject:
   - component: {fileID: 7790693707411733866}
   - component: {fileID: 5197018237613686450}
   - component: {fileID: 7809291049762112458}
-  m_Layer: 2
+  m_Layer: 11
   m_Name: Visual
   m_TagString: Untagged
   m_Icon: {fileID: 0}

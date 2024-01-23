@@ -12,11 +12,12 @@ namespace Unite.Enemies.AI
 
         public override bool VerifyCondition(BaseStateMachine baseStateMachine)
         {
-            EnemyStateMachine enemy = baseStateMachine as EnemyStateMachine;
+            Enemy enemy = baseStateMachine.GetComponent<Enemy>();
 
             Attack attack = enemy.AttackHandler.Attacks.GetValueOrDefault(attackData.name, null);
 
-            return attack.AttackData.WithinAttackRange(enemy.transform, enemy.DetectionHandler.Target);
+            return attack.AttackData.WithinAttackRange(enemy.transform, enemy.DetectionHandler.Target)
+                && enemy.DetectionHandler.IsTargetDetected();
         }
     }
 }

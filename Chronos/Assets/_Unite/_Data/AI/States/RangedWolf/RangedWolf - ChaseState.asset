@@ -25,6 +25,9 @@ MonoBehaviour:
   - condition: {fileID: 11400000, guid: 9dbbb067f9523e94585067ad57078924, type: 2}
     trueState: {fileID: 11400000, guid: 96954ce0c9d051d43bcd5c1ea5bd9c78, type: 2}
     falseState: {fileID: 11400000, guid: 72468647a83f1bf488b9575ef0eb8602, type: 2}
+  - condition: {fileID: 11400000, guid: 9dbbb067f9523e94585067ad57078924, type: 2}
+    trueState: {fileID: 11400000, guid: 96954ce0c9d051d43bcd5c1ea5bd9c78, type: 2}
+    falseState: {fileID: 11400000, guid: 72468647a83f1bf488b9575ef0eb8602, type: 2}
   eventTransitions:
   - stateEvent: 1
     toState: {fileID: 11400000, guid: a899c097012295f4788570e3cc318282, type: 2}

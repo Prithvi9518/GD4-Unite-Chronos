@@ -1,8 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Unite.Enemies;
 using Unite.EventSystem;
-using Unite.Interactibles;
+using Unite.InteractionSystem;
 using UnityEngine;
 using UnityEngine.Analytics;
 

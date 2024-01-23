@@ -6,11 +6,8 @@ namespace Unite.Enemies
     public abstract class AttackData : ScriptableObject, IDoDamage
     {
         [SerializeField]
-        private float damage;
+        protected float damage;
 
-        [SerializeField]
-        protected float attackRange;
-        
         [SerializeField]
         protected float minAttackRange;
         
@@ -20,7 +17,6 @@ namespace Unite.Enemies
         [SerializeField]
         protected float attackCooldown;
 
-        public float AttackRange => attackRange;
         public float MinAttackRange => minAttackRange;
         public float MaxAttackRange => maxAttackRange;
         public float AttackDamage => damage;
@@ -36,6 +32,20 @@ namespace Unite.Enemies
 
             return distance <= maxAttackRange &&
                    distance >= minAttackRange;
+        }
+
+        public bool OutsideLowerRange(Transform attacker, Transform target)
+        {
+            float distance = Vector3.Distance(attacker.transform.position, target.position);
+
+            return distance < minAttackRange;
+        }
+        
+        public bool OutsideUpperRange(Transform attacker, Transform target)
+        {
+            float distance = Vector3.Distance(attacker.transform.position, target.position);
+
+            return distance > maxAttackRange;
         }
 
         public string GetName()

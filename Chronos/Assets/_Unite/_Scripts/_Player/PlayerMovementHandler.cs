@@ -21,7 +21,7 @@ namespace Unite.Player
             statsHandler = GetComponent<PlayerStatsHandler>();
         }
 
-        public void UpdateSpeedValue()
+        public void UpdateSpeedFromStats()
         {
             Stat speedStat = statsHandler.GetStat(speedStatType);
             if (speedStat == null) return;
@@ -29,6 +29,12 @@ namespace Unite.Player
             float baseSpeed = speedStat.Value;
             controller.MoveSpeed = baseSpeed;
             controller.SprintSpeed = baseSpeed + sprintSpeedIncrement;
+        }
+
+        public void ModifySpeed(float modifier)
+        {
+            controller.MoveSpeed += modifier;
+            controller.SprintSpeed += modifier;
         }
     }
 }

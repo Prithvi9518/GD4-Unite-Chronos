@@ -4,10 +4,10 @@ using Unite.Core.DamageInterfaces;
 using Unite.ImpactSystem;
 using Unite.SoundScripts;
 using Unite.StatusEffectSystem;
+using Unite.VFXScripts;
 using Unite.WeaponSystem.ImpactEffects;
 using UnityEngine;
 using UnityEngine.Pool;
-using Random = UnityEngine.Random;
 
 namespace Unite.WeaponSystem
 {
@@ -52,20 +52,30 @@ namespace Unite.WeaponSystem
         private float initialClickTime;
         private float stopShootingTime;
         private bool wantedToShootLastFrame;
-        private ParticleSystem shootParticleSystem;
+        private MuzzleFlashHandler muzzleFlashHandler;
         private GameObject trailsGameObject;
         private ObjectPool<TrailRenderer> trailPool;
         private IImpactHandler[] bulletImpactEffects = Array.Empty<IImpactHandler>();
+
+        private float baseDamage;
+
+        private Transform shootPoint;
 
         public IAttacker Shooter => shooter;
         public GunType GunType => gunType;
         public ShootData ShootData => shootData;
         public DamageConfig DamageConfig => damageConfig;
+        public float BaseDamage => baseDamage;
 
         public void SetImpactType(ImpactType type)
         {
             impactType = type;
         }
+
+        public void UpdateBaseDamage(float updatedValue)
+        {
+            baseDamage = updatedValue;
+        } 
 
         public void SetBulletImpactEffects(IImpactHandler[] effects)
         {
@@ -106,7 +116,8 @@ namespace Unite.WeaponSystem
             model.transform.localPosition = spawnPoint;
             model.transform.localRotation = Quaternion.Euler(spawnRotation);
 
-            shootParticleSystem = model.GetComponentInChildren<ParticleSystem>();
+            muzzleFlashHandler = model.GetComponent<MuzzleFlashHandler>();
+            shootPoint = model.GetComponent<ShootPointHolder>().ShootPoint;
         }
 
         public void Tick(bool wantsToShoot)
@@ -143,14 +154,14 @@ namespace Unite.WeaponSystem
             
             lastShootTime = Time.time;
                 
-            shootParticleSystem.Play();
             audioConfig.PlayShootingAudioClip();
 
             Vector3 bulletSpread = shootData.GetSpread(Time.time - initialClickTime);
             model.transform.forward += model.transform.TransformDirection(bulletSpread);
             Vector3 shootDirection = model.transform.forward;
 
-            Vector3 start = shootParticleSystem.transform.position;
+            // Vector3 start = muzzleFlashHandler.transform.position;
+            Vector3 start = shootPoint.position;
 
             if (Physics.Raycast(start, shootDirection, out RaycastHit hit,
                     float.MaxValue, shootData.HitMask))
@@ -173,6 +184,8 @@ namespace Unite.WeaponSystem
                     )
                 );
             }
+            
+            muzzleFlashHandler.PlayMuzzleFlash();
         }
 
         private void HandleBulletImpact(RaycastHit hit, float distance)
@@ -186,7 +199,8 @@ namespace Unite.WeaponSystem
             
             if (hit.collider.TryGetComponent(out ITakeDamage damageable))
             {
-                damageable.TakeDamage(damageConfig.GetDamage(distance), shooter, this);
+                damageable.TakeDamage(baseDamage + damageConfig.GetDamage(distance),
+                    shooter, this);
             }
             if (hit.collider.TryGetComponent(out IStatusEffectable effectable))
             {

@@ -1,7 +1,6 @@
 using Unite.Core;
 using Unite.Enemies.AI;
 using Unite.Enemies.Movement;
-using Unite.Enemies.Projectiles;
 using Unite.EventSystem;
 using Unite.ItemDropSystem;
 using UnityEngine;
@@ -18,6 +17,10 @@ namespace Unite.Enemies
     [RequireComponent(typeof(EnemyDetectionHandler))]
     [RequireComponent(typeof(EnemyAnimationHandler))]
     [RequireComponent(typeof(EnemyUIHandler))]
+    [RequireComponent(typeof(EnemyDropHandler))]
+    [RequireComponent(typeof(LineOfSightDetection))]
+    [RequireComponent(typeof(TimeStopEnemy))]
+    [RequireComponent(typeof(EnemyStatusEffectable))]
     public class Enemy : MonoBehaviour
     {
         [SerializeField]
