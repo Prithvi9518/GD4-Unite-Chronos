@@ -9,9 +9,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 247a8d15f462479b90d324d2fb459ecf, type: 3}
-  m_Name: SampleNoteSO
+  m_Script: {fileID: 11500000, guid: 84ce871f98694884841ba02599115f00, type: 3}
+  m_Name: OnInteractWithNote
   m_EditorClassIdentifier: 
-  title: Sample Title
-  content: Sample Content
-  onInteractWithNote: {fileID: 11400000, guid: 8d10aab55fb72544e963ccfaee20e4fc, type: 2}
