@@ -10,6 +10,9 @@ namespace Unite.BuffSystem
         [SerializeField]
         private string description;
 
-        public abstract void ApplyBuff(Player.Player player);
+        public virtual void ApplyBuff(Player.Player player)
+        {
+            BuffsTrackingManager.Instance.AddBuffToTracker(this);
+        }
     }
 }

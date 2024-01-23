@@ -12,6 +12,8 @@ namespace Unite.BuffSystem
 
         public override void ApplyBuff(Player.Player player)
         {
+            base.ApplyBuff(player);
+            
             StatusEffectModifier modifier = new StatusEffectModifier(statusEffect);
             player.GunHandler.ApplyModifier(modifier);
         }
