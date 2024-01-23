@@ -2,15 +2,12 @@ using Unite.EventSystem;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-namespace Unite.Player
+namespace Unite.Core.Input
 {
-    public class PlayerInputHandler : MonoBehaviour
+    public class InputManager : MonoBehaviour
     {
-        private PlayerInputActions playerInput;
-        private PlayerInputActions.DefaultActions defaultActions;
-
-        public PlayerInputActions.DefaultActions DefaultActions => defaultActions;
-
+        public static InputManager Instance { get; private set; }
+        
         [Header("Event for interact action")]
         [SerializeField] 
         private GameEvent onPlayerInteractAction;
@@ -19,26 +16,43 @@ namespace Unite.Player
         [SerializeField] 
         private GameEvent onPlayerUseAbilityAction;
         
+        private PlayerInputActions playerInput;
+        private PlayerInputActions.DefaultActions defaultActions;
+        private PlayerInputActions.UIActions uiActions;
+
+        public PlayerInputActions PlayerInput => playerInput;
+        public PlayerInputActions.DefaultActions DefaultActions => defaultActions;
+        public PlayerInputActions.UIActions UIActions => uiActions;
+        
         private void Awake()
         {
+            if (Instance != null)
+            {
+                Debug.LogWarning("More than one instance of InputManager in the scene! Destroying current instance.");
+                Destroy(this);
+            }
+
+            Instance = this;
+            
             playerInput = new PlayerInputActions();
             defaultActions = playerInput.Default;
+            uiActions = playerInput.UI;
         }
 
         private void OnEnable()
         {
             defaultActions.Enable();
+            uiActions.Enable();
             SubscribeToActions();
         }
 
         private void OnDisable()
         {
             defaultActions.Disable();
+            uiActions.Disable();
             UnsubscribeToActions();
         }
-
-        public bool IsShootActionPressed() => defaultActions.Shoot.IsPressed();
-
+        
         private void RaisePlayerUseAbilityEvent(InputAction.CallbackContext ctx)
         {
             onPlayerUseAbilityAction.Raise();
@@ -59,6 +73,20 @@ namespace Unite.Player
         {
             defaultActions.Ability1.performed -= RaisePlayerUseAbilityEvent;
             defaultActions.Interact.performed -= RaisePlayerInteractEvent;
+        }
+        
+        public bool IsShootActionPressed() => defaultActions.Shoot.IsPressed();
+
+        public void SwitchToDefaultActionMap()
+        {
+            defaultActions.Enable();
+            uiActions.Disable();
+        }
+        
+        public void SwitchToUIActionMap()
+        {
+            defaultActions.Disable();
+            uiActions.Enable();
         }
         
     }
