@@ -1,11 +1,9 @@
 ﻿using StarterAssets;
 using Unite.EventSystem;
-using Unite.StatusEffectSystem;
 using UnityEngine;
 
 namespace Unite.Player
 {
-    [RequireComponent(typeof(PlayerInputHandler))]
     [RequireComponent(typeof(PlayerHealthHandler))]
     [RequireComponent(typeof(PlayerStatsHandler))]
     [RequireComponent(typeof(PlayerGunHandler))]
@@ -19,7 +17,6 @@ namespace Unite.Player
         [SerializeField]
         private PlayerEvent onPlayerReady;
         
-        private PlayerInputHandler inputHandler;
         private PlayerHealthHandler healthHandler;
         private PlayerStatsHandler statsHandler;
         private PlayerGunHandler gunHandler;
@@ -30,14 +27,11 @@ namespace Unite.Player
         public PlayerHealthHandler HealthHandler => healthHandler;
         public PlayerStatsHandler StatsHandler => statsHandler;
         public PlayerGunHandler GunHandler => gunHandler;
-        public PlayerInputHandler InputHandler => inputHandler;
         public PlayerMovementHandler MovementHandler => movementHandler;
         public PlayerStatusEffectable StatusEffectable => statusEffectable;
 
         private void Awake()
         {
-            inputHandler = GetComponent<PlayerInputHandler>();
-            
             healthHandler = GetComponent<PlayerHealthHandler>();
             
             statsHandler = GetComponent<PlayerStatsHandler>();
@@ -58,10 +52,19 @@ namespace Unite.Player
 
         public void OnPlayerDead()
         {
-            inputHandler.enabled = false;
             healthHandler.enabled = false;
             gunHandler.enabled = false;
             controller.enabled = false;
+        }
+
+        public void DisableController()
+        {
+            controller.enabled = false;
+        }
+
+        public void EnableController()
+        {
+            controller.enabled = true;
         }
     }
 }

@@ -1,3 +1,5 @@
+using System;
+using Unite.EventSystem;
 using UnityEngine;
 
 namespace Unite.AbilitySystem
@@ -5,10 +7,19 @@ namespace Unite.AbilitySystem
     public class Ability : MonoBehaviour
     {
         [SerializeField] private AbilityData abilityData;
+        [SerializeField] private AbilityEvent onAbilityInstantiate;
 
         private AbilityState currentState;
         private float remainingActiveTimeMs;
         private float remainingCooldownTimeMs;
+
+        public float RemainingActiveTimeMs => remainingActiveTimeMs;
+        public float RemainingCooldownTimeMs => remainingCooldownTimeMs;
+
+        private void Start()
+        {
+            onAbilityInstantiate.Raise(this);
+        }
 
         private void Update()
         {

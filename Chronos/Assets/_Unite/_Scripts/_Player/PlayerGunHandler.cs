@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using Unite.Core.DamageInterfaces;
+using Unite.Core.Input;
 using Unite.EventSystem;
 using Unite.StatSystem;
 using Unite.WeaponSystem;
@@ -33,7 +34,6 @@ namespace Unite.Player
         public GunData ActiveGun => activeGun;
 
         private Dictionary<GunType, GunData> gunDictionary = new();
-        private PlayerInputHandler inputHandler;
         private PlayerStatsHandler statsHandler;
 
         private void Awake()
@@ -53,9 +53,8 @@ namespace Unite.Player
             CheckAndHandleShootAction();
         }
 
-        public void PerformSetup(PlayerInputHandler playerInputHandler, PlayerStatsHandler playerStatsHandler)
+        public void PerformSetup(PlayerStatsHandler playerStatsHandler)
         {
-            inputHandler = playerInputHandler;
             statsHandler = playerStatsHandler;
             UpdateBaseDamageFromStats();
         }
@@ -74,7 +73,7 @@ namespace Unite.Player
         {
             if (activeGun == null) return;
 
-            bool isShootActionPressed = inputHandler.IsShootActionPressed();
+            bool isShootActionPressed = InputManager.Instance.IsShootActionPressed();
             activeGun.Tick(isShootActionPressed);
 
             if (!isShootActionPressed) return;
