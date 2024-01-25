@@ -51,7 +51,7 @@ namespace Unite.Enemies.Spawning
             enemyData.SetupEnemy(enemy, playerTransform);
             
             NavMeshHit hit;
-            if (NavMesh.SamplePosition(spawnPosition, out hit, 2f, -1))
+            if (NavMesh.SamplePosition(spawnPosition, out hit, 1000f, -1))
             {
                 enemy.Agent.Warp(hit.position);
             }
