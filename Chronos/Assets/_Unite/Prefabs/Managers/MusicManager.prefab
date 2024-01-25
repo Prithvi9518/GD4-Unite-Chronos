@@ -11,6 +11,8 @@ GameObject:
   - component: {fileID: 8943458296164919047}
   - component: {fileID: 6235525504150382270}
   - component: {fileID: 3897587828550683808}
+  - component: {fileID: 4434313225828289400}
+  - component: {fileID: 7385572279093920807}
   m_Layer: 0
   m_Name: MusicManager
   m_TagString: Untagged
@@ -45,6 +47,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce07ae79f22c4466bb6b01f2d97eff1e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  combatAudioSource: {fileID: 3897587828550683808}
 --- !u!82 &3897587828550683808
 AudioSource:
   m_ObjectHideFlags: 0
@@ -55,15 +58,15 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_audioClip: {fileID: 8300000, guid: f0c940047edba0a4192b840726e4625d, type: 3}
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
-  Priority: 128
+  Priority: 13
   DopplerLevel: 1
   MinDistance: 1
   MaxDistance: 500
@@ -141,3 +144,61 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &4434313225828289400
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3620422658890463630}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da5e03dff9df6234c8fbf86cbea92be6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  description: Listen for battle start
+  gameEvent: {fileID: 11400000, guid: a991dd00939e49142b44a0d52b74d942, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 6235525504150382270}
+        m_TargetAssemblyTypeName: Unite.SoundScripts.MusicManager, Assembly-CSharp
+        m_MethodName: PlayCombatMusic
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &7385572279093920807
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3620422658890463630}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b9893a878b6442144bd9c1283a2b4b18, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  description: Listen for battle finish
+  gameEvent: {fileID: 11400000, guid: e391660daa999374fa01e96816751e18, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 6235525504150382270}
+        m_TargetAssemblyTypeName: Unite.SoundScripts.MusicManager, Assembly-CSharp
+        m_MethodName: StopCombatMusic
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
