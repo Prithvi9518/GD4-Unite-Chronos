@@ -12,8 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e8a5b46930279543980c2d7ec0d6797, type: 3}
   m_Name: RangedWolf - Melee Attack
   m_EditorClassIdentifier: 
-  damage: 15
-  attackRange: 3
+  damage: 5
   minAttackRange: 0
   maxAttackRange: 3.2
   attackCooldown: 1.5
