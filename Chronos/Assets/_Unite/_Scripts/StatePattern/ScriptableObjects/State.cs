@@ -10,7 +10,7 @@ namespace Unite.StatePattern
     /// <seealso cref="Action"/>
     /// <seealso cref="Condition"/>
     /// <seealso cref="StateTransition"/>
-    /// <seealso cref="IStateMachine"/>
+    /// <seealso cref="BaseStateMachine"/>
     /// </summary>
 
     [CreateAssetMenu(fileName = "State", menuName = "AI/State")]
@@ -37,70 +37,70 @@ namespace Unite.StatePattern
         [SerializeField]
         private StateEventTransition[] eventTransitions;
 
-        public void EnterState(IStateMachine stateMachine)
+        public void EnterState(BaseStateMachine baseStateMachine)
         {
-            PerformEnterActions(stateMachine);
+            PerformEnterActions(baseStateMachine);
         }
 
-        public void UpdateState(IStateMachine stateMachine)
+        public void UpdateState(BaseStateMachine baseStateMachine)
         {
-            PerformUpdateActions(stateMachine);
-            CheckConditionalTransitions(stateMachine);
+            PerformUpdateActions(baseStateMachine);
+            CheckConditionalTransitions(baseStateMachine);
         }
 
-        public void ExitState(IStateMachine stateMachine)
+        public void ExitState(BaseStateMachine baseStateMachine)
         {
-            PerformExitActions(stateMachine);
+            PerformExitActions(baseStateMachine);
         }
 
-        public void CheckEventTransitions(IStateMachine stateMachine, StateEvent stateEvent)
+        public void CheckEventTransitions(BaseStateMachine baseStateMachine, StateEvent stateEvent)
         {
             foreach (StateEventTransition transition in eventTransitions)
             {
                 if (transition.Event == stateEvent)
                 {
-                    stateMachine.SetCurrentState(transition.ToState);
+                    baseStateMachine.SetCurrentState(transition.ToState);
                 }
             }
         }
 
-        private void PerformEnterActions(IStateMachine stateMachine)
+        private void PerformEnterActions(BaseStateMachine baseStateMachine)
         {
             foreach (Action action in enterActions)
             {
-                action.ExecuteAction(stateMachine);
+                action.ExecuteAction(baseStateMachine);
             }
         }
 
-        private void PerformUpdateActions(IStateMachine stateMachine)
+        private void PerformUpdateActions(BaseStateMachine baseStateMachine)
         {
             foreach (Action action in updateActions)
             {
-                action.ExecuteAction(stateMachine);
+                action.ExecuteAction(baseStateMachine);
             }
         }
 
-        private void PerformExitActions(IStateMachine stateMachine)
+        private void PerformExitActions(BaseStateMachine baseStateMachine)
         {
             foreach (Action action in exitActions)
             {
-                action.ExecuteAction(stateMachine);
+                action.ExecuteAction(baseStateMachine);
             }
         }
 
-        private void CheckConditionalTransitions(IStateMachine stateMachine)
+        private void CheckConditionalTransitions(BaseStateMachine baseStateMachine)
         {
             foreach (StateTransition transition in conditionBasedTransitions)
             {
-                bool conditionSatisfied = transition.Condition.VerifyCondition(stateMachine);
+                bool conditionSatisfied = transition.Condition.VerifyCondition(baseStateMachine);
 
                 if (conditionSatisfied)
                 {
-                    stateMachine.SetCurrentState(transition.TrueState);
+                    baseStateMachine.SetCurrentState(transition.TrueState);
                 }
                 else
                 {
-                    stateMachine.SetCurrentState(transition.FalseState);
+                    baseStateMachine.SetCurrentState(transition.FalseState);
                 }
             }
         }

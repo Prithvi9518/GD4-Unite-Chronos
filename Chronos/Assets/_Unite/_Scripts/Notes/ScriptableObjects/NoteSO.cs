@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Unite.EventSystem;
+using UnityEngine;
 
 namespace Unite.Notes
 {
@@ -12,7 +13,12 @@ namespace Unite.Notes
         [TextArea(2,20)]
         private string content;
 
+        [SerializeField]
+        private NoteSOEvent onInteractWithNote;
+
         public string Title => title;
         public string Content => content;
+
+        public NoteSOEvent OnInteractWithNote => onInteractWithNote;
     }
 }

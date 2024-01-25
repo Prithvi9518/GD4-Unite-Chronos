@@ -13,7 +13,9 @@ namespace Unite.BuffSystem
         
         public override void ApplyBuff(Player.Player player)
         {
-            player.HealthHandler.StartRegeneration(regenerationPercentage, intervalInSeconds);
+            base.ApplyBuff(player);
+            
+            player.HealthHandler.ApplyRegeneration(regenerationPercentage, intervalInSeconds);
         }
     }
 }

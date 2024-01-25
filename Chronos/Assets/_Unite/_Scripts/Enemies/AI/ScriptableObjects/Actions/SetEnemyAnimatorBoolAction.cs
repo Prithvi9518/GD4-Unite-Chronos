@@ -11,10 +11,10 @@ namespace Unite.Enemies.AI
         [SerializeField]
         private bool value;
 
-        public override void ExecuteAction(IStateMachine stateMachine)
+        public override void ExecuteAction(BaseStateMachine baseStateMachine)
         {
-            EnemyStateMachine enemy = stateMachine as EnemyStateMachine;
-            enemy.AnimationHandler.SetAnimationBool(animatorBoolName, value);
+            EnemyAnimationHandler animationHandler = baseStateMachine.GetComponent<EnemyAnimationHandler>();
+            animationHandler.SetAnimationBool(animatorBoolName, value);
         }
     }
 }

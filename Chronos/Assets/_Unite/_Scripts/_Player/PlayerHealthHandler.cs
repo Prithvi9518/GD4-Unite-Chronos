@@ -1,8 +1,8 @@
 using System.Collections;
 using Unite.Core;
 using Unite.Core.DamageInterfaces;
-using Unite.Core.Game;
 using Unite.EventSystem;
+using Unite.StatSystem;
 using UnityEngine;
 
 namespace Unite.Player
@@ -11,27 +11,48 @@ namespace Unite.Player
     public class PlayerHealthHandler : MonoBehaviour, ITakeDamage
     {
         [SerializeField]
+        private StatTypeSO healthStatType;
+        
+        [SerializeField]
         private HealthInfoEvent onHealthChanged;
         
         [SerializeField] 
-        private GameStateEvent onPlayerDied;
+        private PlayerDiedInfoEvent onPlayerDied;
         
         private Health playerHealth;
+        private PlayerStatsHandler statsHandler;
 
         private bool regenEnabled;
         private float regenerationIntervalInSeconds;
         private float regenerationPercent;
         private Coroutine regenerationCoroutine;
+
+        private bool dead;
         
         private void Awake()
         {
             playerHealth = GetComponent<Health>();
+            statsHandler = GetComponent<PlayerStatsHandler>();
         }
 
-        public void PerformSetup(float baseHealth)
+        public void PerformSetup()
         {
-            playerHealth.MaxHealth = baseHealth;
+            dead = false;
+            regenEnabled = false;
+            // playerHealth.MaxHealth = baseHealth;
+            // playerHealth.ResetHealth();
+            
+            playerHealth.MaxHealth = statsHandler.GetStat(healthStatType).Value;
             playerHealth.ResetHealth();
+        }
+
+        public void UpdateMaxHealthFromStats()
+        {
+            Debug.Log($"Old max health = {playerHealth.MaxHealth}");
+            playerHealth.MaxHealth = statsHandler.GetStat(healthStatType).Value;
+            playerHealth.ResetHealth();
+            onHealthChanged.Raise(new HealthInfo(playerHealth.CurrentHealth, playerHealth.MaxHealth));
+            Debug.Log($"New max health = {playerHealth.MaxHealth}");
         }
 
         public void AddHealth(float amount)
@@ -40,28 +61,41 @@ namespace Unite.Player
             onHealthChanged.Raise(new HealthInfo(playerHealth.CurrentHealth, playerHealth.MaxHealth));
         }
 
-        public void TakeDamage(float damage)
+        public void TakeDamage(float damage, IAttacker attacker, IDoDamage attack)
         {
+            if (dead) return;
+            
             playerHealth.DecreaseHealth(damage);
             
             onHealthChanged.Raise(new HealthInfo(playerHealth.CurrentHealth, playerHealth.MaxHealth));
 
-            if (!(playerHealth.CurrentHealth <= 0)) return;
+            if (playerHealth.CurrentHealth > 0) return;
+            
             StopRegeneration();
-            Die();
+            Die(attacker, attack);
         }
         
-        public void StartRegeneration(float regenPercentage, float intervalInSeconds)
+        public void ApplyRegeneration(float regenPercentage, float intervalInSeconds)
         {
-            regenEnabled = true;
-            regenerationPercent = regenPercentage;
-            regenerationIntervalInSeconds = intervalInSeconds;
-            regenerationCoroutine = StartCoroutine(RegenerationCoroutine());
+            if (!regenEnabled)
+            {
+                regenEnabled = true;
+                regenerationPercent = regenPercentage;
+                regenerationIntervalInSeconds = intervalInSeconds;
+                regenerationCoroutine = StartCoroutine(RegenerationCoroutine());
+            }
+            else
+            {
+                regenerationPercent += regenPercentage;
+            }
         }
         
-        private void Die()
+        private void Die(IAttacker attacker, IDoDamage attack)
         {
-            onPlayerDied.Raise(GameState.PlayerDead);
+            if (dead) return;
+            
+            dead = true;
+            onPlayerDied.Raise(new PlayerDiedInfo(transform.position, attacker.GetName(), attack.GetName()));
         }
 
         private void StopRegeneration()

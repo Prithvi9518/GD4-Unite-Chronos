@@ -6,14 +6,14 @@ namespace Unite.EventSystem
     [CreateAssetMenu(fileName = "GameEvent", menuName = "Events/GameEvent")]
     public class GameEvent : ScriptableObject
     {
-        private HashSet<GameEventListener> listeners = new HashSet<GameEventListener>();
+        private List<GameEventListener> listeners = new();
 
         [ContextMenu("Raise Event")]
         public virtual void Raise()
         {
-            foreach (var listener in listeners)
+            for (int i = listeners.Count - 1; i >= 0; i--)
             {
-                listener.OnEventRaised();
+                listeners[i].OnEventRaised();
             }
         }
 

@@ -1,15 +1,18 @@
 using Unite.StatePattern;
 using UnityEngine;
+using UnityEngine.AI;
 
 namespace Unite.Enemies.AI
 {
     [CreateAssetMenu(fileName = "ChasePlayerAction", menuName = "AI/Actions/ChasePlayerAction")]
     public class ChasePlayerAction : Action
     {
-        public override void ExecuteAction(IStateMachine stateMachine)
+        public override void ExecuteAction(BaseStateMachine baseStateMachine)
         {
-            EnemyStateMachine enemy = stateMachine as EnemyStateMachine;
-            enemy.Agent.SetDestination(enemy.DetectionHandler.Target.position);
+            NavMeshAgent agent = baseStateMachine.GetComponent<NavMeshAgent>();
+            EnemyDetectionHandler detectionHandler = baseStateMachine.GetComponent<EnemyDetectionHandler>();
+            
+            agent.SetDestination(detectionHandler.Target.position);
         }
     }
 }

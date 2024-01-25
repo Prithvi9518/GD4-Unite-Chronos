@@ -16,3 +16,7 @@ MonoBehaviour:
   sprite: {fileID: 0}
   activeTimeMs: 4
   cooldownTimeMs: 5
+  onAbilityActivate: {fileID: 11400000, guid: 11dd035e10decae4495407d205330d5b, type: 2}
+  onAbilityDeactivate: {fileID: 11400000, guid: edf734dcf4ab6e0458cf813d1f16e664,
+    type: 2}
+  onUpdateAnalytics: {fileID: 11400000, guid: 318aa66efde8aad468093016fe43f917, type: 2}

@@ -1,5 +1,8 @@
 ﻿using System.Collections.Generic;
+using Unite.Core.DamageInterfaces;
+using Unite.Core.Input;
 using Unite.EventSystem;
+using Unite.StatSystem;
 using Unite.WeaponSystem;
 using Unite.WeaponSystem.Modifiers;
 using UnityEngine;
@@ -7,8 +10,11 @@ using UnityEngine;
 namespace Unite.Player
 {
     [DisallowMultipleComponent]
-    public class PlayerGunHandler : MonoBehaviour
+    public class PlayerGunHandler : MonoBehaviour, IAttacker
     {
+        [SerializeField]
+        private StatTypeSO damageStatType;
+        
         [SerializeField]
         private GunType gunType;
         
@@ -28,9 +34,9 @@ namespace Unite.Player
         public GunData ActiveGun => activeGun;
 
         private Dictionary<GunType, GunData> gunDictionary = new();
-        private PlayerInputHandler inputHandler;
+        private PlayerStatsHandler statsHandler;
 
-        private void Start()
+        private void Awake()
         {
             SetupGunDictionary();
             GunData gun = gunDictionary[gunType];
@@ -47,9 +53,10 @@ namespace Unite.Player
             CheckAndHandleShootAction();
         }
 
-        public void SetInputHandler(PlayerInputHandler playerInputHandler)
+        public void PerformSetup(PlayerStatsHandler playerStatsHandler)
         {
-            inputHandler = playerInputHandler;
+            statsHandler = playerStatsHandler;
+            UpdateBaseDamageFromStats();
         }
 
         public void ApplyModifier(IGunModifier gunModifier)
@@ -57,11 +64,16 @@ namespace Unite.Player
             gunModifier.Apply(activeGun);
         }
 
+        public void UpdateBaseDamageFromStats()
+        {
+            activeGun.UpdateBaseDamage(statsHandler.GetStat(damageStatType).Value);
+        }
+
         private void CheckAndHandleShootAction()
         {
             if (activeGun == null) return;
 
-            bool isShootActionPressed = inputHandler.IsShootActionPressed();
+            bool isShootActionPressed = InputManager.Instance.IsShootActionPressed();
             activeGun.Tick(isShootActionPressed);
 
             if (!isShootActionPressed) return;
@@ -75,6 +87,11 @@ namespace Unite.Player
             {
                 gunDictionary.Add(gun.GunType, gun);
             }
+        }
+
+        public string GetName()
+        {
+            return name;
         }
     }
 }

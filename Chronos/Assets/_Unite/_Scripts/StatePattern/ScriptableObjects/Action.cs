@@ -10,6 +10,6 @@ namespace Unite.StatePattern
     /// </summary>
     public abstract class Action : ScriptableObject
     {
-        public abstract void ExecuteAction(IStateMachine stateMachine);
+        public abstract void ExecuteAction(BaseStateMachine baseStateMachine);
     }
 }

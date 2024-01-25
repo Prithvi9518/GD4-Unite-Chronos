@@ -7,14 +7,15 @@ namespace Unite.Enemies.AI
     public class SetEnemyAnimatorTriggerAction : Action
     {
         [SerializeField]
-        private string animationTriggerName;
+        private EnemyState enemyState;
+        
         [SerializeField]
         private bool isActive;
 
-        public override void ExecuteAction(IStateMachine stateMachine)
+        public override void ExecuteAction(BaseStateMachine baseStateMachine)
         {
-            EnemyStateMachine enemy = stateMachine as EnemyStateMachine;
-            enemy.AnimationHandler.SetAnimationTrigger(animationTriggerName, isActive);
+            EnemyAnimationHandler animationHandler = baseStateMachine.GetComponent<EnemyAnimationHandler>();
+            animationHandler.SetAnimationTrigger(enemyState.ToString(), isActive);
         }
     }
 }

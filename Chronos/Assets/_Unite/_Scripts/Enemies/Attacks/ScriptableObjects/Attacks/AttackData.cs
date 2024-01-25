@@ -1,29 +1,56 @@
-using Unite.Enemies.AI;
+using Unite.Core.DamageInterfaces;
 using UnityEngine;
 
 namespace Unite.Enemies
 {
-    public abstract class AttackData : ScriptableObject
+    public abstract class AttackData : ScriptableObject, IDoDamage
     {
         [SerializeField]
-        private AttackName attackName;
+        protected float damage;
 
         [SerializeField]
-        private float damage;
-
+        protected float minAttackRange;
+        
         [SerializeField]
-        protected float attackRange;
+        protected float maxAttackRange;
 
         [SerializeField]
         protected float attackCooldown;
 
-        public AttackName AttackName => attackName;
-        public float AttackRange => attackRange;
+        public float MinAttackRange => minAttackRange;
+        public float MaxAttackRange => maxAttackRange;
         public float AttackDamage => damage;
         public float AttackCooldown => attackCooldown;
 
-        public abstract void Attack(EnemyStateMachine enemy);
+        public abstract void Attack(Enemy enemy);
 
-        public abstract bool CheckDealDamage(EnemyStateMachine enemy);
+        public abstract bool CheckDealDamage(Enemy enemy);
+
+        public bool WithinAttackRange(Transform attacker, Transform target)
+        {
+            float distance = Vector3.Distance(attacker.transform.position, target.position);
+
+            return distance <= maxAttackRange &&
+                   distance >= minAttackRange;
+        }
+
+        public bool OutsideLowerRange(Transform attacker, Transform target)
+        {
+            float distance = Vector3.Distance(attacker.transform.position, target.position);
+
+            return distance < minAttackRange;
+        }
+        
+        public bool OutsideUpperRange(Transform attacker, Transform target)
+        {
+            float distance = Vector3.Distance(attacker.transform.position, target.position);
+
+            return distance > maxAttackRange;
+        }
+
+        public string GetName()
+        {
+            return name;
+        }
     }
 }

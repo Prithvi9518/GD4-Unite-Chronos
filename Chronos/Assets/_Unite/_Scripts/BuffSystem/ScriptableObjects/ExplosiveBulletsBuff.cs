@@ -23,6 +23,8 @@ namespace Unite.BuffSystem
 
         public override void ApplyBuff(Player.Player player)
         {
+            base.ApplyBuff(player);
+            
             ImpactTypeModifier modifier = new ImpactTypeModifier(impactType);
             ExplodeEffect explode = new ExplodeEffect(radius, damageFalloff,
                 baseExplosionDamage, maxEnemiesAffected);

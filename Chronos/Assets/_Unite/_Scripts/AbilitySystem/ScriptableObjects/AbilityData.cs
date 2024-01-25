@@ -1,3 +1,4 @@
+using Unite.EventSystem;
 using UnityEngine;
 
 namespace Unite.AbilitySystem
@@ -8,6 +9,8 @@ namespace Unite.AbilitySystem
         [SerializeField] private Sprite sprite;
         [SerializeField] private float activeTimeMs;
         [SerializeField] private float cooldownTimeMs;
+        [SerializeField] protected GameEvent onAbilityActivate;
+        [SerializeField] protected GameEvent onAbilityDeactivate;
 
         public abstract void Activate();
 
