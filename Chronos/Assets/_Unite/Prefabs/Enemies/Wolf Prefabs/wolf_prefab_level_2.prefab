@@ -8,6 +8,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4621101131845364489, guid: abf2bafc978e7794e80a8baf785624e6,
+        type: 3}
+      propertyPath: chargeTimeInSeconds
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 5933398519477947029, guid: abf2bafc978e7794e80a8baf785624e6,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -61,7 +66,7 @@ PrefabInstance:
     - target: {fileID: 9148235068772753322, guid: abf2bafc978e7794e80a8baf785624e6,
         type: 3}
       propertyPath: m_Name
-      value: wolf_prefab_fire_breath
+      value: wolf_prefab_level_2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
