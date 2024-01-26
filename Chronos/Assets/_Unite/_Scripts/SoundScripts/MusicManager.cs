@@ -8,6 +8,9 @@ namespace Unite.SoundScripts
         
         [SerializeField]
         private AudioSource combatAudioSource;
+        
+        [SerializeField]
+        private AudioSource explorationAudioSource;
 
         private void Awake()
         {
@@ -20,6 +23,12 @@ namespace Unite.SoundScripts
             Instance = this;
         }
 
+        private void Start()
+        {
+            combatAudioSource.Stop();
+            explorationAudioSource.Play();
+        }
+
         public void PlayCombatMusic()
         {
             combatAudioSource.Play();
@@ -28,6 +37,16 @@ namespace Unite.SoundScripts
         public void StopCombatMusic()
         {
             combatAudioSource.Stop();
+        }
+
+        public void PlayExplorationMusic()
+        {
+            explorationAudioSource.Play();
+        }
+        
+        public void StopExplorationMusic()
+        {
+            explorationAudioSource.Stop();
         }
     }
 }
