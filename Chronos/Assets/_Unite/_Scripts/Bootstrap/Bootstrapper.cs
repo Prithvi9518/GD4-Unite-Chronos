@@ -30,8 +30,8 @@ namespace Unite.Bootstrap
         private void CheckAndDoBootstrap()
         {
             if (player == null || enemySpawner == null) return;
-            GameManager.Instance.Initialize(player, enemySpawner);
-            GameManager.Instance.SetGameState(GameState.Start);
+            Managers.GameManager.Instance.Initialize(player, enemySpawner);
+            Managers.GameManager.Instance.SetGameState(GameState.Start);
         }
     }
 }
