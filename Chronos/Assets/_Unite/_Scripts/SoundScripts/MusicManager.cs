@@ -30,36 +30,21 @@ namespace Unite.SoundScripts
 
         private void Start()
         {
-            // combatAudioSource.Stop();
-            // explorationAudioSource.Play();
-            
             audioSource.Play();
         }
 
         public void PlayCombatMusic()
         {
-            // combatAudioSource.Play();
             audioSource.Stop();
             audioSource.clip = combatMusic;
             audioSource.Play();
         }
 
-        public void StopCombatMusic()
-        {
-            // combatAudioSource.Stop();
-        }
-
         public void PlayExplorationMusic()
         {
-            // explorationAudioSource.Play();
             audioSource.Stop();
             audioSource.clip = explorationMusic;
             audioSource.Play();
-        }
-        
-        public void StopExplorationMusic()
-        {
-            // explorationAudioSource.Stop();
         }
     }
 }

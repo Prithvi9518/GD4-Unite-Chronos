@@ -47,8 +47,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce07ae79f22c4466bb6b01f2d97eff1e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  combatAudioSource: {fileID: 3897587828550683808}
-  explorationAudioSource: {fileID: 0}
   audioSource: {fileID: 3897587828550683808}
   explorationMusic: {fileID: 8300000, guid: a3f45fa66aee74b4d8676dc80695d1f7, type: 3}
   combatMusic: {fileID: 8300000, guid: f04ac44232b50be46b5307e0d2251bae, type: 3}
@@ -167,18 +165,6 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 6235525504150382270}
         m_TargetAssemblyTypeName: Unite.SoundScripts.MusicManager, Assembly-CSharp
-        m_MethodName: StopExplorationMusic
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 6235525504150382270}
-        m_TargetAssemblyTypeName: Unite.SoundScripts.MusicManager, Assembly-CSharp
         m_MethodName: PlayCombatMusic
         m_Mode: 1
         m_Arguments:
@@ -206,18 +192,6 @@ MonoBehaviour:
   response:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 6235525504150382270}
-        m_TargetAssemblyTypeName: Unite.SoundScripts.MusicManager, Assembly-CSharp
-        m_MethodName: StopCombatMusic
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
       - m_Target: {fileID: 6235525504150382270}
         m_TargetAssemblyTypeName: Unite.SoundScripts.MusicManager, Assembly-CSharp
         m_MethodName: PlayExplorationMusic
