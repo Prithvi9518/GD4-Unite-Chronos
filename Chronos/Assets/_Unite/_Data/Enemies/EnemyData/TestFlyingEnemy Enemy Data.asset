@@ -15,6 +15,10 @@ MonoBehaviour:
   displayName: TestFlyingEnemy
   enemyPrefab: {fileID: 8342753192698357892, guid: d50aff844ebf3b54cb6fcfc08fd8ea08,
     type: 3}
+  speed: 5
+  angularSpeed: 120
+  acceleration: 3
+  stoppingDistance: 2
   baseHealth: 100
   baseDamage: 5
   cost: 5

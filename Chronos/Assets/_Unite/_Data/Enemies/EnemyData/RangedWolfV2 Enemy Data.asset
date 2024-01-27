@@ -15,6 +15,10 @@ MonoBehaviour:
   displayName: RangedWolf
   enemyPrefab: {fileID: 2363539115020405777, guid: 1e571a1bf5184c747bcbf95942cbdb22,
     type: 3}
+  speed: 5.5
+  angularSpeed: 120
+  acceleration: 6
+  stoppingDistance: 2
   baseHealth: 100
   baseDamage: 3
   cost: 5
