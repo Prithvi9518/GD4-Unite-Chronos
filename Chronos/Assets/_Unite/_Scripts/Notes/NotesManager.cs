@@ -31,7 +31,6 @@ namespace Unite.Notes
         {
             collectedNotes.Add(note);
             onUpdateCollectedNotes.Raise();
-            Debug.Log($"New note added to collection : {note.Title}");
         }
     }
 }
