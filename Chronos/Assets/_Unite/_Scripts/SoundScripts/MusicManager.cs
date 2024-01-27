@@ -7,10 +7,13 @@ namespace Unite.SoundScripts
         public static MusicManager Instance { get; private set; }
         
         [SerializeField]
-        private AudioSource combatAudioSource;
-        
+        private AudioSource audioSource;
+
         [SerializeField]
-        private AudioSource explorationAudioSource;
+        private AudioClip explorationMusic;
+
+        [SerializeField]
+        private AudioClip combatMusic;
 
         private void Awake()
         {
@@ -21,32 +24,42 @@ namespace Unite.SoundScripts
             }
 
             Instance = this;
+
+            audioSource.clip = explorationMusic;
         }
 
         private void Start()
         {
-            combatAudioSource.Stop();
-            explorationAudioSource.Play();
+            // combatAudioSource.Stop();
+            // explorationAudioSource.Play();
+            
+            audioSource.Play();
         }
 
         public void PlayCombatMusic()
         {
-            combatAudioSource.Play();
+            // combatAudioSource.Play();
+            audioSource.Stop();
+            audioSource.clip = combatMusic;
+            audioSource.Play();
         }
 
         public void StopCombatMusic()
         {
-            combatAudioSource.Stop();
+            // combatAudioSource.Stop();
         }
 
         public void PlayExplorationMusic()
         {
-            explorationAudioSource.Play();
+            // explorationAudioSource.Play();
+            audioSource.Stop();
+            audioSource.clip = explorationMusic;
+            audioSource.Play();
         }
         
         public void StopExplorationMusic()
         {
-            explorationAudioSource.Stop();
+            // explorationAudioSource.Stop();
         }
     }
 }
