@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Unite.Enemies.AI
+namespace Unite.Detection
 {
     public class LineOfSightDetection : MonoBehaviour, IDetectTarget
     {
