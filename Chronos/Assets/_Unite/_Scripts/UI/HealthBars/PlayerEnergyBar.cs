@@ -32,7 +32,7 @@ namespace Unite.UI
             if (ability.CurrentState == AbilityState.Active)
             {
                 // If the ability is active, decrease the fillAmount over time based on the remaining active time
-                imageSlider.fillAmount -= fillAmountDelta / ability.RemainingActiveTimeMs;
+                imageSlider.fillAmount -= fillAmountDelta / ability.RemainingCooldownTimeMs;
                 imageSlider.fillAmount = Mathf.Clamp01(imageSlider.fillAmount);
             }
             else if (ability.CurrentState == AbilityState.Cooldown)
@@ -51,7 +51,7 @@ namespace Unite.UI
             yield return new WaitForSeconds(5f);
             // After the delay, increase the fillAmount over time based on theremaining cooldown time
 
-            imageSlider.fillAmount += fillAmountDelta / ability.RemainingCooldownTimeMs;
+            imageSlider.fillAmount += fillAmountDelta / ability.RemainingActiveTimeMs;
             imageSlider.fillAmount = Mathf.Clamp01(imageSlider.fillAmount);
         }
     }
