@@ -1,6 +1,7 @@
 ﻿namespace Unite.DialogueSystem
 {
-    public enum DialogueEvent
+    [System.Serializable]
+    public enum DialogueTrigger
     {
         Test1,
         Test2
