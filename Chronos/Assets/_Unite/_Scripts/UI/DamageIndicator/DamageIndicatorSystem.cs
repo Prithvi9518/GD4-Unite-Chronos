@@ -29,7 +29,7 @@ namespace Unite.UI
 
         public void TryCreateIndicator(Transform target)
         {
-            if (!InSightOfPlayer(target)) return;
+            // if (!InSightOfPlayer(target)) return;
             
             if (Indicators.ContainsKey(target))
             {
