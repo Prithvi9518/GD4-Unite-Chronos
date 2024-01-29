@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Unite.Enemies.AI
 {
-    [CreateAssetMenu(fileName = "SwitchToStateAction", menuName = "AI/Actions/SwitchToStateAction", order = 0)]
+    [CreateAssetMenu(fileName = "SwitchToStateAction", menuName = "AI/Actions/SwitchToStateAction")]
     public class SwitchToStateAction : Action
     {
         [SerializeField]

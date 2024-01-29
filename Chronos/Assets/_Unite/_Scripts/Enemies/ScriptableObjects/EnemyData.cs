@@ -13,6 +13,19 @@ namespace Unite.Enemies
         [SerializeField]
         private Enemy enemyPrefab;
 
+        [Header("Agent Configuration")] 
+        [SerializeField]
+        private float speed;
+
+        [SerializeField]
+        private float angularSpeed;
+
+        [SerializeField]
+        private float acceleration;
+
+        [SerializeField]
+        private float stoppingDistance;
+
         [Header("Stats")]
         [SerializeField]
         private float baseHealth;
@@ -44,6 +57,11 @@ namespace Unite.Enemies
             enemy.DisplayName = displayName;
             enemy.Health.MaxHealth = baseHealth;
             enemy.Health.ResetHealth();
+
+            enemy.Agent.speed = speed;
+            enemy.Agent.angularSpeed = angularSpeed;
+            enemy.Agent.acceleration = acceleration;
+            enemy.Agent.stoppingDistance = stoppingDistance;
             
             enemy.UIHandler.UpdateHealthBar(enemy.Health.CurrentHealth, enemy.Health.MaxHealth);
 

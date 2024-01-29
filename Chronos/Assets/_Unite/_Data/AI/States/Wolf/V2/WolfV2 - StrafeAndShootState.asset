@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf9d2c506935ec843a13d0c97316fe6b, type: 3}
+  m_Name: WolfV2 - StrafeAndShootState
+  m_EditorClassIdentifier: 
+  enterActions:
+  - {fileID: 11400000, guid: f717ecdd965391e4f9b728c065a9c000, type: 2}
+  - {fileID: 11400000, guid: 830e248a3f39f00409fec3b1612355aa, type: 2}
+  updateActions:
+  - {fileID: 11400000, guid: bfa6cf2614e3995479b835bcbf103dd6, type: 2}
+  exitActions:
+  - {fileID: 11400000, guid: 8b6c116ad9bfae6428f47aa6a5ab73d3, type: 2}
+  - {fileID: 11400000, guid: 9e8a32813889ffa468315a1e3a3e8c61, type: 2}
+  conditionBasedTransitions:
+  - condition: {fileID: 11400000, guid: 2957f1c16dade6b4daf3bebf8fd29b5b, type: 2}
+    trueState: {fileID: 11400000, guid: 72468647a83f1bf488b9575ef0eb8602, type: 2}
+    falseState: {fileID: 11400000, guid: bbda62764e1ab7341866367d7f64dbb5, type: 2}
+  - condition: {fileID: 11400000, guid: cabf6af08e1a3b042bdb171821c3ee4c, type: 2}
+    trueState: {fileID: 11400000, guid: 72468647a83f1bf488b9575ef0eb8602, type: 2}
+    falseState: {fileID: 11400000, guid: bbda62764e1ab7341866367d7f64dbb5, type: 2}
+  eventTransitions:
+  - stateEvent: 1
+    toState: {fileID: 11400000, guid: babc42db289dfb149a32d1c29bc90f60, type: 2}
