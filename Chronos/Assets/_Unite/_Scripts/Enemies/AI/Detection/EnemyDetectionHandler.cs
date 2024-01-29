@@ -1,3 +1,4 @@
+using Unite.Detection;
 using UnityEngine;
 
 namespace Unite.Enemies.AI

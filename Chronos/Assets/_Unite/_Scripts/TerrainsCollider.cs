@@ -7,11 +7,18 @@ namespace _Unite._Scripts
     {
         [SerializeField]
         private TextMeshProUGUI uiText;
+
+        private string currentTerrainName;
         private void OnTriggerEnter(Collider other)
         {
             if (other.CompareTag("Terrain"))
             {
-                uiText.text = other.name;
+                string newTerrainName = other.gameObject.name;
+            
+                if (newTerrainName != currentTerrainName)
+                {
+                    uiText.text = other.gameObject.name;
+                }
             }
         }
     }
