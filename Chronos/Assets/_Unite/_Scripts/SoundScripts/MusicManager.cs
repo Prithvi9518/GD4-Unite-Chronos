@@ -5,6 +5,15 @@ namespace Unite.SoundScripts
     public class MusicManager : MonoBehaviour
     {
         public static MusicManager Instance { get; private set; }
+        
+        [SerializeField]
+        private AudioSource audioSource;
+
+        [SerializeField]
+        private AudioClip explorationMusic;
+
+        [SerializeField]
+        private AudioClip combatMusic;
 
         private void Awake()
         {
@@ -15,6 +24,27 @@ namespace Unite.SoundScripts
             }
 
             Instance = this;
+
+            audioSource.clip = explorationMusic;
+        }
+
+        private void Start()
+        {
+            audioSource.Play();
+        }
+
+        public void PlayCombatMusic()
+        {
+            audioSource.Stop();
+            audioSource.clip = combatMusic;
+            audioSource.Play();
+        }
+
+        public void PlayExplorationMusic()
+        {
+            audioSource.Stop();
+            audioSource.clip = explorationMusic;
+            audioSource.Play();
         }
     }
 }
