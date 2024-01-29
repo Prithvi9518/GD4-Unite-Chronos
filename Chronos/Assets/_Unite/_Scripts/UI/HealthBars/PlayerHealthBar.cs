@@ -6,16 +6,11 @@ namespace Unite.UI
 {
     public class PlayerHealthBar : MonoBehaviour
     {
-        private Slider slider;
-        
-        private void Awake()
-        {
-            slider = GetComponent<Slider>();
-        }
+        [SerializeField] private Image imageSlider;
 
         public void UpdateHealthBar(HealthInfo healthInfo)
         {
-            slider.value = healthInfo.CurrentHealth / healthInfo.MaxHealth;
+            imageSlider.fillAmount = healthInfo.CurrentHealth / healthInfo.MaxHealth;
         }
     }
 }
