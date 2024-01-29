@@ -20,7 +20,7 @@ namespace Unite.Player
         private PlayerDiedInfoEvent onPlayerDied;
 
         [SerializeField]
-        private TransformEvent sendAttackerTransform;
+        private TransformEvent onPlayerHitSendInfo;
 
         private Health playerHealth;
         private PlayerStatsHandler statsHandler;
@@ -124,7 +124,7 @@ namespace Unite.Player
             DamageType damageType = attack.GetDamageType();
             if (damageType != DamageType.Direct) return;
             
-            sendAttackerTransform.Raise(attacker.GetTransform());
+            onPlayerHitSendInfo.Raise(attacker.GetTransform());
         }
     }
 }
