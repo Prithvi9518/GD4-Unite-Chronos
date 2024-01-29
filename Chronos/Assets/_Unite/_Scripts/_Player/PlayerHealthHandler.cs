@@ -18,7 +18,7 @@ namespace Unite.Player
         
         [SerializeField] 
         private PlayerDiedInfoEvent onPlayerDied;
-        
+
         private Health playerHealth;
         private PlayerStatsHandler statsHandler;
 
@@ -46,11 +46,9 @@ namespace Unite.Player
 
         public void UpdateMaxHealthFromStats()
         {
-            Debug.Log($"Old max health = {playerHealth.MaxHealth}");
             playerHealth.MaxHealth = statsHandler.GetStat(healthStatType).Value;
             playerHealth.ResetHealth();
             onHealthChanged.Raise(new HealthInfo(playerHealth.CurrentHealth, playerHealth.MaxHealth));
-            Debug.Log($"New max health = {playerHealth.MaxHealth}");
         }
 
         public void AddHealth(float amount)
@@ -67,7 +65,7 @@ namespace Unite.Player
             
             onHealthChanged.Raise(new HealthInfo(playerHealth.CurrentHealth, playerHealth.MaxHealth));
 
-            CheckHitDirection(attacker, attack);
+            TrySendAttackerTransformEvent(attacker, attack);
 
             if (playerHealth.CurrentHealth > 0) return;
             
@@ -118,15 +116,12 @@ namespace Unite.Player
             }
         }
 
-        private void CheckHitDirection(IAttacker attacker, IDoDamage attack)
+        private void TrySendAttackerTransformEvent(IAttacker attacker, IDoDamage attack)
         {
             DamageType damageType = attack.GetDamageType();
             if (damageType != DamageType.Direct) return;
             
-            Transform attackerTransform = attacker.GetTransform();
-            Vector3 hitDirection = transform.position - attackerTransform.position;
-                
-            Debug.Log($"hitDirection = {hitDirection}");
+            // sendAttackerTransformEvent.Raise(attacker.GetTransform());
         }
     }
 }
