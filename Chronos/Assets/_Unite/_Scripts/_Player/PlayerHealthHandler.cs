@@ -39,8 +39,6 @@ namespace Unite.Player
         {
             dead = false;
             regenEnabled = false;
-            // playerHealth.MaxHealth = baseHealth;
-            // playerHealth.ResetHealth();
             
             playerHealth.MaxHealth = statsHandler.GetStat(healthStatType).Value;
             playerHealth.ResetHealth();
@@ -68,6 +66,8 @@ namespace Unite.Player
             playerHealth.DecreaseHealth(damage);
             
             onHealthChanged.Raise(new HealthInfo(playerHealth.CurrentHealth, playerHealth.MaxHealth));
+
+            CheckHitDirection(attacker, attack);
 
             if (playerHealth.CurrentHealth > 0) return;
             
@@ -116,6 +116,17 @@ namespace Unite.Player
                 playerHealth.AddHealth(regenAmount);
                 onHealthChanged.Raise(new HealthInfo(playerHealth.CurrentHealth, playerHealth.MaxHealth));
             }
+        }
+
+        private void CheckHitDirection(IAttacker attacker, IDoDamage attack)
+        {
+            DamageType damageType = attack.GetDamageType();
+            if (damageType != DamageType.Direct) return;
+            
+            Transform attackerTransform = attacker.GetTransform();
+            Vector3 hitDirection = transform.position - attackerTransform.position;
+                
+            Debug.Log($"hitDirection = {hitDirection}");
         }
     }
 }

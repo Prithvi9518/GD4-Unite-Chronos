@@ -301,5 +301,10 @@ namespace Unite.WeaponSystem
         {
             return name;
         }
+
+        public DamageType GetDamageType()
+        {
+            return DamageType.Direct;
+        }
     }
 }
