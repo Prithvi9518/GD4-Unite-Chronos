@@ -141,6 +141,11 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1051650736430058868, guid: 5699c1dcd427e5f42aed13fd000eb941,
+        type: 3}
+      propertyPath: m_TagString
+      value: BattleZone
+      objectReference: {fileID: 0}
     - target: {fileID: 3814659787267519869, guid: 5699c1dcd427e5f42aed13fd000eb941,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1157,10 +1162,15 @@ PrefabInstance:
       propertyPath: m_Name
       value: MainCamera
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 5170054738295443638, guid: b98c5e8efa2f9c14a98d46ecfa6c92a3, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 2242334720868592710, guid: b98c5e8efa2f9c14a98d46ecfa6c92a3,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1739867643}
   m_SourcePrefab: {fileID: 100100000, guid: b98c5e8efa2f9c14a98d46ecfa6c92a3, type: 3}
 --- !u!4 &917778038 stripped
 Transform:
@@ -1264,6 +1274,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1051650736430058868, guid: 5699c1dcd427e5f42aed13fd000eb941,
+        type: 3}
+      propertyPath: m_TagString
+      value: BattleZone
       objectReference: {fileID: 0}
     - target: {fileID: 3814659787267519869, guid: 5699c1dcd427e5f42aed13fd000eb941,
         type: 3}
@@ -1993,7 +2008,23 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 7830948257419484268, guid: 8f8fe7d1085e92f4b9852a9e8a1c5bb9,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2062406239}
+    - targetCorrespondingSourceObject: {fileID: 7830948257419484268, guid: 8f8fe7d1085e92f4b9852a9e8a1c5bb9,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2062406240}
+    - targetCorrespondingSourceObject: {fileID: 7830948257419484268, guid: 8f8fe7d1085e92f4b9852a9e8a1c5bb9,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2062406241}
+    - targetCorrespondingSourceObject: {fileID: 7830948257419484268, guid: 8f8fe7d1085e92f4b9852a9e8a1c5bb9,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2062406242}
   m_SourcePrefab: {fileID: 100100000, guid: 8f8fe7d1085e92f4b9852a9e8a1c5bb9, type: 3}
 --- !u!4 &1437087783 stripped
 Transform:
@@ -2214,6 +2245,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1051650736430058868, guid: 5699c1dcd427e5f42aed13fd000eb941,
+        type: 3}
+      propertyPath: m_TagString
+      value: BattleZone
       objectReference: {fileID: 0}
     - target: {fileID: 3814659787267519869, guid: 5699c1dcd427e5f42aed13fd000eb941,
         type: 3}
@@ -2689,6 +2725,25 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d06eae196f62f5e45b9aec82cc238165, type: 3}
+--- !u!1 &1739867642 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2242334720868592710, guid: b98c5e8efa2f9c14a98d46ecfa6c92a3,
+    type: 3}
+  m_PrefabInstance: {fileID: 917778037}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1739867643
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1739867642}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86c6556701af9e04380698b89f691b6e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attenuationObject: {fileID: 0}
 --- !u!1 &1852090022
 GameObject:
   m_ObjectHideFlags: 0
@@ -2808,6 +2863,99 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 2047456320}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &2062406216 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7830948257419484268, guid: 8f8fe7d1085e92f4b9852a9e8a1c5bb9,
+    type: 3}
+  m_PrefabInstance: {fileID: 1437087782}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2062406239
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2062406216}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: BattleZone
+  EventReference:
+    Guid:
+      Data1: 1222987046
+      Data2: 1122411869
+      Data3: -304379761
+      Data4: -588141380
+    Path: event:/Music System
+  Event: 
+  PlayEvent: 1
+  StopEvent: 3
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  AllowNonRigidbodyDoppler: 0
+  Params:
+  - Name: Enemy
+    Value: 0
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
+--- !u!81 &2062406240
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2062406216}
+  m_Enabled: 1
+--- !u!114 &2062406241
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2062406216}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86c6556701af9e04380698b89f691b6e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attenuationObject: {fileID: 2062406216}
+--- !u!114 &2062406242
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2062406216}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: BattleZone
+  EventReference:
+    Guid:
+      Data1: 1222987046
+      Data2: 1122411869
+      Data3: -304379761
+      Data4: -588141380
+    Path: event:/Music System
+  Event: 
+  PlayEvent: 3
+  StopEvent: 4
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  AllowNonRigidbodyDoppler: 0
+  Params:
+  - Name: Enemy
+    Value: 1
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
 --- !u!1001 &138592000737216252
 PrefabInstance:
   m_ObjectHideFlags: 0
