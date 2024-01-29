@@ -412,6 +412,8 @@ MonoBehaviour:
   healthStatType: {fileID: 11400000, guid: ad2dfbb043f144e47ab39a253aae9d32, type: 2}
   onHealthChanged: {fileID: 11400000, guid: 3f99ffecf7d5f6d41820c73d802c0c98, type: 2}
   onPlayerDied: {fileID: 11400000, guid: 0ec4d1d64eee90c4db590c8fca997412, type: 2}
+  onPlayerHitSendInfo: {fileID: 11400000, guid: da831ad3f7edd844593addea4c26d037,
+    type: 2}
 --- !u!114 &3664281855645159123
 MonoBehaviour:
   m_ObjectHideFlags: 0

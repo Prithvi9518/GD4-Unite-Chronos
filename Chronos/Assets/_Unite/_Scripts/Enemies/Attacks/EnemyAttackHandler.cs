@@ -59,5 +59,10 @@ namespace Unite.Enemies
         {
             return enemy.DisplayName;
         }
+
+        public Transform GetTransform()
+        {
+            return transform;
+        }
     }
 }

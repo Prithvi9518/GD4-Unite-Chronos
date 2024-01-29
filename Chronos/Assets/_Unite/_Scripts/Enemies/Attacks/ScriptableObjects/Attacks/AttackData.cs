@@ -52,5 +52,10 @@ namespace Unite.Enemies
         {
             return name;
         }
+
+        public DamageType GetDamageType()
+        {
+            return DamageType.Direct;
+        }
     }
 }
