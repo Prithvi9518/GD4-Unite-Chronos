@@ -1,5 +1,4 @@
 using Unite.AbilitySystem;
-using Unite.EventSystem;
 using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
@@ -20,9 +19,9 @@ namespace Unite.UI
             UpdateEnergyBar();
         }
 
-        public void ListenToAbilityEvent(Ability ability)
-        {
-            this.ability = ability;
+        public void ListenToPlayerReadyEvent(Player.Player player)
+        { 
+            ability = player.Ability;
         }
 
         // Update the energy bar based on the current state of the ability

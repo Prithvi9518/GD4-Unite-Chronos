@@ -192,7 +192,7 @@ GameObject:
   - component: {fileID: 1048740965652237468}
   - component: {fileID: 8395158954954077270}
   - component: {fileID: 3370060456964795058}
-  - component: {fileID: 4871249772360096226}
+  - component: {fileID: 5367407884936064861}
   m_Layer: 5
   m_Name: HUD
   m_TagString: Untagged
@@ -272,7 +272,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   imageSlider: {fileID: 372591611897161748}
---- !u!114 &4871249772360096226
+--- !u!114 &5367407884936064861
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -281,17 +281,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 363184984748623575}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 93e5f619f5734810bd1d18bae4fcfd5c, type: 3}
+  m_Script: {fileID: 11500000, guid: ad4b93f17ea048418740474027a5e07c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  description: 
-  gameEvent: {fileID: 11400000, guid: 86b034bc771ca394ead3563794c31a44, type: 2}
+  description: Listen for player ready
+  gameEvent: {fileID: 11400000, guid: 805e5580eb6823248afa5b554b93ceea, type: 2}
   response:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 3370060456964795058}
         m_TargetAssemblyTypeName: Unite.UI.PlayerEnergyBar, Assembly-CSharp
-        m_MethodName: ListenToAbilityEvent
+        m_MethodName: ListenToPlayerReadyEvent
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

@@ -1,4 +1,5 @@
 ﻿using StarterAssets;
+using Unite.AbilitySystem;
 using Unite.EventSystem;
 using UnityEngine;
 
@@ -23,12 +24,16 @@ namespace Unite.Player
         private PlayerMovementHandler movementHandler;
         private FirstPersonController controller;
         private PlayerStatusEffectable statusEffectable;
+        // Temporary workaround
+        private Ability ability;
 
         public PlayerHealthHandler HealthHandler => healthHandler;
         public PlayerStatsHandler StatsHandler => statsHandler;
         public PlayerGunHandler GunHandler => gunHandler;
         public PlayerMovementHandler MovementHandler => movementHandler;
         public PlayerStatusEffectable StatusEffectable => statusEffectable;
+
+        public Ability Ability => ability;
 
         private void Awake()
         {
@@ -42,12 +47,15 @@ namespace Unite.Player
             controller = GetComponent<FirstPersonController>();
 
             statusEffectable = GetComponent<PlayerStatusEffectable>();
+
+            ability = GetComponent<Ability>();
         }
 
         private void Start()
         {
             playerData.SetupPlayer(this);
             onPlayerReady.Raise(this);
+            Debug.Log("Raised on player ready");
         }
 
         public void OnPlayerDead()
