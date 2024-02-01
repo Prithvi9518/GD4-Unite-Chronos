@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf9d2c506935ec843a13d0c97316fe6b, type: 3}
   m_Name: TestFlyingEnemy - ChaseState
   m_EditorClassIdentifier: 
-  enterActions: []
+  enterActions:
+  - {fileID: 11400000, guid: 84d425aa03227544ab042b77dfe091d2, type: 2}
   updateActions:
   - {fileID: 11400000, guid: 40b0c66a416e77e41932f97fcd7bc52a, type: 2}
   exitActions: []
