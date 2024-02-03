@@ -93,5 +93,10 @@ namespace Unite.Player
         {
             return name;
         }
+
+        public Transform GetTransform()
+        {
+            return transform;
+        }
     }
 }

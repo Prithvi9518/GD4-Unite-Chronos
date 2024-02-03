@@ -1,4 +1,5 @@
 using Unite.Core;
+using Unite.Detection;
 using Unite.Enemies.AI;
 using Unite.Enemies.Movement;
 using Unite.EventSystem;

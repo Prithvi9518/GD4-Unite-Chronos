@@ -18,7 +18,10 @@ namespace Unite.Player
         
         [SerializeField] 
         private PlayerDiedInfoEvent onPlayerDied;
-        
+
+        [SerializeField]
+        private TransformEvent onPlayerHitSendInfo;
+
         private Health playerHealth;
         private PlayerStatsHandler statsHandler;
 
@@ -39,8 +42,6 @@ namespace Unite.Player
         {
             dead = false;
             regenEnabled = false;
-            // playerHealth.MaxHealth = baseHealth;
-            // playerHealth.ResetHealth();
             
             playerHealth.MaxHealth = statsHandler.GetStat(healthStatType).Value;
             playerHealth.ResetHealth();
@@ -48,11 +49,9 @@ namespace Unite.Player
 
         public void UpdateMaxHealthFromStats()
         {
-            Debug.Log($"Old max health = {playerHealth.MaxHealth}");
             playerHealth.MaxHealth = statsHandler.GetStat(healthStatType).Value;
             playerHealth.ResetHealth();
             onHealthChanged.Raise(new HealthInfo(playerHealth.CurrentHealth, playerHealth.MaxHealth));
-            Debug.Log($"New max health = {playerHealth.MaxHealth}");
         }
 
         public void AddHealth(float amount)
@@ -68,6 +67,8 @@ namespace Unite.Player
             playerHealth.DecreaseHealth(damage);
             
             onHealthChanged.Raise(new HealthInfo(playerHealth.CurrentHealth, playerHealth.MaxHealth));
+
+            TrySendAttackerTransformEvent(attacker, attack);
 
             if (playerHealth.CurrentHealth > 0) return;
             
@@ -116,6 +117,14 @@ namespace Unite.Player
                 playerHealth.AddHealth(regenAmount);
                 onHealthChanged.Raise(new HealthInfo(playerHealth.CurrentHealth, playerHealth.MaxHealth));
             }
+        }
+
+        private void TrySendAttackerTransformEvent(IAttacker attacker, IDoDamage attack)
+        {
+            DamageType damageType = attack.GetDamageType();
+            if (damageType != DamageType.Direct) return;
+            
+            onPlayerHitSendInfo.Raise(attacker.GetTransform());
         }
     }
 }

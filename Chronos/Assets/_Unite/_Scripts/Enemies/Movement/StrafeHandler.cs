@@ -23,6 +23,11 @@ namespace Unite.Enemies.Movement
         [SerializeField]
         private float lookRotationFactor;
 
+        [SerializeField]
+        private string strafeLeftAnim;
+        [SerializeField]
+        private string strafeRightAnim;
+
         private NavMeshAgent agent;
 
         private bool isStrafing;
@@ -30,11 +35,16 @@ namespace Unite.Enemies.Movement
         private float waitStrafeTime;
 
         private EnemyDetectionHandler detectionHandler;
+        private EnemyAnimationHandler animationHandler;
+
+        private int previousDirection = -1;
+        private string selectedAnim;
 
         private void Awake()
         {
             agent = GetComponent<NavMeshAgent>();
             detectionHandler = GetComponent<EnemyDetectionHandler>();
+            animationHandler = GetComponent<EnemyAnimationHandler>();
         }
 
         private void Update()
@@ -54,7 +64,11 @@ namespace Unite.Enemies.Movement
             {
                 Vector3 strafePosition = strafeLeftTransform.position;
                 if (strafeDirection == 1)
+                {
                     strafePosition = strafeRightTransform.position;
+                }
+
+                // HandleStrafeAnimation(strafeDirection);
 
                 agent.SetDestination(new Vector3(strafePosition.x, transform.position.y,
                     strafePosition.z));
@@ -64,6 +78,16 @@ namespace Unite.Enemies.Movement
             {
                 waitStrafeTime -= Time.deltaTime;
             }
+        }
+
+        private void HandleStrafeAnimation(int strafeDirection)
+        {
+            if (strafeDirection == previousDirection) return;
+            
+            selectedAnim = (strafeDirection == 0) ? strafeLeftAnim : strafeRightAnim;
+            animationHandler.SetAnimationTrigger(selectedAnim, true);
+
+            previousDirection = strafeDirection;
         }
 
         private void FaceTarget(Transform target)

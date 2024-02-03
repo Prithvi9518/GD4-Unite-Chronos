@@ -34,5 +34,10 @@ namespace Unite.StatusEffectSystem
         {
             return effectName;
         }
+
+        public DamageType GetDamageType()
+        {
+            return DamageType.Passive;
+        }
     }
 }
