@@ -1655,6 +1655,7 @@ GameObject:
   - component: {fileID: -8842008741771783477}
   - component: {fileID: 4108781658437217560}
   - component: {fileID: 9140479675563110094}
+  - component: {fileID: 6720693709169947407}
   m_Layer: 0
   m_Name: wolf_prefab_mark_2
   m_TagString: Untagged
@@ -1695,7 +1696,7 @@ Animator:
   m_GameObject: {fileID: 8514841091770654773}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: b7ec72a70cd702445aa593bc57460fb8, type: 2}
+  m_Controller: {fileID: 9100000, guid: 419c18df42ff08a4585d718b94f6dc06, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -1984,6 +1985,19 @@ MonoBehaviour:
   minStrafeTime: 0.3
   maxStrafeTime: 0.7
   lookRotationFactor: 20
+--- !u!114 &6720693709169947407
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8514841091770654773}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c73546a288594bcbb9471118d39bc105, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawnPoint: {fileID: 6641911090280742566}
 --- !u!1 &8808279028337229111
 GameObject:
   m_ObjectHideFlags: 0
