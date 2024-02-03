@@ -141,6 +141,11 @@ PrefabInstance:
       propertyPath: m_Follow
       value: 
       objectReference: {fileID: 541885091}
+    - target: {fileID: 3943340713607660088, guid: d06eae196f62f5e45b9aec82cc238165,
+        type: 3}
+      propertyPath: m_Lens.FarClipPlane
+      value: 1000
+      objectReference: {fileID: 0}
     - target: {fileID: 5052135049750489565, guid: d06eae196f62f5e45b9aec82cc238165,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -375,7 +380,7 @@ PrefabInstance:
     - target: {fileID: 9154502831300499433, guid: b98c5e8efa2f9c14a98d46ecfa6c92a3,
         type: 3}
       propertyPath: far clip plane
-      value: 1100
+      value: 1000
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
