@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.12731749, g: 0.13414757, b: 0.1210787, a: 1}
+  m_IndirectSpecularColor: {r: 0.12731704, g: 0.13414727, b: 0.121078536, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -136,21 +136,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlayerFollowCamera
       objectReference: {fileID: 0}
-    - target: {fileID: 2480400839451476354, guid: d06eae196f62f5e45b9aec82cc238165,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 3943340713607660088, guid: d06eae196f62f5e45b9aec82cc238165,
         type: 3}
       propertyPath: m_Follow
       value: 
       objectReference: {fileID: 541885091}
-    - target: {fileID: 3943340713607660088, guid: d06eae196f62f5e45b9aec82cc238165,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 5052135049750489565, guid: d06eae196f62f5e45b9aec82cc238165,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -381,6 +371,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Cameras.Array.size
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9154502831300499433, guid: b98c5e8efa2f9c14a98d46ecfa6c92a3,
+        type: 3}
+      propertyPath: far clip plane
+      value: 1100
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
