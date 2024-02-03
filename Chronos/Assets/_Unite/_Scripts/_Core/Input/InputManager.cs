@@ -16,9 +16,12 @@ namespace Unite.Core.Input
         [SerializeField] 
         private GameEvent onPlayerUseAbilityAction;
 
-        [Header("Event for journal open")]
+        [Header("Events for journal actions")]
         [SerializeField]
         private GameEvent onJournalOpenAction;
+
+        [SerializeField]
+        private GameEvent onJournalCloseAction;
         
         private PlayerInputActions playerInput;
         private PlayerInputActions.DefaultActions defaultActions;
@@ -69,12 +72,19 @@ namespace Unite.Core.Input
         {
             onJournalOpenAction.Raise();
         }
+        
+        private void RaiseJournalCloseEvent(InputAction.CallbackContext ctx)
+        {
+            onJournalCloseAction.Raise();
+        }
 
         private void SubscribeToActions()
         {
             defaultActions.Ability1.performed += RaisePlayerUseAbilityEvent;
             defaultActions.Interact.performed += RaisePlayerInteractEvent;
             defaultActions.JournalOpen.performed += RaiseJournalOpenEvent;
+
+            uiActions.CloseJournal.performed += RaiseJournalCloseEvent;
         }
 
         private void UnsubscribeToActions()
@@ -82,6 +92,8 @@ namespace Unite.Core.Input
             defaultActions.Ability1.performed -= RaisePlayerUseAbilityEvent;
             defaultActions.Interact.performed -= RaisePlayerInteractEvent;
             defaultActions.JournalOpen.performed -= RaiseJournalOpenEvent;
+
+            uiActions.CloseJournal.performed -= RaiseJournalCloseEvent;
         }
         
         public bool IsShootActionPressed() => defaultActions.Shoot.IsPressed();
