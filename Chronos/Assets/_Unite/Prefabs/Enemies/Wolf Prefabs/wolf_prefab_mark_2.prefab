@@ -1985,6 +1985,8 @@ MonoBehaviour:
   minStrafeTime: 0.3
   maxStrafeTime: 0.7
   lookRotationFactor: 20
+  strafeLeftAnim: StrafeLeft
+  strafeRightAnim: StrafeRight
 --- !u!114 &6720693709169947407
 MonoBehaviour:
   m_ObjectHideFlags: 0
