@@ -1460,7 +1460,7 @@ Transform:
   m_GameObject: {fileID: 7330584179560679829}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: -1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0.63, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1924,7 +1924,7 @@ MonoBehaviour:
   dropPoint: {fileID: 5669406466060595086}
   layerMask:
     serializedVersion: 2
-    m_Bits: 8
+    m_Bits: 2568
   yOffset: 1.5
 --- !u!114 &-8842008741771783477
 MonoBehaviour:

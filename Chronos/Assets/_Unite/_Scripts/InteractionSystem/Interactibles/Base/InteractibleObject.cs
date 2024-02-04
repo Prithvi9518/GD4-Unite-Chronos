@@ -31,7 +31,8 @@ namespace Unite.InteractionSystem
             {
                 SoundEffectsManager.Instance.PlaySoundAtPosition(
                     interactibleData.AudioToPlayOnInteract,
-                    transform.position
+                    transform.position,
+                    interactibleData.ClipVolume
                 );
             }
             

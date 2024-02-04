@@ -149,7 +149,7 @@ Transform:
   m_GameObject: {fileID: 8457888519155005237}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -5, z: 0}
+  m_LocalPosition: {x: 0, y: -3.87, z: 0}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -757,7 +757,7 @@ MonoBehaviour:
   dropPoint: {fileID: 4684723209176359141}
   layerMask:
     serializedVersion: 2
-    m_Bits: 8
+    m_Bits: 2568
   yOffset: 1.5
 --- !u!114 &-1440175068513566627
 MonoBehaviour:
@@ -884,3 +884,5 @@ MonoBehaviour:
   minStrafeTime: 0.6
   maxStrafeTime: 1.2
   lookRotationFactor: 20
+  strafeLeftAnim: 
+  strafeRightAnim: 
