@@ -2,6 +2,7 @@ using System.Collections;
 using Unite.Core;
 using Unite.Core.DamageInterfaces;
 using Unite.EventSystem;
+using Unite.SoundScripts;
 using Unite.StatSystem;
 using UnityEngine;
 
@@ -21,6 +22,14 @@ namespace Unite.Player
 
         [SerializeField]
         private TransformEvent onPlayerHitSendInfo;
+
+        [Header("Damage SFX Configuration")]
+        [SerializeField]
+        private AudioClip damageAudioClip;
+
+        [SerializeField]
+        [Range(0,1)]
+        private float volume = 1f;
 
         private Health playerHealth;
         private PlayerStatsHandler statsHandler;
@@ -65,10 +74,10 @@ namespace Unite.Player
             if (dead) return;
             
             playerHealth.DecreaseHealth(damage);
-            
             onHealthChanged.Raise(new HealthInfo(playerHealth.CurrentHealth, playerHealth.MaxHealth));
-
             TrySendAttackerTransformEvent(attacker, attack);
+            
+            SoundEffectsManager.Instance.PlaySoundAtCameraPosition(damageAudioClip, volume);
 
             if (playerHealth.CurrentHealth > 0) return;
             

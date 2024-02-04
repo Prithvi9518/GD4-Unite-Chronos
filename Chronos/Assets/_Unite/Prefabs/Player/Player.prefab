@@ -416,6 +416,8 @@ MonoBehaviour:
   onPlayerDied: {fileID: 11400000, guid: 0ec4d1d64eee90c4db590c8fca997412, type: 2}
   onPlayerHitSendInfo: {fileID: 11400000, guid: da831ad3f7edd844593addea4c26d037,
     type: 2}
+  damageAudioClip: {fileID: 8300000, guid: 16c50d366f3f1854b83fe0c7faa2146b, type: 3}
+  volume: 1
 --- !u!114 &3664281855645159123
 MonoBehaviour:
   m_ObjectHideFlags: 0
