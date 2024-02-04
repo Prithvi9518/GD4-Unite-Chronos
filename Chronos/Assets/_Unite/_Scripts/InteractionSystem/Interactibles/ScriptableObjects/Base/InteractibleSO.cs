@@ -22,10 +22,14 @@ namespace Unite.InteractionSystem
         [SerializeField]
         private string interactText;
 
+        [SerializeField]
+        private bool showInteractText;
+
         public GameEvent EventOnInteract => eventOnInteract;
         public bool DestroyAfterInteract => destroyAfterInteract;
         public AudioClip AudioToPlayOnInteract => audioToPlayOnInteract;
         public float ClipVolume => volume;
         public string InteractText => interactText;
+        public bool ShowInteractText => showInteractText;
     }
 }

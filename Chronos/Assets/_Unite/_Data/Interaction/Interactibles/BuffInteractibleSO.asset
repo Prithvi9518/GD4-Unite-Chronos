@@ -14,4 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   eventOnInteract: {fileID: 0}
   audioToPlayOnInteract: {fileID: 0}
+  volume: 1
   destroyAfterInteract: 1
+  interactText: Acquire Buff
+  showInteractText: 1
