@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: BuffInteractibleSO
   m_EditorClassIdentifier: 
   eventOnInteract: {fileID: 0}
-  audioToPlayOnInteract: {fileID: 0}
+  audioToPlayOnInteract: {fileID: 8300000, guid: 96b9ed1df67c9df47a9447560eaa65df,
+    type: 3}
   volume: 1
   destroyAfterInteract: 1
   interactText: Acquire Buff
