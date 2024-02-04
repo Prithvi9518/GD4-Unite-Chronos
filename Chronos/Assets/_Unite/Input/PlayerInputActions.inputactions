@@ -692,6 +692,74 @@
                     "isPartOfComposite": false
                 }
             ]
+        },
+        {
+            "name": "JournalUI",
+            "id": "0ce5f31b-4d32-463d-9a08-30d56c6c12f1",
+            "actions": [
+                {
+                    "name": "CloseJournal",
+                    "type": "Button",
+                    "id": "9d86c662-497f-487f-95ef-5503a8810b49",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "NextPage",
+                    "type": "Button",
+                    "id": "a2a484ff-b14e-4a8c-8d70-8f4e14bc590e",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "PreviousPage",
+                    "type": "Button",
+                    "id": "93c33208-9b7b-4daa-8b29-d1c6a32b1629",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "2cdf3ef6-bea2-4cae-b7f7-ad432b128f69",
+                    "path": "<Keyboard>/tab",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "CloseJournal",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "0656f3e4-66a1-4982-a49c-d62f405d333d",
+                    "path": "<Keyboard>/d",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "NextPage",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "50c3e4bf-4333-40c0-98a0-ba375edbb4e9",
+                    "path": "<Keyboard>/a",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "PreviousPage",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
         }
     ],
     "controlSchemes": []

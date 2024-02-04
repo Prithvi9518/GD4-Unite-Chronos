@@ -19,6 +19,12 @@ namespace Unite.Core.Input
         [Header("Events for journal actions")]
         [SerializeField]
         private GameEvent onJournalOpenAction;
+        
+        [SerializeField]
+        private GameEvent onJournalNextPageAction;
+        
+        [SerializeField]
+        private GameEvent onJournalPreviousPageAction;
 
         [SerializeField]
         private GameEvent onJournalCloseAction;
@@ -26,10 +32,12 @@ namespace Unite.Core.Input
         private PlayerInputActions playerInput;
         private PlayerInputActions.DefaultActions defaultActions;
         private PlayerInputActions.UIActions uiActions;
+        private PlayerInputActions.JournalUIActions journalUIActions;
 
         public PlayerInputActions PlayerInput => playerInput;
         public PlayerInputActions.DefaultActions DefaultActions => defaultActions;
         public PlayerInputActions.UIActions UIActions => uiActions;
+        public PlayerInputActions.JournalUIActions JournalUIActions => journalUIActions;
         
         private void Awake()
         {
@@ -44,6 +52,7 @@ namespace Unite.Core.Input
             playerInput = new PlayerInputActions();
             defaultActions = playerInput.Default;
             uiActions = playerInput.UI;
+            journalUIActions = playerInput.JournalUI;
             
             SwitchToDefaultActionMap();
         }
@@ -77,6 +86,16 @@ namespace Unite.Core.Input
         {
             onJournalCloseAction.Raise();
         }
+        
+        private void RaiseJournalNextPageEvent(InputAction.CallbackContext ctx)
+        {
+            onJournalNextPageAction.Raise();
+        }
+        
+        private void RaiseJournalPreviousPageEvent(InputAction.CallbackContext ctx)
+        {
+            onJournalPreviousPageAction.Raise();
+        }
 
         private void SubscribeToActions()
         {
@@ -84,7 +103,9 @@ namespace Unite.Core.Input
             defaultActions.Interact.performed += RaisePlayerInteractEvent;
             defaultActions.JournalOpen.performed += RaiseJournalOpenEvent;
 
-            uiActions.CloseJournal.performed += RaiseJournalCloseEvent;
+            journalUIActions.CloseJournal.performed += RaiseJournalCloseEvent;
+            journalUIActions.NextPage.performed += RaiseJournalNextPageEvent;
+            journalUIActions.PreviousPage.performed += RaiseJournalPreviousPageEvent;
         }
 
         private void UnsubscribeToActions()
@@ -93,7 +114,9 @@ namespace Unite.Core.Input
             defaultActions.Interact.performed -= RaisePlayerInteractEvent;
             defaultActions.JournalOpen.performed -= RaiseJournalOpenEvent;
 
-            uiActions.CloseJournal.performed -= RaiseJournalCloseEvent;
+            journalUIActions.CloseJournal.performed -= RaiseJournalCloseEvent;
+            journalUIActions.NextPage.performed -= RaiseJournalNextPageEvent;
+            journalUIActions.PreviousPage.performed -= RaiseJournalPreviousPageEvent;
         }
         
         public bool IsShootActionPressed() => defaultActions.Shoot.IsPressed();
@@ -102,12 +125,21 @@ namespace Unite.Core.Input
         {
             defaultActions.Enable();
             uiActions.Disable();
+            journalUIActions.Disable();
         }
         
         public void SwitchToUIActionMap()
         {
             defaultActions.Disable();
             uiActions.Enable();
+            journalUIActions.Disable();
+        }
+
+        public void SwitchToJournalUIActionMap()
+        {
+            defaultActions.Disable();
+            uiActions.Disable();
+            journalUIActions.Enable();
         }
     }
 }

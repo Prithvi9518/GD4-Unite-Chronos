@@ -1,4 +1,5 @@
-﻿using Unite.EventSystem;
+﻿using Unite.Core.Input;
+using Unite.EventSystem;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -44,6 +45,8 @@ namespace Unite.UI
 
         public void ShowJournalUI()
         {
+            InputManager.Instance.SwitchToJournalUIActionMap();
+            
             mainPanel.gameObject.SetActive(true);
             ShowCurrentPage();
             onJournalOpened.Raise();
@@ -51,6 +54,8 @@ namespace Unite.UI
 
         public void HideJournalUI()
         {
+            InputManager.Instance.SwitchToDefaultActionMap();
+
             mainPanel.gameObject.SetActive(false);
             onCloseButtonPressed.Raise();
         }

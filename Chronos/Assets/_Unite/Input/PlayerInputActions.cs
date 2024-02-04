@@ -714,6 +714,74 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""JournalUI"",
+            ""id"": ""0ce5f31b-4d32-463d-9a08-30d56c6c12f1"",
+            ""actions"": [
+                {
+                    ""name"": ""CloseJournal"",
+                    ""type"": ""Button"",
+                    ""id"": ""9d86c662-497f-487f-95ef-5503a8810b49"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""NextPage"",
+                    ""type"": ""Button"",
+                    ""id"": ""a2a484ff-b14e-4a8c-8d70-8f4e14bc590e"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""PreviousPage"",
+                    ""type"": ""Button"",
+                    ""id"": ""93c33208-9b7b-4daa-8b29-d1c6a32b1629"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""2cdf3ef6-bea2-4cae-b7f7-ad432b128f69"",
+                    ""path"": ""<Keyboard>/tab"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""CloseJournal"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""0656f3e4-66a1-4982-a49c-d62f405d333d"",
+                    ""path"": ""<Keyboard>/d"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""NextPage"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""50c3e4bf-4333-40c0-98a0-ba375edbb4e9"",
+                    ""path"": ""<Keyboard>/a"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""PreviousPage"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": []
@@ -742,6 +810,11 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         m_Spawn_IndividualEnemy = m_Spawn.FindAction("IndividualEnemy", throwIfNotFound: true);
         m_Spawn_DemoWave = m_Spawn.FindAction("DemoWave", throwIfNotFound: true);
         m_Spawn_DemoBoss = m_Spawn.FindAction("DemoBoss", throwIfNotFound: true);
+        // JournalUI
+        m_JournalUI = asset.FindActionMap("JournalUI", throwIfNotFound: true);
+        m_JournalUI_CloseJournal = m_JournalUI.FindAction("CloseJournal", throwIfNotFound: true);
+        m_JournalUI_NextPage = m_JournalUI.FindAction("NextPage", throwIfNotFound: true);
+        m_JournalUI_PreviousPage = m_JournalUI.FindAction("PreviousPage", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -1057,6 +1130,68 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         }
     }
     public SpawnActions @Spawn => new SpawnActions(this);
+
+    // JournalUI
+    private readonly InputActionMap m_JournalUI;
+    private List<IJournalUIActions> m_JournalUIActionsCallbackInterfaces = new List<IJournalUIActions>();
+    private readonly InputAction m_JournalUI_CloseJournal;
+    private readonly InputAction m_JournalUI_NextPage;
+    private readonly InputAction m_JournalUI_PreviousPage;
+    public struct JournalUIActions
+    {
+        private @PlayerInputActions m_Wrapper;
+        public JournalUIActions(@PlayerInputActions wrapper) { m_Wrapper = wrapper; }
+        public InputAction @CloseJournal => m_Wrapper.m_JournalUI_CloseJournal;
+        public InputAction @NextPage => m_Wrapper.m_JournalUI_NextPage;
+        public InputAction @PreviousPage => m_Wrapper.m_JournalUI_PreviousPage;
+        public InputActionMap Get() { return m_Wrapper.m_JournalUI; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(JournalUIActions set) { return set.Get(); }
+        public void AddCallbacks(IJournalUIActions instance)
+        {
+            if (instance == null || m_Wrapper.m_JournalUIActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_JournalUIActionsCallbackInterfaces.Add(instance);
+            @CloseJournal.started += instance.OnCloseJournal;
+            @CloseJournal.performed += instance.OnCloseJournal;
+            @CloseJournal.canceled += instance.OnCloseJournal;
+            @NextPage.started += instance.OnNextPage;
+            @NextPage.performed += instance.OnNextPage;
+            @NextPage.canceled += instance.OnNextPage;
+            @PreviousPage.started += instance.OnPreviousPage;
+            @PreviousPage.performed += instance.OnPreviousPage;
+            @PreviousPage.canceled += instance.OnPreviousPage;
+        }
+
+        private void UnregisterCallbacks(IJournalUIActions instance)
+        {
+            @CloseJournal.started -= instance.OnCloseJournal;
+            @CloseJournal.performed -= instance.OnCloseJournal;
+            @CloseJournal.canceled -= instance.OnCloseJournal;
+            @NextPage.started -= instance.OnNextPage;
+            @NextPage.performed -= instance.OnNextPage;
+            @NextPage.canceled -= instance.OnNextPage;
+            @PreviousPage.started -= instance.OnPreviousPage;
+            @PreviousPage.performed -= instance.OnPreviousPage;
+            @PreviousPage.canceled -= instance.OnPreviousPage;
+        }
+
+        public void RemoveCallbacks(IJournalUIActions instance)
+        {
+            if (m_Wrapper.m_JournalUIActionsCallbackInterfaces.Remove(instance))
+                UnregisterCallbacks(instance);
+        }
+
+        public void SetCallbacks(IJournalUIActions instance)
+        {
+            foreach (var item in m_Wrapper.m_JournalUIActionsCallbackInterfaces)
+                UnregisterCallbacks(item);
+            m_Wrapper.m_JournalUIActionsCallbackInterfaces.Clear();
+            AddCallbacks(instance);
+        }
+    }
+    public JournalUIActions @JournalUI => new JournalUIActions(this);
     public interface IDefaultActions
     {
         void OnShoot(InputAction.CallbackContext context);
@@ -1083,5 +1218,11 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         void OnIndividualEnemy(InputAction.CallbackContext context);
         void OnDemoWave(InputAction.CallbackContext context);
         void OnDemoBoss(InputAction.CallbackContext context);
+    }
+    public interface IJournalUIActions
+    {
+        void OnCloseJournal(InputAction.CallbackContext context);
+        void OnNextPage(InputAction.CallbackContext context);
+        void OnPreviousPage(InputAction.CallbackContext context);
     }
 }
