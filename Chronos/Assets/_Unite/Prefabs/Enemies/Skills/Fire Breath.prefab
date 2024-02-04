@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2348150339580925458}
   - component: {fileID: 3960826567886725625}
   - component: {fileID: 9083577820384556394}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: AreaDamage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -82,12 +82,32 @@ PrefabInstance:
     - target: {fileID: 1741693452841693106, guid: c4ed38c72957f2241ad144a1614956d9,
         type: 3}
       propertyPath: m_Intensity
-      value: 2.925195
+      value: 2.5810277
+      objectReference: {fileID: 0}
+    - target: {fileID: 7684677543225702287, guid: c4ed38c72957f2241ad144a1614956d9,
+        type: 3}
+      propertyPath: m_Layer
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8764043878647920493, guid: c4ed38c72957f2241ad144a1614956d9,
         type: 3}
       propertyPath: m_Name
       value: Fire Breath
+      objectReference: {fileID: 0}
+    - target: {fileID: 8764043878647920493, guid: c4ed38c72957f2241ad144a1614956d9,
+        type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8764373218812076563, guid: c4ed38c72957f2241ad144a1614956d9,
+        type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8764473058345964675, guid: c4ed38c72957f2241ad144a1614956d9,
+        type: 3}
+      propertyPath: m_Layer
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8767152486562788127, guid: c4ed38c72957f2241ad144a1614956d9,
         type: 3}
