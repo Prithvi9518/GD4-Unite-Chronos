@@ -78,8 +78,30 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
+                    ""id"": ""4184e013-97b2-4db0-9c60-955c77d50cdc"",
+                    ""path"": ""<Gamepad>/rightTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Shoot"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
                     ""id"": ""dffa860c-c411-4b6e-9993-862a06717d09"",
                     ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Interact"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b98152dd-93f8-4a10-882d-9c3d26c930f7"",
+                    ""path"": ""<Gamepad>/buttonEast"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -100,8 +122,30 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
+                    ""id"": ""868caf08-7745-4487-9d34-97b65f0e6307"",
+                    ""path"": ""<Gamepad>/leftShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Ability 1"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
                     ""id"": ""2e84cc8d-2ef8-4fb5-868c-bc37cd84213e"",
                     ""path"": ""<Keyboard>/tab"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""JournalOpen"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""7609c16f-235a-4e92-b9e8-d722f3d921c0"",
+                    ""path"": ""<Gamepad>/buttonWest"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -714,6 +758,151 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""JournalUI"",
+            ""id"": ""0ce5f31b-4d32-463d-9a08-30d56c6c12f1"",
+            ""actions"": [
+                {
+                    ""name"": ""CloseJournal"",
+                    ""type"": ""Button"",
+                    ""id"": ""9d86c662-497f-487f-95ef-5503a8810b49"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""NextPage"",
+                    ""type"": ""Button"",
+                    ""id"": ""a2a484ff-b14e-4a8c-8d70-8f4e14bc590e"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""PreviousPage"",
+                    ""type"": ""Button"",
+                    ""id"": ""93c33208-9b7b-4daa-8b29-d1c6a32b1629"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""2cdf3ef6-bea2-4cae-b7f7-ad432b128f69"",
+                    ""path"": ""<Keyboard>/tab"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""CloseJournal"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""050563a4-2fed-418b-bd94-8ec254fbeaaf"",
+                    ""path"": ""<Gamepad>/buttonWest"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""CloseJournal"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""0656f3e4-66a1-4982-a49c-d62f405d333d"",
+                    ""path"": ""<Keyboard>/d"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""NextPage"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""00763e7e-8f35-4b86-82c0-08b726f94f8d"",
+                    ""path"": ""<Gamepad>/rightShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""NextPage"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""d47d5ea5-f1b4-4252-b136-d48345bf47c1"",
+                    ""path"": ""<Gamepad>/dpad/right"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""NextPage"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""a3edeffe-0791-45c1-addc-28d2b5b1eff7"",
+                    ""path"": ""<Gamepad>/leftStick/right"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""NextPage"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""50c3e4bf-4333-40c0-98a0-ba375edbb4e9"",
+                    ""path"": ""<Keyboard>/a"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""PreviousPage"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""f4f61d85-05e5-4803-b89a-720be747a909"",
+                    ""path"": ""<Gamepad>/leftShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""PreviousPage"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""cbf4e863-f8d2-43a2-b55c-d6b709561bf5"",
+                    ""path"": ""<Gamepad>/dpad/left"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""PreviousPage"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""741eeb31-90dc-4695-8bba-432b25f9c17a"",
+                    ""path"": ""<Gamepad>/leftStick/left"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""PreviousPage"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": []
@@ -742,6 +931,11 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         m_Spawn_IndividualEnemy = m_Spawn.FindAction("IndividualEnemy", throwIfNotFound: true);
         m_Spawn_DemoWave = m_Spawn.FindAction("DemoWave", throwIfNotFound: true);
         m_Spawn_DemoBoss = m_Spawn.FindAction("DemoBoss", throwIfNotFound: true);
+        // JournalUI
+        m_JournalUI = asset.FindActionMap("JournalUI", throwIfNotFound: true);
+        m_JournalUI_CloseJournal = m_JournalUI.FindAction("CloseJournal", throwIfNotFound: true);
+        m_JournalUI_NextPage = m_JournalUI.FindAction("NextPage", throwIfNotFound: true);
+        m_JournalUI_PreviousPage = m_JournalUI.FindAction("PreviousPage", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -1057,6 +1251,68 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         }
     }
     public SpawnActions @Spawn => new SpawnActions(this);
+
+    // JournalUI
+    private readonly InputActionMap m_JournalUI;
+    private List<IJournalUIActions> m_JournalUIActionsCallbackInterfaces = new List<IJournalUIActions>();
+    private readonly InputAction m_JournalUI_CloseJournal;
+    private readonly InputAction m_JournalUI_NextPage;
+    private readonly InputAction m_JournalUI_PreviousPage;
+    public struct JournalUIActions
+    {
+        private @PlayerInputActions m_Wrapper;
+        public JournalUIActions(@PlayerInputActions wrapper) { m_Wrapper = wrapper; }
+        public InputAction @CloseJournal => m_Wrapper.m_JournalUI_CloseJournal;
+        public InputAction @NextPage => m_Wrapper.m_JournalUI_NextPage;
+        public InputAction @PreviousPage => m_Wrapper.m_JournalUI_PreviousPage;
+        public InputActionMap Get() { return m_Wrapper.m_JournalUI; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(JournalUIActions set) { return set.Get(); }
+        public void AddCallbacks(IJournalUIActions instance)
+        {
+            if (instance == null || m_Wrapper.m_JournalUIActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_JournalUIActionsCallbackInterfaces.Add(instance);
+            @CloseJournal.started += instance.OnCloseJournal;
+            @CloseJournal.performed += instance.OnCloseJournal;
+            @CloseJournal.canceled += instance.OnCloseJournal;
+            @NextPage.started += instance.OnNextPage;
+            @NextPage.performed += instance.OnNextPage;
+            @NextPage.canceled += instance.OnNextPage;
+            @PreviousPage.started += instance.OnPreviousPage;
+            @PreviousPage.performed += instance.OnPreviousPage;
+            @PreviousPage.canceled += instance.OnPreviousPage;
+        }
+
+        private void UnregisterCallbacks(IJournalUIActions instance)
+        {
+            @CloseJournal.started -= instance.OnCloseJournal;
+            @CloseJournal.performed -= instance.OnCloseJournal;
+            @CloseJournal.canceled -= instance.OnCloseJournal;
+            @NextPage.started -= instance.OnNextPage;
+            @NextPage.performed -= instance.OnNextPage;
+            @NextPage.canceled -= instance.OnNextPage;
+            @PreviousPage.started -= instance.OnPreviousPage;
+            @PreviousPage.performed -= instance.OnPreviousPage;
+            @PreviousPage.canceled -= instance.OnPreviousPage;
+        }
+
+        public void RemoveCallbacks(IJournalUIActions instance)
+        {
+            if (m_Wrapper.m_JournalUIActionsCallbackInterfaces.Remove(instance))
+                UnregisterCallbacks(instance);
+        }
+
+        public void SetCallbacks(IJournalUIActions instance)
+        {
+            foreach (var item in m_Wrapper.m_JournalUIActionsCallbackInterfaces)
+                UnregisterCallbacks(item);
+            m_Wrapper.m_JournalUIActionsCallbackInterfaces.Clear();
+            AddCallbacks(instance);
+        }
+    }
+    public JournalUIActions @JournalUI => new JournalUIActions(this);
     public interface IDefaultActions
     {
         void OnShoot(InputAction.CallbackContext context);
@@ -1083,5 +1339,11 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         void OnIndividualEnemy(InputAction.CallbackContext context);
         void OnDemoWave(InputAction.CallbackContext context);
         void OnDemoBoss(InputAction.CallbackContext context);
+    }
+    public interface IJournalUIActions
+    {
+        void OnCloseJournal(InputAction.CallbackContext context);
+        void OnNextPage(InputAction.CallbackContext context);
+        void OnPreviousPage(InputAction.CallbackContext context);
     }
 }
