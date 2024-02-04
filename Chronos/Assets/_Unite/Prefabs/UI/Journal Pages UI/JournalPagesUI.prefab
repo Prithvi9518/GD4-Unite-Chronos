@@ -126,7 +126,7 @@ GameObject:
   - component: {fileID: 8219531636780854291}
   - component: {fileID: 9068863567379455601}
   m_Layer: 5
-  m_Name: BackButton
+  m_Name: PreviousButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -233,7 +233,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 8219531636780854291}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 8158684921327989904}
+        m_TargetAssemblyTypeName: Unite.UI.JournalPagesUI, Assembly-CSharp
+        m_MethodName: TryMovePageByOffset
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: -1
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &4743515666838473400
 GameObject:
   m_ObjectHideFlags: 0
@@ -508,7 +520,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Front
+  m_text: Next
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -697,7 +709,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 6581408143087497694}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 8158684921327989904}
+        m_TargetAssemblyTypeName: Unite.UI.JournalPagesUI, Assembly-CSharp
+        m_MethodName: HideJournalUI
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &5938192000616517842
 GameObject:
   m_ObjectHideFlags: 0
@@ -711,7 +735,7 @@ GameObject:
   - component: {fileID: 1002168151005836117}
   - component: {fileID: 7700454110738155472}
   m_Layer: 5
-  m_Name: FrontButton
+  m_Name: NextButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -818,7 +842,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1002168151005836117}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 8158684921327989904}
+        m_TargetAssemblyTypeName: Unite.UI.JournalPagesUI, Assembly-CSharp
+        m_MethodName: TryMovePageByOffset
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 1
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &6257885267182604200
 GameObject:
   m_ObjectHideFlags: 0
@@ -836,7 +872,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &6253971996323484055
 RectTransform:
   m_ObjectHideFlags: 0
@@ -874,7 +910,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6257885267182604200}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
@@ -1037,9 +1073,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Back
-
-'
+  m_text: Previous
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1197,6 +1231,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mainPanel: {fileID: 6253971996323484055}
+  leftPanel: {fileID: 490170257245081627}
+  middlePanel: {fileID: 5049741901281751995}
+  rightPanel: {fileID: 8937550180856236944}
   journalPages:
   - {fileID: 11400000, guid: 29df100f79aa86c41a7b1d1b94a8cd96, type: 2}
   - {fileID: 11400000, guid: 0f2f5779a1201794dab1d3390e01a2e5, type: 2}
@@ -1206,6 +1243,9 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 6e0f45f5151816242a47b8007c80ace6, type: 2}
   - {fileID: 11400000, guid: 77e14c0b6476f5e46a2b05c3c5d054bf, type: 2}
   - {fileID: 11400000, guid: 1cb603de06216014c9c17437adb128db, type: 2}
+  onJournalOpened: {fileID: 11400000, guid: c119ba835bd4a19459d270603a710018, type: 2}
+  onCloseButtonPressed: {fileID: 11400000, guid: a13b2dd1349de634aaf02c7f0748b5c5,
+    type: 2}
 --- !u!114 &7343902651091725725
 MonoBehaviour:
   m_ObjectHideFlags: 0
