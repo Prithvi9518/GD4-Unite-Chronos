@@ -1193,6 +1193,8 @@ GameObject:
   - component: {fileID: 4325528508276476651}
   - component: {fileID: 8059832612457359398}
   - component: {fileID: 8716194748342745045}
+  - component: {fileID: 6949102941727624316}
+  - component: {fileID: 4876578843137474888}
   m_Layer: 5
   m_Name: JournalPagesUI
   m_TagString: Untagged
@@ -1236,6 +1238,9 @@ MonoBehaviour:
   leftPanel: {fileID: 490170257245081627}
   middlePanel: {fileID: 5049741901281751995}
   rightPanel: {fileID: 8937550180856236944}
+  prevButton: {fileID: 3781950623337038835}
+  nextButton: {fileID: 1743120816341598470}
+  closeButton: {fileID: 125509665912107600}
   journalPages:
   - {fileID: 11400000, guid: 29df100f79aa86c41a7b1d1b94a8cd96, type: 2}
   - {fileID: 11400000, guid: 0f2f5779a1201794dab1d3390e01a2e5, type: 2}
@@ -1360,6 +1365,64 @@ MonoBehaviour:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: -1
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &6949102941727624316
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8585670041606828181}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b9893a878b6442144bd9c1283a2b4b18, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  description: 
+  gameEvent: {fileID: 11400000, guid: a02d3426de4a0f64a85f754f612b9616, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 8158684921327989904}
+        m_TargetAssemblyTypeName: Unite.UI.JournalPagesUI, Assembly-CSharp
+        m_MethodName: ShowKeyboardUI
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &4876578843137474888
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8585670041606828181}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8fabf3c5e1544fe8925d5350cb877c32, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  description: 
+  gameEvent: {fileID: 11400000, guid: 0a489327cbafb0d48b443c84bc55d42b, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 8158684921327989904}
+        m_TargetAssemblyTypeName: Unite.UI.JournalPagesUI, Assembly-CSharp
+        m_MethodName: ShowGamepadUI
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0

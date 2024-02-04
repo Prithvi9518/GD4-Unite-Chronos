@@ -20,6 +20,15 @@ namespace Unite.UI
         private Transform rightPanel;
 
         [SerializeField]
+        private Transform prevButton;
+        
+        [SerializeField]
+        private Transform nextButton;
+        
+        [SerializeField]
+        private Transform closeButton;
+
+        [SerializeField]
         private JournalPageSO[] journalPages;
 
         [SerializeField] 
@@ -67,6 +76,20 @@ namespace Unite.UI
 
             currentPageIndex = index;
             ShowCurrentPage();
+        }
+
+        public void ShowKeyboardUI()
+        {
+            prevButton.gameObject.SetActive(true);
+            nextButton.gameObject.SetActive(true);
+            closeButton.gameObject.SetActive(true);
+        }
+
+        public void ShowGamepadUI()
+        {
+            prevButton.gameObject.SetActive(false);
+            nextButton.gameObject.SetActive(false);
+            closeButton.gameObject.SetActive(false);
         }
 
         private bool PageIndexExists(int index)
