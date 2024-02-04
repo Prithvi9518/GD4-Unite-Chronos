@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: NoteInteractibleSO
   m_EditorClassIdentifier: 
   eventOnInteract: {fileID: 11400000, guid: bc224a0d765fd4d4d9aa63477ff7146a, type: 2}
-  audioToPlayOnInteract: {fileID: 0}
+  audioToPlayOnInteract: {fileID: 8300000, guid: b0ec92c52d446f2418997bde17fc02fd,
+    type: 3}
   destroyAfterInteract: 1
   interactText: Read Note
