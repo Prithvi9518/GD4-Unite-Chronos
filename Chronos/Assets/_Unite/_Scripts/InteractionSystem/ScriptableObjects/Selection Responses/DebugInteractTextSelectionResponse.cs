@@ -7,7 +7,7 @@ namespace Unite.InteractionSystem
     {
         public override void OnSelect(Transform transform)
         {
-            if (!transform.TryGetComponent(out IProvideInteractText textProvider)) return;
+            if (!transform.TryGetComponent(out InteractibleObject textProvider)) return;
             Debug.Log($"Selected {transform.name}. Interact Text: {textProvider.GetInteractText()}");
         }
 
