@@ -11,8 +11,13 @@ namespace Unite.InteractionSystem
         private void OnTriggerEnter(Collider other)
         {
             if (!other.TryGetComponent(out Player.Player player)) return;
-            buff.ApplyBuff(player);
             HandleInteraction();
+        }
+
+        public override void HandleInteraction()
+        {
+            buff.ApplyBuff(Managers.GameManager.Instance.Player);
+            base.HandleInteraction();
         }
     }
 }
