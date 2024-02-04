@@ -9,6 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0d5344bc67a64080a20293f6e58f096b, type: 3}
-  m_Name: TestFlyingEnemy - DeathAction
+  m_Script: {fileID: 11500000, guid: 2000634b43fee7d40923be6960ac4c28, type: 3}
+  m_Name: Bat - RegularProjectileAttackAction
   m_EditorClassIdentifier: 
+  attackData: {fileID: 11400000, guid: 910426997222adb48858a10966f9118d, type: 2}
+  attackSoundEffect: {fileID: 0}
