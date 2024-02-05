@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 82184844059629279}
   - component: {fileID: 2536781480264409995}
   - component: {fileID: 5015678277194566675}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Terrain_(-15.00, 0.00, 166.00)
   m_TagString: Terrain
   m_Icon: {fileID: 0}
@@ -28,7 +28,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5055879101877178593}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -188.70306, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -143,7 +143,7 @@ MonoBehaviour:
   m_Center: {x: 0, y: 2, z: 0}
   m_LayerMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 537
   m_UseGeometry: 0
   m_DefaultArea: 0
   m_GenerateLinks: 0
@@ -154,5 +154,5 @@ MonoBehaviour:
   m_OverrideVoxelSize: 0
   m_VoxelSize: 0.24000001
   m_MinRegionArea: 2
-  m_NavMeshData: {fileID: 23800000, guid: 4c457da8e78b7454a9f7ae02e18f65e1, type: 2}
+  m_NavMeshData: {fileID: 23800000, guid: 0d558eaece848dc42ab409dc75991df7, type: 2}
   m_BuildHeightMesh: 0
