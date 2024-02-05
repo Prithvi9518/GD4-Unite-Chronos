@@ -281,11 +281,11 @@ MonoBehaviour:
   m_Name: FMODStudioSettings
   m_EditorClassIdentifier: 
   switchSettingsMigration: 1
-  HasSourceProject: 1
-  HasPlatforms: 1
+  HasSourceProject: 0
+  HasPlatforms: 0
   sourceProjectPath: ../../../../../FMOD Chronos File/FMOD Chronos Project/FMOD Chronos
     Project.fspro
-  sourceBankPath: ../../../../../FMOD Chronos File/FMOD Chronos Project/Build
+  sourceBankPath: Assets/FMOD Banks
   sourceBankPathUnformatted: 
   BankRefreshCooldown: 5
   ShowBankRefreshWindow: 1
