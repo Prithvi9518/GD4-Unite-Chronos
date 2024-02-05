@@ -58,7 +58,6 @@ namespace StarterAssets
         public float minTimeBetweenFootsteps = 0.3f; // Minimum time between footstep sounds
         public float maxTimeBetweenFootsteps = 0.6f; // Maximum time between footstep sounds
 
-        private AudioSource audioSource; // Reference to the Audio Source component
         private bool isWalking = false; // Flag to track if the player is walking
         private float timeSinceLastFootstep; // Time since the last footstep sound
 
@@ -120,8 +119,6 @@ namespace StarterAssets
 			// reset our timeouts on start
 			_jumpTimeoutDelta = JumpTimeout;
 			_fallTimeoutDelta = FallTimeout;
-			
-			audioSource = MusicManager.Instance.GetComponent<AudioSource>(); // Get the Audio Source component
 		}
 
 		private void Update()
@@ -246,19 +243,9 @@ namespace StarterAssets
             {
                 // Play a random footstep sound from the array using SoundEffectsManager
                 AudioClip footstepSound = footstepSounds[Random.Range(0, footstepSounds.Length)];
-
-                // Check if the audio source is playing
-                if (!audioSource.isPlaying)
-                {
-                    // If not playing, play the footstep sound at full volume
-                    SoundEffectsManager.Instance.PlaySoundAtCameraPosition(footstepSound);
-                }
-                else
-                {
-                    // If playing, play the footstep sound at a lower volume
-                    float volume = 0.5f; // Adjust the volume as needed
-                    SoundEffectsManager.Instance.PlaySoundAtCameraPosition(footstepSound, volume);
-                }
+                
+                float volume = 0.5f; // Adjust the volume as needed
+                SoundEffectsManager.Instance.PlaySoundAtCameraPosition(footstepSound, volume);
 
                 timeSinceLastFootstep = Time.time; // Update the time since the last footstep sound
             }

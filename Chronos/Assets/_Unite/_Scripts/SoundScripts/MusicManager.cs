@@ -1,19 +1,27 @@
-﻿using UnityEngine;
+﻿using FMOD.Studio;
+using FMODUnity;
+using UnityEngine;
+using STOP_MODE = FMOD.Studio.STOP_MODE;
 
 namespace Unite.SoundScripts
 {
     public class MusicManager : MonoBehaviour
     {
         public static MusicManager Instance { get; private set; }
+
+        [Header("FMOD Music Event Configuration")]
+        [SerializeField]
+        private string musicEventParameter;
+
+        [SerializeField]
+        [Range(0,1)]
+        private float exploreParamValue;
         
         [SerializeField]
-        private AudioSource audioSource;
+        [Range(0,1)]
+        private float combatParamValue;
 
-        [SerializeField]
-        private AudioClip explorationMusic;
-
-        [SerializeField]
-        private AudioClip combatMusic;
+        private EventInstance musicEventInstance;
 
         private void Awake()
         {
@@ -24,27 +32,33 @@ namespace Unite.SoundScripts
             }
 
             Instance = this;
-
-            audioSource.clip = explorationMusic;
         }
 
         private void Start()
         {
-            audioSource.Play();
+            musicEventInstance = GetFMODEventInstance(FMODEvents.Instance.MusicTransitionEvent);
+            musicEventInstance.start();
+        }
+        
+        private EventInstance GetFMODEventInstance(EventReference eventReference)
+        {
+            return RuntimeManager.CreateInstance(eventReference);
         }
 
         public void PlayCombatMusic()
         {
-            audioSource.Stop();
-            audioSource.clip = combatMusic;
-            audioSource.Play();
+            musicEventInstance.setParameterByName(musicEventParameter, combatParamValue);
         }
 
         public void PlayExplorationMusic()
         {
-            audioSource.Stop();
-            audioSource.clip = explorationMusic;
-            audioSource.Play();
+            musicEventInstance.setParameterByName(musicEventParameter, exploreParamValue);
+        }
+
+        private void OnDestroy()
+        {
+            musicEventInstance.stop(STOP_MODE.IMMEDIATE);
+            musicEventInstance.release();
         }
     }
 }
