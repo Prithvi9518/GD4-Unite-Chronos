@@ -55,7 +55,6 @@ namespace Unite.Player
         {
             playerData.SetupPlayer(this);
             onPlayerReady.Raise(this);
-            Debug.Log("Raised on player ready");
         }
 
         public void OnPlayerDead()
@@ -63,16 +62,6 @@ namespace Unite.Player
             healthHandler.enabled = false;
             gunHandler.enabled = false;
             controller.enabled = false;
-        }
-
-        public void DisableController()
-        {
-            controller.enabled = false;
-        }
-
-        public void EnableController()
-        {
-            controller.enabled = true;
         }
     }
 }

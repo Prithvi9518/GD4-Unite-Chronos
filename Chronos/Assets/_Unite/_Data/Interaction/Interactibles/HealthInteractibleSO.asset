@@ -13,5 +13,9 @@ MonoBehaviour:
   m_Name: HealthInteractibleSO
   m_EditorClassIdentifier: 
   eventOnInteract: {fileID: 0}
-  audioToPlayOnInteract: {fileID: 0}
+  audioToPlayOnInteract: {fileID: 8300000, guid: 5fe9db06b56ef794dbe89894208adeea,
+    type: 3}
+  volume: 0.5
   destroyAfterInteract: 1
+  interactText: 
+  showInteractText: 0
