@@ -66,5 +66,10 @@ namespace Unite.DialogueSystem
                 dialogueTriggerHandlers[dialogueTrigger](dialogues);
             }
         }
+
+        public void OnBattleEnd()
+        {
+            OnNotify(DialogueTrigger.BattleEnded);
+        }
     }
 }
