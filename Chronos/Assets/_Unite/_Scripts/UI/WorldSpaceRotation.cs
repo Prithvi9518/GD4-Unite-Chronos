@@ -6,13 +6,14 @@ namespace Unite.UI
     {
         private Camera cam;
 
-        private void Start()
-        {
-            cam = Camera.main;
-        }
-
         private void Update()
         {
+            if (cam == null)
+            {
+                cam = Camera.main;
+            }
+
+            if (cam == null) return;
             transform.parent.rotation = cam.transform.rotation;
         }
     }

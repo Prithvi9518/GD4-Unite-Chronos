@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Unite.InteractionSystem
 {
-    public class TestDialogueInteractible : InteractibleObject
+    public class DialogueInteractible : InteractibleObject
     {
         [SerializeField]
         private DialogueSO dialogue;
