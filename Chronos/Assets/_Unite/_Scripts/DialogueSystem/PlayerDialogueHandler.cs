@@ -50,6 +50,8 @@ namespace Unite.DialogueSystem
 
         private void HandleBattleEnded(List<DialogueSO> dialogues)
         {
+            if (dialogues.Count == 0) return;
+            
             if (battleEndedCount == 0)
             {
                 DialogueManager.Instance.PlayDialogue(dialogues[0]);
@@ -65,6 +67,11 @@ namespace Unite.DialogueSystem
             {
                 dialogueTriggerHandlers[dialogueTrigger](dialogues);
             }
+        }
+
+        public void OnBattleEnd()
+        {
+            OnNotify(DialogueTrigger.BattleEnded);
         }
     }
 }
