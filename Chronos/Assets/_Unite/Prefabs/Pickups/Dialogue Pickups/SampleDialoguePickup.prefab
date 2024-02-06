@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 6508907741909291689}
   - component: {fileID: 8231093938457581803}
   - component: {fileID: 5964454986317864606}
+  - component: {fileID: 1222812830576317020}
   m_Layer: 6
   m_Name: Text (TMP)
   m_TagString: Untagged
@@ -134,6 +135,18 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &1222812830576317020
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1679201456205395457}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4ca9a322e1694127ad360853bf33eb62, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2778560069113861193
 GameObject:
   m_ObjectHideFlags: 0
@@ -331,7 +344,7 @@ GameObject:
   - component: {fileID: 6402671008850746234}
   - component: {fileID: 7927392357969467623}
   m_Layer: 6
-  m_Name: TestDialoguePickup
+  m_Name: SampleDialoguePickup
   m_TagString: Interactible
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -387,9 +400,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e9d074a654ad4a26814095fa4f70b160, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  displayName: 
-  interactibleData: {fileID: 0}
-  onInteractUpdateAnalytics: {fileID: 0}
-  dialogueSequence: {fileID: 11400000, guid: 02a9c8b8fa7173242b33b8ddceeb6ddf, type: 2}
-  singleDialogue: {fileID: 11400000, guid: ff54932e95108b24d97f1967e5021930, type: 2}
-  isSequence: 0
+  displayName: Sample Dialogue
+  interactibleData: {fileID: 11400000, guid: 564c72f62ce93a44ea13393600770922, type: 2}
+  onInteractUpdateAnalytics: {fileID: 11400000, guid: 13708a900b70425458ffed7409591384,
+    type: 2}
+  dialogue: {fileID: 11400000, guid: ff54932e95108b24d97f1967e5021930, type: 2}
