@@ -26,7 +26,7 @@ namespace Unite.BattleSystem
         private BattleZoneInfoEvent onMoveToNextWave;
 
         [SerializeField]
-        private GameEvent onFinishBattle;
+        private GameEvent[] onFinishBattleEvents;
         
         private BattleState battleState;
         private EnemyWaveSpawner waveSpawner;
@@ -95,8 +95,11 @@ namespace Unite.BattleSystem
             battleState = BattleState.End;
             BuffSpawnManager.Instance.SpawnBuff(buffSpawnPosition);
             barrier.ToggleBarrierColliders(false);
-            
-            onFinishBattle.Raise();
+
+            foreach (var e in onFinishBattleEvents)
+            {
+                e.Raise();
+            }
         }
     }
 }
