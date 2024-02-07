@@ -153,7 +153,8 @@ MonoBehaviour:
   buffSpawnPosition: {fileID: 7364726228433758888}
   onStartBattle: {fileID: 11400000, guid: a991dd00939e49142b44a0d52b74d942, type: 2}
   onMoveToNextWave: {fileID: 11400000, guid: f921afec09720374d98e14afc2060d45, type: 2}
-  onFinishBattle: {fileID: 11400000, guid: e391660daa999374fa01e96816751e18, type: 2}
+  onFinishBattleEvents:
+  - {fileID: 11400000, guid: e391660daa999374fa01e96816751e18, type: 2}
 --- !u!114 &3993637666093003771
 MonoBehaviour:
   m_ObjectHideFlags: 0

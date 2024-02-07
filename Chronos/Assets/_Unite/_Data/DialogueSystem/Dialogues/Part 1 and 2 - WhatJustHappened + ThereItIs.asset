@@ -15,6 +15,12 @@ MonoBehaviour:
   lines:
   - speakerName: Ava
     text: Test dialogue 2
+    audio: {fileID: 8300000, guid: b913186a9b6937544b8a4840f963cb9c, type: 3}
+    setDelayToClipLength: 1
+    delayOffset: 0
+    manualDelay: 0
+  - speakerName: Ava
+    text: Test dialogue 2
     audio: {fileID: 8300000, guid: dc027a64ceb445343ac0863126636b47, type: 3}
     setDelayToClipLength: 0
     delayOffset: 0
