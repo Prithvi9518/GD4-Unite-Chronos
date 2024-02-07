@@ -10,18 +10,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3169fdde3ded437b9d20f31f184bec8e, type: 3}
-  m_Name: Part2_ThereItIs
+  m_Name: Part 1 and 2 - WhatJustHappened + ThereItIs
   m_EditorClassIdentifier: 
   lines:
   - speakerName: Ava
     text: Test dialogue 1
-    audio: {fileID: 8300000, guid: dc027a64ceb445343ac0863126636b47, type: 3}
+    audio: {fileID: 8300000, guid: b913186a9b6937544b8a4840f963cb9c, type: 3}
     setDelayToClipLength: 1
     delayOffset: 1
     manualDelay: 0
   - speakerName: Ava
     text: Test dialogue 2
-    audio: {fileID: 8300000, guid: aea4d6570b4cc7842a4d8cfd3513ff23, type: 3}
+    audio: {fileID: 8300000, guid: dc027a64ceb445343ac0863126636b47, type: 3}
     setDelayToClipLength: 0
     delayOffset: 0
     manualDelay: 0

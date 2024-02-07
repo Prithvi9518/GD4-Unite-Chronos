@@ -34,7 +34,8 @@ namespace Unite.DialogueSystem
             {
                 { DialogueTrigger.Test1, HandleTest1 },
                 { DialogueTrigger.Test2, HandleTest2 },
-                { DialogueTrigger.BattleEnded , HandleBattleEnded }
+                { DialogueTrigger.BattleEnded , HandleBattleEnded },
+                { DialogueTrigger.GameStart , HandleGameStart}
             };
         }
         
@@ -59,6 +60,13 @@ namespace Unite.DialogueSystem
             }
         }
 
+        private void HandleGameStart(List<DialogueSO> dialogues)
+        {
+            if (dialogues.Count == 0) return;
+            
+            DialogueManager.Instance.PlayDialogue(dialogues[0]);
+        }
+
         public void OnNotify(DialogueTrigger dialogueTrigger)
         {
             if (!dialogueTriggerHandlers.ContainsKey(dialogueTrigger)) return;
@@ -72,6 +80,11 @@ namespace Unite.DialogueSystem
         public void OnBattleEnd()
         {
             OnNotify(DialogueTrigger.BattleEnded);
+        }
+
+        public void OnGameStart()
+        {
+            OnNotify(DialogueTrigger.GameStart);
         }
     }
 }

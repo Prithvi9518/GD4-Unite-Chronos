@@ -45,7 +45,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e636681d74b4135bb051eebf633a960, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  onGameStart: {fileID: 0}
+  onGameStart: {fileID: 11400000, guid: 1c64a1214fcebc743a76621bff096664, type: 2}
   onGameWin: {fileID: 0}
   onGameLose: {fileID: 0}
 --- !u!114 &7034267765708947679
