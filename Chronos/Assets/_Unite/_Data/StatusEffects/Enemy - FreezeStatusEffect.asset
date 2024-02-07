@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f48c379774dd45fe835c812144c54121, type: 3}
+  m_Name: Enemy - FreezeStatusEffect
+  m_EditorClassIdentifier: 
+  effectName: Freeze
+  damageOverTime: 0
+  slowdownPenalty: -4
+  intervalInSeconds: 0
+  lifetimeInSeconds: 6
+  effectParticles: {fileID: 0}

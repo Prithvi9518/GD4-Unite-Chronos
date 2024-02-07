@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2715094287016568057}
   - component: {fileID: 5565587500776906568}
   - component: {fileID: 6075474991343697231}
-  - component: {fileID: 1647161594542303794}
+  - component: {fileID: 4592194524226483612}
   m_Layer: 0
   m_Name: Bootstrapper
   m_TagString: Untagged
@@ -75,7 +75,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &1647161594542303794
+--- !u!114 &4592194524226483612
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -87,7 +87,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d46a1daccfa84b60b522108425748b26, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  description: Listens for when enemy spawner is initialized
+  description: Listen for when spawner is initialized
   gameEvent: {fileID: 11400000, guid: e8d65d27332f0fd4081c94f659d82864, type: 2}
   response:
     m_PersistentCalls:

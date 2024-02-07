@@ -1,9 +1,9 @@
-using UnityEngine;
-
 namespace Unite.Core.DamageInterfaces
 {
     public interface IDoDamage
     {
-        public void DoDamage(GameObject target);
+        public string GetName();
+
+        public DamageType GetDamageType();
     }
 }

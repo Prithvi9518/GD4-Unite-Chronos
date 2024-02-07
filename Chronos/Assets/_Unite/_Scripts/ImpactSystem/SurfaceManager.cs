@@ -61,7 +61,7 @@ namespace Unite.ImpactSystem
             {
                 AudioClip audioClip = playAudioEffect.AudioClips[Random.Range(0, playAudioEffect.AudioClips.Count)];
 
-                SoundManager.Instance.PlaySoundAtPosition(
+                SoundEffectsManager.Instance.PlaySoundAtPosition(
                     audioClip,
                     hitPos,
                     Random.Range(playAudioEffect.MinVolume, playAudioEffect.MaxVolume)

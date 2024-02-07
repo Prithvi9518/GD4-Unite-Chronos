@@ -35,7 +35,7 @@ namespace Unite.WeaponSystem.ImpactEffects
                     float distance = Vector3.Distance(hitPos, hitObjects[i].ClosestPoint(hitPos));
                     
                     float damage = BaseExplosionDamage * DamageFalloff.Evaluate(distance / Radius);
-                    damageable.TakeDamage(damage);
+                    damageable.TakeDamage(damage + gun.BaseDamage, gun.Shooter, gun);
                 }
             }
         }

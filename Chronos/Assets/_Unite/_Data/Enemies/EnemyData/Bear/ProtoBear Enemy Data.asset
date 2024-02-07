@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 32caeaf3c47dcc4429d179743c38ac91, type: 3}
+  m_Name: ProtoBear Enemy Data
+  m_EditorClassIdentifier: 
+  displayName: ProtoBear
+  enemyPrefab: {fileID: 7263221568090539695, guid: f5b909658e989a846ba68960196bd601,
+    type: 3}
+  baseHealth: 100
+  baseDamage: 5
+  cost: 5
+  attacks:
+  - {fileID: 11400000, guid: 088c2401fa239a54680923a76fbe3c1d, type: 2}
+  startingState: {fileID: 11400000, guid: 1e199744920386744996284e918f904c, type: 2}
+  remainState: {fileID: 11400000, guid: 72468647a83f1bf488b9575ef0eb8602, type: 2}

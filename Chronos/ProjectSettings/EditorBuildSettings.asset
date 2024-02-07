@@ -6,7 +6,7 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/_Unite/_Scenes/Level.unity
+    path: Assets/_Unite/_Scenes/Island.unity
     guid: b9ca65b843f2aee439a17042db3b7dbf
   - enabled: 1
     path: Assets/_Unite/_Scenes/Player.unity
@@ -16,7 +16,7 @@ EditorBuildSettings:
     guid: 701c8172e3cb3c74eb9bedaa5129e4df
   - enabled: 1
     path: Assets/_Unite/_Scenes/VFX.unity
-    guid: 1472b490b4519284e98166bb5f5fbdc0
+    guid: 288218b3b10ceee4890c24404d73aac6
   - enabled: 1
     path: Assets/_Unite/_Scenes/UI.unity
     guid: e6ce214eb565d034181820665371a6d1
@@ -26,4 +26,12 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/_Unite/_Scenes/_MainScene.unity
     guid: 3116e976c6891c748abaf8beb8a038ad
-  m_configObjects: {}
+  - enabled: 1
+    path: Assets/_Unite/_Scenes/Level_2.unity
+    guid: c7643f2e2f30ff84aa8a31ccafff745f
+  - enabled: 1
+    path: Assets/_Unite/_Scenes/Level_3.unity
+    guid: 5e4a574e42fb13643b59485910b431de
+  m_configObjects:
+    com.unity.input.settings: {fileID: 11400000, guid: 9e7be553448fa2546aea5752021cbcf7,
+      type: 2}

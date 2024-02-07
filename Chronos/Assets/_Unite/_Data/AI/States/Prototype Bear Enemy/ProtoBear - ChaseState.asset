@@ -13,11 +13,11 @@ MonoBehaviour:
   m_Name: ProtoBear - ChaseState
   m_EditorClassIdentifier: 
   enterActions:
-  - {fileID: 11400000, guid: f56684ae98e24f44892bdf55ac5eb8e4, type: 2}
+  - {fileID: 11400000, guid: f1906ef60a74f5b43b20f114a9b331a5, type: 2}
   updateActions:
   - {fileID: 11400000, guid: 40b0c66a416e77e41932f97fcd7bc52a, type: 2}
   exitActions:
-  - {fileID: 11400000, guid: 908d6f603740b8a49b3c6a367ebe7d54, type: 2}
+  - {fileID: 11400000, guid: 3cb0be7a84b96e043848e5d2144a252f, type: 2}
   conditionBasedTransitions:
   - condition: {fileID: 11400000, guid: a920365844f131843af57bfa1339cfdc, type: 2}
     trueState: {fileID: 11400000, guid: 38998b48e58f30b48b18b1065df04156, type: 2}

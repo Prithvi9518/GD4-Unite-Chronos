@@ -1,5 +1,9 @@
 using Unite.Core;
+using Unite.Detection;
 using Unite.Enemies.AI;
+using Unite.Enemies.Movement;
+using Unite.EventSystem;
+using Unite.ItemDropSystem;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.Pool;
@@ -14,8 +18,18 @@ namespace Unite.Enemies
     [RequireComponent(typeof(EnemyDetectionHandler))]
     [RequireComponent(typeof(EnemyAnimationHandler))]
     [RequireComponent(typeof(EnemyUIHandler))]
+    [RequireComponent(typeof(EnemyDropHandler))]
+    [RequireComponent(typeof(LineOfSightDetection))]
+    [RequireComponent(typeof(TimeStopEnemy))]
+    [RequireComponent(typeof(EnemyStatusEffectable))]
     public class Enemy : MonoBehaviour
     {
+        [SerializeField]
+        private GameEvent onEnemyDead;
+
+        [SerializeField]
+        private EnemyEvent onEnemyDeadUpdateMetric;
+
         private Health enemyHealth;
         private EnemyDamager enemyDamager;
 
@@ -28,9 +42,18 @@ namespace Unite.Enemies
         private EnemyDetectionHandler enemyDetectionHandler;
         private EnemyAnimationHandler enemyAnimationHandler;
         private EnemyUIHandler enemyUIHandler;
+        private EnemyDropHandler dropHandler;
+
+        private StrafeHandler strafeHandler;
+
+        private EnemyProjectileShooter projectileShooter;
 
         private IObjectPool<Enemy> enemyPool;
 
+        private bool isAlive;
+
+        public string DisplayName { get; set; }
+        
         public Health Health => enemyHealth;
         public NavMeshAgent Agent => navMeshAgent;
         public EnemyStateMachine StateMachine => enemyStateMachine;
@@ -40,6 +63,10 @@ namespace Unite.Enemies
         public EnemyAnimationHandler AnimationHandler => enemyAnimationHandler;
         public EnemyUIHandler UIHandler => enemyUIHandler;
         public EnemyDamager Damager => enemyDamager;
+        public StrafeHandler StrafeHandler => strafeHandler;
+        public EnemyProjectileShooter ProjectileShooter => projectileShooter;
+
+        public bool IsAlive => isAlive;
 
         private void Awake()
         {
@@ -55,6 +82,13 @@ namespace Unite.Enemies
             enemyDetectionHandler = GetComponent<EnemyDetectionHandler>();
             enemyAnimationHandler = GetComponent<EnemyAnimationHandler>();
             enemyUIHandler = GetComponent<EnemyUIHandler>();
+            dropHandler = GetComponent<EnemyDropHandler>();
+
+            strafeHandler = GetComponent<StrafeHandler>();
+            
+            projectileShooter = GetComponent<EnemyProjectileShooter>();
+
+            isAlive = true;
         }
 
         public void SetEnemyPool(IObjectPool<Enemy> pool)
@@ -71,10 +105,16 @@ namespace Unite.Enemies
             enemyAnimationHandler.Animator.enabled = true;
 
             enemyHealth.ResetHealth();
+            
+            isAlive = true;
         }
 
         public void OnEnemyDeath()
         {
+            dropHandler.DropItems();
+            onEnemyDead.Raise();
+            onEnemyDeadUpdateMetric.Raise(this);
+            isAlive = false;
             gameObject.SetActive(false);
             enemyPool?.Release(this);
         }

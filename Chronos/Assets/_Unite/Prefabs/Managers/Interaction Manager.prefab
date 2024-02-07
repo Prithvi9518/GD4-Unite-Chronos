@@ -48,7 +48,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   selectionResponses:
-  - {fileID: 11400000, guid: 0416bbe993a12b64bae3553c3dd53c77, type: 2}
+  - {fileID: 11400000, guid: 7303629f6d3fb544dbec03878c1c3049, type: 2}
+  onSelectionNullAfterReset: {fileID: 11400000, guid: b6ec30b4ee314ae47b32fff9cecf7300,
+    type: 2}
 --- !u!114 &3038496663315079293
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -74,7 +76,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 80485d02f00dbf444b4914ac5a2a1446, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxDistance: 10
+  maxDistance: 3
   selectableTag: Interactible
   layerMask:
     serializedVersion: 2

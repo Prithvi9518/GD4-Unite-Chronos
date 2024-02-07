@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Unite.SoundScripts;
 using Unite.StatePattern;
 using UnityEngine;
 
@@ -8,17 +9,22 @@ namespace Unite.Enemies.AI
     public class BasicAttackAction : Action
     {
         [SerializeField]
-        private AttackName attackName;
+        private AttackData attackData;
 
-        public override void ExecuteAction(IStateMachine stateMachine)
+        [SerializeField]
+        private AudioClip attackSoundEffect;
+
+        public override void ExecuteAction(BaseStateMachine baseStateMachine)
         {
-            EnemyStateMachine enemy = stateMachine as EnemyStateMachine;
-
-            Attack attack = enemy.AttackHandler.Attacks.GetValueOrDefault(attackName, null);
+            Attack attack = baseStateMachine.GetComponent<EnemyAttackHandler>().
+                Attacks.GetValueOrDefault(attackData.name, null);
 
             if (!attack.CanUseAttack()) return;
 
-            attack.DoAttack(enemy);
+            attack.DoAttack(baseStateMachine.GetComponent<Enemy>());
+
+            if (attackSoundEffect == null) return;
+            SoundEffectsManager.Instance.PlaySoundAtPosition(attackSoundEffect, baseStateMachine.transform.position);
         }
     }
 }

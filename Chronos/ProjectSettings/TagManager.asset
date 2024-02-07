@@ -6,19 +6,21 @@ TagManager:
   tags:
   - CinemachineTarget
   - Interactible
+  - Terrain
+  - BattleZone
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Ground
   - Water
   - UI
   - Interactible
   - Post Processing
-  - 
-  - 
-  - 
-  - 
+  - Minimap
+  - Environment
+  - Player
+  - Battle Zone
   - 
   - 
   - 

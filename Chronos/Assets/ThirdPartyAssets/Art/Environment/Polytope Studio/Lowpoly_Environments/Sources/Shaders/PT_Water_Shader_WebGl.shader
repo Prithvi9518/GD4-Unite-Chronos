@@ -1,4 +1,4 @@
-// Made with Amplify Shader Editor v1.9.1.5
+// Made with Amplify Shader Editor v1.9.2.2
 // Available at the Unity Asset Store - http://u3d.as/y3X 
 Shader "Polytope Studio/PT_Water_Shader_WebGl"
 {
@@ -6,12 +6,11 @@ Shader "Polytope Studio/PT_Water_Shader_WebGl"
 	{
 		[HideInInspector] _EmissionColor("Emission Color", Color) = (1,1,1,1)
 		[HideInInspector] _AlphaCutoff("Alpha Cutoff ", Range(0, 1)) = 0.5
-		[ASEBegin]_DeepColor("Deep Color", Color) = (0.3114988,0.5266015,0.5283019,0)
+		_DeepColor("Deep Color", Color) = (0.3114988,0.5266015,0.5283019,0)
 		_ShallowColor("Shallow Color", Color) = (0.5238074,0.7314408,0.745283,0)
 		_Depth("Depth", Range( 0 , 1)) = 0.3
 		_DepthStrength("Depth Strength", Range( 0 , 1)) = 0.3
 		_Smootness("Smootness", Range( 0 , 1)) = 1
-		_Mettalic("Mettalic", Range( 0 , 1)) = 1
 		_WaveSpeed("Wave Speed", Range( 0 , 1)) = 0.5
 		_WaveTile("Wave Tile", Range( 0 , 0.9)) = 0.5
 		_WaveAmplitude("Wave Amplitude", Range( 0 , 1)) = 0.2
@@ -21,7 +20,7 @@ Shader "Polytope Studio/PT_Water_Shader_WebGl"
 		_FoamColor("Foam Color", Color) = (0.3066038,1,0.9145772,0)
 		_FoamAmount("Foam Amount", Range( 0 , 10)) = 1.5
 		_FoamPower("Foam Power", Range( 0.1 , 5)) = 0.5
-		[ASEEnd]_FoamNoiseScale("Foam Noise Scale", Range( 0 , 1000)) = 150
+		_FoamNoiseScale("Foam Noise Scale", Range( 0 , 1000)) = 150
 
 
 		//_TransmissionShadow( "Transmission Shadow", Range( 0, 1 ) ) = 0.5
@@ -59,7 +58,7 @@ Shader "Polytope Studio/PT_Water_Shader_WebGl"
 		Tags { "RenderPipeline"="UniversalPipeline" "RenderType"="Transparent" "Queue"="Transparent" "UniversalMaterialType"="Lit" }
 
 		Cull Back
-		ZWrite On
+		ZWrite Off
 		ZTest LEqual
 		Offset 0 , 0
 		AlphaToMask Off
@@ -67,7 +66,7 @@ Shader "Polytope Studio/PT_Water_Shader_WebGl"
 		
 
 		HLSLINCLUDE
-		#pragma target 3.5
+		#pragma target 4.5
 		#pragma prefer_hlslcc gles
 		// ensure rendering platforms toggle list is visible
 
@@ -185,7 +184,7 @@ Shader "Polytope Studio/PT_Water_Shader_WebGl"
 			Tags { "LightMode"="UniversalForward" }
 
 			Blend SrcAlpha OneMinusSrcAlpha, One OneMinusSrcAlpha
-			ZWrite Off
+			ZWrite On
 			ZTest LEqual
 			Offset 0 , 0
 			ColorMask RGBA
@@ -202,25 +201,29 @@ Shader "Polytope Studio/PT_Water_Shader_WebGl"
 			#define ASE_FOG 1
 			#define _SURFACE_TYPE_TRANSPARENT 1
 			#define _NORMALMAP 1
-			#define ASE_SRP_VERSION 120110
+			#define ASE_SRP_VERSION 140009
 			#define REQUIRE_DEPTH_TEXTURE 1
 			#define REQUIRE_OPAQUE_TEXTURE 1
 
+
+			#pragma shader_feature_local _RECEIVE_SHADOWS_OFF
+			#pragma shader_feature_local_fragment _SPECULARHIGHLIGHTS_OFF
+			#pragma shader_feature_local_fragment _ENVIRONMENTREFLECTIONS_OFF
 
 			#pragma multi_compile _ _MAIN_LIGHT_SHADOWS _MAIN_LIGHT_SHADOWS_CASCADE _MAIN_LIGHT_SHADOWS_SCREEN
 			#pragma multi_compile _ _ADDITIONAL_LIGHTS_VERTEX _ADDITIONAL_LIGHTS
 			#pragma multi_compile_fragment _ _ADDITIONAL_LIGHT_SHADOWS
 			#pragma multi_compile_fragment _ _REFLECTION_PROBE_BLENDING
 			#pragma multi_compile_fragment _ _REFLECTION_PROBE_BOX_PROJECTION
-			#pragma multi_compile_fragment _ _SHADOWS_SOFT
+			
+			
+			#pragma multi_compile_fragment _ _SHADOWS_SOFT _SHADOWS_SOFT_LOW _SHADOWS_SOFT_MEDIUM _SHADOWS_SOFT_HIGH
+		
 			#pragma multi_compile_fragment _ _SCREEN_SPACE_OCCLUSION
 			#pragma multi_compile_fragment _ _DBUFFER_MRT1 _DBUFFER_MRT2 _DBUFFER_MRT3
 			#pragma multi_compile_fragment _ _LIGHT_LAYERS
 			#pragma multi_compile_fragment _ _LIGHT_COOKIES
-			#pragma multi_compile _ _CLUSTERED_RENDERING
-			#pragma shader_feature_local _RECEIVE_SHADOWS_OFF
-			#pragma shader_feature_local_fragment _SPECULARHIGHLIGHTS_OFF
-			#pragma shader_feature_local_fragment _ENVIRONMENTREFLECTIONS_OFF
+			#pragma multi_compile _ _FORWARD_PLUS
 
 			#pragma multi_compile _ LIGHTMAP_SHADOW_MIXING
 			#pragma multi_compile _ SHADOWS_SHADOWMASK
@@ -228,6 +231,7 @@ Shader "Polytope Studio/PT_Water_Shader_WebGl"
 			#pragma multi_compile _ LIGHTMAP_ON
 			#pragma multi_compile _ DYNAMICLIGHTMAP_ON
 			#pragma multi_compile_fragment _ DEBUG_DISPLAY
+			#pragma multi_compile_fragment _ _WRITE_RENDERING_LAYERS
 
 			#pragma vertex vert
 			#pragma fragment frag
@@ -245,6 +249,10 @@ Shader "Polytope Studio/PT_Water_Shader_WebGl"
 			#include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/DBuffer.hlsl"
 			#include "Packages/com.unity.render-pipelines.universal/Editor/ShaderGraph/Includes/ShaderPass.hlsl"
 
+			#if defined(LOD_FADE_CROSSFADE)
+            #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/LODCrossFade.hlsl"
+            #endif
+
 			#if defined(UNITY_INSTANCING_ENABLED) && defined(_TERRAIN_INSTANCED_PERPIXEL_NORMAL)
 				#define ENABLE_TERRAIN_PERPIXEL_NORMAL
 			#endif
@@ -252,11 +260,19 @@ Shader "Polytope Studio/PT_Water_Shader_WebGl"
 			#define ASE_NEEDS_FRAG_SCREEN_POSITION
 
 
+			#if defined(ASE_EARLY_Z_DEPTH_OPTIMIZE) && (SHADER_TARGET >= 45)
+				#define ASE_SV_DEPTH SV_DepthLessEqual
+				#define ASE_SV_POSITION_QUALIFIERS linear noperspective centroid
+			#else
+				#define ASE_SV_DEPTH SV_Depth
+				#define ASE_SV_POSITION_QUALIFIERS
+			#endif
+
 			struct VertexInput
 			{
-				float4 vertex : POSITION;
-				float3 ase_normal : NORMAL;
-				float4 ase_tangent : TANGENT;
+				float4 positionOS : POSITION;
+				float3 normalOS : NORMAL;
+				float4 tangentOS : TANGENT;
 				float4 texcoord : TEXCOORD0;
 				float4 texcoord1 : TEXCOORD1;
 				float4 texcoord2 : TEXCOORD2;
@@ -266,17 +282,15 @@ Shader "Polytope Studio/PT_Water_Shader_WebGl"
 
 			struct VertexOutput
 			{
-				float4 clipPos : SV_POSITION;
-				float4 lightmapUVOrVertexSH : TEXCOORD0;
-				half4 fogFactorAndVertexLight : TEXCOORD1;
-				#if defined(REQUIRES_VERTEX_SHADOW_COORD_INTERPOLATOR)
-					float4 shadowCoord : TEXCOORD2;
-				#endif
+				ASE_SV_POSITION_QUALIFIERS float4 positionCS : SV_POSITION;
+				float4 clipPosV : TEXCOORD0;
+				float4 lightmapUVOrVertexSH : TEXCOORD1;
+				half4 fogFactorAndVertexLight : TEXCOORD2;
 				float4 tSpace0 : TEXCOORD3;
 				float4 tSpace1 : TEXCOORD4;
 				float4 tSpace2 : TEXCOORD5;
-				#if defined(ASE_NEEDS_FRAG_SCREEN_POSITION)
-					float4 screenPos : TEXCOORD6;
+				#if defined(REQUIRES_VERTEX_SHADOW_COORD_INTERPOLATOR)
+					float4 shadowCoord : TEXCOORD6;
 				#endif
 				#if defined(DYNAMICLIGHTMAP_ON)
 					float2 dynamicLightmapUV : TEXCOORD7;
@@ -300,7 +314,6 @@ Shader "Polytope Studio/PT_Water_Shader_WebGl"
 			float _FoamAmount;
 			float _FoamPower;
 			float _FoamNoiseScale;
-			float _Mettalic;
 			float _Smootness;
 			#ifdef ASE_TRANSMISSION
 				float _TransmissionShadow;
@@ -323,27 +336,18 @@ Shader "Polytope Studio/PT_Water_Shader_WebGl"
 			#endif
 			CBUFFER_END
 
-			// Property used by ScenePickingPass
 			#ifdef SCENEPICKINGPASS
 				float4 _SelectionID;
 			#endif
 
-			// Properties used by SceneSelectionPass
 			#ifdef SCENESELECTIONPASS
 				int _ObjectId;
 				int _PassValue;
 			#endif
 
-			uniform float4 _CameraDepthTexture_TexelSize;
 			sampler2D _NormalMapTexture;
+			uniform float4 _CameraDepthTexture_TexelSize;
 
-
-			//#include "Packages/com.unity.render-pipelines.universal/Editor/ShaderGraph/Includes/Varyings.hlsl"
-			//#include "Packages/com.unity.render-pipelines.universal/Editor/ShaderGraph/Includes/PBRForwardPass.hlsl"
-
-			//#ifdef HAVE_VFX_MODIFICATION
-			//#include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/VisualEffectVertex.hlsl"
-			//#endif
 
 			float3 mod2D289( float3 x ) { return x - floor( x * ( 1.0 / 289.0 ) ) * 289.0; }
 			float2 mod2D289( float2 x ) { return x - floor( x * ( 1.0 / 289.0 ) ) * 289.0; }
@@ -417,7 +421,7 @@ Shader "Polytope Studio/PT_Water_Shader_WebGl"
 				UNITY_INITIALIZE_VERTEX_OUTPUT_STEREO(o);
 
 				float4 appendResult71 = (float4(0.23 , -0.8 , 0.0 , 0.0));
-				float3 ase_worldPos = TransformObjectToWorld( (v.vertex).xyz );
+				float3 ase_worldPos = TransformObjectToWorld( (v.positionOS).xyz );
 				float4 appendResult81 = (float4(ase_worldPos.x , ase_worldPos.z , 0.0 , 0.0));
 				float2 panner79 = ( ( _TimeParameters.x * _WaveSpeed ) * appendResult71.xy + ( ( appendResult81 * float4( float2( 6.5,0.9 ), 0.0 , 0.0 ) ) * _WaveTile ).xy);
 				float simplePerlin2D77 = snoise( panner79 );
@@ -431,7 +435,7 @@ Shader "Polytope Studio/PT_Water_Shader_WebGl"
 				o.ase_texcoord8.zw = 0;
 
 				#ifdef ASE_ABSOLUTE_VERTEX_POS
-					float3 defaultVertexValue = v.vertex.xyz;
+					float3 defaultVertexValue = v.positionOS.xyz;
 				#else
 					float3 defaultVertexValue = float3(0, 0, 0);
 				#endif
@@ -439,21 +443,19 @@ Shader "Polytope Studio/PT_Water_Shader_WebGl"
 				float3 vertexValue = temp_cast_3;
 
 				#ifdef ASE_ABSOLUTE_VERTEX_POS
-					v.vertex.xyz = vertexValue;
+					v.positionOS.xyz = vertexValue;
 				#else
-					v.vertex.xyz += vertexValue;
+					v.positionOS.xyz += vertexValue;
 				#endif
-				v.ase_normal = v.ase_normal;
+				v.normalOS = v.normalOS;
+				v.tangentOS = v.tangentOS;
 
-				float3 positionWS = TransformObjectToWorld( v.vertex.xyz );
-				float3 positionVS = TransformWorldToView( positionWS );
-				float4 positionCS = TransformWorldToHClip( positionWS );
+				VertexPositionInputs vertexInput = GetVertexPositionInputs( v.positionOS.xyz );
+				VertexNormalInputs normalInput = GetVertexNormalInputs( v.normalOS, v.tangentOS );
 
-				VertexNormalInputs normalInput = GetVertexNormalInputs( v.ase_normal, v.ase_tangent );
-
-				o.tSpace0 = float4( normalInput.normalWS, positionWS.x);
-				o.tSpace1 = float4( normalInput.tangentWS, positionWS.y);
-				o.tSpace2 = float4( normalInput.bitangentWS, positionWS.z);
+				o.tSpace0 = float4( normalInput.normalWS, vertexInput.positionWS.x );
+				o.tSpace1 = float4( normalInput.tangentWS, vertexInput.positionWS.y );
+				o.tSpace2 = float4( normalInput.bitangentWS, vertexInput.positionWS.z );
 
 				#if defined(LIGHTMAP_ON)
 					OUTPUT_LIGHTMAP_UV( v.texcoord1, unity_LightmapST, o.lightmapUVOrVertexSH.xy );
@@ -468,14 +470,14 @@ Shader "Polytope Studio/PT_Water_Shader_WebGl"
 				#endif
 
 				#if defined(ENABLE_TERRAIN_PERPIXEL_NORMAL)
-					o.lightmapUVOrVertexSH.zw = v.texcoord;
-					o.lightmapUVOrVertexSH.xy = v.texcoord * unity_LightmapST.xy + unity_LightmapST.zw;
+					o.lightmapUVOrVertexSH.zw = v.texcoord.xy;
+					o.lightmapUVOrVertexSH.xy = v.texcoord.xy * unity_LightmapST.xy + unity_LightmapST.zw;
 				#endif
 
-				half3 vertexLight = VertexLighting( positionWS, normalInput.normalWS );
+				half3 vertexLight = VertexLighting( vertexInput.positionWS, normalInput.normalWS );
 
 				#ifdef ASE_FOG
-					half fogFactor = ComputeFogFactor( positionCS.z );
+					half fogFactor = ComputeFogFactor( vertexInput.positionCS.z );
 				#else
 					half fogFactor = 0;
 				#endif
@@ -483,18 +485,11 @@ Shader "Polytope Studio/PT_Water_Shader_WebGl"
 				o.fogFactorAndVertexLight = half4(fogFactor, vertexLight);
 
 				#if defined(REQUIRES_VERTEX_SHADOW_COORD_INTERPOLATOR)
-					VertexPositionInputs vertexInput = (VertexPositionInputs)0;
-					vertexInput.positionWS = positionWS;
-					vertexInput.positionCS = positionCS;
 					o.shadowCoord = GetShadowCoord( vertexInput );
 				#endif
 
-				o.clipPos = positionCS;
-
-				#if defined(ASE_NEEDS_FRAG_SCREEN_POSITION)
-					o.screenPos = ComputeScreenPos(positionCS);
-				#endif
-
+				o.positionCS = vertexInput.positionCS;
+				o.clipPosV = vertexInput.positionCS;
 				return o;
 			}
 
@@ -502,8 +497,8 @@ Shader "Polytope Studio/PT_Water_Shader_WebGl"
 			struct VertexControl
 			{
 				float4 vertex : INTERNALTESSPOS;
-				float3 ase_normal : NORMAL;
-				float4 ase_tangent : TANGENT;
+				float3 normalOS : NORMAL;
+				float4 tangentOS : TANGENT;
 				float4 texcoord : TEXCOORD0;
 				float4 texcoord1 : TEXCOORD1;
 				float4 texcoord2 : TEXCOORD2;
@@ -522,9 +517,9 @@ Shader "Polytope Studio/PT_Water_Shader_WebGl"
 				VertexControl o;
 				UNITY_SETUP_INSTANCE_ID(v);
 				UNITY_TRANSFER_INSTANCE_ID(v, o);
-				o.vertex = v.vertex;
-				o.ase_normal = v.ase_normal;
-				o.ase_tangent = v.ase_tangent;
+				o.vertex = v.positionOS;
+				o.normalOS = v.normalOS;
+				o.tangentOS = v.tangentOS;
 				o.texcoord = v.texcoord;
 				o.texcoord1 = v.texcoord1;
 				o.texcoord2 = v.texcoord2;
@@ -565,9 +560,9 @@ Shader "Polytope Studio/PT_Water_Shader_WebGl"
 			VertexOutput DomainFunction(TessellationFactors factors, OutputPatch<VertexControl, 3> patch, float3 bary : SV_DomainLocation)
 			{
 				VertexInput o = (VertexInput) 0;
-				o.vertex = patch[0].vertex * bary.x + patch[1].vertex * bary.y + patch[2].vertex * bary.z;
-				o.ase_normal = patch[0].ase_normal * bary.x + patch[1].ase_normal * bary.y + patch[2].ase_normal * bary.z;
-				o.ase_tangent = patch[0].ase_tangent * bary.x + patch[1].ase_tangent * bary.y + patch[2].ase_tangent * bary.z;
+				o.positionOS = patch[0].vertex * bary.x + patch[1].vertex * bary.y + patch[2].vertex * bary.z;
+				o.normalOS = patch[0].normalOS * bary.x + patch[1].normalOS * bary.y + patch[2].normalOS * bary.z;
+				o.tangentOS = patch[0].tangentOS * bary.x + patch[1].tangentOS * bary.y + patch[2].tangentOS * bary.z;
 				o.texcoord = patch[0].texcoord * bary.x + patch[1].texcoord * bary.y + patch[2].texcoord * bary.z;
 				o.texcoord1 = patch[0].texcoord1 * bary.x + patch[1].texcoord1 * bary.y + patch[2].texcoord1 * bary.z;
 				o.texcoord2 = patch[0].texcoord2 * bary.x + patch[1].texcoord2 * bary.y + patch[2].texcoord2 * bary.z;
@@ -575,9 +570,9 @@ Shader "Polytope Studio/PT_Water_Shader_WebGl"
 				#if defined(ASE_PHONG_TESSELLATION)
 				float3 pp[3];
 				for (int i = 0; i < 3; ++i)
-					pp[i] = o.vertex.xyz - patch[i].ase_normal * (dot(o.vertex.xyz, patch[i].ase_normal) - dot(patch[i].vertex.xyz, patch[i].ase_normal));
+					pp[i] = o.positionOS.xyz - patch[i].normalOS * (dot(o.positionOS.xyz, patch[i].normalOS) - dot(patch[i].vertex.xyz, patch[i].normalOS));
 				float phongStrength = _TessPhongStrength;
-				o.vertex.xyz = phongStrength * (pp[0]*bary.x + pp[1]*bary.y + pp[2]*bary.z) + (1.0f-phongStrength) * o.vertex.xyz;
+				o.positionOS.xyz = phongStrength * (pp[0]*bary.x + pp[1]*bary.y + pp[2]*bary.z) + (1.0f-phongStrength) * o.positionOS.xyz;
 				#endif
 				UNITY_TRANSFER_INSTANCE_ID(patch[0], o);
 				return VertexFunction(o);
@@ -589,15 +584,12 @@ Shader "Polytope Studio/PT_Water_Shader_WebGl"
 			}
 			#endif
 
-			#if defined(ASE_EARLY_Z_DEPTH_OPTIMIZE)
-				#define ASE_SV_DEPTH SV_DepthLessEqual
-			#else
-				#define ASE_SV_DEPTH SV_Depth
-			#endif
-
 			half4 frag ( VertexOutput IN
 						#ifdef ASE_DEPTH_WRITE_ON
 						,out float outputDepth : ASE_SV_DEPTH
+						#endif
+						#ifdef _WRITE_RENDERING_LAYERS
+						, out float4 outRenderingLayers : SV_Target1
 						#endif
 						 ) : SV_Target
 			{
@@ -605,7 +597,7 @@ Shader "Polytope Studio/PT_Water_Shader_WebGl"
 				UNITY_SETUP_STEREO_EYE_INDEX_POST_VERTEX(IN);
 
 				#ifdef LOD_FADE_CROSSFADE
-					LODDitheringTransition( IN.clipPos.xyz, unity_LODFade.x );
+					LODFadeCrossFade( IN.positionCS );
 				#endif
 
 				#if defined(ENABLE_TERRAIN_PERPIXEL_NORMAL)
@@ -623,11 +615,10 @@ Shader "Polytope Studio/PT_Water_Shader_WebGl"
 				float3 WorldViewDirection = _WorldSpaceCameraPos.xyz  - WorldPosition;
 				float4 ShadowCoords = float4( 0, 0, 0, 0 );
 
-				#if defined(ASE_NEEDS_FRAG_SCREEN_POSITION)
-					float4 ScreenPos = IN.screenPos;
-				#endif
+				float4 ClipPos = IN.clipPosV;
+				float4 ScreenPos = ComputeScreenPos( IN.clipPosV );
 
-				float2 NormalizedScreenSpaceUV = GetNormalizedScreenSpaceUV(IN.clipPos);
+				float2 NormalizedScreenSpaceUV = GetNormalizedScreenSpaceUV(IN.positionCS);
 
 				#if defined(REQUIRES_VERTEX_SHADOW_COORD_INTERPOLATOR)
 					ShadowCoords = IN.shadowCoord;
@@ -698,7 +689,7 @@ Shader "Polytope Studio/PT_Water_Shader_WebGl"
 				float3 Normal = normalizeResult72.rgb;
 				float3 Emission = 0;
 				float3 Specular = 0.5;
-				float Metallic = _Mettalic;
+				float Metallic = 0;
 				float Smoothness = layeredBlend101.r;
 				float Occlusion = 1;
 				float Alpha = TRANSPARENCYFINAL105;
@@ -711,7 +702,7 @@ Shader "Polytope Studio/PT_Water_Shader_WebGl"
 				float3 Translucency = 1;
 
 				#ifdef ASE_DEPTH_WRITE_ON
-					float DepthValue = 0;
+					float DepthValue = IN.positionCS.z;
 				#endif
 
 				#ifdef _CLEARCOAT
@@ -801,7 +792,7 @@ Shader "Polytope Studio/PT_Water_Shader_WebGl"
 				#endif
 
 				#ifdef _DBUFFER
-					ApplyDecalToSurfaceData(IN.clipPos, surfaceData, inputData);
+					ApplyDecalToSurfaceData(IN.positionCS, surfaceData, inputData);
 				#endif
 
 				half4 color = UniversalFragmentPBR( inputData, surfaceData);
@@ -810,23 +801,40 @@ Shader "Polytope Studio/PT_Water_Shader_WebGl"
 				{
 					float shadow = _TransmissionShadow;
 
-					Light mainLight = GetMainLight( inputData.shadowCoord );
-					float3 mainAtten = mainLight.color * mainLight.distanceAttenuation;
-					mainAtten = lerp( mainAtten, mainAtten * mainLight.shadowAttenuation, shadow );
-					half3 mainTransmission = max(0 , -dot(inputData.normalWS, mainLight.direction)) * mainAtten * Transmission;
-					color.rgb += BaseColor * mainTransmission;
+					#define SUM_LIGHT_TRANSMISSION(Light)\
+						float3 atten = Light.color * Light.distanceAttenuation;\
+						atten = lerp( atten, atten * Light.shadowAttenuation, shadow );\
+						half3 transmission = max( 0, -dot( inputData.normalWS, Light.direction ) ) * atten * Transmission;\
+						color.rgb += BaseColor * transmission;
 
-					#ifdef _ADDITIONAL_LIGHTS
-						int transPixelLightCount = GetAdditionalLightsCount();
-						for (int i = 0; i < transPixelLightCount; ++i)
-						{
-							Light light = GetAdditionalLight(i, inputData.positionWS);
-							float3 atten = light.color * light.distanceAttenuation;
-							atten = lerp( atten, atten * light.shadowAttenuation, shadow );
+					SUM_LIGHT_TRANSMISSION( GetMainLight( inputData.shadowCoord ) );
 
-							half3 transmission = max(0 , -dot(inputData.normalWS, light.direction)) * atten * Transmission;
-							color.rgb += BaseColor * transmission;
-						}
+					#if defined(_ADDITIONAL_LIGHTS)
+						uint meshRenderingLayers = GetMeshRenderingLayer();
+						uint pixelLightCount = GetAdditionalLightsCount();
+						#if USE_FORWARD_PLUS
+							for (uint lightIndex = 0; lightIndex < min(URP_FP_DIRECTIONAL_LIGHTS_COUNT, MAX_VISIBLE_LIGHTS); lightIndex++)
+							{
+								FORWARD_PLUS_SUBTRACTIVE_LIGHT_CHECK
+
+								Light light = GetAdditionalLight(lightIndex, inputData.positionWS);
+								#ifdef _LIGHT_LAYERS
+								if (IsMatchingLightLayer(light.layerMask, meshRenderingLayers))
+								#endif
+								{
+									SUM_LIGHT_TRANSMISSION( light );
+								}
+							}
+						#endif
+						LIGHT_LOOP_BEGIN( pixelLightCount )
+							Light light = GetAdditionalLight(lightIndex, inputData.positionWS);
+							#ifdef _LIGHT_LAYERS
+							if (IsMatchingLightLayer(light.layerMask, meshRenderingLayers))
+							#endif
+							{
+								SUM_LIGHT_TRANSMISSION( light );
+							}
+						LIGHT_LOOP_END
 					#endif
 				}
 				#endif
@@ -840,28 +848,42 @@ Shader "Polytope Studio/PT_Water_Shader_WebGl"
 					float ambient = _TransAmbient;
 					float strength = _TransStrength;
 
-					Light mainLight = GetMainLight( inputData.shadowCoord );
-					float3 mainAtten = mainLight.color * mainLight.distanceAttenuation;
-					mainAtten = lerp( mainAtten, mainAtten * mainLight.shadowAttenuation, shadow );
+					#define SUM_LIGHT_TRANSLUCENCY(Light)\
+						float3 atten = Light.color * Light.distanceAttenuation;\
+						atten = lerp( atten, atten * Light.shadowAttenuation, shadow );\
+						half3 lightDir = Light.direction + inputData.normalWS * normal;\
+						half VdotL = pow( saturate( dot( inputData.viewDirectionWS, -lightDir ) ), scattering );\
+						half3 translucency = atten * ( VdotL * direct + inputData.bakedGI * ambient ) * Translucency;\
+						color.rgb += BaseColor * translucency * strength;
 
-					half3 mainLightDir = mainLight.direction + inputData.normalWS * normal;
-					half mainVdotL = pow( saturate( dot( inputData.viewDirectionWS, -mainLightDir ) ), scattering );
-					half3 mainTranslucency = mainAtten * ( mainVdotL * direct + inputData.bakedGI * ambient ) * Translucency;
-					color.rgb += BaseColor * mainTranslucency * strength;
+					SUM_LIGHT_TRANSLUCENCY( GetMainLight( inputData.shadowCoord ) );
 
-					#ifdef _ADDITIONAL_LIGHTS
-						int transPixelLightCount = GetAdditionalLightsCount();
-						for (int i = 0; i < transPixelLightCount; ++i)
-						{
-							Light light = GetAdditionalLight(i, inputData.positionWS);
-							float3 atten = light.color * light.distanceAttenuation;
-							atten = lerp( atten, atten * light.shadowAttenuation, shadow );
+					#if defined(_ADDITIONAL_LIGHTS)
+						uint meshRenderingLayers = GetMeshRenderingLayer();
+						uint pixelLightCount = GetAdditionalLightsCount();
+						#if USE_FORWARD_PLUS
+							for (uint lightIndex = 0; lightIndex < min(URP_FP_DIRECTIONAL_LIGHTS_COUNT, MAX_VISIBLE_LIGHTS); lightIndex++)
+							{
+								FORWARD_PLUS_SUBTRACTIVE_LIGHT_CHECK
 
-							half3 lightDir = light.direction + inputData.normalWS * normal;
-							half VdotL = pow( saturate( dot( inputData.viewDirectionWS, -lightDir ) ), scattering );
-							half3 translucency = atten * ( VdotL * direct + inputData.bakedGI * ambient ) * Translucency;
-							color.rgb += BaseColor * translucency * strength;
-						}
+								Light light = GetAdditionalLight(lightIndex, inputData.positionWS);
+								#ifdef _LIGHT_LAYERS
+								if (IsMatchingLightLayer(light.layerMask, meshRenderingLayers))
+								#endif
+								{
+									SUM_LIGHT_TRANSLUCENCY( light );
+								}
+							}
+						#endif
+						LIGHT_LOOP_BEGIN( pixelLightCount )
+							Light light = GetAdditionalLight(lightIndex, inputData.positionWS);
+							#ifdef _LIGHT_LAYERS
+							if (IsMatchingLightLayer(light.layerMask, meshRenderingLayers))
+							#endif
+							{
+								SUM_LIGHT_TRANSLUCENCY( light );
+							}
+						LIGHT_LOOP_END
 					#endif
 				}
 				#endif
@@ -891,6 +913,11 @@ Shader "Polytope Studio/PT_Water_Shader_WebGl"
 					outputDepth = DepthValue;
 				#endif
 
+				#ifdef _WRITE_RENDERING_LAYERS
+					uint renderingLayers = GetMeshRenderingLayer();
+					outRenderingLayers = float4( EncodeMeshRenderingLayer( renderingLayers ), 0, 0, 0 );
+				#endif
+
 				return color;
 			}
 
@@ -917,7 +944,7 @@ Shader "Polytope Studio/PT_Water_Shader_WebGl"
 			#define ASE_FOG 1
 			#define _SURFACE_TYPE_TRANSPARENT 1
 			#define _NORMALMAP 1
-			#define ASE_SRP_VERSION 120110
+			#define ASE_SRP_VERSION 140009
 			#define REQUIRE_DEPTH_TEXTURE 1
 
 
@@ -937,26 +964,39 @@ Shader "Polytope Studio/PT_Water_Shader_WebGl"
 			#include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/ShaderGraphFunctions.hlsl"
 			#include "Packages/com.unity.render-pipelines.universal/Editor/ShaderGraph/Includes/ShaderPass.hlsl"
 
-			
+			#if defined(LOD_FADE_CROSSFADE)
+            #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/LODCrossFade.hlsl"
+            #endif
+
+			#define ASE_NEEDS_FRAG_SCREEN_POSITION
+
+
+			#if defined(ASE_EARLY_Z_DEPTH_OPTIMIZE) && (SHADER_TARGET >= 45)
+				#define ASE_SV_DEPTH SV_DepthLessEqual
+				#define ASE_SV_POSITION_QUALIFIERS linear noperspective centroid
+			#else
+				#define ASE_SV_DEPTH SV_Depth
+				#define ASE_SV_POSITION_QUALIFIERS
+			#endif
 
 			struct VertexInput
 			{
-				float4 vertex : POSITION;
-				float3 ase_normal : NORMAL;
+				float4 positionOS : POSITION;
+				float3 normalOS : NORMAL;
 				float4 ase_texcoord : TEXCOORD0;
 				UNITY_VERTEX_INPUT_INSTANCE_ID
 			};
 
 			struct VertexOutput
 			{
-				float4 clipPos : SV_POSITION;
+				ASE_SV_POSITION_QUALIFIERS float4 positionCS : SV_POSITION;
+				float4 clipPosV : TEXCOORD0;
 				#if defined(ASE_NEEDS_FRAG_WORLD_POSITION)
-					float3 worldPos : TEXCOORD0;
+					float3 positionWS : TEXCOORD1;
 				#endif
 				#if defined(REQUIRES_VERTEX_SHADOW_COORD_INTERPOLATOR) && defined(ASE_NEEDS_FRAG_SHADOWCOORDS)
-					float4 shadowCoord : TEXCOORD1;
-				#endif
-				float4 ase_texcoord2 : TEXCOORD2;
+					float4 shadowCoord : TEXCOORD2;
+				#endif				
 				float4 ase_texcoord3 : TEXCOORD3;
 				UNITY_VERTEX_INPUT_INSTANCE_ID
 				UNITY_VERTEX_OUTPUT_STEREO
@@ -976,7 +1016,6 @@ Shader "Polytope Studio/PT_Water_Shader_WebGl"
 			float _FoamAmount;
 			float _FoamPower;
 			float _FoamNoiseScale;
-			float _Mettalic;
 			float _Smootness;
 			#ifdef ASE_TRANSMISSION
 				float _TransmissionShadow;
@@ -999,26 +1038,18 @@ Shader "Polytope Studio/PT_Water_Shader_WebGl"
 			#endif
 			CBUFFER_END
 
-			// Property used by ScenePickingPass
 			#ifdef SCENEPICKINGPASS
 				float4 _SelectionID;
 			#endif
 
-			// Properties used by SceneSelectionPass
 			#ifdef SCENESELECTIONPASS
 				int _ObjectId;
 				int _PassValue;
 			#endif
 
+			sampler2D _NormalMapTexture;
 			uniform float4 _CameraDepthTexture_TexelSize;
 
-
-			//#include "Packages/com.unity.render-pipelines.universal/Editor/ShaderGraph/Includes/Varyings.hlsl"
-			//#include "Packages/com.unity.render-pipelines.universal/Editor/ShaderGraph/Includes/ShadowCasterPass.hlsl"
-
-			//#ifdef HAVE_VFX_MODIFICATION
-			//#include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/VisualEffectVertex.hlsl"
-			//#endif
 
 			float3 mod2D289( float3 x ) { return x - floor( x * ( 1.0 / 289.0 ) ) * 289.0; }
 			float2 mod2D289( float2 x ) { return x - floor( x * ( 1.0 / 289.0 ) ) * 289.0; }
@@ -1082,7 +1113,7 @@ Shader "Polytope Studio/PT_Water_Shader_WebGl"
 				UNITY_INITIALIZE_VERTEX_OUTPUT_STEREO( o );
 
 				float4 appendResult71 = (float4(0.23 , -0.8 , 0.0 , 0.0));
-				float3 ase_worldPos = TransformObjectToWorld( (v.vertex).xyz );
+				float3 ase_worldPos = TransformObjectToWorld( (v.positionOS).xyz );
 				float4 appendResult81 = (float4(ase_worldPos.x , ase_worldPos.z , 0.0 , 0.0));
 				float2 panner79 = ( ( _TimeParameters.x * _WaveSpeed ) * appendResult71.xy + ( ( appendResult81 * float4( float2( 6.5,0.9 ), 0.0 , 0.0 ) ) * _WaveTile ).xy);
 				float simplePerlin2D77 = snoise( panner79 );
@@ -1090,37 +1121,33 @@ Shader "Polytope Studio/PT_Water_Shader_WebGl"
 				float WAVESDISPLACEMENT69 = ( ( float3(0,0.05,0).y * _WaveAmplitude ) * simplePerlin2D77 );
 				float3 temp_cast_3 = (WAVESDISPLACEMENT69).xxx;
 				
-				float4 ase_clipPos = TransformObjectToHClip((v.vertex).xyz);
-				float4 screenPos = ComputeScreenPos(ase_clipPos);
-				o.ase_texcoord2 = screenPos;
-				
 				o.ase_texcoord3.xy = v.ase_texcoord.xy;
 				
 				//setting value to unused interpolator channels and avoid initialization warnings
 				o.ase_texcoord3.zw = 0;
 
 				#ifdef ASE_ABSOLUTE_VERTEX_POS
-					float3 defaultVertexValue = v.vertex.xyz;
+					float3 defaultVertexValue = v.positionOS.xyz;
 				#else
 					float3 defaultVertexValue = float3(0, 0, 0);
 				#endif
 
 				float3 vertexValue = temp_cast_3;
 				#ifdef ASE_ABSOLUTE_VERTEX_POS
-					v.vertex.xyz = vertexValue;
+					v.positionOS.xyz = vertexValue;
 				#else
-					v.vertex.xyz += vertexValue;
+					v.positionOS.xyz += vertexValue;
 				#endif
 
-				v.ase_normal = v.ase_normal;
+				v.normalOS = v.normalOS;
 
-				float3 positionWS = TransformObjectToWorld( v.vertex.xyz );
+				float3 positionWS = TransformObjectToWorld( v.positionOS.xyz );
 
 				#if defined(ASE_NEEDS_FRAG_WORLD_POSITION)
-					o.worldPos = positionWS;
+					o.positionWS = positionWS;
 				#endif
 
-				float3 normalWS = TransformObjectToWorldDir(v.ase_normal);
+				float3 normalWS = TransformObjectToWorldDir(v.normalOS);
 
 				#if _CASTING_PUNCTUAL_LIGHT_SHADOW
 					float3 lightDirectionWS = normalize(_LightPosition - positionWS);
@@ -1128,23 +1155,23 @@ Shader "Polytope Studio/PT_Water_Shader_WebGl"
 					float3 lightDirectionWS = _LightDirection;
 				#endif
 
-				float4 clipPos = TransformWorldToHClip(ApplyShadowBias(positionWS, normalWS, lightDirectionWS));
+				float4 positionCS = TransformWorldToHClip(ApplyShadowBias(positionWS, normalWS, lightDirectionWS));
 
 				#if UNITY_REVERSED_Z
-					clipPos.z = min(clipPos.z, UNITY_NEAR_CLIP_VALUE);
+					positionCS.z = min(positionCS.z, UNITY_NEAR_CLIP_VALUE);
 				#else
-					clipPos.z = max(clipPos.z, UNITY_NEAR_CLIP_VALUE);
+					positionCS.z = max(positionCS.z, UNITY_NEAR_CLIP_VALUE);
 				#endif
 
 				#if defined(REQUIRES_VERTEX_SHADOW_COORD_INTERPOLATOR) && defined(ASE_NEEDS_FRAG_SHADOWCOORDS)
 					VertexPositionInputs vertexInput = (VertexPositionInputs)0;
 					vertexInput.positionWS = positionWS;
-					vertexInput.positionCS = clipPos;
+					vertexInput.positionCS = positionCS;
 					o.shadowCoord = GetShadowCoord( vertexInput );
 				#endif
 
-				o.clipPos = clipPos;
-
+				o.positionCS = positionCS;
+				o.clipPosV = positionCS;
 				return o;
 			}
 
@@ -1152,7 +1179,7 @@ Shader "Polytope Studio/PT_Water_Shader_WebGl"
 			struct VertexControl
 			{
 				float4 vertex : INTERNALTESSPOS;
-				float3 ase_normal : NORMAL;
+				float3 normalOS : NORMAL;
 				float4 ase_texcoord : TEXCOORD0;
 
 				UNITY_VERTEX_INPUT_INSTANCE_ID
@@ -1169,8 +1196,8 @@ Shader "Polytope Studio/PT_Water_Shader_WebGl"
 				VertexControl o;
 				UNITY_SETUP_INSTANCE_ID(v);
 				UNITY_TRANSFER_INSTANCE_ID(v, o);
-				o.vertex = v.vertex;
-				o.ase_normal = v.ase_normal;
+				o.vertex = v.positionOS;
+				o.normalOS = v.normalOS;
 				o.ase_texcoord = v.ase_texcoord;
 				return o;
 			}
@@ -1208,15 +1235,15 @@ Shader "Polytope Studio/PT_Water_Shader_WebGl"
 			VertexOutput DomainFunction(TessellationFactors factors, OutputPatch<VertexControl, 3> patch, float3 bary : SV_DomainLocation)
 			{
 				VertexInput o = (VertexInput) 0;
-				o.vertex = patch[0].vertex * bary.x + patch[1].vertex * bary.y + patch[2].vertex * bary.z;
-				o.ase_normal = patch[0].ase_normal * bary.x + patch[1].ase_normal * bary.y + patch[2].ase_normal * bary.z;
+				o.positionOS = patch[0].vertex * bary.x + patch[1].vertex * bary.y + patch[2].vertex * bary.z;
+				o.normalOS = patch[0].normalOS * bary.x + patch[1].normalOS * bary.y + patch[2].normalOS * bary.z;
 				o.ase_texcoord = patch[0].ase_texcoord * bary.x + patch[1].ase_texcoord * bary.y + patch[2].ase_texcoord * bary.z;
 				#if defined(ASE_PHONG_TESSELLATION)
 				float3 pp[3];
 				for (int i = 0; i < 3; ++i)
-					pp[i] = o.vertex.xyz - patch[i].ase_normal * (dot(o.vertex.xyz, patch[i].ase_normal) - dot(patch[i].vertex.xyz, patch[i].ase_normal));
+					pp[i] = o.positionOS.xyz - patch[i].normalOS * (dot(o.positionOS.xyz, patch[i].normalOS) - dot(patch[i].vertex.xyz, patch[i].normalOS));
 				float phongStrength = _TessPhongStrength;
-				o.vertex.xyz = phongStrength * (pp[0]*bary.x + pp[1]*bary.y + pp[2]*bary.z) + (1.0f-phongStrength) * o.vertex.xyz;
+				o.positionOS.xyz = phongStrength * (pp[0]*bary.x + pp[1]*bary.y + pp[2]*bary.z) + (1.0f-phongStrength) * o.positionOS.xyz;
 				#endif
 				UNITY_TRANSFER_INSTANCE_ID(patch[0], o);
 				return VertexFunction(o);
@@ -1226,12 +1253,6 @@ Shader "Polytope Studio/PT_Water_Shader_WebGl"
 			{
 				return VertexFunction( v );
 			}
-			#endif
-
-			#if defined(ASE_EARLY_Z_DEPTH_OPTIMIZE)
-				#define ASE_SV_DEPTH SV_DepthLessEqual
-			#else
-				#define ASE_SV_DEPTH SV_Depth
 			#endif
 
 			half4 frag(	VertexOutput IN
@@ -1244,10 +1265,12 @@ Shader "Polytope Studio/PT_Water_Shader_WebGl"
 				UNITY_SETUP_STEREO_EYE_INDEX_POST_VERTEX( IN );
 
 				#if defined(ASE_NEEDS_FRAG_WORLD_POSITION)
-					float3 WorldPosition = IN.worldPos;
+					float3 WorldPosition = IN.positionWS;
 				#endif
 
 				float4 ShadowCoords = float4( 0, 0, 0, 0 );
+				float4 ClipPos = IN.clipPosV;
+				float4 ScreenPos = ComputeScreenPos( IN.clipPosV );
 
 				#if defined(ASE_NEEDS_FRAG_SHADOWCOORDS)
 					#if defined(REQUIRES_VERTEX_SHADOW_COORD_INTERPOLATOR)
@@ -1257,11 +1280,10 @@ Shader "Polytope Studio/PT_Water_Shader_WebGl"
 					#endif
 				#endif
 
-				float4 screenPos = IN.ase_texcoord2;
-				float4 ase_screenPosNorm = screenPos / screenPos.w;
+				float4 ase_screenPosNorm = ScreenPos / ScreenPos.w;
 				ase_screenPosNorm.z = ( UNITY_NEAR_CLIP_VALUE >= 0 ) ? ase_screenPosNorm.z : ase_screenPosNorm.z * 0.5 + 0.5;
 				float eyeDepth20 = LinearEyeDepth(SHADERGRAPH_SAMPLE_SCENE_DEPTH( ase_screenPosNorm.xy ),_ZBufferParams);
-				float clampResult44 = clamp( ( _DepthStrength * ( eyeDepth20 - ( screenPos.w + _Depth ) ) ) , 0.0 , 1.0 );
+				float clampResult44 = clamp( ( _DepthStrength * ( eyeDepth20 - ( ScreenPos.w + _Depth ) ) ) , 0.0 , 1.0 );
 				float DeepShallowMask68 = clampResult44;
 				float screenDepth33 = LinearEyeDepth(SHADERGRAPH_SAMPLE_SCENE_DEPTH( ase_screenPosNorm.xy ),_ZBufferParams);
 				float distanceDepth33 = abs( ( screenDepth33 - LinearEyeDepth( ase_screenPosNorm.z,_ZBufferParams ) ) / ( _FoamAmount ) );
@@ -1284,7 +1306,7 @@ Shader "Polytope Studio/PT_Water_Shader_WebGl"
 				float AlphaClipThresholdShadow = 0.5;
 
 				#ifdef ASE_DEPTH_WRITE_ON
-					float DepthValue = 0;
+					float DepthValue = IN.positionCS.z;
 				#endif
 
 				#ifdef _ALPHATEST_ON
@@ -1296,7 +1318,7 @@ Shader "Polytope Studio/PT_Water_Shader_WebGl"
 				#endif
 
 				#ifdef LOD_FADE_CROSSFADE
-					LODDitheringTransition( IN.clipPos.xyz, unity_LODFade.x );
+					LODFadeCrossFade( IN.positionCS );
 				#endif
 
 				#ifdef ASE_DEPTH_WRITE_ON
@@ -1316,7 +1338,7 @@ Shader "Polytope Studio/PT_Water_Shader_WebGl"
 			Tags { "LightMode"="DepthOnly" }
 
 			ZWrite On
-			ColorMask 0
+			ColorMask R
 			AlphaToMask Off
 
 			HLSLPROGRAM
@@ -1327,7 +1349,7 @@ Shader "Polytope Studio/PT_Water_Shader_WebGl"
 			#define ASE_FOG 1
 			#define _SURFACE_TYPE_TRANSPARENT 1
 			#define _NORMALMAP 1
-			#define ASE_SRP_VERSION 120110
+			#define ASE_SRP_VERSION 140009
 			#define REQUIRE_DEPTH_TEXTURE 1
 
 
@@ -1345,26 +1367,39 @@ Shader "Polytope Studio/PT_Water_Shader_WebGl"
 			#include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/ShaderGraphFunctions.hlsl"
 			#include "Packages/com.unity.render-pipelines.universal/Editor/ShaderGraph/Includes/ShaderPass.hlsl"
 
-			
+			#if defined(LOD_FADE_CROSSFADE)
+            #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/LODCrossFade.hlsl"
+            #endif
+
+			#define ASE_NEEDS_FRAG_SCREEN_POSITION
+
+
+			#if defined(ASE_EARLY_Z_DEPTH_OPTIMIZE) && (SHADER_TARGET >= 45)
+				#define ASE_SV_DEPTH SV_DepthLessEqual
+				#define ASE_SV_POSITION_QUALIFIERS linear noperspective centroid
+			#else
+				#define ASE_SV_DEPTH SV_Depth
+				#define ASE_SV_POSITION_QUALIFIERS
+			#endif
 
 			struct VertexInput
 			{
-				float4 vertex : POSITION;
-				float3 ase_normal : NORMAL;
+				float4 positionOS : POSITION;
+				float3 normalOS : NORMAL;
 				float4 ase_texcoord : TEXCOORD0;
 				UNITY_VERTEX_INPUT_INSTANCE_ID
 			};
 
 			struct VertexOutput
 			{
-				float4 clipPos : SV_POSITION;
+				ASE_SV_POSITION_QUALIFIERS float4 positionCS : SV_POSITION;
+				float4 clipPosV : TEXCOORD0;
 				#if defined(ASE_NEEDS_FRAG_WORLD_POSITION)
-				float3 worldPos : TEXCOORD0;
+				float3 positionWS : TEXCOORD1;
 				#endif
 				#if defined(REQUIRES_VERTEX_SHADOW_COORD_INTERPOLATOR) && defined(ASE_NEEDS_FRAG_SHADOWCOORDS)
-				float4 shadowCoord : TEXCOORD1;
+				float4 shadowCoord : TEXCOORD2;
 				#endif
-				float4 ase_texcoord2 : TEXCOORD2;
 				float4 ase_texcoord3 : TEXCOORD3;
 				UNITY_VERTEX_INPUT_INSTANCE_ID
 				UNITY_VERTEX_OUTPUT_STEREO
@@ -1384,7 +1419,6 @@ Shader "Polytope Studio/PT_Water_Shader_WebGl"
 			float _FoamAmount;
 			float _FoamPower;
 			float _FoamNoiseScale;
-			float _Mettalic;
 			float _Smootness;
 			#ifdef ASE_TRANSMISSION
 				float _TransmissionShadow;
@@ -1407,26 +1441,18 @@ Shader "Polytope Studio/PT_Water_Shader_WebGl"
 			#endif
 			CBUFFER_END
 
-			// Property used by ScenePickingPass
 			#ifdef SCENEPICKINGPASS
 				float4 _SelectionID;
 			#endif
 
-			// Properties used by SceneSelectionPass
 			#ifdef SCENESELECTIONPASS
 				int _ObjectId;
 				int _PassValue;
 			#endif
 
+			sampler2D _NormalMapTexture;
 			uniform float4 _CameraDepthTexture_TexelSize;
 
-
-			//#include "Packages/com.unity.render-pipelines.universal/Editor/ShaderGraph/Includes/Varyings.hlsl"
-			//#include "Packages/com.unity.render-pipelines.universal/Editor/ShaderGraph/Includes/DepthOnlyPass.hlsl"
-
-			//#ifdef HAVE_VFX_MODIFICATION
-			//#include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/VisualEffectVertex.hlsl"
-			//#endif
 
 			float3 mod2D289( float3 x ) { return x - floor( x * ( 1.0 / 289.0 ) ) * 289.0; }
 			float2 mod2D289( float2 x ) { return x - floor( x * ( 1.0 / 289.0 ) ) * 289.0; }
@@ -1487,7 +1513,7 @@ Shader "Polytope Studio/PT_Water_Shader_WebGl"
 				UNITY_INITIALIZE_VERTEX_OUTPUT_STEREO(o);
 
 				float4 appendResult71 = (float4(0.23 , -0.8 , 0.0 , 0.0));
-				float3 ase_worldPos = TransformObjectToWorld( (v.vertex).xyz );
+				float3 ase_worldPos = TransformObjectToWorld( (v.positionOS).xyz );
 				float4 appendResult81 = (float4(ase_worldPos.x , ase_worldPos.z , 0.0 , 0.0));
 				float2 panner79 = ( ( _TimeParameters.x * _WaveSpeed ) * appendResult71.xy + ( ( appendResult81 * float4( float2( 6.5,0.9 ), 0.0 , 0.0 ) ) * _WaveTile ).xy);
 				float simplePerlin2D77 = snoise( panner79 );
@@ -1495,17 +1521,13 @@ Shader "Polytope Studio/PT_Water_Shader_WebGl"
 				float WAVESDISPLACEMENT69 = ( ( float3(0,0.05,0).y * _WaveAmplitude ) * simplePerlin2D77 );
 				float3 temp_cast_3 = (WAVESDISPLACEMENT69).xxx;
 				
-				float4 ase_clipPos = TransformObjectToHClip((v.vertex).xyz);
-				float4 screenPos = ComputeScreenPos(ase_clipPos);
-				o.ase_texcoord2 = screenPos;
-				
 				o.ase_texcoord3.xy = v.ase_texcoord.xy;
 				
 				//setting value to unused interpolator channels and avoid initialization warnings
 				o.ase_texcoord3.zw = 0;
 
 				#ifdef ASE_ABSOLUTE_VERTEX_POS
-					float3 defaultVertexValue = v.vertex.xyz;
+					float3 defaultVertexValue = v.positionOS.xyz;
 				#else
 					float3 defaultVertexValue = float3(0, 0, 0);
 				#endif
@@ -1513,28 +1535,25 @@ Shader "Polytope Studio/PT_Water_Shader_WebGl"
 				float3 vertexValue = temp_cast_3;
 
 				#ifdef ASE_ABSOLUTE_VERTEX_POS
-					v.vertex.xyz = vertexValue;
+					v.positionOS.xyz = vertexValue;
 				#else
-					v.vertex.xyz += vertexValue;
+					v.positionOS.xyz += vertexValue;
 				#endif
 
-				v.ase_normal = v.ase_normal;
-				float3 positionWS = TransformObjectToWorld( v.vertex.xyz );
-				float4 positionCS = TransformWorldToHClip( positionWS );
+				v.normalOS = v.normalOS;
+
+				VertexPositionInputs vertexInput = GetVertexPositionInputs( v.positionOS.xyz );
 
 				#if defined(ASE_NEEDS_FRAG_WORLD_POSITION)
-					o.worldPos = positionWS;
+					o.positionWS = vertexInput.positionWS;
 				#endif
 
 				#if defined(REQUIRES_VERTEX_SHADOW_COORD_INTERPOLATOR) && defined(ASE_NEEDS_FRAG_SHADOWCOORDS)
-					VertexPositionInputs vertexInput = (VertexPositionInputs)0;
-					vertexInput.positionWS = positionWS;
-					vertexInput.positionCS = positionCS;
 					o.shadowCoord = GetShadowCoord( vertexInput );
 				#endif
 
-				o.clipPos = positionCS;
-
+				o.positionCS = vertexInput.positionCS;
+				o.clipPosV = vertexInput.positionCS;
 				return o;
 			}
 
@@ -1542,7 +1561,7 @@ Shader "Polytope Studio/PT_Water_Shader_WebGl"
 			struct VertexControl
 			{
 				float4 vertex : INTERNALTESSPOS;
-				float3 ase_normal : NORMAL;
+				float3 normalOS : NORMAL;
 				float4 ase_texcoord : TEXCOORD0;
 
 				UNITY_VERTEX_INPUT_INSTANCE_ID
@@ -1559,8 +1578,8 @@ Shader "Polytope Studio/PT_Water_Shader_WebGl"
 				VertexControl o;
 				UNITY_SETUP_INSTANCE_ID(v);
 				UNITY_TRANSFER_INSTANCE_ID(v, o);
-				o.vertex = v.vertex;
-				o.ase_normal = v.ase_normal;
+				o.vertex = v.positionOS;
+				o.normalOS = v.normalOS;
 				o.ase_texcoord = v.ase_texcoord;
 				return o;
 			}
@@ -1598,15 +1617,15 @@ Shader "Polytope Studio/PT_Water_Shader_WebGl"
 			VertexOutput DomainFunction(TessellationFactors factors, OutputPatch<VertexControl, 3> patch, float3 bary : SV_DomainLocation)
 			{
 				VertexInput o = (VertexInput) 0;
-				o.vertex = patch[0].vertex * bary.x + patch[1].vertex * bary.y + patch[2].vertex * bary.z;
-				o.ase_normal = patch[0].ase_normal * bary.x + patch[1].ase_normal * bary.y + patch[2].ase_normal * bary.z;
+				o.positionOS = patch[0].vertex * bary.x + patch[1].vertex * bary.y + patch[2].vertex * bary.z;
+				o.normalOS = patch[0].normalOS * bary.x + patch[1].normalOS * bary.y + patch[2].normalOS * bary.z;
 				o.ase_texcoord = patch[0].ase_texcoord * bary.x + patch[1].ase_texcoord * bary.y + patch[2].ase_texcoord * bary.z;
 				#if defined(ASE_PHONG_TESSELLATION)
 				float3 pp[3];
 				for (int i = 0; i < 3; ++i)
-					pp[i] = o.vertex.xyz - patch[i].ase_normal * (dot(o.vertex.xyz, patch[i].ase_normal) - dot(patch[i].vertex.xyz, patch[i].ase_normal));
+					pp[i] = o.positionOS.xyz - patch[i].normalOS * (dot(o.positionOS.xyz, patch[i].normalOS) - dot(patch[i].vertex.xyz, patch[i].normalOS));
 				float phongStrength = _TessPhongStrength;
-				o.vertex.xyz = phongStrength * (pp[0]*bary.x + pp[1]*bary.y + pp[2]*bary.z) + (1.0f-phongStrength) * o.vertex.xyz;
+				o.positionOS.xyz = phongStrength * (pp[0]*bary.x + pp[1]*bary.y + pp[2]*bary.z) + (1.0f-phongStrength) * o.positionOS.xyz;
 				#endif
 				UNITY_TRANSFER_INSTANCE_ID(patch[0], o);
 				return VertexFunction(o);
@@ -1616,12 +1635,6 @@ Shader "Polytope Studio/PT_Water_Shader_WebGl"
 			{
 				return VertexFunction( v );
 			}
-			#endif
-
-			#if defined(ASE_EARLY_Z_DEPTH_OPTIMIZE)
-				#define ASE_SV_DEPTH SV_DepthLessEqual
-			#else
-				#define ASE_SV_DEPTH SV_Depth
 			#endif
 
 			half4 frag(	VertexOutput IN
@@ -1634,10 +1647,12 @@ Shader "Polytope Studio/PT_Water_Shader_WebGl"
 				UNITY_SETUP_STEREO_EYE_INDEX_POST_VERTEX( IN );
 
 				#if defined(ASE_NEEDS_FRAG_WORLD_POSITION)
-				float3 WorldPosition = IN.worldPos;
+				float3 WorldPosition = IN.positionWS;
 				#endif
 
 				float4 ShadowCoords = float4( 0, 0, 0, 0 );
+				float4 ClipPos = IN.clipPosV;
+				float4 ScreenPos = ComputeScreenPos( IN.clipPosV );
 
 				#if defined(ASE_NEEDS_FRAG_SHADOWCOORDS)
 					#if defined(REQUIRES_VERTEX_SHADOW_COORD_INTERPOLATOR)
@@ -1647,11 +1662,10 @@ Shader "Polytope Studio/PT_Water_Shader_WebGl"
 					#endif
 				#endif
 
-				float4 screenPos = IN.ase_texcoord2;
-				float4 ase_screenPosNorm = screenPos / screenPos.w;
+				float4 ase_screenPosNorm = ScreenPos / ScreenPos.w;
 				ase_screenPosNorm.z = ( UNITY_NEAR_CLIP_VALUE >= 0 ) ? ase_screenPosNorm.z : ase_screenPosNorm.z * 0.5 + 0.5;
 				float eyeDepth20 = LinearEyeDepth(SHADERGRAPH_SAMPLE_SCENE_DEPTH( ase_screenPosNorm.xy ),_ZBufferParams);
-				float clampResult44 = clamp( ( _DepthStrength * ( eyeDepth20 - ( screenPos.w + _Depth ) ) ) , 0.0 , 1.0 );
+				float clampResult44 = clamp( ( _DepthStrength * ( eyeDepth20 - ( ScreenPos.w + _Depth ) ) ) , 0.0 , 1.0 );
 				float DeepShallowMask68 = clampResult44;
 				float screenDepth33 = LinearEyeDepth(SHADERGRAPH_SAMPLE_SCENE_DEPTH( ase_screenPosNorm.xy ),_ZBufferParams);
 				float distanceDepth33 = abs( ( screenDepth33 - LinearEyeDepth( ase_screenPosNorm.z,_ZBufferParams ) ) / ( _FoamAmount ) );
@@ -1671,8 +1685,9 @@ Shader "Polytope Studio/PT_Water_Shader_WebGl"
 
 				float Alpha = TRANSPARENCYFINAL105;
 				float AlphaClipThreshold = 0.5;
+
 				#ifdef ASE_DEPTH_WRITE_ON
-					float DepthValue = 0;
+					float DepthValue = IN.positionCS.z;
 				#endif
 
 				#ifdef _ALPHATEST_ON
@@ -1680,7 +1695,7 @@ Shader "Polytope Studio/PT_Water_Shader_WebGl"
 				#endif
 
 				#ifdef LOD_FADE_CROSSFADE
-					LODDitheringTransition( IN.clipPos.xyz, unity_LODFade.x );
+					LODFadeCrossFade( IN.positionCS );
 				#endif
 
 				#ifdef ASE_DEPTH_WRITE_ON
@@ -1707,7 +1722,7 @@ Shader "Polytope Studio/PT_Water_Shader_WebGl"
 			#define ASE_FOG 1
 			#define _SURFACE_TYPE_TRANSPARENT 1
 			#define _NORMALMAP 1
-			#define ASE_SRP_VERSION 120110
+			#define ASE_SRP_VERSION 140009
 			#define REQUIRE_DEPTH_TEXTURE 1
 			#define REQUIRE_OPAQUE_TEXTURE 1
 
@@ -1733,8 +1748,8 @@ Shader "Polytope Studio/PT_Water_Shader_WebGl"
 
 			struct VertexInput
 			{
-				float4 vertex : POSITION;
-				float3 ase_normal : NORMAL;
+				float4 positionOS : POSITION;
+				float3 normalOS : NORMAL;
 				float4 texcoord0 : TEXCOORD0;
 				float4 texcoord1 : TEXCOORD1;
 				float4 texcoord2 : TEXCOORD2;
@@ -1744,9 +1759,9 @@ Shader "Polytope Studio/PT_Water_Shader_WebGl"
 
 			struct VertexOutput
 			{
-				float4 clipPos : SV_POSITION;
+				float4 positionCS : SV_POSITION;
 				#if defined(ASE_NEEDS_FRAG_WORLD_POSITION)
-					float3 worldPos : TEXCOORD0;
+					float3 positionWS : TEXCOORD0;
 				#endif
 				#if defined(REQUIRES_VERTEX_SHADOW_COORD_INTERPOLATOR) && defined(ASE_NEEDS_FRAG_SHADOWCOORDS)
 					float4 shadowCoord : TEXCOORD1;
@@ -1775,7 +1790,6 @@ Shader "Polytope Studio/PT_Water_Shader_WebGl"
 			float _FoamAmount;
 			float _FoamPower;
 			float _FoamNoiseScale;
-			float _Mettalic;
 			float _Smootness;
 			#ifdef ASE_TRANSMISSION
 				float _TransmissionShadow;
@@ -1798,27 +1812,18 @@ Shader "Polytope Studio/PT_Water_Shader_WebGl"
 			#endif
 			CBUFFER_END
 
-			// Property used by ScenePickingPass
 			#ifdef SCENEPICKINGPASS
 				float4 _SelectionID;
 			#endif
 
-			// Properties used by SceneSelectionPass
 			#ifdef SCENESELECTIONPASS
 				int _ObjectId;
 				int _PassValue;
 			#endif
 
-			uniform float4 _CameraDepthTexture_TexelSize;
 			sampler2D _NormalMapTexture;
+			uniform float4 _CameraDepthTexture_TexelSize;
 
-
-			//#include "Packages/com.unity.render-pipelines.universal/Editor/ShaderGraph/Includes/Varyings.hlsl"
-			//#include "Packages/com.unity.render-pipelines.universal/Editor/ShaderGraph/Includes/LightingMetaPass.hlsl"
-
-			//#ifdef HAVE_VFX_MODIFICATION
-			//#include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/VisualEffectVertex.hlsl"
-			//#endif
 
 			float3 mod2D289( float3 x ) { return x - floor( x * ( 1.0 / 289.0 ) ) * 289.0; }
 			float2 mod2D289( float2 x ) { return x - floor( x * ( 1.0 / 289.0 ) ) * 289.0; }
@@ -1892,7 +1897,7 @@ Shader "Polytope Studio/PT_Water_Shader_WebGl"
 				UNITY_INITIALIZE_VERTEX_OUTPUT_STEREO(o);
 
 				float4 appendResult71 = (float4(0.23 , -0.8 , 0.0 , 0.0));
-				float3 ase_worldPos = TransformObjectToWorld( (v.vertex).xyz );
+				float3 ase_worldPos = TransformObjectToWorld( (v.positionOS).xyz );
 				float4 appendResult81 = (float4(ase_worldPos.x , ase_worldPos.z , 0.0 , 0.0));
 				float2 panner79 = ( ( _TimeParameters.x * _WaveSpeed ) * appendResult71.xy + ( ( appendResult81 * float4( float2( 6.5,0.9 ), 0.0 , 0.0 ) ) * _WaveTile ).xy);
 				float simplePerlin2D77 = snoise( panner79 );
@@ -1900,7 +1905,7 @@ Shader "Polytope Studio/PT_Water_Shader_WebGl"
 				float WAVESDISPLACEMENT69 = ( ( float3(0,0.05,0).y * _WaveAmplitude ) * simplePerlin2D77 );
 				float3 temp_cast_3 = (WAVESDISPLACEMENT69).xxx;
 				
-				float4 ase_clipPos = TransformObjectToHClip((v.vertex).xyz);
+				float4 ase_clipPos = TransformObjectToHClip((v.positionOS).xyz);
 				float4 screenPos = ComputeScreenPos(ase_clipPos);
 				o.ase_texcoord4 = screenPos;
 				
@@ -1910,7 +1915,7 @@ Shader "Polytope Studio/PT_Water_Shader_WebGl"
 				o.ase_texcoord5.zw = 0;
 
 				#ifdef ASE_ABSOLUTE_VERTEX_POS
-					float3 defaultVertexValue = v.vertex.xyz;
+					float3 defaultVertexValue = v.positionOS.xyz;
 				#else
 					float3 defaultVertexValue = float3(0, 0, 0);
 				#endif
@@ -1918,25 +1923,25 @@ Shader "Polytope Studio/PT_Water_Shader_WebGl"
 				float3 vertexValue = temp_cast_3;
 
 				#ifdef ASE_ABSOLUTE_VERTEX_POS
-					v.vertex.xyz = vertexValue;
+					v.positionOS.xyz = vertexValue;
 				#else
-					v.vertex.xyz += vertexValue;
+					v.positionOS.xyz += vertexValue;
 				#endif
 
-				v.ase_normal = v.ase_normal;
+				v.normalOS = v.normalOS;
 
-				float3 positionWS = TransformObjectToWorld( v.vertex.xyz );
+				float3 positionWS = TransformObjectToWorld( v.positionOS.xyz );
 
 				#if defined(ASE_NEEDS_FRAG_WORLD_POSITION)
-					o.worldPos = positionWS;
+					o.positionWS = positionWS;
 				#endif
 
-				o.clipPos = MetaVertexPosition( v.vertex, v.texcoord1.xy, v.texcoord1.xy, unity_LightmapST, unity_DynamicLightmapST );
+				o.positionCS = MetaVertexPosition( v.positionOS, v.texcoord1.xy, v.texcoord1.xy, unity_LightmapST, unity_DynamicLightmapST );
 
 				#ifdef EDITOR_VISUALIZATION
 					float2 VizUV = 0;
 					float4 LightCoord = 0;
-					UnityEditorVizData(v.vertex.xyz, v.texcoord0.xy, v.texcoord1.xy, v.texcoord2.xy, VizUV, LightCoord);
+					UnityEditorVizData(v.positionOS.xyz, v.texcoord0.xy, v.texcoord1.xy, v.texcoord2.xy, VizUV, LightCoord);
 					o.VizUV = float4(VizUV, 0, 0);
 					o.LightCoord = LightCoord;
 				#endif
@@ -1944,7 +1949,7 @@ Shader "Polytope Studio/PT_Water_Shader_WebGl"
 				#if defined(REQUIRES_VERTEX_SHADOW_COORD_INTERPOLATOR) && defined(ASE_NEEDS_FRAG_SHADOWCOORDS)
 					VertexPositionInputs vertexInput = (VertexPositionInputs)0;
 					vertexInput.positionWS = positionWS;
-					vertexInput.positionCS = o.clipPos;
+					vertexInput.positionCS = o.positionCS;
 					o.shadowCoord = GetShadowCoord( vertexInput );
 				#endif
 
@@ -1955,7 +1960,7 @@ Shader "Polytope Studio/PT_Water_Shader_WebGl"
 			struct VertexControl
 			{
 				float4 vertex : INTERNALTESSPOS;
-				float3 ase_normal : NORMAL;
+				float3 normalOS : NORMAL;
 				float4 texcoord0 : TEXCOORD0;
 				float4 texcoord1 : TEXCOORD1;
 				float4 texcoord2 : TEXCOORD2;
@@ -1974,8 +1979,8 @@ Shader "Polytope Studio/PT_Water_Shader_WebGl"
 				VertexControl o;
 				UNITY_SETUP_INSTANCE_ID(v);
 				UNITY_TRANSFER_INSTANCE_ID(v, o);
-				o.vertex = v.vertex;
-				o.ase_normal = v.ase_normal;
+				o.vertex = v.positionOS;
+				o.normalOS = v.normalOS;
 				o.texcoord0 = v.texcoord0;
 				o.texcoord1 = v.texcoord1;
 				o.texcoord2 = v.texcoord2;
@@ -2016,8 +2021,8 @@ Shader "Polytope Studio/PT_Water_Shader_WebGl"
 			VertexOutput DomainFunction(TessellationFactors factors, OutputPatch<VertexControl, 3> patch, float3 bary : SV_DomainLocation)
 			{
 				VertexInput o = (VertexInput) 0;
-				o.vertex = patch[0].vertex * bary.x + patch[1].vertex * bary.y + patch[2].vertex * bary.z;
-				o.ase_normal = patch[0].ase_normal * bary.x + patch[1].ase_normal * bary.y + patch[2].ase_normal * bary.z;
+				o.positionOS = patch[0].vertex * bary.x + patch[1].vertex * bary.y + patch[2].vertex * bary.z;
+				o.normalOS = patch[0].normalOS * bary.x + patch[1].normalOS * bary.y + patch[2].normalOS * bary.z;
 				o.texcoord0 = patch[0].texcoord0 * bary.x + patch[1].texcoord0 * bary.y + patch[2].texcoord0 * bary.z;
 				o.texcoord1 = patch[0].texcoord1 * bary.x + patch[1].texcoord1 * bary.y + patch[2].texcoord1 * bary.z;
 				o.texcoord2 = patch[0].texcoord2 * bary.x + patch[1].texcoord2 * bary.y + patch[2].texcoord2 * bary.z;
@@ -2025,9 +2030,9 @@ Shader "Polytope Studio/PT_Water_Shader_WebGl"
 				#if defined(ASE_PHONG_TESSELLATION)
 				float3 pp[3];
 				for (int i = 0; i < 3; ++i)
-					pp[i] = o.vertex.xyz - patch[i].ase_normal * (dot(o.vertex.xyz, patch[i].ase_normal) - dot(patch[i].vertex.xyz, patch[i].ase_normal));
+					pp[i] = o.positionOS.xyz - patch[i].normalOS * (dot(o.positionOS.xyz, patch[i].normalOS) - dot(patch[i].vertex.xyz, patch[i].normalOS));
 				float phongStrength = _TessPhongStrength;
-				o.vertex.xyz = phongStrength * (pp[0]*bary.x + pp[1]*bary.y + pp[2]*bary.z) + (1.0f-phongStrength) * o.vertex.xyz;
+				o.positionOS.xyz = phongStrength * (pp[0]*bary.x + pp[1]*bary.y + pp[2]*bary.z) + (1.0f-phongStrength) * o.positionOS.xyz;
 				#endif
 				UNITY_TRANSFER_INSTANCE_ID(patch[0], o);
 				return VertexFunction(o);
@@ -2045,7 +2050,7 @@ Shader "Polytope Studio/PT_Water_Shader_WebGl"
 				UNITY_SETUP_STEREO_EYE_INDEX_POST_VERTEX( IN );
 
 				#if defined(ASE_NEEDS_FRAG_WORLD_POSITION)
-					float3 WorldPosition = IN.worldPos;
+					float3 WorldPosition = IN.positionWS;
 				#endif
 
 				float4 ShadowCoords = float4( 0, 0, 0, 0 );
@@ -2136,7 +2141,7 @@ Shader "Polytope Studio/PT_Water_Shader_WebGl"
 			Tags { "LightMode"="Universal2D" }
 
 			Blend SrcAlpha OneMinusSrcAlpha, One OneMinusSrcAlpha
-			ZWrite Off
+			ZWrite On
 			ZTest LEqual
 			Offset 0 , 0
 			ColorMask RGBA
@@ -2147,7 +2152,7 @@ Shader "Polytope Studio/PT_Water_Shader_WebGl"
 			#define ASE_FOG 1
 			#define _SURFACE_TYPE_TRANSPARENT 1
 			#define _NORMALMAP 1
-			#define ASE_SRP_VERSION 120110
+			#define ASE_SRP_VERSION 140009
 			#define REQUIRE_DEPTH_TEXTURE 1
 			#define REQUIRE_OPAQUE_TEXTURE 1
 
@@ -2170,17 +2175,17 @@ Shader "Polytope Studio/PT_Water_Shader_WebGl"
 
 			struct VertexInput
 			{
-				float4 vertex : POSITION;
-				float3 ase_normal : NORMAL;
+				float4 positionOS : POSITION;
+				float3 normalOS : NORMAL;
 				float4 ase_texcoord : TEXCOORD0;
 				UNITY_VERTEX_INPUT_INSTANCE_ID
 			};
 
 			struct VertexOutput
 			{
-				float4 clipPos : SV_POSITION;
+				float4 positionCS : SV_POSITION;
 				#if defined(ASE_NEEDS_FRAG_WORLD_POSITION)
-					float3 worldPos : TEXCOORD0;
+					float3 positionWS : TEXCOORD0;
 				#endif
 				#if defined(REQUIRES_VERTEX_SHADOW_COORD_INTERPOLATOR) && defined(ASE_NEEDS_FRAG_SHADOWCOORDS)
 					float4 shadowCoord : TEXCOORD1;
@@ -2205,7 +2210,6 @@ Shader "Polytope Studio/PT_Water_Shader_WebGl"
 			float _FoamAmount;
 			float _FoamPower;
 			float _FoamNoiseScale;
-			float _Mettalic;
 			float _Smootness;
 			#ifdef ASE_TRANSMISSION
 				float _TransmissionShadow;
@@ -2228,27 +2232,18 @@ Shader "Polytope Studio/PT_Water_Shader_WebGl"
 			#endif
 			CBUFFER_END
 
-			// Property used by ScenePickingPass
 			#ifdef SCENEPICKINGPASS
 				float4 _SelectionID;
 			#endif
 
-			// Properties used by SceneSelectionPass
 			#ifdef SCENESELECTIONPASS
 				int _ObjectId;
 				int _PassValue;
 			#endif
 
-			uniform float4 _CameraDepthTexture_TexelSize;
 			sampler2D _NormalMapTexture;
+			uniform float4 _CameraDepthTexture_TexelSize;
 
-
-			//#include "Packages/com.unity.render-pipelines.universal/Editor/ShaderGraph/Includes/Varyings.hlsl"
-			//#include "Packages/com.unity.render-pipelines.universal/Editor/ShaderGraph/Includes/PBR2DPass.hlsl"
-
-			//#ifdef HAVE_VFX_MODIFICATION
-			//#include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/VisualEffectVertex.hlsl"
-			//#endif
 
 			float3 mod2D289( float3 x ) { return x - floor( x * ( 1.0 / 289.0 ) ) * 289.0; }
 			float2 mod2D289( float2 x ) { return x - floor( x * ( 1.0 / 289.0 ) ) * 289.0; }
@@ -2322,7 +2317,7 @@ Shader "Polytope Studio/PT_Water_Shader_WebGl"
 				UNITY_INITIALIZE_VERTEX_OUTPUT_STEREO( o );
 
 				float4 appendResult71 = (float4(0.23 , -0.8 , 0.0 , 0.0));
-				float3 ase_worldPos = TransformObjectToWorld( (v.vertex).xyz );
+				float3 ase_worldPos = TransformObjectToWorld( (v.positionOS).xyz );
 				float4 appendResult81 = (float4(ase_worldPos.x , ase_worldPos.z , 0.0 , 0.0));
 				float2 panner79 = ( ( _TimeParameters.x * _WaveSpeed ) * appendResult71.xy + ( ( appendResult81 * float4( float2( 6.5,0.9 ), 0.0 , 0.0 ) ) * _WaveTile ).xy);
 				float simplePerlin2D77 = snoise( panner79 );
@@ -2330,7 +2325,7 @@ Shader "Polytope Studio/PT_Water_Shader_WebGl"
 				float WAVESDISPLACEMENT69 = ( ( float3(0,0.05,0).y * _WaveAmplitude ) * simplePerlin2D77 );
 				float3 temp_cast_3 = (WAVESDISPLACEMENT69).xxx;
 				
-				float4 ase_clipPos = TransformObjectToHClip((v.vertex).xyz);
+				float4 ase_clipPos = TransformObjectToHClip((v.positionOS).xyz);
 				float4 screenPos = ComputeScreenPos(ase_clipPos);
 				o.ase_texcoord2 = screenPos;
 				
@@ -2340,7 +2335,7 @@ Shader "Polytope Studio/PT_Water_Shader_WebGl"
 				o.ase_texcoord3.zw = 0;
 
 				#ifdef ASE_ABSOLUTE_VERTEX_POS
-					float3 defaultVertexValue = v.vertex.xyz;
+					float3 defaultVertexValue = v.positionOS.xyz;
 				#else
 					float3 defaultVertexValue = float3(0, 0, 0);
 				#endif
@@ -2348,28 +2343,24 @@ Shader "Polytope Studio/PT_Water_Shader_WebGl"
 				float3 vertexValue = temp_cast_3;
 
 				#ifdef ASE_ABSOLUTE_VERTEX_POS
-					v.vertex.xyz = vertexValue;
+					v.positionOS.xyz = vertexValue;
 				#else
-					v.vertex.xyz += vertexValue;
+					v.positionOS.xyz += vertexValue;
 				#endif
 
-				v.ase_normal = v.ase_normal;
+				v.normalOS = v.normalOS;
 
-				float3 positionWS = TransformObjectToWorld( v.vertex.xyz );
-				float4 positionCS = TransformWorldToHClip( positionWS );
+				VertexPositionInputs vertexInput = GetVertexPositionInputs( v.positionOS.xyz );
 
 				#if defined(ASE_NEEDS_FRAG_WORLD_POSITION)
-					o.worldPos = positionWS;
+					o.positionWS = vertexInput.positionWS;
 				#endif
 
 				#if defined(REQUIRES_VERTEX_SHADOW_COORD_INTERPOLATOR) && defined(ASE_NEEDS_FRAG_SHADOWCOORDS)
-					VertexPositionInputs vertexInput = (VertexPositionInputs)0;
-					vertexInput.positionWS = positionWS;
-					vertexInput.positionCS = positionCS;
 					o.shadowCoord = GetShadowCoord( vertexInput );
 				#endif
 
-				o.clipPos = positionCS;
+				o.positionCS = vertexInput.positionCS;
 
 				return o;
 			}
@@ -2378,7 +2369,7 @@ Shader "Polytope Studio/PT_Water_Shader_WebGl"
 			struct VertexControl
 			{
 				float4 vertex : INTERNALTESSPOS;
-				float3 ase_normal : NORMAL;
+				float3 normalOS : NORMAL;
 				float4 ase_texcoord : TEXCOORD0;
 
 				UNITY_VERTEX_INPUT_INSTANCE_ID
@@ -2395,8 +2386,8 @@ Shader "Polytope Studio/PT_Water_Shader_WebGl"
 				VertexControl o;
 				UNITY_SETUP_INSTANCE_ID(v);
 				UNITY_TRANSFER_INSTANCE_ID(v, o);
-				o.vertex = v.vertex;
-				o.ase_normal = v.ase_normal;
+				o.vertex = v.positionOS;
+				o.normalOS = v.normalOS;
 				o.ase_texcoord = v.ase_texcoord;
 				return o;
 			}
@@ -2434,15 +2425,15 @@ Shader "Polytope Studio/PT_Water_Shader_WebGl"
 			VertexOutput DomainFunction(TessellationFactors factors, OutputPatch<VertexControl, 3> patch, float3 bary : SV_DomainLocation)
 			{
 				VertexInput o = (VertexInput) 0;
-				o.vertex = patch[0].vertex * bary.x + patch[1].vertex * bary.y + patch[2].vertex * bary.z;
-				o.ase_normal = patch[0].ase_normal * bary.x + patch[1].ase_normal * bary.y + patch[2].ase_normal * bary.z;
+				o.positionOS = patch[0].vertex * bary.x + patch[1].vertex * bary.y + patch[2].vertex * bary.z;
+				o.normalOS = patch[0].normalOS * bary.x + patch[1].normalOS * bary.y + patch[2].normalOS * bary.z;
 				o.ase_texcoord = patch[0].ase_texcoord * bary.x + patch[1].ase_texcoord * bary.y + patch[2].ase_texcoord * bary.z;
 				#if defined(ASE_PHONG_TESSELLATION)
 				float3 pp[3];
 				for (int i = 0; i < 3; ++i)
-					pp[i] = o.vertex.xyz - patch[i].ase_normal * (dot(o.vertex.xyz, patch[i].ase_normal) - dot(patch[i].vertex.xyz, patch[i].ase_normal));
+					pp[i] = o.positionOS.xyz - patch[i].normalOS * (dot(o.positionOS.xyz, patch[i].normalOS) - dot(patch[i].vertex.xyz, patch[i].normalOS));
 				float phongStrength = _TessPhongStrength;
-				o.vertex.xyz = phongStrength * (pp[0]*bary.x + pp[1]*bary.y + pp[2]*bary.z) + (1.0f-phongStrength) * o.vertex.xyz;
+				o.positionOS.xyz = phongStrength * (pp[0]*bary.x + pp[1]*bary.y + pp[2]*bary.z) + (1.0f-phongStrength) * o.positionOS.xyz;
 				#endif
 				UNITY_TRANSFER_INSTANCE_ID(patch[0], o);
 				return VertexFunction(o);
@@ -2460,7 +2451,7 @@ Shader "Polytope Studio/PT_Water_Shader_WebGl"
 				UNITY_SETUP_STEREO_EYE_INDEX_POST_VERTEX( IN );
 
 				#if defined(ASE_NEEDS_FRAG_WORLD_POSITION)
-					float3 WorldPosition = IN.worldPos;
+					float3 WorldPosition = IN.positionWS;
 				#endif
 
 				float4 ShadowCoords = float4( 0, 0, 0, 0 );
@@ -2556,12 +2547,14 @@ Shader "Polytope Studio/PT_Water_Shader_WebGl"
 			#define ASE_FOG 1
 			#define _SURFACE_TYPE_TRANSPARENT 1
 			#define _NORMALMAP 1
-			#define ASE_SRP_VERSION 120110
+			#define ASE_SRP_VERSION 140009
 			#define REQUIRE_DEPTH_TEXTURE 1
 
 
 			#pragma vertex vert
 			#pragma fragment frag
+
+			#pragma multi_compile_fragment _ _WRITE_RENDERING_LAYERS
 
 			#define SHADERPASS SHADERPASS_DEPTHNORMALSONLY
 
@@ -2574,29 +2567,42 @@ Shader "Polytope Studio/PT_Water_Shader_WebGl"
 			#include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/ShaderGraphFunctions.hlsl"
 			#include "Packages/com.unity.render-pipelines.universal/Editor/ShaderGraph/Includes/ShaderPass.hlsl"
 
-			
+			#if defined(LOD_FADE_CROSSFADE)
+            #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/LODCrossFade.hlsl"
+            #endif
+
+			#define ASE_NEEDS_FRAG_SCREEN_POSITION
+
+
+			#if defined(ASE_EARLY_Z_DEPTH_OPTIMIZE) && (SHADER_TARGET >= 45)
+				#define ASE_SV_DEPTH SV_DepthLessEqual
+				#define ASE_SV_POSITION_QUALIFIERS linear noperspective centroid
+			#else
+				#define ASE_SV_DEPTH SV_Depth
+				#define ASE_SV_POSITION_QUALIFIERS
+			#endif
 
 			struct VertexInput
 			{
-				float4 vertex : POSITION;
-				float3 ase_normal : NORMAL;
-				float4 ase_tangent : TANGENT;
+				float4 positionOS : POSITION;
+				float3 normalOS : NORMAL;
+				float4 tangentOS : TANGENT;
 				float4 ase_texcoord : TEXCOORD0;
 				UNITY_VERTEX_INPUT_INSTANCE_ID
 			};
 
 			struct VertexOutput
 			{
-				float4 clipPos : SV_POSITION;
+				ASE_SV_POSITION_QUALIFIERS float4 positionCS : SV_POSITION;
+				float4 clipPosV : TEXCOORD0;
+				float3 worldNormal : TEXCOORD1;
+				float4 worldTangent : TEXCOORD2;
 				#if defined(ASE_NEEDS_FRAG_WORLD_POSITION)
-					float3 worldPos : TEXCOORD0;
+					float3 positionWS : TEXCOORD3;
 				#endif
 				#if defined(REQUIRES_VERTEX_SHADOW_COORD_INTERPOLATOR) && defined(ASE_NEEDS_FRAG_SHADOWCOORDS)
-					float4 shadowCoord : TEXCOORD1;
+					float4 shadowCoord : TEXCOORD4;
 				#endif
-				float3 worldNormal : TEXCOORD2;
-				float4 worldTangent : TEXCOORD3;
-				float4 ase_texcoord4 : TEXCOORD4;
 				float4 ase_texcoord5 : TEXCOORD5;
 				UNITY_VERTEX_INPUT_INSTANCE_ID
 				UNITY_VERTEX_OUTPUT_STEREO
@@ -2616,7 +2622,6 @@ Shader "Polytope Studio/PT_Water_Shader_WebGl"
 			float _FoamAmount;
 			float _FoamPower;
 			float _FoamNoiseScale;
-			float _Mettalic;
 			float _Smootness;
 			#ifdef ASE_TRANSMISSION
 				float _TransmissionShadow;
@@ -2639,27 +2644,18 @@ Shader "Polytope Studio/PT_Water_Shader_WebGl"
 			#endif
 			CBUFFER_END
 
-			// Property used by ScenePickingPass
 			#ifdef SCENEPICKINGPASS
 				float4 _SelectionID;
 			#endif
 
-			// Properties used by SceneSelectionPass
 			#ifdef SCENESELECTIONPASS
 				int _ObjectId;
 				int _PassValue;
 			#endif
 
-			uniform float4 _CameraDepthTexture_TexelSize;
 			sampler2D _NormalMapTexture;
+			uniform float4 _CameraDepthTexture_TexelSize;
 
-
-			//#include "Packages/com.unity.render-pipelines.universal/Editor/ShaderGraph/Includes/Varyings.hlsl"
-			//#include "Packages/com.unity.render-pipelines.universal/Editor/ShaderGraph/Includes/DepthNormalsOnlyPass.hlsl"
-
-			//#ifdef HAVE_VFX_MODIFICATION
-			//#include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/VisualEffectVertex.hlsl"
-			//#endif
 
 			float3 mod2D289( float3 x ) { return x - floor( x * ( 1.0 / 289.0 ) ) * 289.0; }
 			float2 mod2D289( float2 x ) { return x - floor( x * ( 1.0 / 289.0 ) ) * 289.0; }
@@ -2720,7 +2716,7 @@ Shader "Polytope Studio/PT_Water_Shader_WebGl"
 				UNITY_INITIALIZE_VERTEX_OUTPUT_STEREO(o);
 
 				float4 appendResult71 = (float4(0.23 , -0.8 , 0.0 , 0.0));
-				float3 ase_worldPos = TransformObjectToWorld( (v.vertex).xyz );
+				float3 ase_worldPos = TransformObjectToWorld( (v.positionOS).xyz );
 				float4 appendResult81 = (float4(ase_worldPos.x , ase_worldPos.z , 0.0 , 0.0));
 				float2 panner79 = ( ( _TimeParameters.x * _WaveSpeed ) * appendResult71.xy + ( ( appendResult81 * float4( float2( 6.5,0.9 ), 0.0 , 0.0 ) ) * _WaveTile ).xy);
 				float simplePerlin2D77 = snoise( panner79 );
@@ -2728,16 +2724,12 @@ Shader "Polytope Studio/PT_Water_Shader_WebGl"
 				float WAVESDISPLACEMENT69 = ( ( float3(0,0.05,0).y * _WaveAmplitude ) * simplePerlin2D77 );
 				float3 temp_cast_3 = (WAVESDISPLACEMENT69).xxx;
 				
-				float4 ase_clipPos = TransformObjectToHClip((v.vertex).xyz);
-				float4 screenPos = ComputeScreenPos(ase_clipPos);
-				o.ase_texcoord4 = screenPos;
-				
 				o.ase_texcoord5.xy = v.ase_texcoord.xy;
 				
 				//setting value to unused interpolator channels and avoid initialization warnings
 				o.ase_texcoord5.zw = 0;
 				#ifdef ASE_ABSOLUTE_VERTEX_POS
-					float3 defaultVertexValue = v.vertex.xyz;
+					float3 defaultVertexValue = v.positionOS.xyz;
 				#else
 					float3 defaultVertexValue = float3(0, 0, 0);
 				#endif
@@ -2745,33 +2737,32 @@ Shader "Polytope Studio/PT_Water_Shader_WebGl"
 				float3 vertexValue = temp_cast_3;
 
 				#ifdef ASE_ABSOLUTE_VERTEX_POS
-					v.vertex.xyz = vertexValue;
+					v.positionOS.xyz = vertexValue;
 				#else
-					v.vertex.xyz += vertexValue;
+					v.positionOS.xyz += vertexValue;
 				#endif
 
-				v.ase_normal = v.ase_normal;
-				float3 positionWS = TransformObjectToWorld( v.vertex.xyz );
-				float3 normalWS = TransformObjectToWorldNormal( v.ase_normal );
-				float4 tangentWS = float4(TransformObjectToWorldDir( v.ase_tangent.xyz), v.ase_tangent.w);
-				float4 positionCS = TransformWorldToHClip( positionWS );
+				v.normalOS = v.normalOS;
+				v.tangentOS = v.tangentOS;
+
+				VertexPositionInputs vertexInput = GetVertexPositionInputs( v.positionOS.xyz );
+
+				float3 normalWS = TransformObjectToWorldNormal( v.normalOS );
+				float4 tangentWS = float4( TransformObjectToWorldDir( v.tangentOS.xyz ), v.tangentOS.w );
 
 				#if defined(ASE_NEEDS_FRAG_WORLD_POSITION)
-					o.worldPos = positionWS;
+					o.positionWS = vertexInput.positionWS;
 				#endif
 
 				o.worldNormal = normalWS;
 				o.worldTangent = tangentWS;
 
 				#if defined(REQUIRES_VERTEX_SHADOW_COORD_INTERPOLATOR) && defined(ASE_NEEDS_FRAG_SHADOWCOORDS)
-					VertexPositionInputs vertexInput = (VertexPositionInputs)0;
-					vertexInput.positionWS = positionWS;
-					vertexInput.positionCS = positionCS;
 					o.shadowCoord = GetShadowCoord( vertexInput );
 				#endif
 
-				o.clipPos = positionCS;
-
+				o.positionCS = vertexInput.positionCS;
+				o.clipPosV = vertexInput.positionCS;
 				return o;
 			}
 
@@ -2779,8 +2770,8 @@ Shader "Polytope Studio/PT_Water_Shader_WebGl"
 			struct VertexControl
 			{
 				float4 vertex : INTERNALTESSPOS;
-				float3 ase_normal : NORMAL;
-				float4 ase_tangent : TANGENT;
+				float3 normalOS : NORMAL;
+				float4 tangentOS : TANGENT;
 				float4 ase_texcoord : TEXCOORD0;
 
 				UNITY_VERTEX_INPUT_INSTANCE_ID
@@ -2797,9 +2788,9 @@ Shader "Polytope Studio/PT_Water_Shader_WebGl"
 				VertexControl o;
 				UNITY_SETUP_INSTANCE_ID(v);
 				UNITY_TRANSFER_INSTANCE_ID(v, o);
-				o.vertex = v.vertex;
-				o.ase_normal = v.ase_normal;
-				o.ase_tangent = v.ase_tangent;
+				o.vertex = v.positionOS;
+				o.normalOS = v.normalOS;
+				o.tangentOS = v.tangentOS;
 				o.ase_texcoord = v.ase_texcoord;
 				return o;
 			}
@@ -2837,16 +2828,16 @@ Shader "Polytope Studio/PT_Water_Shader_WebGl"
 			VertexOutput DomainFunction(TessellationFactors factors, OutputPatch<VertexControl, 3> patch, float3 bary : SV_DomainLocation)
 			{
 				VertexInput o = (VertexInput) 0;
-				o.vertex = patch[0].vertex * bary.x + patch[1].vertex * bary.y + patch[2].vertex * bary.z;
-				o.ase_normal = patch[0].ase_normal * bary.x + patch[1].ase_normal * bary.y + patch[2].ase_normal * bary.z;
-				o.ase_tangent = patch[0].ase_tangent * bary.x + patch[1].ase_tangent * bary.y + patch[2].ase_tangent * bary.z;
+				o.positionOS = patch[0].vertex * bary.x + patch[1].vertex * bary.y + patch[2].vertex * bary.z;
+				o.normalOS = patch[0].normalOS * bary.x + patch[1].normalOS * bary.y + patch[2].normalOS * bary.z;
+				o.tangentOS = patch[0].tangentOS * bary.x + patch[1].tangentOS * bary.y + patch[2].tangentOS * bary.z;
 				o.ase_texcoord = patch[0].ase_texcoord * bary.x + patch[1].ase_texcoord * bary.y + patch[2].ase_texcoord * bary.z;
 				#if defined(ASE_PHONG_TESSELLATION)
 				float3 pp[3];
 				for (int i = 0; i < 3; ++i)
-					pp[i] = o.vertex.xyz - patch[i].ase_normal * (dot(o.vertex.xyz, patch[i].ase_normal) - dot(patch[i].vertex.xyz, patch[i].ase_normal));
+					pp[i] = o.positionOS.xyz - patch[i].normalOS * (dot(o.positionOS.xyz, patch[i].normalOS) - dot(patch[i].vertex.xyz, patch[i].normalOS));
 				float phongStrength = _TessPhongStrength;
-				o.vertex.xyz = phongStrength * (pp[0]*bary.x + pp[1]*bary.y + pp[2]*bary.z) + (1.0f-phongStrength) * o.vertex.xyz;
+				o.positionOS.xyz = phongStrength * (pp[0]*bary.x + pp[1]*bary.y + pp[2]*bary.z) + (1.0f-phongStrength) * o.positionOS.xyz;
 				#endif
 				UNITY_TRANSFER_INSTANCE_ID(patch[0], o);
 				return VertexFunction(o);
@@ -2858,28 +2849,29 @@ Shader "Polytope Studio/PT_Water_Shader_WebGl"
 			}
 			#endif
 
-			#if defined(ASE_EARLY_Z_DEPTH_OPTIMIZE)
-				#define ASE_SV_DEPTH SV_DepthLessEqual
-			#else
-				#define ASE_SV_DEPTH SV_Depth
-			#endif
-
-			half4 frag(	VertexOutput IN
+			void frag(	VertexOutput IN
+						, out half4 outNormalWS : SV_Target0
 						#ifdef ASE_DEPTH_WRITE_ON
 						,out float outputDepth : ASE_SV_DEPTH
 						#endif
-						 ) : SV_TARGET
+						#ifdef _WRITE_RENDERING_LAYERS
+						, out float4 outRenderingLayers : SV_Target1
+						#endif
+						 )
 			{
 				UNITY_SETUP_INSTANCE_ID(IN);
 				UNITY_SETUP_STEREO_EYE_INDEX_POST_VERTEX( IN );
 
 				#if defined(ASE_NEEDS_FRAG_WORLD_POSITION)
-					float3 WorldPosition = IN.worldPos;
+					float3 WorldPosition = IN.positionWS;
 				#endif
 
 				float4 ShadowCoords = float4( 0, 0, 0, 0 );
 				float3 WorldNormal = IN.worldNormal;
 				float4 WorldTangent = IN.worldTangent;
+
+				float4 ClipPos = IN.clipPosV;
+				float4 ScreenPos = ComputeScreenPos( IN.clipPosV );
 
 				#if defined(ASE_NEEDS_FRAG_SHADOWCOORDS)
 					#if defined(REQUIRES_VERTEX_SHADOW_COORD_INTERPOLATOR)
@@ -2889,8 +2881,7 @@ Shader "Polytope Studio/PT_Water_Shader_WebGl"
 					#endif
 				#endif
 
-				float4 screenPos = IN.ase_texcoord4;
-				float4 ase_screenPosNorm = screenPos / screenPos.w;
+				float4 ase_screenPosNorm = ScreenPos / ScreenPos.w;
 				ase_screenPosNorm.z = ( UNITY_NEAR_CLIP_VALUE >= 0 ) ? ase_screenPosNorm.z : ase_screenPosNorm.z * 0.5 + 0.5;
 				float screenDepth33 = LinearEyeDepth(SHADERGRAPH_SAMPLE_SCENE_DEPTH( ase_screenPosNorm.xy ),_ZBufferParams);
 				float distanceDepth33 = abs( ( screenDepth33 - LinearEyeDepth( ase_screenPosNorm.z,_ZBufferParams ) ) / ( _FoamAmount ) );
@@ -2924,7 +2915,7 @@ Shader "Polytope Studio/PT_Water_Shader_WebGl"
 				float4 normalizeResult72 = normalize( layeredBlend90 );
 				
 				float eyeDepth20 = LinearEyeDepth(SHADERGRAPH_SAMPLE_SCENE_DEPTH( ase_screenPosNorm.xy ),_ZBufferParams);
-				float clampResult44 = clamp( ( _DepthStrength * ( eyeDepth20 - ( screenPos.w + _Depth ) ) ) , 0.0 , 1.0 );
+				float clampResult44 = clamp( ( _DepthStrength * ( eyeDepth20 - ( ScreenPos.w + _Depth ) ) ) , 0.0 , 1.0 );
 				float DeepShallowMask68 = clampResult44;
 				float smoothstepResult96 = smoothstep( 0.2 , 1.2 , FoamMask59);
 				float clampResult75 = clamp( ( smoothstepResult96 * 0.05 ) , 0.0 , 1.0 );
@@ -2935,7 +2926,7 @@ Shader "Polytope Studio/PT_Water_Shader_WebGl"
 				float Alpha = TRANSPARENCYFINAL105;
 				float AlphaClipThreshold = 0.5;
 				#ifdef ASE_DEPTH_WRITE_ON
-					float DepthValue = 0;
+					float DepthValue = IN.positionCS.z;
 				#endif
 
 				#ifdef _ALPHATEST_ON
@@ -2943,7 +2934,7 @@ Shader "Polytope Studio/PT_Water_Shader_WebGl"
 				#endif
 
 				#ifdef LOD_FADE_CROSSFADE
-					LODDitheringTransition( IN.clipPos.xyz, unity_LODFade.x );
+					LODFadeCrossFade( IN.positionCS );
 				#endif
 
 				#ifdef ASE_DEPTH_WRITE_ON
@@ -2954,7 +2945,7 @@ Shader "Polytope Studio/PT_Water_Shader_WebGl"
 					float2 octNormalWS = PackNormalOctQuadEncode(WorldNormal);
 					float2 remappedOctNormalWS = saturate(octNormalWS * 0.5 + 0.5);
 					half3 packedNormalWS = PackFloat2To888(remappedOctNormalWS);
-					return half4(packedNormalWS, 0.0);
+					outNormalWS = half4(packedNormalWS, 0.0);
 				#else
 					#if defined(_NORMALMAP)
 						#if _NORMAL_DROPOFF_TS
@@ -2969,7 +2960,12 @@ Shader "Polytope Studio/PT_Water_Shader_WebGl"
 					#else
 						float3 normalWS = WorldNormal;
 					#endif
-					return half4(NormalizeNormalPerPixel(normalWS), 0.0);
+					outNormalWS = half4(NormalizeNormalPerPixel(normalWS), 0.0);
+				#endif
+
+				#ifdef _WRITE_RENDERING_LAYERS
+					uint renderingLayers = GetMeshRenderingLayer();
+					outRenderingLayers = float4( EncodeMeshRenderingLayer( renderingLayers ), 0, 0, 0 );
 				#endif
 			}
 			ENDHLSL
@@ -2983,7 +2979,7 @@ Shader "Polytope Studio/PT_Water_Shader_WebGl"
 			Tags { "LightMode"="UniversalGBuffer" }
 
 			Blend SrcAlpha OneMinusSrcAlpha, One OneMinusSrcAlpha
-			ZWrite Off
+			ZWrite On
 			ZTest LEqual
 			Offset 0 , 0
 			ColorMask RGBA
@@ -2999,21 +2995,24 @@ Shader "Polytope Studio/PT_Water_Shader_WebGl"
 			#define ASE_FOG 1
 			#define _SURFACE_TYPE_TRANSPARENT 1
 			#define _NORMALMAP 1
-			#define ASE_SRP_VERSION 120110
+			#define ASE_SRP_VERSION 140009
 			#define REQUIRE_DEPTH_TEXTURE 1
 			#define REQUIRE_OPAQUE_TEXTURE 1
 
 
-			#pragma multi_compile _ _MAIN_LIGHT_SHADOWS _MAIN_LIGHT_SHADOWS_CASCADE _MAIN_LIGHT_SHADOWS_SCREEN
-			#pragma multi_compile_fragment _ _REFLECTION_PROBE_BLENDING
-			#pragma multi_compile_fragment _ _REFLECTION_PROBE_BOX_PROJECTION
-			#pragma multi_compile_fragment _ _SHADOWS_SOFT
-			#pragma multi_compile_fragment _ _DBUFFER_MRT1 _DBUFFER_MRT2 _DBUFFER_MRT3
-			#pragma multi_compile_fragment _ _LIGHT_LAYERS
-			#pragma multi_compile_fragment _ _RENDER_PASS_ENABLED
 			#pragma shader_feature_local _RECEIVE_SHADOWS_OFF
 			#pragma shader_feature_local_fragment _SPECULARHIGHLIGHTS_OFF
 			#pragma shader_feature_local_fragment _ENVIRONMENTREFLECTIONS_OFF
+
+			#pragma multi_compile _ _MAIN_LIGHT_SHADOWS _MAIN_LIGHT_SHADOWS_CASCADE _MAIN_LIGHT_SHADOWS_SCREEN
+			#pragma multi_compile_fragment _ _REFLECTION_PROBE_BLENDING
+			#pragma multi_compile_fragment _ _REFLECTION_PROBE_BOX_PROJECTION
+			
+			
+			#pragma multi_compile_fragment _ _SHADOWS_SOFT _SHADOWS_SOFT_LOW _SHADOWS_SOFT_MEDIUM _SHADOWS_SOFT_HIGH
+		
+			#pragma multi_compile_fragment _ _DBUFFER_MRT1 _DBUFFER_MRT2 _DBUFFER_MRT3
+			#pragma multi_compile_fragment _ _RENDER_PASS_ENABLED
 
 			#pragma multi_compile _ LIGHTMAP_SHADOW_MIXING
 			#pragma multi_compile _ SHADOWS_SHADOWMASK
@@ -3021,6 +3020,7 @@ Shader "Polytope Studio/PT_Water_Shader_WebGl"
 			#pragma multi_compile _ LIGHTMAP_ON
 			#pragma multi_compile _ DYNAMICLIGHTMAP_ON
 			#pragma multi_compile_fragment _ _GBUFFER_NORMALS_OCT
+			#pragma multi_compile_fragment _ _WRITE_RENDERING_LAYERS
 
 			#pragma vertex vert
 			#pragma fragment frag
@@ -3038,6 +3038,10 @@ Shader "Polytope Studio/PT_Water_Shader_WebGl"
 			#include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/DBuffer.hlsl"
 			#include "Packages/com.unity.render-pipelines.universal/Editor/ShaderGraph/Includes/ShaderPass.hlsl"
 
+			#if defined(LOD_FADE_CROSSFADE)
+            #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/LODCrossFade.hlsl"
+            #endif
+			
 			#if defined(UNITY_INSTANCING_ENABLED) && defined(_TERRAIN_INSTANCED_PERPIXEL_NORMAL)
 				#define ENABLE_TERRAIN_PERPIXEL_NORMAL
 			#endif
@@ -3045,11 +3049,19 @@ Shader "Polytope Studio/PT_Water_Shader_WebGl"
 			#define ASE_NEEDS_FRAG_SCREEN_POSITION
 
 
+			#if defined(ASE_EARLY_Z_DEPTH_OPTIMIZE) && (SHADER_TARGET >= 45)
+				#define ASE_SV_DEPTH SV_DepthLessEqual
+				#define ASE_SV_POSITION_QUALIFIERS linear noperspective centroid
+			#else
+				#define ASE_SV_DEPTH SV_Depth
+				#define ASE_SV_POSITION_QUALIFIERS
+			#endif
+
 			struct VertexInput
 			{
-				float4 vertex : POSITION;
-				float3 ase_normal : NORMAL;
-				float4 ase_tangent : TANGENT;
+				float4 positionOS : POSITION;
+				float3 normalOS : NORMAL;
+				float4 tangentOS : TANGENT;
 				float4 texcoord : TEXCOORD0;
 				float4 texcoord1 : TEXCOORD1;
 				float4 texcoord2 : TEXCOORD2;
@@ -3059,17 +3071,15 @@ Shader "Polytope Studio/PT_Water_Shader_WebGl"
 
 			struct VertexOutput
 			{
-				float4 clipPos : SV_POSITION;
-				float4 lightmapUVOrVertexSH : TEXCOORD0;
-				half4 fogFactorAndVertexLight : TEXCOORD1;
-				#if defined(REQUIRES_VERTEX_SHADOW_COORD_INTERPOLATOR)
-				float4 shadowCoord : TEXCOORD2;
-				#endif
+				ASE_SV_POSITION_QUALIFIERS float4 positionCS : SV_POSITION;
+				float4 clipPosV : TEXCOORD0;
+				float4 lightmapUVOrVertexSH : TEXCOORD1;
+				half4 fogFactorAndVertexLight : TEXCOORD2;
 				float4 tSpace0 : TEXCOORD3;
 				float4 tSpace1 : TEXCOORD4;
 				float4 tSpace2 : TEXCOORD5;
-				#if defined(ASE_NEEDS_FRAG_SCREEN_POSITION)
-				float4 screenPos : TEXCOORD6;
+				#if defined(REQUIRES_VERTEX_SHADOW_COORD_INTERPOLATOR)
+				float4 shadowCoord : TEXCOORD6;
 				#endif
 				#if defined(DYNAMICLIGHTMAP_ON)
 				float2 dynamicLightmapUV : TEXCOORD7;
@@ -3093,7 +3103,6 @@ Shader "Polytope Studio/PT_Water_Shader_WebGl"
 			float _FoamAmount;
 			float _FoamPower;
 			float _FoamNoiseScale;
-			float _Mettalic;
 			float _Smootness;
 			#ifdef ASE_TRANSMISSION
 				float _TransmissionShadow;
@@ -3116,24 +3125,20 @@ Shader "Polytope Studio/PT_Water_Shader_WebGl"
 			#endif
 			CBUFFER_END
 
-			// Property used by ScenePickingPass
 			#ifdef SCENEPICKINGPASS
 				float4 _SelectionID;
 			#endif
 
-			// Properties used by SceneSelectionPass
 			#ifdef SCENESELECTIONPASS
 				int _ObjectId;
 				int _PassValue;
 			#endif
 
-			uniform float4 _CameraDepthTexture_TexelSize;
 			sampler2D _NormalMapTexture;
+			uniform float4 _CameraDepthTexture_TexelSize;
 
 
-			//#include "Packages/com.unity.render-pipelines.universal/Editor/ShaderGraph/Includes/Varyings.hlsl"
 			#include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/UnityGBuffer.hlsl"
-			//#include "Packages/com.unity.render-pipelines.universal/Editor/ShaderGraph/Includes/PBRGBufferPass.hlsl"
 
 			float3 mod2D289( float3 x ) { return x - floor( x * ( 1.0 / 289.0 ) ) * 289.0; }
 			float2 mod2D289( float2 x ) { return x - floor( x * ( 1.0 / 289.0 ) ) * 289.0; }
@@ -3207,7 +3212,7 @@ Shader "Polytope Studio/PT_Water_Shader_WebGl"
 				UNITY_INITIALIZE_VERTEX_OUTPUT_STEREO(o);
 
 				float4 appendResult71 = (float4(0.23 , -0.8 , 0.0 , 0.0));
-				float3 ase_worldPos = TransformObjectToWorld( (v.vertex).xyz );
+				float3 ase_worldPos = TransformObjectToWorld( (v.positionOS).xyz );
 				float4 appendResult81 = (float4(ase_worldPos.x , ase_worldPos.z , 0.0 , 0.0));
 				float2 panner79 = ( ( _TimeParameters.x * _WaveSpeed ) * appendResult71.xy + ( ( appendResult81 * float4( float2( 6.5,0.9 ), 0.0 , 0.0 ) ) * _WaveTile ).xy);
 				float simplePerlin2D77 = snoise( panner79 );
@@ -3220,7 +3225,7 @@ Shader "Polytope Studio/PT_Water_Shader_WebGl"
 				//setting value to unused interpolator channels and avoid initialization warnings
 				o.ase_texcoord8.zw = 0;
 				#ifdef ASE_ABSOLUTE_VERTEX_POS
-					float3 defaultVertexValue = v.vertex.xyz;
+					float3 defaultVertexValue = v.positionOS.xyz;
 				#else
 					float3 defaultVertexValue = float3(0, 0, 0);
 				#endif
@@ -3228,22 +3233,20 @@ Shader "Polytope Studio/PT_Water_Shader_WebGl"
 				float3 vertexValue = temp_cast_3;
 
 				#ifdef ASE_ABSOLUTE_VERTEX_POS
-					v.vertex.xyz = vertexValue;
+					v.positionOS.xyz = vertexValue;
 				#else
-					v.vertex.xyz += vertexValue;
+					v.positionOS.xyz += vertexValue;
 				#endif
 
-				v.ase_normal = v.ase_normal;
+				v.normalOS = v.normalOS;
+				v.tangentOS = v.tangentOS;
 
-				float3 positionWS = TransformObjectToWorld( v.vertex.xyz );
-				float3 positionVS = TransformWorldToView( positionWS );
-				float4 positionCS = TransformWorldToHClip( positionWS );
+				VertexPositionInputs vertexInput = GetVertexPositionInputs( v.positionOS.xyz );
+				VertexNormalInputs normalInput = GetVertexNormalInputs( v.normalOS, v.tangentOS );
 
-				VertexNormalInputs normalInput = GetVertexNormalInputs( v.ase_normal, v.ase_tangent );
-
-				o.tSpace0 = float4( normalInput.normalWS, positionWS.x);
-				o.tSpace1 = float4( normalInput.tangentWS, positionWS.y);
-				o.tSpace2 = float4( normalInput.bitangentWS, positionWS.z);
+				o.tSpace0 = float4( normalInput.normalWS, vertexInput.positionWS.x);
+				o.tSpace1 = float4( normalInput.tangentWS, vertexInput.positionWS.y);
+				o.tSpace2 = float4( normalInput.bitangentWS, vertexInput.positionWS.z);
 
 				#if defined(LIGHTMAP_ON)
 					OUTPUT_LIGHTMAP_UV(v.texcoord1, unity_LightmapST, o.lightmapUVOrVertexSH.xy);
@@ -3258,27 +3261,20 @@ Shader "Polytope Studio/PT_Water_Shader_WebGl"
 				#endif
 
 				#if defined(ENABLE_TERRAIN_PERPIXEL_NORMAL)
-					o.lightmapUVOrVertexSH.zw = v.texcoord;
-					o.lightmapUVOrVertexSH.xy = v.texcoord * unity_LightmapST.xy + unity_LightmapST.zw;
+					o.lightmapUVOrVertexSH.zw = v.texcoord.xy;
+					o.lightmapUVOrVertexSH.xy = v.texcoord.xy * unity_LightmapST.xy + unity_LightmapST.zw;
 				#endif
 
-				half3 vertexLight = VertexLighting( positionWS, normalInput.normalWS );
+				half3 vertexLight = VertexLighting( vertexInput.positionWS, normalInput.normalWS );
 
 				o.fogFactorAndVertexLight = half4(0, vertexLight);
 
 				#if defined(REQUIRES_VERTEX_SHADOW_COORD_INTERPOLATOR)
-					VertexPositionInputs vertexInput = (VertexPositionInputs)0;
-					vertexInput.positionWS = positionWS;
-					vertexInput.positionCS = positionCS;
 					o.shadowCoord = GetShadowCoord( vertexInput );
 				#endif
 
-					o.clipPos = positionCS;
-
-				#if defined(ASE_NEEDS_FRAG_SCREEN_POSITION)
-					o.screenPos = ComputeScreenPos(positionCS);
-				#endif
-
+				o.positionCS = vertexInput.positionCS;
+				o.clipPosV = vertexInput.positionCS;
 				return o;
 			}
 
@@ -3286,8 +3282,8 @@ Shader "Polytope Studio/PT_Water_Shader_WebGl"
 			struct VertexControl
 			{
 				float4 vertex : INTERNALTESSPOS;
-				float3 ase_normal : NORMAL;
-				float4 ase_tangent : TANGENT;
+				float3 normalOS : NORMAL;
+				float4 tangentOS : TANGENT;
 				float4 texcoord : TEXCOORD0;
 				float4 texcoord1 : TEXCOORD1;
 				float4 texcoord2 : TEXCOORD2;
@@ -3306,9 +3302,9 @@ Shader "Polytope Studio/PT_Water_Shader_WebGl"
 				VertexControl o;
 				UNITY_SETUP_INSTANCE_ID(v);
 				UNITY_TRANSFER_INSTANCE_ID(v, o);
-				o.vertex = v.vertex;
-				o.ase_normal = v.ase_normal;
-				o.ase_tangent = v.ase_tangent;
+				o.vertex = v.positionOS;
+				o.normalOS = v.normalOS;
+				o.tangentOS = v.tangentOS;
 				o.texcoord = v.texcoord;
 				o.texcoord1 = v.texcoord1;
 				o.texcoord2 = v.texcoord2;
@@ -3349,9 +3345,9 @@ Shader "Polytope Studio/PT_Water_Shader_WebGl"
 			VertexOutput DomainFunction(TessellationFactors factors, OutputPatch<VertexControl, 3> patch, float3 bary : SV_DomainLocation)
 			{
 				VertexInput o = (VertexInput) 0;
-				o.vertex = patch[0].vertex * bary.x + patch[1].vertex * bary.y + patch[2].vertex * bary.z;
-				o.ase_normal = patch[0].ase_normal * bary.x + patch[1].ase_normal * bary.y + patch[2].ase_normal * bary.z;
-				o.ase_tangent = patch[0].ase_tangent * bary.x + patch[1].ase_tangent * bary.y + patch[2].ase_tangent * bary.z;
+				o.positionOS = patch[0].vertex * bary.x + patch[1].vertex * bary.y + patch[2].vertex * bary.z;
+				o.normalOS = patch[0].normalOS * bary.x + patch[1].normalOS * bary.y + patch[2].normalOS * bary.z;
+				o.tangentOS = patch[0].tangentOS * bary.x + patch[1].tangentOS * bary.y + patch[2].tangentOS * bary.z;
 				o.texcoord = patch[0].texcoord * bary.x + patch[1].texcoord * bary.y + patch[2].texcoord * bary.z;
 				o.texcoord1 = patch[0].texcoord1 * bary.x + patch[1].texcoord1 * bary.y + patch[2].texcoord1 * bary.z;
 				o.texcoord2 = patch[0].texcoord2 * bary.x + patch[1].texcoord2 * bary.y + patch[2].texcoord2 * bary.z;
@@ -3359,9 +3355,9 @@ Shader "Polytope Studio/PT_Water_Shader_WebGl"
 				#if defined(ASE_PHONG_TESSELLATION)
 				float3 pp[3];
 				for (int i = 0; i < 3; ++i)
-					pp[i] = o.vertex.xyz - patch[i].ase_normal * (dot(o.vertex.xyz, patch[i].ase_normal) - dot(patch[i].vertex.xyz, patch[i].ase_normal));
+					pp[i] = o.positionOS.xyz - patch[i].normalOS * (dot(o.positionOS.xyz, patch[i].normalOS) - dot(patch[i].vertex.xyz, patch[i].normalOS));
 				float phongStrength = _TessPhongStrength;
-				o.vertex.xyz = phongStrength * (pp[0]*bary.x + pp[1]*bary.y + pp[2]*bary.z) + (1.0f-phongStrength) * o.vertex.xyz;
+				o.positionOS.xyz = phongStrength * (pp[0]*bary.x + pp[1]*bary.y + pp[2]*bary.z) + (1.0f-phongStrength) * o.positionOS.xyz;
 				#endif
 				UNITY_TRANSFER_INSTANCE_ID(patch[0], o);
 				return VertexFunction(o);
@@ -3371,12 +3367,6 @@ Shader "Polytope Studio/PT_Water_Shader_WebGl"
 			{
 				return VertexFunction( v );
 			}
-			#endif
-
-			#if defined(ASE_EARLY_Z_DEPTH_OPTIMIZE)
-				#define ASE_SV_DEPTH SV_DepthLessEqual
-			#else
-				#define ASE_SV_DEPTH SV_Depth
 			#endif
 
 			FragmentOutput frag ( VertexOutput IN
@@ -3389,7 +3379,7 @@ Shader "Polytope Studio/PT_Water_Shader_WebGl"
 				UNITY_SETUP_STEREO_EYE_INDEX_POST_VERTEX(IN);
 
 				#ifdef LOD_FADE_CROSSFADE
-					LODDitheringTransition( IN.clipPos.xyz, unity_LODFade.x );
+					LODFadeCrossFade( IN.positionCS );
 				#endif
 
 				#if defined(ENABLE_TERRAIN_PERPIXEL_NORMAL)
@@ -3407,11 +3397,10 @@ Shader "Polytope Studio/PT_Water_Shader_WebGl"
 				float3 WorldViewDirection = _WorldSpaceCameraPos.xyz  - WorldPosition;
 				float4 ShadowCoords = float4( 0, 0, 0, 0 );
 
-				#if defined(ASE_NEEDS_FRAG_SCREEN_POSITION)
-					float4 ScreenPos = IN.screenPos;
-				#endif
+				float4 ClipPos = IN.clipPosV;
+				float4 ScreenPos = ComputeScreenPos( IN.clipPosV );
 
-				float2 NormalizedScreenSpaceUV = GetNormalizedScreenSpaceUV(IN.clipPos);
+				float2 NormalizedScreenSpaceUV = GetNormalizedScreenSpaceUV(IN.positionCS);
 
 				#if defined(REQUIRES_VERTEX_SHADOW_COORD_INTERPOLATOR)
 					ShadowCoords = IN.shadowCoord;
@@ -3484,7 +3473,7 @@ Shader "Polytope Studio/PT_Water_Shader_WebGl"
 				float3 Normal = normalizeResult72.rgb;
 				float3 Emission = 0;
 				float3 Specular = 0.5;
-				float Metallic = _Mettalic;
+				float Metallic = 0;
 				float Smoothness = layeredBlend101.r;
 				float Occlusion = 1;
 				float Alpha = TRANSPARENCYFINAL105;
@@ -3497,7 +3486,7 @@ Shader "Polytope Studio/PT_Water_Shader_WebGl"
 				float3 Translucency = 1;
 
 				#ifdef ASE_DEPTH_WRITE_ON
-					float DepthValue = 0;
+					float DepthValue = IN.positionCS.z;
 				#endif
 
 				#ifdef _ALPHATEST_ON
@@ -3506,7 +3495,7 @@ Shader "Polytope Studio/PT_Water_Shader_WebGl"
 
 				InputData inputData = (InputData)0;
 				inputData.positionWS = WorldPosition;
-				inputData.positionCS = IN.clipPos;
+				inputData.positionCS = IN.positionCS;
 				inputData.shadowCoord = ShadowCoords;
 
 				#ifdef _NORMALMAP
@@ -3557,7 +3546,7 @@ Shader "Polytope Studio/PT_Water_Shader_WebGl"
 				#endif
 
 				#ifdef _DBUFFER
-					ApplyDecal(IN.clipPos,
+					ApplyDecal(IN.positionCS,
 						BaseColor,
 						Specular,
 						inputData.normalWS,
@@ -3598,6 +3587,7 @@ Shader "Polytope Studio/PT_Water_Shader_WebGl"
 			Tags { "LightMode"="SceneSelectionPass" }
 
 			Cull Off
+			AlphaToMask Off
 
 			HLSLPROGRAM
 
@@ -3605,7 +3595,8 @@ Shader "Polytope Studio/PT_Water_Shader_WebGl"
 			#define ASE_FOG 1
 			#define _SURFACE_TYPE_TRANSPARENT 1
 			#define _NORMALMAP 1
-			#define ASE_SRP_VERSION 120110
+			#define ASE_SRP_VERSION 140009
+			#define REQUIRE_DEPTH_TEXTURE 1
 
 
 			#pragma vertex vert
@@ -3630,16 +3621,17 @@ Shader "Polytope Studio/PT_Water_Shader_WebGl"
 
 			struct VertexInput
 			{
-				float4 vertex : POSITION;
-				float3 ase_normal : NORMAL;
-				
+				float4 positionOS : POSITION;
+				float3 normalOS : NORMAL;
+				float4 ase_texcoord : TEXCOORD0;
 				UNITY_VERTEX_INPUT_INSTANCE_ID
 			};
 
 			struct VertexOutput
 			{
-				float4 clipPos : SV_POSITION;
-				
+				float4 positionCS : SV_POSITION;
+				float4 ase_texcoord : TEXCOORD0;
+				float4 ase_texcoord1 : TEXCOORD1;
 				UNITY_VERTEX_INPUT_INSTANCE_ID
 				UNITY_VERTEX_OUTPUT_STEREO
 			};
@@ -3658,7 +3650,6 @@ Shader "Polytope Studio/PT_Water_Shader_WebGl"
 			float _FoamAmount;
 			float _FoamPower;
 			float _FoamNoiseScale;
-			float _Mettalic;
 			float _Smootness;
 			#ifdef ASE_TRANSMISSION
 				float _TransmissionShadow;
@@ -3681,27 +3672,70 @@ Shader "Polytope Studio/PT_Water_Shader_WebGl"
 			#endif
 			CBUFFER_END
 
-			// Property used by ScenePickingPass
 			#ifdef SCENEPICKINGPASS
 				float4 _SelectionID;
 			#endif
 
-			// Properties used by SceneSelectionPass
 			#ifdef SCENESELECTIONPASS
 				int _ObjectId;
 				int _PassValue;
 			#endif
 
+			sampler2D _NormalMapTexture;
+			uniform float4 _CameraDepthTexture_TexelSize;
+
+
+			float3 mod2D289( float3 x ) { return x - floor( x * ( 1.0 / 289.0 ) ) * 289.0; }
+			float2 mod2D289( float2 x ) { return x - floor( x * ( 1.0 / 289.0 ) ) * 289.0; }
+			float3 permute( float3 x ) { return mod2D289( ( ( x * 34.0 ) + 1.0 ) * x ); }
+			float snoise( float2 v )
+			{
+				const float4 C = float4( 0.211324865405187, 0.366025403784439, -0.577350269189626, 0.024390243902439 );
+				float2 i = floor( v + dot( v, C.yy ) );
+				float2 x0 = v - i + dot( i, C.xx );
+				float2 i1;
+				i1 = ( x0.x > x0.y ) ? float2( 1.0, 0.0 ) : float2( 0.0, 1.0 );
+				float4 x12 = x0.xyxy + C.xxzz;
+				x12.xy -= i1;
+				i = mod2D289( i );
+				float3 p = permute( permute( i.y + float3( 0.0, i1.y, 1.0 ) ) + i.x + float3( 0.0, i1.x, 1.0 ) );
+				float3 m = max( 0.5 - float3( dot( x0, x0 ), dot( x12.xy, x12.xy ), dot( x12.zw, x12.zw ) ), 0.0 );
+				m = m * m;
+				m = m * m;
+				float3 x = 2.0 * frac( p * C.www ) - 1.0;
+				float3 h = abs( x ) - 0.5;
+				float3 ox = floor( x + 0.5 );
+				float3 a0 = x - ox;
+				m *= 1.79284291400159 - 0.85373472095314 * ( a0 * a0 + h * h );
+				float3 g;
+				g.x = a0.x * x0.x + h.x * x0.y;
+				g.yz = a0.yz * x12.xz + h.yz * x12.yw;
+				return 130.0 * dot( m, g );
+			}
+			
+			float2 UnityGradientNoiseDir( float2 p )
+			{
+				p = fmod(p , 289);
+				float x = fmod((34 * p.x + 1) * p.x , 289) + p.y;
+				x = fmod( (34 * x + 1) * x , 289);
+				x = frac( x / 41 ) * 2 - 1;
+				return normalize( float2(x - floor(x + 0.5 ), abs( x ) - 0.5 ) );
+			}
+			
+			float UnityGradientNoise( float2 UV, float Scale )
+			{
+				float2 p = UV * Scale;
+				float2 ip = floor( p );
+				float2 fp = frac( p );
+				float d00 = dot( UnityGradientNoiseDir( ip ), fp );
+				float d01 = dot( UnityGradientNoiseDir( ip + float2( 0, 1 ) ), fp - float2( 0, 1 ) );
+				float d10 = dot( UnityGradientNoiseDir( ip + float2( 1, 0 ) ), fp - float2( 1, 0 ) );
+				float d11 = dot( UnityGradientNoiseDir( ip + float2( 1, 1 ) ), fp - float2( 1, 1 ) );
+				fp = fp * fp * fp * ( fp * ( fp * 6 - 15 ) + 10 );
+				return lerp( lerp( d00, d01, fp.y ), lerp( d10, d11, fp.y ), fp.x ) + 0.5;
+			}
 			
 
-			//#include "Packages/com.unity.render-pipelines.universal/Editor/ShaderGraph/Includes/Varyings.hlsl"
-			//#include "Packages/com.unity.render-pipelines.universal/Editor/ShaderGraph/Includes/SelectionPickingPass.hlsl"
-
-			//#ifdef HAVE_VFX_MODIFICATION
-			//#include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/VisualEffectVertex.hlsl"
-			//#endif
-
-			
 			struct SurfaceDescription
 			{
 				float Alpha;
@@ -3717,27 +3751,43 @@ Shader "Polytope Studio/PT_Water_Shader_WebGl"
 				UNITY_TRANSFER_INSTANCE_ID(v, o);
 				UNITY_INITIALIZE_VERTEX_OUTPUT_STEREO(o);
 
+				float4 appendResult71 = (float4(0.23 , -0.8 , 0.0 , 0.0));
+				float3 ase_worldPos = TransformObjectToWorld( (v.positionOS).xyz );
+				float4 appendResult81 = (float4(ase_worldPos.x , ase_worldPos.z , 0.0 , 0.0));
+				float2 panner79 = ( ( _TimeParameters.x * _WaveSpeed ) * appendResult71.xy + ( ( appendResult81 * float4( float2( 6.5,0.9 ), 0.0 , 0.0 ) ) * _WaveTile ).xy);
+				float simplePerlin2D77 = snoise( panner79 );
+				simplePerlin2D77 = simplePerlin2D77*0.5 + 0.5;
+				float WAVESDISPLACEMENT69 = ( ( float3(0,0.05,0).y * _WaveAmplitude ) * simplePerlin2D77 );
+				float3 temp_cast_3 = (WAVESDISPLACEMENT69).xxx;
 				
+				float4 ase_clipPos = TransformObjectToHClip((v.positionOS).xyz);
+				float4 screenPos = ComputeScreenPos(ase_clipPos);
+				o.ase_texcoord = screenPos;
+				
+				o.ase_texcoord1.xy = v.ase_texcoord.xy;
+				
+				//setting value to unused interpolator channels and avoid initialization warnings
+				o.ase_texcoord1.zw = 0;
 
 				#ifdef ASE_ABSOLUTE_VERTEX_POS
-					float3 defaultVertexValue = v.vertex.xyz;
+					float3 defaultVertexValue = v.positionOS.xyz;
 				#else
 					float3 defaultVertexValue = float3(0, 0, 0);
 				#endif
 
-				float3 vertexValue = defaultVertexValue;
+				float3 vertexValue = temp_cast_3;
 
 				#ifdef ASE_ABSOLUTE_VERTEX_POS
-					v.vertex.xyz = vertexValue;
+					v.positionOS.xyz = vertexValue;
 				#else
-					v.vertex.xyz += vertexValue;
+					v.positionOS.xyz += vertexValue;
 				#endif
 
-				v.ase_normal = v.ase_normal;
+				v.normalOS = v.normalOS;
 
-				float3 positionWS = TransformObjectToWorld( v.vertex.xyz );
+				float3 positionWS = TransformObjectToWorld( v.positionOS.xyz );
 
-				o.clipPos = TransformWorldToHClip(positionWS);
+				o.positionCS = TransformWorldToHClip(positionWS);
 
 				return o;
 			}
@@ -3746,8 +3796,9 @@ Shader "Polytope Studio/PT_Water_Shader_WebGl"
 			struct VertexControl
 			{
 				float4 vertex : INTERNALTESSPOS;
-				float3 ase_normal : NORMAL;
-				
+				float3 normalOS : NORMAL;
+				float4 ase_texcoord : TEXCOORD0;
+
 				UNITY_VERTEX_INPUT_INSTANCE_ID
 			};
 
@@ -3762,9 +3813,9 @@ Shader "Polytope Studio/PT_Water_Shader_WebGl"
 				VertexControl o;
 				UNITY_SETUP_INSTANCE_ID(v);
 				UNITY_TRANSFER_INSTANCE_ID(v, o);
-				o.vertex = v.vertex;
-				o.ase_normal = v.ase_normal;
-				
+				o.vertex = v.positionOS;
+				o.normalOS = v.normalOS;
+				o.ase_texcoord = v.ase_texcoord;
 				return o;
 			}
 
@@ -3801,15 +3852,15 @@ Shader "Polytope Studio/PT_Water_Shader_WebGl"
 			VertexOutput DomainFunction(TessellationFactors factors, OutputPatch<VertexControl, 3> patch, float3 bary : SV_DomainLocation)
 			{
 				VertexInput o = (VertexInput) 0;
-				o.vertex = patch[0].vertex * bary.x + patch[1].vertex * bary.y + patch[2].vertex * bary.z;
-				o.ase_normal = patch[0].ase_normal * bary.x + patch[1].ase_normal * bary.y + patch[2].ase_normal * bary.z;
-				
+				o.positionOS = patch[0].vertex * bary.x + patch[1].vertex * bary.y + patch[2].vertex * bary.z;
+				o.normalOS = patch[0].normalOS * bary.x + patch[1].normalOS * bary.y + patch[2].normalOS * bary.z;
+				o.ase_texcoord = patch[0].ase_texcoord * bary.x + patch[1].ase_texcoord * bary.y + patch[2].ase_texcoord * bary.z;
 				#if defined(ASE_PHONG_TESSELLATION)
 				float3 pp[3];
 				for (int i = 0; i < 3; ++i)
-					pp[i] = o.vertex.xyz - patch[i].ase_normal * (dot(o.vertex.xyz, patch[i].ase_normal) - dot(patch[i].vertex.xyz, patch[i].ase_normal));
+					pp[i] = o.positionOS.xyz - patch[i].normalOS * (dot(o.positionOS.xyz, patch[i].normalOS) - dot(patch[i].vertex.xyz, patch[i].normalOS));
 				float phongStrength = _TessPhongStrength;
-				o.vertex.xyz = phongStrength * (pp[0]*bary.x + pp[1]*bary.y + pp[2]*bary.z) + (1.0f-phongStrength) * o.vertex.xyz;
+				o.positionOS.xyz = phongStrength * (pp[0]*bary.x + pp[1]*bary.y + pp[2]*bary.z) + (1.0f-phongStrength) * o.positionOS.xyz;
 				#endif
 				UNITY_TRANSFER_INSTANCE_ID(patch[0], o);
 				return VertexFunction(o);
@@ -3825,9 +3876,29 @@ Shader "Polytope Studio/PT_Water_Shader_WebGl"
 			{
 				SurfaceDescription surfaceDescription = (SurfaceDescription)0;
 
+				float4 screenPos = IN.ase_texcoord;
+				float4 ase_screenPosNorm = screenPos / screenPos.w;
+				ase_screenPosNorm.z = ( UNITY_NEAR_CLIP_VALUE >= 0 ) ? ase_screenPosNorm.z : ase_screenPosNorm.z * 0.5 + 0.5;
+				float eyeDepth20 = LinearEyeDepth(SHADERGRAPH_SAMPLE_SCENE_DEPTH( ase_screenPosNorm.xy ),_ZBufferParams);
+				float clampResult44 = clamp( ( _DepthStrength * ( eyeDepth20 - ( screenPos.w + _Depth ) ) ) , 0.0 , 1.0 );
+				float DeepShallowMask68 = clampResult44;
+				float screenDepth33 = LinearEyeDepth(SHADERGRAPH_SAMPLE_SCENE_DEPTH( ase_screenPosNorm.xy ),_ZBufferParams);
+				float distanceDepth33 = abs( ( screenDepth33 - LinearEyeDepth( ase_screenPosNorm.z,_ZBufferParams ) ) / ( _FoamAmount ) );
+				float saferPower42 = abs( distanceDepth33 );
+				float temp_output_42_0 = pow( saferPower42 , _FoamPower );
+				float2 temp_cast_0 = (_FoamNoiseScale).xx;
+				float2 temp_cast_1 = (( _TimeParameters.x * 0.2 )).xx;
+				float2 texCoord34 = IN.ase_texcoord1.xy * temp_cast_0 + temp_cast_1;
+				float gradientNoise40 = UnityGradientNoise(texCoord34,1.0);
+				gradientNoise40 = gradientNoise40*0.5 + 0.5;
+				float temp_output_48_0 = step( temp_output_42_0 , gradientNoise40 );
+				float FoamMask59 = temp_output_48_0;
+				float smoothstepResult96 = smoothstep( 0.2 , 1.2 , FoamMask59);
+				float clampResult75 = clamp( ( smoothstepResult96 * 0.05 ) , 0.0 , 1.0 );
+				float TRANSPARENCYFINAL105 = ( DeepShallowMask68 + (1.0 + (0.95 - 0.0) * (0.0 - 1.0) / (1.0 - 0.0)) + clampResult75 );
 				
 
-				surfaceDescription.Alpha = 1;
+				surfaceDescription.Alpha = TRANSPARENCYFINAL105;
 				surfaceDescription.AlphaClipThreshold = 0.5;
 
 				#if _ALPHATEST_ON
@@ -3859,13 +3930,16 @@ Shader "Polytope Studio/PT_Water_Shader_WebGl"
 			Name "ScenePickingPass"
 			Tags { "LightMode"="Picking" }
 
+			AlphaToMask Off
+
 			HLSLPROGRAM
 
 			#define _NORMAL_DROPOFF_TS 1
 			#define ASE_FOG 1
 			#define _SURFACE_TYPE_TRANSPARENT 1
 			#define _NORMALMAP 1
-			#define ASE_SRP_VERSION 120110
+			#define ASE_SRP_VERSION 140009
+			#define REQUIRE_DEPTH_TEXTURE 1
 
 
 			#pragma vertex vert
@@ -3890,16 +3964,17 @@ Shader "Polytope Studio/PT_Water_Shader_WebGl"
 
 			struct VertexInput
 			{
-				float4 vertex : POSITION;
-				float3 ase_normal : NORMAL;
-				
+				float4 positionOS : POSITION;
+				float3 normalOS : NORMAL;
+				float4 ase_texcoord : TEXCOORD0;
 				UNITY_VERTEX_INPUT_INSTANCE_ID
 			};
 
 			struct VertexOutput
 			{
-				float4 clipPos : SV_POSITION;
-				
+				float4 positionCS : SV_POSITION;
+				float4 ase_texcoord : TEXCOORD0;
+				float4 ase_texcoord1 : TEXCOORD1;
 				UNITY_VERTEX_INPUT_INSTANCE_ID
 				UNITY_VERTEX_OUTPUT_STEREO
 			};
@@ -3918,7 +3993,6 @@ Shader "Polytope Studio/PT_Water_Shader_WebGl"
 			float _FoamAmount;
 			float _FoamPower;
 			float _FoamNoiseScale;
-			float _Mettalic;
 			float _Smootness;
 			#ifdef ASE_TRANSMISSION
 				float _TransmissionShadow;
@@ -3941,27 +4015,70 @@ Shader "Polytope Studio/PT_Water_Shader_WebGl"
 			#endif
 			CBUFFER_END
 
-			// Property used by ScenePickingPass
 			#ifdef SCENEPICKINGPASS
 				float4 _SelectionID;
 			#endif
 
-			// Properties used by SceneSelectionPass
 			#ifdef SCENESELECTIONPASS
 				int _ObjectId;
 				int _PassValue;
 			#endif
 
+			sampler2D _NormalMapTexture;
+			uniform float4 _CameraDepthTexture_TexelSize;
+
+
+			float3 mod2D289( float3 x ) { return x - floor( x * ( 1.0 / 289.0 ) ) * 289.0; }
+			float2 mod2D289( float2 x ) { return x - floor( x * ( 1.0 / 289.0 ) ) * 289.0; }
+			float3 permute( float3 x ) { return mod2D289( ( ( x * 34.0 ) + 1.0 ) * x ); }
+			float snoise( float2 v )
+			{
+				const float4 C = float4( 0.211324865405187, 0.366025403784439, -0.577350269189626, 0.024390243902439 );
+				float2 i = floor( v + dot( v, C.yy ) );
+				float2 x0 = v - i + dot( i, C.xx );
+				float2 i1;
+				i1 = ( x0.x > x0.y ) ? float2( 1.0, 0.0 ) : float2( 0.0, 1.0 );
+				float4 x12 = x0.xyxy + C.xxzz;
+				x12.xy -= i1;
+				i = mod2D289( i );
+				float3 p = permute( permute( i.y + float3( 0.0, i1.y, 1.0 ) ) + i.x + float3( 0.0, i1.x, 1.0 ) );
+				float3 m = max( 0.5 - float3( dot( x0, x0 ), dot( x12.xy, x12.xy ), dot( x12.zw, x12.zw ) ), 0.0 );
+				m = m * m;
+				m = m * m;
+				float3 x = 2.0 * frac( p * C.www ) - 1.0;
+				float3 h = abs( x ) - 0.5;
+				float3 ox = floor( x + 0.5 );
+				float3 a0 = x - ox;
+				m *= 1.79284291400159 - 0.85373472095314 * ( a0 * a0 + h * h );
+				float3 g;
+				g.x = a0.x * x0.x + h.x * x0.y;
+				g.yz = a0.yz * x12.xz + h.yz * x12.yw;
+				return 130.0 * dot( m, g );
+			}
+			
+			float2 UnityGradientNoiseDir( float2 p )
+			{
+				p = fmod(p , 289);
+				float x = fmod((34 * p.x + 1) * p.x , 289) + p.y;
+				x = fmod( (34 * x + 1) * x , 289);
+				x = frac( x / 41 ) * 2 - 1;
+				return normalize( float2(x - floor(x + 0.5 ), abs( x ) - 0.5 ) );
+			}
+			
+			float UnityGradientNoise( float2 UV, float Scale )
+			{
+				float2 p = UV * Scale;
+				float2 ip = floor( p );
+				float2 fp = frac( p );
+				float d00 = dot( UnityGradientNoiseDir( ip ), fp );
+				float d01 = dot( UnityGradientNoiseDir( ip + float2( 0, 1 ) ), fp - float2( 0, 1 ) );
+				float d10 = dot( UnityGradientNoiseDir( ip + float2( 1, 0 ) ), fp - float2( 1, 0 ) );
+				float d11 = dot( UnityGradientNoiseDir( ip + float2( 1, 1 ) ), fp - float2( 1, 1 ) );
+				fp = fp * fp * fp * ( fp * ( fp * 6 - 15 ) + 10 );
+				return lerp( lerp( d00, d01, fp.y ), lerp( d10, d11, fp.y ), fp.x ) + 0.5;
+			}
 			
 
-			//#include "Packages/com.unity.render-pipelines.universal/Editor/ShaderGraph/Includes/Varyings.hlsl"
-			//#include "Packages/com.unity.render-pipelines.universal/Editor/ShaderGraph/Includes/SelectionPickingPass.hlsl"
-
-			//#ifdef HAVE_VFX_MODIFICATION
-			//#include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/VisualEffectVertex.hlsl"
-			//#endif
-
-			
 			struct SurfaceDescription
 			{
 				float Alpha;
@@ -3977,26 +4094,42 @@ Shader "Polytope Studio/PT_Water_Shader_WebGl"
 				UNITY_TRANSFER_INSTANCE_ID(v, o);
 				UNITY_INITIALIZE_VERTEX_OUTPUT_STEREO(o);
 
+				float4 appendResult71 = (float4(0.23 , -0.8 , 0.0 , 0.0));
+				float3 ase_worldPos = TransformObjectToWorld( (v.positionOS).xyz );
+				float4 appendResult81 = (float4(ase_worldPos.x , ase_worldPos.z , 0.0 , 0.0));
+				float2 panner79 = ( ( _TimeParameters.x * _WaveSpeed ) * appendResult71.xy + ( ( appendResult81 * float4( float2( 6.5,0.9 ), 0.0 , 0.0 ) ) * _WaveTile ).xy);
+				float simplePerlin2D77 = snoise( panner79 );
+				simplePerlin2D77 = simplePerlin2D77*0.5 + 0.5;
+				float WAVESDISPLACEMENT69 = ( ( float3(0,0.05,0).y * _WaveAmplitude ) * simplePerlin2D77 );
+				float3 temp_cast_3 = (WAVESDISPLACEMENT69).xxx;
 				
+				float4 ase_clipPos = TransformObjectToHClip((v.positionOS).xyz);
+				float4 screenPos = ComputeScreenPos(ase_clipPos);
+				o.ase_texcoord = screenPos;
+				
+				o.ase_texcoord1.xy = v.ase_texcoord.xy;
+				
+				//setting value to unused interpolator channels and avoid initialization warnings
+				o.ase_texcoord1.zw = 0;
 
 				#ifdef ASE_ABSOLUTE_VERTEX_POS
-					float3 defaultVertexValue = v.vertex.xyz;
+					float3 defaultVertexValue = v.positionOS.xyz;
 				#else
 					float3 defaultVertexValue = float3(0, 0, 0);
 				#endif
 
-				float3 vertexValue = defaultVertexValue;
+				float3 vertexValue = temp_cast_3;
 
 				#ifdef ASE_ABSOLUTE_VERTEX_POS
-					v.vertex.xyz = vertexValue;
+					v.positionOS.xyz = vertexValue;
 				#else
-					v.vertex.xyz += vertexValue;
+					v.positionOS.xyz += vertexValue;
 				#endif
 
-				v.ase_normal = v.ase_normal;
+				v.normalOS = v.normalOS;
 
-				float3 positionWS = TransformObjectToWorld( v.vertex.xyz );
-				o.clipPos = TransformWorldToHClip(positionWS);
+				float3 positionWS = TransformObjectToWorld( v.positionOS.xyz );
+				o.positionCS = TransformWorldToHClip(positionWS);
 
 				return o;
 			}
@@ -4005,8 +4138,9 @@ Shader "Polytope Studio/PT_Water_Shader_WebGl"
 			struct VertexControl
 			{
 				float4 vertex : INTERNALTESSPOS;
-				float3 ase_normal : NORMAL;
-				
+				float3 normalOS : NORMAL;
+				float4 ase_texcoord : TEXCOORD0;
+
 				UNITY_VERTEX_INPUT_INSTANCE_ID
 			};
 
@@ -4021,9 +4155,9 @@ Shader "Polytope Studio/PT_Water_Shader_WebGl"
 				VertexControl o;
 				UNITY_SETUP_INSTANCE_ID(v);
 				UNITY_TRANSFER_INSTANCE_ID(v, o);
-				o.vertex = v.vertex;
-				o.ase_normal = v.ase_normal;
-				
+				o.vertex = v.positionOS;
+				o.normalOS = v.normalOS;
+				o.ase_texcoord = v.ase_texcoord;
 				return o;
 			}
 
@@ -4060,15 +4194,15 @@ Shader "Polytope Studio/PT_Water_Shader_WebGl"
 			VertexOutput DomainFunction(TessellationFactors factors, OutputPatch<VertexControl, 3> patch, float3 bary : SV_DomainLocation)
 			{
 				VertexInput o = (VertexInput) 0;
-				o.vertex = patch[0].vertex * bary.x + patch[1].vertex * bary.y + patch[2].vertex * bary.z;
-				o.ase_normal = patch[0].ase_normal * bary.x + patch[1].ase_normal * bary.y + patch[2].ase_normal * bary.z;
-				
+				o.positionOS = patch[0].vertex * bary.x + patch[1].vertex * bary.y + patch[2].vertex * bary.z;
+				o.normalOS = patch[0].normalOS * bary.x + patch[1].normalOS * bary.y + patch[2].normalOS * bary.z;
+				o.ase_texcoord = patch[0].ase_texcoord * bary.x + patch[1].ase_texcoord * bary.y + patch[2].ase_texcoord * bary.z;
 				#if defined(ASE_PHONG_TESSELLATION)
 				float3 pp[3];
 				for (int i = 0; i < 3; ++i)
-					pp[i] = o.vertex.xyz - patch[i].ase_normal * (dot(o.vertex.xyz, patch[i].ase_normal) - dot(patch[i].vertex.xyz, patch[i].ase_normal));
+					pp[i] = o.positionOS.xyz - patch[i].normalOS * (dot(o.positionOS.xyz, patch[i].normalOS) - dot(patch[i].vertex.xyz, patch[i].normalOS));
 				float phongStrength = _TessPhongStrength;
-				o.vertex.xyz = phongStrength * (pp[0]*bary.x + pp[1]*bary.y + pp[2]*bary.z) + (1.0f-phongStrength) * o.vertex.xyz;
+				o.positionOS.xyz = phongStrength * (pp[0]*bary.x + pp[1]*bary.y + pp[2]*bary.z) + (1.0f-phongStrength) * o.positionOS.xyz;
 				#endif
 				UNITY_TRANSFER_INSTANCE_ID(patch[0], o);
 				return VertexFunction(o);
@@ -4084,9 +4218,29 @@ Shader "Polytope Studio/PT_Water_Shader_WebGl"
 			{
 				SurfaceDescription surfaceDescription = (SurfaceDescription)0;
 
+				float4 screenPos = IN.ase_texcoord;
+				float4 ase_screenPosNorm = screenPos / screenPos.w;
+				ase_screenPosNorm.z = ( UNITY_NEAR_CLIP_VALUE >= 0 ) ? ase_screenPosNorm.z : ase_screenPosNorm.z * 0.5 + 0.5;
+				float eyeDepth20 = LinearEyeDepth(SHADERGRAPH_SAMPLE_SCENE_DEPTH( ase_screenPosNorm.xy ),_ZBufferParams);
+				float clampResult44 = clamp( ( _DepthStrength * ( eyeDepth20 - ( screenPos.w + _Depth ) ) ) , 0.0 , 1.0 );
+				float DeepShallowMask68 = clampResult44;
+				float screenDepth33 = LinearEyeDepth(SHADERGRAPH_SAMPLE_SCENE_DEPTH( ase_screenPosNorm.xy ),_ZBufferParams);
+				float distanceDepth33 = abs( ( screenDepth33 - LinearEyeDepth( ase_screenPosNorm.z,_ZBufferParams ) ) / ( _FoamAmount ) );
+				float saferPower42 = abs( distanceDepth33 );
+				float temp_output_42_0 = pow( saferPower42 , _FoamPower );
+				float2 temp_cast_0 = (_FoamNoiseScale).xx;
+				float2 temp_cast_1 = (( _TimeParameters.x * 0.2 )).xx;
+				float2 texCoord34 = IN.ase_texcoord1.xy * temp_cast_0 + temp_cast_1;
+				float gradientNoise40 = UnityGradientNoise(texCoord34,1.0);
+				gradientNoise40 = gradientNoise40*0.5 + 0.5;
+				float temp_output_48_0 = step( temp_output_42_0 , gradientNoise40 );
+				float FoamMask59 = temp_output_48_0;
+				float smoothstepResult96 = smoothstep( 0.2 , 1.2 , FoamMask59);
+				float clampResult75 = clamp( ( smoothstepResult96 * 0.05 ) , 0.0 , 1.0 );
+				float TRANSPARENCYFINAL105 = ( DeepShallowMask68 + (1.0 + (0.95 - 0.0) * (0.0 - 1.0) / (1.0 - 0.0)) + clampResult75 );
 				
 
-				surfaceDescription.Alpha = 1;
+				surfaceDescription.Alpha = TRANSPARENCYFINAL105;
 				surfaceDescription.AlphaClipThreshold = 0.5;
 
 				#if _ALPHATEST_ON
@@ -4113,13 +4267,13 @@ Shader "Polytope Studio/PT_Water_Shader_WebGl"
 		
 	}
 	
-	CustomEditor "UnityEditor.ShaderGraphLitGUI"
+	
 	FallBack "Hidden/Shader Graph/FallbackError"
 	
-	Fallback "Hidden/InternalErrorShader"
+	Fallback Off
 }
 /*ASEBEGIN
-Version=19105
+Version=19202
 Node;AmplifyShaderEditor.CommentaryNode;1;-2860.221,-2767.032;Inherit;False;1847.655;579.5157;Comment;9;15;11;8;7;6;5;4;3;2;Normal Map Waves;1,1,1,1;0;0
 Node;AmplifyShaderEditor.CommentaryNode;13;-318.5545,-2479.646;Inherit;False;1745.648;737.933;Foam;15;95;59;54;49;48;45;42;40;34;33;32;27;26;24;19;Foam;1,1,1,1;0;0
 Node;AmplifyShaderEditor.RangedFloatNode;4;-2738.214,-2282.876;Inherit;False;Property;_NormalMapWavesSpeed;Normal Map Waves Speed;12;0;Create;True;0;0;0;False;0;False;0.1;0.1;0;1;0;1;FLOAT;0
@@ -4217,24 +4371,24 @@ Node;AmplifyShaderEditor.RangedFloatNode;89;833.1308,-623.7841;Inherit;False;Pro
 Node;AmplifyShaderEditor.LayeredBlendNode;90;1169.526,-1070.094;Inherit;False;6;0;FLOAT;0;False;1;COLOR;0,0,0,0;False;2;COLOR;0,0,0,0;False;3;FLOAT;0;False;4;FLOAT;0;False;5;FLOAT;0;False;1;COLOR;0
 Node;AmplifyShaderEditor.GetLocalVarNode;88;815.9908,-706.8666;Inherit;False;59;FoamMask;1;0;OBJECT;;False;1;FLOAT;0
 Node;AmplifyShaderEditor.LerpOp;55;942.1397,-1415.504;Inherit;True;3;0;COLOR;0,0,0,0;False;1;COLOR;0,0,0,0;False;2;COLOR;0.6132076,0.6132076,0.6132076,0;False;1;COLOR;0
+Node;AmplifyShaderEditor.GetLocalVarNode;82;1539.755,-571.0422;Inherit;False;69;WAVESDISPLACEMENT;1;0;OBJECT;;False;1;FLOAT;0
+Node;AmplifyShaderEditor.LayeredBlendNode;101;1172.991,-712.8666;Inherit;False;6;0;FLOAT;0;False;1;COLOR;0,0,0,0;False;2;COLOR;0,0,0,0;False;3;FLOAT;0;False;4;FLOAT;0;False;5;FLOAT;0;False;1;COLOR;0
+Node;AmplifyShaderEditor.GetLocalVarNode;100;1520.12,-680.3422;Inherit;False;105;TRANSPARENCYFINAL;1;0;OBJECT;;False;1;FLOAT;0
 Node;AmplifyShaderEditor.RegisterLocalVarNode;99;-1083.049,908.4213;Inherit;False;OffsetWavesMask;-1;True;1;0;FLOAT;0;False;1;FLOAT;0
 Node;AmplifyShaderEditor.SimpleAddOpNode;98;1374.15,-1408.553;Inherit;True;2;2;0;COLOR;0,0,0,0;False;1;COLOR;0,0,0,0;False;1;COLOR;0
+Node;AmplifyShaderEditor.RangedFloatNode;97;1178.376,-927.0734;Inherit;False;Property;_Mettalic;Mettalic;7;0;Create;True;0;0;0;False;0;False;1;1;0;1;0;1;FLOAT;0
 Node;AmplifyShaderEditor.RegisterLocalVarNode;95;550.2086,-2448.055;Inherit;False;newfoammask;-1;True;1;0;FLOAT;0;False;1;FLOAT;0
-Node;AmplifyShaderEditor.NormalizeNode;72;1819.525,-1251.794;Inherit;False;False;1;0;COLOR;0,0,0,0;False;1;COLOR;0
-Node;AmplifyShaderEditor.RangedFloatNode;97;1564.476,-1188.373;Inherit;False;Property;_Mettalic;Mettalic;7;0;Create;True;0;0;0;False;0;False;1;1;0;1;0;1;FLOAT;0
-Node;AmplifyShaderEditor.LayeredBlendNode;101;1663.091,-1127.567;Inherit;False;6;0;FLOAT;0;False;1;COLOR;0,0,0,0;False;2;COLOR;0,0,0,0;False;3;FLOAT;0;False;4;FLOAT;0;False;5;FLOAT;0;False;1;COLOR;0
-Node;AmplifyShaderEditor.GetLocalVarNode;100;1651.42,-971.5421;Inherit;False;105;TRANSPARENCYFINAL;1;0;OBJECT;;False;1;FLOAT;0
-Node;AmplifyShaderEditor.GetLocalVarNode;82;1625.555,-867.4422;Inherit;False;69;WAVESDISPLACEMENT;1;0;OBJECT;;False;1;FLOAT;0
-Node;AmplifyShaderEditor.TemplateMultiPassMasterNode;106;1988.372,-1292.972;Float;False;False;-1;2;UnityEditor.ShaderGraphLitGUI;0;1;New Amplify Shader;94348b07e5e8bab40bd6c8a1e3df54cd;True;ExtraPrePass;0;0;ExtraPrePass;5;False;False;False;False;False;False;False;False;False;False;False;False;True;0;False;;False;True;0;False;;False;False;False;False;False;False;False;False;False;True;False;0;False;;255;False;;255;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;False;True;1;False;;True;3;False;;True;True;0;False;;0;False;;True;4;RenderPipeline=UniversalPipeline;RenderType=Opaque=RenderType;Queue=Geometry=Queue=0;UniversalMaterialType=Lit;True;3;True;12;all;0;False;True;1;1;False;;0;False;;0;1;False;;0;False;;False;False;False;False;False;False;False;False;False;False;False;False;True;0;False;;False;True;True;True;True;True;0;False;;False;False;False;False;False;False;False;True;False;0;False;;255;False;;255;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;False;True;1;False;;True;3;False;;True;True;0;False;;0;False;;True;0;False;False;0;Hidden/InternalErrorShader;0;0;Standard;0;False;0
-Node;AmplifyShaderEditor.TemplateMultiPassMasterNode;107;1988.372,-1292.972;Float;False;True;-1;2;UnityEditor.ShaderGraphLitGUI;0;12;Polytope Studio/PT_Water_Shader_WebGl;94348b07e5e8bab40bd6c8a1e3df54cd;True;Forward;0;1;Forward;19;False;False;False;False;False;False;False;False;False;False;False;False;True;0;False;;False;True;0;False;;False;False;False;False;False;False;False;False;False;True;False;0;False;;255;False;;255;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;False;True;1;False;;True;3;False;;True;True;0;False;;0;False;;True;4;RenderPipeline=UniversalPipeline;RenderType=Transparent=RenderType;Queue=Transparent=Queue=0;UniversalMaterialType=Lit;True;3;True;12;all;0;False;True;1;5;False;;10;False;;1;1;False;;10;False;;False;False;False;False;False;False;False;False;False;False;False;False;False;False;True;True;True;True;True;0;False;;False;False;False;False;False;False;False;True;False;0;False;;255;False;;255;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;False;True;2;False;;True;3;False;;True;True;0;False;;0;False;;True;1;LightMode=UniversalForward;False;False;0;Hidden/InternalErrorShader;0;0;Standard;41;Workflow;1;0;Surface;1;638167442859511951;  Refraction Model;0;0;  Blend;0;0;Two Sided;1;0;Fragment Normal Space,InvertActionOnDeselection;0;0;Forward Only;0;0;Transmission;0;0;  Transmission Shadow;0.5,False,;0;Translucency;0;0;  Translucency Strength;1,False,;0;  Normal Distortion;0.5,False,;0;  Scattering;2,False,;0;  Direct;0.9,False,;0;  Ambient;0.1,False,;0;  Shadow;0.5,False,;0;Cast Shadows;1;0;  Use Shadow Threshold;0;0;Receive Shadows;1;0;GPU Instancing;1;0;LOD CrossFade;1;0;Built-in Fog;1;0;_FinalColorxAlpha;0;0;Meta Pass;1;0;Override Baked GI;0;0;Extra Pre Pass;0;0;DOTS Instancing;0;0;Tessellation;0;0;  Phong;0;0;  Strength;0.5,False,;0;  Type;0;0;  Tess;16,False,;0;  Min;10,False,;0;  Max;25,False,;0;  Edge Length;16,False,;0;  Max Displacement;25,False,;0;Write Depth;0;0;  Early Z;0;0;Vertex Position,InvertActionOnDeselection;1;0;Debug Display;0;0;Clear Coat;0;0;0;10;False;True;True;True;True;True;True;True;True;True;False;;False;0
-Node;AmplifyShaderEditor.TemplateMultiPassMasterNode;108;1988.372,-1292.972;Float;False;False;-1;2;UnityEditor.ShaderGraphLitGUI;0;1;New Amplify Shader;94348b07e5e8bab40bd6c8a1e3df54cd;True;ShadowCaster;0;2;ShadowCaster;0;False;False;False;False;False;False;False;False;False;False;False;False;True;0;False;;False;True;0;False;;False;False;False;False;False;False;False;False;False;True;False;0;False;;255;False;;255;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;False;True;1;False;;True;3;False;;True;True;0;False;;0;False;;True;4;RenderPipeline=UniversalPipeline;RenderType=Opaque=RenderType;Queue=Geometry=Queue=0;UniversalMaterialType=Lit;True;3;True;12;all;0;False;False;False;False;False;False;False;False;False;False;False;False;True;0;False;;False;False;False;True;False;False;False;False;0;False;;False;False;False;False;False;False;False;False;False;True;1;False;;True;3;False;;False;True;1;LightMode=ShadowCaster;False;False;0;Hidden/InternalErrorShader;0;0;Standard;0;False;0
-Node;AmplifyShaderEditor.TemplateMultiPassMasterNode;109;1988.372,-1292.972;Float;False;False;-1;2;UnityEditor.ShaderGraphLitGUI;0;1;New Amplify Shader;94348b07e5e8bab40bd6c8a1e3df54cd;True;DepthOnly;0;3;DepthOnly;0;False;False;False;False;False;False;False;False;False;False;False;False;True;0;False;;False;True;0;False;;False;False;False;False;False;False;False;False;False;True;False;0;False;;255;False;;255;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;False;True;1;False;;True;3;False;;True;True;0;False;;0;False;;True;4;RenderPipeline=UniversalPipeline;RenderType=Opaque=RenderType;Queue=Geometry=Queue=0;UniversalMaterialType=Lit;True;3;True;12;all;0;False;False;False;False;False;False;False;False;False;False;False;False;True;0;False;;False;False;False;True;False;False;False;False;0;False;;False;False;False;False;False;False;False;False;False;True;1;False;;False;False;True;1;LightMode=DepthOnly;False;False;0;Hidden/InternalErrorShader;0;0;Standard;0;False;0
-Node;AmplifyShaderEditor.TemplateMultiPassMasterNode;110;1988.372,-1292.972;Float;False;False;-1;2;UnityEditor.ShaderGraphLitGUI;0;1;New Amplify Shader;94348b07e5e8bab40bd6c8a1e3df54cd;True;Meta;0;4;Meta;0;False;False;False;False;False;False;False;False;False;False;False;False;True;0;False;;False;True;0;False;;False;False;False;False;False;False;False;False;False;True;False;0;False;;255;False;;255;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;False;True;1;False;;True;3;False;;True;True;0;False;;0;False;;True;4;RenderPipeline=UniversalPipeline;RenderType=Opaque=RenderType;Queue=Geometry=Queue=0;UniversalMaterialType=Lit;True;3;True;12;all;0;False;False;False;False;False;False;False;False;False;False;False;False;False;False;True;2;False;;False;False;False;False;False;False;False;False;False;False;False;False;False;False;True;1;LightMode=Meta;False;False;0;Hidden/InternalErrorShader;0;0;Standard;0;False;0
-Node;AmplifyShaderEditor.TemplateMultiPassMasterNode;111;1988.372,-1292.972;Float;False;False;-1;2;UnityEditor.ShaderGraphLitGUI;0;1;New Amplify Shader;94348b07e5e8bab40bd6c8a1e3df54cd;True;Universal2D;0;5;Universal2D;0;False;False;False;False;False;False;False;False;False;False;False;False;True;0;False;;False;True;0;False;;False;False;False;False;False;False;False;False;False;True;False;0;False;;255;False;;255;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;False;True;1;False;;True;3;False;;True;True;0;False;;0;False;;True;4;RenderPipeline=UniversalPipeline;RenderType=Opaque=RenderType;Queue=Geometry=Queue=0;UniversalMaterialType=Lit;True;3;True;12;all;0;False;True;1;5;False;;10;False;;1;1;False;;10;False;;False;False;False;False;False;False;False;False;False;False;False;False;False;False;True;True;True;True;True;0;False;;False;False;False;False;False;False;False;False;False;True;2;False;;True;3;False;;True;True;0;False;;0;False;;True;1;LightMode=Universal2D;False;False;0;Hidden/InternalErrorShader;0;0;Standard;0;False;0
-Node;AmplifyShaderEditor.TemplateMultiPassMasterNode;112;1988.372,-1292.972;Float;False;False;-1;2;UnityEditor.ShaderGraphLitGUI;0;1;New Amplify Shader;94348b07e5e8bab40bd6c8a1e3df54cd;True;DepthNormals;0;6;DepthNormals;0;False;False;False;False;False;False;False;False;False;False;False;False;True;0;False;;False;True;0;False;;False;False;False;False;False;False;False;False;False;True;False;0;False;;255;False;;255;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;False;True;1;False;;True;3;False;;True;True;0;False;;0;False;;True;4;RenderPipeline=UniversalPipeline;RenderType=Opaque=RenderType;Queue=Geometry=Queue=0;UniversalMaterialType=Lit;True;3;True;12;all;0;False;True;1;1;False;;0;False;;0;1;False;;0;False;;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;True;1;False;;True;3;False;;False;True;1;LightMode=DepthNormals;False;False;0;Hidden/InternalErrorShader;0;0;Standard;0;False;0
-Node;AmplifyShaderEditor.TemplateMultiPassMasterNode;113;1988.372,-1292.972;Float;False;False;-1;2;UnityEditor.ShaderGraphLitGUI;0;1;New Amplify Shader;94348b07e5e8bab40bd6c8a1e3df54cd;True;GBuffer;0;7;GBuffer;0;False;False;False;False;False;False;False;False;False;False;False;False;True;0;False;;False;True;0;False;;False;False;False;False;False;False;False;False;False;True;False;0;False;;255;False;;255;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;False;True;1;False;;True;3;False;;True;True;0;False;;0;False;;True;4;RenderPipeline=UniversalPipeline;RenderType=Opaque=RenderType;Queue=Geometry=Queue=0;UniversalMaterialType=Lit;True;3;True;12;all;0;False;True;1;5;False;;10;False;;1;1;False;;10;False;;False;False;False;False;False;False;False;False;False;False;False;False;False;False;True;True;True;True;True;0;False;;False;False;False;False;False;False;False;True;False;0;False;;255;False;;255;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;False;True;2;False;;True;3;False;;True;True;0;False;;0;False;;True;1;LightMode=UniversalGBuffer;False;False;0;Hidden/InternalErrorShader;0;0;Standard;0;False;0
-Node;AmplifyShaderEditor.TemplateMultiPassMasterNode;114;1988.372,-1212.972;Float;False;False;-1;2;UnityEditor.ShaderGraphLitGUI;0;1;New Amplify Shader;94348b07e5e8bab40bd6c8a1e3df54cd;True;SceneSelectionPass;0;8;SceneSelectionPass;0;False;False;False;False;False;False;False;False;False;False;False;False;True;0;False;;False;True;0;False;;False;False;False;False;False;False;False;False;False;True;False;0;False;;255;False;;255;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;False;True;1;False;;True;3;False;;True;True;0;False;;0;False;;True;4;RenderPipeline=UniversalPipeline;RenderType=Opaque=RenderType;Queue=Geometry=Queue=0;UniversalMaterialType=Lit;True;3;True;12;all;0;False;False;False;False;False;False;False;False;False;False;False;False;False;False;True;2;False;;False;False;False;False;False;False;False;False;False;False;False;False;False;False;True;1;LightMode=SceneSelectionPass;False;False;0;;0;0;Standard;0;False;0
-Node;AmplifyShaderEditor.TemplateMultiPassMasterNode;115;1988.372,-1212.972;Float;False;False;-1;2;UnityEditor.ShaderGraphLitGUI;0;1;New Amplify Shader;94348b07e5e8bab40bd6c8a1e3df54cd;True;ScenePickingPass;0;9;ScenePickingPass;0;False;False;False;False;False;False;False;False;False;False;False;False;True;0;False;;False;True;0;False;;False;False;False;False;False;False;False;False;False;True;False;0;False;;255;False;;255;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;False;True;1;False;;True;3;False;;True;True;0;False;;0;False;;True;4;RenderPipeline=UniversalPipeline;RenderType=Opaque=RenderType;Queue=Geometry=Queue=0;UniversalMaterialType=Lit;True;3;True;12;all;0;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;True;1;LightMode=Picking;False;False;0;;0;0;Standard;0;False;0
+Node;AmplifyShaderEditor.NormalizeNode;72;1398.325,-1061.994;Inherit;False;False;1;0;COLOR;0,0,0,0;False;1;COLOR;0
+Node;AmplifyShaderEditor.TemplateMultiPassMasterNode;106;1988.372,-1292.972;Float;False;False;-1;2;UnityEditor.ShaderGraphLitGUI;0;1;New Amplify Shader;94348b07e5e8bab40bd6c8a1e3df54cd;True;ExtraPrePass;0;0;ExtraPrePass;5;False;False;False;False;False;False;False;False;False;False;False;False;True;0;False;;False;True;0;False;;False;False;False;False;False;False;False;False;False;True;False;0;False;;255;False;;255;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;False;True;1;False;;True;3;False;;True;True;0;False;;0;False;;True;4;RenderPipeline=UniversalPipeline;RenderType=Opaque=RenderType;Queue=Geometry=Queue=0;UniversalMaterialType=Lit;True;5;True;12;all;0;False;True;1;1;False;;0;False;;0;1;False;;0;False;;False;False;False;False;False;False;False;False;False;False;False;False;True;0;False;;False;True;True;True;True;True;0;False;;False;False;False;False;False;False;False;True;False;0;False;;255;False;;255;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;False;True;1;False;;True;3;False;;True;True;0;False;;0;False;;True;0;False;False;0;;0;0;Standard;0;False;0
+Node;AmplifyShaderEditor.TemplateMultiPassMasterNode;107;1988.372,-1292.972;Float;False;True;-1;2;;0;12;Polytope Studio/PT_Water_Shader_WebGl;94348b07e5e8bab40bd6c8a1e3df54cd;True;Forward;0;1;Forward;21;False;False;False;False;False;False;False;False;False;False;False;False;True;0;False;;False;True;0;False;;False;False;False;False;False;False;False;False;False;True;False;0;False;;255;False;;255;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;False;True;2;False;;True;3;False;;True;True;0;False;;0;False;;True;4;RenderPipeline=UniversalPipeline;RenderType=Transparent=RenderType;Queue=Transparent=Queue=0;UniversalMaterialType=Lit;True;5;True;12;all;0;False;True;1;5;False;;10;False;;1;1;False;;10;False;;False;False;False;False;False;False;False;False;False;False;False;False;False;False;True;True;True;True;True;0;False;;False;False;False;False;False;False;False;True;False;0;False;;255;False;;255;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;False;True;1;False;;True;3;False;;True;True;0;False;;0;False;;True;1;LightMode=UniversalForward;False;False;0;;0;0;Standard;40;Workflow;1;0;Surface;1;638388170897650843;  Refraction Model;0;0;  Blend;0;0;Two Sided;1;0;Fragment Normal Space,InvertActionOnDeselection;0;0;Forward Only;0;0;Transmission;0;0;  Transmission Shadow;0.5,False,;0;Translucency;0;0;  Translucency Strength;1,False,;0;  Normal Distortion;0.5,False,;0;  Scattering;2,False,;0;  Direct;0.9,False,;0;  Ambient;0.1,False,;0;  Shadow;0.5,False,;0;Cast Shadows;1;0;  Use Shadow Threshold;0;0;GPU Instancing;1;0;LOD CrossFade;1;0;Built-in Fog;1;0;_FinalColorxAlpha;0;0;Meta Pass;1;0;Override Baked GI;0;0;Extra Pre Pass;0;0;DOTS Instancing;0;0;Tessellation;0;0;  Phong;0;0;  Strength;0.5,False,;0;  Type;0;0;  Tess;16,False,;0;  Min;10,False,;0;  Max;25,False,;0;  Edge Length;16,False,;0;  Max Displacement;25,False,;0;Write Depth;0;0;  Early Z;0;0;Vertex Position,InvertActionOnDeselection;1;0;Debug Display;0;0;Clear Coat;0;0;0;10;False;True;True;True;True;True;True;True;True;True;False;;False;0
+Node;AmplifyShaderEditor.TemplateMultiPassMasterNode;108;1988.372,-1292.972;Float;False;False;-1;2;UnityEditor.ShaderGraphLitGUI;0;1;New Amplify Shader;94348b07e5e8bab40bd6c8a1e3df54cd;True;ShadowCaster;0;2;ShadowCaster;0;False;False;False;False;False;False;False;False;False;False;False;False;True;0;False;;False;True;0;False;;False;False;False;False;False;False;False;False;False;True;False;0;False;;255;False;;255;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;False;True;1;False;;True;3;False;;True;True;0;False;;0;False;;True;4;RenderPipeline=UniversalPipeline;RenderType=Opaque=RenderType;Queue=Geometry=Queue=0;UniversalMaterialType=Lit;True;5;True;12;all;0;False;False;False;False;False;False;False;False;False;False;False;False;True;0;False;;False;False;False;True;False;False;False;False;0;False;;False;False;False;False;False;False;False;False;False;True;1;False;;True;3;False;;False;True;1;LightMode=ShadowCaster;False;False;0;;0;0;Standard;0;False;0
+Node;AmplifyShaderEditor.TemplateMultiPassMasterNode;109;1988.372,-1292.972;Float;False;False;-1;2;UnityEditor.ShaderGraphLitGUI;0;1;New Amplify Shader;94348b07e5e8bab40bd6c8a1e3df54cd;True;DepthOnly;0;3;DepthOnly;0;False;False;False;False;False;False;False;False;False;False;False;False;True;0;False;;False;True;0;False;;False;False;False;False;False;False;False;False;False;True;False;0;False;;255;False;;255;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;False;True;1;False;;True;3;False;;True;True;0;False;;0;False;;True;4;RenderPipeline=UniversalPipeline;RenderType=Opaque=RenderType;Queue=Geometry=Queue=0;UniversalMaterialType=Lit;True;5;True;12;all;0;False;False;False;False;False;False;False;False;False;False;False;False;True;0;False;;False;False;False;True;True;False;False;False;0;False;;False;False;False;False;False;False;False;False;False;True;1;False;;False;False;True;1;LightMode=DepthOnly;False;False;0;;0;0;Standard;0;False;0
+Node;AmplifyShaderEditor.TemplateMultiPassMasterNode;110;1988.372,-1292.972;Float;False;False;-1;2;UnityEditor.ShaderGraphLitGUI;0;1;New Amplify Shader;94348b07e5e8bab40bd6c8a1e3df54cd;True;Meta;0;4;Meta;0;False;False;False;False;False;False;False;False;False;False;False;False;True;0;False;;False;True;0;False;;False;False;False;False;False;False;False;False;False;True;False;0;False;;255;False;;255;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;False;True;1;False;;True;3;False;;True;True;0;False;;0;False;;True;4;RenderPipeline=UniversalPipeline;RenderType=Opaque=RenderType;Queue=Geometry=Queue=0;UniversalMaterialType=Lit;True;5;True;12;all;0;False;False;False;False;False;False;False;False;False;False;False;False;False;False;True;2;False;;False;False;False;False;False;False;False;False;False;False;False;False;False;False;True;1;LightMode=Meta;False;False;0;;0;0;Standard;0;False;0
+Node;AmplifyShaderEditor.TemplateMultiPassMasterNode;111;1988.372,-1292.972;Float;False;False;-1;2;UnityEditor.ShaderGraphLitGUI;0;1;New Amplify Shader;94348b07e5e8bab40bd6c8a1e3df54cd;True;Universal2D;0;5;Universal2D;0;False;False;False;False;False;False;False;False;False;False;False;False;True;0;False;;False;True;0;False;;False;False;False;False;False;False;False;False;False;True;False;0;False;;255;False;;255;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;False;True;1;False;;True;3;False;;True;True;0;False;;0;False;;True;4;RenderPipeline=UniversalPipeline;RenderType=Opaque=RenderType;Queue=Geometry=Queue=0;UniversalMaterialType=Lit;True;5;True;12;all;0;False;True;1;5;False;;10;False;;1;1;False;;10;False;;False;False;False;False;False;False;False;False;False;False;False;False;False;False;True;True;True;True;True;0;False;;False;False;False;False;False;False;False;False;False;True;1;False;;True;3;False;;True;True;0;False;;0;False;;True;1;LightMode=Universal2D;False;False;0;;0;0;Standard;0;False;0
+Node;AmplifyShaderEditor.TemplateMultiPassMasterNode;112;1988.372,-1292.972;Float;False;False;-1;2;UnityEditor.ShaderGraphLitGUI;0;1;New Amplify Shader;94348b07e5e8bab40bd6c8a1e3df54cd;True;DepthNormals;0;6;DepthNormals;0;False;False;False;False;False;False;False;False;False;False;False;False;True;0;False;;False;True;0;False;;False;False;False;False;False;False;False;False;False;True;False;0;False;;255;False;;255;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;False;True;1;False;;True;3;False;;True;True;0;False;;0;False;;True;4;RenderPipeline=UniversalPipeline;RenderType=Opaque=RenderType;Queue=Geometry=Queue=0;UniversalMaterialType=Lit;True;5;True;12;all;0;False;True;1;1;False;;0;False;;0;1;False;;0;False;;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;True;1;False;;True;3;False;;False;True;1;LightMode=DepthNormals;False;False;0;;0;0;Standard;0;False;0
+Node;AmplifyShaderEditor.TemplateMultiPassMasterNode;113;1988.372,-1292.972;Float;False;False;-1;2;UnityEditor.ShaderGraphLitGUI;0;1;New Amplify Shader;94348b07e5e8bab40bd6c8a1e3df54cd;True;GBuffer;0;7;GBuffer;0;False;False;False;False;False;False;False;False;False;False;False;False;True;0;False;;False;True;0;False;;False;False;False;False;False;False;False;False;False;True;False;0;False;;255;False;;255;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;False;True;1;False;;True;3;False;;True;True;0;False;;0;False;;True;4;RenderPipeline=UniversalPipeline;RenderType=Opaque=RenderType;Queue=Geometry=Queue=0;UniversalMaterialType=Lit;True;5;True;12;all;0;False;True;1;5;False;;10;False;;1;1;False;;10;False;;False;False;False;False;False;False;False;False;False;False;False;False;False;False;True;True;True;True;True;0;False;;False;False;False;False;False;False;False;True;False;0;False;;255;False;;255;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;False;True;1;False;;True;3;False;;True;True;0;False;;0;False;;True;1;LightMode=UniversalGBuffer;False;False;0;;0;0;Standard;0;False;0
+Node;AmplifyShaderEditor.TemplateMultiPassMasterNode;114;1988.372,-1292.972;Float;False;False;-1;2;UnityEditor.ShaderGraphLitGUI;0;1;New Amplify Shader;94348b07e5e8bab40bd6c8a1e3df54cd;True;SceneSelectionPass;0;8;SceneSelectionPass;0;False;False;False;False;False;False;False;False;False;False;False;False;True;0;False;;False;True;0;False;;False;False;False;False;False;False;False;False;False;True;False;0;False;;255;False;;255;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;False;True;1;False;;True;3;False;;True;True;0;False;;0;False;;True;4;RenderPipeline=UniversalPipeline;RenderType=Opaque=RenderType;Queue=Geometry=Queue=0;UniversalMaterialType=Lit;True;5;True;12;all;0;False;False;False;False;False;False;False;False;False;False;False;False;True;0;False;;False;True;2;False;;False;False;False;False;False;False;False;False;False;False;False;False;False;False;True;1;LightMode=SceneSelectionPass;False;False;0;;0;0;Standard;0;False;0
+Node;AmplifyShaderEditor.TemplateMultiPassMasterNode;115;1988.372,-1292.972;Float;False;False;-1;2;UnityEditor.ShaderGraphLitGUI;0;1;New Amplify Shader;94348b07e5e8bab40bd6c8a1e3df54cd;True;ScenePickingPass;0;9;ScenePickingPass;0;False;False;False;False;False;False;False;False;False;False;False;False;True;0;False;;False;True;0;False;;False;False;False;False;False;False;False;False;False;True;False;0;False;;255;False;;255;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;False;True;1;False;;True;3;False;;True;True;0;False;;0;False;;True;4;RenderPipeline=UniversalPipeline;RenderType=Opaque=RenderType;Queue=Geometry=Queue=0;UniversalMaterialType=Lit;True;5;True;12;all;0;False;False;False;False;False;False;False;False;False;False;False;False;True;0;False;;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;True;1;LightMode=Picking;False;False;0;;0;0;Standard;0;False;0
 WireConnection;5;0;2;0
 WireConnection;5;1;2;0
 WireConnection;6;0;3;0
@@ -4316,19 +4470,18 @@ WireConnection;90;1;84;0
 WireConnection;90;2;104;0
 WireConnection;55;0;53;0
 WireConnection;55;1;52;0
+WireConnection;101;0;88;0
+WireConnection;101;1;89;0
+WireConnection;101;2;92;0
 WireConnection;99;0;77;0
 WireConnection;98;0;55;0
 WireConnection;98;1;58;0
 WireConnection;95;0;42;0
 WireConnection;72;0;90;0
-WireConnection;101;0;88;0
-WireConnection;101;1;89;0
-WireConnection;101;2;92;0
 WireConnection;107;0;98;0
 WireConnection;107;1;72;0
-WireConnection;107;3;97;0
 WireConnection;107;4;101;0
 WireConnection;107;6;100;0
 WireConnection;107;8;82;0
 ASEEND*/
-//CHKSM=9E13539C50FCAECFCA75E22C140EDCEBC0D6C853
+//CHKSM=3906407E1917D7C9CE806800531393A2498E5F7C

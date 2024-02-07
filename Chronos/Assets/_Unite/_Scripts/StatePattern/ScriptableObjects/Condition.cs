@@ -10,6 +10,6 @@ namespace Unite.StatePattern
     /// </summary>
     public abstract class Condition : ScriptableObject
     {
-        public abstract bool VerifyCondition(IStateMachine stateMachine);
+        public abstract bool VerifyCondition(BaseStateMachine baseStateMachine);
     }
 }

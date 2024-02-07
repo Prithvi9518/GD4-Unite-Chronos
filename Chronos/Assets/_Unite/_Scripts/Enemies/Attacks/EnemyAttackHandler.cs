@@ -1,22 +1,21 @@
 using System.Collections.Generic;
 using Unite.Core.DamageInterfaces;
-using Unite.Enemies.AI;
 using UnityEngine;
 
 namespace Unite.Enemies
 {
-    public class EnemyAttackHandler : MonoBehaviour
+    public class EnemyAttackHandler : MonoBehaviour, IAttacker
     {
         private float baseDamage;
 
-        private EnemyStateMachine enemyStateMachine;
+        private Enemy enemy;
         private ITakeDamage targetDamageable;
 
-        public Dictionary<AttackName, Attack> Attacks { get; } = new();
+        public Dictionary<string, Attack> Attacks { get; } = new();
 
         private void Awake()
         {
-            enemyStateMachine = GetComponent<EnemyStateMachine>();
+            enemy = GetComponent<Enemy>();
         }
 
         public void PerformSetup(float baseDamage, List<AttackData> attacks)
@@ -30,25 +29,40 @@ namespace Unite.Enemies
             Attacks.Clear();
             foreach (AttackData attackData in attacks)
             {
-                Attacks.Add(attackData.AttackName, new Attack(attackData));
+                Attacks.Add(attackData.name, new Attack(attackData));
             }
         }
 
-        public void CheckAndDealDamage(AttackName attackName)
+        public float GetTotalDamage(AttackData attack)
         {
-            Attack attackToUse = Attacks.GetValueOrDefault(attackName, null);
+            return baseDamage + attack.AttackDamage;
+        }
+
+        public void CheckAndDealDamage(AttackData attackData)
+        {
+            Attack attackToUse = Attacks.GetValueOrDefault(attackData.name, null);
 
             if (attackToUse == null) return;
-            if (!attackToUse.CheckDealDamage(enemyStateMachine)) return;
+            if (!attackToUse.CheckDealDamage(enemy)) return;
 
-            float totalDamageDealt = baseDamage + attackToUse.AttackData.AttackDamage;
+            float totalDamageDealt = GetTotalDamage(attackToUse.AttackData);
 
             if (targetDamageable == null)
             {
-                targetDamageable = enemyStateMachine.DetectionHandler.Target.GetComponent<ITakeDamage>();
+                targetDamageable = enemy.DetectionHandler.Target.GetComponent<ITakeDamage>();
             }
 
-            targetDamageable.TakeDamage(totalDamageDealt);
+            targetDamageable.TakeDamage(totalDamageDealt, this, attackData);
+        }
+
+        public string GetName()
+        {
+            return enemy.DisplayName;
+        }
+
+        public Transform GetTransform()
+        {
+            return transform;
         }
     }
 }

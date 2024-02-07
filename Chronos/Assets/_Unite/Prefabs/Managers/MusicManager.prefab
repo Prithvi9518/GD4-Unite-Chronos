@@ -1,0 +1,129 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &3620422658890463630
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8943458296164919047}
+  - component: {fileID: 6235525504150382270}
+  - component: {fileID: 7359781218248096750}
+  - component: {fileID: 4434313225828289400}
+  - component: {fileID: 7385572279093920807}
+  m_Layer: 0
+  m_Name: MusicManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8943458296164919047
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3620422658890463630}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6235525504150382270
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3620422658890463630}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce07ae79f22c4466bb6b01f2d97eff1e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  musicEventParameter: Enemy
+  exploreParamValue: 0
+  combatParamValue: 1
+--- !u!114 &7359781218248096750
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3620422658890463630}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9fd4f3aa08704f2cace1f8a022775966, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <MusicTransitionEvent>k__BackingField:
+    Guid:
+      Data1: 1222987046
+      Data2: 1122411869
+      Data3: -304379761
+      Data4: -588141380
+    Path: event:/Music System
+--- !u!114 &4434313225828289400
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3620422658890463630}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da5e03dff9df6234c8fbf86cbea92be6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  description: Listen for battle start
+  gameEvent: {fileID: 11400000, guid: a991dd00939e49142b44a0d52b74d942, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 6235525504150382270}
+        m_TargetAssemblyTypeName: Unite.SoundScripts.MusicManager, Assembly-CSharp
+        m_MethodName: PlayCombatMusic
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &7385572279093920807
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3620422658890463630}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b9893a878b6442144bd9c1283a2b4b18, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  description: Listen for battle finish
+  gameEvent: {fileID: 11400000, guid: e391660daa999374fa01e96816751e18, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 6235525504150382270}
+        m_TargetAssemblyTypeName: Unite.SoundScripts.MusicManager, Assembly-CSharp
+        m_MethodName: PlayExplorationMusic
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
