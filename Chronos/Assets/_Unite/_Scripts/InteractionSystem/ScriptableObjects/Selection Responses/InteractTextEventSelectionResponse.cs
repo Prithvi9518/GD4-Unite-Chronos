@@ -12,16 +12,16 @@ namespace Unite.InteractionSystem
         [SerializeField]
         private GameEvent onHideInteractText;
         
-        
         public override void OnSelect(Transform transform)
         {
-            if (!transform.TryGetComponent(out IProvideInteractText textProvider)) return;
-            onShowInteractText.Raise(textProvider.GetInteractText());
+            if (!transform.TryGetComponent(out InteractibleObject interactible)) return;
+            if (!interactible.ShowInteractText) return;
+            onShowInteractText.Raise(interactible.GetInteractText());
         }
 
         public override void OnDeselect(Transform transform)
         {
-            if (!transform.TryGetComponent(out IProvideInteractText textProvider)) return;
+            if (!transform.TryGetComponent(out InteractibleObject interactible)) return;
             onHideInteractText.Raise();
         }
     }

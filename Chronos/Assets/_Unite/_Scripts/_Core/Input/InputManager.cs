@@ -16,18 +16,29 @@ namespace Unite.Core.Input
         [SerializeField] 
         private GameEvent onPlayerUseAbilityAction;
 
-        [Header("Event for journal open")]
+        [Header("Events for journal actions")]
         [SerializeField]
         private GameEvent onJournalOpenAction;
+        
+        [SerializeField]
+        private GameEvent onJournalNextPageAction;
+        
+        [SerializeField]
+        private GameEvent onJournalPreviousPageAction;
+
+        [SerializeField]
+        private GameEvent onJournalCloseAction;
+
+        [SerializeField]
+        private GamepadTypeEvent onGamepadUsed;
+        [SerializeField]
+        private GameEvent onKeyboardUsed;
         
         private PlayerInputActions playerInput;
         private PlayerInputActions.DefaultActions defaultActions;
         private PlayerInputActions.UIActions uiActions;
+        private PlayerInputActions.JournalUIActions journalUIActions;
 
-        public PlayerInputActions PlayerInput => playerInput;
-        public PlayerInputActions.DefaultActions DefaultActions => defaultActions;
-        public PlayerInputActions.UIActions UIActions => uiActions;
-        
         private void Awake()
         {
             if (Instance != null)
@@ -41,8 +52,21 @@ namespace Unite.Core.Input
             playerInput = new PlayerInputActions();
             defaultActions = playerInput.Default;
             uiActions = playerInput.UI;
+            journalUIActions = playerInput.JournalUI;
             
             SwitchToDefaultActionMap();
+        }
+
+        private void Start()
+        {
+            if (GamepadDetected(out Gamepad gamepad))
+            {
+                OnGamepadDetectedAtStart(gamepad);
+            }
+            else
+            {
+                onKeyboardUsed.Raise();
+            }
         }
 
         private void OnEnable()
@@ -54,7 +78,57 @@ namespace Unite.Core.Input
         {
             UnsubscribeToActions();
         }
+
+        private bool GamepadDetected(out Gamepad gamepad)
+        {
+            InputDevice[] devices = InputSystem.devices.ToArray();
+
+            foreach (var device in devices)
+            {
+                if (device is not Gamepad g) continue;
+                
+                gamepad = g;
+                return true;
+            }
+
+            gamepad = null;
+            return false;
+        }
+
+        private void OnGamepadDetectedAtStart(Gamepad gamepad)
+        {
+            GamepadType type = GetGamepadType(gamepad);
+            onGamepadUsed.Raise(type);
+        }
         
+        private void OnDeviceChanged(InputDevice device, InputDeviceChange change)
+        {
+            if (device is Gamepad gamepad && change == InputDeviceChange.Added)
+            {
+                GamepadType gamepadType = GetGamepadType(gamepad);
+                onGamepadUsed.Raise(gamepadType);
+            }
+            else if (device is Gamepad && change == InputDeviceChange.Removed)
+            {
+                onKeyboardUsed.Raise();
+            }
+        }
+        
+        private GamepadType GetGamepadType(Gamepad gamepad)
+        {
+            if (gamepad.name.Contains("Xbox") || gamepad.name.Contains("XInputControllerWindows"))
+            {
+                return GamepadType.Xbox;
+            }
+
+            if (gamepad.name.Contains("DualShock") || gamepad.name.Contains("PS"))
+            {
+                return GamepadType.PlayStation;
+            }
+
+            return GamepadType.Unknown;
+        }
+
         private void RaisePlayerUseAbilityEvent(InputAction.CallbackContext ctx)
         {
             onPlayerUseAbilityAction.Raise();
@@ -69,19 +143,46 @@ namespace Unite.Core.Input
         {
             onJournalOpenAction.Raise();
         }
+        
+        private void RaiseJournalCloseEvent(InputAction.CallbackContext ctx)
+        {
+            onJournalCloseAction.Raise();
+        }
+        
+        private void RaiseJournalNextPageEvent(InputAction.CallbackContext ctx)
+        {
+            onJournalNextPageAction.Raise();
+        }
+        
+        private void RaiseJournalPreviousPageEvent(InputAction.CallbackContext ctx)
+        {
+            onJournalPreviousPageAction.Raise();
+        }
 
         private void SubscribeToActions()
         {
+            InputSystem.onDeviceChange += OnDeviceChanged;
+            
             defaultActions.Ability1.performed += RaisePlayerUseAbilityEvent;
             defaultActions.Interact.performed += RaisePlayerInteractEvent;
             defaultActions.JournalOpen.performed += RaiseJournalOpenEvent;
+
+            journalUIActions.CloseJournal.performed += RaiseJournalCloseEvent;
+            journalUIActions.NextPage.performed += RaiseJournalNextPageEvent;
+            journalUIActions.PreviousPage.performed += RaiseJournalPreviousPageEvent;
         }
 
         private void UnsubscribeToActions()
         {
+            InputSystem.onDeviceChange -= OnDeviceChanged;
+
             defaultActions.Ability1.performed -= RaisePlayerUseAbilityEvent;
             defaultActions.Interact.performed -= RaisePlayerInteractEvent;
             defaultActions.JournalOpen.performed -= RaiseJournalOpenEvent;
+
+            journalUIActions.CloseJournal.performed -= RaiseJournalCloseEvent;
+            journalUIActions.NextPage.performed -= RaiseJournalNextPageEvent;
+            journalUIActions.PreviousPage.performed -= RaiseJournalPreviousPageEvent;
         }
         
         public bool IsShootActionPressed() => defaultActions.Shoot.IsPressed();
@@ -90,12 +191,21 @@ namespace Unite.Core.Input
         {
             defaultActions.Enable();
             uiActions.Disable();
+            journalUIActions.Disable();
         }
         
         public void SwitchToUIActionMap()
         {
             defaultActions.Disable();
             uiActions.Enable();
+            journalUIActions.Disable();
+        }
+
+        public void SwitchToJournalUIActionMap()
+        {
+            defaultActions.Disable();
+            uiActions.Disable();
+            journalUIActions.Enable();
         }
     }
 }

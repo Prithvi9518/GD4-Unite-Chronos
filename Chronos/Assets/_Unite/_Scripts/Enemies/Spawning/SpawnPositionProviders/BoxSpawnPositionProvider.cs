@@ -9,12 +9,14 @@ namespace Unite.Enemies.Spawning
 
         [SerializeField] 
         private float offset;
+
+        [SerializeField] 
+        private float navmeshHitOffset;
         
         private Bounds bounds;
 
         private void Awake()
         {
-            collider = GetComponent<BoxCollider>();
             bounds = collider.bounds;
         }
 
@@ -22,7 +24,7 @@ namespace Unite.Enemies.Spawning
         {
             var spawnPos = new Vector3(
                 Random.Range(bounds.min.x + offset, bounds.max.x - offset),
-                transform.position.y,
+                transform.position.y + navmeshHitOffset,
                 Random.Range(bounds.min.z + offset, bounds.max.z - offset)
             );
 

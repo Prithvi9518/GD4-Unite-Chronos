@@ -1,3 +1,4 @@
+using Unite.EventSystem;
 using UnityEngine;
 
 namespace Unite.InteractionSystem
@@ -10,6 +11,9 @@ namespace Unite.InteractionSystem
         [SerializeField]
         private SelectionResponse[] selectionResponses;
 
+        [SerializeField]
+        private GameEvent onSelectionNullAfterReset;
+
         private Transform currentSelection;
 
         private void Awake()
@@ -21,10 +25,7 @@ namespace Unite.InteractionSystem
         private void Update()
         {
             ResetSelection();
-
-            selector.CheckSelection(rayProvider.ProvideRay());
-            currentSelection = selector.GetSelection();
-
+            UpdateSelection();
             ExecuteSelectionResponses();
         }
         
@@ -36,14 +37,18 @@ namespace Unite.InteractionSystem
             interactible.HandleInteraction();
         }
 
+        private void UpdateSelection()
+        {
+            selector.CheckSelection(rayProvider.ProvideRay());
+            currentSelection = selector.GetSelection();
+        }
+
         private void ExecuteSelectionResponses()
         {
-            if (currentSelection != null)
+            if (currentSelection == null) return;
+            foreach (SelectionResponse response in selectionResponses)
             {
-                foreach (SelectionResponse response in selectionResponses)
-                {
-                    response.OnSelect(currentSelection);
-                }
+                response.OnSelect(currentSelection);
             }
         }
 
@@ -55,6 +60,10 @@ namespace Unite.InteractionSystem
                 {
                     response.OnDeselect(currentSelection);
                 }
+            }
+            else
+            {
+                onSelectionNullAfterReset.Raise();
             }
         }
     }

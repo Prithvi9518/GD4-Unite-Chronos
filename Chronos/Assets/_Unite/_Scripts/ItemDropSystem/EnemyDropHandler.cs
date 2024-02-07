@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.AI;
 
 namespace Unite.ItemDropSystem
 {
@@ -11,17 +12,17 @@ namespace Unite.ItemDropSystem
         private Transform dropPoint;
 
         [SerializeField]
-        private LayerMask layerMask;
-
-        [SerializeField]
         private float yOffset;
 
         public void DropItems()
         {
             int probability = Random.Range(0, 2);
             if (probability == 0) return;
-            
-            Instantiate(item, dropPoint.position + (Vector3.up * yOffset), Quaternion.identity);
+
+            if (NavMesh.SamplePosition(dropPoint.position, out var hit, 1000, -1))
+            {
+                Instantiate(item, hit.position + (Vector3.up * yOffset), Quaternion.identity);
+            }
         }
     }
 }

@@ -11,6 +11,8 @@ namespace Unite.DialogueSystem
         private Dictionary<DialogueTrigger, List<DialogueSO>> dialogueMap;
         private Dictionary<DialogueTrigger, System.Action<List<DialogueSO>>> dialogueTriggerHandlers;
 
+        private int battleEndedCount;
+
         private void Awake()
         {
             SetupDialogueMap();
@@ -31,7 +33,8 @@ namespace Unite.DialogueSystem
             dialogueTriggerHandlers = new Dictionary<DialogueTrigger, System.Action<List<DialogueSO>>>()
             {
                 { DialogueTrigger.Test1, HandleTest1 },
-                { DialogueTrigger.Test2, HandleTest2 }
+                { DialogueTrigger.Test2, HandleTest2 },
+                { DialogueTrigger.BattleEnded , HandleBattleEnded }
             };
         }
         
@@ -45,6 +48,17 @@ namespace Unite.DialogueSystem
             Debug.Log($"test2 - {dialogues[0].Lines[0].Text}");
         }
 
+        private void HandleBattleEnded(List<DialogueSO> dialogues)
+        {
+            if (dialogues.Count == 0) return;
+            
+            if (battleEndedCount == 0)
+            {
+                DialogueManager.Instance.PlayDialogue(dialogues[0]);
+                battleEndedCount++;
+            }
+        }
+
         public void OnNotify(DialogueTrigger dialogueTrigger)
         {
             if (!dialogueTriggerHandlers.ContainsKey(dialogueTrigger)) return;
@@ -53,6 +67,11 @@ namespace Unite.DialogueSystem
             {
                 dialogueTriggerHandlers[dialogueTrigger](dialogues);
             }
+        }
+
+        public void OnBattleEnd()
+        {
+            OnNotify(DialogueTrigger.BattleEnded);
         }
     }
 }

@@ -44,17 +44,15 @@ namespace Unite.Enemies.Spawning
         
         private void SpawnEnemy(EnemyData enemyData, Vector3 spawnPosition, Transform playerTransform)
         {
-            Enemy enemy = Instantiate(enemyData.EnemyPrefab, spawnPosition, Quaternion.identity);
+            NavMeshHit hit;
+            if (!NavMesh.SamplePosition(spawnPosition, out hit, 1000f, -1)) return;
             
+            Enemy enemy = Instantiate(enemyData.EnemyPrefab, hit.position, Quaternion.identity);
             enemy.gameObject.SetActive(true);
             enemy.OnGetFromPool(playerTransform);
             enemyData.SetupEnemy(enemy, playerTransform);
-            
-            NavMeshHit hit;
-            if (NavMesh.SamplePosition(spawnPosition, out hit, 1000f, -1))
-            {
-                enemy.Agent.Warp(hit.position);
-            }
+
+            enemy.Agent.Warp(hit.position);
         }
 
         public void DecrementEnemiesAliveCount()

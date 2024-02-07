@@ -13,6 +13,7 @@ namespace Unite.AbilitySystem
         private float remainingActiveTimeMs;
         private float remainingCooldownTimeMs;
 
+        public AbilityData Data => abilityData;
         public AbilityState CurrentState => currentState;
         public float RemainingActiveTimeMs => remainingActiveTimeMs;
         public float RemainingCooldownTimeMs => remainingCooldownTimeMs;
