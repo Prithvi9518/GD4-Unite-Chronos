@@ -6,6 +6,7 @@
         Test1,
         Test2,
         BattleEnded,
-        GameStart
+        GameStart,
+        EnterBattleZone
     }
 }

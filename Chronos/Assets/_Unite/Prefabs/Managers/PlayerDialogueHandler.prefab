@@ -12,7 +12,8 @@ GameObject:
   - component: {fileID: 961527736350545288}
   - component: {fileID: 2670484228375142566}
   - component: {fileID: 2054238198460777323}
-  - component: {fileID: 288444217736193286}
+  - component: {fileID: 3270841005411329603}
+  - component: {fileID: 3143158959110080258}
   m_Layer: 0
   m_Name: PlayerDialogueHandler
   m_TagString: Untagged
@@ -52,6 +53,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: b76fb688531976242b7f950f9dccc0a6, type: 2}
   - {fileID: 11400000, guid: 781c1a10572bfd24bbc4ab37a0b3a4c1, type: 2}
   - {fileID: 11400000, guid: 6bd8be0bfe6e7e54d85c62492f2f1c0d, type: 2}
+  - {fileID: 11400000, guid: 411696a73e42c2c48aabf5ca551d7b82, type: 2}
 --- !u!114 &2670484228375142566
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -110,7 +112,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &288444217736193286
+--- !u!114 &3270841005411329603
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -130,6 +132,35 @@ MonoBehaviour:
       - m_Target: {fileID: 961527736350545288}
         m_TargetAssemblyTypeName: Unite.DialogueSystem.PlayerDialogueHandler, Assembly-CSharp
         m_MethodName: OnGameStart
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &3143158959110080258
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3230454642952135529}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da5e03dff9df6234c8fbf86cbea92be6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  description: Listen for battle start
+  gameEvent: {fileID: 11400000, guid: a991dd00939e49142b44a0d52b74d942, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 961527736350545288}
+        m_TargetAssemblyTypeName: Unite.DialogueSystem.PlayerDialogueHandler, Assembly-CSharp
+        m_MethodName: OnEnterBattleZone
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
