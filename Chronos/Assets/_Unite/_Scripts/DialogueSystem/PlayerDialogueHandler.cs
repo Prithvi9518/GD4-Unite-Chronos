@@ -12,6 +12,7 @@ namespace Unite.DialogueSystem
         private Dictionary<DialogueTrigger, System.Action<List<DialogueSO>>> dialogueTriggerHandlers;
 
         private int battleEndedCount;
+        private int battleEnteredCount;
 
         private void Awake()
         {
@@ -34,7 +35,9 @@ namespace Unite.DialogueSystem
             {
                 { DialogueTrigger.Test1, HandleTest1 },
                 { DialogueTrigger.Test2, HandleTest2 },
-                { DialogueTrigger.BattleEnded , HandleBattleEnded }
+                { DialogueTrigger.BattleEnded , HandleBattleEnded },
+                { DialogueTrigger.GameStart , HandleGameStart},
+                { DialogueTrigger.EnterBattleZone , HandleEnterBattleZone}
             };
         }
         
@@ -59,6 +62,22 @@ namespace Unite.DialogueSystem
             }
         }
 
+        private void HandleGameStart(List<DialogueSO> dialogues)
+        {
+            if (dialogues.Count == 0) return;
+            
+            DialogueManager.Instance.PlayDialogue(dialogues[0]);
+        }
+
+        private void HandleEnterBattleZone(List<DialogueSO> dialogues)
+        {
+            if(dialogues.Count == 0) return;
+
+            if (battleEnteredCount != 0) return;
+            DialogueManager.Instance.PlayDialogue(dialogues[0]);
+            battleEnteredCount++;
+        }
+
         public void OnNotify(DialogueTrigger dialogueTrigger)
         {
             if (!dialogueTriggerHandlers.ContainsKey(dialogueTrigger)) return;
@@ -72,6 +91,16 @@ namespace Unite.DialogueSystem
         public void OnBattleEnd()
         {
             OnNotify(DialogueTrigger.BattleEnded);
+        }
+
+        public void OnGameStart()
+        {
+            OnNotify(DialogueTrigger.GameStart);
+        }
+
+        public void OnEnterBattleZone()
+        {
+            OnNotify(DialogueTrigger.EnterBattleZone);
         }
     }
 }

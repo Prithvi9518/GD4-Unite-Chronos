@@ -5,6 +5,8 @@
     {
         Test1,
         Test2,
-        BattleEnded
+        BattleEnded,
+        GameStart,
+        EnterBattleZone
     }
 }

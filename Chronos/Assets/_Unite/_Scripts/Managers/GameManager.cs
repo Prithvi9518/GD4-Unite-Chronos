@@ -62,6 +62,7 @@ namespace Unite.Managers
         {
             if (currentState != GameState.Start) return;
             if (player == null) return;
+            onGameStart.Raise();
         }
 
         private void HandleRestart()

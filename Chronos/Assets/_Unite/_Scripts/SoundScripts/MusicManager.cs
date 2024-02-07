@@ -38,6 +38,7 @@ namespace Unite.SoundScripts
         {
             musicEventInstance = GetFMODEventInstance(FMODEvents.Instance.MusicTransitionEvent);
             musicEventInstance.start();
+            musicEventInstance.setVolume(0.3f);
         }
         
         private EventInstance GetFMODEventInstance(EventReference eventReference)
