@@ -20,6 +20,14 @@ namespace Unite.SoundScripts
         [SerializeField]
         [Range(0,1)]
         private float combatParamValue;
+        
+        [SerializeField]
+        [Range(0,1)]
+        private float explorationVolume;
+        
+        [SerializeField]
+        [Range(0,1)]
+        private float combatVolume;
 
         private EventInstance musicEventInstance;
 
@@ -38,7 +46,7 @@ namespace Unite.SoundScripts
         {
             musicEventInstance = GetFMODEventInstance(FMODEvents.Instance.MusicTransitionEvent);
             musicEventInstance.start();
-            musicEventInstance.setVolume(0.3f);
+            musicEventInstance.setVolume(explorationVolume);
         }
         
         private EventInstance GetFMODEventInstance(EventReference eventReference)
@@ -48,11 +56,13 @@ namespace Unite.SoundScripts
 
         public void PlayCombatMusic()
         {
+            musicEventInstance.setVolume(combatVolume);
             musicEventInstance.setParameterByName(musicEventParameter, combatParamValue);
         }
 
         public void PlayExplorationMusic()
         {
+            musicEventInstance.setVolume(explorationVolume);
             musicEventInstance.setParameterByName(musicEventParameter, exploreParamValue);
         }
 
