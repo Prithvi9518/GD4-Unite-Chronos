@@ -55,15 +55,15 @@ namespace Unite.Managers
             SendAnalyticsEvent("EnemyDefeated", data);
         }
 
-        public void TimeStopUsed()
-        {
+        //public void TimeStopUsed()
+        //{
             // Add more data related to time stop usage
             // Example: Dictionary<string, object> data = new Dictionary<string, object>();
             //          data.Add("Player_Level", player.Level);
 
             // Send analytics event
-            SendAnalyticsEvent("TimeStopUsed", null);
-        }
+            //SendAnalyticsEvent("TimeStopUsed", null);
+        //}
 
         public void OnInteractWithInteractible(InteractibleObject interactible)
         {
