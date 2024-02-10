@@ -120,7 +120,7 @@ namespace Unite.Managers
         {
             // Call if consent has been given by the user
             AnalyticsService.Instance.StartDataCollection();
-            Debug.Log($"Consent has been provided. The SDK is now collecting data!");
+            //Debug.Log($"Consent has been provided. The SDK is now collecting data!");
         }
 
         private void SendAnalyticsEvent(string eventName, Dictionary<string, object> data, bool flushImmediately = false)
