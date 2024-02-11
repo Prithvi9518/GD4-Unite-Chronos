@@ -15,7 +15,6 @@ namespace _Unite._Scripts
         {
             if (other.CompareTag("Terrain"))
             {
-                Debug.Log("Steven");
                 string newTerrainName = other.gameObject.name;
             
                 if (newTerrainName != currentTerrainName)

@@ -27,12 +27,12 @@ namespace Unite.Managers
             }
         }
 
-        public void PlayerDied(PlayerDiedInfo info)
+        public void PlayerDied(PlayerDiedInfo info, Enemy enemy)
         {
             Dictionary<string, object> data = new Dictionary<string, object>();
-            data.Add("Death_Position_x", info.DeathPosition.x);
-            data.Add("Death_Position_y", info.DeathPosition.y);
-            data.Add("Death_Position_z", info.DeathPosition.z);
+            //data.Add("Death_Position_x", info.DeathPosition.x);
+            //data.Add("Death_Position_y", info.DeathPosition.y);
+            //data.Add("Death_Position_z", info.DeathPosition.z);
             data.Add("Killed_By_Enemy", info.KilledByAttacker);
             data.Add("Killed_By_Attack", info.KilledByAttack);
 
@@ -48,30 +48,22 @@ namespace Unite.Managers
             Dictionary<string, object> data = new Dictionary<string, object>();
             data.Add("Name", enemy.DisplayName);
 
-            // Add more data related to enemy defeat
-            // Example: data.Add("Enemy_Type", enemy.Type);
-
-            // Send analytics event
             SendAnalyticsEvent("EnemyDefeated", data);
         }
 
         public void TimeStopUsed()
         {
-            // Add more data related to time stop usage
-            // Example: Dictionary<string, object> data = new Dictionary<string, object>();
-            //          data.Add("Player_Level", player.Level);
+            //Add more data related to time stop usage
+            Dictionary<string, object> data = new Dictionary<string, object>();
 
-            // Send analytics event
-            SendAnalyticsEvent("TimeStopUsed", null);
+           //Send analytics event
+           SendAnalyticsEvent("TimeStopUsed", data);
         }
 
-        public void OnInteractWithInteractible(InteractibleObject interactible)
+    public void OnInteractWithInteractible(InteractibleObject interactible)
         {
             Dictionary<string, object> data = new Dictionary<string, object>();
             data.Add("Name", interactible.DisplayName);
-
-            // Add more data related to interaction with interactible
-            // Example: data.Add("Interaction_Type", interactible.Type);
 
             // Send analytics event
             SendAnalyticsEvent("InteractWithInteractible", data);
@@ -94,11 +86,11 @@ namespace Unite.Managers
         public void PlayerUsedPowerup(string powerupType)
         {
             // Add more data related to powerup usage
-            // Example: Dictionary<string, object> data = new Dictionary<string, object>();
-            //          data.Add("Powerup_Type", powerupType);
+            Dictionary<string, object> data = new Dictionary<string, object>();
+            data.Add("Name", powerupType);
 
             // Send analytics event
-            SendAnalyticsEvent("PlayerUsedPowerup", null);
+            SendAnalyticsEvent("PlayerUsedPowerup", data);
         }
 
         // Add more events and data as needed
@@ -128,7 +120,7 @@ namespace Unite.Managers
         {
             // Call if consent has been given by the user
             AnalyticsService.Instance.StartDataCollection();
-            Debug.Log($"Consent has been provided. The SDK is now collecting data!");
+            //Debug.Log($"Consent has been provided. The SDK is now collecting data!");
         }
 
         private void SendAnalyticsEvent(string eventName, Dictionary<string, object> data, bool flushImmediately = false)
