@@ -24,7 +24,7 @@ namespace Unite.Player
         }
 
         private PlayerHealthHandler healthHandler;
-        private PlayerMovementHandler movementHandler;
+        private IHandlePlayerMovement movementHandler;
         
         private Dictionary<StatusEffectSO, StatusEffectInfo> effectsDict = new();
         

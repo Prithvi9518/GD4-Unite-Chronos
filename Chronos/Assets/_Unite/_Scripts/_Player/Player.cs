@@ -8,7 +8,6 @@ namespace Unite.Player
     [RequireComponent(typeof(PlayerHealthHandler))]
     [RequireComponent(typeof(PlayerStatsHandler))]
     [RequireComponent(typeof(PlayerGunHandler))]
-    [RequireComponent(typeof(PlayerMovementHandler))]
     [RequireComponent(typeof(PlayerStatusEffectable))]
     public class Player : MonoBehaviour
     {
@@ -21,7 +20,7 @@ namespace Unite.Player
         private PlayerHealthHandler healthHandler;
         private PlayerStatsHandler statsHandler;
         private PlayerGunHandler gunHandler;
-        private PlayerMovementHandler movementHandler;
+        private IHandlePlayerMovement movementHandler;
         private FirstPersonController controller;
         private PlayerStatusEffectable statusEffectable;
         // Temporary workaround
@@ -30,7 +29,7 @@ namespace Unite.Player
         public PlayerHealthHandler HealthHandler => healthHandler;
         public PlayerStatsHandler StatsHandler => statsHandler;
         public PlayerGunHandler GunHandler => gunHandler;
-        public PlayerMovementHandler MovementHandler => movementHandler;
+        public IHandlePlayerMovement MovementHandler => movementHandler;
         public PlayerStatusEffectable StatusEffectable => statusEffectable;
 
         public Ability Ability => ability;
@@ -42,7 +41,7 @@ namespace Unite.Player
             statsHandler = GetComponent<PlayerStatsHandler>();
             gunHandler = GetComponent<PlayerGunHandler>();
 
-            movementHandler = GetComponent<PlayerMovementHandler>();
+            movementHandler = GetComponent<IHandlePlayerMovement>();
             
             controller = GetComponent<FirstPersonController>();
 
@@ -61,7 +60,7 @@ namespace Unite.Player
         {
             healthHandler.enabled = false;
             gunHandler.enabled = false;
-            controller.enabled = false;
+            movementHandler.ToggleMovement(false);
         }
     }
 }
