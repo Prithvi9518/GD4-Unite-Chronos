@@ -8,7 +8,9 @@ namespace Unite.Player
     {
         [Header("Movement Variables")]
         [SerializeField]
-        private float moveSpeed;
+        private float walkSpeed = 7f;
+        [SerializeField]
+        private float sprintSpeed;
         [SerializeField]
         private float speedMultiplier = 10f;
 
@@ -39,17 +41,19 @@ namespace Unite.Player
         private StatTypeSO speedStatType;
 
         private Vector3 moveDirection;
+        private float moveSpeed;
 
         private Rigidbody rb;
 
         private bool isGrounded;
+        private bool readyToJump;
 
         private float horizontalInput;
         private float verticalInput;
 
-        private bool readyToJump;
-
         private PlayerStatsHandler statsHandler;
+
+        private MovementState currentState;
 
         private void Awake()
         {
@@ -69,6 +73,7 @@ namespace Unite.Player
             
             GetInput();
             SpeedControl();
+            UpdateState();
 
             if (isGrounded)
                 rb.drag = groundDrag;
@@ -79,6 +84,24 @@ namespace Unite.Player
         private void FixedUpdate()
         {
             MovePlayer();
+        }
+
+        private void UpdateState()
+        {
+            if (isGrounded && InputManager.Instance.IsSprintActionPressed())
+            {
+                currentState = MovementState.Sprinting;
+                moveSpeed = sprintSpeed;
+            }
+            else if (isGrounded)
+            {
+                currentState = MovementState.Walking;
+                moveSpeed = walkSpeed;
+            }
+            else
+            {
+                currentState = MovementState.Air;
+            }
         }
 
         private void GetInput()

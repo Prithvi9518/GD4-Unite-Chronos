@@ -197,6 +197,7 @@ namespace Unite.Core.Input
         }
         
         public bool IsShootActionPressed() => defaultActions.Shoot.IsPressed();
+        public bool IsSprintActionPressed() => defaultActions.Sprint.IsPressed();
 
         public Vector2 GetMovementVectorNormalized()
         {
