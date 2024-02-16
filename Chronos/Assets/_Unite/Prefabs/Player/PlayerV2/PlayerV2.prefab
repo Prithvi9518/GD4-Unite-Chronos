@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 3610090348090778793}
   - component: {fileID: 7266613688148724476}
   - component: {fileID: 5516807778756765542}
-  - component: {fileID: 3422992589555091961}
   m_Layer: 10
   m_Name: PlayerV2_Visual
   m_TagString: Untagged
@@ -84,29 +83,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!136 &3422992589555091961
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 243273171040807539}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &3399079079665099740
 GameObject:
   m_ObjectHideFlags: 0
@@ -129,6 +105,7 @@ GameObject:
   - component: {fileID: 4759438899014519114}
   - component: {fileID: 7050235603450543881}
   - component: {fileID: 5994575793330795609}
+  - component: {fileID: 7478621249683707954}
   - component: {fileID: 4508471836421242003}
   - component: {fileID: 5350533824352362183}
   - component: {fileID: 6531373682874521394}
@@ -522,6 +499,29 @@ Rigidbody:
   m_Interpolate: 1
   m_Constraints: 112
   m_CollisionDetection: 1
+--- !u!136 &7478621249683707954
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3399079079665099740}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Height: 2
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &4508471836421242003
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -537,6 +537,8 @@ MonoBehaviour:
   walkSpeed: 7
   sprintSpeed: 10
   speedMultiplier: 10
+  slopeSpeedMultiplier: 20
+  slopeDownwardForce: 80
   jumpForce: 7
   jumpCooldown: 0.25
   airMultiplier: 0.4
@@ -546,6 +548,7 @@ MonoBehaviour:
   groundLayerMask:
     serializedVersion: 2
     m_Bits: 520
+  maxSlopeAngle: 40
   orientation: {fileID: 4914929914867037143}
   speedStatType: {fileID: 11400000, guid: e3c3053948b1ae541ba29e94f4eba659, type: 2}
 --- !u!114 &5350533824352362183
