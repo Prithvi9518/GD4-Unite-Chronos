@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Unite.Player
 {
-    public class PlayerStatsHandler : MonoBehaviour
+    public class PlayerStatsHandler
     {
         private Dictionary<StatTypeSO, Stat> playerStats = new();
 

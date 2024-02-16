@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Unite.Player
 {
-    public class PlayerMovementHandler : MonoBehaviour
+    public class PlayerMovementHandler : MonoBehaviour, IHandlePlayerMovement
     {
         [SerializeField]
         private StatTypeSO speedStatType;
@@ -18,7 +18,12 @@ namespace Unite.Player
         private void Awake()
         {
             controller = GetComponent<FirstPersonController>();
-            statsHandler = GetComponent<PlayerStatsHandler>();
+        }
+
+        public void PerformSetup(PlayerStatsHandler playerStatsHandler)
+        {
+            statsHandler = playerStatsHandler;
+            UpdateSpeedFromStats();
         }
 
         public void UpdateSpeedFromStats()
@@ -35,6 +40,11 @@ namespace Unite.Player
         {
             controller.MoveSpeed += modifier;
             controller.SprintSpeed += modifier;
+        }
+
+        public void ToggleMovement(bool toggle)
+        {
+            controller.enabled = toggle;
         }
     }
 }

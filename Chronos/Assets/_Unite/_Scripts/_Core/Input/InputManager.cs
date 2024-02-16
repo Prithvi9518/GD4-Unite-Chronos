@@ -7,6 +7,10 @@ namespace Unite.Core.Input
     public class InputManager : MonoBehaviour
     {
         public static InputManager Instance { get; private set; }
+
+        [Header("Event for jump action")]
+        [SerializeField]
+        private GameEvent onPlayerJumpAction;
         
         [Header("Event for interact action")]
         [SerializeField] 
@@ -128,6 +132,11 @@ namespace Unite.Core.Input
 
             return GamepadType.Unknown;
         }
+        
+        private void RaisePlayerJumpEvent(InputAction.CallbackContext ctx)
+        {
+            onPlayerJumpAction.Raise();
+        }
 
         private void RaisePlayerUseAbilityEvent(InputAction.CallbackContext ctx)
         {
@@ -162,7 +171,8 @@ namespace Unite.Core.Input
         private void SubscribeToActions()
         {
             InputSystem.onDeviceChange += OnDeviceChanged;
-            
+
+            defaultActions.Jump.performed += RaisePlayerJumpEvent;
             defaultActions.Ability1.performed += RaisePlayerUseAbilityEvent;
             defaultActions.Interact.performed += RaisePlayerInteractEvent;
             defaultActions.JournalOpen.performed += RaiseJournalOpenEvent;
@@ -176,6 +186,7 @@ namespace Unite.Core.Input
         {
             InputSystem.onDeviceChange -= OnDeviceChanged;
 
+            defaultActions.Jump.performed -= RaisePlayerJumpEvent;
             defaultActions.Ability1.performed -= RaisePlayerUseAbilityEvent;
             defaultActions.Interact.performed -= RaisePlayerInteractEvent;
             defaultActions.JournalOpen.performed -= RaiseJournalOpenEvent;
@@ -186,6 +197,19 @@ namespace Unite.Core.Input
         }
         
         public bool IsShootActionPressed() => defaultActions.Shoot.IsPressed();
+        public bool IsSprintActionPressed() => defaultActions.Sprint.IsPressed();
+
+        public Vector2 GetMovementVectorNormalized()
+        {
+            Vector2 inputVector = defaultActions.Move.ReadValue<Vector2>();
+            return inputVector.normalized;
+        }
+
+        public Vector2 GetLookVectorNormalized()
+        {
+            Vector2 lookVector = defaultActions.Look.ReadValue<Vector2>();
+            return lookVector.normalized;
+        }
 
         public void SwitchToDefaultActionMap()
         {

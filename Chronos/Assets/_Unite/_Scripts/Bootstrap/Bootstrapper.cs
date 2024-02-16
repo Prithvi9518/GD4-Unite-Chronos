@@ -1,5 +1,4 @@
 ﻿using Unite.Core.Game;
-using Unite.Enemies.Spawning;
 using UnityEngine;
 
 namespace Unite.Bootstrap
@@ -16,11 +15,6 @@ namespace Unite.Bootstrap
         public void HandlePlayerReadyEvent(Player.Player p)
         {
             player = p;
-            CheckAndDoBootstrap();
-        }
-
-        public void HandleEnemySpawnerReadyEvent(EnemySpawner spawner)
-        {
             CheckAndDoBootstrap();
         }
 

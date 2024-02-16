@@ -7,6 +7,10 @@ namespace Unite.DialogueSystem
     [RequireComponent(typeof(AudioSource))]
     public class DialogueManager : MonoBehaviour
     {
+        [Header("Set to false for testing purposes:")]
+        [SerializeField]
+        private bool playDialogue = true;
+        
         public static DialogueManager Instance { get; private set; }
 
         private AudioSource audioSource;
@@ -25,12 +29,12 @@ namespace Unite.DialogueSystem
 
         public void PlayDialogue(DialogueSO dialogue)
         {
+            if (!playDialogue) return;
             StartCoroutine(DialogueLinesCoroutine(dialogue.Lines));
         }
 
         private void PlayDialogueLine(DialogueLine line)
         {
-            Debug.Log($"{line.SpeakerName} : {line.Text}");
             audioSource.Stop();
             audioSource.PlayOneShot(line.Audio);
         }
