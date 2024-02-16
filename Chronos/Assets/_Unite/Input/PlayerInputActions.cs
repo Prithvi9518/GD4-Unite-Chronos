@@ -62,6 +62,15 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Move"",
+                    ""type"": ""Value"",
+                    ""id"": ""455775f6-bdbc-4839-882e-a17a4a5d3eb0"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
                 }
             ],
             ""bindings"": [
@@ -152,6 +161,116 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""action"": ""JournalOpen"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""WASD"",
+                    ""id"": ""5e5876c8-8473-4572-a6bd-83e3d881701c"",
+                    ""path"": ""2DVector"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""up"",
+                    ""id"": ""8dbcfb45-8d91-4b37-bf01-349996e3013f"",
+                    ""path"": ""<Keyboard>/w"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""down"",
+                    ""id"": ""4190eda7-94dc-4307-8f75-fbca06bf0baf"",
+                    ""path"": ""<Keyboard>/s"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""left"",
+                    ""id"": ""4f060dac-d1dc-4ea7-8f21-d72720ca1246"",
+                    ""path"": ""<Keyboard>/a"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""right"",
+                    ""id"": ""f9b18d8f-207a-4911-a1e2-956dd9795314"",
+                    ""path"": ""<Keyboard>/d"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""Gamepad"",
+                    ""id"": ""ebc7ee06-dfaf-4814-a944-6ef5f3f79180"",
+                    ""path"": ""2DVector"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""up"",
+                    ""id"": ""9a5ea466-8663-40bf-b30d-06b2b0eb9af4"",
+                    ""path"": ""<Gamepad>/leftStick/up"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""down"",
+                    ""id"": ""7f6a3a6c-c69b-4785-b102-593998fdccc8"",
+                    ""path"": ""<Gamepad>/leftStick/down"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""left"",
+                    ""id"": ""96693674-43c1-49b1-97d9-7c1e7e52a352"",
+                    ""path"": ""<Gamepad>/leftStick/left"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""right"",
+                    ""id"": ""66acb025-72f5-48f1-80eb-256aaa793833"",
+                    ""path"": ""<Gamepad>/leftStick/right"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
                 }
             ]
         },
@@ -913,6 +1032,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         m_Default_Interact = m_Default.FindAction("Interact", throwIfNotFound: true);
         m_Default_Ability1 = m_Default.FindAction("Ability 1", throwIfNotFound: true);
         m_Default_JournalOpen = m_Default.FindAction("JournalOpen", throwIfNotFound: true);
+        m_Default_Move = m_Default.FindAction("Move", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -1001,6 +1121,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
     private readonly InputAction m_Default_Interact;
     private readonly InputAction m_Default_Ability1;
     private readonly InputAction m_Default_JournalOpen;
+    private readonly InputAction m_Default_Move;
     public struct DefaultActions
     {
         private @PlayerInputActions m_Wrapper;
@@ -1009,6 +1130,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         public InputAction @Interact => m_Wrapper.m_Default_Interact;
         public InputAction @Ability1 => m_Wrapper.m_Default_Ability1;
         public InputAction @JournalOpen => m_Wrapper.m_Default_JournalOpen;
+        public InputAction @Move => m_Wrapper.m_Default_Move;
         public InputActionMap Get() { return m_Wrapper.m_Default; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1030,6 +1152,9 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
             @JournalOpen.started += instance.OnJournalOpen;
             @JournalOpen.performed += instance.OnJournalOpen;
             @JournalOpen.canceled += instance.OnJournalOpen;
+            @Move.started += instance.OnMove;
+            @Move.performed += instance.OnMove;
+            @Move.canceled += instance.OnMove;
         }
 
         private void UnregisterCallbacks(IDefaultActions instance)
@@ -1046,6 +1171,9 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
             @JournalOpen.started -= instance.OnJournalOpen;
             @JournalOpen.performed -= instance.OnJournalOpen;
             @JournalOpen.canceled -= instance.OnJournalOpen;
+            @Move.started -= instance.OnMove;
+            @Move.performed -= instance.OnMove;
+            @Move.canceled -= instance.OnMove;
         }
 
         public void RemoveCallbacks(IDefaultActions instance)
@@ -1319,6 +1447,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         void OnInteract(InputAction.CallbackContext context);
         void OnAbility1(InputAction.CallbackContext context);
         void OnJournalOpen(InputAction.CallbackContext context);
+        void OnMove(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {
