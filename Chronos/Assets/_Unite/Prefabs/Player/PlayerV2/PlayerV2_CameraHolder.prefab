@@ -152,11 +152,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e8542df47c142e9b3e5507abba0347c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  xSensitivity: 120
-  ySensitivity: 100
+  xSensitivity: 10
+  ySensitivity: 10
   orientation: {fileID: 0}
   minXRotation: -90
   maxXRotation: 90
+  smoothingFactor: 0.2
 --- !u!114 &1864243609048149830
 MonoBehaviour:
   m_ObjectHideFlags: 0

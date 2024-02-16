@@ -20,16 +20,25 @@ namespace Unite.Player
         private float minXRotation = -90f;
         [SerializeField]
         private float maxXRotation = 90f;
+
+        [Header("Smoothing")]
+        [SerializeField]
+        private float smoothingFactor;
         
         private float xRotation;
         private float yRotation;
+
+        private void Start()
+        {
+            yRotation = 180f;
+        }
 
         private void Update()
         {
             Vector2 lookVector = InputManager.Instance.GetLookVectorNormalized();
 
-            float mouseX = lookVector.x * Time.deltaTime * xSensitivity;
-            float mouseY = lookVector.y * Time.deltaTime * ySensitivity;
+            float mouseX = lookVector.x * xSensitivity;
+            float mouseY = lookVector.y * ySensitivity;
             
             yRotation += mouseX;
             xRotation -= mouseY;
