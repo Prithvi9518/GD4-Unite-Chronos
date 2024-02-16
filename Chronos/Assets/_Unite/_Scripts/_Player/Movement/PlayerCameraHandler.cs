@@ -7,9 +7,9 @@ namespace Unite.Player
     {
         [Header("Sensitivity Settings")]
         [SerializeField]
-        private float startingXSensitivity;
+        private float xSensitivity;
         [SerializeField]
-        private float startingYSensitivity;
+        private float ySensitivity;
 
         [Header("Orientation Config")] 
         [SerializeField]
@@ -20,28 +20,23 @@ namespace Unite.Player
         private float minXRotation = -90f;
         [SerializeField]
         private float maxXRotation = 90f;
-
-        private float xSens;
-        private float ySens;
-
+        
         private float xRotation;
         private float yRotation;
-
-        private void Awake()
-        {
-            xSens = startingXSensitivity;
-            ySens = startingYSensitivity;
-        }
 
         private void Update()
         {
             Vector2 lookVector = InputManager.Instance.GetLookVectorNormalized();
 
-            yRotation += lookVector.x * Time.deltaTime * xSens;
-            xRotation -= lookVector.y * Time.deltaTime * ySens;
+            float mouseX = lookVector.x * Time.deltaTime * xSensitivity;
+            float mouseY = lookVector.y * Time.deltaTime * ySensitivity;
+            
+            yRotation += mouseX;
+            xRotation -= mouseY;
             xRotation = Mathf.Clamp(xRotation, minXRotation, maxXRotation);
             
-            transform.rotation = Quaternion.Euler(xRotation, yRotation, 0);
+            Quaternion targetRotation = Quaternion.Euler(xRotation, yRotation, 0);
+            transform.rotation = targetRotation;
             orientation.rotation = Quaternion.Euler(0, yRotation, 0);
         }
     }
