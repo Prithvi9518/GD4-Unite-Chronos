@@ -1,12 +1,10 @@
-﻿using StarterAssets;
-using Unite.AbilitySystem;
+﻿using Unite.AbilitySystem;
 using Unite.EventSystem;
 using UnityEngine;
 
 namespace Unite.Player
 {
     [RequireComponent(typeof(PlayerHealthHandler))]
-    [RequireComponent(typeof(PlayerStatsHandler))]
     [RequireComponent(typeof(PlayerGunHandler))]
     [RequireComponent(typeof(PlayerStatusEffectable))]
     public class Player : MonoBehaviour
@@ -21,8 +19,8 @@ namespace Unite.Player
         private PlayerStatsHandler statsHandler;
         private PlayerGunHandler gunHandler;
         private IHandlePlayerMovement movementHandler;
-        private FirstPersonController controller;
         private PlayerStatusEffectable statusEffectable;
+        
         // Temporary workaround
         private Ability ability;
 
@@ -38,13 +36,11 @@ namespace Unite.Player
         {
             healthHandler = GetComponent<PlayerHealthHandler>();
             
-            statsHandler = GetComponent<PlayerStatsHandler>();
+            statsHandler = new PlayerStatsHandler();
             gunHandler = GetComponent<PlayerGunHandler>();
 
             movementHandler = GetComponent<IHandlePlayerMovement>();
             
-            controller = GetComponent<FirstPersonController>();
-
             statusEffectable = GetComponent<PlayerStatusEffectable>();
 
             ability = GetComponent<Ability>();

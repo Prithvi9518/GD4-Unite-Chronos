@@ -12,11 +12,25 @@ namespace Unite.Player
 
         public void SetupPlayer(Player player)
         {
-            player.StatsHandler.PerformSetup(playerBaseStats);
-            player.HealthHandler.PerformSetup();
-            player.MovementHandler.UpdateSpeedFromStats();
-            player.GunHandler.PerformSetup(player.StatsHandler);
-            player.StatusEffectable.PerformSetup(player);
+            player.StatsHandler?.PerformSetup(playerBaseStats);
+
+            if (player.HealthHandler == null)
+            {
+                Debug.LogWarning("PlayerData.SetupPlayer() - player.HealthHandler is null");
+            }
+            else
+                player.HealthHandler.PerformSetup(player.StatsHandler);
+            
+            player.MovementHandler?.PerformSetup(player.StatsHandler);
+
+            if (player.GunHandler == null)
+            {
+                Debug.LogWarning("PlayerData.SetupPlayer() - player.GunHandler is null");
+            }
+            else
+                player.GunHandler.PerformSetup(player.StatsHandler);
+            
+            player.StatusEffectable?.PerformSetup(player);
         }
     }
 }

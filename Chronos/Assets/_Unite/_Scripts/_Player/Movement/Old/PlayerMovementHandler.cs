@@ -18,7 +18,12 @@ namespace Unite.Player
         private void Awake()
         {
             controller = GetComponent<FirstPersonController>();
-            statsHandler = GetComponent<PlayerStatsHandler>();
+        }
+
+        public void PerformSetup(PlayerStatsHandler playerStatsHandler)
+        {
+            statsHandler = playerStatsHandler;
+            UpdateSpeedFromStats();
         }
 
         public void UpdateSpeedFromStats()

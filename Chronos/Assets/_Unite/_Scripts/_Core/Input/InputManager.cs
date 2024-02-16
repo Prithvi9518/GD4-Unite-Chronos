@@ -204,6 +204,12 @@ namespace Unite.Core.Input
             return inputVector.normalized;
         }
 
+        public Vector2 GetLookVectorNormalized()
+        {
+            Vector2 lookVector = defaultActions.Look.ReadValue<Vector2>();
+            return lookVector.normalized;
+        }
+
         public void SwitchToDefaultActionMap()
         {
             defaultActions.Enable();
