@@ -10,6 +10,9 @@ namespace Unite.Player
     public class Player : MonoBehaviour
     {
         [SerializeField]
+        private Transform orientation;
+        
+        [SerializeField]
         private PlayerData playerData;
         
         [SerializeField]
@@ -29,6 +32,7 @@ namespace Unite.Player
         public PlayerGunHandler GunHandler => gunHandler;
         public IHandlePlayerMovement MovementHandler => movementHandler;
         public PlayerStatusEffectable StatusEffectable => statusEffectable;
+        public Transform Orientation => (orientation != null) ? orientation : transform;
 
         public Ability Ability => ability;
 
