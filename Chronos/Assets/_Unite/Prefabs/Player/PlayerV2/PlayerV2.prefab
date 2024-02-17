@@ -109,6 +109,7 @@ GameObject:
   - component: {fileID: 4508471836421242003}
   - component: {fileID: 5350533824352362183}
   - component: {fileID: 6531373682874521394}
+  - component: {fileID: 7010337527716974505}
   m_Layer: 10
   m_Name: PlayerV2
   m_TagString: Player
@@ -124,7 +125,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3399079079665099740}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -3.488, y: 1, z: 213.9}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -135,7 +136,7 @@ Transform:
   - {fileID: 5360627402742302770}
   - {fileID: 4914929914867037143}
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &6398963328969138040
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -202,6 +203,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d775e3c1477a4a68bd9adecf0756502a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  orientation: {fileID: 4914929914867037143}
   playerData: {fileID: 11400000, guid: 91febe26fbc59ba4f93eac8d0094e544, type: 2}
   onPlayerReady: {fileID: 11400000, guid: 805e5580eb6823248afa5b554b93ceea, type: 2}
 --- !u!114 &4852113630607956632
@@ -506,7 +508,7 @@ CapsuleCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3399079079665099740}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 2b6c4df956f8c6941b093fdb78d2c869, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -609,6 +611,26 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &7010337527716974505
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3399079079665099740}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e8542df47c142e9b3e5507abba0347c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cam: {fileID: 0}
+  xSensitivity: 5
+  ySensitivity: 5
+  changeThreshold: 0.01
+  orientation: {fileID: 4914929914867037143}
+  cinemachineTarget: {fileID: 1145292077584974615}
+  minXRotation: -80
+  maxXRotation: 80
 --- !u!1 &6261428252287565443
 GameObject:
   m_ObjectHideFlags: 0

@@ -5,15 +5,22 @@ namespace Unite.Player
 {
     public class PlayerCameraHandler : MonoBehaviour
     {
+        [SerializeField] 
+        private Camera cam;
+        
         [Header("Sensitivity Settings")]
         [SerializeField]
         private float xSensitivity;
         [SerializeField]
         private float ySensitivity;
+        [SerializeField]
+        private float changeThreshold = 0.01f;
 
         [Header("Orientation Config")] 
         [SerializeField]
         private Transform orientation;
+        [SerializeField]
+        private Transform cinemachineTarget;
 
         [Header("X Rotation Clamp Settings")] 
         [SerializeField]
@@ -21,21 +28,22 @@ namespace Unite.Player
         [SerializeField]
         private float maxXRotation = 90f;
 
-        [Header("Smoothing")]
-        [SerializeField]
-        private float smoothingFactor;
-        
         private float xRotation;
         private float yRotation;
 
+        private Quaternion targetCameraRotation;
+        private Quaternion targetOrientationRotation;
+
         private void Start()
         {
-            yRotation = 180f;
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
         }
 
-        private void Update()
+        private void LateUpdate()
         {
             Vector2 lookVector = InputManager.Instance.GetLookVectorNormalized();
+            if (lookVector.sqrMagnitude < changeThreshold) return;
 
             float mouseX = lookVector.x * xSensitivity;
             float mouseY = lookVector.y * ySensitivity;
@@ -44,9 +52,11 @@ namespace Unite.Player
             xRotation -= mouseY;
             xRotation = Mathf.Clamp(xRotation, minXRotation, maxXRotation);
             
-            Quaternion targetRotation = Quaternion.Euler(xRotation, yRotation, 0);
-            transform.rotation = targetRotation;
-            orientation.rotation = Quaternion.Euler(0, yRotation, 0);
+            targetCameraRotation = Quaternion.Euler(xRotation, yRotation, 0);
+            targetOrientationRotation = Quaternion.Euler(0, yRotation, 0);
+            
+            cam.transform.rotation = targetCameraRotation;
+            orientation.rotation = targetOrientationRotation;
         }
     }
 }
