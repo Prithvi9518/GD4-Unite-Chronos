@@ -4,6 +4,7 @@
     {
         Walking,
         Sprinting,
+        Dashing,
         Air
     }
 }

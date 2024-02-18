@@ -12,6 +12,9 @@ namespace Unite.Player
         public float SprintSpeed { get; private set; }
         
         [field: SerializeField]
+        public float DashSpeed { get; private set; }
+        
+        [field: SerializeField]
         public float SpeedMultiplier { get; private set; }
         
         [field: SerializeField]
@@ -33,9 +36,33 @@ namespace Unite.Player
         public float DashForce { get; private set; }
         
         [field: SerializeField]
+        public float DashForceDelay { get; private set; }
+        
+        [field: SerializeField]
         public float DashUpwardForce { get; private set; }
         
         [field: SerializeField]
         public float DashDuration { get; private set; }
+
+        [field: SerializeField]
+        public float DashCooldown { get; private set; }
+        
+        [field: SerializeField]
+        public float DashSpeedChangeFactor { get; private set; }
+        
+        [field: SerializeField]
+        public float MaxDashYSpeed { get; private set; }
+        
+        [field: SerializeField]
+        public bool DashUseCameraForward { get; private set; }
+        
+        [field: SerializeField]
+        public bool DashAllowAllDirections { get; private set; }
+        
+        [field: SerializeField]
+        public bool DashDisableGravity { get; private set; }
+        
+        [field: SerializeField]
+        public bool DashResetVelocity { get; private set; }
     }
 }

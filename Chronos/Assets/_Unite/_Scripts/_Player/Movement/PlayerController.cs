@@ -1,4 +1,6 @@
-﻿using JetBrains.Annotations;
+﻿using System;
+using System.Collections;
+using JetBrains.Annotations;
 using Unite.Core.Input;
 using Unite.StatSystem;
 using UnityEngine;
@@ -30,6 +32,8 @@ namespace Unite.Player
         [SerializeField] 
         private StatTypeSO speedStatType;
 
+        private const float SpeedDiffTolerance = 0.001f;
+
         private Vector3 moveDirection;
         private float moveSpeed;
 
@@ -44,6 +48,19 @@ namespace Unite.Player
         private float horizontalInput;
         private float verticalInput;
 
+        private bool isDashing;
+
+        private float desiredMoveSpeed;
+        private float lastDesiredMoveSpeed;
+        private MovementState lastMovementState;
+        private bool keepMomentum;
+        
+        private float speedChangeFactor;
+
+        private float maxYSpeed;
+
+        private Coroutine smoothLerpCoroutine;
+
         private PlayerStatsHandler statsHandler;
         private PlayerCameraHandler cameraHandler;
         private PlayerDashHandler dashHandler;
@@ -55,6 +72,8 @@ namespace Unite.Player
         public Camera PlayerCamera => cameraHandler.PlayerCamera;
         public Rigidbody PlayerRigidbody => rb;
         public PlayerMovementData MovementData => movementData;
+        public bool IsDashing { get; set; }
+        public float MaxYSpeed { get; set; }
 
         private void Awake()
         {
@@ -79,10 +98,12 @@ namespace Unite.Player
             SpeedControl();
             UpdateState();
 
-            if (isGrounded)
+            if (currentState != MovementState.Air && currentState != MovementState.Dashing)
                 rb.drag = groundDrag;
             else
                 rb.drag = 0;
+            
+            dashHandler.DoUpdate();
         }
 
         private void FixedUpdate()
@@ -92,20 +113,57 @@ namespace Unite.Player
 
         private void UpdateState()
         {
-            if (isGrounded && InputManager.Instance.IsSprintActionPressed())
+            if (isDashing)
+            {
+                currentState = MovementState.Dashing;
+                desiredMoveSpeed = movementData.DashSpeed;
+                speedChangeFactor = movementData.DashSpeedChangeFactor;
+            }
+            else if (isGrounded && InputManager.Instance.IsSprintActionPressed())
             {
                 currentState = MovementState.Sprinting;
-                moveSpeed = movementData.SprintSpeed;
+                desiredMoveSpeed = movementData.SprintSpeed;
             }
             else if (isGrounded)
             {
                 currentState = MovementState.Walking;
-                moveSpeed = movementData.WalkSpeed;
+                desiredMoveSpeed = movementData.WalkSpeed;
             }
             else
             {
                 currentState = MovementState.Air;
+
+                if (desiredMoveSpeed < movementData.SprintSpeed)
+                {
+                    desiredMoveSpeed = movementData.WalkSpeed;
+                }
+                else
+                {
+                    desiredMoveSpeed = movementData.SprintSpeed;
+                }
             }
+
+            bool desiredMoveSpeedChanged = Math.Abs(desiredMoveSpeed - lastDesiredMoveSpeed) > SpeedDiffTolerance;
+            if (lastMovementState == MovementState.Dashing) keepMomentum = true;
+
+            if (desiredMoveSpeedChanged)
+            {
+                if (keepMomentum)
+                {
+                    if(smoothLerpCoroutine != null)
+                        StopCoroutine(smoothLerpCoroutine);
+                    smoothLerpCoroutine = StartCoroutine(SmoothlyLerpMoveSpeed());
+                }
+                else
+                {
+                    if(smoothLerpCoroutine != null)
+                        StopCoroutine(smoothLerpCoroutine);
+                    moveSpeed = desiredMoveSpeed;
+                }
+            }
+
+            lastDesiredMoveSpeed = desiredMoveSpeed;
+            lastMovementState = currentState;
         }
 
         private void GetInput()
@@ -117,6 +175,8 @@ namespace Unite.Player
 
         private void MovePlayer()
         {
+            if (currentState == MovementState.Dashing) return;
+            
             moveDirection = orientation.forward * verticalInput + orientation.right * horizontalInput;
 
             if (OnSlope() && !exitingSlope)
@@ -153,6 +213,9 @@ namespace Unite.Player
                 Vector3 limitedVel = flatVel.normalized * moveSpeed;
                 rb.velocity = new Vector3(limitedVel.x, rb.velocity.y, limitedVel.z);
             }
+
+            if (maxYSpeed != 0 && rb.velocity.y > maxYSpeed)
+                rb.velocity = new Vector3(rb.velocity.x, maxYSpeed, rb.velocity.z);
         }
 
         private void Jump()
@@ -180,6 +243,11 @@ namespace Unite.Player
             }
         }
 
+        public void HandleDashAction()
+        {
+            dashHandler.Dash();
+        }
+
         private bool OnSlope()
         {
             if (!Physics.Raycast(transform.position + (Vector3.up * raycastYOffset),
@@ -192,6 +260,27 @@ namespace Unite.Player
         private Vector3 GetSlopeMoveDirection()
         {
             return Vector3.ProjectOnPlane(moveDirection, slopeHit.normal).normalized;
+        }
+
+        private IEnumerator SmoothlyLerpMoveSpeed()
+        {
+            float time = 0;
+            float difference = Mathf.Abs(desiredMoveSpeed - moveSpeed);
+            float startValue = moveSpeed;
+
+            float boostFactor = speedChangeFactor;
+
+            while (time < difference)
+            {
+                moveSpeed = Mathf.Lerp(startValue, desiredMoveSpeed, time / difference);
+                time += Time.deltaTime * boostFactor;
+
+                yield return null;
+            }
+
+            moveSpeed = desiredMoveSpeed;
+            speedChangeFactor = 1f;
+            keepMomentum = false;
         }
 
         private void OnDrawGizmos()
