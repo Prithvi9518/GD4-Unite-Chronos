@@ -218,8 +218,13 @@ namespace Unite.Core.Input
 
         public Vector2 GetLookVectorNormalized()
         {
-            Vector2 lookVector = defaultActions.Look.ReadValue<Vector2>();
-            return lookVector.normalized;
+            // Using old input system only for mouse input handling
+            // This is due to framerate dependency and jitter issues when using the new input system.
+
+            float mouseX = UnityEngine.Input.GetAxisRaw("Mouse X");
+            float mouseY = UnityEngine.Input.GetAxisRaw("Mouse Y");
+
+            return new Vector2(mouseX, mouseY);
         }
 
         public void SwitchToDefaultActionMap()

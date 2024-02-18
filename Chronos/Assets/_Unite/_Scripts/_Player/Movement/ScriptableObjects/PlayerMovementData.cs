@@ -54,6 +54,12 @@ namespace Unite.Player
         public float MaxDashYSpeed { get; private set; }
         
         [field: SerializeField]
+        public float DashFOV { get; private set; }
+        
+        [field: SerializeField]
+        public float DashFOVTweenDuration { get; private set; }
+        
+        [field: SerializeField]
         public bool DashUseCameraForward { get; private set; }
         
         [field: SerializeField]
@@ -64,5 +70,6 @@ namespace Unite.Player
         
         [field: SerializeField]
         public bool DashResetVelocity { get; private set; }
+        
     }
 }

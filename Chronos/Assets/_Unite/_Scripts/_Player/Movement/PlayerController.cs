@@ -65,11 +65,10 @@ namespace Unite.Player
         private PlayerCameraHandler cameraHandler;
         private PlayerDashHandler dashHandler;
 
-        [UsedImplicitly]
         private MovementState currentState;
 
         public Transform Orientation => orientation;
-        public Camera PlayerCamera => cameraHandler.PlayerCamera;
+        public PlayerCameraHandler CameraHandler => cameraHandler;
         public Rigidbody PlayerRigidbody => rb;
         public PlayerMovementData MovementData => movementData;
         public bool IsDashing { get; set; }
@@ -98,7 +97,7 @@ namespace Unite.Player
             SpeedControl();
             UpdateState();
 
-            if (currentState != MovementState.Air && currentState != MovementState.Dashing)
+            if (isGrounded && currentState != MovementState.Dashing)
                 rb.drag = groundDrag;
             else
                 rb.drag = 0;

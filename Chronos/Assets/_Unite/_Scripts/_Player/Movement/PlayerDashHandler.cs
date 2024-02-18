@@ -10,6 +10,7 @@ namespace Unite.Player
         private Transform playerCam;
         private Rigidbody rb;
         private PlayerMovementData movementData;
+        private PlayerCameraHandler cameraHandler;
         private PlayerController playerController;
 
         private float dashCooldownTimer;
@@ -19,9 +20,10 @@ namespace Unite.Player
         public PlayerDashHandler(PlayerController controller)
         {
             orientation = controller.Orientation;
-            playerCam = controller.PlayerCamera.transform;
+            playerCam = controller.CameraHandler.PlayerCamera.transform;
             rb = controller.PlayerRigidbody;
             movementData = controller.MovementData;
+            cameraHandler = controller.CameraHandler;
             playerController = controller;
         }
 
@@ -38,6 +40,8 @@ namespace Unite.Player
             
             playerController.IsDashing = true;
             playerController.MaxYSpeed = movementData.MaxDashYSpeed;
+            
+            cameraHandler.DoFov(movementData.DashFOV, movementData.DashFOVTweenDuration);
 
             Transform forwardTransform;
             if (movementData.DashUseCameraForward)
@@ -78,6 +82,8 @@ namespace Unite.Player
         {
             playerController.IsDashing = false;
             playerController.MaxYSpeed = 0;
+            
+            cameraHandler.DoFov(cameraHandler.DefaultFOV, movementData.DashFOVTweenDuration);
             
             if (movementData.DashDisableGravity)
                 rb.useGravity = true;
