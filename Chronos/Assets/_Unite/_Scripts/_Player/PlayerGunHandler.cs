@@ -18,9 +18,6 @@ namespace Unite.Player
         [SerializeField]
         private GunType gunType;
         
-        [SerializeField] 
-        private Transform gunParent;
-
         [SerializeField]
         private List<GunData> guns;
 
@@ -33,8 +30,11 @@ namespace Unite.Player
 
         public GunData ActiveGun => activeGun;
 
+        private Transform gunParent;
         private Dictionary<GunType, GunData> gunDictionary = new();
         private PlayerStatsHandler statsHandler;
+
+        private bool initializedGun;
 
         private void Awake()
         {
@@ -43,14 +43,21 @@ namespace Unite.Player
             
             if (gun == null) return;
             activeGun = gun.Clone() as GunData;
-            if (activeGun == null) return;
-            
-            activeGun.Spawn(gunParent, this);
         }
 
         private void Update()
         {
             CheckAndHandleShootAction();
+        }
+
+        public void InitializeActiveGun()
+        {
+            Debug.Log("PlayerGunHandler - InitializeActiveGun()");
+            gunParent = Managers.GameManager.Instance.WeaponsHolder;
+            if (activeGun == null) return;
+            
+            activeGun.Spawn(gunParent, this);
+            initializedGun = true;
         }
 
         public void PerformSetup(PlayerStatsHandler playerStatsHandler)
@@ -72,6 +79,7 @@ namespace Unite.Player
         private void CheckAndHandleShootAction()
         {
             if (activeGun == null) return;
+            if (!initializedGun) return;
 
             bool isShootActionPressed = InputManager.Instance.IsShootActionPressed();
             activeGun.Tick(isShootActionPressed);

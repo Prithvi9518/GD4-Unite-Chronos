@@ -47,6 +47,11 @@ namespace Unite.Core.Input
         private PlayerInputActions.UIActions uiActions;
         private PlayerInputActions.JournalUIActions journalUIActions;
 
+        public void HandleGameStart()
+        {
+            SwitchToDefaultActionMap();
+        }
+
         private void Awake()
         {
             if (Instance != null)
@@ -61,8 +66,6 @@ namespace Unite.Core.Input
             defaultActions = playerInput.Default;
             uiActions = playerInput.UI;
             journalUIActions = playerInput.JournalUI;
-            
-            SwitchToDefaultActionMap();
         }
 
         private void Start()

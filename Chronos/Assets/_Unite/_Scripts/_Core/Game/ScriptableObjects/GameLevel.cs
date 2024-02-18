@@ -23,16 +23,22 @@ namespace Unite.Core.Game
 
         private Volume instancePostProcessPrefab;
 
-        public void LoadLevel()
+        public List<AsyncOperation> LoadLevel()
         {
+            List<AsyncOperation> scenesToLoad = new();
             foreach (var scene in scenes)
             {
-                scene.LoadScene();
+                AsyncOperation sceneToLoad = scene.LoadScene();
+                if(sceneToLoad != null)
+                    scenesToLoad.Add(sceneToLoad);
             }
 
-            if (postProcessPrefab == null || defaultPostProcessProfile == null) return;
+            if (postProcessPrefab == null || defaultPostProcessProfile == null) return scenesToLoad;
+            
             instancePostProcessPrefab = Instantiate(postProcessPrefab);
             instancePostProcessPrefab.profile = defaultPostProcessProfile;
+
+            return scenesToLoad;
         }
 
         public void UnloadLevel()

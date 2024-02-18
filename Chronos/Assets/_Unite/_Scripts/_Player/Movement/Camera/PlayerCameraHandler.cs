@@ -6,8 +6,8 @@ namespace Unite.Player
 {
     public class PlayerCameraHandler : MonoBehaviour
     {
-        [SerializeField] 
-        private Camera cam;
+        // [SerializeField] 
+        // private Camera cam;
         
         [Header("Sensitivity Settings")]
         [SerializeField]
@@ -28,6 +28,8 @@ namespace Unite.Player
         private float minXRotation = -90f;
         [SerializeField]
         private float maxXRotation = 90f;
+        
+        private Camera cam;
 
         private float xRotation;
         private float yRotation;
@@ -37,6 +39,8 @@ namespace Unite.Player
 
         private float defaultFOV;
 
+        private bool initializedCamera;
+
         public Camera PlayerCamera => cam;
         public float DefaultFOV => defaultFOV;
 
@@ -45,11 +49,13 @@ namespace Unite.Player
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
 
-            defaultFOV = cam.fieldOfView;
+            // defaultFOV = cam.fieldOfView;
         }
 
         private void Update()
         {
+            if (!initializedCamera) return;
+            
             Vector2 lookVector = InputManager.Instance.GetLookVectorNormalized();
             if (lookVector.sqrMagnitude < changeThreshold) return;
 
@@ -70,6 +76,13 @@ namespace Unite.Player
         public void DoFov(float endValue, float endDuration)
         {
             cam.DOFieldOfView(endValue, endDuration);
+        }
+
+        public void InitializeCamera(Camera playerCamera)
+        {
+            cam = playerCamera;
+            defaultFOV = cam.fieldOfView;
+            initializedCamera = true;
         }
     }
 }

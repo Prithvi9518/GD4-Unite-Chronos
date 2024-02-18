@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4125013627884836910}
   - component: {fileID: 5387332620251768019}
+  - component: {fileID: 421104597051551567}
   m_Layer: 0
   m_Name: InputManager
   m_TagString: Untagged
@@ -60,3 +61,32 @@ MonoBehaviour:
     type: 2}
   onGamepadUsed: {fileID: 11400000, guid: 0a489327cbafb0d48b443c84bc55d42b, type: 2}
   onKeyboardUsed: {fileID: 11400000, guid: a02d3426de4a0f64a85f754f612b9616, type: 2}
+--- !u!114 &421104597051551567
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8788643976767233303}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b9893a878b6442144bd9c1283a2b4b18, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  description: Listen for game start
+  gameEvent: {fileID: 11400000, guid: 1c64a1214fcebc743a76621bff096664, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 5387332620251768019}
+        m_TargetAssemblyTypeName: Unite.Core.Input.InputManager, Assembly-CSharp
+        m_MethodName: HandleGameStart
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2

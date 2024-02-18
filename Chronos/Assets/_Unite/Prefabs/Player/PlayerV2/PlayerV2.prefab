@@ -111,6 +111,8 @@ GameObject:
   - component: {fileID: 6531373682874521394}
   - component: {fileID: 7010337527716974505}
   - component: {fileID: 5236327477141503649}
+  - component: {fileID: 631103514755004957}
+  - component: {fileID: 1076874597078118196}
   m_Layer: 10
   m_Name: PlayerV2
   m_TagString: Player
@@ -186,7 +188,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damageStatType: {fileID: 11400000, guid: 860d173123a93d240a0b99d6d44a417c, type: 2}
   gunType: {fileID: 11400000, guid: a4dbb0ff601c0874c914cea3977dab33, type: 2}
-  gunParent: {fileID: 0}
   guns:
   - {fileID: 11400000, guid: 2c683b1861df55f478eb4d307da5bd00, type: 2}
   onPlayerShootAction: {fileID: 11400000, guid: f2691b8fa703ec64f81ce7484cffa2f7,
@@ -205,6 +206,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   orientation: {fileID: 4914929914867037143}
+  cameraRoot: {fileID: 0}
   playerData: {fileID: 11400000, guid: 91febe26fbc59ba4f93eac8d0094e544, type: 2}
   onPlayerReady: {fileID: 11400000, guid: 805e5580eb6823248afa5b554b93ceea, type: 2}
 --- !u!114 &4852113630607956632
@@ -522,9 +524,9 @@ CapsuleCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.5
-  m_Height: 2
+  m_Height: 2.0198655
   m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Center: {x: 0, y: -0.009932756, z: 0}
 --- !u!114 &4508471836421242003
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -617,7 +619,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e8542df47c142e9b3e5507abba0347c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cam: {fileID: 0}
   xSensitivity: 4
   ySensitivity: 4
   changeThreshold: 0.01
@@ -645,6 +646,67 @@ MonoBehaviour:
       - m_Target: {fileID: 4508471836421242003}
         m_TargetAssemblyTypeName: Unite.Player.PlayerController, Assembly-CSharp
         m_MethodName: HandleDashAction
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &631103514755004957
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3399079079665099740}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1fccdfe033a24d4ab683293cdb062f86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  footstepSounds:
+  - {fileID: 8300000, guid: 2b9057b3b7a82c74b80501af86c36a5b, type: 3}
+  - {fileID: 8300000, guid: ebf9a54825d9b7e4ea6f99040bb102b2, type: 3}
+  - {fileID: 8300000, guid: 6470f1b28d53b0948b11510ab94945f6, type: 3}
+  - {fileID: 8300000, guid: 059f0e067d7949c478598ca4697055ea, type: 3}
+  - {fileID: 8300000, guid: 1635c5dd7b5af0b41bda672e2cb4e617, type: 3}
+  minTimeBetweenFootsteps: 0.3
+  maxTimeBetweenFootsteps: 0.6
+--- !u!114 &1076874597078118196
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3399079079665099740}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b9893a878b6442144bd9c1283a2b4b18, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  description: Listen for game start and initialize camera
+  gameEvent: {fileID: 11400000, guid: 1c64a1214fcebc743a76621bff096664, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 4508471836421242003}
+        m_TargetAssemblyTypeName: Unite.Player.PlayerController, Assembly-CSharp
+        m_MethodName: InitializeCamera
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 281960008388290872}
+        m_TargetAssemblyTypeName: Unite.Player.PlayerGunHandler, Assembly-CSharp
+        m_MethodName: InitializeActiveGun
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

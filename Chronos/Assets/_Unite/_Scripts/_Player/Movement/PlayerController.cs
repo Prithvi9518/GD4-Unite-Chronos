@@ -64,13 +64,17 @@ namespace Unite.Player
         private PlayerStatsHandler statsHandler;
         private PlayerCameraHandler cameraHandler;
         private PlayerDashHandler dashHandler;
+        private PlayerFootsteps playerFootsteps;
 
         private MovementState currentState;
+
+        private bool cameraInitialized;
 
         public Transform Orientation => orientation;
         public PlayerCameraHandler CameraHandler => cameraHandler;
         public Rigidbody PlayerRigidbody => rb;
         public PlayerMovementData MovementData => movementData;
+        public MovementState CurrentMovementState => currentState;
         public bool IsDashing { get; set; }
         public float MaxYSpeed { get; set; }
 
@@ -80,7 +84,7 @@ namespace Unite.Player
             rb.freezeRotation = true;
             
             cameraHandler = GetComponent<PlayerCameraHandler>();
-            dashHandler = new PlayerDashHandler(this);
+            playerFootsteps = GetComponent<PlayerFootsteps>();
         }
 
         private void Start()
@@ -88,8 +92,19 @@ namespace Unite.Player
             readyToJump = true;
         }
 
+        public void InitializeCamera()
+        {
+            Debug.Log("PlayerController - InitializeCamera()");
+            Camera cam = Managers.GameManager.Instance.PlayerCamera;
+            cameraHandler.InitializeCamera(cam);
+            dashHandler = new PlayerDashHandler(this);
+            cameraInitialized = true;
+        }
+
         private void Update()
         {
+            if (!cameraInitialized) return;
+            
             isGrounded = Physics.Raycast(transform.position + (Vector3.up * raycastYOffset),
                 Vector3.down, raycastLength, groundLayerMask);
             
@@ -107,6 +122,7 @@ namespace Unite.Player
 
         private void FixedUpdate()
         {
+            if (!cameraInitialized) return;
             MovePlayer();
         }
 
@@ -194,6 +210,12 @@ namespace Unite.Player
                 rb.AddForce(moveDirection.normalized * (moveSpeed * movementData.SpeedMultiplier * movementData.AirMultiplier), ForceMode.Force);
 
             rb.useGravity = !OnSlope();
+
+            if (isGrounded)
+            {
+                if(horizontalInput != 0 || verticalInput != 0)
+                    playerFootsteps.TryPlayFootstepSounds();
+            }
         }
 
         private void SpeedControl()
