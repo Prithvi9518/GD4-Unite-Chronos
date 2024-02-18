@@ -7,25 +7,8 @@ namespace Unite.Player
 {
     public class PlayerController : MonoBehaviour, IHandlePlayerMovement
     {
-        [Header("Movement Variables")]
-        [SerializeField]
-        private float walkSpeed = 7f;
-        [SerializeField]
-        private float sprintSpeed;
-        [SerializeField]
-        private float speedMultiplier = 10f;
-        [SerializeField]
-        private float slopeSpeedMultiplier = 20f;
-        [SerializeField]
-        private float slopeDownwardForce = 80f;
-
-        [Header("Jump Variables")] 
-        [SerializeField]
-        private float jumpForce;
-        [SerializeField]
-        private float jumpCooldown;
-        [SerializeField]
-        private float airMultiplier;
+        [SerializeField] 
+        private PlayerMovementData movementData;
 
         [Header("Ground and Slope Check")] 
         [SerializeField]
@@ -62,14 +45,24 @@ namespace Unite.Player
         private float verticalInput;
 
         private PlayerStatsHandler statsHandler;
+        private PlayerCameraHandler cameraHandler;
+        private PlayerDashHandler dashHandler;
 
         [UsedImplicitly]
         private MovementState currentState;
+
+        public Transform Orientation => orientation;
+        public Camera PlayerCamera => cameraHandler.PlayerCamera;
+        public Rigidbody PlayerRigidbody => rb;
+        public PlayerMovementData MovementData => movementData;
 
         private void Awake()
         {
             rb = GetComponent<Rigidbody>();
             rb.freezeRotation = true;
+            
+            cameraHandler = GetComponent<PlayerCameraHandler>();
+            dashHandler = new PlayerDashHandler(this);
         }
 
         private void Start()
@@ -102,12 +95,12 @@ namespace Unite.Player
             if (isGrounded && InputManager.Instance.IsSprintActionPressed())
             {
                 currentState = MovementState.Sprinting;
-                moveSpeed = sprintSpeed;
+                moveSpeed = movementData.SprintSpeed;
             }
             else if (isGrounded)
             {
                 currentState = MovementState.Walking;
-                moveSpeed = walkSpeed;
+                moveSpeed = movementData.WalkSpeed;
             }
             else
             {
@@ -128,18 +121,18 @@ namespace Unite.Player
 
             if (OnSlope() && !exitingSlope)
             {
-                rb.AddForce(GetSlopeMoveDirection() * (moveSpeed * slopeSpeedMultiplier), ForceMode.Force);
+                rb.AddForce(GetSlopeMoveDirection() * (moveSpeed * movementData.SlopeSpeedMultiplier), ForceMode.Force);
 
                 if (rb.velocity.y > 0)
                 {
-                    rb.AddForce(Vector3.down * slopeDownwardForce, ForceMode.Force);
+                    rb.AddForce(Vector3.down * movementData.SlopeDownwardForce, ForceMode.Force);
                 }
             }
             
             if(isGrounded)
-                rb.AddForce(moveDirection.normalized * (moveSpeed * speedMultiplier), ForceMode.Force);
+                rb.AddForce(moveDirection.normalized * (moveSpeed * movementData.SpeedMultiplier), ForceMode.Force);
             else
-                rb.AddForce(moveDirection.normalized * (moveSpeed * speedMultiplier * airMultiplier), ForceMode.Force);
+                rb.AddForce(moveDirection.normalized * (moveSpeed * movementData.SpeedMultiplier * movementData.AirMultiplier), ForceMode.Force);
 
             rb.useGravity = !OnSlope();
         }
@@ -168,7 +161,7 @@ namespace Unite.Player
             
             rb.velocity = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
             
-            rb.AddForce(transform.up * jumpForce, ForceMode.Impulse);
+            rb.AddForce(transform.up * movementData.JumpForce, ForceMode.Impulse);
         }
 
         private void ResetJump()
@@ -183,7 +176,7 @@ namespace Unite.Player
             {
                 readyToJump = false;
                 Jump();
-                Invoke(nameof(ResetJump), jumpCooldown);
+                Invoke(nameof(ResetJump), movementData.JumpCooldown);
             }
         }
 

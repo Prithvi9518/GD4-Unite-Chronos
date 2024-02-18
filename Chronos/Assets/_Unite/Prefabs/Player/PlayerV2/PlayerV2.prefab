@@ -536,14 +536,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1fc0940da02a421f9a783a350ee038d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  walkSpeed: 7
-  sprintSpeed: 10
-  speedMultiplier: 10
-  slopeSpeedMultiplier: 20
-  slopeDownwardForce: 80
-  jumpForce: 7
-  jumpCooldown: 0.25
-  airMultiplier: 0.4
+  movementData: {fileID: 11400000, guid: eed298c8a09b44d4c928ee64aba33050, type: 2}
   groundDrag: 5
   raycastYOffset: 0
   raycastLength: 1.03

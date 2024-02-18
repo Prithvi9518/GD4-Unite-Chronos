@@ -34,6 +34,8 @@ namespace Unite.Player
         private Quaternion targetCameraRotation;
         private Quaternion targetOrientationRotation;
 
+        public Camera PlayerCamera => cam;
+
         private void Start()
         {
             Cursor.lockState = CursorLockMode.Locked;
