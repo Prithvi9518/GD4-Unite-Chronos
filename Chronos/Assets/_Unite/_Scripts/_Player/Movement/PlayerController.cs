@@ -1,4 +1,6 @@
-﻿using JetBrains.Annotations;
+﻿using System;
+using System.Collections;
+using JetBrains.Annotations;
 using Unite.Core.Input;
 using Unite.StatSystem;
 using UnityEngine;
@@ -7,25 +9,8 @@ namespace Unite.Player
 {
     public class PlayerController : MonoBehaviour, IHandlePlayerMovement
     {
-        [Header("Movement Variables")]
-        [SerializeField]
-        private float walkSpeed = 7f;
-        [SerializeField]
-        private float sprintSpeed;
-        [SerializeField]
-        private float speedMultiplier = 10f;
-        [SerializeField]
-        private float slopeSpeedMultiplier = 20f;
-        [SerializeField]
-        private float slopeDownwardForce = 80f;
-
-        [Header("Jump Variables")] 
-        [SerializeField]
-        private float jumpForce;
-        [SerializeField]
-        private float jumpCooldown;
-        [SerializeField]
-        private float airMultiplier;
+        [SerializeField] 
+        private PlayerMovementData movementData;
 
         [Header("Ground and Slope Check")] 
         [SerializeField]
@@ -47,6 +32,8 @@ namespace Unite.Player
         [SerializeField] 
         private StatTypeSO speedStatType;
 
+        private const float SpeedDiffTolerance = 0.001f;
+
         private Vector3 moveDirection;
         private float moveSpeed;
 
@@ -61,15 +48,39 @@ namespace Unite.Player
         private float horizontalInput;
         private float verticalInput;
 
-        private PlayerStatsHandler statsHandler;
+        private bool isDashing;
 
-        [UsedImplicitly]
+        private float desiredMoveSpeed;
+        private float lastDesiredMoveSpeed;
+        private MovementState lastMovementState;
+        private bool keepMomentum;
+        
+        private float speedChangeFactor;
+
+        private float maxYSpeed;
+
+        private Coroutine smoothLerpCoroutine;
+
+        private PlayerStatsHandler statsHandler;
+        private PlayerCameraHandler cameraHandler;
+        private PlayerDashHandler dashHandler;
+
         private MovementState currentState;
+
+        public Transform Orientation => orientation;
+        public PlayerCameraHandler CameraHandler => cameraHandler;
+        public Rigidbody PlayerRigidbody => rb;
+        public PlayerMovementData MovementData => movementData;
+        public bool IsDashing { get; set; }
+        public float MaxYSpeed { get; set; }
 
         private void Awake()
         {
             rb = GetComponent<Rigidbody>();
             rb.freezeRotation = true;
+            
+            cameraHandler = GetComponent<PlayerCameraHandler>();
+            dashHandler = new PlayerDashHandler(this);
         }
 
         private void Start()
@@ -86,10 +97,12 @@ namespace Unite.Player
             SpeedControl();
             UpdateState();
 
-            if (isGrounded)
+            if (isGrounded && currentState != MovementState.Dashing)
                 rb.drag = groundDrag;
             else
                 rb.drag = 0;
+            
+            dashHandler.DoUpdate();
         }
 
         private void FixedUpdate()
@@ -99,20 +112,57 @@ namespace Unite.Player
 
         private void UpdateState()
         {
-            if (isGrounded && InputManager.Instance.IsSprintActionPressed())
+            if (isDashing)
+            {
+                currentState = MovementState.Dashing;
+                desiredMoveSpeed = movementData.DashSpeed;
+                speedChangeFactor = movementData.DashSpeedChangeFactor;
+            }
+            else if (isGrounded && InputManager.Instance.IsSprintActionPressed())
             {
                 currentState = MovementState.Sprinting;
-                moveSpeed = sprintSpeed;
+                desiredMoveSpeed = movementData.SprintSpeed;
             }
             else if (isGrounded)
             {
                 currentState = MovementState.Walking;
-                moveSpeed = walkSpeed;
+                desiredMoveSpeed = movementData.WalkSpeed;
             }
             else
             {
                 currentState = MovementState.Air;
+
+                if (desiredMoveSpeed < movementData.SprintSpeed)
+                {
+                    desiredMoveSpeed = movementData.WalkSpeed;
+                }
+                else
+                {
+                    desiredMoveSpeed = movementData.SprintSpeed;
+                }
             }
+
+            bool desiredMoveSpeedChanged = Math.Abs(desiredMoveSpeed - lastDesiredMoveSpeed) > SpeedDiffTolerance;
+            if (lastMovementState == MovementState.Dashing) keepMomentum = true;
+
+            if (desiredMoveSpeedChanged)
+            {
+                if (keepMomentum)
+                {
+                    if(smoothLerpCoroutine != null)
+                        StopCoroutine(smoothLerpCoroutine);
+                    smoothLerpCoroutine = StartCoroutine(SmoothlyLerpMoveSpeed());
+                }
+                else
+                {
+                    if(smoothLerpCoroutine != null)
+                        StopCoroutine(smoothLerpCoroutine);
+                    moveSpeed = desiredMoveSpeed;
+                }
+            }
+
+            lastDesiredMoveSpeed = desiredMoveSpeed;
+            lastMovementState = currentState;
         }
 
         private void GetInput()
@@ -124,22 +174,24 @@ namespace Unite.Player
 
         private void MovePlayer()
         {
+            if (currentState == MovementState.Dashing) return;
+            
             moveDirection = orientation.forward * verticalInput + orientation.right * horizontalInput;
 
             if (OnSlope() && !exitingSlope)
             {
-                rb.AddForce(GetSlopeMoveDirection() * (moveSpeed * slopeSpeedMultiplier), ForceMode.Force);
+                rb.AddForce(GetSlopeMoveDirection() * (moveSpeed * movementData.SlopeSpeedMultiplier), ForceMode.Force);
 
                 if (rb.velocity.y > 0)
                 {
-                    rb.AddForce(Vector3.down * slopeDownwardForce, ForceMode.Force);
+                    rb.AddForce(Vector3.down * movementData.SlopeDownwardForce, ForceMode.Force);
                 }
             }
             
             if(isGrounded)
-                rb.AddForce(moveDirection.normalized * (moveSpeed * speedMultiplier), ForceMode.Force);
+                rb.AddForce(moveDirection.normalized * (moveSpeed * movementData.SpeedMultiplier), ForceMode.Force);
             else
-                rb.AddForce(moveDirection.normalized * (moveSpeed * speedMultiplier * airMultiplier), ForceMode.Force);
+                rb.AddForce(moveDirection.normalized * (moveSpeed * movementData.SpeedMultiplier * movementData.AirMultiplier), ForceMode.Force);
 
             rb.useGravity = !OnSlope();
         }
@@ -160,6 +212,9 @@ namespace Unite.Player
                 Vector3 limitedVel = flatVel.normalized * moveSpeed;
                 rb.velocity = new Vector3(limitedVel.x, rb.velocity.y, limitedVel.z);
             }
+
+            if (maxYSpeed != 0 && rb.velocity.y > maxYSpeed)
+                rb.velocity = new Vector3(rb.velocity.x, maxYSpeed, rb.velocity.z);
         }
 
         private void Jump()
@@ -168,7 +223,7 @@ namespace Unite.Player
             
             rb.velocity = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
             
-            rb.AddForce(transform.up * jumpForce, ForceMode.Impulse);
+            rb.AddForce(transform.up * movementData.JumpForce, ForceMode.Impulse);
         }
 
         private void ResetJump()
@@ -183,8 +238,13 @@ namespace Unite.Player
             {
                 readyToJump = false;
                 Jump();
-                Invoke(nameof(ResetJump), jumpCooldown);
+                Invoke(nameof(ResetJump), movementData.JumpCooldown);
             }
+        }
+
+        public void HandleDashAction()
+        {
+            dashHandler.Dash();
         }
 
         private bool OnSlope()
@@ -199,6 +259,27 @@ namespace Unite.Player
         private Vector3 GetSlopeMoveDirection()
         {
             return Vector3.ProjectOnPlane(moveDirection, slopeHit.normal).normalized;
+        }
+
+        private IEnumerator SmoothlyLerpMoveSpeed()
+        {
+            float time = 0;
+            float difference = Mathf.Abs(desiredMoveSpeed - moveSpeed);
+            float startValue = moveSpeed;
+
+            float boostFactor = speedChangeFactor;
+
+            while (time < difference)
+            {
+                moveSpeed = Mathf.Lerp(startValue, desiredMoveSpeed, time / difference);
+                time += Time.deltaTime * boostFactor;
+
+                yield return null;
+            }
+
+            moveSpeed = desiredMoveSpeed;
+            speedChangeFactor = 1f;
+            keepMomentum = false;
         }
 
         private void OnDrawGizmos()

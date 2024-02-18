@@ -110,6 +110,7 @@ GameObject:
   - component: {fileID: 5350533824352362183}
   - component: {fileID: 6531373682874521394}
   - component: {fileID: 7010337527716974505}
+  - component: {fileID: 5236327477141503649}
   m_Layer: 10
   m_Name: PlayerV2
   m_TagString: Player
@@ -187,7 +188,7 @@ MonoBehaviour:
   gunType: {fileID: 11400000, guid: a4dbb0ff601c0874c914cea3977dab33, type: 2}
   gunParent: {fileID: 0}
   guns:
-  - {fileID: 11400000, guid: c9ac30643562cb748a989e9fa9059aa6, type: 2}
+  - {fileID: 11400000, guid: 2c683b1861df55f478eb4d307da5bd00, type: 2}
   onPlayerShootAction: {fileID: 11400000, guid: f2691b8fa703ec64f81ce7484cffa2f7,
     type: 2}
   activeGun: {fileID: 0}
@@ -536,14 +537,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1fc0940da02a421f9a783a350ee038d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  walkSpeed: 7
-  sprintSpeed: 10
-  speedMultiplier: 10
-  slopeSpeedMultiplier: 20
-  slopeDownwardForce: 80
-  jumpForce: 7
-  jumpCooldown: 0.25
-  airMultiplier: 0.4
+  movementData: {fileID: 11400000, guid: eed298c8a09b44d4c928ee64aba33050, type: 2}
   groundDrag: 5
   raycastYOffset: 0
   raycastLength: 1.03
@@ -624,13 +618,42 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cam: {fileID: 0}
-  xSensitivity: 5
-  ySensitivity: 5
+  xSensitivity: 4
+  ySensitivity: 4
   changeThreshold: 0.01
   orientation: {fileID: 4914929914867037143}
   cinemachineTarget: {fileID: 1145292077584974615}
   minXRotation: -80
   maxXRotation: 80
+--- !u!114 &5236327477141503649
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3399079079665099740}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b9893a878b6442144bd9c1283a2b4b18, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  description: Listens for dash event
+  gameEvent: {fileID: 11400000, guid: 0c436325152dd344bbace583ffb0ab28, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 4508471836421242003}
+        m_TargetAssemblyTypeName: Unite.Player.PlayerController, Assembly-CSharp
+        m_MethodName: HandleDashAction
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &6261428252287565443
 GameObject:
   m_ObjectHideFlags: 0

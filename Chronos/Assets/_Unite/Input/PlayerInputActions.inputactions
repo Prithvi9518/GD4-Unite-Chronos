@@ -76,6 +76,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "Dash",
+                    "type": "Button",
+                    "id": "cf4a3d2a-2341-469a-9481-1cf7c5dd777b",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -126,7 +135,7 @@
                 {
                     "name": "",
                     "id": "f7bf73fe-5b11-402a-9484-641e73cf24b5",
-                    "path": "<Keyboard>/f",
+                    "path": "<Keyboard>/g",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -324,7 +333,7 @@
                 {
                     "name": "",
                     "id": "9f9aec0d-a743-4cd7-9eb7-24b6ad5ddc77",
-                    "path": "<Keyboard>/leftShift",
+                    "path": "<Keyboard>/leftCtrl",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -335,11 +344,33 @@
                 {
                     "name": "",
                     "id": "c1a02a3a-3b0e-46ca-b2ed-9f673a92406b",
-                    "path": "<Gamepad>/leftTrigger",
+                    "path": "<Gamepad>/leftStickPress",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
                     "action": "Sprint",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "5696c0b3-2206-404c-a003-77275311e9c7",
+                    "path": "<Keyboard>/shift",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Dash",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "be368abf-d930-4257-a475-9a911ec4380c",
+                    "path": "<Gamepad>/leftTrigger",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Dash",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

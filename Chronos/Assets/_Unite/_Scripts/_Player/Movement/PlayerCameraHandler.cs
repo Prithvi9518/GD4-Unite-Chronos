@@ -1,5 +1,6 @@
 ﻿using Unite.Core.Input;
 using UnityEngine;
+using DG.Tweening;
 
 namespace Unite.Player
 {
@@ -34,13 +35,20 @@ namespace Unite.Player
         private Quaternion targetCameraRotation;
         private Quaternion targetOrientationRotation;
 
+        private float defaultFOV;
+
+        public Camera PlayerCamera => cam;
+        public float DefaultFOV => defaultFOV;
+
         private void Start()
         {
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
+
+            defaultFOV = cam.fieldOfView;
         }
 
-        private void LateUpdate()
+        private void Update()
         {
             Vector2 lookVector = InputManager.Instance.GetLookVectorNormalized();
             if (lookVector.sqrMagnitude < changeThreshold) return;
@@ -57,6 +65,11 @@ namespace Unite.Player
             
             cam.transform.rotation = targetCameraRotation;
             orientation.rotation = targetOrientationRotation;
+        }
+
+        public void DoFov(float endValue, float endDuration)
+        {
+            cam.DOFieldOfView(endValue, endDuration);
         }
     }
 }
