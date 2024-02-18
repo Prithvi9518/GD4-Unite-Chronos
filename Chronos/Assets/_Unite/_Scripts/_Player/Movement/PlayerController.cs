@@ -64,6 +64,7 @@ namespace Unite.Player
         private PlayerStatsHandler statsHandler;
         private PlayerCameraHandler cameraHandler;
         private PlayerDashHandler dashHandler;
+        private PlayerFootsteps playerFootsteps;
 
         private MovementState currentState;
 
@@ -71,6 +72,7 @@ namespace Unite.Player
         public PlayerCameraHandler CameraHandler => cameraHandler;
         public Rigidbody PlayerRigidbody => rb;
         public PlayerMovementData MovementData => movementData;
+        public MovementState CurrentMovementState => currentState;
         public bool IsDashing { get; set; }
         public float MaxYSpeed { get; set; }
 
@@ -80,6 +82,7 @@ namespace Unite.Player
             rb.freezeRotation = true;
             
             cameraHandler = GetComponent<PlayerCameraHandler>();
+            playerFootsteps = GetComponent<PlayerFootsteps>();
             dashHandler = new PlayerDashHandler(this);
         }
 
@@ -194,6 +197,12 @@ namespace Unite.Player
                 rb.AddForce(moveDirection.normalized * (moveSpeed * movementData.SpeedMultiplier * movementData.AirMultiplier), ForceMode.Force);
 
             rb.useGravity = !OnSlope();
+
+            if (isGrounded)
+            {
+                if(horizontalInput != 0 || verticalInput != 0)
+                    playerFootsteps.TryPlayFootstepSounds();
+            }
         }
 
         private void SpeedControl()
