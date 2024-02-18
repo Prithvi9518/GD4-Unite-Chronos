@@ -98,6 +98,15 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Dash"",
+                    ""type"": ""Button"",
+                    ""id"": ""cf4a3d2a-2341-469a-9481-1cf7c5dd777b"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -148,7 +157,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""f7bf73fe-5b11-402a-9484-641e73cf24b5"",
-                    ""path"": ""<Keyboard>/f"",
+                    ""path"": ""<Keyboard>/g"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -346,7 +355,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""9f9aec0d-a743-4cd7-9eb7-24b6ad5ddc77"",
-                    ""path"": ""<Keyboard>/leftShift"",
+                    ""path"": ""<Keyboard>/leftCtrl"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -357,11 +366,33 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""c1a02a3a-3b0e-46ca-b2ed-9f673a92406b"",
-                    ""path"": ""<Gamepad>/leftTrigger"",
+                    ""path"": ""<Gamepad>/leftStickPress"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Sprint"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""5696c0b3-2206-404c-a003-77275311e9c7"",
+                    ""path"": ""<Keyboard>/shift"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Dash"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""be368abf-d930-4257-a475-9a911ec4380c"",
+                    ""path"": ""<Gamepad>/leftTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Dash"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -1129,6 +1160,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         m_Default_Jump = m_Default.FindAction("Jump", throwIfNotFound: true);
         m_Default_Look = m_Default.FindAction("Look", throwIfNotFound: true);
         m_Default_Sprint = m_Default.FindAction("Sprint", throwIfNotFound: true);
+        m_Default_Dash = m_Default.FindAction("Dash", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -1221,6 +1253,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
     private readonly InputAction m_Default_Jump;
     private readonly InputAction m_Default_Look;
     private readonly InputAction m_Default_Sprint;
+    private readonly InputAction m_Default_Dash;
     public struct DefaultActions
     {
         private @PlayerInputActions m_Wrapper;
@@ -1233,6 +1266,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         public InputAction @Jump => m_Wrapper.m_Default_Jump;
         public InputAction @Look => m_Wrapper.m_Default_Look;
         public InputAction @Sprint => m_Wrapper.m_Default_Sprint;
+        public InputAction @Dash => m_Wrapper.m_Default_Dash;
         public InputActionMap Get() { return m_Wrapper.m_Default; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1266,6 +1300,9 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
             @Sprint.started += instance.OnSprint;
             @Sprint.performed += instance.OnSprint;
             @Sprint.canceled += instance.OnSprint;
+            @Dash.started += instance.OnDash;
+            @Dash.performed += instance.OnDash;
+            @Dash.canceled += instance.OnDash;
         }
 
         private void UnregisterCallbacks(IDefaultActions instance)
@@ -1294,6 +1331,9 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
             @Sprint.started -= instance.OnSprint;
             @Sprint.performed -= instance.OnSprint;
             @Sprint.canceled -= instance.OnSprint;
+            @Dash.started -= instance.OnDash;
+            @Dash.performed -= instance.OnDash;
+            @Dash.canceled -= instance.OnDash;
         }
 
         public void RemoveCallbacks(IDefaultActions instance)
@@ -1571,6 +1611,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         void OnJump(InputAction.CallbackContext context);
         void OnLook(InputAction.CallbackContext context);
         void OnSprint(InputAction.CallbackContext context);
+        void OnDash(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {
