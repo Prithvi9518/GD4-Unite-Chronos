@@ -11,6 +11,10 @@ namespace Unite.Core.Input
         [Header("Event for jump action")]
         [SerializeField]
         private GameEvent onPlayerJumpAction;
+
+        [Header("Event for dash action")]
+        [SerializeField]
+        private GameEvent onPlayerDashAction;
         
         [Header("Event for interact action")]
         [SerializeField] 
@@ -137,6 +141,11 @@ namespace Unite.Core.Input
         {
             onPlayerJumpAction.Raise();
         }
+        
+        private void RaisePlayerDashEvent(InputAction.CallbackContext ctx)
+        {
+            onPlayerDashAction.Raise();
+        }
 
         private void RaisePlayerUseAbilityEvent(InputAction.CallbackContext ctx)
         {
@@ -173,6 +182,7 @@ namespace Unite.Core.Input
             InputSystem.onDeviceChange += OnDeviceChanged;
 
             defaultActions.Jump.performed += RaisePlayerJumpEvent;
+            defaultActions.Dash.performed += RaisePlayerDashEvent;
             defaultActions.Ability1.performed += RaisePlayerUseAbilityEvent;
             defaultActions.Interact.performed += RaisePlayerInteractEvent;
             defaultActions.JournalOpen.performed += RaiseJournalOpenEvent;
@@ -187,6 +197,7 @@ namespace Unite.Core.Input
             InputSystem.onDeviceChange -= OnDeviceChanged;
 
             defaultActions.Jump.performed -= RaisePlayerJumpEvent;
+            defaultActions.Dash.performed -= RaisePlayerDashEvent;
             defaultActions.Ability1.performed -= RaisePlayerUseAbilityEvent;
             defaultActions.Interact.performed -= RaisePlayerInteractEvent;
             defaultActions.JournalOpen.performed -= RaiseJournalOpenEvent;
