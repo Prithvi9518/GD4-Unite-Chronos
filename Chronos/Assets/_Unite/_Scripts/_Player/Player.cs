@@ -11,6 +11,9 @@ namespace Unite.Player
     {
         [SerializeField]
         private Transform orientation;
+
+        [SerializeField]
+        private Transform cameraRoot;
         
         [SerializeField]
         private PlayerData playerData;
@@ -33,6 +36,7 @@ namespace Unite.Player
         public IHandlePlayerMovement MovementHandler => movementHandler;
         public PlayerStatusEffectable StatusEffectable => statusEffectable;
         public Transform Orientation => (orientation != null) ? orientation : transform;
+        public Transform CameraRoot => (cameraRoot != null) ? cameraRoot : transform;
 
         public Ability Ability => ability;
 

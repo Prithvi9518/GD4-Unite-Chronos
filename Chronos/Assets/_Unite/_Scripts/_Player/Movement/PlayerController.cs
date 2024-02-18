@@ -68,6 +68,8 @@ namespace Unite.Player
 
         private MovementState currentState;
 
+        private bool cameraInitialized;
+
         public Transform Orientation => orientation;
         public PlayerCameraHandler CameraHandler => cameraHandler;
         public Rigidbody PlayerRigidbody => rb;
@@ -83,7 +85,6 @@ namespace Unite.Player
             
             cameraHandler = GetComponent<PlayerCameraHandler>();
             playerFootsteps = GetComponent<PlayerFootsteps>();
-            dashHandler = new PlayerDashHandler(this);
         }
 
         private void Start()
@@ -91,8 +92,19 @@ namespace Unite.Player
             readyToJump = true;
         }
 
+        public void InitializeCamera()
+        {
+            Debug.Log("PlayerController - InitializeCamera()");
+            Camera cam = Managers.GameManager.Instance.PlayerCamera;
+            cameraHandler.InitializeCamera(cam);
+            dashHandler = new PlayerDashHandler(this);
+            cameraInitialized = true;
+        }
+
         private void Update()
         {
+            if (!cameraInitialized) return;
+            
             isGrounded = Physics.Raycast(transform.position + (Vector3.up * raycastYOffset),
                 Vector3.down, raycastLength, groundLayerMask);
             
@@ -110,6 +122,7 @@ namespace Unite.Player
 
         private void FixedUpdate()
         {
+            if (!cameraInitialized) return;
             MovePlayer();
         }
 

@@ -22,8 +22,12 @@ namespace Unite.Managers
         private GameState currentState;
 
         private Player.Player player;
+        private Camera playerCamera;
+        private Transform playerWeaponsHolder;
 
         public Player.Player Player => player;
+        public Camera PlayerCamera => playerCamera;
+        public Transform WeaponsHolder => playerWeaponsHolder;
 
         private void Awake()
         {
@@ -44,10 +48,26 @@ namespace Unite.Managers
             Debug.Log("Initializing player");
             player = p;
             
+            TryStartGame();
+        }
+
+        public void InitializeCamera(Camera cam, Transform weaponsHolder)
+        {
+            Debug.Log("Initializing player camera.");
+            playerCamera = cam;
+            playerWeaponsHolder = weaponsHolder;
+            
+            TryStartGame();
+        }
+
+        private void TryStartGame()
+        {
+            if (player == null || playerCamera == null) return;
+            
             // Check if there is a bootloader present. If no bootloader, just start the game (to support test scenes).
             if (Bootloader.Instance != null) return;
             
-            Debug.Log("No bootloader found after initializing player. Setting GameState = GameState.Start");
+            Debug.Log("No bootloader found after initializing player and camera. Setting GameState = GameState.Start");
             SetGameState(GameState.Start);
         }
 

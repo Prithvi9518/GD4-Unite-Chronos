@@ -193,6 +193,8 @@ GameObject:
   m_Component:
   - component: {fileID: 2201532048469428399}
   - component: {fileID: 600075430719036690}
+  - component: {fileID: 2029773307193943794}
+  - component: {fileID: 2183168721936724729}
   m_Layer: 0
   m_Name: PlayerV2_CameraHolder
   m_TagString: Untagged
@@ -228,4 +230,46 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 151c107f24b4462e8bc4d3008a0ab23e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  follow: {fileID: 0}
+--- !u!114 &2029773307193943794
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8049959264935511778}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a3794e324dda401e856d5b929b4284cf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cam: {fileID: 6952080058728811379}
+  weaponsHolder: {fileID: 2047369827227501974}
+--- !u!114 &2183168721936724729
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8049959264935511778}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b9893a878b6442144bd9c1283a2b4b18, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  description: Listen for game start
+  gameEvent: {fileID: 11400000, guid: 1c64a1214fcebc743a76621bff096664, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 600075430719036690}
+        m_TargetAssemblyTypeName: Unite.Player.CameraFollowPlayer, Assembly-CSharp
+        m_MethodName: InitializeFollow
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
