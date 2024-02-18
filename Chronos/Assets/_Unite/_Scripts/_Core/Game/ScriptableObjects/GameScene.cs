@@ -11,14 +11,14 @@ namespace Unite.Core.Game
         [SerializeField]
         private Object sceneObject;
 
-        public void LoadScene()
+        public AsyncOperation LoadScene()
         {
             string sceneName = sceneObject.name;
 
             if (SceneManager.GetSceneByName(sceneName).isLoaded)
-                return;
+                return null;
 
-            SceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Additive);
+            return SceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Additive);
         }
 
         public void UnloadScene()

@@ -5,7 +5,20 @@ namespace Unite.Bootstrap
 {
     public class Bootstrapper : MonoBehaviour
     {
+        public static Bootstrapper Instance { get; private set; }
+        
         private Player.Player player;
+
+        private void Awake()
+        {
+            if (Instance != null)
+            {
+                Debug.LogWarning("More than one instance of Bootstrapper in the scene! Removing current instance");
+                Destroy(this);
+            }
+
+            Instance = this;
+        }
 
         private void Start()
         {
@@ -20,6 +33,14 @@ namespace Unite.Bootstrap
 
         private void CheckAndDoBootstrap()
         {
+            if (player == null) return;
+            Managers.GameManager.Instance.Initialize(player);
+            Managers.GameManager.Instance.SetGameState(GameState.Start);
+        }
+
+        public void DoBootstrapAfterScenesLoaded()
+        {
+            Debug.Log("DoBootstrapAfterScenesLoaded");
             if (player == null) return;
             Managers.GameManager.Instance.Initialize(player);
             Managers.GameManager.Instance.SetGameState(GameState.Start);

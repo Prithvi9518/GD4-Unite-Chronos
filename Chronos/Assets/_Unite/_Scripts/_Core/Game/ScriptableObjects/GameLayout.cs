@@ -1,7 +1,10 @@
+using System.Collections;
 using System.Collections.Generic;
+using Unite.StatePattern;
 using Unite.Team;
 using Unity.Collections;
 using UnityEngine;
+using Action = System.Action;
 
 namespace Unite.Core.Game
 {
@@ -55,13 +58,22 @@ namespace Unite.Core.Game
         #endregion
 
         [ContextMenu("Load Layout")]
-        public void LoadLayout()
+        public IEnumerator LoadLayout(Action onFinishLoadingLayout)
         {
-            if (levels.Count == 0) return;
-            
-            levels[startLevel].LoadLevel();
+            if (levels.Count == 0) yield break;
+            List<AsyncOperation> scenesToLoad = levels[startLevel].LoadLevel();
+
+            foreach (var sceneToLoad in scenesToLoad)
+            {
+                while (!sceneToLoad.isDone)
+                {
+                    yield return null;
+                }
+            }
 
             isStartLoaded = true;
+
+            onFinishLoadingLayout?.Invoke();
         }
 
         [ContextMenu("Unload Layout")]

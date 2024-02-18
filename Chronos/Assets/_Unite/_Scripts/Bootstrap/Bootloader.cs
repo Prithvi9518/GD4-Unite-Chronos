@@ -14,6 +14,8 @@ namespace Unite.Bootstrap
 
         private bool isLoaded;
 
+        private Action onFinishLoadingScenes;
+
         private void Start()
         {
             DontDestroyOnLoad(this);
@@ -32,7 +34,7 @@ namespace Unite.Bootstrap
 
         private void LoadGameLayout()
         {
-            gameLayout.LoadLayout();
+            StartCoroutine(gameLayout.LoadLayout(onFinishLoadingScenes));
         }
 
         private void LoadPersistentObjectPrefabs()
@@ -43,6 +45,21 @@ namespace Unite.Bootstrap
                 
                 DontDestroyOnLoad(instance);
             }
+        }
+
+        private void StartBootstrap()
+        {
+            Bootstrapper.Instance.DoBootstrapAfterScenesLoaded();
+        }
+
+        private void OnEnable()
+        {
+            onFinishLoadingScenes += StartBootstrap;
+        }
+
+        private void OnDisable()
+        {
+            onFinishLoadingScenes -= StartBootstrap;
         }
 
         private void OnDestroy()
