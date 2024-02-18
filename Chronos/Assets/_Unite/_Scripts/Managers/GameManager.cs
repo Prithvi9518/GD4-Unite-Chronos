@@ -1,4 +1,5 @@
-﻿using Unite.Core.Game;
+﻿using Unite.Bootstrap;
+using Unite.Core.Game;
 using Unite.EventSystem;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -38,9 +39,16 @@ namespace Unite.Managers
             currentState = GameState.Bootstrap;
         }
 
-        public void Initialize(Player.Player p)
+        public void InitializePlayer(Player.Player p)
         {
+            Debug.Log("Initializing player");
             player = p;
+            
+            // Check if there is a bootloader present. If no bootloader, just start the game (to support test scenes).
+            if (Bootloader.Instance != null) return;
+            
+            Debug.Log("No bootloader found after initializing player. Setting GameState = GameState.Start");
+            SetGameState(GameState.Start);
         }
 
         public void SetGameState(GameState newState)
@@ -62,6 +70,8 @@ namespace Unite.Managers
         {
             if (currentState != GameState.Start) return;
             if (player == null) return;
+            
+            Debug.Log("GAME START");
             onGameStart.Raise();
         }
 

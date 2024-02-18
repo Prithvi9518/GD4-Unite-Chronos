@@ -6,6 +6,8 @@ namespace Unite.Bootstrap
 {
     public class Bootloader : MonoBehaviour
     {
+        public static Bootloader Instance { get; private set; }
+        
         [SerializeField] [Tooltip("Contains the levels, scenes, etc. to load the game")]
         private GameLayout gameLayout;
 
@@ -15,6 +17,17 @@ namespace Unite.Bootstrap
         private bool isLoaded;
 
         private Action onFinishLoadingScenes;
+
+        private void Awake()
+        {
+            if (Instance != null)
+            {
+                Debug.LogWarning("More than one instance of Bootloader in the scene! Destroying current instance");
+                Destroy(gameObject);
+            }
+
+            Instance = this;
+        }
 
         private void Start()
         {
@@ -47,19 +60,20 @@ namespace Unite.Bootstrap
             }
         }
 
-        private void StartBootstrap()
+        private void StartGame()
         {
-            Bootstrapper.Instance.DoBootstrapAfterScenesLoaded();
+            Debug.Log("Bootloader - Calling GameManager.SetGameState(GameState.Start)");
+            Managers.GameManager.Instance.SetGameState(GameState.Start);
         }
 
         private void OnEnable()
         {
-            onFinishLoadingScenes += StartBootstrap;
+            onFinishLoadingScenes += StartGame;
         }
 
         private void OnDisable()
         {
-            onFinishLoadingScenes -= StartBootstrap;
+            onFinishLoadingScenes -= StartGame;
         }
 
         private void OnDestroy()
