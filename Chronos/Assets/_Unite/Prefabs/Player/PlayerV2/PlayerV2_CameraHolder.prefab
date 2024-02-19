@@ -424,7 +424,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6770333d6ce949918e8cba6100d8a30d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hipFireRecoil: {x: 6, y: 1, z: 6}
+  hipFireRecoil: {x: 3, y: 1, z: 1}
   snappiness: 6
   returnSpeed: 25
 --- !u!114 &4470159188625838927
@@ -484,7 +484,7 @@ MonoBehaviour:
   rotationPoint: {fileID: 8466249148429770999}
   positionalRecoilSpeed: 8
   rotationalRecoilSpeed: 8
-  positionalReturnSpeed: 18
-  rotationalReturnSpeed: 38
+  positionalReturnSpeed: 40
+  rotationalReturnSpeed: 40
   recoilRotation: {x: 10, y: 5, z: 7}
-  recoilKickback: {x: 0.015, y: 0, z: -0.2}
+  recoilKickback: {x: 0.03, y: 0, z: -0.4}
