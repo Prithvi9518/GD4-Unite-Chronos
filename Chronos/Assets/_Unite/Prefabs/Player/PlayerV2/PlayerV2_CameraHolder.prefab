@@ -161,6 +161,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2047369827227501974}
+  - component: {fileID: 5202704983457502466}
   m_Layer: 0
   m_Name: PlayerV2_WeaponsHolder
   m_TagString: Untagged
@@ -183,6 +184,31 @@ Transform:
   m_Children: []
   m_Father: {fileID: 4494318851258288122}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5202704983457502466
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5403813236290806399}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b5019b181de497199f7c34424763ccb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  toggleSwayPosition: 1
+  toggleSwayRotation: 1
+  toggleBobOffset: 1
+  toggleBobRotation: 1
+  step: 0.01
+  maxStepDistance: 0.06
+  rotationStep: 4
+  maxRotationStep: 5
+  travelLimit: {x: 0.025, y: 0.025, z: 0.025}
+  bobLimit: {x: 0.01, y: 0.01, z: 0.01}
+  bobRotationMultiplier: {x: 2, y: 2, z: 2}
+  positionSmoothing: 10
+  rotationSmoothing: 12
 --- !u!1 &8049959264935511778
 GameObject:
   m_ObjectHideFlags: 0
