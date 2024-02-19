@@ -3,6 +3,7 @@ using System.Collections;
 using JetBrains.Annotations;
 using Unite.Core.Input;
 using Unite.StatSystem;
+using Unite.WeaponSystem;
 using UnityEngine;
 
 namespace Unite.Player
@@ -105,7 +106,8 @@ namespace Unite.Player
 
         public void InitializeWeaponHolder()
         {
-            Transform weaponHolder = Managers.GameManager.Instance.WeaponsHolder;
+            Debug.Log("PlayerController - InitializeWeaponHolder()");
+            WeaponHolder weaponHolder = Managers.GameManager.Instance.WeaponsHolder;
             if (!weaponHolder.TryGetComponent(out WeaponBobAndSway wbs)) return;
             
             weaponBobAndSway = wbs;

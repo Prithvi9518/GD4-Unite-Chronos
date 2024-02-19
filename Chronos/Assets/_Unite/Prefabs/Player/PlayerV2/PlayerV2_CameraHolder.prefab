@@ -162,6 +162,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2047369827227501974}
   - component: {fileID: 5202704983457502466}
+  - component: {fileID: 3987137233538682703}
   m_Layer: 0
   m_Name: PlayerV2_WeaponsHolder
   m_TagString: Untagged
@@ -209,6 +210,19 @@ MonoBehaviour:
   bobRotationMultiplier: {x: 2, y: 2, z: 2}
   positionSmoothing: 10
   rotationSmoothing: 12
+--- !u!114 &3987137233538682703
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5403813236290806399}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4ca5b3034ec347ea9a09ea904c9f244a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  weaponParent: {fileID: 2047369827227501974}
 --- !u!1 &8049959264935511778
 GameObject:
   m_ObjectHideFlags: 0
@@ -221,6 +235,8 @@ GameObject:
   - component: {fileID: 600075430719036690}
   - component: {fileID: 2029773307193943794}
   - component: {fileID: 2183168721936724729}
+  - component: {fileID: 1245026393141866083}
+  - component: {fileID: 4470159188625838927}
   m_Layer: 0
   m_Name: PlayerV2_CameraHolder
   m_TagString: Untagged
@@ -290,6 +306,50 @@ MonoBehaviour:
       - m_Target: {fileID: 600075430719036690}
         m_TargetAssemblyTypeName: Unite.Player.CameraFollowPlayer, Assembly-CSharp
         m_MethodName: InitializeFollow
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &1245026393141866083
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8049959264935511778}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6770333d6ce949918e8cba6100d8a30d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hipFireRecoil: {x: 6, y: 1, z: 6}
+  snappiness: 6
+  returnSpeed: 25
+--- !u!114 &4470159188625838927
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8049959264935511778}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b9893a878b6442144bd9c1283a2b4b18, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  description: Listen for shoot event
+  gameEvent: {fileID: 11400000, guid: f2691b8fa703ec64f81ce7484cffa2f7, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1245026393141866083}
+        m_TargetAssemblyTypeName: Unite.Player.CameraRecoil, Assembly-CSharp
+        m_MethodName: ApplyRecoil
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

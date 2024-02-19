@@ -53,7 +53,7 @@ namespace Unite.Player
         public void InitializeActiveGun()
         {
             Debug.Log("PlayerGunHandler - InitializeActiveGun()");
-            gunParent = Managers.GameManager.Instance.WeaponsHolder;
+            gunParent = Managers.GameManager.Instance.WeaponsHolder.WeaponParent;
             if (activeGun == null) return;
             
             activeGun.Spawn(gunParent, this);
