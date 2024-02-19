@@ -4025,6 +4025,16 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1245026393141866083, guid: 1cb0ae8dfb57a1249acca052f2fbe87b,
+        type: 3}
+      propertyPath: hipFireRecoil.x
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1245026393141866083, guid: 1cb0ae8dfb57a1249acca052f2fbe87b,
+        type: 3}
+      propertyPath: hipFireRecoil.z
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2201532048469428399, guid: 1cb0ae8dfb57a1249acca052f2fbe87b,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -4074,6 +4084,31 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7874485492082593582, guid: 1cb0ae8dfb57a1249acca052f2fbe87b,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7874485492082593582, guid: 1cb0ae8dfb57a1249acca052f2fbe87b,
+        type: 3}
+      propertyPath: recoilKickback.x
+      value: 0.03
+      objectReference: {fileID: 0}
+    - target: {fileID: 7874485492082593582, guid: 1cb0ae8dfb57a1249acca052f2fbe87b,
+        type: 3}
+      propertyPath: recoilKickback.z
+      value: -0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 7874485492082593582, guid: 1cb0ae8dfb57a1249acca052f2fbe87b,
+        type: 3}
+      propertyPath: positionalReturnSpeed
+      value: 40
+      objectReference: {fileID: 0}
+    - target: {fileID: 7874485492082593582, guid: 1cb0ae8dfb57a1249acca052f2fbe87b,
+        type: 3}
+      propertyPath: rotationalReturnSpeed
+      value: 40
       objectReference: {fileID: 0}
     - target: {fileID: 8049959264935511778, guid: 1cb0ae8dfb57a1249acca052f2fbe87b,
         type: 3}

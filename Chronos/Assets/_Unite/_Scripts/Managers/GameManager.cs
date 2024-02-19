@@ -1,6 +1,7 @@
 ﻿using Unite.Bootstrap;
 using Unite.Core.Game;
 using Unite.EventSystem;
+using Unite.WeaponSystem;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -23,11 +24,11 @@ namespace Unite.Managers
 
         private Player.Player player;
         private Camera playerCamera;
-        private Transform playerWeaponsHolder;
+        private WeaponHolder playerWeaponsHolder;
 
         public Player.Player Player => player;
         public Camera PlayerCamera => playerCamera;
-        public Transform WeaponsHolder => playerWeaponsHolder;
+        public WeaponHolder WeaponsHolder => playerWeaponsHolder;
 
         private void Awake()
         {
@@ -55,7 +56,7 @@ namespace Unite.Managers
         {
             Debug.Log("Initializing player camera.");
             playerCamera = cam;
-            playerWeaponsHolder = weaponsHolder;
+            playerWeaponsHolder = weaponsHolder.GetComponent<WeaponHolder>();
             
             TryStartGame();
         }
