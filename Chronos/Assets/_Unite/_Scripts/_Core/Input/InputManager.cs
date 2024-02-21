@@ -11,6 +11,10 @@ namespace Unite.Core.Input
         [Header("Event for jump action")]
         [SerializeField]
         private GameEvent onPlayerJumpAction;
+
+        [Header("Event for dash action")]
+        [SerializeField]
+        private GameEvent onPlayerDashAction;
         
         [Header("Event for interact action")]
         [SerializeField] 
@@ -43,6 +47,11 @@ namespace Unite.Core.Input
         private PlayerInputActions.UIActions uiActions;
         private PlayerInputActions.JournalUIActions journalUIActions;
 
+        public void HandleGameStart()
+        {
+            SwitchToDefaultActionMap();
+        }
+
         private void Awake()
         {
             if (Instance != null)
@@ -57,8 +66,6 @@ namespace Unite.Core.Input
             defaultActions = playerInput.Default;
             uiActions = playerInput.UI;
             journalUIActions = playerInput.JournalUI;
-            
-            SwitchToDefaultActionMap();
         }
 
         private void Start()
@@ -137,6 +144,11 @@ namespace Unite.Core.Input
         {
             onPlayerJumpAction.Raise();
         }
+        
+        private void RaisePlayerDashEvent(InputAction.CallbackContext ctx)
+        {
+            onPlayerDashAction.Raise();
+        }
 
         private void RaisePlayerUseAbilityEvent(InputAction.CallbackContext ctx)
         {
@@ -173,6 +185,7 @@ namespace Unite.Core.Input
             InputSystem.onDeviceChange += OnDeviceChanged;
 
             defaultActions.Jump.performed += RaisePlayerJumpEvent;
+            defaultActions.Dash.performed += RaisePlayerDashEvent;
             defaultActions.Ability1.performed += RaisePlayerUseAbilityEvent;
             defaultActions.Interact.performed += RaisePlayerInteractEvent;
             defaultActions.JournalOpen.performed += RaiseJournalOpenEvent;
@@ -187,6 +200,7 @@ namespace Unite.Core.Input
             InputSystem.onDeviceChange -= OnDeviceChanged;
 
             defaultActions.Jump.performed -= RaisePlayerJumpEvent;
+            defaultActions.Dash.performed -= RaisePlayerDashEvent;
             defaultActions.Ability1.performed -= RaisePlayerUseAbilityEvent;
             defaultActions.Interact.performed -= RaisePlayerInteractEvent;
             defaultActions.JournalOpen.performed -= RaiseJournalOpenEvent;
@@ -207,8 +221,13 @@ namespace Unite.Core.Input
 
         public Vector2 GetLookVectorNormalized()
         {
-            Vector2 lookVector = defaultActions.Look.ReadValue<Vector2>();
-            return lookVector.normalized;
+            // Using old input system only for mouse input handling
+            // This is due to framerate dependency and jitter issues when using the new input system.
+
+            float mouseX = UnityEngine.Input.GetAxisRaw("Mouse X");
+            float mouseY = UnityEngine.Input.GetAxisRaw("Mouse Y");
+
+            return new Vector2(mouseX, mouseY);
         }
 
         public void SwitchToDefaultActionMap()

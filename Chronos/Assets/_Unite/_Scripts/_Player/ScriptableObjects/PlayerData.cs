@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Unite.Player
 {
-    [CreateAssetMenu(fileName = "PlayerData", menuName = "Player Data")]
+    [CreateAssetMenu(fileName = "PlayerData", menuName = "Player/Player Data")]
     public class PlayerData : ScriptableObject
     {
         [Header("Player Base Stats Configuration")]
@@ -30,7 +30,7 @@ namespace Unite.Player
             else
                 player.GunHandler.PerformSetup(player.StatsHandler);
             
-            player.StatusEffectable?.PerformSetup(player);
+            player.StatusEffectable.PerformSetup(player);
         }
     }
 }

@@ -1,12 +1,13 @@
 ﻿using Unite.Core.Input;
 using UnityEngine;
+using DG.Tweening;
 
 namespace Unite.Player
 {
     public class PlayerCameraHandler : MonoBehaviour
     {
-        [SerializeField] 
-        private Camera cam;
+        // [SerializeField] 
+        // private Camera cam;
         
         [Header("Sensitivity Settings")]
         [SerializeField]
@@ -27,6 +28,8 @@ namespace Unite.Player
         private float minXRotation = -90f;
         [SerializeField]
         private float maxXRotation = 90f;
+        
+        private Camera cam;
 
         private float xRotation;
         private float yRotation;
@@ -34,14 +37,25 @@ namespace Unite.Player
         private Quaternion targetCameraRotation;
         private Quaternion targetOrientationRotation;
 
+        private float defaultFOV;
+
+        private bool initializedCamera;
+
+        public Camera PlayerCamera => cam;
+        public float DefaultFOV => defaultFOV;
+
         private void Start()
         {
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
+
+            // defaultFOV = cam.fieldOfView;
         }
 
-        private void LateUpdate()
+        private void Update()
         {
+            if (!initializedCamera) return;
+            
             Vector2 lookVector = InputManager.Instance.GetLookVectorNormalized();
             if (lookVector.sqrMagnitude < changeThreshold) return;
 
@@ -57,6 +71,18 @@ namespace Unite.Player
             
             cam.transform.rotation = targetCameraRotation;
             orientation.rotation = targetOrientationRotation;
+        }
+
+        public void DoFov(float endValue, float endDuration)
+        {
+            cam.DOFieldOfView(endValue, endDuration);
+        }
+
+        public void InitializeCamera(Camera playerCamera)
+        {
+            cam = playerCamera;
+            defaultFOV = cam.fieldOfView;
+            initializedCamera = true;
         }
     }
 }
