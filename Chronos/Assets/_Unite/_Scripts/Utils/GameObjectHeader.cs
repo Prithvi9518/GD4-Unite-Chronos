@@ -31,25 +31,25 @@ namespace Unite.Utils
     
         private void HierarchyWindowItemOnGUI(int instanceID, Rect selectionRect)
         {
-            var gameObject = EditorUtility.InstanceIDToObject(instanceID) as GameObject;
-
-            if (gameObject.GetComponent<GameObjectHeader>() != null)
-            {
-                if (gameObject != null)
-                {
-                    if (categoryType == CategoryType.HierarchyOne)
-                    {
-                        EditorGUI.DrawRect(selectionRect, folderFillColor);
-                        EditorGUI.DropShadowLabel(selectionRect, gameObject.name.Replace(singleCharFolderDelimiter, "").ToUpperInvariant());
-                    }
-                    else
-                    {
-                        EditorGUI.DrawRect(selectionRect, Color.yellow);
-                        EditorGUI.DropShadowLabel(selectionRect, gameObject.name.Replace(singleCharFolderDelimiter, "").ToUpperInvariant());
-                    }
-
-                }
-            }
+            // var gameObject = EditorUtility.InstanceIDToObject(instanceID) as GameObject;
+            //
+            // if (gameObject.GetComponent<GameObjectHeader>() != null)
+            // {
+            //     if (gameObject != null)
+            //     {
+            //         if (categoryType == CategoryType.HierarchyOne)
+            //         {
+            //             EditorGUI.DrawRect(selectionRect, folderFillColor);
+            //             EditorGUI.DropShadowLabel(selectionRect, gameObject.name.Replace(singleCharFolderDelimiter, "").ToUpperInvariant());
+            //         }
+            //         else
+            //         {
+            //             EditorGUI.DrawRect(selectionRect, Color.yellow);
+            //             EditorGUI.DropShadowLabel(selectionRect, gameObject.name.Replace(singleCharFolderDelimiter, "").ToUpperInvariant());
+            //         }
+            //
+            //     }
+            // }
            
         }
     }
