@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a592e590e444fbe96bdf1eb0b444e72, type: 3}
   m_Name: PlayerMovementData
   m_EditorClassIdentifier: 
-  <WalkSpeed>k__BackingField: 10
+  <WalkSpeed>k__BackingField: 5
   <SprintSpeed>k__BackingField: 10
-  <DashSpeed>k__BackingField: 25
+  <DashSpeed>k__BackingField: 20
   <SpeedMultiplier>k__BackingField: 10
   <SlopeSpeedMultiplier>k__BackingField: 20
   <SlopeDownwardForce>k__BackingField: 80
@@ -28,7 +28,7 @@ MonoBehaviour:
   <DashCooldown>k__BackingField: 0.5
   <DashSpeedChangeFactor>k__BackingField: 50
   <MaxDashYSpeed>k__BackingField: 15
-  <DashFOV>k__BackingField: 95
+  <DashFOV>k__BackingField: 105
   <DashFOVTweenDuration>k__BackingField: 0.25
   <DashUseCameraForward>k__BackingField: 0
   <DashAllowAllDirections>k__BackingField: 1

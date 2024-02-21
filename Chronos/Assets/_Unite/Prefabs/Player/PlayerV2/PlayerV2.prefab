@@ -189,7 +189,7 @@ MonoBehaviour:
   damageStatType: {fileID: 11400000, guid: 860d173123a93d240a0b99d6d44a417c, type: 2}
   gunType: {fileID: 11400000, guid: a4dbb0ff601c0874c914cea3977dab33, type: 2}
   guns:
-  - {fileID: 11400000, guid: 2c683b1861df55f478eb4d307da5bd00, type: 2}
+  - {fileID: 11400000, guid: 9d0280c6dbd2f7243b0e65ef476259d3, type: 2}
   onPlayerShootAction: {fileID: 11400000, guid: f2691b8fa703ec64f81ce7484cffa2f7,
     type: 2}
   activeGun: {fileID: 0}
@@ -542,11 +542,11 @@ MonoBehaviour:
   movementData: {fileID: 11400000, guid: eed298c8a09b44d4c928ee64aba33050, type: 2}
   groundDrag: 5
   raycastYOffset: 0
-  raycastLength: 1.03
+  raycastLength: 1.04
   groundLayerMask:
     serializedVersion: 2
     m_Bits: 520
-  maxSlopeAngle: 40
+  maxSlopeAngle: 70
   orientation: {fileID: 4914929914867037143}
   speedStatType: {fileID: 11400000, guid: e3c3053948b1ae541ba29e94f4eba659, type: 2}
 --- !u!114 &5350533824352362183
@@ -707,6 +707,18 @@ MonoBehaviour:
       - m_Target: {fileID: 281960008388290872}
         m_TargetAssemblyTypeName: Unite.Player.PlayerGunHandler, Assembly-CSharp
         m_MethodName: InitializeActiveGun
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 4508471836421242003}
+        m_TargetAssemblyTypeName: Unite.Player.PlayerController, Assembly-CSharp
+        m_MethodName: InitializeWeaponHolder
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

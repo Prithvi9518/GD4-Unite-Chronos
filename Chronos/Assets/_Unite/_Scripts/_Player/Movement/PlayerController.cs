@@ -3,6 +3,7 @@ using System.Collections;
 using JetBrains.Annotations;
 using Unite.Core.Input;
 using Unite.StatSystem;
+using Unite.WeaponSystem;
 using UnityEngine;
 
 namespace Unite.Player
@@ -65,6 +66,7 @@ namespace Unite.Player
         private PlayerCameraHandler cameraHandler;
         private PlayerDashHandler dashHandler;
         private PlayerFootsteps playerFootsteps;
+        private WeaponBobAndSway weaponBobAndSway;
 
         private MovementState currentState;
 
@@ -77,6 +79,7 @@ namespace Unite.Player
         public MovementState CurrentMovementState => currentState;
         public bool IsDashing { get; set; }
         public float MaxYSpeed { get; set; }
+        public bool IsGrounded => isGrounded;
 
         private void Awake()
         {
@@ -99,6 +102,16 @@ namespace Unite.Player
             cameraHandler.InitializeCamera(cam);
             dashHandler = new PlayerDashHandler(this);
             cameraInitialized = true;
+        }
+
+        public void InitializeWeaponHolder()
+        {
+            Debug.Log("PlayerController - InitializeWeaponHolder()");
+            WeaponHolder weaponHolder = Managers.GameManager.Instance.WeaponsHolder;
+            if (!weaponHolder.TryGetComponent(out WeaponBobAndSway wbs)) return;
+            
+            weaponBobAndSway = wbs;
+            weaponBobAndSway.PerformSetup(this);
         }
 
         private void Update()

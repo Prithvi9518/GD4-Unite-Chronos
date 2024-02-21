@@ -1789,8 +1789,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d788a9d3d65fd741b9bf6f0de458794, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damageAudioClip: {fileID: 8300000, guid: 16c50d366f3f1854b83fe0c7faa2146b, type: 3}
-  audioClipVolume: 1
 --- !u!114 &3067266926346338268
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2242,7 +2240,7 @@ PrefabInstance:
     - target: {fileID: 8932469748694489006, guid: 502a811d66dc54846a4de55e684ddcce,
         type: 3}
       propertyPath: m_Name
-      value: Enemy Health Bar Canvas
+      value: Wolf Health Bar Canvas
       objectReference: {fileID: 0}
     - target: {fileID: 8932469748694489006, guid: 502a811d66dc54846a4de55e684ddcce,
         type: 3}
