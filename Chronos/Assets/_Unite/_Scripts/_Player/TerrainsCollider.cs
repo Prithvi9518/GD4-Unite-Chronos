@@ -1,3 +1,4 @@
+using System.Collections;
 using TMPro;
 using Unite.EventSystem;
 using UnityEngine;
@@ -9,19 +10,27 @@ namespace _Unite._Scripts
     {
         [SerializeField]
         private StringEvent uiTextEvent;
-
         private string currentTerrainName;
+  
         private void OnTriggerEnter(Collider other)
         {
             if (other.CompareTag("Terrain"))
             {
-                string newTerrainName = other.gameObject.name;
+                 string newTerrainName = other.gameObject.name;
             
                 if (newTerrainName != currentTerrainName)
                 {
                     uiTextEvent.Raise(other.gameObject.name);
+                    StartCoroutine(FadeOutUIText());
                 }
             }
+        }
+
+        private IEnumerator FadeOutUIText()
+        {
+            yield return new WaitForSeconds(5f);
+            currentTerrainName = "";
+            uiTextEvent.Raise(currentTerrainName);
         }
     }
 }
