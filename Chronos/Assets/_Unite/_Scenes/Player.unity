@@ -139,7 +139,7 @@ PrefabInstance:
     - target: {fileID: 2480400839451476354, guid: d06eae196f62f5e45b9aec82cc238165,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3943340713607660088, guid: d06eae196f62f5e45b9aec82cc238165,
         type: 3}
@@ -283,7 +283,7 @@ PrefabInstance:
     - target: {fileID: 7830948257419484268, guid: 8f8fe7d1085e92f4b9852a9e8a1c5bb9,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -335,7 +335,7 @@ PrefabInstance:
     - target: {fileID: 3399079079665099740, guid: 18f154adf34b45e458f9f68eac83be4b,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6264405710389743357, guid: 18f154adf34b45e458f9f68eac83be4b,
         type: 3}
@@ -458,7 +458,7 @@ PrefabInstance:
     - target: {fileID: 8049959264935511778, guid: 1cb0ae8dfb57a1249acca052f2fbe87b,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -527,6 +527,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: PlayerV1_MainCamera
+      objectReference: {fileID: 0}
+    - target: {fileID: 2242334720868592710, guid: b98c5e8efa2f9c14a98d46ecfa6c92a3,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
