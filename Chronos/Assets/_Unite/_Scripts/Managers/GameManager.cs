@@ -1,7 +1,6 @@
 ﻿using Unite.Bootstrap;
 using Unite.Core.Game;
 using Unite.EventSystem;
-using Unite.Player;
 using Unite.WeaponSystem;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -133,6 +132,11 @@ namespace Unite.Managers
         {
             SetGameState(GameState.PlayerDead);
             Debug.Log("LOSE");
+        }
+
+        public void SwitchToNextLevel()
+        {
+            Bootloader.Instance.LoadNextLevel();
         }
     }
 }

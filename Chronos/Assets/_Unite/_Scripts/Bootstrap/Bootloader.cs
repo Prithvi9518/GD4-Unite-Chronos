@@ -45,6 +45,13 @@ namespace Unite.Bootstrap
             isLoaded = true;
         }
 
+        public void LoadNextLevel()
+        {
+            gameLayout.UnloadLayout();
+            gameLayout.IncrementCurrentLevel();
+            StartCoroutine(gameLayout.LoadLayout(onFinishLoadingScenes));
+        }
+
         private void LoadGameLayout()
         {
             StartCoroutine(gameLayout.LoadLayout(onFinishLoadingScenes));

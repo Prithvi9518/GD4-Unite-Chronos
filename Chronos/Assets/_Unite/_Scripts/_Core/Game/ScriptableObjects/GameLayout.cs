@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unite.StatePattern;
@@ -57,11 +58,16 @@ namespace Unite.Core.Game
 
         #endregion
 
+        private void Awake()
+        {
+            currentLevel = startLevel;
+        }
+
         [ContextMenu("Load Layout")]
         public IEnumerator LoadLayout(Action onFinishLoadingLayout)
         {
             if (levels.Count == 0) yield break;
-            List<AsyncOperation> scenesToLoad = levels[startLevel].LoadLevel();
+            List<AsyncOperation> scenesToLoad = levels[currentLevel].LoadLevel();
 
             foreach (var sceneToLoad in scenesToLoad)
             {
@@ -71,7 +77,8 @@ namespace Unite.Core.Game
                 }
             }
 
-            isStartLoaded = true;
+            if(currentLevel == startLevel)
+                isStartLoaded = true;
 
             onFinishLoadingLayout?.Invoke();
         }
@@ -81,9 +88,15 @@ namespace Unite.Core.Game
         {
             if (levels.Count == 0) return;
 
-            levels[startLevel].UnloadLevel();
+            levels[currentLevel].UnloadLevel();
 
-            isStartLoaded = false;
+            if(currentLevel == startLevel)
+                isStartLoaded = false;
+        }
+
+        public void IncrementCurrentLevel()
+        {
+            currentLevel++;
         }
     }
 }
