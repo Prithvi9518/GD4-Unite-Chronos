@@ -62,8 +62,8 @@ namespace Unite.Bootstrap
 
         private void StartGame()
         {
-            Debug.Log("Bootloader - Calling GameManager.SetGameState(GameState.Start)");
-            Managers.GameManager.Instance.SetGameState(GameState.Start);
+            Debug.Log("Bootloader - Calling GameManager.SetupAndStartGame()");
+            Managers.GameManager.Instance.SetupAndStartGame();
         }
 
         private void OnEnable()

@@ -1,6 +1,7 @@
 ﻿using Unite.Bootstrap;
 using Unite.Core.Game;
 using Unite.EventSystem;
+using Unite.Player;
 using Unite.WeaponSystem;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -10,6 +11,10 @@ namespace Unite.Managers
     public class GameManager : MonoBehaviour
     {
         public static GameManager Instance { get; private set; }
+
+        [Header("Game State Events")]
+        [SerializeField] 
+        private GameEvent onGameSetup;
         
         [SerializeField] 
         private GameEvent onGameStart;
@@ -49,7 +54,7 @@ namespace Unite.Managers
             Debug.Log("Initializing player");
             player = p;
             
-            TryStartGame();
+            TryStartGameForTestScenes();
         }
 
         public void InitializeCamera(Camera cam, Transform weaponsHolder)
@@ -58,18 +63,40 @@ namespace Unite.Managers
             playerCamera = cam;
             playerWeaponsHolder = weaponsHolder.GetComponent<WeaponHolder>();
             
-            TryStartGame();
+            TryStartGameForTestScenes();
         }
 
-        private void TryStartGame()
+        public void SetupAndStartGame()
         {
+            Debug.Log($"GameManager.{nameof(SetupAndStartGame)} called.");
+            
+            if (player == null)
+            {
+                Debug.LogError("GameManager.SetupAndStartGame() - no player found.");
+                return;
+            }
+
+            if (playerCamera == null)
+            {
+                Debug.LogError("GameManager.SetupAndStartGame() - player camera not found.");
+                return;
+            }
+            
+            onGameSetup.Raise();
+            SetGameState(GameState.Start);
+        }
+
+        private void TryStartGameForTestScenes()
+        {
+            Debug.Log($"GameManager.{nameof(TryStartGameForTestScenes)} called.");
+            
             if (player == null || playerCamera == null) return;
             
             // Check if there is a bootloader present. If no bootloader, just start the game (to support test scenes).
             if (Bootloader.Instance != null) return;
             
-            Debug.Log("No bootloader found after initializing player and camera. Setting GameState = GameState.Start");
-            SetGameState(GameState.Start);
+            Debug.Log("No bootloader found after initializing player and camera. Setting up and starting game.");
+            SetupAndStartGame();
         }
 
         public void SetGameState(GameState newState)
