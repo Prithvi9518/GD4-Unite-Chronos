@@ -1,5 +1,6 @@
 ﻿using System;
 using Unite.Core.Game;
+using Unite.Managers;
 using UnityEngine;
 
 namespace Unite.Bootstrap
@@ -16,6 +17,8 @@ namespace Unite.Bootstrap
 
         private bool isLoaded;
 
+        private Action onStartLoadingScene;
+        private Action<float> onProgressLoadingScene;
         private Action onFinishLoadingScene;
 
         private int currentLevel;
@@ -42,7 +45,8 @@ namespace Unite.Bootstrap
 
             LoadPersistentObjectPrefabs();
 
-            LoadStartingLayout();
+            currentLevel = gameLayout.StartLevelIndex;
+            LoadCurrentLayout();
 
             isLoaded = true;
         }
@@ -51,13 +55,12 @@ namespace Unite.Bootstrap
         {
             gameLayout.UnloadLayout(currentLevel);
             currentLevel++;
-            StartCoroutine(gameLayout.LoadLayout(currentLevel, onFinishLoadingScene));
+            LoadCurrentLayout();
         }
 
-        private void LoadStartingLayout()
+        private void LoadCurrentLayout()
         {
-            currentLevel = gameLayout.StartLevelIndex;
-            StartCoroutine(gameLayout.LoadLayout(currentLevel, onFinishLoadingScene));
+            StartCoroutine(gameLayout.LoadLayout(currentLevel, onStartLoadingScene, onProgressLoadingScene, onFinishLoadingScene));
         }
 
         private void LoadPersistentObjectPrefabs()
@@ -70,18 +73,32 @@ namespace Unite.Bootstrap
             }
         }
 
+        private void HandleLevelLoadStart()
+        {
+            GameManager.Instance.OnStartLoadingLevel(currentLevel);
+        }
+
+        private void HandleLevelLoadProgress(float progress)
+        {
+            GameManager.Instance.OnProgressLoadingLevel(progress);
+        }
+
         private void HandleLevelLoadFinish()
         {
-            Managers.GameManager.Instance.OnFinishedLoadingLevel(currentLevel);
+            GameManager.Instance.OnFinishedLoadingLevel(currentLevel);
         }
 
         private void OnEnable()
         {
+            onStartLoadingScene += HandleLevelLoadStart;
+            onProgressLoadingScene += HandleLevelLoadProgress;
             onFinishLoadingScene += HandleLevelLoadFinish;
         }
 
         private void OnDisable()
         {
+            onStartLoadingScene -= HandleLevelLoadStart;
+            onProgressLoadingScene -= HandleLevelLoadProgress;
             onFinishLoadingScene -= HandleLevelLoadFinish;
         }
 

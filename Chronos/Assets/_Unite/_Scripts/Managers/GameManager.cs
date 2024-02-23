@@ -1,4 +1,5 @@
-﻿using Unite.Bootstrap;
+﻿using System;
+using Unite.Bootstrap;
 using Unite.Core.Game;
 using Unite.EventSystem;
 using Unite.Player;
@@ -40,6 +41,8 @@ namespace Unite.Managers
 
         private PlayerSpawnOnSceneLoad playerSpawn;
 
+        public Action<float> OnProgressLevelLoad;
+
         public Player.Player Player => player;
         public Camera PlayerCamera => playerCamera;
         public WeaponHolder WeaponsHolder => playerWeaponsHolder;
@@ -80,6 +83,21 @@ namespace Unite.Managers
             playerSpawn = spawn;
         }
 
+        public void OnStartLoadingLevel(int currentLevel)
+        {
+            Debug.Log($"GameManager.{nameof(OnStartLoadingLevel)}");
+            
+            if(player != null)
+                player.MovementHandler.DisableMovement();
+            
+            onStartSwitchToNextLevel.Raise();
+        }
+
+        public void OnProgressLoadingLevel(float progress)
+        {
+            OnProgressLevelLoad?.Invoke(progress);
+        }
+
         public void OnFinishedLoadingLevel(int currentLevel)
         {
             Debug.Log($"GameManager.{nameof(OnFinishedLoadingLevel)}");
@@ -92,8 +110,9 @@ namespace Unite.Managers
             {
                 player.MovementHandler.EnableMovement();
                 playerSpawn.SpawnPlayer(player);
-                onFinishSwitchToNextLevel.Raise();
             }
+            
+            onFinishSwitchToNextLevel.Raise();
         }
 
         public void SetupAndStartGame()
@@ -167,8 +186,6 @@ namespace Unite.Managers
 
         public void SwitchToNextLevel()
         {
-            player.MovementHandler.DisableMovement();
-            onStartSwitchToNextLevel.Raise();
             Bootloader.Instance.LoadNextLevel();
         }
     }

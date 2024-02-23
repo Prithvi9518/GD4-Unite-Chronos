@@ -45,13 +45,17 @@ namespace Unite.SoundScripts
         private void Start()
         {
             musicEventInstance = GetFMODEventInstance(FMODEvents.Instance.MusicTransitionEvent);
-            musicEventInstance.start();
-            musicEventInstance.setVolume(explorationVolume);
         }
         
         private EventInstance GetFMODEventInstance(EventReference eventReference)
         {
             return RuntimeManager.CreateInstance(eventReference);
+        }
+
+        public void StartPlayingMusic()
+        {
+            musicEventInstance.start();
+            musicEventInstance.setVolume(explorationVolume);
         }
 
         public void PlayCombatMusic()
