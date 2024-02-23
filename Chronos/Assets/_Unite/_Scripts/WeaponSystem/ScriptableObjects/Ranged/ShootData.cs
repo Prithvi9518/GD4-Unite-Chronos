@@ -26,10 +26,14 @@ namespace Unite.WeaponSystem
         [SerializeField]
         private float maxSpreadTime;
 
+        [SerializeField]
+        private float maxShootDistance;
+
         public LayerMask HitMask => hitMask;
         public float FireRate => fireRate;
         public float RecoilRecoverySpeed => recoilRecoverySpeed;
         public float MaxSpreadTime => maxSpreadTime;
+        public float MaxShootDistance => maxShootDistance;
 
         public void ModifyFireRate(float amount)
         {
@@ -62,6 +66,7 @@ namespace Unite.WeaponSystem
             clone.fireRate = fireRate;
             clone.recoilRecoverySpeed = recoilRecoverySpeed;
             clone.maxSpreadTime = maxSpreadTime;
+            clone.maxShootDistance = maxShootDistance;
             
             return clone;
         }

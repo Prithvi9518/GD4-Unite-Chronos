@@ -486,5 +486,5 @@ MonoBehaviour:
   rotationalRecoilSpeed: 8
   positionalReturnSpeed: 40
   rotationalReturnSpeed: 40
-  recoilRotation: {x: 10, y: 5, z: 7}
-  recoilKickback: {x: 0.03, y: 0, z: -0.4}
+  recoilRotation: {x: 20, y: 5, z: 7}
+  recoilKickback: {x: 0.03, y: 0.1, z: -0.4}
