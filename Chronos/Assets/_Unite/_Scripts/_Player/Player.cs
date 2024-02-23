@@ -52,6 +52,8 @@ namespace Unite.Player
             statusEffectable = GetComponent<PlayerStatusEffectable>();
 
             ability = GetComponent<Ability>();
+            
+            DontDestroyOnLoad(gameObject);
         }
 
         private void Start()
