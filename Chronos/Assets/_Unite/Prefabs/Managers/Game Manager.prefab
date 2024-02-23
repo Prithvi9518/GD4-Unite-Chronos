@@ -50,6 +50,11 @@ MonoBehaviour:
   onGameStart: {fileID: 11400000, guid: 1c64a1214fcebc743a76621bff096664, type: 2}
   onGameWin: {fileID: 0}
   onGameLose: {fileID: 0}
+  onStartSwitchToNextLevel: {fileID: 11400000, guid: b19c0b7dbb256cc4caaa28fa1ddc459c,
+    type: 2}
+  onFinishSwitchToNextLevel: {fileID: 11400000, guid: 18dd0b4d178be624591980e20039a1df,
+    type: 2}
+  onSpawnPlayer: {fileID: 11400000, guid: 805e5580eb6823248afa5b554b93ceea, type: 2}
 --- !u!114 &7034267765708947679
 MonoBehaviour:
   m_ObjectHideFlags: 0

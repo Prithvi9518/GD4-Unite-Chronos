@@ -1,6 +1,7 @@
 ﻿using Unite.Bootstrap;
 using Unite.Core.Game;
 using Unite.EventSystem;
+using Unite.Player;
 using Unite.WeaponSystem;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -23,12 +24,21 @@ namespace Unite.Managers
         
         [SerializeField] 
         private GameEvent onGameLose;
+
+        [Header("Events related to loading levels")]
+        [SerializeField]
+        private GameEvent onStartSwitchToNextLevel;
         
+        [SerializeField]
+        private GameEvent onFinishSwitchToNextLevel;
+
         private GameState currentState;
 
         private Player.Player player;
         private Camera playerCamera;
         private WeaponHolder playerWeaponsHolder;
+
+        private PlayerSpawnOnSceneLoad playerSpawn;
 
         public Player.Player Player => player;
         public Camera PlayerCamera => playerCamera;
@@ -63,6 +73,27 @@ namespace Unite.Managers
             playerWeaponsHolder = weaponsHolder.GetComponent<WeaponHolder>();
             
             TryStartGameForTestScenes();
+        }
+
+        public void RegisterPlayerSpawn(PlayerSpawnOnSceneLoad spawn)
+        {
+            playerSpawn = spawn;
+        }
+
+        public void OnFinishedLoadingLevel(int currentLevel)
+        {
+            Debug.Log($"GameManager.{nameof(OnFinishedLoadingLevel)}");
+            
+            if (currentLevel == 0)
+            {
+                SetupAndStartGame();
+            }
+            else
+            {
+                player.MovementHandler.EnableMovement();
+                playerSpawn.SpawnPlayer(player);
+                onFinishSwitchToNextLevel.Raise();
+            }
         }
 
         public void SetupAndStartGame()
@@ -136,6 +167,8 @@ namespace Unite.Managers
 
         public void SwitchToNextLevel()
         {
+            player.MovementHandler.DisableMovement();
+            onStartSwitchToNextLevel.Raise();
             Bootloader.Instance.LoadNextLevel();
         }
     }

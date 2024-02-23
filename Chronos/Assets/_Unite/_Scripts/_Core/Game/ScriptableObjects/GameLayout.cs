@@ -1,7 +1,5 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
-using Unite.StatePattern;
 using Unite.Team;
 using Unity.Collections;
 using UnityEngine;
@@ -27,8 +25,6 @@ namespace Unite.Core.Game
 
         [ReadOnly]
         [SerializeField] private bool isStartLoaded;
-
-        [ReadOnly] [SerializeField] private int currentLevel;
 
         #endregion
 
@@ -58,16 +54,15 @@ namespace Unite.Core.Game
 
         #endregion
 
-        private void Awake()
-        {
-            currentLevel = startLevel;
-        }
+        public int StartLevelIndex => startLevel;
 
         [ContextMenu("Load Layout")]
-        public IEnumerator LoadLayout(Action onFinishLoadingLayout)
+        public IEnumerator LoadLayout(int levelIndex, Action onFinishLoadingLayout)
         {
             if (levels.Count == 0) yield break;
-            List<AsyncOperation> scenesToLoad = levels[currentLevel].LoadLevel();
+            if(levelIndex < 0 || levelIndex >= levels.Count) yield break;
+            
+            List<AsyncOperation> scenesToLoad = levels[levelIndex].LoadLevel();
 
             foreach (var sceneToLoad in scenesToLoad)
             {
@@ -77,26 +72,22 @@ namespace Unite.Core.Game
                 }
             }
 
-            if(currentLevel == startLevel)
+            if(levelIndex == startLevel)
                 isStartLoaded = true;
 
             onFinishLoadingLayout?.Invoke();
         }
 
         [ContextMenu("Unload Layout")]
-        public void UnloadLayout()
+        public void UnloadLayout(int levelIndex)
         {
             if (levels.Count == 0) return;
+            if(levelIndex < 0 || levelIndex >= levels.Count) return;
 
-            levels[currentLevel].UnloadLevel();
+            levels[levelIndex].UnloadLevel();
 
-            if(currentLevel == startLevel)
+            if(levelIndex == startLevel)
                 isStartLoaded = false;
-        }
-
-        public void IncrementCurrentLevel()
-        {
-            currentLevel++;
         }
     }
 }

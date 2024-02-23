@@ -66,7 +66,7 @@ namespace Unite.Player
         {
             healthHandler.enabled = false;
             gunHandler.enabled = false;
-            movementHandler.ToggleMovement(false);
+            movementHandler.DisableMovement();
         }
     }
 }
