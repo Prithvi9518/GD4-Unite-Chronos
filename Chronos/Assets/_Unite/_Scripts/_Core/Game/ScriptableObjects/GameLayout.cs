@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unite.Team;
@@ -57,10 +58,12 @@ namespace Unite.Core.Game
         public int StartLevelIndex => startLevel;
 
         [ContextMenu("Load Layout")]
-        public IEnumerator LoadLayout(int levelIndex, Action onFinishLoadingLayout)
+        public IEnumerator LoadLayout(int levelIndex, Action onStartLoading, Action<float> onProgressLoading, Action onFinishLoading)
         {
             if (levels.Count == 0) yield break;
             if(levelIndex < 0 || levelIndex >= levels.Count) yield break;
+            
+            onStartLoading?.Invoke();
             
             List<AsyncOperation> scenesToLoad = levels[levelIndex].LoadLevel();
 
@@ -68,6 +71,16 @@ namespace Unite.Core.Game
             {
                 while (!sceneToLoad.isDone)
                 {
+                    float loadProgress = 0;
+
+                    foreach (AsyncOperation operation in scenesToLoad)
+                    {
+                        loadProgress += operation.progress;
+                    }
+
+                    loadProgress /= scenesToLoad.Count;
+                    onProgressLoading?.Invoke(loadProgress);
+
                     yield return null;
                 }
             }
@@ -75,7 +88,7 @@ namespace Unite.Core.Game
             if(levelIndex == startLevel)
                 isStartLoaded = true;
 
-            onFinishLoadingLayout?.Invoke();
+            onFinishLoading?.Invoke();
         }
 
         [ContextMenu("Unload Layout")]
