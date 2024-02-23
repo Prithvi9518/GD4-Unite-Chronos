@@ -22,4 +22,5 @@ MonoBehaviour:
   damageConfig: {fileID: 11400000, guid: ad71c43ad3dcb894787b11e06a398e13, type: 2}
   bulletTrailData: {fileID: 11400000, guid: 0edf40397221e5f46b5ec16fefe04ee0, type: 2}
   audioConfig: {fileID: 11400000, guid: ac06039a82f737c43b55e261f0f64cb5, type: 2}
-  impactType: {fileID: 0}
+  impactType: {fileID: 11400000, guid: 61c04f339fa8f554b8a1069152019a6c, type: 2}
+  useBulletTrails: 0
