@@ -16,7 +16,9 @@ namespace Unite.Bootstrap
 
         private bool isLoaded;
 
-        private Action onFinishLoadingScenes;
+        private Action onFinishLoadingScene;
+
+        private int currentLevel;
 
         private void Awake()
         {
@@ -40,14 +42,22 @@ namespace Unite.Bootstrap
 
             LoadPersistentObjectPrefabs();
 
-            LoadGameLayout();
+            LoadStartingLayout();
 
             isLoaded = true;
         }
 
-        private void LoadGameLayout()
+        public void LoadNextLevel()
         {
-            StartCoroutine(gameLayout.LoadLayout(onFinishLoadingScenes));
+            gameLayout.UnloadLayout(currentLevel);
+            currentLevel++;
+            StartCoroutine(gameLayout.LoadLayout(currentLevel, onFinishLoadingScene));
+        }
+
+        private void LoadStartingLayout()
+        {
+            currentLevel = gameLayout.StartLevelIndex;
+            StartCoroutine(gameLayout.LoadLayout(currentLevel, onFinishLoadingScene));
         }
 
         private void LoadPersistentObjectPrefabs()
@@ -60,25 +70,24 @@ namespace Unite.Bootstrap
             }
         }
 
-        private void StartGame()
+        private void HandleLevelLoadFinish()
         {
-            Debug.Log("Bootloader - Calling GameManager.SetGameState(GameState.Start)");
-            Managers.GameManager.Instance.SetGameState(GameState.Start);
+            Managers.GameManager.Instance.OnFinishedLoadingLevel(currentLevel);
         }
 
         private void OnEnable()
         {
-            onFinishLoadingScenes += StartGame;
+            onFinishLoadingScene += HandleLevelLoadFinish;
         }
 
         private void OnDisable()
         {
-            onFinishLoadingScenes -= StartGame;
+            onFinishLoadingScene -= HandleLevelLoadFinish;
         }
 
         private void OnDestroy()
         {
-            gameLayout.UnloadLayout();
+            gameLayout.UnloadLayout(currentLevel);
         }
     }
 }

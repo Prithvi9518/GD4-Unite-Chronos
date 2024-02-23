@@ -72,6 +72,8 @@ namespace Unite.Player
 
         private bool cameraInitialized;
 
+        private bool isMoving;
+
         public Transform Orientation => orientation;
         public PlayerCameraHandler CameraHandler => cameraHandler;
         public Rigidbody PlayerRigidbody => rb;
@@ -93,6 +95,7 @@ namespace Unite.Player
         private void Start()
         {
             readyToJump = true;
+            isMoving = true;
         }
 
         public void InitializeCamera()
@@ -117,6 +120,7 @@ namespace Unite.Player
         private void Update()
         {
             if (!cameraInitialized) return;
+            if (!isMoving) return;
             
             isGrounded = Physics.Raycast(transform.position + (Vector3.up * raycastYOffset),
                 Vector3.down, raycastLength, groundLayerMask);
@@ -136,6 +140,8 @@ namespace Unite.Player
         private void FixedUpdate()
         {
             if (!cameraInitialized) return;
+            if(!isMoving) return;
+            
             MovePlayer();
         }
 
@@ -269,6 +275,8 @@ namespace Unite.Player
 
         public void HandleJumpAction()
         {
+            if (!isMoving) return;
+            
             if (readyToJump && isGrounded)
             {
                 readyToJump = false;
@@ -279,6 +287,8 @@ namespace Unite.Player
 
         public void HandleDashAction()
         {
+            if (!isMoving) return;
+            
             dashHandler.Dash();
         }
 
@@ -344,8 +354,16 @@ namespace Unite.Player
             moveSpeed += modifier;
         }
 
-        public void ToggleMovement(bool toggle)
+        public void EnableMovement()
         {
+            rb.isKinematic = false;
+            isMoving = true;
+        }
+
+        public void DisableMovement()
+        {
+            rb.isKinematic = true;
+            isMoving = false;
         }
     }
 }

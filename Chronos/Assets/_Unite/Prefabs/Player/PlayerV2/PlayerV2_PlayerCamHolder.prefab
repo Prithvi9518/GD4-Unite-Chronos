@@ -335,7 +335,7 @@ GameObject:
   - component: {fileID: 4470159188625838927}
   - component: {fileID: 7874485492082593582}
   m_Layer: 0
-  m_Name: PlayerV2_CameraHolder
+  m_Name: PlayerV2_PlayerCamHolder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -395,8 +395,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9893a878b6442144bd9c1283a2b4b18, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  description: Listen for game start
-  gameEvent: {fileID: 11400000, guid: 1c64a1214fcebc743a76621bff096664, type: 2}
+  description: Listen for game setup
+  gameEvent: {fileID: 11400000, guid: 490f88a502b497645bd9a62ad27d755a, type: 2}
   response:
     m_PersistentCalls:
       m_Calls:

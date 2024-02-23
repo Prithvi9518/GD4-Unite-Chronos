@@ -250,5 +250,15 @@ namespace Unite.Core.Input
             uiActions.Disable();
             journalUIActions.Enable();
         }
+
+        public void EnableDefaultActions()
+        {
+            defaultActions.Enable();
+        }
+
+        public void DisableDefaultActions()
+        {
+            defaultActions.Disable();
+        }
     }
 }
