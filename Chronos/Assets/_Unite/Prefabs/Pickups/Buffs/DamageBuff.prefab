@@ -301,6 +301,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: 022e20b9888744e47bde26d57b006241,
         type: 2}
+    - target: {fileID: 1500556460001997301, guid: 372cf2fa00fa0b94496898bb3e69ef26,
+        type: 3}
+      propertyPath: displayName
+      value: Damage Buff
+      objectReference: {fileID: 0}
     - target: {fileID: 2578620653873537429, guid: 372cf2fa00fa0b94496898bb3e69ef26,
         type: 3}
       propertyPath: m_Name

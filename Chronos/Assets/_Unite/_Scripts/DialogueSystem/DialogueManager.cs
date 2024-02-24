@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Unite.EventSystem;
 using UnityEngine;
 
 namespace Unite.DialogueSystem
@@ -10,6 +11,10 @@ namespace Unite.DialogueSystem
         [Header("Set to false for testing purposes:")]
         [SerializeField]
         private bool playDialogue = true;
+
+        [Header("Send event to analytics manager when playing dialogue")]
+        [SerializeField]
+        private DialogueSOEvent dialogueAnalyticsEvent;
         
         public static DialogueManager Instance { get; private set; }
 
@@ -30,6 +35,8 @@ namespace Unite.DialogueSystem
         public void PlayDialogue(DialogueSO dialogue)
         {
             if (!playDialogue) return;
+            
+            dialogueAnalyticsEvent.Raise(dialogue);
             StartCoroutine(DialogueLinesCoroutine(dialogue.Lines));
         }
 
