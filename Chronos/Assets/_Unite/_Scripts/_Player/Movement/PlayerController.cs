@@ -2,6 +2,7 @@
 using System.Collections;
 using JetBrains.Annotations;
 using Unite.Core.Input;
+using Unite.EventSystem;
 using Unite.StatSystem;
 using Unite.WeaponSystem;
 using UnityEngine;
@@ -32,6 +33,10 @@ namespace Unite.Player
         [Header("Stats")] 
         [SerializeField] 
         private StatTypeSO speedStatType;
+
+        [Header("Events for Analytics")] 
+        [SerializeField]
+        private GameEvent onDashUsedUpdateAnalytics;
 
         private const float SpeedDiffTolerance = 0.001f;
 
@@ -82,6 +87,7 @@ namespace Unite.Player
         public bool IsDashing { get; set; }
         public float MaxYSpeed { get; set; }
         public bool IsGrounded => isGrounded;
+        public GameEvent OnDashUsed_UpdateAnalytics => onDashUsedUpdateAnalytics;
 
         private void Awake()
         {
