@@ -57,15 +57,23 @@ namespace Unite.Core.Game
 
         public int StartLevelIndex => startLevel;
 
+        public GameLevel GetLevelByIndex(int levelIndex)
+        {
+            if (levels.Count == 0) return null;
+            if(levelIndex < 0 || levelIndex >= levels.Count) return null;
+
+            return levels[levelIndex];
+        }
+
         [ContextMenu("Load Layout")]
         public IEnumerator LoadLayout(int levelIndex, Action onStartLoading, Action<float> onProgressLoading, Action onFinishLoading)
         {
-            if (levels.Count == 0) yield break;
-            if(levelIndex < 0 || levelIndex >= levels.Count) yield break;
+            GameLevel level = GetLevelByIndex(levelIndex);
+            if(level == null) yield break;
             
             onStartLoading?.Invoke();
             
-            List<AsyncOperation> scenesToLoad = levels[levelIndex].LoadLevel();
+            List<AsyncOperation> scenesToLoad = level.LoadLevel();
 
             foreach (var sceneToLoad in scenesToLoad)
             {
