@@ -36,8 +36,11 @@ namespace Unite.Player
         public void Dash()
         {
             if (dashCooldownTimer > 0) return;
-            else dashCooldownTimer = movementData.DashCooldown;
             
+            playerController.OnDashUsed_UpdateAnalytics.Raise();
+            
+            dashCooldownTimer = movementData.DashCooldown;
+
             playerController.IsDashing = true;
             playerController.MaxYSpeed = movementData.MaxDashYSpeed;
             

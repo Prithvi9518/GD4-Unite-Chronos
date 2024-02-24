@@ -21,7 +21,7 @@ namespace Unite.Bootstrap
         private Action<float> onProgressLoadingScene;
         private Action onFinishLoadingScene;
 
-        private int currentLevel;
+        private int currentLevelIndex;
 
         private void Awake()
         {
@@ -45,7 +45,7 @@ namespace Unite.Bootstrap
 
             LoadPersistentObjectPrefabs();
 
-            currentLevel = gameLayout.StartLevelIndex;
+            currentLevelIndex = gameLayout.StartLevelIndex;
             LoadCurrentLayout();
 
             isLoaded = true;
@@ -53,14 +53,14 @@ namespace Unite.Bootstrap
 
         public void LoadNextLevel()
         {
-            gameLayout.UnloadLayout(currentLevel);
-            currentLevel++;
+            gameLayout.UnloadLayout(currentLevelIndex);
+            currentLevelIndex++;
             LoadCurrentLayout();
         }
 
         private void LoadCurrentLayout()
         {
-            StartCoroutine(gameLayout.LoadLayout(currentLevel, onStartLoadingScene, onProgressLoadingScene, onFinishLoadingScene));
+            StartCoroutine(gameLayout.LoadLayout(currentLevelIndex, onStartLoadingScene, onProgressLoadingScene, onFinishLoadingScene));
         }
 
         private void LoadPersistentObjectPrefabs()
@@ -75,7 +75,7 @@ namespace Unite.Bootstrap
 
         private void HandleLevelLoadStart()
         {
-            GameManager.Instance.OnStartLoadingLevel(currentLevel);
+            GameManager.Instance.OnStartLoadingLevel();
         }
 
         private void HandleLevelLoadProgress(float progress)
@@ -85,7 +85,7 @@ namespace Unite.Bootstrap
 
         private void HandleLevelLoadFinish()
         {
-            GameManager.Instance.OnFinishedLoadingLevel(currentLevel);
+            GameManager.Instance.OnFinishedLoadingLevel(currentLevelIndex, gameLayout.GetLevelByIndex(currentLevelIndex));
         }
 
         private void OnEnable()
@@ -104,7 +104,7 @@ namespace Unite.Bootstrap
 
         private void OnDestroy()
         {
-            gameLayout.UnloadLayout(currentLevel);
+            gameLayout.UnloadLayout(currentLevelIndex);
         }
     }
 }

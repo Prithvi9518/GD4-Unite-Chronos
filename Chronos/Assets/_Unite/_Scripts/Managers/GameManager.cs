@@ -6,6 +6,7 @@ using Unite.Player;
 using Unite.WeaponSystem;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.Serialization;
 
 namespace Unite.Managers
 {
@@ -41,7 +42,11 @@ namespace Unite.Managers
 
         private PlayerSpawnOnSceneLoad playerSpawn;
 
+        private GameLevel currentLevel;
+
         public Action<float> OnProgressLevelLoad;
+        public Action<GameLevel> OnStartLevel_UpdateTimeTracking;
+        public Action<GameLevel> OnFinishLevel_UpdateTimeTracking;
 
         public Player.Player Player => player;
         public Camera PlayerCamera => playerCamera;
@@ -83,7 +88,7 @@ namespace Unite.Managers
             playerSpawn = spawn;
         }
 
-        public void OnStartLoadingLevel(int currentLevel)
+        public void OnStartLoadingLevel()
         {
             Debug.Log($"GameManager.{nameof(OnStartLoadingLevel)}");
             
@@ -98,11 +103,11 @@ namespace Unite.Managers
             OnProgressLevelLoad?.Invoke(progress);
         }
 
-        public void OnFinishedLoadingLevel(int currentLevel)
+        public void OnFinishedLoadingLevel(int levelIndex, GameLevel level)
         {
             Debug.Log($"GameManager.{nameof(OnFinishedLoadingLevel)}");
             
-            if (currentLevel == 0)
+            if (levelIndex == 0)
             {
                 SetupAndStartGame();
             }
@@ -113,6 +118,9 @@ namespace Unite.Managers
             }
             
             onFinishSwitchToNextLevel.Raise();
+            
+            currentLevel = level;
+            OnStartLevel_UpdateTimeTracking?.Invoke(currentLevel);
         }
 
         public void SetupAndStartGame()
@@ -186,6 +194,7 @@ namespace Unite.Managers
 
         public void SwitchToNextLevel()
         {
+            OnFinishLevel_UpdateTimeTracking?.Invoke(currentLevel);
             Bootloader.Instance.LoadNextLevel();
         }
     }
