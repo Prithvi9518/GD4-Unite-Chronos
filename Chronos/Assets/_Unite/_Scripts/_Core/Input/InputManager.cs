@@ -41,6 +41,8 @@ namespace Unite.Core.Input
         private GamepadTypeEvent onGamepadUsed;
         [SerializeField]
         private GameEvent onKeyboardUsed;
+
+        private bool mouseLookEnabled;
         
         private PlayerInputActions playerInput;
         private PlayerInputActions.DefaultActions defaultActions;
@@ -227,12 +229,13 @@ namespace Unite.Core.Input
             float mouseX = UnityEngine.Input.GetAxisRaw("Mouse X");
             float mouseY = UnityEngine.Input.GetAxisRaw("Mouse Y");
 
-            return new Vector2(mouseX, mouseY);
+            return (mouseLookEnabled) ? new Vector2(mouseX, mouseY) : Vector2.zero;
         }
 
         public void SwitchToDefaultActionMap()
         {
             defaultActions.Enable();
+            mouseLookEnabled = true;
             uiActions.Disable();
             journalUIActions.Disable();
         }
@@ -240,6 +243,7 @@ namespace Unite.Core.Input
         public void SwitchToUIActionMap()
         {
             defaultActions.Disable();
+            mouseLookEnabled = false;
             uiActions.Enable();
             journalUIActions.Disable();
         }
@@ -247,8 +251,21 @@ namespace Unite.Core.Input
         public void SwitchToJournalUIActionMap()
         {
             defaultActions.Disable();
+            mouseLookEnabled = false;
             uiActions.Disable();
             journalUIActions.Enable();
+        }
+
+        public void EnableDefaultActions()
+        {
+            defaultActions.Enable();
+            mouseLookEnabled = true;
+        }
+
+        public void DisableDefaultActions()
+        {
+            defaultActions.Disable();
+            mouseLookEnabled = false;
         }
     }
 }

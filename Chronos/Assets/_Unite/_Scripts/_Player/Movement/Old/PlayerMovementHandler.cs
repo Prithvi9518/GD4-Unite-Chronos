@@ -42,9 +42,14 @@ namespace Unite.Player
             controller.SprintSpeed += modifier;
         }
 
-        public void ToggleMovement(bool toggle)
+        public void EnableMovement()
         {
-            controller.enabled = toggle;
+            controller.enabled = true;
+        }
+
+        public void DisableMovement()
+        {
+            controller.enabled = false;
         }
     }
 }

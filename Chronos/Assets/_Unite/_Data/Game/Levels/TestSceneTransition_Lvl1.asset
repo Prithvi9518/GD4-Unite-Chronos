@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c815f059f40b2db47ae4ff971a9adbbf, type: 3}
+  m_Name: TestSceneTransition_Lvl1
+  m_EditorClassIdentifier: 
+  scenes:
+  - {fileID: 11400000, guid: 74098160be1c84746a856509d0832e0e, type: 2}
+  useDefaultPostProcessingVolume: 1
+  postProcessPrefab: {fileID: 834409248545554803, guid: 8ad563cf71bc2c04ca5e036b19b89274,
+    type: 3}
+  defaultPostProcessProfile: {fileID: 11400000, guid: a6560a915ef98420e9faacc1c7438823,
+    type: 2}

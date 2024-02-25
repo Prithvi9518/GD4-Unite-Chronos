@@ -158,6 +158,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: 8a3fe4c3b02126644a49770bd6753f0b,
         type: 2}
+    - target: {fileID: 1500556460001997301, guid: 372cf2fa00fa0b94496898bb3e69ef26,
+        type: 3}
+      propertyPath: displayName
+      value: Fire Rate Buff
+      objectReference: {fileID: 0}
     - target: {fileID: 2578620653873537429, guid: 372cf2fa00fa0b94496898bb3e69ef26,
         type: 3}
       propertyPath: m_Name

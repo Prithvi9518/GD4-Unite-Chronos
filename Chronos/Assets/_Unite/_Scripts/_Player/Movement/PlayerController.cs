@@ -2,6 +2,7 @@
 using System.Collections;
 using JetBrains.Annotations;
 using Unite.Core.Input;
+using Unite.EventSystem;
 using Unite.StatSystem;
 using Unite.WeaponSystem;
 using UnityEngine;
@@ -32,6 +33,10 @@ namespace Unite.Player
         [Header("Stats")] 
         [SerializeField] 
         private StatTypeSO speedStatType;
+
+        [Header("Events for Analytics")] 
+        [SerializeField]
+        private GameEvent onDashUsedUpdateAnalytics;
 
         private const float SpeedDiffTolerance = 0.001f;
 
@@ -72,6 +77,8 @@ namespace Unite.Player
 
         private bool cameraInitialized;
 
+        private bool isMoving;
+
         public Transform Orientation => orientation;
         public PlayerCameraHandler CameraHandler => cameraHandler;
         public Rigidbody PlayerRigidbody => rb;
@@ -80,6 +87,7 @@ namespace Unite.Player
         public bool IsDashing { get; set; }
         public float MaxYSpeed { get; set; }
         public bool IsGrounded => isGrounded;
+        public GameEvent OnDashUsed_UpdateAnalytics => onDashUsedUpdateAnalytics;
 
         private void Awake()
         {
@@ -93,6 +101,7 @@ namespace Unite.Player
         private void Start()
         {
             readyToJump = true;
+            isMoving = true;
         }
 
         public void InitializeCamera()
@@ -117,6 +126,7 @@ namespace Unite.Player
         private void Update()
         {
             if (!cameraInitialized) return;
+            if (!isMoving) return;
             
             isGrounded = Physics.Raycast(transform.position + (Vector3.up * raycastYOffset),
                 Vector3.down, raycastLength, groundLayerMask);
@@ -136,6 +146,8 @@ namespace Unite.Player
         private void FixedUpdate()
         {
             if (!cameraInitialized) return;
+            if(!isMoving) return;
+            
             MovePlayer();
         }
 
@@ -269,6 +281,8 @@ namespace Unite.Player
 
         public void HandleJumpAction()
         {
+            if (!isMoving) return;
+            
             if (readyToJump && isGrounded)
             {
                 readyToJump = false;
@@ -279,6 +293,8 @@ namespace Unite.Player
 
         public void HandleDashAction()
         {
+            if (!isMoving) return;
+            
             dashHandler.Dash();
         }
 
@@ -344,8 +360,16 @@ namespace Unite.Player
             moveSpeed += modifier;
         }
 
-        public void ToggleMovement(bool toggle)
+        public void EnableMovement()
         {
+            rb.isKinematic = false;
+            isMoving = true;
+        }
+
+        public void DisableMovement()
+        {
+            rb.isKinematic = true;
+            isMoving = false;
         }
     }
 }

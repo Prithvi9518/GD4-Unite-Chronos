@@ -8,12 +8,6 @@ namespace Unite.InteractionSystem
         [SerializeField]
         private BuffScriptableObject buff;
 
-        private void OnTriggerEnter(Collider other)
-        {
-            if (!other.TryGetComponent(out Player.Player player)) return;
-            HandleInteraction();
-        }
-
         public override void HandleInteraction()
         {
             buff.ApplyBuff(Managers.GameManager.Instance.Player);
