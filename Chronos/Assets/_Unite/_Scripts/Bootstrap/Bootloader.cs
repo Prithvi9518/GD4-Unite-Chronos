@@ -1,5 +1,6 @@
 ﻿using System;
 using Unite.Core.Game;
+using Unite.Managers;
 using UnityEngine;
 
 namespace Unite.Bootstrap
@@ -16,7 +17,11 @@ namespace Unite.Bootstrap
 
         private bool isLoaded;
 
-        private Action onFinishLoadingScenes;
+        private Action onStartLoadingScene;
+        private Action<float> onProgressLoadingScene;
+        private Action onFinishLoadingScene;
+
+        private int currentLevelIndex;
 
         private void Awake()
         {
@@ -40,14 +45,22 @@ namespace Unite.Bootstrap
 
             LoadPersistentObjectPrefabs();
 
-            LoadGameLayout();
+            currentLevelIndex = gameLayout.StartLevelIndex;
+            LoadCurrentLayout();
 
             isLoaded = true;
         }
 
-        private void LoadGameLayout()
+        public void LoadNextLevel()
         {
-            StartCoroutine(gameLayout.LoadLayout(onFinishLoadingScenes));
+            gameLayout.UnloadLayout(currentLevelIndex);
+            currentLevelIndex++;
+            LoadCurrentLayout();
+        }
+
+        private void LoadCurrentLayout()
+        {
+            StartCoroutine(gameLayout.LoadLayout(currentLevelIndex, onStartLoadingScene, onProgressLoadingScene, onFinishLoadingScene));
         }
 
         private void LoadPersistentObjectPrefabs()
@@ -60,25 +73,38 @@ namespace Unite.Bootstrap
             }
         }
 
-        private void StartGame()
+        private void HandleLevelLoadStart()
         {
-            Debug.Log("Bootloader - Calling GameManager.SetGameState(GameState.Start)");
-            Managers.GameManager.Instance.SetGameState(GameState.Start);
+            GameManager.Instance.OnStartLoadingLevel();
+        }
+
+        private void HandleLevelLoadProgress(float progress)
+        {
+            GameManager.Instance.OnProgressLoadingLevel(progress);
+        }
+
+        private void HandleLevelLoadFinish()
+        {
+            GameManager.Instance.OnFinishedLoadingLevel(currentLevelIndex, gameLayout.GetLevelByIndex(currentLevelIndex));
         }
 
         private void OnEnable()
         {
-            onFinishLoadingScenes += StartGame;
+            onStartLoadingScene += HandleLevelLoadStart;
+            onProgressLoadingScene += HandleLevelLoadProgress;
+            onFinishLoadingScene += HandleLevelLoadFinish;
         }
 
         private void OnDisable()
         {
-            onFinishLoadingScenes -= StartGame;
+            onStartLoadingScene -= HandleLevelLoadStart;
+            onProgressLoadingScene -= HandleLevelLoadProgress;
+            onFinishLoadingScene -= HandleLevelLoadFinish;
         }
 
         private void OnDestroy()
         {
-            gameLayout.UnloadLayout();
+            gameLayout.UnloadLayout(currentLevelIndex);
         }
     }
 }

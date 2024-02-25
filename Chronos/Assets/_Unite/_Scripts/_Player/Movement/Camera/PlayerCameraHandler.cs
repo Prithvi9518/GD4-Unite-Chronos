@@ -44,13 +44,11 @@ namespace Unite.Player
         public Camera PlayerCamera => cam;
         public float DefaultFOV => defaultFOV;
 
-        private void Start()
-        {
-            Cursor.lockState = CursorLockMode.Locked;
-            Cursor.visible = false;
-
-            // defaultFOV = cam.fieldOfView;
-        }
+        // private void Start()
+        // {
+        //     Cursor.lockState = CursorLockMode.Locked;
+        //     Cursor.visible = false;
+        // }
 
         private void Update()
         {

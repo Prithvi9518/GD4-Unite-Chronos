@@ -1,8 +1,6 @@
 using System.Collections;
-using TMPro;
 using Unite.EventSystem;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace _Unite._Scripts
 {
@@ -10,6 +8,10 @@ namespace _Unite._Scripts
     {
         [SerializeField]
         private StringEvent uiTextEvent;
+
+        [SerializeField]
+        private StringEvent onEnterRegionUpdateAnalytics;
+        
         private string currentTerrainName;
   
         private void OnTriggerEnter(Collider other)
@@ -20,7 +22,8 @@ namespace _Unite._Scripts
             
                 if (newTerrainName != currentTerrainName)
                 {
-                    uiTextEvent.Raise(other.gameObject.name);
+                    uiTextEvent.Raise(newTerrainName);
+                    onEnterRegionUpdateAnalytics.Raise(newTerrainName);
                     StartCoroutine(FadeOutUIText());
                 }
             }

@@ -82,10 +82,7 @@ namespace Unite.Player
             if (!initializedGun) return;
 
             bool isShootActionPressed = InputManager.Instance.IsShootActionPressed();
-            activeGun.Tick(isShootActionPressed);
-
-            if (!isShootActionPressed) return;
-            onPlayerShootAction.Raise();
+            activeGun.Tick(isShootActionPressed, onPlayerShootAction);
         }
 
         private void SetupGunDictionary()

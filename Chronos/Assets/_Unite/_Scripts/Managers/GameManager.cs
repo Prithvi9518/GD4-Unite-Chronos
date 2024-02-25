@@ -1,15 +1,22 @@
-﻿using Unite.Bootstrap;
+﻿using System;
+using Unite.Bootstrap;
 using Unite.Core.Game;
 using Unite.EventSystem;
+using Unite.Player;
 using Unite.WeaponSystem;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.Serialization;
 
 namespace Unite.Managers
 {
     public class GameManager : MonoBehaviour
     {
         public static GameManager Instance { get; private set; }
+
+        [Header("Game State Events")]
+        [SerializeField] 
+        private GameEvent onGameSetup;
         
         [SerializeField] 
         private GameEvent onGameStart;
@@ -19,12 +26,27 @@ namespace Unite.Managers
         
         [SerializeField] 
         private GameEvent onGameLose;
+
+        [Header("Events related to loading levels")]
+        [SerializeField]
+        private GameEvent onStartSwitchToNextLevel;
         
+        [SerializeField]
+        private GameEvent onFinishSwitchToNextLevel;
+
         private GameState currentState;
 
         private Player.Player player;
         private Camera playerCamera;
         private WeaponHolder playerWeaponsHolder;
+
+        private PlayerSpawnOnSceneLoad playerSpawn;
+
+        private GameLevel currentLevel;
+
+        public Action<float> OnProgressLevelLoad;
+        public Action<GameLevel> OnStartLevel_UpdateTimeTracking;
+        public Action<GameLevel> OnFinishLevel_UpdateTimeTracking;
 
         public Player.Player Player => player;
         public Camera PlayerCamera => playerCamera;
@@ -49,7 +71,7 @@ namespace Unite.Managers
             Debug.Log("Initializing player");
             player = p;
             
-            TryStartGame();
+            TryStartGameForTestScenes();
         }
 
         public void InitializeCamera(Camera cam, Transform weaponsHolder)
@@ -58,18 +80,80 @@ namespace Unite.Managers
             playerCamera = cam;
             playerWeaponsHolder = weaponsHolder.GetComponent<WeaponHolder>();
             
-            TryStartGame();
+            TryStartGameForTestScenes();
         }
 
-        private void TryStartGame()
+        public void RegisterPlayerSpawn(PlayerSpawnOnSceneLoad spawn)
         {
+            playerSpawn = spawn;
+        }
+
+        public void OnStartLoadingLevel()
+        {
+            Debug.Log($"GameManager.{nameof(OnStartLoadingLevel)}");
+            
+            if(player != null)
+                player.MovementHandler.DisableMovement();
+            
+            onStartSwitchToNextLevel.Raise();
+        }
+
+        public void OnProgressLoadingLevel(float progress)
+        {
+            OnProgressLevelLoad?.Invoke(progress);
+        }
+
+        public void OnFinishedLoadingLevel(int levelIndex, GameLevel level)
+        {
+            Debug.Log($"GameManager.{nameof(OnFinishedLoadingLevel)}");
+            
+            if (levelIndex == 0)
+            {
+                SetupAndStartGame();
+            }
+            else
+            {
+                player.MovementHandler.EnableMovement();
+                playerSpawn.SpawnPlayer(player);
+            }
+            
+            onFinishSwitchToNextLevel.Raise();
+            
+            currentLevel = level;
+            OnStartLevel_UpdateTimeTracking?.Invoke(currentLevel);
+        }
+
+        public void SetupAndStartGame()
+        {
+            Debug.Log($"GameManager.{nameof(SetupAndStartGame)} called.");
+            
+            if (player == null)
+            {
+                Debug.LogError("GameManager.SetupAndStartGame() - no player found.");
+                return;
+            }
+
+            if (playerCamera == null)
+            {
+                Debug.LogError("GameManager.SetupAndStartGame() - player camera not found.");
+                return;
+            }
+            
+            onGameSetup.Raise();
+            SetGameState(GameState.Start);
+        }
+
+        private void TryStartGameForTestScenes()
+        {
+            Debug.Log($"GameManager.{nameof(TryStartGameForTestScenes)} called.");
+            
             if (player == null || playerCamera == null) return;
             
             // Check if there is a bootloader present. If no bootloader, just start the game (to support test scenes).
             if (Bootloader.Instance != null) return;
             
-            Debug.Log("No bootloader found after initializing player and camera. Setting GameState = GameState.Start");
-            SetGameState(GameState.Start);
+            Debug.Log("No bootloader found after initializing player and camera. Setting up and starting game.");
+            SetupAndStartGame();
         }
 
         public void SetGameState(GameState newState)
@@ -106,6 +190,12 @@ namespace Unite.Managers
         {
             SetGameState(GameState.PlayerDead);
             Debug.Log("LOSE");
+        }
+
+        public void SwitchToNextLevel()
+        {
+            OnFinishLevel_UpdateTimeTracking?.Invoke(currentLevel);
+            Bootloader.Instance.LoadNextLevel();
         }
     }
 }

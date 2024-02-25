@@ -52,6 +52,8 @@ namespace Unite.Player
             statusEffectable = GetComponent<PlayerStatusEffectable>();
 
             ability = GetComponent<Ability>();
+            
+            DontDestroyOnLoad(gameObject);
         }
 
         private void Start()
@@ -64,7 +66,7 @@ namespace Unite.Player
         {
             healthHandler.enabled = false;
             gunHandler.enabled = false;
-            movementHandler.ToggleMovement(false);
+            movementHandler.DisableMovement();
         }
     }
 }
