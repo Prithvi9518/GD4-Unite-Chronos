@@ -14,12 +14,22 @@ namespace Unite.Managers
     {
         public static GameManager Instance { get; private set; }
 
+        [Header("Game Levels")] 
+        [SerializeField]
+        private GameLevel startingLevel;
+        
+        [SerializeField]
+        private GameLevel islandLevel;
+
         [Header("Game State Events")]
         [SerializeField] 
         private GameEvent onGameSetup;
         
         [SerializeField] 
         private GameEvent onGameStart;
+
+        [SerializeField]
+        private GameEvent onEnterIslandLevel;
         
         [SerializeField] 
         private GameEvent onGameWin;
@@ -107,14 +117,15 @@ namespace Unite.Managers
         {
             Debug.Log($"GameManager.{nameof(OnFinishedLoadingLevel)}");
             
-            if (levelIndex == 0)
+            if (level == startingLevel)
             {
                 SetupAndStartGame();
             }
-            else
+            else if(level == islandLevel)
             {
                 player.MovementHandler.EnableMovement();
                 playerSpawn.SpawnPlayer(player);
+                SetGameState(GameState.IslandLevel);
             }
             
             onFinishSwitchToNextLevel.Raise();
@@ -140,7 +151,7 @@ namespace Unite.Managers
             }
             
             onGameSetup.Raise();
-            SetGameState(GameState.Start);
+            SetGameState(GameState.StartingLevel);
         }
 
         private void TryStartGameForTestScenes()
@@ -163,8 +174,11 @@ namespace Unite.Managers
             {
                 case GameState.Bootstrap:
                     break;
-                case GameState.Start:
+                case GameState.StartingLevel:
                     HandleGameStart();
+                    break;
+                case GameState.IslandLevel:
+                    HandleIslandLevel();
                     break;
                 case GameState.PlayerDead:
                     break;
@@ -173,17 +187,25 @@ namespace Unite.Managers
 
         private void HandleGameStart()
         {
-            if (currentState != GameState.Start) return;
+            if (currentState != GameState.StartingLevel) return;
             if (player == null) return;
             
             Debug.Log("GAME START");
             onGameStart.Raise();
         }
 
+        private void HandleIslandLevel()
+        {
+            if (currentState != GameState.IslandLevel) return;
+            
+            Debug.Log("START ISLAND LEVEL");
+            onEnterIslandLevel.Raise();
+        }
+
         private void HandleRestart()
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-            SetGameState(GameState.Start);
+            SetGameState(GameState.IslandLevel);
         }
 
         public void HandleLose()

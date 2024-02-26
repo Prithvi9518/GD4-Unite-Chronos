@@ -124,14 +124,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9893a878b6442144bd9c1283a2b4b18, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  description: Listen for game start
-  gameEvent: {fileID: 11400000, guid: 1c64a1214fcebc743a76621bff096664, type: 2}
+  description: Listen for enter island
+  gameEvent: {fileID: 11400000, guid: ab1fe381c42cace468c5b6bda1edaad4, type: 2}
   response:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 961527736350545288}
         m_TargetAssemblyTypeName: Unite.DialogueSystem.PlayerDialogueHandler, Assembly-CSharp
-        m_MethodName: OnGameStart
+        m_MethodName: OnEnterIsland
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

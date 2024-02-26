@@ -1,7 +1,7 @@
 using UnityEditor;
 using UnityEngine;
 
-namespace _Unite._Scripts.Utils
+namespace Unite.EditorScripts
 {
     // /// <summary>
     // /// GameObjectHeaderEditor
