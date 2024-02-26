@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7538402386730337086}
   m_Layer: 0
-  m_Name: Notes
+  m_Name: SingleNote
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -239,6 +239,10 @@ PrefabInstance:
     m_RemovedGameObjects:
     - {fileID: 65702495048144492, guid: e43136ff18ac4604ab8a36073f55ae15, type: 3}
     - {fileID: -8700617353114198275, guid: e43136ff18ac4604ab8a36073f55ae15, type: 3}
+    - {fileID: -2455269775360087609, guid: e43136ff18ac4604ab8a36073f55ae15, type: 3}
+    - {fileID: 2097768537847635252, guid: e43136ff18ac4604ab8a36073f55ae15, type: 3}
+    - {fileID: -2086251699718086207, guid: e43136ff18ac4604ab8a36073f55ae15, type: 3}
+    - {fileID: -5599341671410969836, guid: e43136ff18ac4604ab8a36073f55ae15, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e43136ff18ac4604ab8a36073f55ae15, type: 3}
