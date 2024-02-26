@@ -17,8 +17,16 @@ namespace Unite.Player
 
         private float timeSinceLastFootstep;
 
+        private bool playFootsteps;
+
+        public void ToggleFootstepSounds(bool toggle)
+        {
+            playFootsteps = toggle;
+        }
+
         public void TryPlayFootstepSounds()
         {
+            if (!playFootsteps) return;
             if (!(Time.time - timeSinceLastFootstep >=
                   Random.Range(minTimeBetweenFootsteps, maxTimeBetweenFootsteps))) return;
             

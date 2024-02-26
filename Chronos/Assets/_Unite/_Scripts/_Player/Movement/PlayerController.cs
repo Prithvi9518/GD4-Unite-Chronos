@@ -96,6 +96,7 @@ namespace Unite.Player
             
             cameraHandler = GetComponent<PlayerCameraHandler>();
             playerFootsteps = GetComponent<PlayerFootsteps>();
+            playerFootsteps.ToggleFootstepSounds(true);
         }
 
         private void Start()
