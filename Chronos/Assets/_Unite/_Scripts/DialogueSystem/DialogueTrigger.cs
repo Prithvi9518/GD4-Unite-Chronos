@@ -6,7 +6,7 @@
         Test1,
         Test2,
         BattleEnded,
-        GameStart,
+        EnterIslandLevel,
         EnterBattleZone
     }
 }

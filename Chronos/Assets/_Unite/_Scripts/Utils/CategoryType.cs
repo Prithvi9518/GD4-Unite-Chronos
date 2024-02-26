@@ -1,4 +1,4 @@
-namespace _Unite._Scripts.Utils
+namespace Unite.Utils
 {
     public enum CategoryType
     {

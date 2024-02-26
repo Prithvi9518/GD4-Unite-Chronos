@@ -36,7 +36,7 @@ namespace Unite.DialogueSystem
                 { DialogueTrigger.Test1, HandleTest1 },
                 { DialogueTrigger.Test2, HandleTest2 },
                 { DialogueTrigger.BattleEnded , HandleBattleEnded },
-                { DialogueTrigger.GameStart , HandleGameStart},
+                { DialogueTrigger.EnterIslandLevel , HandleEnterIsland},
                 { DialogueTrigger.EnterBattleZone , HandleEnterBattleZone}
             };
         }
@@ -62,7 +62,7 @@ namespace Unite.DialogueSystem
             }
         }
 
-        private void HandleGameStart(List<DialogueSO> dialogues)
+        private void HandleEnterIsland(List<DialogueSO> dialogues)
         {
             if (dialogues.Count == 0) return;
             
@@ -93,9 +93,9 @@ namespace Unite.DialogueSystem
             OnNotify(DialogueTrigger.BattleEnded);
         }
 
-        public void OnGameStart()
+        public void OnEnterIsland()
         {
-            OnNotify(DialogueTrigger.GameStart);
+            OnNotify(DialogueTrigger.EnterIslandLevel);
         }
 
         public void OnEnterBattleZone()
