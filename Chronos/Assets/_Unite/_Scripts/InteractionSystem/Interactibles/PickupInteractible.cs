@@ -1,3 +1,5 @@
+using System;
+using _Unite._Scripts.EventSystem.ScriptableObjects;
 using Unite.EventSystem;
 using UnityEngine;
 
@@ -7,11 +9,24 @@ namespace Unite.InteractionSystem
     {
 
             [SerializeField]
-            private TransformEvent pickupGameEvent;
+            private PickupEvent pickupGameEvent;
+            
+            [SerializeField]
+            private float zoomFactor;
+
+            private PickupInfo inspectItemInfo;
+
+            private void Start()
+            {
+                inspectItemInfo = new PickupInfo(transform, zoomFactor);
+            }
+
             public override void HandleInteraction()
             {
                 base.HandleInteraction();
-                pickupGameEvent.Raise(transform);
+                pickupGameEvent.Raise(inspectItemInfo);
             }
     }
+
+
 }

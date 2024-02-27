@@ -1,3 +1,5 @@
+using Unite.EventSystem;
+using Unite.InteractionSystem;
 using UnityEngine;
 
 namespace _Unite._Scripts.InteractionSystem
@@ -16,6 +18,8 @@ namespace _Unite._Scripts.InteractionSystem
         [Tooltip("The GameObject offset used during examination.")]
         private Vector3Type offset;
 
+        private float zOffset = 0.5f;
+
         // [SerializeField]
         // [Tooltip("The Canvas used for examination UI (alternative reference).")]
         // private GameObject examineCanvas;
@@ -32,15 +36,15 @@ namespace _Unite._Scripts.InteractionSystem
         /// Checks if an object is being examined and initiates the examination process.
         /// </summary>
         /// <param name="hitGameObject">The GameObject being examined.</param>
-        public void CheckExamining(Transform hitGameObject)
+        public void CheckExamining(PickupInfo hitGameObjectInfo)
         {
-            Debug.Log("BOOM");
             inspectItemData.ToggleExamination();
 
             // Store the currently examined object and its original position and rotation
             if (inspectItemData.IsExamining)
             {
-                inspectItemData.ExaminedObject = hitGameObject;
+                inspectItemData.ExaminedObject = hitGameObjectInfo.Transform;
+                zOffset = hitGameObjectInfo.ZoomFactor;
                 inspectItemData.OriginalPositions[inspectItemData.ExaminedObject] = inspectItemData.ExaminedObject.position;
                 inspectItemData.OriginalRotations[inspectItemData.ExaminedObject] = inspectItemData.ExaminedObject.rotation;
             }
@@ -86,7 +90,7 @@ namespace _Unite._Scripts.InteractionSystem
         {
             if (inspectItemData.ExaminedObject != null)
             {
-                inspectItemData.ExaminedObject.position = Vector3.Lerp(inspectItemData.ExaminedObject.position, offset.Value, 0.2f);
+                inspectItemData.ExaminedObject.position = Vector3.Lerp(inspectItemData.ExaminedObject.position, new Vector3(offset.Value.x, offset.Value.y, zOffset), 0.2f);
                 Vector3 deltaMouse = Input.mousePosition - inspectItemData.LastMousePosition;
                 float rotationSpeed = 1.0f;
                 inspectItemData.ExaminedObject.Rotate(deltaMouse.x * rotationSpeed * Vector3.up, Space.World);
