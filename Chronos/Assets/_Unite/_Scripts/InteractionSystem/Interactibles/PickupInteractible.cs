@@ -1,5 +1,3 @@
-using System;
-using _Unite._Scripts.EventSystem.ScriptableObjects;
 using Unite.EventSystem;
 using UnityEngine;
 
@@ -7,7 +5,6 @@ namespace Unite.InteractionSystem
 {
     public class PickupInteractible : InteractibleObject
     {
-
             [SerializeField]
             private PickupEvent pickupGameEvent;
             
