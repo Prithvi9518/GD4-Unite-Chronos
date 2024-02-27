@@ -446,6 +446,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d8b6b07886bb49a091e01f493e48102f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  headerColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!1 &1269614867 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -1599826595754709761, guid: 74903f37a174f6b46844fe2fb3c76cf9,
@@ -564,86 +565,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.02, y: 0.038297474, z: 0.020000074}
   m_Center: {x: 5.4640052e-18, y: 0.009148737, z: 0.0000000055879354}
---- !u!1 &1482278095
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1482278097}
-  - component: {fileID: 1482278096}
-  - component: {fileID: 1482278098}
-  m_Layer: 0
-  m_Name: InspectItemManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1482278096
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1482278095}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dc736116ca194518be582c6a0ea30d43, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  offset: {fileID: 11400000, guid: 20192eae7cf39ee4d92ad6b129069d6e, type: 2}
-  onStartExaminingItem: {fileID: 11400000, guid: 5007625fabba4ae44a1cc8c880579ac6,
-    type: 2}
-  onFinishExaminingItem: {fileID: 11400000, guid: 98e7932013a6db8498ca9bc957db1d37,
-    type: 2}
---- !u!4 &1482278097
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1482278095}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1482278098
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1482278095}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2c6ade4f09344edebdaf7ff7cd03fe34, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  description: 
-  gameEvent: {fileID: 11400000, guid: d8513cb851429324083cad4cc5179807, type: 2}
-  response:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1482278096}
-        m_TargetAssemblyTypeName: _Unite._Scripts.InteractionSystem.InspectItemManager,
-          Assembly-CSharp
-        m_MethodName: CheckExamining
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!1 &1490110159 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 281855664364225751, guid: 74903f37a174f6b46844fe2fb3c76cf9,
@@ -799,7 +720,7 @@ MonoBehaviour:
   interactibleData: {fileID: 11400000, guid: eeea022f226ef174cad0c6f0e52b4da0, type: 2}
   onInteractUpdateAnalytics: {fileID: 0}
   pickupGameEvent: {fileID: 11400000, guid: d8513cb851429324083cad4cc5179807, type: 2}
-  zoomFactor: 0.8
+  zoomFactor: 0
 --- !u!1001 &1785170509
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -916,5 +837,4 @@ SceneRoots:
   m_Roots:
   - {fileID: 215068195}
   - {fileID: 1640620702}
-  - {fileID: 1482278097}
   - {fileID: 740652141}
