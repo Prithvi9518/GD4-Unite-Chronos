@@ -36,7 +36,7 @@ namespace Unite.UI
         private GameEvent onJournalOpened;
 
         [SerializeField]
-        private GameEvent onCloseButtonPressed;
+        private GameEvent onJournalClosed;
 
         [Header("Events for analytics:")]
         [SerializeField]
@@ -72,7 +72,7 @@ namespace Unite.UI
             InputManager.Instance.SwitchToDefaultActionMap();
 
             mainPanel.gameObject.SetActive(false);
-            onCloseButtonPressed.Raise();
+            onJournalClosed.Raise();
         }
 
         public void TryMovePageByOffset(int offset)
