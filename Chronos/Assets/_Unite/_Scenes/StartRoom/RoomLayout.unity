@@ -17634,7 +17634,7 @@ PrefabInstance:
     - target: {fileID: 9201276832335865865, guid: 371f15d169b512c468f2f9fac12399b4,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -2.344
+      value: -2.282
       objectReference: {fileID: 0}
     - target: {fileID: 9201276832335865865, guid: 371f15d169b512c468f2f9fac12399b4,
         type: 3}
@@ -17836,6 +17836,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d8b6b07886bb49a091e01f493e48102f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  headerColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!4 &812039169
 Transform:
   m_ObjectHideFlags: 0
@@ -19362,6 +19363,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d8b6b07886bb49a091e01f493e48102f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  headerColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!1001 &997548654
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -19777,7 +19779,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: f9c7113a70d3f2442af3ad20c53b668b, type: 2}
+      objectReference: {fileID: 2100000, guid: 3fb979a8ccad8b04c9648087068ad5f9, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -21361,7 +21363,7 @@ PrefabInstance:
     - target: {fileID: 5178283402920984764, guid: cd677aa37cb654c4496351e5d32583ac,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -1.8114
+      value: -1.661
       objectReference: {fileID: 0}
     - target: {fileID: 5178283402920984764, guid: cd677aa37cb654c4496351e5d32583ac,
         type: 3}
