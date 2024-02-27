@@ -12,6 +12,8 @@ GameObject:
   - component: {fileID: 4383480925242931113}
   - component: {fileID: 5266917750615819491}
   - component: {fileID: 5971355793237309747}
+  - component: {fileID: 7505762035079263962}
+  - component: {fileID: 6625889085430122897}
   m_Layer: 0
   m_Name: CursorLockHandler
   m_TagString: Untagged
@@ -89,6 +91,64 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   description: 
   gameEvent: {fileID: 11400000, guid: d684ac48733a6e84ca89948522e1a7ad, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 4383480925242931113}
+        m_TargetAssemblyTypeName: Unite.Core.Input.CursorLockHandler, Assembly-CSharp
+        m_MethodName: HideAndLockCursor
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &7505762035079263962
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8349228477865491341}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b9893a878b6442144bd9c1283a2b4b18, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  description: Listen for start examine item event
+  gameEvent: {fileID: 11400000, guid: 5007625fabba4ae44a1cc8c880579ac6, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 4383480925242931113}
+        m_TargetAssemblyTypeName: Unite.Core.Input.CursorLockHandler, Assembly-CSharp
+        m_MethodName: ShowAndUnlockCursor
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &6625889085430122897
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8349228477865491341}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b9893a878b6442144bd9c1283a2b4b18, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  description: Listen for finish examine item event
+  gameEvent: {fileID: 11400000, guid: 98e7932013a6db8498ca9bc957db1d37, type: 2}
   response:
     m_PersistentCalls:
       m_Calls:

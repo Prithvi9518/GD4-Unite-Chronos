@@ -1,6 +1,8 @@
+using Unite.Core.Input;
+using Unite.EventSystem;
 using UnityEngine;
 
-namespace _Unite._Scripts.InteractionSystem
+namespace Unite.InteractionSystem
 {
     /// <summary>
     /// Manager for inspecting and interacting with items in the game.
@@ -15,6 +17,13 @@ namespace _Unite._Scripts.InteractionSystem
         [SerializeField]
         [Tooltip("The GameObject offset used during examination.")]
         private Vector3Type offset;
+
+        [Header("Game events for toggling input when examining:")] 
+        [SerializeField]
+        private GameEvent onStartExaminingItem;
+
+        [SerializeField] 
+        private GameEvent onFinishExaminingItem;
 
         // [SerializeField]
         // [Tooltip("The Canvas used for examination UI (alternative reference).")]
@@ -40,9 +49,17 @@ namespace _Unite._Scripts.InteractionSystem
             // Store the currently examined object and its original position and rotation
             if (inspectItemData.IsExamining)
             {
+                InputManager.Instance.SwitchToExamineItemActionMap();
+                onStartExaminingItem.Raise();
+                
                 inspectItemData.ExaminedObject = hitGameObject;
                 inspectItemData.OriginalPositions[inspectItemData.ExaminedObject] = inspectItemData.ExaminedObject.position;
                 inspectItemData.OriginalRotations[inspectItemData.ExaminedObject] = inspectItemData.ExaminedObject.rotation;
+            }
+            else
+            {
+                InputManager.Instance.SwitchToDefaultActionMap();
+                onFinishExaminingItem.Raise();
             }
         }
 
