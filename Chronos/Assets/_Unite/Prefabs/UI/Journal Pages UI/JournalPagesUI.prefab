@@ -1251,8 +1251,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 77e14c0b6476f5e46a2b05c3c5d054bf, type: 2}
   - {fileID: 11400000, guid: 1cb603de06216014c9c17437adb128db, type: 2}
   onJournalOpened: {fileID: 11400000, guid: c119ba835bd4a19459d270603a710018, type: 2}
-  onCloseButtonPressed: {fileID: 11400000, guid: a13b2dd1349de634aaf02c7f0748b5c5,
-    type: 2}
+  onJournalClosed: {fileID: 11400000, guid: a13b2dd1349de634aaf02c7f0748b5c5, type: 2}
   onOpenJournalUpdateAnalytics: {fileID: 11400000, guid: 951755f30a1d35542893d17a88e04a6f,
     type: 2}
 --- !u!114 &7343902651091725725

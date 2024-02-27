@@ -30,6 +30,10 @@ namespace Unite.Core.Input
         
         [SerializeField]
         private GameEvent onJournalNextPageAction;
+
+        [Header("Event for interacting while examining")]
+        [SerializeField]
+        private GameEvent onInteractWhileExamining;
         
         [SerializeField]
         private GameEvent onJournalPreviousPageAction;
@@ -48,6 +52,7 @@ namespace Unite.Core.Input
         private PlayerInputActions.DefaultActions defaultActions;
         private PlayerInputActions.UIActions uiActions;
         private PlayerInputActions.JournalUIActions journalUIActions;
+        private PlayerInputActions.ExamineItemActions examineItemActions;
 
         public void HandleGameStart()
         {
@@ -68,6 +73,7 @@ namespace Unite.Core.Input
             defaultActions = playerInput.Default;
             uiActions = playerInput.UI;
             journalUIActions = playerInput.JournalUI;
+            examineItemActions = playerInput.ExamineItem;
         }
 
         private void Start()
@@ -182,6 +188,11 @@ namespace Unite.Core.Input
             onJournalPreviousPageAction.Raise();
         }
 
+        private void RaiseInteractWhileExaminingEvent(InputAction.CallbackContext ctx)
+        {
+            onInteractWhileExamining.Raise();
+        }
+
         private void SubscribeToActions()
         {
             InputSystem.onDeviceChange += OnDeviceChanged;
@@ -195,6 +206,8 @@ namespace Unite.Core.Input
             journalUIActions.CloseJournal.performed += RaiseJournalCloseEvent;
             journalUIActions.NextPage.performed += RaiseJournalNextPageEvent;
             journalUIActions.PreviousPage.performed += RaiseJournalPreviousPageEvent;
+
+            examineItemActions.Interact.performed += RaiseInteractWhileExaminingEvent;
         }
 
         private void UnsubscribeToActions()
@@ -210,6 +223,8 @@ namespace Unite.Core.Input
             journalUIActions.CloseJournal.performed -= RaiseJournalCloseEvent;
             journalUIActions.NextPage.performed -= RaiseJournalNextPageEvent;
             journalUIActions.PreviousPage.performed -= RaiseJournalPreviousPageEvent;
+            
+            examineItemActions.Interact.performed -= RaiseInteractWhileExaminingEvent;
         }
         
         public bool IsShootActionPressed() => defaultActions.Shoot.IsPressed();
@@ -238,6 +253,7 @@ namespace Unite.Core.Input
             mouseLookEnabled = true;
             uiActions.Disable();
             journalUIActions.Disable();
+            examineItemActions.Disable();
         }
         
         public void SwitchToUIActionMap()
@@ -246,6 +262,7 @@ namespace Unite.Core.Input
             mouseLookEnabled = false;
             uiActions.Enable();
             journalUIActions.Disable();
+            examineItemActions.Disable();
         }
 
         public void SwitchToJournalUIActionMap()
@@ -254,6 +271,16 @@ namespace Unite.Core.Input
             mouseLookEnabled = false;
             uiActions.Disable();
             journalUIActions.Enable();
+            examineItemActions.Disable();
+        }
+
+        public void SwitchToExamineItemActionMap()
+        {
+            defaultActions.Disable();
+            mouseLookEnabled = false;
+            uiActions.Disable();
+            journalUIActions.Disable();
+            examineItemActions.Enable();
         }
 
         public void EnableDefaultActions()

@@ -489,6 +489,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   offset: {fileID: 11400000, guid: 20192eae7cf39ee4d92ad6b129069d6e, type: 2}
+  onStartExaminingItem: {fileID: 11400000, guid: 5007625fabba4ae44a1cc8c880579ac6,
+    type: 2}
+  onFinishExaminingItem: {fileID: 11400000, guid: 98e7932013a6db8498ca9bc957db1d37,
+    type: 2}
 --- !u!4 &1482278097
 Transform:
   m_ObjectHideFlags: 0

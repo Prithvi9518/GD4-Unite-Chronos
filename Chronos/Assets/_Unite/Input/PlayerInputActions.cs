@@ -1146,6 +1146,34 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""ExamineItem"",
+            ""id"": ""570411bb-12b0-4fcd-a5b1-68f764a10018"",
+            ""actions"": [
+                {
+                    ""name"": ""Interact"",
+                    ""type"": ""Button"",
+                    ""id"": ""0ee25af1-e5bf-44e6-9b62-d200993a0ccc"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""15fa24bc-8767-4a24-88bf-c757a7a77d99"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Interact"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": []
@@ -1184,6 +1212,9 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         m_JournalUI_CloseJournal = m_JournalUI.FindAction("CloseJournal", throwIfNotFound: true);
         m_JournalUI_NextPage = m_JournalUI.FindAction("NextPage", throwIfNotFound: true);
         m_JournalUI_PreviousPage = m_JournalUI.FindAction("PreviousPage", throwIfNotFound: true);
+        // ExamineItem
+        m_ExamineItem = asset.FindActionMap("ExamineItem", throwIfNotFound: true);
+        m_ExamineItem_Interact = m_ExamineItem.FindAction("Interact", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -1601,6 +1632,52 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         }
     }
     public JournalUIActions @JournalUI => new JournalUIActions(this);
+
+    // ExamineItem
+    private readonly InputActionMap m_ExamineItem;
+    private List<IExamineItemActions> m_ExamineItemActionsCallbackInterfaces = new List<IExamineItemActions>();
+    private readonly InputAction m_ExamineItem_Interact;
+    public struct ExamineItemActions
+    {
+        private @PlayerInputActions m_Wrapper;
+        public ExamineItemActions(@PlayerInputActions wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Interact => m_Wrapper.m_ExamineItem_Interact;
+        public InputActionMap Get() { return m_Wrapper.m_ExamineItem; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(ExamineItemActions set) { return set.Get(); }
+        public void AddCallbacks(IExamineItemActions instance)
+        {
+            if (instance == null || m_Wrapper.m_ExamineItemActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_ExamineItemActionsCallbackInterfaces.Add(instance);
+            @Interact.started += instance.OnInteract;
+            @Interact.performed += instance.OnInteract;
+            @Interact.canceled += instance.OnInteract;
+        }
+
+        private void UnregisterCallbacks(IExamineItemActions instance)
+        {
+            @Interact.started -= instance.OnInteract;
+            @Interact.performed -= instance.OnInteract;
+            @Interact.canceled -= instance.OnInteract;
+        }
+
+        public void RemoveCallbacks(IExamineItemActions instance)
+        {
+            if (m_Wrapper.m_ExamineItemActionsCallbackInterfaces.Remove(instance))
+                UnregisterCallbacks(instance);
+        }
+
+        public void SetCallbacks(IExamineItemActions instance)
+        {
+            foreach (var item in m_Wrapper.m_ExamineItemActionsCallbackInterfaces)
+                UnregisterCallbacks(item);
+            m_Wrapper.m_ExamineItemActionsCallbackInterfaces.Clear();
+            AddCallbacks(instance);
+        }
+    }
+    public ExamineItemActions @ExamineItem => new ExamineItemActions(this);
     public interface IDefaultActions
     {
         void OnShoot(InputAction.CallbackContext context);
@@ -1638,5 +1715,9 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         void OnCloseJournal(InputAction.CallbackContext context);
         void OnNextPage(InputAction.CallbackContext context);
         void OnPreviousPage(InputAction.CallbackContext context);
+    }
+    public interface IExamineItemActions
+    {
+        void OnInteract(InputAction.CallbackContext context);
     }
 }
