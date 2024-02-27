@@ -114,6 +114,8 @@ GameObject:
   - component: {fileID: 631103514755004957}
   - component: {fileID: 1076874597078118196}
   - component: {fileID: 4884809706702559527}
+  - component: {fileID: 4525206754050060248}
+  - component: {fileID: 7855902728584936824}
   m_Layer: 10
   m_Name: PlayerV2
   m_TagString: Player
@@ -707,18 +709,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 281960008388290872}
-        m_TargetAssemblyTypeName: Unite.Player.PlayerGunHandler, Assembly-CSharp
-        m_MethodName: InitializeActiveGun
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
       - m_Target: {fileID: 4508471836421242003}
         m_TargetAssemblyTypeName: Unite.Player.PlayerController, Assembly-CSharp
         m_MethodName: InitializeWeaponHolder
@@ -746,6 +736,64 @@ MonoBehaviour:
   uiTextEvent: {fileID: 11400000, guid: 77a41b72774242b469e2012dff613289, type: 2}
   onEnterRegionUpdateAnalytics: {fileID: 11400000, guid: 8e5cb8d445e8c77479ac544c19f00f0b,
     type: 2}
+--- !u!114 &4525206754050060248
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3399079079665099740}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b9893a878b6442144bd9c1283a2b4b18, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  description: Listen for island level start
+  gameEvent: {fileID: 11400000, guid: ab1fe381c42cace468c5b6bda1edaad4, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 281960008388290872}
+        m_TargetAssemblyTypeName: Unite.Player.PlayerGunHandler, Assembly-CSharp
+        m_MethodName: InitializeActiveGun
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &7855902728584936824
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3399079079665099740}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b9893a878b6442144bd9c1283a2b4b18, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  description: Listen for test scene start
+  gameEvent: {fileID: 11400000, guid: e071dc8c15cf3744daa72e91bbe4530a, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 281960008388290872}
+        m_TargetAssemblyTypeName: Unite.Player.PlayerGunHandler, Assembly-CSharp
+        m_MethodName: InitializeActiveGun
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &6261428252287565443
 GameObject:
   m_ObjectHideFlags: 0

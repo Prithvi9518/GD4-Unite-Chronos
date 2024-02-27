@@ -1,8 +1,8 @@
+using Unite.Core.Input;
 using Unite.EventSystem;
-using Unite.InteractionSystem;
 using UnityEngine;
 
-namespace _Unite._Scripts.InteractionSystem
+namespace Unite.InteractionSystem
 {
     /// <summary>
     /// Manager for inspecting and interacting with items in the game.
@@ -18,7 +18,12 @@ namespace _Unite._Scripts.InteractionSystem
         [Tooltip("The GameObject offset used during examination.")]
         private Vector3Type offset;
 
-        private float zOffset = 0.5f;
+        [Header("Game events for toggling input when examining:")] 
+        [SerializeField]
+        private GameEvent onStartExaminingItem;
+
+        [SerializeField] 
+        private GameEvent onFinishExaminingItem;
 
         // [SerializeField]
         // [Tooltip("The Canvas used for examination UI (alternative reference).")]
@@ -36,17 +41,25 @@ namespace _Unite._Scripts.InteractionSystem
         /// Checks if an object is being examined and initiates the examination process.
         /// </summary>
         /// <param name="hitGameObject">The GameObject being examined.</param>
-        public void CheckExamining(PickupInfo hitGameObjectInfo)
+        public void CheckExamining(Transform hitGameObject)
         {
+            Debug.Log("BOOM");
             inspectItemData.ToggleExamination();
 
             // Store the currently examined object and its original position and rotation
             if (inspectItemData.IsExamining)
             {
-                inspectItemData.ExaminedObject = hitGameObjectInfo.Transform;
-                zOffset = hitGameObjectInfo.ZoomFactor;
+                InputManager.Instance.SwitchToExamineItemActionMap();
+                onStartExaminingItem.Raise();
+                
+                inspectItemData.ExaminedObject = hitGameObject;
                 inspectItemData.OriginalPositions[inspectItemData.ExaminedObject] = inspectItemData.ExaminedObject.position;
                 inspectItemData.OriginalRotations[inspectItemData.ExaminedObject] = inspectItemData.ExaminedObject.rotation;
+            }
+            else
+            {
+                InputManager.Instance.SwitchToDefaultActionMap();
+                onFinishExaminingItem.Raise();
             }
         }
 
@@ -90,7 +103,7 @@ namespace _Unite._Scripts.InteractionSystem
         {
             if (inspectItemData.ExaminedObject != null)
             {
-                inspectItemData.ExaminedObject.position = Vector3.Lerp(inspectItemData.ExaminedObject.position, new Vector3(offset.Value.x, offset.Value.y, zOffset), 0.2f);
+                inspectItemData.ExaminedObject.position = Vector3.Lerp(inspectItemData.ExaminedObject.position, offset.Value, 0.2f);
                 Vector3 deltaMouse = Input.mousePosition - inspectItemData.LastMousePosition;
                 float rotationSpeed = 1.0f;
                 inspectItemData.ExaminedObject.Rotate(deltaMouse.x * rotationSpeed * Vector3.up, Space.World);
