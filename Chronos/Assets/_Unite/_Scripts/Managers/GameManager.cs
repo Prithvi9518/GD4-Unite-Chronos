@@ -44,6 +44,10 @@ namespace Unite.Managers
         [SerializeField]
         private GameEvent onFinishSwitchToNextLevel;
 
+        [Header("Event for test scenes so that gun and hud get initialized")]
+        [SerializeField]
+        private GameEvent onStartTestScene;
+
         private GameState currentState;
 
         private Player.Player player;
@@ -164,6 +168,8 @@ namespace Unite.Managers
             if (Bootloader.Instance != null) return;
             
             Debug.Log("No bootloader found after initializing player and camera. Setting up and starting game.");
+            
+            onStartTestScene.Raise();
             SetupAndStartGame();
         }
 

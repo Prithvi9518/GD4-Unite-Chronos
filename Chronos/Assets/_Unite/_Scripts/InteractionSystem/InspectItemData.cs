@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace _Unite._Scripts.InteractionSystem
+namespace Unite.InteractionSystem
 {
     public class InspectItemData
     {
