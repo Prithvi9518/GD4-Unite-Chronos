@@ -1,5 +1,6 @@
 using Unite.Core.Input;
 using Unite.EventSystem;
+using Unite.Managers;
 using UnityEngine;
 
 namespace Unite.InteractionSystem
@@ -30,18 +31,21 @@ namespace Unite.InteractionSystem
         // private GameObject examineCanvas;
         #endregion
 
+        private Transform playerCamTransform;
+
         #region Methods
 
         private void Start()
         {
             inspectItemData = new InspectItemData();
+            playerCamTransform = GameManager.Instance.PlayerCamera.transform;
         }
 
         /// <summary>
         /// Checks if an object is being examined and initiates the examination process.
         /// </summary>
-        /// <param name="hitGameObject">The GameObject being examined.</param>
-        public void CheckExamining(Transform hitGameObject)
+        /// <param name="pickupInfo">The GameObject being examined.</param>
+        public void CheckExamining(PickupInfo pickupInfo)
         {
             Debug.Log("BOOM");
             inspectItemData.ToggleExamination();
@@ -52,7 +56,8 @@ namespace Unite.InteractionSystem
                 InputManager.Instance.SwitchToExamineItemActionMap();
                 onStartExaminingItem.Raise();
                 
-                inspectItemData.ExaminedObject = hitGameObject;
+                inspectItemData.ExaminedObject = pickupInfo.Transform;
+                inspectItemData.ZoomFactor = pickupInfo.ZoomFactor;
                 inspectItemData.OriginalPositions[inspectItemData.ExaminedObject] = inspectItemData.ExaminedObject.position;
                 inspectItemData.OriginalRotations[inspectItemData.ExaminedObject] = inspectItemData.ExaminedObject.rotation;
             }
@@ -103,7 +108,13 @@ namespace Unite.InteractionSystem
         {
             if (inspectItemData.ExaminedObject != null)
             {
-                inspectItemData.ExaminedObject.position = Vector3.Lerp(inspectItemData.ExaminedObject.position, offset.Value, 0.2f);
+                Vector3 playerCamPos = playerCamTransform.position;
+                Vector3 playerCameraXZ = new Vector3(playerCamPos.x, offset.Value.y,
+                    playerCamPos.z);
+                Vector3 targetPosition = Vector3.MoveTowards(offset.Value, playerCameraXZ,
+                    inspectItemData.ZoomFactor);
+                
+                inspectItemData.ExaminedObject.position = Vector3.Lerp(inspectItemData.ExaminedObject.position, targetPosition, 0.2f);
                 Vector3 deltaMouse = Input.mousePosition - inspectItemData.LastMousePosition;
                 float rotationSpeed = 1.0f;
                 inspectItemData.ExaminedObject.Rotate(deltaMouse.x * rotationSpeed * Vector3.up, Space.World);

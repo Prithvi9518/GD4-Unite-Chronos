@@ -31,6 +31,8 @@ namespace Unite.InteractionSystem
         /// Original rotations of interactable objects
         /// </summary>
         private Dictionary<Transform, Quaternion> originalRotations;
+
+        private float zoomFactor;
         
         #endregion
         
@@ -58,6 +60,12 @@ namespace Unite.InteractionSystem
         }
         public Dictionary<Transform, Vector3> OriginalPositions => originalPositions;
         public Dictionary<Transform, Quaternion> OriginalRotations => originalRotations;
+
+        public float ZoomFactor
+        {
+            get => zoomFactor;
+            set => zoomFactor = value;
+        }
         #endregion
         
         /// <summary>
