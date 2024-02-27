@@ -11,7 +11,7 @@ namespace Unite.UI
         [SerializeField]
         private RectTransform holder;
         
-        private Transform player;
+        private Transform playerOrientation;
         private Camera cam;
 
         public Dictionary<Transform, DamageIndicator> Indicators = new();
@@ -38,14 +38,14 @@ namespace Unite.UI
             }
 
             DamageIndicator newIndicator = Instantiate(indicatorPrefab, holder);
-            newIndicator.Register(target, player, () => { Indicators.Remove(target);});
+            newIndicator.Register(target, playerOrientation, () => { Indicators.Remove(target);});
             
             Indicators.Add(target, newIndicator);
         }
 
         public void ListenToPlayerReadyEvent(Player.Player p)
         { 
-            player = p.transform;
+            playerOrientation = p.Orientation;
         }
     }
 }

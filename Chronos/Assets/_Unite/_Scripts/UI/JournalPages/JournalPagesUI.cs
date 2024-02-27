@@ -31,11 +31,16 @@ namespace Unite.UI
         [SerializeField]
         private JournalPageSO[] journalPages;
 
+        [Header("Events to switch input schemes when opening/closing journal:")]
         [SerializeField] 
         private GameEvent onJournalOpened;
 
         [SerializeField]
         private GameEvent onCloseButtonPressed;
+
+        [Header("Events for analytics:")]
+        [SerializeField]
+        private GameEvent onOpenJournalUpdateAnalytics;
 
         private Image leftImage;
         private Image middleImage;
@@ -59,6 +64,7 @@ namespace Unite.UI
             mainPanel.gameObject.SetActive(true);
             ShowCurrentPage();
             onJournalOpened.Raise();
+            onOpenJournalUpdateAnalytics.Raise();
         }
 
         public void HideJournalUI()

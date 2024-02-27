@@ -1,7 +1,10 @@
+using System;
+using System.Collections;
 using System.Collections.Generic;
 using Unite.Team;
 using Unity.Collections;
 using UnityEngine;
+using Action = System.Action;
 
 namespace Unite.Core.Game
 {
@@ -23,8 +26,6 @@ namespace Unite.Core.Game
 
         [ReadOnly]
         [SerializeField] private bool isStartLoaded;
-
-        [ReadOnly] [SerializeField] private int currentLevel;
 
         #endregion
 
@@ -54,24 +55,60 @@ namespace Unite.Core.Game
 
         #endregion
 
-        [ContextMenu("Load Layout")]
-        public void LoadLayout()
-        {
-            if (levels.Count == 0) return;
-            
-            levels[startLevel].LoadLevel();
+        public int StartLevelIndex => startLevel;
 
-            isStartLoaded = true;
+        public GameLevel GetLevelByIndex(int levelIndex)
+        {
+            if (levels.Count == 0) return null;
+            if(levelIndex < 0 || levelIndex >= levels.Count) return null;
+
+            return levels[levelIndex];
+        }
+
+        [ContextMenu("Load Layout")]
+        public IEnumerator LoadLayout(int levelIndex, Action onStartLoading, Action<float> onProgressLoading, Action onFinishLoading)
+        {
+            GameLevel level = GetLevelByIndex(levelIndex);
+            if(level == null) yield break;
+            
+            onStartLoading?.Invoke();
+            
+            List<AsyncOperation> scenesToLoad = level.LoadLevel();
+
+            foreach (var sceneToLoad in scenesToLoad)
+            {
+                while (!sceneToLoad.isDone)
+                {
+                    float loadProgress = 0;
+
+                    foreach (AsyncOperation operation in scenesToLoad)
+                    {
+                        loadProgress += operation.progress;
+                    }
+
+                    loadProgress /= scenesToLoad.Count;
+                    onProgressLoading?.Invoke(loadProgress);
+
+                    yield return null;
+                }
+            }
+
+            if(levelIndex == startLevel)
+                isStartLoaded = true;
+
+            onFinishLoading?.Invoke();
         }
 
         [ContextMenu("Unload Layout")]
-        public void UnloadLayout()
+        public void UnloadLayout(int levelIndex)
         {
             if (levels.Count == 0) return;
+            if(levelIndex < 0 || levelIndex >= levels.Count) return;
 
-            levels[startLevel].UnloadLevel();
+            levels[levelIndex].UnloadLevel();
 
-            isStartLoaded = false;
+            if(levelIndex == startLevel)
+                isStartLoaded = false;
         }
     }
 }

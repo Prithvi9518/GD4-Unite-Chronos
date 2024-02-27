@@ -10,6 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 4125013627884836910}
   - component: {fileID: 5387332620251768019}
+  - component: {fileID: 421104597051551567}
+  - component: {fileID: -7555599973694351678}
+  - component: {fileID: 8421756463421938982}
   m_Layer: 0
   m_Name: InputManager
   m_TagString: Untagged
@@ -44,6 +47,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac2a674fd426aa947842ef6aecd865a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  onPlayerJumpAction: {fileID: 11400000, guid: e00bd7722a3d94c43bedc0f8a22d32f5, type: 2}
+  onPlayerDashAction: {fileID: 11400000, guid: 0c436325152dd344bbace583ffb0ab28, type: 2}
   onPlayerInteractAction: {fileID: 11400000, guid: 4caf9711aebb32145bfca5c1c7e1ffb8,
     type: 2}
   onPlayerUseAbilityAction: {fileID: 11400000, guid: eb7324bc833215e48949f69650138bff,
@@ -58,3 +63,90 @@ MonoBehaviour:
     type: 2}
   onGamepadUsed: {fileID: 11400000, guid: 0a489327cbafb0d48b443c84bc55d42b, type: 2}
   onKeyboardUsed: {fileID: 11400000, guid: a02d3426de4a0f64a85f754f612b9616, type: 2}
+--- !u!114 &421104597051551567
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8788643976767233303}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b9893a878b6442144bd9c1283a2b4b18, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  description: Listen for game start
+  gameEvent: {fileID: 11400000, guid: 1c64a1214fcebc743a76621bff096664, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 5387332620251768019}
+        m_TargetAssemblyTypeName: Unite.Core.Input.InputManager, Assembly-CSharp
+        m_MethodName: HandleGameStart
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &-7555599973694351678
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8788643976767233303}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b9893a878b6442144bd9c1283a2b4b18, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  description: Listen for start of loading next level
+  gameEvent: {fileID: 11400000, guid: b19c0b7dbb256cc4caaa28fa1ddc459c, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 5387332620251768019}
+        m_TargetAssemblyTypeName: Unite.Core.Input.InputManager, Assembly-CSharp
+        m_MethodName: DisableDefaultActions
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &8421756463421938982
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8788643976767233303}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b9893a878b6442144bd9c1283a2b4b18, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  description: Listen for finished loading next level
+  gameEvent: {fileID: 11400000, guid: 18dd0b4d178be624591980e20039a1df, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 5387332620251768019}
+        m_TargetAssemblyTypeName: Unite.Core.Input.InputManager, Assembly-CSharp
+        m_MethodName: EnableDefaultActions
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2

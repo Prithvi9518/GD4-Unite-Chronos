@@ -1,17 +1,20 @@
-﻿using StarterAssets;
-using Unite.AbilitySystem;
+﻿using Unite.AbilitySystem;
 using Unite.EventSystem;
 using UnityEngine;
 
 namespace Unite.Player
 {
     [RequireComponent(typeof(PlayerHealthHandler))]
-    [RequireComponent(typeof(PlayerStatsHandler))]
     [RequireComponent(typeof(PlayerGunHandler))]
-    [RequireComponent(typeof(PlayerMovementHandler))]
     [RequireComponent(typeof(PlayerStatusEffectable))]
     public class Player : MonoBehaviour
     {
+        [SerializeField]
+        private Transform orientation;
+
+        [SerializeField]
+        private Transform cameraRoot;
+        
         [SerializeField]
         private PlayerData playerData;
         
@@ -21,17 +24,19 @@ namespace Unite.Player
         private PlayerHealthHandler healthHandler;
         private PlayerStatsHandler statsHandler;
         private PlayerGunHandler gunHandler;
-        private PlayerMovementHandler movementHandler;
-        private FirstPersonController controller;
+        private IHandlePlayerMovement movementHandler;
         private PlayerStatusEffectable statusEffectable;
+        
         // Temporary workaround
         private Ability ability;
 
         public PlayerHealthHandler HealthHandler => healthHandler;
         public PlayerStatsHandler StatsHandler => statsHandler;
         public PlayerGunHandler GunHandler => gunHandler;
-        public PlayerMovementHandler MovementHandler => movementHandler;
+        public IHandlePlayerMovement MovementHandler => movementHandler;
         public PlayerStatusEffectable StatusEffectable => statusEffectable;
+        public Transform Orientation => (orientation != null) ? orientation : transform;
+        public Transform CameraRoot => (cameraRoot != null) ? cameraRoot : transform;
 
         public Ability Ability => ability;
 
@@ -39,16 +44,16 @@ namespace Unite.Player
         {
             healthHandler = GetComponent<PlayerHealthHandler>();
             
-            statsHandler = GetComponent<PlayerStatsHandler>();
+            statsHandler = new PlayerStatsHandler();
             gunHandler = GetComponent<PlayerGunHandler>();
 
-            movementHandler = GetComponent<PlayerMovementHandler>();
+            movementHandler = GetComponent<IHandlePlayerMovement>();
             
-            controller = GetComponent<FirstPersonController>();
-
             statusEffectable = GetComponent<PlayerStatusEffectable>();
 
             ability = GetComponent<Ability>();
+            
+            DontDestroyOnLoad(gameObject);
         }
 
         private void Start()
@@ -61,7 +66,7 @@ namespace Unite.Player
         {
             healthHandler.enabled = false;
             gunHandler.enabled = false;
-            controller.enabled = false;
+            movementHandler.DisableMovement();
         }
     }
 }

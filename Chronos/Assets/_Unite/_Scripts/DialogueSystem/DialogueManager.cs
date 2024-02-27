@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Unite.EventSystem;
 using UnityEngine;
 
 namespace Unite.DialogueSystem
@@ -7,6 +8,14 @@ namespace Unite.DialogueSystem
     [RequireComponent(typeof(AudioSource))]
     public class DialogueManager : MonoBehaviour
     {
+        [Header("Set to false for testing purposes:")]
+        [SerializeField]
+        private bool playDialogue = true;
+
+        [Header("Send event to analytics manager when playing dialogue")]
+        [SerializeField]
+        private DialogueSOEvent dialogueAnalyticsEvent;
+        
         public static DialogueManager Instance { get; private set; }
 
         private AudioSource audioSource;
@@ -25,12 +34,14 @@ namespace Unite.DialogueSystem
 
         public void PlayDialogue(DialogueSO dialogue)
         {
+            if (!playDialogue) return;
+            
+            dialogueAnalyticsEvent.Raise(dialogue);
             StartCoroutine(DialogueLinesCoroutine(dialogue.Lines));
         }
 
         private void PlayDialogueLine(DialogueLine line)
         {
-            Debug.Log($"{line.SpeakerName} : {line.Text}");
             audioSource.Stop();
             audioSource.PlayOneShot(line.Audio);
         }

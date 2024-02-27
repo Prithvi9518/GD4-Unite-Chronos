@@ -155,6 +155,10 @@ MonoBehaviour:
   onMoveToNextWave: {fileID: 11400000, guid: f921afec09720374d98e14afc2060d45, type: 2}
   onFinishBattleEvents:
   - {fileID: 11400000, guid: e391660daa999374fa01e96816751e18, type: 2}
+  onStartBattleUpdateAnalytics: {fileID: 11400000, guid: dc32743648ed77046927e82a6f80af14,
+    type: 2}
+  onFinishBattleUpdateAnalytics: {fileID: 11400000, guid: d33b0bb896d513b48a6720f43ba1dd15,
+    type: 2}
 --- !u!114 &3993637666093003771
 MonoBehaviour:
   m_ObjectHideFlags: 0
