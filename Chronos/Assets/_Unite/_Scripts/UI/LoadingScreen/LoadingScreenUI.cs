@@ -40,7 +40,6 @@ namespace Unite.UI
 
         private void UpdateProgress(float progress)
         {
-            Debug.Log($"progress = {progress}");
             progressBar.fillAmount = progress;
         }
     }
