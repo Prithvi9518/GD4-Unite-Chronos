@@ -240,6 +240,7 @@ MonoBehaviour:
   travelLimit: {x: 0.025, y: 0.025, z: 0.025}
   bobLimit: {x: 0.01, y: 0.01, z: 0.01}
   bobRotationMultiplier: {x: 2, y: 2, z: 2}
+  bobSpeedMultiplier: 2
   positionSmoothing: 10
   rotationSmoothing: 12
 --- !u!114 &3987137233538682703

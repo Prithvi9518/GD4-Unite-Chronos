@@ -37,6 +37,10 @@ namespace Unite.Player
         [SerializeField]
         private Vector3 bobRotationMultiplier;
         
+        [Header("Bobbing Speed Adjustment")]
+        [SerializeField] 
+        private float bobSpeedMultiplier = 1f;
+        
         [Header("Smoothing")]
         [SerializeField]
         private float positionSmoothing = 10f;
@@ -129,7 +133,7 @@ namespace Unite.Player
         {
             if (!isControllerSetupDone) return;
             
-            bobSpeedCurve += Time.deltaTime * (controller.IsGrounded ? controller.PlayerRigidbody.velocity.magnitude : 1f) + 0.01f;
+            bobSpeedCurve += Time.deltaTime * (controller.IsGrounded ? controller.PlayerRigidbody.velocity.magnitude : 1f) * bobSpeedMultiplier;
             
             if (!toggleBobOffset)
             {
