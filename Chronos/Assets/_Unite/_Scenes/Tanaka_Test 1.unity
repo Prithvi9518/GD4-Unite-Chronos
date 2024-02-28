@@ -1133,6 +1133,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Interaction Manager
       objectReference: {fileID: 0}
+    - target: {fileID: 2715051305831764429, guid: 68e0a15b1a0a421438cef3c27f915751,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2721839389589576565, guid: 68e0a15b1a0a421438cef3c27f915751,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1251,6 +1256,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: BuffSpawnManager
       objectReference: {fileID: 0}
+    - target: {fileID: 7670585740270252623, guid: b4c7e06f508c82f4f8caebb4c2358c1f,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1268,6 +1278,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: MusicManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 4905909592972571153, guid: 63bd1b273422166488248b89c4b18e59,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9037401346853215605, guid: 63bd1b273422166488248b89c4b18e59,
         type: 3}
@@ -1345,7 +1360,7 @@ PrefabInstance:
     - target: {fileID: 3023067945259455660, guid: c5efa0b15f2173e4b82e128d9e2fa66c,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 14.2
       objectReference: {fileID: 0}
     - target: {fileID: 3023067945259455660, guid: c5efa0b15f2173e4b82e128d9e2fa66c,
         type: 3}
@@ -1404,6 +1419,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: PauseManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 5433907960182977371, guid: 9253c7ac0cfa08d4cb2211b017e3d08c,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8805159879927057641, guid: 9253c7ac0cfa08d4cb2211b017e3d08c,
         type: 3}
@@ -1522,6 +1542,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Game Manager
+      objectReference: {fileID: 0}
+    - target: {fileID: 7186324535659970700, guid: 6d4300d687230a84dae32c3c0ad9a7d1,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1665,6 +1690,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: StoneHeart V2 (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2801641052783491312, guid: ccb5c018511a6a74f84667016aadf877,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2963507724065748741, guid: ccb5c018511a6a74f84667016aadf877,
         type: 3}
@@ -1938,6 +1968,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: VFX
       objectReference: {fileID: 0}
+    - target: {fileID: 1842083601264123975, guid: 0a4bc748551b30349a7d5d1d020d5a4b,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1959,7 +1994,7 @@ PrefabInstance:
     - target: {fileID: 342138533372249666, guid: 05fbf561a9c0c6441b2ec48bd32c3c96,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.61
+      value: 11.4
       objectReference: {fileID: 0}
     - target: {fileID: 342138533372249666, guid: 05fbf561a9c0c6441b2ec48bd32c3c96,
         type: 3}
@@ -2023,6 +2058,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: BuffsTrackingManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 2705597004288207272, guid: bb5d45625a7d0b849b4fa45ce887dec8,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6169824070956258639, guid: bb5d45625a7d0b849b4fa45ce887dec8,
         type: 3}
@@ -2142,6 +2182,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: UI EventSystem
       objectReference: {fileID: 0}
+    - target: {fileID: 7332820755459378023, guid: 6468c69eba2568c418f00dbbc76a1a10,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2159,6 +2204,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: PlayerDialogueHandler
+      objectReference: {fileID: 0}
+    - target: {fileID: 108893774048017997, guid: b126bee54d4315f40872b1176dff88ff,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6482331646880560691, guid: b126bee54d4315f40872b1176dff88ff,
         type: 3}
@@ -2278,6 +2328,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: NotesManager
       objectReference: {fileID: 0}
+    - target: {fileID: 8269914958341467095, guid: 50981e6aba87a6d4db0fd5c2a345f20d,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2345,6 +2400,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Ground
+      objectReference: {fileID: 0}
+    - target: {fileID: 5611604193024803170, guid: 799c42ac1e7b36943b98691e560152c8,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2414,6 +2474,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Sound Manager
       objectReference: {fileID: 0}
+    - target: {fileID: 6226372513233048475, guid: 3d829ac90af3a2b439aea9096212b7d6,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2481,6 +2546,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Time Stop Manager
+      objectReference: {fileID: 0}
+    - target: {fileID: 5944927660663965114, guid: d5fd5ec7949091e4eb9a35ddfdfdbd8e,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2550,6 +2620,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: DialogueManager
       objectReference: {fileID: 0}
+    - target: {fileID: 6341242715766385153, guid: c8f4569a63ce6ee40b0bed35ab4cdb1c,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2617,6 +2692,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Pickups
+      objectReference: {fileID: 0}
+    - target: {fileID: 7382464716943993965, guid: 630092e4a01c87749b582160c4b124a9,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2686,6 +2766,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Battle Zones
       objectReference: {fileID: 0}
+    - target: {fileID: 3435338046495990199, guid: e5e9ec4c407dc80489978c4c07b8978e,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2703,6 +2788,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: TestSpawners
+      objectReference: {fileID: 0}
+    - target: {fileID: 214730522648103756, guid: 47d36047184aed444a3833b0cb825531,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7753433048215624114, guid: 47d36047184aed444a3833b0cb825531,
         type: 3}
@@ -2780,7 +2870,7 @@ PrefabInstance:
     - target: {fileID: 8056704335564289458, guid: 48ac36365247ab94f9bbaad1bb93f92d,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.43
+      value: 13.1
       objectReference: {fileID: 0}
     - target: {fileID: 8056704335564289458, guid: 48ac36365247ab94f9bbaad1bb93f92d,
         type: 3}
@@ -2839,6 +2929,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: InputManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 18413844132777329, guid: d3b20c91331dddf4794de6f58b5fcaa3,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8923526252100161095, guid: d3b20c91331dddf4794de6f58b5fcaa3,
         type: 3}
@@ -2966,7 +3061,7 @@ PrefabInstance:
     - target: {fileID: 7389053103536729768, guid: 4d7ebfc54cd50134f9878bf9a2c49dff,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2985,6 +3080,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Surface Manager
+      objectReference: {fileID: 0}
+    - target: {fileID: 5878466465837008732, guid: 443e83371076dfd47bdbc07bfc7f9c1b,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6525847184392489268, guid: 443e83371076dfd47bdbc07bfc7f9c1b,
         type: 3}
@@ -3053,6 +3153,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: UI
+      objectReference: {fileID: 0}
+    - target: {fileID: 284573950717637371, guid: c927759794b796747a501ddb5996745b,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2644957680627752234, guid: c927759794b796747a501ddb5996745b,
         type: 3}
