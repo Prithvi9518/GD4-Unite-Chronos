@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Unite.EventSystem;
 using UnityEngine;
 using UnityEngine.Rendering;
 
@@ -15,6 +16,11 @@ namespace Unite.Core.Game
         [SerializeField]
         private bool useDefaultPostProcessingVolume;
 
+        [Header("Event to raise after loading the level:")]
+        [SerializeField]
+        private GameEvent onLoadLevel;
+
+        [Header("Post Processing:")]
         [SerializeField]
         private Volume postProcessPrefab;
 
@@ -22,6 +28,8 @@ namespace Unite.Core.Game
         private VolumeProfile defaultPostProcessProfile;
 
         private Volume instancePostProcessPrefab;
+        
+        public GameEvent OnLoadLevel => onLoadLevel;
 
         public List<AsyncOperation> LoadLevel()
         {

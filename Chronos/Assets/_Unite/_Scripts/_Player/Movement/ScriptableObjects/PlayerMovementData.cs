@@ -6,7 +6,10 @@ namespace Unite.Player
     public class PlayerMovementData : ScriptableObject
     {
         [field: SerializeField]
-        public float WalkSpeed { get; private set; }
+        public float SlowWalkSpeed { get; private set; }
+        
+        [field: SerializeField]
+        public float DefaultSpeed { get; private set; }
         
         [field: SerializeField]
         public float SprintSpeed { get; private set; }
