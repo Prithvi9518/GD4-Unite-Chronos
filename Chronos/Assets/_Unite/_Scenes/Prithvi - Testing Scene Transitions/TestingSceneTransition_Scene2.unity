@@ -123,82 +123,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1 &303613307
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 303613308}
-  - component: {fileID: 303613309}
-  - component: {fileID: 303613310}
-  m_Layer: 0
-  m_Name: PlayerSpawn
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &303613308
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 303613307}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -121.899666, y: -64.13, z: -84.29612}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &303613309
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 303613307}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4b99f4ed95f34a9cb0e9d3ff6832651d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  onFinishPlayerSpawn: {fileID: 11400000, guid: e506587ca3c99e74099e844c786e5945,
-    type: 2}
---- !u!114 &303613310
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 303613307}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b9893a878b6442144bd9c1283a2b4b18, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  description: Listen for finish loading new level
-  gameEvent: {fileID: 11400000, guid: 18dd0b4d178be624591980e20039a1df, type: 2}
-  response:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 303613309}
-        m_TargetAssemblyTypeName: Unite.Player.PlayerSpawnOnSceneLoad, Assembly-CSharp
-        m_MethodName: SpawnPlayer
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!1 &788680948
 GameObject:
   m_ObjectHideFlags: 0
@@ -305,9 +229,77 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &5942576543852274005
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1381940412175794370, guid: 8e40a4631d9845947aaca3f1d1016952,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -121.899666
+      objectReference: {fileID: 0}
+    - target: {fileID: 1381940412175794370, guid: 8e40a4631d9845947aaca3f1d1016952,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -64.13
+      objectReference: {fileID: 0}
+    - target: {fileID: 1381940412175794370, guid: 8e40a4631d9845947aaca3f1d1016952,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -84.29612
+      objectReference: {fileID: 0}
+    - target: {fileID: 1381940412175794370, guid: 8e40a4631d9845947aaca3f1d1016952,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1381940412175794370, guid: 8e40a4631d9845947aaca3f1d1016952,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1381940412175794370, guid: 8e40a4631d9845947aaca3f1d1016952,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1381940412175794370, guid: 8e40a4631d9845947aaca3f1d1016952,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1381940412175794370, guid: 8e40a4631d9845947aaca3f1d1016952,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1381940412175794370, guid: 8e40a4631d9845947aaca3f1d1016952,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1381940412175794370, guid: 8e40a4631d9845947aaca3f1d1016952,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3269395941914487210, guid: 8e40a4631d9845947aaca3f1d1016952,
+        type: 3}
+      propertyPath: m_Name
+      value: PlayerSpawn
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 8e40a4631d9845947aaca3f1d1016952, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 788680952}
-  - {fileID: 303613308}
+  - {fileID: 5942576543852274005}

@@ -3,8 +3,7 @@
     public enum GameState
     {
         Bootstrap,
-        StartingLevel,
-        IslandLevel,
+        Start,
         PlayerDead
     }
 }

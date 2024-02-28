@@ -14,12 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scenes:
   - {fileID: 11400000, guid: 22847160887d01f4ea8cd9af8d33e898, type: 2}
-  - {fileID: 11400000, guid: 2da9f983e0b3fda468e80cdb51ba3953, type: 2}
   - {fileID: 11400000, guid: e48d373fe122dac468de68d62cb2e6c3, type: 2}
   - {fileID: 11400000, guid: 547c4e519ae761c4ebbd5bd7df5d8efe, type: 2}
   - {fileID: 11400000, guid: c7cdb0bd089e2b249a249328531ac549, type: 2}
   - {fileID: 11400000, guid: 44c5058e104eb6444a6c64089f8f9001, type: 2}
   useDefaultPostProcessingVolume: 1
+  onLoadLevel: {fileID: 11400000, guid: ab1fe381c42cace468c5b6bda1edaad4, type: 2}
   postProcessPrefab: {fileID: 834409248545554803, guid: 8ad563cf71bc2c04ca5e036b19b89274,
     type: 3}
   defaultPostProcessProfile: {fileID: 11400000, guid: a6560a915ef98420e9faacc1c7438823,

@@ -79,6 +79,9 @@ namespace Unite.Player
 
         private bool isMoving;
 
+        private bool canDash;
+        private bool isWalkingSlowly;
+
         public Transform Orientation => orientation;
         public PlayerCameraHandler CameraHandler => cameraHandler;
         public Rigidbody PlayerRigidbody => rb;
@@ -102,6 +105,7 @@ namespace Unite.Player
         private void Start()
         {
             readyToJump = true;
+            canDash = true;
             isMoving = true;
         }
 
@@ -168,7 +172,7 @@ namespace Unite.Player
             else if (isGrounded)
             {
                 currentState = MovementState.Walking;
-                desiredMoveSpeed = movementData.WalkSpeed;
+                desiredMoveSpeed = (isWalkingSlowly) ? movementData.SlowWalkSpeed : movementData.DefaultSpeed;
             }
             else
             {
@@ -176,7 +180,7 @@ namespace Unite.Player
 
                 if (desiredMoveSpeed < movementData.SprintSpeed)
                 {
-                    desiredMoveSpeed = movementData.WalkSpeed;
+                    desiredMoveSpeed = movementData.DefaultSpeed;
                 }
                 else
                 {
@@ -295,6 +299,7 @@ namespace Unite.Player
         public void HandleDashAction()
         {
             if (!isMoving) return;
+            if (!canDash) return;
             
             dashHandler.Dash();
         }
@@ -371,6 +376,26 @@ namespace Unite.Player
         {
             rb.isKinematic = true;
             isMoving = false;
+        }
+
+        public void EnableSlowWalking()
+        {
+            isWalkingSlowly = true;
+        }
+        
+        public void DisableSlowWalking()
+        {
+            isWalkingSlowly = false;
+        }
+        
+        public void EnableDash()
+        {
+            canDash = true;
+        }
+        
+        public void DisableDash()
+        {
+            canDash = false;
         }
     }
 }
