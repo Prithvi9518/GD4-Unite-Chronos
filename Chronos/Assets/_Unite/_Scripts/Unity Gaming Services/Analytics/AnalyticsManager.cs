@@ -26,21 +26,56 @@ namespace Unite.Managers
                 Debug.Log(e.ToString());
             }
         }
-
-        public void PlayerDied(PlayerDiedInfo info, Enemy enemy)
+        public void EnterNewRegion(string regionName)
         {
             Dictionary<string, object> data = new Dictionary<string, object>();
-            //data.Add("Death_Position_x", info.DeathPosition.x);
-            //data.Add("Death_Position_y", info.DeathPosition.y);
-            //data.Add("Death_Position_z", info.DeathPosition.z);
-            data.Add("Killed_By_Enemy", info.KilledByAttacker);
-            data.Add("Killed_By_Attack", info.KilledByAttack);
-
-            // Add more data related to player death
-            // Example: data.Add("Player_Health", info.PlayerHealth);
+            data.Add("Name", regionName);
 
             // Send analytics event
-            SendAnalyticsEvent("PlayerDied", data);
+            SendAnalyticsEvent("EnteredNewRegion", data);
+        }
+        public void OnInteractWithInteractible(InteractibleObject interactible)
+        {
+            Dictionary<string, object> data = new Dictionary<string, object>();
+            data.Add("Name", interactible.DisplayName);
+
+            // Send analytics event
+            SendAnalyticsEvent("InteractWithInteractible", data);
+        }
+
+        public void OnInteractWithDialogueInteractible(DialogueInteractible dialogueInteractible)
+        {
+            Dictionary<string, object> data = new Dictionary<string, object>();
+            data.Add("Name", dialogueInteractible.DisplayName);
+
+            // Send analytics event
+            SendAnalyticsEvent("InteractWithDialogueInteractible", data);
+        }
+
+        public void JournalUsed()
+        {
+            Dictionary<string, object> data = new Dictionary<string, object>();
+
+            // Send analytics event
+            SendAnalyticsEvent("JournalUsed", data);
+        }
+
+        public void DashUsed()
+        {
+            //Add more data related to time stop usage
+            Dictionary<string, object> data = new Dictionary<string, object>();
+
+            //Send analytics event
+            SendAnalyticsEvent("DashUsed", data);
+        }
+
+        public void TimeStopUsed()
+        {
+            //Add more data related to time stop usage
+            Dictionary<string, object> data = new Dictionary<string, object>();
+
+            //Send analytics event
+            SendAnalyticsEvent("TimeStopUsed", data);
         }
 
         public void EnemyDefeated(Enemy enemy)
@@ -51,22 +86,27 @@ namespace Unite.Managers
             SendAnalyticsEvent("EnemyDefeated", data);
         }
 
-        public void TimeStopUsed()
+        public void PlayerUsedPowerup(string powerupType)
         {
-            //Add more data related to time stop usage
+            // Add more data related to powerup usage
             Dictionary<string, object> data = new Dictionary<string, object>();
-
-           //Send analytics event
-           SendAnalyticsEvent("TimeStopUsed", data);
-        }
-
-    public void OnInteractWithInteractible(InteractibleObject interactible)
-        {
-            Dictionary<string, object> data = new Dictionary<string, object>();
-            data.Add("Name", interactible.DisplayName);
+            data.Add("Name", powerupType);
 
             // Send analytics event
-            SendAnalyticsEvent("InteractWithInteractible", data);
+            SendAnalyticsEvent("PlayerUsedPowerup", data);
+        }
+
+        public void PlayerDied(PlayerDiedInfo info, Enemy enemy)
+        {
+            Dictionary<string, object> data = new Dictionary<string, object>();
+            //data.Add("Death_Position_x", info.DeathPosition.x);
+            //data.Add("Death_Position_y", info.DeathPosition.y);
+            //data.Add("Death_Position_z", info.DeathPosition.z);
+            data.Add("Killed_By_Enemy", info.KilledByAttacker);
+            data.Add("Killed_By_Attack", info.KilledByAttack);
+
+            // Send analytics event
+            SendAnalyticsEvent("PlayerDied", data);
         }
 
         public void PlayerReachedCheckpoint(Vector3 checkpointPosition)
@@ -83,32 +123,34 @@ namespace Unite.Managers
             SendAnalyticsEvent("PlayerReachedCheckpoint", data);
         }
 
-        public void PlayerUsedPowerup(string powerupType)
+        public void LevelStarted()
         {
-            // Add more data related to powerup usage
+            //Add more data related to time stop usage
             Dictionary<string, object> data = new Dictionary<string, object>();
-            data.Add("Name", powerupType);
 
-            // Send analytics event
-            SendAnalyticsEvent("PlayerUsedPowerup", data);
+            //Send analytics event
+            SendAnalyticsEvent("LevelStarted", data);
         }
 
-        // Add more events and data as needed
-
-        private void OnLevelCompleted()
+        public void LevelFinished()
         {
-            int currentLevel = Random.Range(1, 4); // Gets a random number from 1-3
+            //Add more data related to time stop usage
+            Dictionary<string, object> data = new Dictionary<string, object>();
 
-            // Create a dictionary of custom parameters with the key "levelName"
-            // and a value of the form "levelX," where X is the randomly generated level number.
+            //Send analytics event
+            SendAnalyticsEvent("LevelFinished", data);
+        }
+
+        private void OnLevelCompleted(string levelName)
+        {
             Dictionary<string, object> parameters = new Dictionary<string, object>()
             {
-                { "levelName", "level" + currentLevel.ToString()}
+                { "levelName", "level" + levelName}
             };
 
             // The ‘levelCompleted’ event will get cached locally
             // and sent during the next scheduled upload, within 1 minute
-            SendAnalyticsEvent("levelCompleted", parameters, true);
+            SendAnalyticsEvent("LevelCompleted", parameters, true);
         }
 
         private void OnDestroy()
