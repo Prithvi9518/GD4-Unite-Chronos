@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
+  m_IndirectSpecularColor: {r: 0.17892951, g: 0.22404742, b: 0.30589488, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -943,10 +943,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   displayName: 
-  interactibleData: {fileID: 11400000, guid: eeea022f226ef174cad0c6f0e52b4da0, type: 2}
+  interactibleData: {fileID: 11400000, guid: fdabb81b61767e04f929eb31a50a5d2b, type: 2}
   onInteractUpdateAnalytics: {fileID: 0}
   pickupGameEvent: {fileID: 11400000, guid: d8513cb851429324083cad4cc5179807, type: 2}
-  zoomFactor: 0.001
+  zoomFactor: 0.647
 --- !u!1001 &148841692
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1158,7 +1158,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -16728,6 +16728,11 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: e4a9aa139316bfa47a9d63d5826f310a, type: 2}
+    - target: {fileID: 9189882647124192931, guid: 9091935fa6d4e904096bb20abbfbb8f7,
+        type: 3}
+      propertyPath: zoomFactor
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -16983,6 +16988,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1869119619218240078, guid: 2ee414b95b159e14a916e31613c662ba,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 2172253810547688893, guid: 2ee414b95b159e14a916e31613c662ba,
         type: 3}
       propertyPath: m_LocalScale.x
@@ -17053,6 +17063,31 @@ PrefabInstance:
       propertyPath: m_Name
       value: CardboardBox
       objectReference: {fileID: 0}
+    - target: {fileID: 2404278302476708205, guid: 2ee414b95b159e14a916e31613c662ba,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 2404278302476708205, guid: 2ee414b95b159e14a916e31613c662ba,
+        type: 3}
+      propertyPath: m_TagString
+      value: Interactible
+      objectReference: {fileID: 0}
+    - target: {fileID: 6473431429562355979, guid: 2ee414b95b159e14a916e31613c662ba,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 8659280003048387909, guid: 2ee414b95b159e14a916e31613c662ba,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 9039339271975626658, guid: 2ee414b95b159e14a916e31613c662ba,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
@@ -17060,7 +17095,15 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 524763526}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 2404278302476708205, guid: 2ee414b95b159e14a916e31613c662ba,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1680241559}
+    - targetCorrespondingSourceObject: {fileID: 2404278302476708205, guid: 2ee414b95b159e14a916e31613c662ba,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1680241560}
   m_SourcePrefab: {fileID: 100100000, guid: 2ee414b95b159e14a916e31613c662ba, type: 3}
 --- !u!4 &459986594 stripped
 Transform:
@@ -17300,7 +17343,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 524763526}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: GameObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -21710,6 +21753,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 6702295601969958911, guid: ad8ee9c4078e84c488abd044a7b2b832,
+        type: 3}
+      propertyPath: zoomFactor
+      value: 0.218
+      objectReference: {fileID: 0}
     - target: {fileID: 7122469795354279279, guid: ad8ee9c4078e84c488abd044a7b2b832,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -21738,7 +21786,7 @@ PrefabInstance:
     - target: {fileID: 8256000087878370816, guid: ad8ee9c4078e84c488abd044a7b2b832,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.0512
+      value: 1.0893
       objectReference: {fileID: 0}
     - target: {fileID: 8256000087878370816, guid: ad8ee9c4078e84c488abd044a7b2b832,
         type: 3}
@@ -25352,6 +25400,50 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1411998987}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1680241558 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2404278302476708205, guid: 2ee414b95b159e14a916e31613c662ba,
+    type: 3}
+  m_PrefabInstance: {fileID: 459986593}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1680241559
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1680241558}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c7f64d21521944cdaca887dbf32ee24f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  displayName: 
+  interactibleData: {fileID: 11400000, guid: f8e62bf544338f54fa06f36ab18cf358, type: 2}
+  onInteractUpdateAnalytics: {fileID: 0}
+  pickupGameEvent: {fileID: 11400000, guid: d8513cb851429324083cad4cc5179807, type: 2}
+  zoomFactor: 0
+--- !u!65 &1680241560
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1680241558}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 2, y: 2, z: 2}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!43 &1691737252
 Mesh:
   m_ObjectHideFlags: 0
