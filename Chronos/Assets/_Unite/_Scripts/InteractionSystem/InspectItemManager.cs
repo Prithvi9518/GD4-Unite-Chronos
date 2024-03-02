@@ -109,10 +109,12 @@ namespace Unite.InteractionSystem
             if (inspectItemData.ExaminedObject != null)
             {
                 Vector3 playerCamPos = playerCamTransform.position;
-                Vector3 playerCameraXZ = new Vector3(playerCamPos.x, offset.Value.y,
-                    playerCamPos.z);
-                Vector3 targetPosition = Vector3.MoveTowards(offset.Value, playerCameraXZ,
-                    inspectItemData.ZoomFactor);
+
+                inspectItemData.OriginalPositions.TryGetValue(inspectItemData.ExaminedObject, out var originalItemPos);
+                float distanceBetweenCameraAndItem = Vector3.Distance(playerCamPos, originalItemPos);
+                Vector3 newOffsetPosition =
+                    offset.Value + playerCamTransform.forward * (distanceBetweenCameraAndItem - inspectItemData.ZoomFactor);
+                Vector3 targetPosition = Vector3.MoveTowards(inspectItemData.ExaminedObject.position, newOffsetPosition, 5f);
                 
                 inspectItemData.ExaminedObject.position = Vector3.Lerp(inspectItemData.ExaminedObject.position, targetPosition, 0.2f);
                 Vector3 deltaMouse = Input.mousePosition - inspectItemData.LastMousePosition;
