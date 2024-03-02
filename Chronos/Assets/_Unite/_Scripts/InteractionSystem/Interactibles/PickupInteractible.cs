@@ -9,6 +9,7 @@ namespace Unite.InteractionSystem
             private PickupEvent pickupGameEvent;
             
             [SerializeField]
+            [Range(0f, 1f)]
             private float zoomFactor;
 
             private PickupInfo inspectItemInfo;
