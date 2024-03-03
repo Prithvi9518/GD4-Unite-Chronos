@@ -45,7 +45,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4804474196204879375}
   - component: {fileID: 5098705057236100047}
-  - component: {fileID: 7123615501920010972}
   - component: {fileID: 2527780188152639686}
   m_Layer: 5
   m_Name: DamageIndicatorUI
@@ -89,35 +88,6 @@ MonoBehaviour:
   indicatorPrefab: {fileID: 6796880052514492931, guid: 9566a53fe5c59c04594c38c67441afb7,
     type: 3}
   holder: {fileID: 729377311621011657}
---- !u!114 &7123615501920010972
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9013893742393554549}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ad4b93f17ea048418740474027a5e07c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  description: 
-  gameEvent: {fileID: 11400000, guid: 805e5580eb6823248afa5b554b93ceea, type: 2}
-  response:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 5098705057236100047}
-        m_TargetAssemblyTypeName: Unite.UI.DamageIndicatorSystem, Assembly-CSharp
-        m_MethodName: ListenToPlayerReadyEvent
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!114 &2527780188152639686
 MonoBehaviour:
   m_ObjectHideFlags: 0
