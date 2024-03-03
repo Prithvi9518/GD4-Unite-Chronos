@@ -352,7 +352,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   displayName: 
-  interactibleData: {fileID: 11400000, guid: eeea022f226ef174cad0c6f0e52b4da0, type: 2}
+  interactibleData: {fileID: 11400000, guid: e83b51f83e2bb6a4496f9bf0065a267f, type: 2}
   onInteractUpdateAnalytics: {fileID: 0}
   pickupGameEvent: {fileID: 11400000, guid: d8513cb851429324083cad4cc5179807, type: 2}
   zoomFactor: 0.836
@@ -375,5 +375,5 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.07600001, y: 0.07600001, z: 0.2}
+  m_Size: {x: 0.07600001, y: 0.07600001, z: 1}
   m_Center: {x: 0.003864281, y: 0.0030716213, z: -0.007666601}
