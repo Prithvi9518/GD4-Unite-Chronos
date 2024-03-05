@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Unite.ActionSystem;
 using Unite.EventSystem;
 using UnityEngine;
 
@@ -19,13 +20,16 @@ namespace Unite.ObjectiveSystem
         [SerializeField]
         private List<ObjectiveTask> tasks;
 
-        // Actions that are triggered when the objective is completed
         [SerializeField]
-        private GameEvent onComplete;
+        private GameEvent onCompleteEvent;
+
+        [SerializeField]
+        private ActionSO[] actionsOnComplete;
         
         public string ObjectiveDescription => objectiveDescription;
         public List<ObjectiveTask> Tasks => tasks;
 
-        public GameEvent OnComplete => onComplete;
+        public GameEvent OnCompleteEvent => onCompleteEvent;
+        public ActionSO[] ActionsOnComplete => actionsOnComplete;
     }
 }

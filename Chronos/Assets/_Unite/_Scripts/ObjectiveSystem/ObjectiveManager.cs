@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Unite.ActionSystem;
 using Unite.EventSystem;
 using UnityEngine;
 
@@ -84,9 +85,14 @@ namespace Unite.ObjectiveSystem
             ChangeObjectiveState(objectiveName, ObjectiveState.Complete);
             activeObjectives.Remove(objective);
 
-            var onComplete = objective.ObjectiveData.OnComplete;
-            if (onComplete != null)
-                onComplete.Raise();
+            var onCompleteEvent = objective.ObjectiveData.OnCompleteEvent;
+            if (onCompleteEvent != null)
+                onCompleteEvent.Raise();
+
+            foreach (var action in objective.ObjectiveData.ActionsOnComplete)
+            {
+                ActionExecutionManager.Instance.ExecuteAction(action);
+            }
             
             onObjectiveCompleted.Raise();
         }
