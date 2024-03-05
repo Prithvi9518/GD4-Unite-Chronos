@@ -10,10 +10,16 @@ GameObject:
   m_Component:
   - component: {fileID: 4233565400913462287}
   - component: {fileID: 303567549767911825}
-  - component: {fileID: 3671194530802289970}
-  - component: {fileID: 4490751792797544299}
-  - component: {fileID: 5884764464449563489}
+  - component: {fileID: 6550072177206541728}
+  - component: {fileID: 8497453245157244345}
   - component: {fileID: 3549056867419481761}
+  - component: {fileID: 3980304476881481323}
+  - component: {fileID: 4490751792797544299}
+  - component: {fileID: 7514129856784344500}
+  - component: {fileID: 3671194530802289970}
+  - component: {fileID: 5884764464449563489}
+  - component: {fileID: 1501540848933955673}
+  - component: {fileID: 6713705486613441513}
   m_Layer: 0
   m_Name: AnalyticsManager
   m_TagString: Untagged
@@ -48,7 +54,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1504ba91aac44f318ef12bc16ed4cf94, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &3671194530802289970
+--- !u!114 &6550072177206541728
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -57,18 +63,105 @@ MonoBehaviour:
   m_GameObject: {fileID: 8406494442177672980}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1b0c5d950f554fd693ab3b6f50cb307c, type: 3}
+  m_Script: {fileID: 11500000, guid: a7df75c2bc8b4768a0a2a5ea9b71fd29, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  description: Listen for enemy death and update analytics
-  gameEvent: {fileID: 11400000, guid: ae39bee4f6c65b944bdfa318bae5f4be, type: 2}
+  description: Listen for entering a new region and update analytics
+  gameEvent: {fileID: 11400000, guid: 8e5cb8d445e8c77479ac544c19f00f0b, type: 2}
   response:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 303567549767911825}
-        m_TargetAssemblyTypeName: Unite.Metrics.MetricsManager, Assembly-CSharp
-        m_MethodName: EnemyDefeated
+        m_TargetAssemblyTypeName: Unite.Managers.AnalyticsManager, Assembly-CSharp
+        m_MethodName: EnterNewRegion
         m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &8497453245157244345
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8406494442177672980}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 73386c46a77b470e8e133fdf3fce2909, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  description: Listen for interaction with dialogue object and update analytics
+  gameEvent: {fileID: 11400000, guid: 630775beffe687f47a6308d2294da857, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 303567549767911825}
+        m_TargetAssemblyTypeName: Unite.Managers.AnalyticsManager, Assembly-CSharp
+        m_MethodName: OnInteractWithDialogueInteractible
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &3549056867419481761
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8406494442177672980}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a777fed92a0477b810b841480fb8995, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  description: Listen for interaction with object and update analytics
+  gameEvent: {fileID: 11400000, guid: 13708a900b70425458ffed7409591384, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 303567549767911825}
+        m_TargetAssemblyTypeName: Unite.Managers.AnalyticsManager, Assembly-CSharp
+        m_MethodName: OnInteractWithInteractible
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &3980304476881481323
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8406494442177672980}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b9893a878b6442144bd9c1283a2b4b18, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  description: Listen for journal usage and update analytics
+  gameEvent: {fileID: 11400000, guid: 951755f30a1d35542893d17a88e04a6f, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 303567549767911825}
+        m_TargetAssemblyTypeName: Unite.Managers.AnalyticsManager, Assembly-CSharp
+        m_MethodName: JournalUsed
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -106,6 +199,64 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &7514129856784344500
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8406494442177672980}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b9893a878b6442144bd9c1283a2b4b18, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  description: Listen for dash usage and update analytics
+  gameEvent: {fileID: 11400000, guid: 30b2da4c6e2ff23449f1be8fc2c1af27, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 303567549767911825}
+        m_TargetAssemblyTypeName: Unite.Managers.AnalyticsManager, Assembly-CSharp
+        m_MethodName: DashUsed
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &3671194530802289970
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8406494442177672980}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1b0c5d950f554fd693ab3b6f50cb307c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  description: Listen for enemy death and update analytics
+  gameEvent: {fileID: 11400000, guid: ae39bee4f6c65b944bdfa318bae5f4be, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 303567549767911825}
+        m_TargetAssemblyTypeName: Unite.Metrics.MetricsManager, Assembly-CSharp
+        m_MethodName: EnemyDefeated
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &5884764464449563489
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -118,7 +269,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8454bb00c1744be7bf191d92bff8d173, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  description: Listen for player death
+  description: Listen for player death and update analytics
   gameEvent: {fileID: 11400000, guid: 0ec4d1d64eee90c4db590c8fca997412, type: 2}
   response:
     m_PersistentCalls:
@@ -135,7 +286,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &3549056867419481761
+--- !u!114 &1501540848933955673
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -144,18 +295,47 @@ MonoBehaviour:
   m_GameObject: {fileID: 8406494442177672980}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6a777fed92a0477b810b841480fb8995, type: 3}
+  m_Script: {fileID: 11500000, guid: 2e97caed83f7401daacf961956d7aa50, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  description: Listen for interaction with object
-  gameEvent: {fileID: 11400000, guid: 13708a900b70425458ffed7409591384, type: 2}
+  description: Listen for level start and update analytics
+  gameEvent: {fileID: 11400000, guid: 919615908fbc7a447a26988c4482d7ac, type: 2}
   response:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 303567549767911825}
         m_TargetAssemblyTypeName: Unite.Managers.AnalyticsManager, Assembly-CSharp
-        m_MethodName: OnInteractWithInteractible
-        m_Mode: 0
+        m_MethodName: LevelStarted
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &6713705486613441513
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8406494442177672980}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc991c49dbc04669944dad597efabf17, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  description: Listen for level complete and update analytics
+  gameEvent: {fileID: 11400000, guid: 56292433032326d468ce8c03be7c4c7d, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 303567549767911825}
+        m_TargetAssemblyTypeName: Unite.Managers.AnalyticsManager, Assembly-CSharp
+        m_MethodName: LevelFinished
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
