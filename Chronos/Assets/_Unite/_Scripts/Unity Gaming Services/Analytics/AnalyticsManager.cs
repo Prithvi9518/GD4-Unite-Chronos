@@ -87,16 +87,6 @@ namespace Unite.Managers
             SendAnalyticsEvent("EnemyDefeated", data);
         }
 
-        public void PlayerUsedPowerup(string powerupType)
-        {
-            // Add more data related to powerup usage
-            Dictionary<string, object> data = new Dictionary<string, object>();
-            data.Add("Name", powerupType);
-
-            // Send analytics event
-            SendAnalyticsEvent("PlayerUsedPowerup", data);
-        }
-
         public void PlayerDied(PlayerDiedInfo info)
         {
             Dictionary<string, object> data = new Dictionary<string, object>();
@@ -110,19 +100,19 @@ namespace Unite.Managers
             SendAnalyticsEvent("PlayerDied", data);
         }
 
-        public void PlayerReachedCheckpoint(Vector3 checkpointPosition)
-        {
-            Dictionary<string, object> data = new Dictionary<string, object>();
-            data.Add("Checkpoint_Position_x", checkpointPosition.x);
-            data.Add("Checkpoint_Position_y", checkpointPosition.y);
-            data.Add("Checkpoint_Position_z", checkpointPosition.z);
+        //public void PlayerReachedCheckpoint(Vector3 checkpointPosition)
+        //{
+        //    Dictionary<string, object> data = new Dictionary<string, object>();
+        //    data.Add("Checkpoint_Position_x", checkpointPosition.x);
+        //    data.Add("Checkpoint_Position_y", checkpointPosition.y);
+        //    data.Add("Checkpoint_Position_z", checkpointPosition.z);
 
-            // Add more data related to checkpoint reached event
-            // Example: data.Add("Player_Health", player.Health);
+        //    // Add more data related to checkpoint reached event
+        //    // Example: data.Add("Player_Health", player.Health);
 
-            // Send analytics event
-            SendAnalyticsEvent("PlayerReachedCheckpoint", data);
-        }
+        //    // Send analytics event
+        //    SendAnalyticsEvent("PlayerReachedCheckpoint", data);
+        //}
 
         public void LevelStarted()
         {
