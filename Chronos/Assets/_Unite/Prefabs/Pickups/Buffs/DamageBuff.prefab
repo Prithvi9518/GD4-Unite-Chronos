@@ -333,48 +333,8 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 2136406012162587079}
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 4473673365344350536, guid: 372cf2fa00fa0b94496898bb3e69ef26,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 7558173112003263557}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 372cf2fa00fa0b94496898bb3e69ef26, type: 3}
---- !u!1 &5965414434557476915 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4473673365344350536, guid: 372cf2fa00fa0b94496898bb3e69ef26,
-    type: 3}
-  m_PrefabInstance: {fileID: 7844363364996264315}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &7558173112003263557
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5965414434557476915}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 653f80b778bb560428cbea05532cb60d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  objectToAnimate: {fileID: 5965414434557476915}
-  animationType: 6
-  easeType: 1
-  upDuration: 10
-  downDuration: 5
-  delay: 2
-  showOnEnable: 1
-  animateOnDisable: 0
-  loop: 1
-  pingPong: 0
-  startPositionOffset: 0
-  from: {x: 0, y: 0, z: 0}
-  to: {x: 0, y: 0, z: 0}
-  playOnStart: 1
-  scaleFactor: 0
-  OnCycle:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!4 &9028644839392626839 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1265782310504626668, guid: 372cf2fa00fa0b94496898bb3e69ef26,

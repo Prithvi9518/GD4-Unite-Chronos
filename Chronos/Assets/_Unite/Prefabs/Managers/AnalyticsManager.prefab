@@ -66,7 +66,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a7df75c2bc8b4768a0a2a5ea9b71fd29, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  description: 
+  description: Listen for entering a new region and update analytics
   gameEvent: {fileID: 11400000, guid: 8e5cb8d445e8c77479ac544c19f00f0b, type: 2}
   response:
     m_PersistentCalls:
@@ -95,7 +95,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 73386c46a77b470e8e133fdf3fce2909, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  description: 
+  description: Listen for interaction with dialogue object and update analytics
   gameEvent: {fileID: 11400000, guid: 630775beffe687f47a6308d2294da857, type: 2}
   response:
     m_PersistentCalls:
@@ -124,7 +124,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a777fed92a0477b810b841480fb8995, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  description: Listen for interaction with object
+  description: Listen for interaction with object and update analytics
   gameEvent: {fileID: 11400000, guid: 13708a900b70425458ffed7409591384, type: 2}
   response:
     m_PersistentCalls:
@@ -269,7 +269,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8454bb00c1744be7bf191d92bff8d173, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  description: Listen for player death
+  description: Listen for player death and update analytics
   gameEvent: {fileID: 11400000, guid: 0ec4d1d64eee90c4db590c8fca997412, type: 2}
   response:
     m_PersistentCalls:
@@ -298,7 +298,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e97caed83f7401daacf961956d7aa50, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  description: 
+  description: Listen for level start and update analytics
   gameEvent: {fileID: 11400000, guid: 919615908fbc7a447a26988c4482d7ac, type: 2}
   response:
     m_PersistentCalls:
@@ -327,7 +327,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc991c49dbc04669944dad597efabf17, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  description: 
+  description: Listen for level complete and update analytics
   gameEvent: {fileID: 11400000, guid: 56292433032326d468ce8c03be7c4c7d, type: 2}
   response:
     m_PersistentCalls:
