@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9a4e114f03849e783bbeb76fc820bd2, type: 3}
   m_Name: GunInteractableSO
   m_EditorClassIdentifier: 
-  eventOnInteract: {fileID: 0}
+  eventOnInteract: {fileID: 11400000, guid: 66b98afa36b95674f8bd20d7d3e9a731, type: 2}
   audioToPlayOnInteract: {fileID: 0}
   volume: 1
   destroyAfterInteract: 0
