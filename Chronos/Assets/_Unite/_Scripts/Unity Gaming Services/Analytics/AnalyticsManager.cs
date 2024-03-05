@@ -7,6 +7,7 @@ using Unity.Services.Analytics;
 using Unity.Services.Core;
 using Unity.Services.Core.Analytics;
 using UnityEngine.Analytics;
+using Unite.DialogueSystem;
 
 namespace Unite.Managers
 {
@@ -43,10 +44,10 @@ namespace Unite.Managers
             SendAnalyticsEvent("InteractWithInteractible", data);
         }
 
-        public void OnInteractWithDialogueInteractible(DialogueInteractible dialogueInteractible)
+        public void OnInteractWithDialogueInteractible(DialogueSO dialogueInteractible)
         {
             Dictionary<string, object> data = new Dictionary<string, object>();
-            data.Add("Name", dialogueInteractible.DisplayName);
+            data.Add("Name", dialogueInteractible.name);
 
             // Send analytics event
             SendAnalyticsEvent("InteractWithDialogueInteractible", data);
@@ -96,7 +97,7 @@ namespace Unite.Managers
             SendAnalyticsEvent("PlayerUsedPowerup", data);
         }
 
-        public void PlayerDied(PlayerDiedInfo info, Enemy enemy)
+        public void PlayerDied(PlayerDiedInfo info)
         {
             Dictionary<string, object> data = new Dictionary<string, object>();
             //data.Add("Death_Position_x", info.DeathPosition.x);
