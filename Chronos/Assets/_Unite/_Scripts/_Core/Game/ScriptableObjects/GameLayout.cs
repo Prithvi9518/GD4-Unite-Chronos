@@ -57,12 +57,36 @@ namespace Unite.Core.Game
 
         public int StartLevelIndex => startLevel;
 
+        public GameScene MainMenuScene => mainMenu;
+
         public GameLevel GetLevelByIndex(int levelIndex)
         {
             if (levels.Count == 0) return null;
             if(levelIndex < 0 || levelIndex >= levels.Count) return null;
 
             return levels[levelIndex];
+        }
+
+        public void LoadMainMenu()
+        {
+            if (mainMenu == null)
+            {
+                Debug.LogWarning("No main menu scene to load!");
+                return;
+            }
+
+            mainMenu.LoadScene();
+        }
+
+        public void UnloadMainMenu()
+        {
+            if (mainMenu == null)
+            {
+                Debug.LogWarning("No main menu scene to unload!");
+                return;
+            }
+            
+            mainMenu.UnloadScene();
         }
 
         [ContextMenu("Load Layout")]

@@ -2,6 +2,7 @@
 using Unite.ActionSystem;
 using Unite.Bootstrap;
 using Unite.Core.Game;
+using Unite.Core.Input;
 using Unite.EventSystem;
 using Unite.Player;
 using Unite.WeaponSystem;
@@ -204,6 +205,7 @@ namespace Unite.Managers
             if (player == null) return;
             
             Debug.Log("GAME START");
+            CursorLockHandler.Instance.HideAndLockCursor();
             onGameStart.Raise();
         }
 
