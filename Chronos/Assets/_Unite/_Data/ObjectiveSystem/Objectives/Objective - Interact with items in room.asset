@@ -18,4 +18,5 @@ MonoBehaviour:
   - {fileID: 5434646734587517303, guid: d3e2b7c753a89c74eac683afc43dc2c5, type: 3}
   - {fileID: 5434646734587517303, guid: de447670b8fddff4c81fd9b99332cfcb, type: 3}
   onCompleteEvent: {fileID: 11400000, guid: c76b65ea70bdffa43bb1419ca4f6c3ac, type: 2}
-  actionsOnComplete: []
+  actionsOnComplete:
+  - {fileID: 11400000, guid: b8a513b5c9d9d004293ffe8b3f5300f7, type: 2}
