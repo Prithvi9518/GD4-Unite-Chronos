@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.17892951, g: 0.22404742, b: 0.30589488, a: 1}
+  m_IndirectSpecularColor: {r: 0.12731749, g: 0.13414757, b: 0.1210787, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -826,6 +826,7 @@ MonoBehaviour:
   onInteractUpdateAnalytics: {fileID: 0}
   pickupGameEvent: {fileID: 11400000, guid: d8513cb851429324083cad4cc5179807, type: 2}
   zoomFactor: 0.001
+  disableRotation: 0
 --- !u!1001 &148841692
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3990,6 +3991,7 @@ MonoBehaviour:
   onInteractUpdateAnalytics: {fileID: 0}
   pickupGameEvent: {fileID: 11400000, guid: d8513cb851429324083cad4cc5179807, type: 2}
   zoomFactor: 0
+  disableRotation: 0
 --- !u!1001 &888146947
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7389,6 +7391,11 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: d529769d479e9fa4e9bea02c6fc7313f, type: 2}
+    - target: {fileID: 4980030415734465947, guid: b7fe96d72e460b84890182648581b7ac,
+        type: 3}
+      propertyPath: disableRotation
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
