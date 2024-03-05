@@ -13,6 +13,7 @@ namespace Unite.ObjectiveSystem
     public abstract class ObjectiveTask : MonoBehaviour
     {
         [SerializeField]
+        [TextArea(2,10)]
         private string taskDescription;
         
         [SerializeField]
