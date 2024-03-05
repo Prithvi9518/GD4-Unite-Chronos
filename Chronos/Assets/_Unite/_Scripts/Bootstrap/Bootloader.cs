@@ -45,6 +45,20 @@ namespace Unite.Bootstrap
 
             LoadPersistentObjectPrefabs();
 
+            if(gameLayout.MainMenuScene != null)
+                gameLayout.LoadMainMenu();
+            else
+                LoadStartLevelLayout();
+        }
+
+        public void UnloadMainMenu()
+        {
+            if (gameLayout.MainMenuScene == null) return;
+            gameLayout.UnloadMainMenu();
+        }
+
+        public void LoadStartLevelLayout()
+        {
             currentLevelIndex = gameLayout.StartLevelIndex;
             LoadCurrentLayout();
 
