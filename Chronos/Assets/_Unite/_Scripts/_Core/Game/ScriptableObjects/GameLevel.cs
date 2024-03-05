@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Unite.ActionSystem;
 using Unite.EventSystem;
 using UnityEngine;
 using UnityEngine.Rendering;
@@ -20,6 +21,9 @@ namespace Unite.Core.Game
         [SerializeField]
         private GameEvent onLoadLevel;
 
+        [Header("Actions to execute after loading the level:")]
+        private ActionSO[] actionsOnLoad;
+
         [Header("Post Processing:")]
         [SerializeField]
         private Volume postProcessPrefab;
@@ -30,6 +34,7 @@ namespace Unite.Core.Game
         private Volume instancePostProcessPrefab;
         
         public GameEvent OnLoadLevel => onLoadLevel;
+        public ActionSO[] ActionsOnLoad => actionsOnLoad;
 
         public List<AsyncOperation> LoadLevel()
         {

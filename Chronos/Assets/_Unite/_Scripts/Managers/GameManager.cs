@@ -1,4 +1,5 @@
 ﻿using System;
+using Unite.ActionSystem;
 using Unite.Bootstrap;
 using Unite.Core.Game;
 using Unite.EventSystem;
@@ -122,6 +123,11 @@ namespace Unite.Managers
             
             if(level.OnLoadLevel != null)
                 level.OnLoadLevel.Raise();
+
+            foreach (var action in level.ActionsOnLoad)
+            {
+                ActionExecutionManager.Instance.ExecuteAction(action);
+            }
             
             currentLevel = level;
             OnStartLevel_UpdateTimeTracking?.Invoke(currentLevel);
