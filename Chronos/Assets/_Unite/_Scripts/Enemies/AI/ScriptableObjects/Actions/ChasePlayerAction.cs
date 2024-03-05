@@ -5,7 +5,7 @@ using UnityEngine.AI;
 namespace Unite.Enemies.AI
 {
     [CreateAssetMenu(fileName = "ChasePlayerAction", menuName = "AI/Actions/ChasePlayerAction")]
-    public class ChasePlayerAction : Action
+    public class ChasePlayerAction : FSMAction
     {
         public override void ExecuteAction(BaseStateMachine baseStateMachine)
         {

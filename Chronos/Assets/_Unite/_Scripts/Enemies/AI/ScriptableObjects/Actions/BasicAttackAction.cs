@@ -6,7 +6,7 @@ using UnityEngine;
 namespace Unite.Enemies.AI
 {
     [CreateAssetMenu(fileName = "BasicAttack", menuName = "AI/Actions/Basic Attack")]
-    public class BasicAttackAction : Action
+    public class BasicAttackAction : FSMAction
     {
         [SerializeField]
         private AttackData attackData;

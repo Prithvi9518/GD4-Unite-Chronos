@@ -4,7 +4,7 @@ using UnityEngine;
 namespace Unite.Enemies.AI
 {
     [CreateAssetMenu(fileName = "SetEnemyAnimatorTrigger", menuName = "AI/Actions/SetEnemyAnimatorTrigger")]
-    public class SetEnemyAnimatorTriggerAction : Action
+    public class SetEnemyAnimatorTriggerAction : FSMAction
     {
         [SerializeField]
         private EnemyState enemyState;
