@@ -5,7 +5,7 @@ using UnityEngine;
 namespace Unite.Enemies.AI
 {
     [CreateAssetMenu(fileName = "ToggleStrafeAction", menuName = "AI/Actions/Toggle Strafe")]
-    public class ToggleStrafeAction : Action
+    public class ToggleStrafeAction : FSMAction
     {
         [SerializeField]
         private bool active;

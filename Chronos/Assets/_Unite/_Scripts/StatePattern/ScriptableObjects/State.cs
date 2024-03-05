@@ -7,7 +7,7 @@ namespace Unite.StatePattern
     /// We can create scriptable object assets to represent various states, and assign actions to perform during that state.
     /// We can also assign any transitions to other states by checking for conditions.
     ///
-    /// <seealso cref="Action"/>
+    /// <seealso cref="FSMAction"/>
     /// <seealso cref="Condition"/>
     /// <seealso cref="StateTransition"/>
     /// <seealso cref="BaseStateMachine"/>
@@ -19,15 +19,15 @@ namespace Unite.StatePattern
         [Header("Actions")]
         [Tooltip("Actions performed only once when entering the state.")]
         [SerializeField]
-        private Action[] enterActions;
+        private FSMAction[] enterActions;
 
         [Tooltip("Actions performed on every update.")]
         [SerializeField]
-        private Action[] updateActions;
+        private FSMAction[] updateActions;
 
         [Tooltip("Actions performed only once when exiting the state.")]
         [SerializeField]
-        private Action[] exitActions;
+        private FSMAction[] exitActions;
 
         [Header("Condition-Based Transitions")]
         [SerializeField]
@@ -66,7 +66,7 @@ namespace Unite.StatePattern
 
         private void PerformEnterActions(BaseStateMachine baseStateMachine)
         {
-            foreach (Action action in enterActions)
+            foreach (FSMAction action in enterActions)
             {
                 action.ExecuteAction(baseStateMachine);
             }
@@ -74,7 +74,7 @@ namespace Unite.StatePattern
 
         private void PerformUpdateActions(BaseStateMachine baseStateMachine)
         {
-            foreach (Action action in updateActions)
+            foreach (FSMAction action in updateActions)
             {
                 action.ExecuteAction(baseStateMachine);
             }
@@ -82,7 +82,7 @@ namespace Unite.StatePattern
 
         private void PerformExitActions(BaseStateMachine baseStateMachine)
         {
-            foreach (Action action in exitActions)
+            foreach (FSMAction action in exitActions)
             {
                 action.ExecuteAction(baseStateMachine);
             }

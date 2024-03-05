@@ -13,5 +13,8 @@ MonoBehaviour:
   m_Name: Objective - Interact with items in room
   m_EditorClassIdentifier: 
   objectiveDescription: 
-  tasks: []
+  tasks:
+  - {fileID: 5434646734587517303, guid: b210b0b990d7df94092c14a7e68b8804, type: 3}
+  - {fileID: 5434646734587517303, guid: d3e2b7c753a89c74eac683afc43dc2c5, type: 3}
+  - {fileID: 5434646734587517303, guid: de447670b8fddff4c81fd9b99332cfcb, type: 3}
   onComplete: {fileID: 11400000, guid: c76b65ea70bdffa43bb1419ca4f6c3ac, type: 2}

@@ -12,4 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5efbe507c13b41feae5e22ea2a80e95f, type: 3}
   m_Name: All Objectives
   m_EditorClassIdentifier: 
-  objectives: []
+  objectives:
+  - {fileID: 11400000, guid: dd456beb0e27e894c960094ff7fbace2, type: 2}

@@ -4,7 +4,7 @@ using UnityEngine;
 namespace Unite.Enemies.AI
 {
     [CreateAssetMenu(fileName ="SetEnemyAnimatorBool", menuName ="AI/Actions/SetEnemyAnimatorBool")]
-    public class SetEnemyAnimatorBoolAction : Action
+    public class SetEnemyAnimatorBoolAction : FSMAction
     {
         [SerializeField]
         private string animatorBoolName;

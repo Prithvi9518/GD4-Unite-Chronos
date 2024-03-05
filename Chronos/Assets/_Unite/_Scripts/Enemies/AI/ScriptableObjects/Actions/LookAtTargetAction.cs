@@ -4,7 +4,7 @@ using UnityEngine;
 namespace Unite.Enemies.AI
 {
     [CreateAssetMenu(fileName = "LookAtTargetAction", menuName = "AI/Actions/LookAtTargetAction")]
-    public class LookAtTargetAction : Action
+    public class LookAtTargetAction : FSMAction
     {
         public override void ExecuteAction(BaseStateMachine baseStateMachine)
         {

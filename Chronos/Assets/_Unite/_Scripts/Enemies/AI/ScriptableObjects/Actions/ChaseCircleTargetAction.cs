@@ -1,13 +1,12 @@
 ﻿using Unite.StatePattern;
 using UnityEngine;
 using UnityEngine.AI;
-using Action = Unite.StatePattern.Action;
 using Random = UnityEngine.Random;
 
 namespace Unite.Enemies.AI
 {
     [CreateAssetMenu(fileName = "ChaseCircleTargetAction", menuName = "AI/Actions/ChaseCircleTargetAction")]
-    public class ChaseCircleTargetAction : Action
+    public class ChaseCircleTargetAction : FSMAction
     {
         [SerializeField]
         private float circleRadius;

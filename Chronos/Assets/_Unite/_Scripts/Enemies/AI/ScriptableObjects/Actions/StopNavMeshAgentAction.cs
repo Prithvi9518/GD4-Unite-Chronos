@@ -5,7 +5,7 @@ using UnityEngine.AI;
 namespace Unite.Enemies.AI
 {
     [CreateAssetMenu(fileName ="StopNavMeshAgent", menuName ="AI/Actions/StopNavMeshAgent")]
-    public class StopNavMeshAgentAction : Action
+    public class StopNavMeshAgentAction : FSMAction
     {
         [SerializeField]
         private bool isStopped;

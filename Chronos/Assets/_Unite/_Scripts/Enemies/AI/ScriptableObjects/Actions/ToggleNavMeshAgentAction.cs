@@ -5,7 +5,7 @@ using UnityEngine.AI;
 namespace Unite.Enemies.AI
 {
     [CreateAssetMenu(fileName ="ToggleNavMeshAgentAction", menuName ="AI/Actions/Toggle Nav Mesh Agent")]
-    public class ToggleNavMeshAgentAction : Action
+    public class ToggleNavMeshAgentAction : FSMAction
     {
         [SerializeField]
         private bool agentEnabled;
