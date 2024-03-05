@@ -61,10 +61,72 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 0c3813982437d4343af128b7ef716a31,
         type: 3}
       propertyPath: m_Name
-      value: military-cap1
+      value: military-cap1_fixed
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 0c3813982437d4343af128b7ef716a31,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 0c3813982437d4343af128b7ef716a31,
+        type: 3}
+      propertyPath: m_TagString
+      value: Interactible
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 0c3813982437d4343af128b7ef716a31,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7486038784628628484}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 0c3813982437d4343af128b7ef716a31,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4992443027071634044}
   m_SourcePrefab: {fileID: 100100000, guid: 0c3813982437d4343af128b7ef716a31, type: 3}
+--- !u!1 &5008136198239078983 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 0c3813982437d4343af128b7ef716a31,
+    type: 3}
+  m_PrefabInstance: {fileID: 5278518412121601814}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &7486038784628628484
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5008136198239078983}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 29.43685, y: 33.931034, z: 17.46253}
+  m_Center: {x: -0.41301435, y: 1.2245783, z: -0.52018017}
+--- !u!114 &4992443027071634044
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5008136198239078983}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c7f64d21521944cdaca887dbf32ee24f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  displayName: 
+  interactibleData: {fileID: 11400000, guid: 95f9a301614695a48b91555cfa5220ac, type: 2}
+  onInteractUpdateAnalytics: {fileID: 0}
+  pickupGameEvent: {fileID: 11400000, guid: d8513cb851429324083cad4cc5179807, type: 2}
+  zoomFactor: 0.276
