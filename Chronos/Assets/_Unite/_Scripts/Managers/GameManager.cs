@@ -114,8 +114,8 @@ namespace Unite.Managers
             }
             else
             {
-                player.MovementHandler.EnableMovement();
                 playerSpawn.SpawnPlayer(player);
+                player.MovementHandler.EnableMovement();
             }
             
             onFinishSwitchToNextLevel.Raise();
