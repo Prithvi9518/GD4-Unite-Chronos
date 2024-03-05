@@ -61,8 +61,14 @@ PrefabInstance:
     - target: {fileID: 4816761697381820018, guid: 71e317e8283f35d48881efc59790f19d,
         type: 3}
       propertyPath: m_Name
-      value: Default Objective Task Template
+      value: Task - Interact With Item 2
       objectReference: {fileID: 0}
+    - target: {fileID: 9060258512117242213, guid: 71e317e8283f35d48881efc59790f19d,
+        type: 3}
+      propertyPath: gameEvent
+      value: 
+      objectReference: {fileID: 11400000, guid: 66b98afa36b95674f8bd20d7d3e9a731,
+        type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

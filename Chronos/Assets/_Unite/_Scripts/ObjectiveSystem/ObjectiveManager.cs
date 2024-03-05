@@ -52,6 +52,8 @@ namespace Unite.ObjectiveSystem
             activeObjectives.Add(objective);
             
             onObjectiveProgressed.Raise();
+            
+            Debug.Log($"STARTING OBJECTIVE - {objectiveName}");
         }
 
         /// <summary>

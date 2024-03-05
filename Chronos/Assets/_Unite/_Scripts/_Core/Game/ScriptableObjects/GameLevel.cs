@@ -22,6 +22,7 @@ namespace Unite.Core.Game
         private GameEvent onLoadLevel;
 
         [Header("Actions to execute after loading the level:")]
+        [SerializeField]
         private ActionSO[] actionsOnLoad;
 
         [Header("Post Processing:")]
