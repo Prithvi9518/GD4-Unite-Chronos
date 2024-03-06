@@ -1,4 +1,5 @@
-﻿using Unite.EventSystem;
+﻿using Unite.ActionSystem;
+using Unite.EventSystem;
 using UnityEngine;
 
 namespace Unite.InteractionSystem
@@ -25,11 +26,15 @@ namespace Unite.InteractionSystem
         [SerializeField]
         private bool showInteractText;
 
+        [SerializeField] 
+        private ActionSO[] actionsOnInteract;
+
         public GameEvent EventOnInteract => eventOnInteract;
         public bool DestroyAfterInteract => destroyAfterInteract;
         public AudioClip AudioToPlayOnInteract => audioToPlayOnInteract;
         public float ClipVolume => volume;
         public string InteractText => interactText;
         public bool ShowInteractText => showInteractText;
+        public ActionSO[] ActionsOnInteract => actionsOnInteract;
     }
 }
