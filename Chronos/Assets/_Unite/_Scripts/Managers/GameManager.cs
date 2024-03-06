@@ -7,7 +7,6 @@ using Unite.EventSystem;
 using Unite.Player;
 using Unite.WeaponSystem;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 namespace Unite.Managers
 {
@@ -46,9 +45,14 @@ namespace Unite.Managers
 
         private GameLevel currentLevel;
 
+        private bool hasGameStarted;
+
         public Action<float> OnProgressLevelLoad;
         public Action<GameLevel> OnStartLevel_UpdateTimeTracking;
         public Action<GameLevel> OnFinishLevel_UpdateTimeTracking;
+
+        public Action OnGameLose;
+        public Action OnGameRestart;
 
         public Player.Player Player => player;
         public Camera PlayerCamera => playerCamera;
@@ -106,19 +110,18 @@ namespace Unite.Managers
             OnProgressLevelLoad?.Invoke(progress);
         }
 
-        public void OnFinishedLoadingLevel(int levelIndex, GameLevel level)
+        public void OnFinishedLoadingLevel(GameLevel level)
         {
             Debug.Log($"GameManager.{nameof(OnFinishedLoadingLevel)}");
             
-            if (levelIndex == 0)
+            if (!hasGameStarted)
             {
-                SetupAndStartGame();
+                PerformSetup();
+                SetGameState(GameState.Start);
+                hasGameStarted = true;
             }
             else
-            {
-                playerSpawn.SpawnPlayer(player);
-                player.MovementHandler.EnableMovement();
-            }
+                SpawnPlayerAndEnableMovement();
             
             onFinishSwitchToNextLevel.Raise();
             
@@ -134,32 +137,38 @@ namespace Unite.Managers
             OnStartLevel_UpdateTimeTracking?.Invoke(currentLevel);
         }
 
-        public void SetupAndStartGame()
+        private void PerformSetup()
         {
-            Debug.Log($"GameManager.{nameof(SetupAndStartGame)} called.");
-            
+            Debug.Log($"GameManager.{nameof(PerformSetup)} called.");
+
             if (player == null)
             {
-                if (playerSpawn != null)
+                if (playerSpawn == null)
                 {
-                    player = playerSpawn.InstantiateAndSpawnPlayer();
-                }
-
-                if (player == null)
-                {
-                    Debug.LogError("GameManager.SetupAndStartGame() - no player found.");
+                    Debug.LogError($"GameManager.{nameof(PerformSetup)} - no player found.");
                     return;
                 }
+
+                player = playerSpawn.InstantiateAndSpawnPlayer();
             }
 
             if (playerCamera == null)
             {
-                Debug.LogError("GameManager.SetupAndStartGame() - player camera not found.");
+                Debug.LogError($"GameManager.{nameof(PerformSetup)} - player camera not found.");
                 return;
             }
             
             onGameSetup.Raise();
-            SetGameState(GameState.Start);
+        }
+
+        private void SpawnPlayerAndEnableMovement()
+        {
+            if(playerSpawn != null)
+                playerSpawn.SpawnPlayer(player);
+            
+            InputManager.Instance.EnableDefaultActions();
+            CursorLockHandler.Instance.HideAndLockCursor();
+            player.MovementHandler.EnableMovement();
         }
 
         private void TryStartGameForTestScenes()
@@ -180,8 +189,9 @@ namespace Unite.Managers
             
             Debug.Log("No bootloader found after initializing player and camera. Setting up and starting game.");
             
+            PerformSetup();
+            SetGameState(GameState.Start);
             onStartTestScene.Raise();
-            SetupAndStartGame();
         }
 
         public void SetGameState(GameState newState)
@@ -192,33 +202,52 @@ namespace Unite.Managers
                 case GameState.Bootstrap:
                     break;
                 case GameState.Start:
-                    HandleGameStart();
+                    HandleGameStartState();
                     break;
                 case GameState.PlayerDead:
+                    HandlePlayerDeadState();
                     break;
             }
         }
 
-        private void HandleGameStart()
+        private void HandleGameStartState()
         {
             if (currentState != GameState.Start) return;
+            
+            SpawnPlayerAndEnableMovement();
+            
             if (player == null) return;
             
             Debug.Log("GAME START");
-            CursorLockHandler.Instance.HideAndLockCursor();
             onGameStart.Raise();
         }
 
-        private void HandleRestart()
+        private void HandlePlayerDeadState()
         {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+            player.transform.position = new Vector3(-1000, 0, 0);
+            player.MovementHandler.DisableMovement();
+            InputManager.Instance.DisableDefaultActions();
+            CursorLockHandler.Instance.ShowAndUnlockCursor();
+            
+            Bootloader.Instance.UnloadCurrentLevel();
+            
+            onGameLose.Raise();
+            Debug.Log("LOSE");
+        }
+
+        public void HandleRestart()
+        {
+            Debug.Log("RESTART");
+            Bootloader.Instance.ReloadCurrentLevel();
             SetGameState(GameState.Start);
+            OnGameRestart?.Invoke();
         }
 
         public void HandleLose()
         {
+            if (currentState != GameState.Start) return;
             SetGameState(GameState.PlayerDead);
-            Debug.Log("LOSE");
+            OnGameLose?.Invoke();
         }
 
         public void SwitchToNextLevel()

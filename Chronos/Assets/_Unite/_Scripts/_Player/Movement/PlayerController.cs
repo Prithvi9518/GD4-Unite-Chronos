@@ -32,7 +32,7 @@ namespace Unite.Player
 
         [Header("Stats")] 
         [SerializeField] 
-        private StatTypeSO speedStatType;
+        private StatTypeSO speedBoostStatType;
 
         [Header("Events for Analytics")] 
         [SerializeField]
@@ -81,6 +81,8 @@ namespace Unite.Player
 
         private bool canDash;
         private bool isWalkingSlowly;
+
+        private float speedBoost;
 
         public Transform Orientation => orientation;
         public PlayerCameraHandler CameraHandler => cameraHandler;
@@ -203,7 +205,8 @@ namespace Unite.Player
                 {
                     if(smoothLerpCoroutine != null)
                         StopCoroutine(smoothLerpCoroutine);
-                    moveSpeed = desiredMoveSpeed;
+                    
+                    moveSpeed = desiredMoveSpeed + speedBoost;
                 }
             }
 
@@ -352,13 +355,13 @@ namespace Unite.Player
             statsHandler = playerStatsHandler;
         }
 
-        public void UpdateSpeedFromStats()
+        public void UpdateSpeedBoostFromStats()
         {
-            Stat speedStat = statsHandler.GetStat(speedStatType);
-            if (speedStat == null) return;
+            Stat speedBoostStat = statsHandler.GetStat(speedBoostStatType);
+            if (speedBoostStat == null) return;
 
-            float baseSpeed = speedStat.Value;
-            moveSpeed = baseSpeed;
+            float baseSpeedBoost = speedBoostStat.Value;
+            speedBoost = baseSpeedBoost;
         }
 
         public void ModifySpeed(float modifier)

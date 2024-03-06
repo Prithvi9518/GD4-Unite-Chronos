@@ -72,6 +72,16 @@ namespace Unite.Bootstrap
             LoadCurrentLayout();
         }
 
+        public void UnloadCurrentLevel()
+        {
+            gameLayout.UnloadLayout(currentLevelIndex);
+        }
+
+        public void ReloadCurrentLevel()
+        {
+            LoadCurrentLayout();
+        }
+
         private void LoadCurrentLayout()
         {
             StartCoroutine(gameLayout.LoadLayout(currentLevelIndex, onStartLoadingScene, onProgressLoadingScene, onFinishLoadingScene));
@@ -99,7 +109,7 @@ namespace Unite.Bootstrap
 
         private void HandleLevelLoadFinish()
         {
-            GameManager.Instance.OnFinishedLoadingLevel(currentLevelIndex, gameLayout.GetLevelByIndex(currentLevelIndex));
+            GameManager.Instance.OnFinishedLoadingLevel(gameLayout.GetLevelByIndex(currentLevelIndex));
         }
 
         private void OnEnable()

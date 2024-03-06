@@ -26,6 +26,11 @@ namespace Unite.Enemies
             enemyHealth.DecreaseHealth(damage);
             enemy.UIHandler.UpdateHealthBar(enemyHealth.CurrentHealth, enemyHealth.MaxHealth);
             enemy.StateMachine.TriggerStateEvent(StateEvent.EnemyTookDamage);
+
+            if (enemyHealth.CurrentHealth <= 0)
+            {
+                enemy.UIHandler.ToggleHealthBar(false);
+            }
             
             if (enemyHealth.CurrentHealth <= 0 && !delayDeath)
             {

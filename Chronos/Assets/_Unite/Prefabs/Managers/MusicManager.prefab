@@ -13,7 +13,8 @@ GameObject:
   - component: {fileID: 7359781218248096750}
   - component: {fileID: 4434313225828289400}
   - component: {fileID: 7385572279093920807}
-  - component: {fileID: 4004903938473374521}
+  - component: {fileID: 2755483933399436598}
+  - component: {fileID: 1996047453677899266}
   m_Layer: 0
   m_Name: MusicManager
   m_TagString: Untagged
@@ -130,7 +131,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &4004903938473374521
+--- !u!114 &2755483933399436598
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -142,14 +143,43 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9893a878b6442144bd9c1283a2b4b18, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  description: Listen for game start, and start playing music
-  gameEvent: {fileID: 11400000, guid: 1c64a1214fcebc743a76621bff096664, type: 2}
+  description: Listen for island level start
+  gameEvent: {fileID: 11400000, guid: ab1fe381c42cace468c5b6bda1edaad4, type: 2}
   response:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 6235525504150382270}
         m_TargetAssemblyTypeName: Unite.SoundScripts.MusicManager, Assembly-CSharp
-        m_MethodName: StartPlayingMusic
+        m_MethodName: PlayExplorationMusic
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &1996047453677899266
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3620422658890463630}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b9893a878b6442144bd9c1283a2b4b18, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  description: Listen for lose
+  gameEvent: {fileID: 11400000, guid: 3a9f043768808a541b1d1dd8bd969d5b, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 6235525504150382270}
+        m_TargetAssemblyTypeName: Unite.SoundScripts.MusicManager, Assembly-CSharp
+        m_MethodName: PauseMusic
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
