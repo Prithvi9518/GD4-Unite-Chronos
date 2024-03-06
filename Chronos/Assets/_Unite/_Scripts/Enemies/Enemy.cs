@@ -94,12 +94,14 @@ namespace Unite.Enemies
         
         private void OnEnable()
         {
-            GameManager.Instance.OnGameLose += OnGameLose;
+            GameManager.Instance.OnGameRestart += DestroySelf;
+            GameManager.Instance.OnGameLose += DestroySelf;
         }
 
         private void OnDisable()
         {
-            GameManager.Instance.OnGameLose -= OnGameLose;
+            GameManager.Instance.OnGameRestart -= DestroySelf;
+            GameManager.Instance.OnGameLose -= DestroySelf;
         }
 
         public void SetEnemyPool(IObjectPool<Enemy> pool)
@@ -110,7 +112,6 @@ namespace Unite.Enemies
         public void OnGetFromPool(Transform target)
         {
             enemyDetectionHandler.Target = target;
-            navMeshAgent.enabled = true;
             collider.enabled = true;
 
             enemyAnimationHandler.Animator.enabled = true;
@@ -126,14 +127,16 @@ namespace Unite.Enemies
             onEnemyDead.Raise();
             onEnemyDeadUpdateMetric.Raise(this);
             isAlive = false;
+            navMeshAgent.enabled = false;
             gameObject.SetActive(false);
             enemyPool?.Release(this);
         }
 
-        private void OnGameLose()
+        private void DestroySelf()
         {
-            gameObject.SetActive(false);
-            enemyPool?.Release(this);
+            Destroy(gameObject);
+            // gameObject.SetActive(false);
+            // enemyPool?.Release(this);
         }
     }
 }

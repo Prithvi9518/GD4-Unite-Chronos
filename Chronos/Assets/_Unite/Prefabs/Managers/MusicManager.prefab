@@ -179,7 +179,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 6235525504150382270}
         m_TargetAssemblyTypeName: Unite.SoundScripts.MusicManager, Assembly-CSharp
-        m_MethodName: StopMusic
+        m_MethodName: PauseMusic
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

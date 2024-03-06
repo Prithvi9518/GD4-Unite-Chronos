@@ -55,6 +55,8 @@ namespace Unite.Player
             
             playerHealth.MaxHealth = statsHandler.GetStat(healthStatType).Value;
             playerHealth.ResetHealth();
+            
+            onHealthChanged.Raise(new HealthInfo(playerHealth.CurrentHealth, playerHealth.MaxHealth));
         }
 
         public void UpdateMaxHealthFromStats()

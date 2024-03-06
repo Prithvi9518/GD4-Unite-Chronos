@@ -73,14 +73,21 @@ namespace Unite.SoundScripts
                 musicEventInstance.start();
                 musicEventInstance.getPlaybackState(out playbackState);
             }
+
+            musicEventInstance.getPaused(out var paused);
+            if (paused)
+            {
+                musicEventInstance.setPaused(false);
+            }
             
             musicEventInstance.setVolume(explorationVolume);
             musicEventInstance.setParameterByName(musicEventParameter, exploreParamValue);
         }
 
-        public void StopMusic()
+        public void PauseMusic()
         {
-            musicEventInstance.stop(STOP_MODE.IMMEDIATE);
+            musicEventInstance.setPaused(true);
+            musicEventInstance.getPlaybackState(out playbackState);
         }
 
         private void OnDestroy()

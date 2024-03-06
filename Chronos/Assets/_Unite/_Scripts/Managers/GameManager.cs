@@ -52,6 +52,7 @@ namespace Unite.Managers
         public Action<GameLevel> OnFinishLevel_UpdateTimeTracking;
 
         public Action OnGameLose;
+        public Action OnGameRestart;
 
         public Player.Player Player => player;
         public Camera PlayerCamera => playerCamera;
@@ -223,6 +224,7 @@ namespace Unite.Managers
 
         private void HandlePlayerDeadState()
         {
+            player.transform.position = new Vector3(-1000, 0, 0);
             player.MovementHandler.DisableMovement();
             InputManager.Instance.DisableDefaultActions();
             CursorLockHandler.Instance.ShowAndUnlockCursor();
@@ -238,6 +240,7 @@ namespace Unite.Managers
             Debug.Log("RESTART");
             Bootloader.Instance.ReloadCurrentLevel();
             SetGameState(GameState.Start);
+            OnGameRestart?.Invoke();
         }
 
         public void HandleLose()

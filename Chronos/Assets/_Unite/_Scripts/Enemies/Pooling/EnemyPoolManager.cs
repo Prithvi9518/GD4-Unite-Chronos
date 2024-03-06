@@ -34,6 +34,7 @@ namespace Unite.Enemies
                 ObjectPool<Enemy> projectilePool = new ObjectPool<Enemy>(
                     () => CreateEnemy(enemyType),
                     actionOnGet:OnGetEnemyFromPool,
+                    actionOnRelease:OnReleaseEnemyFromPool,
                     actionOnDestroy:OnDestroyEnemy);
                 enemyPools.Add(enemyType, projectilePool);
             }
@@ -49,6 +50,11 @@ namespace Unite.Enemies
         {
             enemy.gameObject.SetActive(true);
             enemy.OnGetFromPool(GameManager.Instance.Player.transform);
+        }
+        
+        private void OnReleaseEnemyFromPool(Enemy enemy)
+        {
+            enemy.gameObject.SetActive(false);
         }
 
         private void OnDestroyEnemy(Enemy enemy)

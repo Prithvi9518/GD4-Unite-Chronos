@@ -53,12 +53,14 @@ namespace Unite.Projectiles
 
         private void OnEnable()
         {
-            GameManager.Instance.OnGameLose += OnGameLose;
+            GameManager.Instance.OnGameLose += DestroySelf;
+            GameManager.Instance.OnGameRestart += DestroySelf;
         }
         
         private void OnDisable()
         {
-            GameManager.Instance.OnGameLose -= OnGameLose;
+            GameManager.Instance.OnGameLose -= DestroySelf;
+            GameManager.Instance.OnGameRestart -= DestroySelf;
         }
 
         private void OnTriggerEnter(Collider other)
@@ -100,9 +102,10 @@ namespace Unite.Projectiles
             projectilePool.Release(this);
         }
 
-        private void OnGameLose()
+        private void DestroySelf()
         {
-            Disable();
+            Destroy(gameObject);
+            // Disable();
         }
 
         public virtual void HandleTimeStopEvent(bool isTimeStopped)
