@@ -27,7 +27,7 @@ namespace Unite.InteractionSystem
         private bool showInteractText;
 
         [SerializeField] 
-        private ActionSO[] actionsOnInteract;
+        private ActionContext[] actionsOnInteract;
 
         public GameEvent EventOnInteract => eventOnInteract;
         public bool DestroyAfterInteract => destroyAfterInteract;
@@ -35,6 +35,6 @@ namespace Unite.InteractionSystem
         public float ClipVolume => volume;
         public string InteractText => interactText;
         public bool ShowInteractText => showInteractText;
-        public ActionSO[] ActionsOnInteract => actionsOnInteract;
+        public ActionContext[] ActionsOnInteract => actionsOnInteract;
     }
 }

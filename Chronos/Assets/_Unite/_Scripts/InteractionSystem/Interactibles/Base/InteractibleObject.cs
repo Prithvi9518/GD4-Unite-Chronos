@@ -38,9 +38,18 @@ namespace Unite.InteractionSystem
                 );
             }
 
-            foreach (var action in interactibleData.ActionsOnInteract)
+            foreach (var actionCtx in interactibleData.ActionsOnInteract)
             {
-                ActionExecutionManager.Instance.ExecuteAction(action);
+                if (actionCtx.DoOnce)
+                {
+                    if(actionCtx.ExecutedOnce) continue;
+                    ActionExecutionManager.Instance.ExecuteAction(actionCtx.Action);
+                    actionCtx.RegisterFirstExecution();
+                }
+                else
+                {
+                    ActionExecutionManager.Instance.ExecuteAction(actionCtx.Action);
+                }
             }
             
             if (!interactibleData.DestroyAfterInteract) return;
