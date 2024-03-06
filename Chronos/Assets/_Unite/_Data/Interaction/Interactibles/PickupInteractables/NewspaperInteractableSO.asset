@@ -18,3 +18,6 @@ MonoBehaviour:
   destroyAfterInteract: 0
   interactText: Read the Newspaper
   showInteractText: 1
+  actionsOnInteract:
+  - action: {fileID: 11400000, guid: 0fd2fe76d07973942b7467441ca9ce1b, type: 2}
+    doOnce: 1
