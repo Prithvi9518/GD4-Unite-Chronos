@@ -216,6 +216,8 @@ namespace Unite.Managers
         {
             player.MovementHandler.DisableMovement();
             InputManager.Instance.DisableDefaultActions();
+            CursorLockHandler.Instance.ShowAndUnlockCursor();
+            
             onGameLose.Raise();
             Debug.Log("LOSE");
         }
