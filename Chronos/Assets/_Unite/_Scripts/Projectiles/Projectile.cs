@@ -1,4 +1,5 @@
 ﻿using Unite.Core.DamageInterfaces;
+using Unite.Managers;
 using Unite.StatusEffectSystem;
 using Unite.TimeStop;
 using UnityEngine;
@@ -50,6 +51,16 @@ namespace Unite.Projectiles
             Invoke(nameof(Disable), autoDestroyTimeInSeconds);
         }
 
+        private void OnEnable()
+        {
+            GameManager.Instance.OnGameLose += OnGameLose;
+        }
+        
+        private void OnDisable()
+        {
+            GameManager.Instance.OnGameLose -= OnGameLose;
+        }
+
         private void OnTriggerEnter(Collider other)
         {
             if (!other.TryGetComponent(out ITakeDamage damageable)) return;
@@ -87,6 +98,11 @@ namespace Unite.Projectiles
             rb.velocity = Vector3.zero;
             gameObject.SetActive(false);
             projectilePool.Release(this);
+        }
+
+        private void OnGameLose()
+        {
+            Disable();
         }
 
         public virtual void HandleTimeStopEvent(bool isTimeStopped)

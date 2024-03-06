@@ -79,6 +79,7 @@ namespace Unite.Player
 
         public void PerformSetup(Player p)
         {
+            effectsDict.Clear();
             healthHandler = p.HealthHandler;
             movementHandler = p.MovementHandler;
         }

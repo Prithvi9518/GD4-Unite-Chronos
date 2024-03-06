@@ -553,7 +553,7 @@ MonoBehaviour:
     m_Bits: 521
   maxSlopeAngle: 70
   orientation: {fileID: 4914929914867037143}
-  speedStatType: {fileID: 11400000, guid: e3c3053948b1ae541ba29e94f4eba659, type: 2}
+  speedBoostStatType: {fileID: 11400000, guid: e3c3053948b1ae541ba29e94f4eba659, type: 2}
   onDashUsedUpdateAnalytics: {fileID: 11400000, guid: 30b2da4c6e2ff23449f1be8fc2c1af27,
     type: 2}
 --- !u!114 &5350533824352362183
@@ -604,7 +604,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 4508471836421242003}
         m_TargetAssemblyTypeName: Unite.Player.PlayerController, Assembly-CSharp
-        m_MethodName: UpdateSpeedFromStats
+        m_MethodName: UpdateSpeedBoostFromStats
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

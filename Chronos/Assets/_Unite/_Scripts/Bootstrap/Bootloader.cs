@@ -109,7 +109,7 @@ namespace Unite.Bootstrap
 
         private void HandleLevelLoadFinish()
         {
-            GameManager.Instance.OnFinishedLoadingLevel(currentLevelIndex, gameLayout.GetLevelByIndex(currentLevelIndex));
+            GameManager.Instance.OnFinishedLoadingLevel(gameLayout.GetLevelByIndex(currentLevelIndex));
         }
 
         private void OnEnable()

@@ -548,7 +548,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 3588735782844534928}
         m_TargetAssemblyTypeName: Unite.Player.PlayerController, Assembly-CSharp
-        m_MethodName: UpdateSpeedFromStats
+        m_MethodName: UpdateSpeedBoostFromStats
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

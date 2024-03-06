@@ -1,5 +1,6 @@
 ﻿using Unite.AbilitySystem;
 using Unite.EventSystem;
+using Unite.Managers;
 using UnityEngine;
 
 namespace Unite.Player
@@ -62,11 +63,27 @@ namespace Unite.Player
             onPlayerReady.Raise(this);
         }
 
+        private void OnEnable()
+        {
+            GameManager.Instance.OnGameLose += OnGameOver;
+        }
+
+        private void OnDisable()
+        {
+            GameManager.Instance.OnGameLose -= OnGameOver;
+        }
+
         public void OnPlayerDead()
         {
             healthHandler.enabled = false;
             gunHandler.enabled = false;
             movementHandler.DisableMovement();
+        }
+
+        private void OnGameOver()
+        {
+            Debug.Log("Player.OnGameOver");
+            playerData.SetupPlayer(this);
         }
     }
 }

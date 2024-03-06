@@ -4,6 +4,7 @@ using Unite.Enemies.AI;
 using Unite.Enemies.Movement;
 using Unite.EventSystem;
 using Unite.ItemDropSystem;
+using Unite.Managers;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.Pool;
@@ -90,6 +91,16 @@ namespace Unite.Enemies
 
             isAlive = true;
         }
+        
+        private void OnEnable()
+        {
+            GameManager.Instance.OnGameLose += OnGameLose;
+        }
+
+        private void OnDisable()
+        {
+            GameManager.Instance.OnGameLose -= OnGameLose;
+        }
 
         public void SetEnemyPool(IObjectPool<Enemy> pool)
         {
@@ -115,6 +126,12 @@ namespace Unite.Enemies
             onEnemyDead.Raise();
             onEnemyDeadUpdateMetric.Raise(this);
             isAlive = false;
+            gameObject.SetActive(false);
+            enemyPool?.Release(this);
+        }
+
+        private void OnGameLose()
+        {
             gameObject.SetActive(false);
             enemyPool?.Release(this);
         }
