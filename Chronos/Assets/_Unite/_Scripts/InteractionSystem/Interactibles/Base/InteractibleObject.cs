@@ -1,4 +1,5 @@
-﻿using Unite.EventSystem;
+﻿using Unite.ActionSystem;
+using Unite.EventSystem;
 using Unite.SoundScripts;
 using UnityEngine;
 
@@ -35,6 +36,20 @@ namespace Unite.InteractionSystem
                     transform.position,
                     interactibleData.ClipVolume
                 );
+            }
+
+            foreach (var actionCtx in interactibleData.ActionsOnInteract)
+            {
+                if (actionCtx.DoOnce)
+                {
+                    if(actionCtx.ExecutedOnce) continue;
+                    ActionExecutionManager.Instance.ExecuteAction(actionCtx.Action);
+                    actionCtx.RegisterFirstExecution();
+                }
+                else
+                {
+                    ActionExecutionManager.Instance.ExecuteAction(actionCtx.Action);
+                }
             }
             
             if (!interactibleData.DestroyAfterInteract) return;

@@ -131,6 +131,12 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1154423459}
     m_Modifications:
+    - target: {fileID: 4969767792096511817, guid: 9f8acbefdaba57b448abd2f8a589c82e,
+        type: 3}
+      propertyPath: onInteractUpdateAnalytics
+      value: 
+      objectReference: {fileID: 11400000, guid: 13708a900b70425458ffed7409591384,
+        type: 2}
     - target: {fileID: 5972884146759903736, guid: 9f8acbefdaba57b448abd2f8a589c82e,
         type: 3}
       propertyPath: m_Size.x
@@ -834,6 +840,12 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1154423459}
     m_Modifications:
+    - target: {fileID: 4992443027071634044, guid: cd69fb27fa4181d4a8839ad0e6e2b3fd,
+        type: 3}
+      propertyPath: onInteractUpdateAnalytics
+      value: 
+      objectReference: {fileID: 11400000, guid: 13708a900b70425458ffed7409591384,
+        type: 2}
     - target: {fileID: 5008136198239078983, guid: cd69fb27fa4181d4a8839ad0e6e2b3fd,
         type: 3}
       propertyPath: m_Name
@@ -1646,6 +1658,12 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: 3714085c486b70942a869376e82439df,
         type: 2}
+    - target: {fileID: 9189882647124192931, guid: 9091935fa6d4e904096bb20abbfbb8f7,
+        type: 3}
+      propertyPath: onInteractUpdateAnalytics
+      value: 
+      objectReference: {fileID: 11400000, guid: 13708a900b70425458ffed7409591384,
+        type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1659,6 +1677,12 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1154423459}
     m_Modifications:
+    - target: {fileID: 4969767792096511817, guid: 9f8acbefdaba57b448abd2f8a589c82e,
+        type: 3}
+      propertyPath: onInteractUpdateAnalytics
+      value: 
+      objectReference: {fileID: 11400000, guid: 13708a900b70425458ffed7409591384,
+        type: 2}
     - target: {fileID: 5972884146759903736, guid: 9f8acbefdaba57b448abd2f8a589c82e,
         type: 3}
       propertyPath: m_Size.x
@@ -9494,6 +9518,12 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1154423459}
     m_Modifications:
+    - target: {fileID: 5885319621894721006, guid: 093ea743df6fd614c854eb8e6167c660,
+        type: 3}
+      propertyPath: onInteractUpdateAnalytics
+      value: 
+      objectReference: {fileID: 11400000, guid: 13708a900b70425458ffed7409591384,
+        type: 2}
     - target: {fileID: 7281056073633223377, guid: 093ea743df6fd614c854eb8e6167c660,
         type: 3}
       propertyPath: m_LocalScale.x
@@ -12533,6 +12563,12 @@ PrefabInstance:
       propertyPath: zoomFactor
       value: 0.253
       objectReference: {fileID: 0}
+    - target: {fileID: 7446494179044811313, guid: 865424f92e0905a40a2dbfe44e60c09f,
+        type: 3}
+      propertyPath: onInteractUpdateAnalytics
+      value: 
+      objectReference: {fileID: 11400000, guid: 13708a900b70425458ffed7409591384,
+        type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
