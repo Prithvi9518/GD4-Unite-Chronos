@@ -117,6 +117,8 @@ namespace Unite.Managers
             else
             {
                 playerSpawn.SpawnPlayer(player);
+                InputManager.Instance.EnableDefaultActions();
+                CursorLockHandler.Instance.HideAndLockCursor();
                 player.MovementHandler.EnableMovement();
             }
             
@@ -212,19 +214,22 @@ namespace Unite.Managers
 
         private void HandlePlayerDeadState()
         {
-            if (currentState != GameState.Start) return;
+            player.MovementHandler.DisableMovement();
+            InputManager.Instance.DisableDefaultActions();
             onGameLose.Raise();
             Debug.Log("LOSE");
         }
 
         public void HandleRestart()
         {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+            Debug.Log("RESTART");
+            Bootloader.Instance.ReloadCurrentLevel();
             SetGameState(GameState.Start);
         }
 
         public void HandleLose()
         {
+            if (currentState != GameState.Start) return;
             SetGameState(GameState.PlayerDead);
         }
 

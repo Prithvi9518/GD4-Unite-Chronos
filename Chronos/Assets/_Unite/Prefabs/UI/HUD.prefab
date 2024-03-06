@@ -1823,7 +1823,6 @@ GameObject:
   - component: {fileID: 4919791312247332491}
   - component: {fileID: 6907770726732042241}
   - component: {fileID: 8422772690401001843}
-  - component: {fileID: 7807993328035830385}
   m_Layer: 5
   m_Name: GameOverPanel
   m_TagString: Untagged
@@ -1924,18 +1923,6 @@ CanvasGroup:
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
---- !u!114 &7807993328035830385
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2229108824902391138}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9e960aefe29b4805829a295af41df67f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &2446214219926782296
 GameObject:
   m_ObjectHideFlags: 0

@@ -38,17 +38,20 @@ namespace Unite.InteractionSystem
                 );
             }
 
-            foreach (var actionCtx in interactibleData.ActionsOnInteract)
+            if (interactibleData.ActionsOnInteract != null)
             {
-                if (actionCtx.DoOnce)
+                foreach (var actionCtx in interactibleData.ActionsOnInteract)
                 {
-                    if(actionCtx.ExecutedOnce) continue;
-                    ActionExecutionManager.Instance.ExecuteAction(actionCtx.Action);
-                    actionCtx.RegisterFirstExecution();
-                }
-                else
-                {
-                    ActionExecutionManager.Instance.ExecuteAction(actionCtx.Action);
+                    if (actionCtx.DoOnce)
+                    {
+                        if(actionCtx.ExecutedOnce) continue;
+                        ActionExecutionManager.Instance.ExecuteAction(actionCtx.Action);
+                        actionCtx.RegisterFirstExecution();
+                    }
+                    else
+                    {
+                        ActionExecutionManager.Instance.ExecuteAction(actionCtx.Action);
+                    }
                 }
             }
             
