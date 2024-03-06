@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f9a4e114f03849e783bbeb76fc820bd2, type: 3}
-  m_Name: PoemInteractableSO
+  m_Name: NewspaperInteractableSO
   m_EditorClassIdentifier: 
-  eventOnInteract: {fileID: 11400000, guid: 8bd6577ce716e1448b4db3e597ba1029, type: 2}
+  eventOnInteract: {fileID: 11400000, guid: e7f38e7649d20ea47aca87ca9c49ccbc, type: 2}
   audioToPlayOnInteract: {fileID: 0}
   volume: 1
   destroyAfterInteract: 0
-  interactText: Read the Poem
+  interactText: Read the Newspaper
   showInteractText: 1
