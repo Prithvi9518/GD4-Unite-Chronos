@@ -117,6 +117,7 @@ namespace Unite.Enemies
             enemyAnimationHandler.Animator.enabled = true;
 
             enemyHealth.ResetHealth();
+            enemyUIHandler.ToggleHealthBar(true);
             
             isAlive = true;
         }
