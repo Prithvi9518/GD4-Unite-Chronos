@@ -192,14 +192,15 @@ namespace Unite.Managers
                 case GameState.Bootstrap:
                     break;
                 case GameState.Start:
-                    HandleGameStart();
+                    HandleGameStartState();
                     break;
                 case GameState.PlayerDead:
+                    HandlePlayerDeadState();
                     break;
             }
         }
 
-        private void HandleGameStart()
+        private void HandleGameStartState()
         {
             if (currentState != GameState.Start) return;
             if (player == null) return;
@@ -209,7 +210,14 @@ namespace Unite.Managers
             onGameStart.Raise();
         }
 
-        private void HandleRestart()
+        private void HandlePlayerDeadState()
+        {
+            if (currentState != GameState.Start) return;
+            onGameLose.Raise();
+            Debug.Log("LOSE");
+        }
+
+        public void HandleRestart()
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
             SetGameState(GameState.Start);
@@ -218,7 +226,6 @@ namespace Unite.Managers
         public void HandleLose()
         {
             SetGameState(GameState.PlayerDead);
-            Debug.Log("LOSE");
         }
 
         public void SwitchToNextLevel()
