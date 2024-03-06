@@ -15,6 +15,10 @@ namespace Unite.DialogueSystem
         [Header("Send event to analytics manager when playing dialogue")]
         [SerializeField]
         private DialogueSOEvent dialogueAnalyticsEvent;
+
+        [Header("Send event to subtitles UI when playing dialogue line")] 
+        [SerializeField]
+        private DialogueLineEvent onPlayDialogueLine;
         
         public static DialogueManager Instance { get; private set; }
 
@@ -42,8 +46,13 @@ namespace Unite.DialogueSystem
 
         private void PlayDialogueLine(DialogueLine line)
         {
-            audioSource.Stop();
-            audioSource.PlayOneShot(line.Audio);
+            if (line.Audio != null)
+            {
+                audioSource.Stop();
+                audioSource.PlayOneShot(line.Audio);
+            }
+            
+            onPlayDialogueLine.Raise(line);
         }
 
         private IEnumerator DialogueLinesCoroutine(List<DialogueLine> lines)
