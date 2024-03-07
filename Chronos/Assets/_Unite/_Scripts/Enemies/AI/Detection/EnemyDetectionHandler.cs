@@ -21,11 +21,6 @@ namespace Unite.Enemies.AI
             detectionLogic = GetComponent<IDetectTarget>();
         }
 
-        public void PerformSetup(Transform target)
-        {
-            this.target = target;
-        }
-
         public bool IsTargetDetected()
         {
             return detectionLogic.IsTargetDetected(target);

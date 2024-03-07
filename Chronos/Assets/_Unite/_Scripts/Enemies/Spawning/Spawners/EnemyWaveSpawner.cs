@@ -52,7 +52,6 @@ namespace Unite.Enemies.Spawning
             enemy.transform.SetPositionAndRotation(hit.position, Quaternion.identity);
             enemyData.SetupEnemy(enemy, playerTransform);
 
-            enemy.Agent.enabled = true;
             enemy.Agent.Warp(hit.position);
         }
 

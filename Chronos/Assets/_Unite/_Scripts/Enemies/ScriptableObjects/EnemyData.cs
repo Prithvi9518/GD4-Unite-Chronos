@@ -58,6 +58,7 @@ namespace Unite.Enemies
             enemy.Health.MaxHealth = baseHealth;
             enemy.Health.ResetHealth();
 
+            enemy.Agent.enabled = true;
             enemy.Agent.speed = speed;
             enemy.Agent.angularSpeed = angularSpeed;
             enemy.Agent.acceleration = acceleration;

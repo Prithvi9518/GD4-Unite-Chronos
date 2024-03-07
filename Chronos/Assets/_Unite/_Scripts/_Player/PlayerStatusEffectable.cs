@@ -63,8 +63,6 @@ namespace Unite.Player
 
         public void HandleEffect()
         {
-            Debug.Log("Handle Effect");
-            
             List<StatusEffectInfo> values = new List<StatusEffectInfo>(effectsDict.Values);
             for (int i = 0; i < values.Count; i++)
             {
