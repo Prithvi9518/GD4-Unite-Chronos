@@ -33,8 +33,6 @@ namespace Unite.InteractionSystem
         private Dictionary<Transform, Quaternion> originalRotations;
 
         private float zoomFactor;
-
-        private bool isRotationDisabled;
         
         #endregion
         
@@ -67,12 +65,6 @@ namespace Unite.InteractionSystem
         {
             get => zoomFactor;
             set => zoomFactor = value;
-        }
-
-        public bool IsRotationDisabled
-        {
-            get => isRotationDisabled;
-            set => isRotationDisabled = value;
         }
         #endregion
         

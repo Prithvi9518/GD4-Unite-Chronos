@@ -59,7 +59,6 @@ namespace Unite.InteractionSystem
                 
                 inspectItemData.ExaminedObject = pickupInfo.Transform;
                 inspectItemData.ZoomFactor = pickupInfo.ZoomFactor;
-                inspectItemData.IsRotationDisabled = pickupInfo.IsRotationDisabled;
                 inspectItemData.OriginalPositions[inspectItemData.ExaminedObject] = inspectItemData.ExaminedObject.position;
                 inspectItemData.OriginalRotations[inspectItemData.ExaminedObject] = inspectItemData.ExaminedObject.rotation;
             }
@@ -119,9 +118,6 @@ namespace Unite.InteractionSystem
                 Vector3 targetPosition = Vector3.MoveTowards(inspectItemData.ExaminedObject.position, newOffsetPosition, 5f);
                 
                 inspectItemData.ExaminedObject.position = Vector3.Lerp(inspectItemData.ExaminedObject.position, targetPosition, 0.2f);
-
-                if (inspectItemData.IsRotationDisabled) return;
-                
                 Vector3 deltaMouse = Input.mousePosition - inspectItemData.LastMousePosition;
                 float rotationSpeed = 1.0f;
                 inspectItemData.ExaminedObject.Rotate(deltaMouse.x * rotationSpeed * Vector3.up, Space.World);
@@ -142,8 +138,6 @@ namespace Unite.InteractionSystem
                 {
                     inspectItemData.ExaminedObject.position = Vector3.Lerp(inspectItemData.ExaminedObject.position, position, 0.2f);
                 }
-
-                if (inspectItemData.IsRotationDisabled) return;
                 if (inspectItemData.OriginalRotations.TryGetValue(inspectItemData.ExaminedObject, out var rotation))
                 {
                     inspectItemData.ExaminedObject.rotation = Quaternion.Slerp(inspectItemData.ExaminedObject.rotation, rotation, 0.2f);
