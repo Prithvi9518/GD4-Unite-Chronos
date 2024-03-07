@@ -12,14 +12,11 @@ namespace Unite.InteractionSystem
             [Range(0f, 1f)]
             private float zoomFactor;
 
-            [SerializeField]
-            private bool disableRotation = false;
-
             private PickupInfo inspectItemInfo;
 
             private void Start()
             {
-                inspectItemInfo = new PickupInfo(transform, zoomFactor, disableRotation);
+                inspectItemInfo = new PickupInfo(transform, zoomFactor);
             }
 
             public override void HandleInteraction()
