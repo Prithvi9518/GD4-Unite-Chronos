@@ -1,4 +1,4 @@
-using UnityEngine.SceneManagement;
+using Unite.Managers;
 using UnityEngine;
 
 public class LoadOnEnter : StateMachineBehaviour
@@ -6,8 +6,8 @@ public class LoadOnEnter : StateMachineBehaviour
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-        Debug.Log("Restarted");
+        // SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        GameManager.Instance.HandleRestart();
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks

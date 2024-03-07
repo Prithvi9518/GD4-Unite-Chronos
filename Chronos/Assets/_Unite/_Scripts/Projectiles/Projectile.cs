@@ -1,4 +1,5 @@
 ﻿using Unite.Core.DamageInterfaces;
+using Unite.Managers;
 using Unite.StatusEffectSystem;
 using Unite.TimeStop;
 using UnityEngine;
@@ -50,6 +51,18 @@ namespace Unite.Projectiles
             Invoke(nameof(Disable), autoDestroyTimeInSeconds);
         }
 
+        private void OnEnable()
+        {
+            GameManager.Instance.OnGameLose += DestroySelf;
+            GameManager.Instance.OnGameRestart += DestroySelf;
+        }
+        
+        private void OnDisable()
+        {
+            GameManager.Instance.OnGameLose -= DestroySelf;
+            GameManager.Instance.OnGameRestart -= DestroySelf;
+        }
+
         private void OnTriggerEnter(Collider other)
         {
             if (!other.TryGetComponent(out ITakeDamage damageable)) return;
@@ -64,14 +77,13 @@ namespace Unite.Projectiles
             Disable();
         }
 
-        public void PerformSetup(float damageAmount, ObjectPool<Projectile> pool,
-            IAttacker attackingEntity, IDoDamage shotWith, Transform target)
+        public void PerformSetup(ProjectileContext context)
         {
-            damage = damageAmount;
-            projectilePool = pool;
-            shooter = attackingEntity;
-            damager = shotWith;
-            projectileTarget = target;
+            damage = context.DamageAmount;
+            projectilePool = context.Pool;
+            shooter = context.AttackingEntity;
+            damager = context.ShotWith;
+            projectileTarget = context.Target;
         }
 
         public virtual void Spawn()
@@ -87,6 +99,12 @@ namespace Unite.Projectiles
             rb.velocity = Vector3.zero;
             gameObject.SetActive(false);
             projectilePool.Release(this);
+        }
+
+        private void DestroySelf()
+        {
+            Destroy(gameObject);
+            // Disable();
         }
 
         public virtual void HandleTimeStopEvent(bool isTimeStopped)

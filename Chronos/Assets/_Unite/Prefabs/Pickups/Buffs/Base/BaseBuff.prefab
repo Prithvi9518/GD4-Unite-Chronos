@@ -94,6 +94,7 @@ GameObject:
   - component: {fileID: 1265782310504626668}
   - component: {fileID: 4370742462815816784}
   - component: {fileID: 1500556460001997301}
+  - component: {fileID: 5563367996884421691}
   m_Layer: 6
   m_Name: BaseBuff
   m_TagString: Interactible
@@ -155,3 +156,15 @@ MonoBehaviour:
   onInteractUpdateAnalytics: {fileID: 11400000, guid: 13708a900b70425458ffed7409591384,
     type: 2}
   buff: {fileID: 0}
+--- !u!114 &5563367996884421691
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4473673365344350536}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b86f6ad25908412bbfc88ec2332ca545, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

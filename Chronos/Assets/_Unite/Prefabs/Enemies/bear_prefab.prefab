@@ -1187,7 +1187,7 @@ NavMeshAgent:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6169564015580517035}
-  m_Enabled: 1
+  m_Enabled: 0
   m_AgentTypeID: 0
   m_Radius: 1.72
   m_Speed: 3.5
@@ -1387,9 +1387,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   item: {fileID: 5211760446356415697, guid: a9c3fb9ad0f124b40ace2065cfe1f81b, type: 3}
   dropPoint: {fileID: 3230726899933695104}
-  layerMask:
-    serializedVersion: 2
-    m_Bits: 8
   yOffset: 1
 --- !u!114 &8462872294159286440
 MonoBehaviour:

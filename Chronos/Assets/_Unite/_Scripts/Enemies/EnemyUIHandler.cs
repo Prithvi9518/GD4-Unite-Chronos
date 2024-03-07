@@ -12,6 +12,11 @@ namespace Unite.Enemies
         {
             healthBar.UpdateHealthBar(currentHealth, maxHealth);
         }
+
+        public void ToggleHealthBar(bool toggle)
+        {
+            healthBar.gameObject.SetActive(toggle);
+        }
     }
 }
 

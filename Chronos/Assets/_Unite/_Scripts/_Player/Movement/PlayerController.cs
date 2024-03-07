@@ -32,7 +32,7 @@ namespace Unite.Player
 
         [Header("Stats")] 
         [SerializeField] 
-        private StatTypeSO speedStatType;
+        private StatTypeSO speedBoostStatType;
 
         [Header("Events for Analytics")] 
         [SerializeField]
@@ -81,6 +81,8 @@ namespace Unite.Player
 
         private bool canDash;
         private bool isWalkingSlowly;
+
+        private float speedBoost;
 
         public Transform Orientation => orientation;
         public PlayerCameraHandler CameraHandler => cameraHandler;
@@ -139,6 +141,7 @@ namespace Unite.Player
             GetInput();
             SpeedControl();
             UpdateState();
+            Debug.Log($"{InputManager.Instance.IsSprintActionPressed()}");
 
             if (isGrounded && currentState != MovementState.Dashing)
                 rb.drag = groundDrag;
@@ -167,7 +170,7 @@ namespace Unite.Player
             else if (isGrounded && InputManager.Instance.IsSprintActionPressed())
             {
                 currentState = MovementState.Sprinting;
-                desiredMoveSpeed = movementData.SprintSpeed;
+                desiredMoveSpeed = (isWalkingSlowly) ? movementData.SlowWalkSpeed : movementData.SprintSpeed;
             }
             else if (isGrounded)
             {
@@ -203,7 +206,8 @@ namespace Unite.Player
                 {
                     if(smoothLerpCoroutine != null)
                         StopCoroutine(smoothLerpCoroutine);
-                    moveSpeed = desiredMoveSpeed;
+                    
+                    moveSpeed = desiredMoveSpeed + speedBoost;
                 }
             }
 
@@ -334,7 +338,7 @@ namespace Unite.Player
                 yield return null;
             }
 
-            moveSpeed = desiredMoveSpeed;
+            moveSpeed = desiredMoveSpeed + speedBoost;
             speedChangeFactor = 1f;
             keepMomentum = false;
         }
@@ -352,13 +356,13 @@ namespace Unite.Player
             statsHandler = playerStatsHandler;
         }
 
-        public void UpdateSpeedFromStats()
+        public void UpdateSpeedBoostFromStats()
         {
-            Stat speedStat = statsHandler.GetStat(speedStatType);
-            if (speedStat == null) return;
+            Stat speedBoostStat = statsHandler.GetStat(speedBoostStatType);
+            if (speedBoostStat == null) return;
 
-            float baseSpeed = speedStat.Value;
-            moveSpeed = baseSpeed;
+            float baseSpeedBoost = speedBoostStat.Value;
+            speedBoost = baseSpeedBoost;
         }
 
         public void ModifySpeed(float modifier)
