@@ -8,6 +8,7 @@ using Unity.Services.Core;
 using Unity.Services.Core.Analytics;
 using UnityEngine.Analytics;
 using Unite.DialogueSystem;
+using Unite.Core.Game;
 
 namespace Unite.Managers
 {
@@ -114,7 +115,7 @@ namespace Unite.Managers
         //    SendAnalyticsEvent("PlayerReachedCheckpoint", data);
         //}
 
-        public void LevelStarted()
+        public void LevelStarted(GameLevel gameLevel)
         {
             //Add more data related to time stop usage
             Dictionary<string, object> data = new Dictionary<string, object>();
@@ -123,10 +124,13 @@ namespace Unite.Managers
             SendAnalyticsEvent("LevelStarted", data);
         }
 
-        public void LevelFinished()
+        public void LevelFinished(LevelCompleteInfo levelCompleteInfo)
         {
             //Add more data related to time stop usage
             Dictionary<string, object> data = new Dictionary<string, object>();
+            data.Add("Name", levelCompleteInfo.Level.name);
+            data.Add("TimeToComplete", levelCompleteInfo.TimeTakenToComplete);
+
 
             //Send analytics event
             SendAnalyticsEvent("LevelFinished", data);
