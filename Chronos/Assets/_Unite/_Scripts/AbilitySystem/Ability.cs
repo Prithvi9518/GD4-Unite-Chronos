@@ -1,5 +1,6 @@
 using System;
 using Unite.EventSystem;
+using Unite.Managers;
 using UnityEngine;
 
 namespace Unite.AbilitySystem
@@ -21,6 +22,16 @@ namespace Unite.AbilitySystem
         private void Start()
         {
             onAbilityInstantiate.Raise(this);
+        }
+
+        private void OnEnable()
+        {
+            GameManager.Instance.OnGameRestart += ResetAbility;
+        }
+
+        private void OnDisable()
+        {
+            GameManager.Instance.OnGameRestart -= ResetAbility;
         }
 
         private void Update()
@@ -75,6 +86,13 @@ namespace Unite.AbilitySystem
                 remainingActiveTimeMs = 0;
                 remainingCooldownTimeMs = 0;
             }
+        }
+
+        private void ResetAbility()
+        {
+            currentState = AbilityState.Ready;
+            remainingActiveTimeMs = 0;
+            remainingCooldownTimeMs = 0;
         }
 
     }
