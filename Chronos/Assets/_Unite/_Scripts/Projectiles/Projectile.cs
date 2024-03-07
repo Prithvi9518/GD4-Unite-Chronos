@@ -77,14 +77,13 @@ namespace Unite.Projectiles
             Disable();
         }
 
-        public void PerformSetup(float damageAmount, ObjectPool<Projectile> pool,
-            IAttacker attackingEntity, IDoDamage shotWith, Transform target)
+        public void PerformSetup(ProjectileContext context)
         {
-            damage = damageAmount;
-            projectilePool = pool;
-            shooter = attackingEntity;
-            damager = shotWith;
-            projectileTarget = target;
+            damage = context.DamageAmount;
+            projectilePool = context.Pool;
+            shooter = context.AttackingEntity;
+            damager = context.ShotWith;
+            projectileTarget = context.Target;
         }
 
         public virtual void Spawn()

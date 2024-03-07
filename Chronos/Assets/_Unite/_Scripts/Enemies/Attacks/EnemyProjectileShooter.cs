@@ -34,6 +34,9 @@ namespace Unite.Enemies
         private bool isCharging;
         private float chargeTimer;
 
+        private ProjectileContextBuilder contextBuilder;
+        private ProjectileContext projectileContext;
+
         private void Awake()
         {
             SetupPools();
@@ -78,7 +81,17 @@ namespace Unite.Enemies
         {
             projectile.gameObject.SetActive(true);
             projectile.transform.SetPositionAndRotation(projectileSpawnPoint.position, transform.rotation);
-            projectile.PerformSetup(damage, pools[projectile.ID], attackHandler, attack, detectionHandler.Target);
+
+            contextBuilder = new ProjectileContextBuilder();
+            
+            projectileContext = contextBuilder.WithDamage(damage)
+                .WithPool(pools[projectile.ID])
+                .WithAttacker(attackHandler)
+                .WithShooter(attack)
+                .WithTarget(detectionHandler.Target)
+                .Build();
+            
+            projectile.PerformSetup(projectileContext);
         }
 
         private void SpawnProjectile()
