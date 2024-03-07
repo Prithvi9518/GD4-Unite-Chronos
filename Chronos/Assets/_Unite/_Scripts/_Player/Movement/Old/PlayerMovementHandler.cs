@@ -23,10 +23,10 @@ namespace Unite.Player
         public void PerformSetup(PlayerStatsHandler playerStatsHandler)
         {
             statsHandler = playerStatsHandler;
-            UpdateSpeedFromStats();
+            UpdateSpeedBoostFromStats();
         }
 
-        public void UpdateSpeedFromStats()
+        public void UpdateSpeedBoostFromStats()
         {
             Stat speedStat = statsHandler.GetStat(speedStatType);
             if (speedStat == null) return;

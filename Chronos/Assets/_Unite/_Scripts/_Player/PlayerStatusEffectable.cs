@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Unite.Core.DamageInterfaces;
 using Unite.StatusEffectSystem;
 using UnityEngine;
@@ -26,10 +27,18 @@ namespace Unite.Player
         private PlayerHealthHandler healthHandler;
         private IHandlePlayerMovement movementHandler;
 
+        private bool isActive;
+
         private Dictionary<StatusEffectSO, StatusEffectInfo> effectsDict = new();
+
+        private void Awake()
+        {
+            isActive = true;
+        }
 
         private void Update()
         {
+            if (!isActive) return;
             if (effectsDict.Count == 0) return;
             HandleEffect();
         }
@@ -77,10 +86,18 @@ namespace Unite.Player
             }
         }
 
+        public void StopAllEffects()
+        {
+            isActive = false;
+            effectsDict.Clear();
+        }
+
         public void PerformSetup(Player p)
         {
+            effectsDict = new();
             healthHandler = p.HealthHandler;
             movementHandler = p.MovementHandler;
+            isActive = true;
         }
     }
 }

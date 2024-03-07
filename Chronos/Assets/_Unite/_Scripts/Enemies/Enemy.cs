@@ -4,6 +4,7 @@ using Unite.Enemies.AI;
 using Unite.Enemies.Movement;
 using Unite.EventSystem;
 using Unite.ItemDropSystem;
+using Unite.Managers;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.Pool;
@@ -90,6 +91,18 @@ namespace Unite.Enemies
 
             isAlive = true;
         }
+        
+        private void OnEnable()
+        {
+            GameManager.Instance.OnGameRestart += DestroySelf;
+            GameManager.Instance.OnGameLose += DestroySelf;
+        }
+
+        private void OnDisable()
+        {
+            GameManager.Instance.OnGameRestart -= DestroySelf;
+            GameManager.Instance.OnGameLose -= DestroySelf;
+        }
 
         public void SetEnemyPool(IObjectPool<Enemy> pool)
         {
@@ -99,12 +112,12 @@ namespace Unite.Enemies
         public void OnGetFromPool(Transform target)
         {
             enemyDetectionHandler.Target = target;
-            navMeshAgent.enabled = true;
             collider.enabled = true;
 
             enemyAnimationHandler.Animator.enabled = true;
 
             enemyHealth.ResetHealth();
+            enemyUIHandler.ToggleHealthBar(true);
             
             isAlive = true;
         }
@@ -115,8 +128,16 @@ namespace Unite.Enemies
             onEnemyDead.Raise();
             onEnemyDeadUpdateMetric.Raise(this);
             isAlive = false;
+            navMeshAgent.enabled = false;
             gameObject.SetActive(false);
             enemyPool?.Release(this);
+        }
+
+        private void DestroySelf()
+        {
+            Destroy(gameObject);
+            // gameObject.SetActive(false);
+            // enemyPool?.Release(this);
         }
     }
 }

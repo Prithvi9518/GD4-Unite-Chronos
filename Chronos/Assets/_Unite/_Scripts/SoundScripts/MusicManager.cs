@@ -30,6 +30,7 @@ namespace Unite.SoundScripts
         private float combatVolume;
 
         private EventInstance musicEventInstance;
+        private PLAYBACK_STATE playbackState;
 
         private void Awake()
         {
@@ -45,6 +46,7 @@ namespace Unite.SoundScripts
         private void Start()
         {
             musicEventInstance = GetFMODEventInstance(FMODEvents.Instance.MusicTransitionEvent);
+            musicEventInstance.getPlaybackState(out playbackState);
         }
         
         private EventInstance GetFMODEventInstance(EventReference eventReference)
@@ -66,13 +68,32 @@ namespace Unite.SoundScripts
 
         public void PlayExplorationMusic()
         {
+            if (playbackState == PLAYBACK_STATE.STOPPED)
+            {
+                musicEventInstance.start();
+                musicEventInstance.getPlaybackState(out playbackState);
+            }
+
+            musicEventInstance.getPaused(out var paused);
+            if (paused)
+            {
+                musicEventInstance.setPaused(false);
+            }
+            
             musicEventInstance.setVolume(explorationVolume);
             musicEventInstance.setParameterByName(musicEventParameter, exploreParamValue);
+        }
+
+        public void PauseMusic()
+        {
+            musicEventInstance.setPaused(true);
+            musicEventInstance.getPlaybackState(out playbackState);
         }
 
         private void OnDestroy()
         {
             musicEventInstance.stop(STOP_MODE.IMMEDIATE);
+            musicEventInstance.getPlaybackState(out playbackState);
             musicEventInstance.release();
         }
     }

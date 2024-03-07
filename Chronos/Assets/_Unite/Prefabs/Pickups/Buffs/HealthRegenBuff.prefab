@@ -343,6 +343,7 @@ GameObject:
   - component: {fileID: 3384578278424203740}
   - component: {fileID: 6402671008850746234}
   - component: {fileID: 8478175927266792398}
+  - component: {fileID: 1698381216168401155}
   m_Layer: 6
   m_Name: HealthRegenBuff
   m_TagString: Interactible
@@ -406,6 +407,18 @@ MonoBehaviour:
   onInteractUpdateAnalytics: {fileID: 11400000, guid: 13708a900b70425458ffed7409591384,
     type: 2}
   buff: {fileID: 11400000, guid: 7b05430156884e34b90f7fb3ac465ef0, type: 2}
+--- !u!114 &1698381216168401155
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5211760446356415697}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b86f6ad25908412bbfc88ec2332ca545, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &401030435453765799
 PrefabInstance:
   m_ObjectHideFlags: 0

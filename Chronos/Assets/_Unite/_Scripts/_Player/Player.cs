@@ -1,5 +1,6 @@
 ﻿using Unite.AbilitySystem;
 using Unite.EventSystem;
+using Unite.Managers;
 using UnityEngine;
 
 namespace Unite.Player
@@ -62,11 +63,29 @@ namespace Unite.Player
             onPlayerReady.Raise(this);
         }
 
+        private void OnEnable()
+        {
+            GameManager.Instance.OnGameRestart += ResetPlayer;
+        }
+
+        private void OnDisable()
+        {
+            GameManager.Instance.OnGameRestart -= ResetPlayer;
+        }
+
         public void OnPlayerDead()
         {
             healthHandler.enabled = false;
             gunHandler.enabled = false;
+            statusEffectable.StopAllEffects();
             movementHandler.DisableMovement();
+        }
+
+        private void ResetPlayer()
+        {
+            healthHandler.enabled = true;
+            gunHandler.enabled = true;
+            playerData.SetupPlayer(this);
         }
     }
 }
