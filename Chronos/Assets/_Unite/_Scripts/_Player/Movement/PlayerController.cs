@@ -141,6 +141,7 @@ namespace Unite.Player
             GetInput();
             SpeedControl();
             UpdateState();
+            Debug.Log($"{InputManager.Instance.IsSprintActionPressed()}");
 
             if (isGrounded && currentState != MovementState.Dashing)
                 rb.drag = groundDrag;
@@ -169,7 +170,7 @@ namespace Unite.Player
             else if (isGrounded && InputManager.Instance.IsSprintActionPressed())
             {
                 currentState = MovementState.Sprinting;
-                desiredMoveSpeed = movementData.SprintSpeed;
+                desiredMoveSpeed = (isWalkingSlowly) ? movementData.SlowWalkSpeed : movementData.SprintSpeed;
             }
             else if (isGrounded)
             {
@@ -337,7 +338,7 @@ namespace Unite.Player
                 yield return null;
             }
 
-            moveSpeed = desiredMoveSpeed;
+            moveSpeed = desiredMoveSpeed + speedBoost;
             speedChangeFactor = 1f;
             keepMomentum = false;
         }
