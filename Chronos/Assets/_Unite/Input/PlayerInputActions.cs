@@ -1174,6 +1174,34 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""ViewImage"",
+            ""id"": ""5c6927c6-28a0-490b-8cb8-35c654e8af3d"",
+            ""actions"": [
+                {
+                    ""name"": ""ExitView"",
+                    ""type"": ""Button"",
+                    ""id"": ""26904e96-67f5-4527-b932-15af5df5cb22"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""fd0e643c-cb71-40e7-9c23-55f1165061ee"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ExitView"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": []
@@ -1215,6 +1243,9 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         // ExamineItem
         m_ExamineItem = asset.FindActionMap("ExamineItem", throwIfNotFound: true);
         m_ExamineItem_Interact = m_ExamineItem.FindAction("Interact", throwIfNotFound: true);
+        // ViewImage
+        m_ViewImage = asset.FindActionMap("ViewImage", throwIfNotFound: true);
+        m_ViewImage_ExitView = m_ViewImage.FindAction("ExitView", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -1678,6 +1709,52 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         }
     }
     public ExamineItemActions @ExamineItem => new ExamineItemActions(this);
+
+    // ViewImage
+    private readonly InputActionMap m_ViewImage;
+    private List<IViewImageActions> m_ViewImageActionsCallbackInterfaces = new List<IViewImageActions>();
+    private readonly InputAction m_ViewImage_ExitView;
+    public struct ViewImageActions
+    {
+        private @PlayerInputActions m_Wrapper;
+        public ViewImageActions(@PlayerInputActions wrapper) { m_Wrapper = wrapper; }
+        public InputAction @ExitView => m_Wrapper.m_ViewImage_ExitView;
+        public InputActionMap Get() { return m_Wrapper.m_ViewImage; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(ViewImageActions set) { return set.Get(); }
+        public void AddCallbacks(IViewImageActions instance)
+        {
+            if (instance == null || m_Wrapper.m_ViewImageActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_ViewImageActionsCallbackInterfaces.Add(instance);
+            @ExitView.started += instance.OnExitView;
+            @ExitView.performed += instance.OnExitView;
+            @ExitView.canceled += instance.OnExitView;
+        }
+
+        private void UnregisterCallbacks(IViewImageActions instance)
+        {
+            @ExitView.started -= instance.OnExitView;
+            @ExitView.performed -= instance.OnExitView;
+            @ExitView.canceled -= instance.OnExitView;
+        }
+
+        public void RemoveCallbacks(IViewImageActions instance)
+        {
+            if (m_Wrapper.m_ViewImageActionsCallbackInterfaces.Remove(instance))
+                UnregisterCallbacks(instance);
+        }
+
+        public void SetCallbacks(IViewImageActions instance)
+        {
+            foreach (var item in m_Wrapper.m_ViewImageActionsCallbackInterfaces)
+                UnregisterCallbacks(item);
+            m_Wrapper.m_ViewImageActionsCallbackInterfaces.Clear();
+            AddCallbacks(instance);
+        }
+    }
+    public ViewImageActions @ViewImage => new ViewImageActions(this);
     public interface IDefaultActions
     {
         void OnShoot(InputAction.CallbackContext context);
@@ -1719,5 +1796,9 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
     public interface IExamineItemActions
     {
         void OnInteract(InputAction.CallbackContext context);
+    }
+    public interface IViewImageActions
+    {
+        void OnExitView(InputAction.CallbackContext context);
     }
 }

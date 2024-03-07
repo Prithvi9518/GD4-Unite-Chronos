@@ -21,7 +21,6 @@ namespace Unite.Managers
                 // Initialize Unity Services asynchronously
                 await UnityServices.InitializeAsync();
                 GiveConsent(); // Get user consent according to various legislations
-                //OnLevelCompleted();
             }
             catch (ConsentCheckException e)
             {
@@ -119,6 +118,7 @@ namespace Unite.Managers
         {
             //Add more data related to time stop usage
             Dictionary<string, object> data = new Dictionary<string, object>();
+            data.Add("Name", gameLevel.name);
 
             //Send analytics event
             SendAnalyticsEvent("LevelStarted", data);
