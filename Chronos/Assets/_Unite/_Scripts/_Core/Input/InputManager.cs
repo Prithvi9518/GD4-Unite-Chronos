@@ -30,16 +30,20 @@ namespace Unite.Core.Input
         
         [SerializeField]
         private GameEvent onJournalNextPageAction;
-
-        [Header("Event for interacting while examining")]
-        [SerializeField]
-        private GameEvent onInteractWhileExamining;
         
         [SerializeField]
         private GameEvent onJournalPreviousPageAction;
 
         [SerializeField]
         private GameEvent onJournalCloseAction;
+        
+        [Header("Event for interacting while examining")]
+        [SerializeField]
+        private GameEvent onInteractWhileExamining;
+
+        [Header("Event for exiting image view")] 
+        [SerializeField]
+        private GameEvent onExitImageView;
 
         [SerializeField]
         private GamepadTypeEvent onGamepadUsed;
@@ -53,6 +57,7 @@ namespace Unite.Core.Input
         private PlayerInputActions.UIActions uiActions;
         private PlayerInputActions.JournalUIActions journalUIActions;
         private PlayerInputActions.ExamineItemActions examineItemActions;
+        private PlayerInputActions.ViewImageActions viewImageActions;
 
         public void HandleGameStart()
         {
@@ -74,6 +79,7 @@ namespace Unite.Core.Input
             uiActions = playerInput.UI;
             journalUIActions = playerInput.JournalUI;
             examineItemActions = playerInput.ExamineItem;
+            viewImageActions = playerInput.ViewImage;
         }
 
         private void Start()
@@ -193,6 +199,11 @@ namespace Unite.Core.Input
             onInteractWhileExamining.Raise();
         }
 
+        private void RaiseExitImageViewEvent(InputAction.CallbackContext ctx)
+        {
+            onExitImageView.Raise();
+        }
+
         private void SubscribeToActions()
         {
             InputSystem.onDeviceChange += OnDeviceChanged;
@@ -208,6 +219,8 @@ namespace Unite.Core.Input
             journalUIActions.PreviousPage.performed += RaiseJournalPreviousPageEvent;
 
             examineItemActions.Interact.performed += RaiseInteractWhileExaminingEvent;
+
+            viewImageActions.ExitView.performed += RaiseExitImageViewEvent;
         }
 
         private void UnsubscribeToActions()
@@ -225,6 +238,8 @@ namespace Unite.Core.Input
             journalUIActions.PreviousPage.performed -= RaiseJournalPreviousPageEvent;
             
             examineItemActions.Interact.performed -= RaiseInteractWhileExaminingEvent;
+            
+            viewImageActions.ExitView.performed -= RaiseExitImageViewEvent;
         }
         
         public bool IsShootActionPressed() => defaultActions.Shoot.IsPressed();
@@ -254,6 +269,7 @@ namespace Unite.Core.Input
             uiActions.Disable();
             journalUIActions.Disable();
             examineItemActions.Disable();
+            viewImageActions.Disable();
         }
         
         public void SwitchToUIActionMap()
@@ -263,6 +279,7 @@ namespace Unite.Core.Input
             uiActions.Enable();
             journalUIActions.Disable();
             examineItemActions.Disable();
+            viewImageActions.Disable();
         }
 
         public void SwitchToJournalUIActionMap()
@@ -272,6 +289,7 @@ namespace Unite.Core.Input
             uiActions.Disable();
             journalUIActions.Enable();
             examineItemActions.Disable();
+            viewImageActions.Disable();
         }
 
         public void SwitchToExamineItemActionMap()
@@ -281,6 +299,17 @@ namespace Unite.Core.Input
             uiActions.Disable();
             journalUIActions.Disable();
             examineItemActions.Enable();
+            viewImageActions.Disable();
+        }
+
+        public void SwitchToViewImageActionMap()
+        {
+            defaultActions.Disable();
+            mouseLookEnabled = false;
+            uiActions.Disable();
+            journalUIActions.Disable();
+            examineItemActions.Disable();
+            viewImageActions.Enable();
         }
 
         public void EnableDefaultActions()
