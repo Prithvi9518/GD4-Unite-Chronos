@@ -22,6 +22,8 @@ namespace Unite.UI
 
         public void ShowDialogueSubtitles(DialogueLine dialogueLine)
         {
+            if (!dialogueLine.ShowSubtitles) return;
+            
             if(disappearCoroutine != null)
                 StopCoroutine(disappearCoroutine);
             

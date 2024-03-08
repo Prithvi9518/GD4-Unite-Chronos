@@ -18,3 +18,6 @@ MonoBehaviour:
   destroyAfterInteract: 0
   interactText: Inspect the Bracelet
   showInteractText: 1
+  actionsOnInteract:
+  - action: {fileID: 11400000, guid: 2d3a1ee089faab147957593c7cb855b0, type: 2}
+    doOnce: 1

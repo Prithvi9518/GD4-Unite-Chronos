@@ -18,3 +18,6 @@ MonoBehaviour:
   destroyAfterInteract: 0
   interactText: Inspect the Sailor Toy
   showInteractText: 1
+  actionsOnInteract:
+  - action: {fileID: 11400000, guid: c3714090729fa4d4b8aa8ca933b50efa, type: 2}
+    doOnce: 1
