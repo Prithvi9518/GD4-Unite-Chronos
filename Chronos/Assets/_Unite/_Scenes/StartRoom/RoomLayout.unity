@@ -739,10 +739,15 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_Tri-Revolver_fixed
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 6524577342111884809, guid: 2e80051196be38c4d96d70a2e09099d2, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 698936103171037385, guid: 2e80051196be38c4d96d70a2e09099d2,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 139320487}
   m_SourcePrefab: {fileID: 100100000, guid: 2e80051196be38c4d96d70a2e09099d2, type: 3}
 --- !u!4 &139320485 stripped
 Transform:
@@ -750,6 +755,28 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 139320484}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &139320486 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 698936103171037385, guid: 2e80051196be38c4d96d70a2e09099d2,
+    type: 3}
+  m_PrefabInstance: {fileID: 139320484}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &139320487
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 139320486}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c63e4b1348eb4ef3a3310ef840b1d93d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  displayName: Revolver
+  interactibleData: {fileID: 11400000, guid: fdabb81b61767e04f929eb31a50a5d2b, type: 2}
+  onInteractUpdateAnalytics: {fileID: 11400000, guid: 13708a900b70425458ffed7409591384,
+    type: 2}
 --- !u!1001 &148841692
 PrefabInstance:
   m_ObjectHideFlags: 0
