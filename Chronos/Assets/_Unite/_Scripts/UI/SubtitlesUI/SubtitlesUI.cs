@@ -40,5 +40,10 @@ namespace Unite.UI
             yield return new WaitForSeconds(disappearInSeconds);
             subtitlesText.gameObject.SetActive(false);
         }
+
+        public void HideSubtitles()
+        {
+            subtitlesText.gameObject.SetActive(false);
+        }
     }
 }

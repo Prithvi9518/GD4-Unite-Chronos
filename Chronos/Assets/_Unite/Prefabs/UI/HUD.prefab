@@ -237,6 +237,8 @@ GameObject:
   - component: {fileID: 4369942932792683209}
   - component: {fileID: 1932641125139495901}
   - component: {fileID: 8625534344156217634}
+  - component: {fileID: 5563498169668944980}
+  - component: {fileID: 1434995823227018238}
   m_Layer: 5
   m_Name: HUD
   m_TagString: Untagged
@@ -584,6 +586,76 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   panel: {fileID: 7143502396228374891}
+--- !u!114 &5563498169668944980
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 363184984748623575}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b9893a878b6442144bd9c1283a2b4b18, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  description: Listen for start switch to next level
+  gameEvent: {fileID: 11400000, guid: b19c0b7dbb256cc4caaa28fa1ddc459c, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 8636653255125423944}
+        m_TargetAssemblyTypeName: Unite.UI.SubtitlesUI, Assembly-CSharp
+        m_MethodName: HideSubtitles
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 3643284544009549637}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &1434995823227018238
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 363184984748623575}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b9893a878b6442144bd9c1283a2b4b18, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  description: Listen for end switch to next level
+  gameEvent: {fileID: 11400000, guid: 18dd0b4d178be624591980e20039a1df, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 3643284544009549637}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
 --- !u!1 &674847899691226036
 GameObject:
   m_ObjectHideFlags: 0
@@ -6014,6 +6086,18 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 5866392799721568259}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &8636653255125423944 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2788312332603289419, guid: d67473c228c4e334ca77649523b1dde6,
+    type: 3}
+  m_PrefabInstance: {fileID: 5866392799721568259}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b3d7afe4c866406085315126ec6821e4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &6297881493041030654
 PrefabInstance:
   m_ObjectHideFlags: 0
