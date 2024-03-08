@@ -10,43 +10,58 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 81ba6c654783ce84fa20486e372e752c,
         type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.018923739
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 81ba6c654783ce84fa20486e372e752c,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.053113207
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 81ba6c654783ce84fa20486e372e752c,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.029815968
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 81ba6c654783ce84fa20486e372e752c,
+        type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0
+      value: -0.001
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 81ba6c654783ce84fa20486e372e752c,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 0.083
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 81ba6c654783ce84fa20486e372e752c,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -0.075
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 81ba6c654783ce84fa20486e372e752c,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.5000002
+      value: -0.51085097
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 81ba6c654783ce84fa20486e372e752c,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.50000006
+      value: -0.51085067
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 81ba6c654783ce84fa20486e372e752c,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.49999994
+      value: -0.48890868
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 81ba6c654783ce84fa20486e372e752c,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.49999976
+      value: 0.4889081
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 81ba6c654783ce84fa20486e372e752c,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
+      value: 90
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 81ba6c654783ce84fa20486e372e752c,
         type: 3}
@@ -56,7 +71,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 81ba6c654783ce84fa20486e372e752c,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
+      value: 182.515
       objectReference: {fileID: 0}
     - target: {fileID: -7511558181221131132, guid: 81ba6c654783ce84fa20486e372e752c,
         type: 3}
@@ -68,8 +83,71 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_Tri-Revolver1
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 81ba6c654783ce84fa20486e372e752c,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 81ba6c654783ce84fa20486e372e752c,
+        type: 3}
+      propertyPath: m_TagString
+      value: Interactible
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 81ba6c654783ce84fa20486e372e752c,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6524577342111884809}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 81ba6c654783ce84fa20486e372e752c,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5007502144499665023}
   m_SourcePrefab: {fileID: 100100000, guid: 81ba6c654783ce84fa20486e372e752c, type: 3}
+--- !u!1 &698936103171037385 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 81ba6c654783ce84fa20486e372e752c,
+    type: 3}
+  m_PrefabInstance: {fileID: 392507505453409688}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &6524577342111884809
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 698936103171037385}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c7f64d21521944cdaca887dbf32ee24f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  displayName: Revolver
+  interactibleData: {fileID: 11400000, guid: fdabb81b61767e04f929eb31a50a5d2b, type: 2}
+  onInteractUpdateAnalytics: {fileID: 11400000, guid: 13708a900b70425458ffed7409591384,
+    type: 2}
+  pickupGameEvent: {fileID: 11400000, guid: d8513cb851429324083cad4cc5179807, type: 2}
+  zoomFactor: 0.001
+--- !u!65 &5007502144499665023
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 698936103171037385}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 55, y: 49.8, z: 30.4}
+  m_Center: {x: 0, y: 0, z: 2.01}

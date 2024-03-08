@@ -141,7 +141,6 @@ namespace Unite.Player
             GetInput();
             SpeedControl();
             UpdateState();
-            Debug.Log($"{InputManager.Instance.IsSprintActionPressed()}");
 
             if (isGrounded && currentState != MovementState.Dashing)
                 rb.drag = groundDrag;

@@ -1152,6 +1152,34 @@
                     "isPartOfComposite": false
                 }
             ]
+        },
+        {
+            "name": "ViewImage",
+            "id": "5c6927c6-28a0-490b-8cb8-35c654e8af3d",
+            "actions": [
+                {
+                    "name": "ExitView",
+                    "type": "Button",
+                    "id": "26904e96-67f5-4527-b932-15af5df5cb22",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "fd0e643c-cb71-40e7-9c23-55f1165061ee",
+                    "path": "<Keyboard>/e",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ExitView",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
         }
     ],
     "controlSchemes": []
