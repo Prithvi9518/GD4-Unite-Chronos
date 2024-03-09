@@ -21,7 +21,7 @@ namespace Unite.BuffSystem
         {
             base.ApplyBuff(player);
             
-            player.GetComponent<PlayerStatsHandler>().AddModifier(statType, modifier);
+            player.StatsHandler.AddModifier(statType, modifier);
             
             if (onStatBuffed == null) return;
             onStatBuffed.Raise();
