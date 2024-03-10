@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &1873355201986649818
+--- !u!1 &8194046676316511943
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,24 +8,24 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 3757325595902046896}
-  - component: {fileID: -2372978296986258254}
-  - component: {fileID: 8596188757396485977}
-  - component: {fileID: 7164462028850589900}
+  - component: {fileID: 1000387691070170460}
+  - component: {fileID: -4612056755480347466}
+  - component: {fileID: 1842643766317936844}
+  - component: {fileID: 871753274300782103}
   m_Layer: 0
-  m_Name: ObjectiveManager
+  m_Name: ProgressiveInteractibleManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &3757325595902046896
+--- !u!4 &1000387691070170460
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1873355201986649818}
+  m_GameObject: {fileID: 8194046676316511943}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
@@ -34,45 +34,40 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &-2372978296986258254
+--- !u!114 &-4612056755480347466
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1873355201986649818}
+  m_GameObject: {fileID: 8194046676316511943}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ba16801a40b4487bb0b257529cd291f5, type: 3}
+  m_Script: {fileID: 11500000, guid: f0542c6b0b5b41b4bbff764d2cd7cddd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  allObjectivesList: {fileID: 11400000, guid: 4cf5b8ada76f23c4d820e4bedbf07e3a, type: 2}
-  onObjectiveStarted: {fileID: 11400000, guid: 37172e61f57280b4ba78664f8f3eb4ff, type: 2}
-  onObjectiveProgressed: {fileID: 11400000, guid: 3d2ae597b882cb0489553590d9aeee07,
-    type: 2}
-  onObjectiveCompleted: {fileID: 11400000, guid: e2afd524361f0f34aacca98296590b34,
-    type: 2}
---- !u!114 &8596188757396485977
+--- !u!114 &1842643766317936844
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1873355201986649818}
+  m_GameObject: {fileID: 8194046676316511943}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a7df75c2bc8b4768a0a2a5ea9b71fd29, type: 3}
+  m_Script: {fileID: 11500000, guid: b9893a878b6442144bd9c1283a2b4b18, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  description: Listen for objective start
-  gameEvent: {fileID: 11400000, guid: 62b9849876d621843890814d0c7d9d61, type: 2}
+  description: Listen for finish examining
+  gameEvent: {fileID: 11400000, guid: 98e7932013a6db8498ca9bc957db1d37, type: 2}
   response:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: -2372978296986258254}
-        m_TargetAssemblyTypeName: Unite.ObjectiveSystem.ObjectiveManager, Assembly-CSharp
-        m_MethodName: StartObjective
-        m_Mode: 0
+      - m_Target: {fileID: -4612056755480347466}
+        m_TargetAssemblyTypeName: Unite.InteractionSystem.ProgressiveInteractibleManager,
+          Assembly-CSharp
+        m_MethodName: FinishProgressiveInteraction
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -81,27 +76,28 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &7164462028850589900
+--- !u!114 &871753274300782103
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1873355201986649818}
+  m_GameObject: {fileID: 8194046676316511943}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a7df75c2bc8b4768a0a2a5ea9b71fd29, type: 3}
+  m_Script: {fileID: 11500000, guid: b9893a878b6442144bd9c1283a2b4b18, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  description: Listen for advance objective
-  gameEvent: {fileID: 11400000, guid: c3d7430f01b5d5140a7d3c44e1997b22, type: 2}
+  description: Listen for exit image view
+  gameEvent: {fileID: 11400000, guid: ee2dda528410d23498e3e3d6a5b82bdf, type: 2}
   response:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: -2372978296986258254}
-        m_TargetAssemblyTypeName: Unite.ObjectiveSystem.ObjectiveManager, Assembly-CSharp
-        m_MethodName: AdvanceObjective
-        m_Mode: 0
+      - m_Target: {fileID: -4612056755480347466}
+        m_TargetAssemblyTypeName: Unite.InteractionSystem.ProgressiveInteractibleManager,
+          Assembly-CSharp
+        m_MethodName: FinishProgressiveInteraction
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine

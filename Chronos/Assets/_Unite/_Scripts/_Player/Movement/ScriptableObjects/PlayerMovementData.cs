@@ -24,6 +24,9 @@ namespace Unite.Player
         public float SlopeSpeedMultiplier { get; private set; }
         
         [field: SerializeField]
+        public float GroundDrag { get; private set; }
+        
+        [field: SerializeField]
         public float SlopeDownwardForce { get; private set; }
         
         [field: SerializeField]
@@ -58,9 +61,6 @@ namespace Unite.Player
         
         [field: SerializeField]
         public float DashFOV { get; private set; }
-        
-        [field: SerializeField]
-        public float DashFOVTweenDuration { get; private set; }
         
         [field: SerializeField]
         public bool DashUseCameraForward { get; private set; }
