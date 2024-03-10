@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9a4e114f03849e783bbeb76fc820bd2, type: 3}
   m_Name: BraceletInteractableSO
   m_EditorClassIdentifier: 
-  eventOnInteract: {fileID: 0}
+  eventOnInteract: {fileID: 11400000, guid: f883588270537d54c9b0a79494e06333, type: 2}
   audioToPlayOnInteract: {fileID: 0}
   volume: 1
   destroyAfterInteract: 0
