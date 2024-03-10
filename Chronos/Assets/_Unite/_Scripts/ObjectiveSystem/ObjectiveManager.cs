@@ -22,15 +22,15 @@ namespace Unite.ObjectiveSystem
         private ObjectiveListSO allObjectivesList;
 
         [SerializeField]
-        private GameEvent onObjectiveProgressed;
+        private ObjectiveEvent onObjectiveStarted;
+        
+        [SerializeField]
+        private ObjectiveEvent onObjectiveProgressed;
 
         [SerializeField]
-        private GameEvent onObjectiveCompleted;
+        private ObjectiveEvent onObjectiveCompleted;
         
         private Dictionary<string, Objective> objectiveMap;
-        private List<Objective> activeObjectives;
-
-        public List<Objective> ActiveObjectives => activeObjectives;
 
         private void Awake()
         {
@@ -42,7 +42,6 @@ namespace Unite.ObjectiveSystem
 
             Instance = this;
             objectiveMap = CreateObjectiveMap();
-            activeObjectives = new List<Objective>();
         }
 
         public void StartObjective(string objectiveName)
@@ -50,9 +49,8 @@ namespace Unite.ObjectiveSystem
             Objective objective = GetObjectiveByName(objectiveName);
             objective.InstantiateCurrentTask(this.transform);
             ChangeObjectiveState(objectiveName, ObjectiveState.Started);
-            activeObjectives.Add(objective);
             
-            onObjectiveProgressed.Raise();
+            onObjectiveStarted.Raise(objective);
         }
 
         /// <summary>
@@ -69,7 +67,7 @@ namespace Unite.ObjectiveSystem
             if (objective.CurrentTaskExists())
             {
                 objective.InstantiateCurrentTask(this.transform);
-                onObjectiveProgressed.Raise();
+                onObjectiveProgressed.Raise(objective);
             }
             else
             {
@@ -81,7 +79,6 @@ namespace Unite.ObjectiveSystem
         {
             Objective objective = GetObjectiveByName(objectiveName);
             ChangeObjectiveState(objectiveName, ObjectiveState.Complete);
-            activeObjectives.Remove(objective);
 
             var onCompleteEvent = objective.ObjectiveData.OnCompleteEvent;
             if (onCompleteEvent != null)
@@ -92,7 +89,7 @@ namespace Unite.ObjectiveSystem
                 ActionExecutionManager.Instance.ExecuteAction(action);
             }
             
-            onObjectiveCompleted.Raise();
+            onObjectiveCompleted.Raise(objective);
         }
 
         private Dictionary<string, Objective> CreateObjectiveMap()
