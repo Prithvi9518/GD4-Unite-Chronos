@@ -7,8 +7,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: TwirlDistortion_Mat
-  m_Shader: {fileID: -6465566751694194690, guid: b7e1609df636fc84892b3af7291b5c1c,
+  m_Name: ZoomGraph_Mat
+  m_Shader: {fileID: -6465566751694194690, guid: 6b97b0ae6d2461742961612c25abcc7a,
     type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
@@ -38,13 +38,16 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _DistortionStrength: 50.67
     - _QueueControl: 0
     - _QueueOffset: 0
+    - _SphereMaskHardness: 0.64
+    - _SphereMaskRadius: 0.7
+    - _Zoom: 4.32
     m_Colors:
-    - _MashSmoothstep: {r: 0.6, g: 2.65, b: 0, a: 0}
+    - _HitPosition: {r: 1, g: 1, b: 0, a: 0}
+    - _ObjScreenPos: {r: 0.5, g: 0.5, b: 0, a: 0}
   m_BuildTextureStacks: []
---- !u!114 &3848519757160908016
+--- !u!114 &4605412427366637297
 MonoBehaviour:
   m_ObjectHideFlags: 11
   m_CorrespondingSourceObject: {fileID: 0}
