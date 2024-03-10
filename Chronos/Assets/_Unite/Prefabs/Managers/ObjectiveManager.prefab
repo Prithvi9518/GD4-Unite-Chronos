@@ -47,9 +47,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   allObjectivesList: {fileID: 11400000, guid: 4cf5b8ada76f23c4d820e4bedbf07e3a, type: 2}
+  onObjectiveStarted: {fileID: 11400000, guid: 37172e61f57280b4ba78664f8f3eb4ff, type: 2}
   onObjectiveProgressed: {fileID: 11400000, guid: 3d2ae597b882cb0489553590d9aeee07,
     type: 2}
-  onObjectiveCompleted: {fileID: 11400000, guid: 647d5d55d32cc8d4ea860745030b6e21,
+  onObjectiveCompleted: {fileID: 11400000, guid: e2afd524361f0f34aacca98296590b34,
     type: 2}
 --- !u!114 &8596188757396485977
 MonoBehaviour:
