@@ -24,6 +24,9 @@ namespace Unite.Player
         public float SlopeSpeedMultiplier { get; private set; }
         
         [field: SerializeField]
+        public float GroundDrag { get; private set; }
+        
+        [field: SerializeField]
         public float SlopeDownwardForce { get; private set; }
         
         [field: SerializeField]
