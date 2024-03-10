@@ -63,9 +63,6 @@ namespace Unite.Player
         public float DashFOV { get; private set; }
         
         [field: SerializeField]
-        public float DashFOVTweenDuration { get; private set; }
-        
-        [field: SerializeField]
         public bool DashUseCameraForward { get; private set; }
         
         [field: SerializeField]
