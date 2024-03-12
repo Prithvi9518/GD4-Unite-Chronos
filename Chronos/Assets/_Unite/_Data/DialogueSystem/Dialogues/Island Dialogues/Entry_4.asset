@@ -15,7 +15,8 @@ MonoBehaviour:
   lines:
   - speakerName: Scientist
     text: Test dialogue 1
-    audio: {fileID: 8300000, guid: f917cb732d945674f9fca614aa414d3b, type: 3}
+    audio: {fileID: 8300000, guid: 1acf9e724d4ef4c4d829edae885e97a4, type: 3}
     setDelayToClipLength: 1
     delayOffset: 1
     manualDelay: 0
+    showSubtitles: 0

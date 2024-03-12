@@ -25,11 +25,16 @@ namespace Unite.ObjectiveSystem
 
         [SerializeField]
         private ActionSO[] actionsOnComplete;
+
+        [Header("UI Related:")] 
+        [SerializeField]
+        private bool showSubtasks;
         
         public string ObjectiveDescription => objectiveDescription;
         public List<ObjectiveTask> Tasks => tasks;
 
         public GameEvent OnCompleteEvent => onCompleteEvent;
         public ActionSO[] ActionsOnComplete => actionsOnComplete;
+        public bool ShowSubtasks => showSubtasks;
     }
 }

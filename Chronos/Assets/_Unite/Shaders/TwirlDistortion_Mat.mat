@@ -38,9 +38,11 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
+    - _DistortionStrength: 50.67
     - _QueueControl: 0
     - _QueueOffset: 0
-    m_Colors: []
+    m_Colors:
+    - _MashSmoothstep: {r: 0.6, g: 2.65, b: 0, a: 0}
   m_BuildTextureStacks: []
 --- !u!114 &3848519757160908016
 MonoBehaviour:

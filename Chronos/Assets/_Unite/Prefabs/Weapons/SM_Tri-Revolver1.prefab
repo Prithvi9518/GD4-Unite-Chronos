@@ -100,11 +100,11 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 81ba6c654783ce84fa20486e372e752c,
         type: 3}
       insertIndex: -1
-      addedObject: {fileID: 6524577342111884809}
+      addedObject: {fileID: 5007502144499665023}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 81ba6c654783ce84fa20486e372e752c,
         type: 3}
       insertIndex: -1
-      addedObject: {fileID: 5007502144499665023}
+      addedObject: {fileID: 1994446087055613934}
   m_SourcePrefab: {fileID: 100100000, guid: 81ba6c654783ce84fa20486e372e752c, type: 3}
 --- !u!1 &698936103171037385 stripped
 GameObject:
@@ -112,24 +112,6 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 392507505453409688}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &6524577342111884809
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 698936103171037385}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c7f64d21521944cdaca887dbf32ee24f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  displayName: Revolver
-  interactibleData: {fileID: 11400000, guid: fdabb81b61767e04f929eb31a50a5d2b, type: 2}
-  onInteractUpdateAnalytics: {fileID: 11400000, guid: 13708a900b70425458ffed7409591384,
-    type: 2}
-  pickupGameEvent: {fileID: 11400000, guid: d8513cb851429324083cad4cc5179807, type: 2}
-  zoomFactor: 0.001
 --- !u!65 &5007502144499665023
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -151,3 +133,19 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 55, y: 49.8, z: 30.4}
   m_Center: {x: 0, y: 0, z: 2.01}
+--- !u!114 &1994446087055613934
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 698936103171037385}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c63e4b1348eb4ef3a3310ef840b1d93d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  displayName: Revolver
+  interactibleData: {fileID: 11400000, guid: fdabb81b61767e04f929eb31a50a5d2b, type: 2}
+  onInteractUpdateAnalytics: {fileID: 11400000, guid: 13708a900b70425458ffed7409591384,
+    type: 2}

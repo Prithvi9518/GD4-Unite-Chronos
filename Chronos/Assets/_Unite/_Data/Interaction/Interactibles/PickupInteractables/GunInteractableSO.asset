@@ -15,6 +15,9 @@ MonoBehaviour:
   eventOnInteract: {fileID: 11400000, guid: 66b98afa36b95674f8bd20d7d3e9a731, type: 2}
   audioToPlayOnInteract: {fileID: 0}
   volume: 1
-  destroyAfterInteract: 0
-  interactText: Inspect the Gun
+  destroyAfterInteract: 1
+  interactText: Take the Gun
   showInteractText: 1
+  actionsOnInteract:
+  - action: {fileID: 11400000, guid: 04f7c2c58ebe5f14f8fe490bd1c22dea, type: 2}
+    doOnce: 1

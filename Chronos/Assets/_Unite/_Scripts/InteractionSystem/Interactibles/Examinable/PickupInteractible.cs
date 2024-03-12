@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Unite.InteractionSystem
 {
-    public class PickupInteractible : InteractibleObject
+    public class PickupInteractible : ProgressiveInteractible
     {
             [SerializeField]
             private PickupEvent pickupGameEvent;

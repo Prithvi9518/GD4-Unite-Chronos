@@ -26,7 +26,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 8c5838c55faab314bb8494c287ca5b93,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.17670579
+      value: 0.17670576
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 8c5838c55faab314bb8494c287ca5b93,
         type: 3}
@@ -36,27 +36,27 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 8c5838c55faab314bb8494c287ca5b93,
         type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.17670579
+      value: 0.17670576
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 8c5838c55faab314bb8494c287ca5b93,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 3.44
+      value: 5.049215
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 8c5838c55faab314bb8494c287ca5b93,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.9406
+      value: -0.22212392
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 8c5838c55faab314bb8494c287ca5b93,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -2.792
+      value: 1.231817
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 8c5838c55faab314bb8494c287ca5b93,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.76437134
+      value: 0.7643714
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 8c5838c55faab314bb8494c287ca5b93,
         type: 3}
@@ -66,7 +66,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 8c5838c55faab314bb8494c287ca5b93,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.6447762
+      value: -0.6447763
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 8c5838c55faab314bb8494c287ca5b93,
         type: 3}
@@ -440,10 +440,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   displayName: 
-  interactibleData: {fileID: 11400000, guid: f8e62bf544338f54fa06f36ab18cf358, type: 2}
-  onInteractUpdateAnalytics: {fileID: 0}
+  interactibleData: {fileID: 11400000, guid: 3714085c486b70942a869376e82439df, type: 2}
+  onInteractUpdateAnalytics: {fileID: 11400000, guid: 13708a900b70425458ffed7409591384,
+    type: 2}
+  onFinishInteraction: {fileID: 11400000, guid: 492f1f6518c211f41924fa768e36f1ab,
+    type: 2}
   pickupGameEvent: {fileID: 11400000, guid: d8513cb851429324083cad4cc5179807, type: 2}
-  zoomFactor: 0.4
+  zoomFactor: 0.705
 --- !u!65 &2089578428245669770
 BoxCollider:
   m_ObjectHideFlags: 0

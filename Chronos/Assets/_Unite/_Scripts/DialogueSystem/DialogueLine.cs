@@ -27,9 +27,14 @@ namespace Unite.DialogueSystem
         [SerializeField] 
         private float manualDelay;
 
+        [Header("Specify whether to show a subtitle for this line or not:")] 
+        [SerializeField]
+        private bool showSubtitles;
+
         public string SpeakerName => speakerName;
         public string Text => text;
         public AudioClip Audio => audio;
         public float NextLineDelayInSeconds => (setDelayToClipLength) ? audio.length + delayOffset : manualDelay;
+        public bool ShowSubtitles => showSubtitles;
     }
 }
