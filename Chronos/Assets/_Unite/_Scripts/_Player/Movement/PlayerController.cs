@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections;
-using JetBrains.Annotations;
 using Unite.Core.Input;
 using Unite.EventSystem;
 using Unite.StatSystem;
@@ -14,9 +13,6 @@ namespace Unite.Player
         [SerializeField] 
         private PlayerMovementData movementData;
 
-        [Header("Ground and Slope Check")] 
-        [SerializeField]
-        private float groundDrag;
         [SerializeField]
         private float raycastYOffset;
         [SerializeField]
@@ -143,7 +139,7 @@ namespace Unite.Player
             UpdateState();
 
             if (isGrounded && currentState != MovementState.Dashing)
-                rb.drag = groundDrag;
+                rb.drag = movementData.GroundDrag;
             else
                 rb.drag = 0;
             

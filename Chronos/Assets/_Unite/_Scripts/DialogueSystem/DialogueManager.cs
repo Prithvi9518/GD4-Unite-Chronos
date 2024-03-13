@@ -24,6 +24,8 @@ namespace Unite.DialogueSystem
 
         private AudioSource audioSource;
 
+        private Coroutine dialogueLinesCoroutine;
+
         private void Awake()
         {
             if (Instance != null)
@@ -41,7 +43,10 @@ namespace Unite.DialogueSystem
             if (!playDialogue) return;
             
             dialogueAnalyticsEvent.Raise(dialogue);
-            StartCoroutine(DialogueLinesCoroutine(dialogue.Lines));
+            
+            if(dialogueLinesCoroutine != null)
+                    StopCoroutine(dialogueLinesCoroutine);
+            dialogueLinesCoroutine = StartCoroutine(DialogueLinesCoroutine(dialogue.Lines));
         }
 
         private void PlayDialogueLine(DialogueLine line)

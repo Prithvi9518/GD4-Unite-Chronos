@@ -44,7 +44,7 @@ namespace Unite.Player
             playerController.IsDashing = true;
             playerController.MaxYSpeed = movementData.MaxDashYSpeed;
             
-            cameraHandler.DoFov(movementData.DashFOV, movementData.DashFOVTweenDuration);
+            cameraHandler.DoFov(movementData.DashFOV, movementData.DashDuration);
 
             Transform forwardTransform;
             if (movementData.DashUseCameraForward)
@@ -86,7 +86,7 @@ namespace Unite.Player
             playerController.IsDashing = false;
             playerController.MaxYSpeed = 0;
             
-            cameraHandler.DoFov(cameraHandler.DefaultFOV, movementData.DashFOVTweenDuration);
+            cameraHandler.DoFov(cameraHandler.DefaultFOV, movementData.DashDuration);
             
             if (movementData.DashDisableGravity)
                 rb.useGravity = true;

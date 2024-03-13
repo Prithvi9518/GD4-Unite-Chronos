@@ -693,7 +693,7 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 42885678f07ed364c802d7eb472acab3,
         type: 3}
       insertIndex: -1
-      addedObject: {fileID: 7329363441282804325}
+      addedObject: {fileID: 8737193782540293062}
   m_SourcePrefab: {fileID: 100100000, guid: 42885678f07ed364c802d7eb472acab3, type: 3}
 --- !u!1 &1209418073389377192 stripped
 GameObject:
@@ -722,7 +722,7 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 6.714593, y: 12.68573, z: 10.488616}
   m_Center: {x: -0.40028623, y: -0.07288412, z: 0.0015477599}
---- !u!114 &7329363441282804325
+--- !u!114 &8737193782540293062
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -731,12 +731,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 1209418073389377192}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c63e4b1348eb4ef3a3310ef840b1d93d, type: 3}
+  m_Script: {fileID: 11500000, guid: 5b9d50035538434e91c2a2e8f4b8b87b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   displayName: Poem
   interactibleData: {fileID: 11400000, guid: e9768bb6d6a7cf548bccfedaabe6f2aa, type: 2}
   onInteractUpdateAnalytics: {fileID: 11400000, guid: 13708a900b70425458ffed7409591384,
+    type: 2}
+  onFinishInteraction: {fileID: 11400000, guid: 50df8238cba76be4297834c07015c36d,
     type: 2}
 --- !u!4 &1982542579647904786 stripped
 Transform:

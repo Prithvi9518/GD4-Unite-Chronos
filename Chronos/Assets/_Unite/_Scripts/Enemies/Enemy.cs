@@ -37,7 +37,7 @@ namespace Unite.Enemies
         private EnemyStateMachine enemyStateMachine;
         private NavMeshAgent navMeshAgent;
 
-        private Collider collider;
+        private Collider enemyCollider;
 
         private EnemyAttackHandler enemyAttackHandler;
         private EnemyDetectionHandler enemyDetectionHandler;
@@ -58,7 +58,7 @@ namespace Unite.Enemies
         public Health Health => enemyHealth;
         public NavMeshAgent Agent => navMeshAgent;
         public EnemyStateMachine StateMachine => enemyStateMachine;
-        public Collider Collider => collider;
+        public Collider EnemyCollider => enemyCollider;
         public EnemyDetectionHandler DetectionHandler => enemyDetectionHandler;
         public EnemyAttackHandler AttackHandler => enemyAttackHandler;
         public EnemyAnimationHandler AnimationHandler => enemyAnimationHandler;
@@ -77,7 +77,7 @@ namespace Unite.Enemies
             navMeshAgent = GetComponent<NavMeshAgent>();
             enemyStateMachine = GetComponent<EnemyStateMachine>();
 
-            collider = GetComponent<Collider>();
+            enemyCollider = GetComponent<Collider>();
 
             enemyAttackHandler = GetComponent<EnemyAttackHandler>();
             enemyDetectionHandler = GetComponent<EnemyDetectionHandler>();
@@ -112,7 +112,7 @@ namespace Unite.Enemies
         public void OnGetFromPool(Transform target)
         {
             enemyDetectionHandler.Target = target;
-            collider.enabled = true;
+            enemyCollider.enabled = true;
 
             enemyAnimationHandler.Animator.enabled = true;
 
