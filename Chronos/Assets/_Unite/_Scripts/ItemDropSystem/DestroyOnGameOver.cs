@@ -7,11 +7,13 @@ namespace Unite.ItemDropSystem
     {
         private void OnEnable()
         {
+            if (GameManager.Instance == null) return;
             GameManager.Instance.OnGameLose += OnGameOver;
         }
 
         private void OnDisable()
         {
+            if (GameManager.Instance == null) return;
             GameManager.Instance.OnGameLose -= OnGameOver;
         }
 
