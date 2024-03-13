@@ -545,7 +545,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movementData: {fileID: 11400000, guid: eed298c8a09b44d4c928ee64aba33050, type: 2}
-  groundDrag: 5
   raycastYOffset: 0
   raycastLength: 1.6
   groundLayerMask:
@@ -674,8 +673,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1fccdfe033a24d4ab683293cdb062f86, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minTimeBetweenFootsteps: 0.3
-  maxTimeBetweenFootsteps: 0.6
   grassFootSteps:
   - {fileID: 8300000, guid: 551d550ab98e3cc4bb7793e752fe8628, type: 3}
   - {fileID: 8300000, guid: 18e761ff5ef14fd4588d9283fcc9b829, type: 3}
@@ -686,6 +683,8 @@ MonoBehaviour:
   - {fileID: 8300000, guid: c41fb169b2991c247a5466e00faa6639, type: 3}
   - {fileID: 8300000, guid: 76c66b3ae15685a45a334b0628d1edd1, type: 3}
   - {fileID: 8300000, guid: cb9aa4db4b3a12147bf2fe3d88fee270, type: 3}
+  minTimeBetweenFootsteps: 0.3
+  maxTimeBetweenFootsteps: 0.6
 --- !u!114 &1076874597078118196
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -771,6 +770,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 631103514755004957}
+        m_TargetAssemblyTypeName: Unite.Player.PlayerFootsteps, Assembly-CSharp
+        m_MethodName: SwitchToGrassFootsteps
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &7855902728584936824
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -832,6 +843,18 @@ MonoBehaviour:
       - m_Target: {fileID: 4508471836421242003}
         m_TargetAssemblyTypeName: Unite.Player.PlayerController, Assembly-CSharp
         m_MethodName: DisableDash
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 631103514755004957}
+        m_TargetAssemblyTypeName: Unite.Player.PlayerFootsteps, Assembly-CSharp
+        m_MethodName: SwitchToWoodFootsteps
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
