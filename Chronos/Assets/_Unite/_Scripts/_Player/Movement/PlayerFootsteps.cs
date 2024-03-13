@@ -6,9 +6,12 @@ namespace Unite.Player
 {
     public class PlayerFootsteps : MonoBehaviour
     {
+        [SerializeField]
+        private AudioClip[] grassFootSteps;
 
-
-
+        [SerializeField]
+        private AudioClip[] woodenFootSteps;
+        
         [SerializeField]
         private float minTimeBetweenFootsteps;
         
@@ -19,14 +22,12 @@ namespace Unite.Player
 
         private bool playFootsteps;
 
-        [SerializeField]
-        private AudioClip [] grassFootSteps;
+        private AudioClip[] currentFootsteps;
 
-        [SerializeField]
-        private AudioClip [] woodenFootSteps;
-
-
-        private  AudioClip[] currentFootsteps;
+        private void Awake()
+        {
+            currentFootsteps = grassFootSteps;
+        }
 
         public void ToggleFootstepSounds(bool toggle)
         {
