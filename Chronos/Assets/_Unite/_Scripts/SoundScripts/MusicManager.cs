@@ -9,6 +9,10 @@ namespace Unite.SoundScripts
     {
         public static MusicManager Instance { get; private set; }
 
+        [Header("Room Soundtrack Audio Source")] 
+        [SerializeField]
+        private AudioSource roomSoundtrackAudioSource;
+
         [Header("FMOD Music Event Configuration")]
         [SerializeField]
         private string musicEventParameter;
@@ -54,10 +58,14 @@ namespace Unite.SoundScripts
             return RuntimeManager.CreateInstance(eventReference);
         }
 
-        public void StartPlayingMusic()
+        public void PlayRoomSoundtrack()
         {
-            musicEventInstance.start();
-            musicEventInstance.setVolume(explorationVolume);
+            roomSoundtrackAudioSource.Play();
+        }
+
+        public void StopRoomSoundtrack()
+        {
+            roomSoundtrackAudioSource.Stop();
         }
 
         public void PlayCombatMusic()
