@@ -65,11 +65,13 @@ namespace Unite.Player
 
         private void OnEnable()
         {
+            if (GameManager.Instance == null) return;
             GameManager.Instance.OnGameRestart += ResetPlayer;
         }
 
         private void OnDisable()
         {
+            if (GameManager.Instance == null) return;
             GameManager.Instance.OnGameRestart -= ResetPlayer;
         }
 

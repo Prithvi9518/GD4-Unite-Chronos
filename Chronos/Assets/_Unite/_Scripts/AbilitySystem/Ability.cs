@@ -26,11 +26,13 @@ namespace Unite.AbilitySystem
 
         private void OnEnable()
         {
+            if (GameManager.Instance == null) return;
             GameManager.Instance.OnGameRestart += ResetAbility;
         }
 
         private void OnDisable()
         {
+            if (GameManager.Instance == null) return;
             GameManager.Instance.OnGameRestart -= ResetAbility;
         }
 

@@ -7,8 +7,11 @@ namespace Unite.Player
     public class PlayerFootsteps : MonoBehaviour
     {
         [SerializeField]
-        private AudioClip[] footstepSounds;
+        private AudioClip[] grassFootSteps;
 
+        [SerializeField]
+        private AudioClip[] woodenFootSteps;
+        
         [SerializeField]
         private float minTimeBetweenFootsteps;
         
@@ -18,6 +21,13 @@ namespace Unite.Player
         private float timeSinceLastFootstep;
 
         private bool playFootsteps;
+
+        private AudioClip[] currentFootsteps;
+
+        private void Awake()
+        {
+            currentFootsteps = grassFootSteps;
+        }
 
         public void ToggleFootstepSounds(bool toggle)
         {
@@ -31,12 +41,22 @@ namespace Unite.Player
                   Random.Range(minTimeBetweenFootsteps, maxTimeBetweenFootsteps))) return;
             
             // Play a random footstep sound from the array using SoundEffectsManager
-            AudioClip footstepSound = footstepSounds[Random.Range(0, footstepSounds.Length)];
+            AudioClip footstepSound = currentFootsteps[Random.Range(0, currentFootsteps.Length)];
                 
             float volume = 0.5f; // Adjust the volume as needed
             SoundEffectsManager.Instance.PlaySoundAtCameraPosition(footstepSound, volume);
 
             timeSinceLastFootstep = Time.time; // Update the time since the last footstep sound
+        }
+
+        public void SwitchToGrassFootsteps() 
+        {
+            currentFootsteps = grassFootSteps;
+        }
+
+        public void SwitchToWoodFootsteps()
+        {
+            currentFootsteps = woodenFootSteps;
         }
     }
 }
