@@ -414,6 +414,36 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -211.00002
       objectReference: {fileID: 0}
+    - target: {fileID: 2623537583636906413, guid: a39e4f5356a3c3c45b4150479d74bb4a,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2623537583636906413, guid: a39e4f5356a3c3c45b4150479d74bb4a,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2623537583636906413, guid: a39e4f5356a3c3c45b4150479d74bb4a,
+        type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2623537583636906413, guid: a39e4f5356a3c3c45b4150479d74bb4a,
+        type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2623537583636906413, guid: a39e4f5356a3c3c45b4150479d74bb4a,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: -1820
+      objectReference: {fileID: 0}
+    - target: {fileID: 2623537583636906413, guid: a39e4f5356a3c3c45b4150479d74bb4a,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: -1204
+      objectReference: {fileID: 0}
     - target: {fileID: 3965443249261678319, guid: a39e4f5356a3c3c45b4150479d74bb4a,
         type: 3}
       propertyPath: m_AnchoredPosition.x
@@ -467,7 +497,7 @@ PrefabInstance:
     - target: {fileID: 5991390450896098716, guid: a39e4f5356a3c3c45b4150479d74bb4a,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -17.00061
+      value: -17.001953
       objectReference: {fileID: 0}
     - target: {fileID: 6673856017478114111, guid: a39e4f5356a3c3c45b4150479d74bb4a,
         type: 3}
@@ -483,6 +513,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchoredPosition.y
       value: -60.00003
+      objectReference: {fileID: 0}
+    - target: {fileID: 7906892881992075999, guid: a39e4f5356a3c3c45b4150479d74bb4a,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -313
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -679,7 +714,7 @@ MonoBehaviour:
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 1920, y: 1080}
   m_ScreenMatchMode: 0
-  m_MatchWidthOrHeight: 1
+  m_MatchWidthOrHeight: 0
   m_PhysicalUnit: 3
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
