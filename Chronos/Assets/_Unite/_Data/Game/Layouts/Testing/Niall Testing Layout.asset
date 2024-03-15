@@ -10,15 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f0b88707a2612f44fa143fe0903a6370, type: 3}
-  m_Name: Testing Scene Transition Layout
+  m_Name: Niall Testing Layout
   m_EditorClassIdentifier: 
   title: Default
   levels:
-  - {fileID: 11400000, guid: 29560b993220eb748a0bcdfe04aba5fa, type: 2}
-  - {fileID: 11400000, guid: fcba085321895d94aad7e0267a6fe85a, type: 2}
+  - {fileID: 11400000, guid: fba60063ab598444e9a783cfc501c830, type: 2}
   startLevel: 0
   isStartLoaded: 0
-  currentLevel: 0
   mainMenu: {fileID: 0}
   pauseMenu: {fileID: 0}
   uiMenu: {fileID: 0}
