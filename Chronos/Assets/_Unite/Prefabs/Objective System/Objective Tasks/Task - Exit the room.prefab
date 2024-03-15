@@ -72,12 +72,12 @@ PrefabInstance:
         type: 3}
       propertyPath: gameEvent
       value: 
-      objectReference: {fileID: 11400000, guid: 84a82521ebd0c1b4692d65a551b13a8b,
+      objectReference: {fileID: 11400000, guid: 0577729e6b87857439e6db083f85b503,
         type: 2}
     - target: {fileID: 9060258512117242213, guid: 71e317e8283f35d48881efc59790f19d,
         type: 3}
       propertyPath: description
-      value: Listen for room door interaction
+      value: Listen for exit room on yes
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
