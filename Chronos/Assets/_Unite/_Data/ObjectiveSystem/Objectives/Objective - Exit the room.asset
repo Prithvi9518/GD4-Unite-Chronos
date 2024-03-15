@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d441dc17d1b64cdab4e05dc415cafbd7, type: 3}
+  m_Name: Objective - Exit the room
+  m_EditorClassIdentifier: 
+  objectiveDescription: 
+  tasks:
+  - {fileID: 6649038095192926545, guid: f396cdcd3e4d70848b0b45ce1e556ca3, type: 3}
+  onCompleteEvent: {fileID: 11400000, guid: 7f80f1d5a65e8bf4ebcf5c8ed55bbe21, type: 2}
+  actionsOnComplete:
+  - {fileID: 11400000, guid: b8a513b5c9d9d004293ffe8b3f5300f7, type: 2}
+  showSubtasks: 0
