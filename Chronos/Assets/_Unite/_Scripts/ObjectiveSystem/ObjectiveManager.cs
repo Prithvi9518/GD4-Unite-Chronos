@@ -75,6 +75,14 @@ namespace Unite.ObjectiveSystem
             }
         }
 
+        public bool IsObjectiveActive(ObjectiveSO objectiveData)
+        {
+            Objective objective = GetObjectiveByName(objectiveData.name);
+            if (objective == null) return false;
+
+            return objective.CurrentState == ObjectiveState.Started;
+        }
+
         private void FinishObjective(string objectiveName)
         {
             Objective objective = GetObjectiveByName(objectiveName);

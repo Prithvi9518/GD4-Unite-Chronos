@@ -5,33 +5,19 @@ namespace Unite.TimeStop
 {
     public class TimeStopManager : MonoBehaviour
     {
-        private static TimeStopManager instance;
+        public static TimeStopManager Instance { get; private set; }
 
-        public static TimeStopManager Instance
-        {
-            get
-            {
-                if (instance == null)
-                {
-                    instance = FindObjectOfType<TimeStopManager>();
-                }
-                return instance;
-            }
-        }
         [SerializeField]
         private BoolGameEvent onToggleTimeStop;
 
         private void Awake()
         {
-            if (instance != null && instance != this)
+            if (Instance != null)
             {
                 Destroy(gameObject);
             }
-            else
-            {
-                instance = this;
-                DontDestroyOnLoad(gameObject);
-            }
+
+            Instance = this;
         }
 
         public void TriggerTimeStop(bool isTimeStopped)
