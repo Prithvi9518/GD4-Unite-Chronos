@@ -229,7 +229,8 @@ namespace Unite.Managers
             InputManager.Instance.DisableDefaultActions();
             CursorLockHandler.Instance.ShowAndUnlockCursor();
             
-            Bootloader.Instance.UnloadCurrentLevel();
+            if(Bootloader.Instance != null)
+                Bootloader.Instance.UnloadCurrentLevel();
             
             onGameLose.Raise();
             Debug.Log("LOSE");
@@ -238,7 +239,10 @@ namespace Unite.Managers
         public void HandleRestart()
         {
             Debug.Log("RESTART");
-            Bootloader.Instance.ReloadCurrentLevel();
+            
+            if(Bootloader.Instance != null)
+                Bootloader.Instance.ReloadCurrentLevel();
+            
             SetGameState(GameState.Start);
             OnGameRestart?.Invoke();
         }
