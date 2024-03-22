@@ -48,7 +48,6 @@ namespace Unite.InteractionSystem
         /// <param name="pickupInfo">The GameObject being examined.</param>
         public void CheckExamining(PickupInfo pickupInfo)
         {
-            Debug.Log("BOOM");
             inspectItemData.ToggleExamination();
 
             // Store the currently examined object and its original position and rotation
@@ -75,30 +74,10 @@ namespace Unite.InteractionSystem
             if (inspectItemData.IsExamining)
             {
                 Examine();
-                // togglePromptTextGameEvent.Raise(false);
-                // examineCanvas.SetActive(true);
-                //
-                // if (!levelPreferencesData.TutorialSelected)
-                // {
-                //     englishText.SetActive(false);
-                // }
-                //
-                // if (levelPreferencesData.TutorialSelected)
-                // {
-                //     setTutorialTextGameEvent.Raise(currentInspectItemBehaviour.MultiLingualData.EnglishLanguageData.LanguageText + ":" + "\n" +
-                //                                    currentInspectItemBehaviour.MultiLingualData.CurrentLanguageToLearnData.LanguageText);
-                // }
             }
             else
             {
                 NonExamine();
-
-                // if (levelPreferencesData.TutorialSelected)
-                // {
-                //     setTutorialTextGameEvent.Raise("");
-                // }
-                //
-                // examineCanvas.SetActive(false);
             }
         }
 
