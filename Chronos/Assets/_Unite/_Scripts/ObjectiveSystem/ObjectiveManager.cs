@@ -31,6 +31,9 @@ namespace Unite.ObjectiveSystem
         private ObjectiveEvent onObjectiveCompleted;
         
         private Dictionary<string, Objective> objectiveMap;
+        private List<Objective> activeObjectives;
+
+        public List<Objective> ActiveObjectives => activeObjectives;
 
         private void Awake()
         {
@@ -42,6 +45,7 @@ namespace Unite.ObjectiveSystem
 
             Instance = this;
             objectiveMap = CreateObjectiveMap();
+            activeObjectives = new();
         }
 
         public void StartObjective(string objectiveName)
@@ -50,6 +54,7 @@ namespace Unite.ObjectiveSystem
             objective.InstantiateCurrentTask(this.transform);
             ChangeObjectiveState(objectiveName, ObjectiveState.Started);
             
+            activeObjectives.Add(objective);
             onObjectiveStarted.Raise(objective);
         }
 
@@ -97,6 +102,7 @@ namespace Unite.ObjectiveSystem
                 ActionExecutionManager.Instance.ExecuteAction(action);
             }
             
+            activeObjectives.Remove(objective);
             onObjectiveCompleted.Raise(objective);
         }
 
