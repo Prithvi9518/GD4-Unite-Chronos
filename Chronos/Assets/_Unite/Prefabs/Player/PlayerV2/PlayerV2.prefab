@@ -117,7 +117,6 @@ GameObject:
   - component: {fileID: 4525206754050060248}
   - component: {fileID: 7855902728584936824}
   - component: {fileID: 1105954708451909865}
-  - component: {fileID: 4201981413586488320}
   m_Layer: 10
   m_Name: PlayerV2
   m_TagString: Player
@@ -782,6 +781,42 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 4508471836421242003}
+        m_TargetAssemblyTypeName: Unite.Player.PlayerController, Assembly-CSharp
+        m_MethodName: DisableSlowWalking
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 4508471836421242003}
+        m_TargetAssemblyTypeName: Unite.Player.PlayerController, Assembly-CSharp
+        m_MethodName: EnableDash
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 4508471836421242003}
+        m_TargetAssemblyTypeName: Unite.Player.PlayerController, Assembly-CSharp
+        m_MethodName: EnableJump
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &7855902728584936824
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -864,38 +899,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &4201981413586488320
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3399079079665099740}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b9893a878b6442144bd9c1283a2b4b18, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  description: Listen for enter island level, enable normal walking, enable dash
-  gameEvent: {fileID: 11400000, guid: ab1fe381c42cace468c5b6bda1edaad4, type: 2}
-  response:
-    m_PersistentCalls:
-      m_Calls:
       - m_Target: {fileID: 4508471836421242003}
         m_TargetAssemblyTypeName: Unite.Player.PlayerController, Assembly-CSharp
-        m_MethodName: DisableSlowWalking
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 4508471836421242003}
-        m_TargetAssemblyTypeName: Unite.Player.PlayerController, Assembly-CSharp
-        m_MethodName: EnableDash
+        m_MethodName: DisableJump
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
