@@ -78,6 +78,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Bedside2
       objectReference: {fileID: 0}
+    - target: {fileID: 6606210180582617255, guid: 982157cb74527ca45ac8aec50a50fd07,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 51bb2b4ca7e29444a9d4c531ab68ebfe, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects:
     - {fileID: -5622546180485675366, guid: 982157cb74527ca45ac8aec50a50fd07, type: 3}
