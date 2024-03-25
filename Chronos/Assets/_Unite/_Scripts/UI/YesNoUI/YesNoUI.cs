@@ -45,6 +45,7 @@ namespace Unite.UI
         {
             if (onNo == null) return;
             onNo.Raise();
+            InputManager.Instance.SwitchToDefaultActionMap();
         }
 
         public void SetContext(YesNoUIContext ctx)
