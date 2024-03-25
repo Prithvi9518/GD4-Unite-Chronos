@@ -326,6 +326,30 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: -4027343658047085566}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 737c8e8c16269bf4ea2575e3b2db2b99,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7857724528721763533}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 737c8e8c16269bf4ea2575e3b2db2b99,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 783304833931797699}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 737c8e8c16269bf4ea2575e3b2db2b99,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6115417529361391527}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 737c8e8c16269bf4ea2575e3b2db2b99,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8107573552136482303}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 737c8e8c16269bf4ea2575e3b2db2b99,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2307023486822344226}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 737c8e8c16269bf4ea2575e3b2db2b99,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4277559694566540839}
   m_SourcePrefab: {fileID: 100100000, guid: 737c8e8c16269bf4ea2575e3b2db2b99, type: 3}
 --- !u!4 &6995172048721848637 stripped
 Transform:
@@ -353,9 +377,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   displayName: 
   interactibleData: {fileID: 11400000, guid: e83b51f83e2bb6a4496f9bf0065a267f, type: 2}
-  onInteractUpdateAnalytics: {fileID: 0}
+  onInteractUpdateAnalytics: {fileID: 11400000, guid: 13708a900b70425458ffed7409591384,
+    type: 2}
+  onFinishInteraction: {fileID: 0}
   pickupGameEvent: {fileID: 11400000, guid: d8513cb851429324083cad4cc5179807, type: 2}
   zoomFactor: 0.836
+  disableRotation: 1
 --- !u!65 &-4027343658047085566
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -375,5 +402,131 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.07600001, y: 0.07600001, z: 1}
-  m_Center: {x: 0.003864281, y: 0.0030716213, z: -0.007666601}
+  m_Size: {x: 0.07600001, y: 0.08727299, z: 0.03986114}
+  m_Center: {x: 0.0038642809, y: 0.0022310242, z: -0.004649965}
+--- !u!114 &7857724528721763533
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7662882763342541703}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c40cc70acc8e40259040f3cc871b3d9a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  responses:
+  - {fileID: 783304833931797699}
+  - {fileID: 2307023486822344226}
+--- !u!114 &783304833931797699
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7662882763342541703}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc6db41d317945bc87d594f7dad4fceb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  meshRenderer: {fileID: 8167554134637105746}
+  highlightColor: {r: 0, g: 0, b: 0, a: 0}
+--- !u!114 &6115417529361391527
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7662882763342541703}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b9893a878b6442144bd9c1283a2b4b18, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  description: 
+  gameEvent: {fileID: 11400000, guid: 5007625fabba4ae44a1cc8c880579ac6, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 7857724528721763533}
+        m_TargetAssemblyTypeName: Unite.HighlightSystem.PickupHighlightable, Assembly-CSharp
+        m_MethodName: HandleExamineStart
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &8107573552136482303
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7662882763342541703}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b9893a878b6442144bd9c1283a2b4b18, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  description: 
+  gameEvent: {fileID: 11400000, guid: 98e7932013a6db8498ca9bc957db1d37, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 7857724528721763533}
+        m_TargetAssemblyTypeName: Unite.HighlightSystem.PickupHighlightable, Assembly-CSharp
+        m_MethodName: HandleExamineFinish
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &2307023486822344226
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7662882763342541703}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b3f915c5193e480ba7c3922e9e4dd7dd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outline: {fileID: 4277559694566540839}
+  outlineColor: {r: 0.16078432, g: 0.84313726, b: 0.98039216, a: 1}
+  outlineWidth: 10
+--- !u!114 &4277559694566540839
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7662882763342541703}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 0
+  outlineColor: {r: 1, g: 1, b: 1, a: 1}
+  outlineWidth: 2
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
+--- !u!23 &8167554134637105746 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: -7511558181221131132, guid: 737c8e8c16269bf4ea2575e3b2db2b99,
+    type: 3}
+  m_PrefabInstance: {fileID: 7393061862091509462}
+  m_PrefabAsset: {fileID: 0}
