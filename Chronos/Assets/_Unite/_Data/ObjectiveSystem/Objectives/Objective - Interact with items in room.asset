@@ -12,9 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d441dc17d1b64cdab4e05dc415cafbd7, type: 3}
   m_Name: Objective - Interact with items in room
   m_EditorClassIdentifier: 
-  objectiveDescription: 
+  objectiveDescription: Reminisce about the past
   tasks:
   - {fileID: 2300677675122655755, guid: 469576849c05c9b4da1669c3dbc796e9, type: 3}
   onCompleteEvent: {fileID: 11400000, guid: c76b65ea70bdffa43bb1419ca4f6c3ac, type: 2}
   actionsOnComplete:
   - {fileID: 11400000, guid: b8a513b5c9d9d004293ffe8b3f5300f7, type: 2}
+  showSubtasks: 0
