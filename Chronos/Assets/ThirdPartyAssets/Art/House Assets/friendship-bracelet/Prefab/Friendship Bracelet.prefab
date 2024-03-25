@@ -26,17 +26,17 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: e00f1c37c02ceac4a8bbbe8266a520c2,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 4.277699
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: e00f1c37c02ceac4a8bbbe8266a520c2,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -0.2034
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: e00f1c37c02ceac4a8bbbe8266a520c2,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 0.725
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: e00f1c37c02ceac4a8bbbe8266a520c2,
         type: 3}
@@ -46,17 +46,17 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: e00f1c37c02ceac4a8bbbe8266a520c2,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: e00f1c37c02ceac4a8bbbe8266a520c2,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: e00f1c37c02ceac4a8bbbe8266a520c2,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: e00f1c37c02ceac4a8bbbe8266a520c2,
         type: 3}
@@ -115,7 +115,51 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 1497649283832592866}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: e00f1c37c02ceac4a8bbbe8266a520c2,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3503634168431882737}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: e00f1c37c02ceac4a8bbbe8266a520c2,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6300171274821294959}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: e00f1c37c02ceac4a8bbbe8266a520c2,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4631627292768545723}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: e00f1c37c02ceac4a8bbbe8266a520c2,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2276127527064818131}
+    - targetCorrespondingSourceObject: {fileID: -1684543897826104800, guid: e00f1c37c02ceac4a8bbbe8266a520c2,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6691313225395113278}
   m_SourcePrefab: {fileID: 100100000, guid: e00f1c37c02ceac4a8bbbe8266a520c2, type: 3}
+--- !u!1 &1483517049763679540 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: -1684543897826104800, guid: e00f1c37c02ceac4a8bbbe8266a520c2,
+    type: 3}
+  m_PrefabInstance: {fileID: 8937902145989224212}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &6691313225395113278
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1483517049763679540}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 0
+  outlineColor: {r: 1, g: 1, b: 1, a: 1}
+  outlineWidth: 2
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
 --- !u!1 &8126929646209899077 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: e00f1c37c02ceac4a8bbbe8266a520c2,
@@ -155,6 +199,98 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3f915c5193e480ba7c3922e9e4dd7dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  outline: {fileID: 0}
+  outline: {fileID: 6691313225395113278}
   outlineColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
   outlineWidth: 10
+--- !u!114 &3503634168431882737
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8126929646209899077}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c7f64d21521944cdaca887dbf32ee24f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  displayName: 
+  interactibleData: {fileID: 11400000, guid: 3714085c486b70942a869376e82439df, type: 2}
+  onInteractUpdateAnalytics: {fileID: 11400000, guid: 13708a900b70425458ffed7409591384,
+    type: 2}
+  onFinishInteraction: {fileID: 11400000, guid: 492f1f6518c211f41924fa768e36f1ab,
+    type: 2}
+  pickupGameEvent: {fileID: 11400000, guid: d8513cb851429324083cad4cc5179807, type: 2}
+  zoomFactor: 0.705
+--- !u!114 &6300171274821294959
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8126929646209899077}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b9893a878b6442144bd9c1283a2b4b18, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  description: Listen to start examining
+  gameEvent: {fileID: 11400000, guid: 5007625fabba4ae44a1cc8c880579ac6, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2276127527064818131}
+        m_TargetAssemblyTypeName: Unite.HighlightSystem.PickupHighlightable, Assembly-CSharp
+        m_MethodName: HandleExamineStart
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &4631627292768545723
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8126929646209899077}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b9893a878b6442144bd9c1283a2b4b18, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  description: Listen to finish examining
+  gameEvent: {fileID: 11400000, guid: 98e7932013a6db8498ca9bc957db1d37, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2276127527064818131}
+        m_TargetAssemblyTypeName: Unite.HighlightSystem.PickupHighlightable, Assembly-CSharp
+        m_MethodName: HandleExamineFinish
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &2276127527064818131
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8126929646209899077}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c40cc70acc8e40259040f3cc871b3d9a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  responses:
+  - {fileID: 1497649283832592866}
