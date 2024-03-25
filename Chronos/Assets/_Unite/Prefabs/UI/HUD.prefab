@@ -321,7 +321,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 872c227a5dd9c864aa78e8e3593d772e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  imageSlider: {fileID: 372591611897161748}
+  imageSlider: {fileID: 505600891240785964}
   readyColor: {r: 0, g: 0.9647059, b: 1, a: 1}
   activeColor: {r: 0.47424623, g: 0.20496619, b: 0.8867924, a: 1}
   cooldownColor: {r: 0.38692594, g: 0.44140315, b: 0.4433962, a: 1}
@@ -699,6 +699,18 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 2029301397828959479}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &7575763560546590452
 MonoBehaviour:
@@ -1821,7 +1833,7 @@ MonoBehaviour:
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
-  m_FillAmount: 0.77
+  m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
