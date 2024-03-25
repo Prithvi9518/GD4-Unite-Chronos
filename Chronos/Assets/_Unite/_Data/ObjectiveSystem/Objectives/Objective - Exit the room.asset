@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d441dc17d1b64cdab4e05dc415cafbd7, type: 3}
   m_Name: Objective - Exit the room
   m_EditorClassIdentifier: 
-  objectiveDescription: 
+  objectiveDescription: Leave the room
   tasks:
   - {fileID: 6649038095192926545, guid: f396cdcd3e4d70848b0b45ce1e556ca3, type: 3}
   onCompleteEvent: {fileID: 11400000, guid: 7f80f1d5a65e8bf4ebcf5c8ed55bbe21, type: 2}
