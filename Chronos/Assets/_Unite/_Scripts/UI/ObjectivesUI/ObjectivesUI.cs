@@ -18,11 +18,6 @@ namespace Unite.UI
             objectiveTemplate.gameObject.SetActive(false);
         }
 
-        private void OnEnable()
-        {
-            UpdateUI();
-        }
-
         private void OnDisable()
         {
             UpdateUI();
