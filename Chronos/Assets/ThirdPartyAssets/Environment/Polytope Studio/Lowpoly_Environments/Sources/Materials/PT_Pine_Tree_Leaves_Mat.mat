@@ -107,7 +107,7 @@ Material:
     - _Mode: 3
     - _OcclusionStrength: 1
     - _Parallax: 0.02
-    - _QueueControl: 0
+    - _QueueControl: -1
     - _QueueOffset: 0
     - _ReceiveShadows: 1
     - _SNOWONOFF: 0
@@ -140,6 +140,6 @@ Material:
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _GroundColor: {r: 0.010346207, g: 0.07075471, b: 0.040550455, a: 1}
-    - _TopColor: {r: 0.01815593, g: 0.19695005, b: 0.2264151, a: 1}
+    - _GroundColor: {r: 0, g: 0.088655606, b: 0.002124689, a: 1}
+    - _TopColor: {r: 0.000607054, g: 0.15896086, b: 0.006512091, a: 1}
   m_BuildTextureStacks: []
