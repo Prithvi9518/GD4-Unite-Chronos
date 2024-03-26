@@ -3,12 +3,17 @@ using UnityEngine;
 
 namespace Unite.Managers
 {
-    public class PauseManager : MonoBehaviour
+    public class TimeScaleManager : MonoBehaviour
     {
         [SerializeField]
         private GameEvent onPause;
         [SerializeField]
         private GameEvent onUnpause;
+
+        [SerializeField]
+        [Range(0,1f)]
+        private float slowdownTimeScale;
+        
         public void Pause()
         {
             onPause.Raise();
@@ -18,6 +23,16 @@ namespace Unite.Managers
         public void Unpause()
         {
             onUnpause.Raise();
+            Time.timeScale = 1;
+        }
+
+        public void Slowdown()
+        {
+            Time.timeScale = slowdownTimeScale;
+        }
+
+        public void EndSlowdown()
+        {
             Time.timeScale = 1;
         }
     }
