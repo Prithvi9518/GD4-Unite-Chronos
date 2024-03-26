@@ -1,5 +1,6 @@
 ﻿using Unite.Core.Input;
 using Unite.EventSystem;
+using Unite.JournalSystem;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -42,6 +43,9 @@ namespace Unite.UI
         [SerializeField]
         private GameEvent onOpenJournalUpdateAnalytics;
 
+        [Header("To check for active journal prompts:")]
+        private JournalPromptChecker promptChecker;
+
         private Image leftImage;
         private Image middleImage;
         private Image rightImage;
@@ -60,6 +64,10 @@ namespace Unite.UI
         public void ShowJournalUI()
         {
             InputManager.Instance.SwitchToJournalUIActionMap();
+
+            int promptedPageIndex = TryGetPageIndex(promptChecker.PromptedJournalPage);
+            if (promptedPageIndex >= 0)
+                currentPageIndex = promptedPageIndex;
             
             mainPanel.gameObject.SetActive(true);
             ShowCurrentPage();
@@ -124,6 +132,18 @@ namespace Unite.UI
                 leftImage.sprite = page.PageSprites[0];
                 rightImage.sprite = page.PageSprites[1];
             }
+        }
+
+        private int TryGetPageIndex(JournalPageSO page)
+        {
+            if (page == null) return -1;
+            
+            for (int i = 0; i < journalPages.Length; i++)
+            {
+                if (journalPages[i] == page) return i;
+            }
+
+            return -1;
         }
     }
 }
