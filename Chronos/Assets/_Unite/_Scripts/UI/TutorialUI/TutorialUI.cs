@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using DG.Tweening;
 using UnityEngine;
 
 namespace Unite.UI
@@ -9,10 +10,19 @@ namespace Unite.UI
         private Transform mainPanel;
 
         [SerializeField]
+        private Transform arrow;
+
+        [SerializeField]
         private float timeBeforeShowMs;
 
         [SerializeField]
         private float timeBeforeHideMs;
+
+        [SerializeField] 
+        private float arrowTweenYOffset;
+
+        [SerializeField]
+        private float arrowTweenCycleLength;
 
         private bool isDisplayed;
         private Coroutine showCoroutine;
@@ -53,6 +63,8 @@ namespace Unite.UI
             
             isDisplayed = true;
             mainPanel.gameObject.SetActive(true);
+
+            arrow.DOMoveY(arrow.position.y + arrowTweenYOffset, arrowTweenCycleLength).SetLoops(-1, LoopType.Yoyo);
 
             if (hideCoroutine != null)
                 StopCoroutine(hideCoroutine);
