@@ -340,10 +340,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mainPanel: {fileID: 1119577605579818956}
   arrow: {fileID: 8355960381028475362}
-  timeBeforeShowMs: 0.5
-  timeBeforeHideMs: 5
+  timeBeforeShowMs: 0.45
+  timeBeforeHideMs: 10
   arrowTweenYOffset: -25
   arrowTweenCycleLength: 0.5
+  onShowTutorial: {fileID: 11400000, guid: 41443d347d3207c47b688bc3d878f76b, type: 2}
+  onHideTutorial: {fileID: 11400000, guid: c3f02e05def948b4f9342c19b374786a, type: 2}
 --- !u!114 &7276818337364475212
 MonoBehaviour:
   m_ObjectHideFlags: 0

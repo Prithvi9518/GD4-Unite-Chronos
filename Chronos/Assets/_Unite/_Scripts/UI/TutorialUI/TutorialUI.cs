@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using DG.Tweening;
+using Unite.EventSystem;
 using UnityEngine;
 
 namespace Unite.UI
@@ -23,6 +24,13 @@ namespace Unite.UI
 
         [SerializeField]
         private float arrowTweenCycleLength;
+
+        [Header("Events:")] 
+        [SerializeField] 
+        private GameEvent onShowTutorial;
+        
+        [SerializeField]
+        private GameEvent onHideTutorial;
 
         private bool isDisplayed;
         private Coroutine showCoroutine;
@@ -51,6 +59,7 @@ namespace Unite.UI
             isDisplayed = false;
             
             mainPanel.gameObject.SetActive(false);
+            onHideTutorial.Raise();
             
             if (hideCoroutine == null) return;
             StopCoroutine(hideCoroutine);
@@ -65,6 +74,8 @@ namespace Unite.UI
             mainPanel.gameObject.SetActive(true);
 
             arrow.DOMoveY(arrow.position.y + arrowTweenYOffset, arrowTweenCycleLength).SetLoops(-1, LoopType.Yoyo);
+            
+            onShowTutorial.Raise();
 
             if (hideCoroutine != null)
                 StopCoroutine(hideCoroutine);
@@ -77,6 +88,7 @@ namespace Unite.UI
             
             isDisplayed = false;
             mainPanel.gameObject.SetActive(false);
+            onHideTutorial.Raise();
         }
     }
 }
