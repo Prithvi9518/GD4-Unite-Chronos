@@ -44,6 +44,7 @@ namespace Unite.UI
         private GameEvent onOpenJournalUpdateAnalytics;
 
         [Header("To check for active journal prompts:")]
+        [SerializeField]
         private JournalPromptChecker promptChecker;
 
         private Image leftImage;
