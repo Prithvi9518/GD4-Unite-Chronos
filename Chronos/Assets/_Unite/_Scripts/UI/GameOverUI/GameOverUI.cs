@@ -11,11 +11,13 @@ namespace Unite.UI.GameOverUI
 
         private void OnEnable()
         {
+            if (GameManager.Instance == null) return;
             GameManager.Instance.OnGameRestart += HideGameOverScreen;
         }
         
         private void OnDisable()
         {
+            if (GameManager.Instance == null) return;
             GameManager.Instance.OnGameRestart -= HideGameOverScreen;
         }
 

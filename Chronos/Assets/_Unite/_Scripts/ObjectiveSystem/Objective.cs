@@ -16,6 +16,7 @@ namespace Unite.ObjectiveSystem
         private int currentTaskIndex;
 
         public ObjectiveSO ObjectiveData => objectiveData;
+        public ObjectiveState CurrentState => currentState;
 
         public Objective(ObjectiveSO objectiveData)
         {

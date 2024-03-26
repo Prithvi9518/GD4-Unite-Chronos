@@ -77,6 +77,7 @@ namespace Unite.Player
 
         private bool canDash;
         private bool isWalkingSlowly;
+        private bool jumpEnabled;
 
         private float speedBoost;
 
@@ -105,6 +106,7 @@ namespace Unite.Player
             readyToJump = true;
             canDash = true;
             isMoving = true;
+            jumpEnabled = true;
         }
 
         public void InitializeCamera()
@@ -286,6 +288,7 @@ namespace Unite.Player
         public void HandleJumpAction()
         {
             if (!isMoving) return;
+            if (!jumpEnabled) return;
             
             if (readyToJump && isGrounded)
             {
@@ -395,6 +398,16 @@ namespace Unite.Player
         public void DisableDash()
         {
             canDash = false;
+        }
+
+        public void EnableJump()
+        {
+            jumpEnabled = true;
+        }
+
+        public void DisableJump()
+        {
+            jumpEnabled = false;
         }
     }
 }

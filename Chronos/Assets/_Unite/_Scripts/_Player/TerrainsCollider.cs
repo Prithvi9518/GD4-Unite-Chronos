@@ -6,11 +6,9 @@ namespace _Unite._Scripts
 {
     public class TerrainsCollider : MonoBehaviour
     {
-        [SerializeField]
-        private StringEvent uiTextEvent;
-
-        [SerializeField]
-        private StringEvent onEnterRegionUpdateAnalytics;
+        [SerializeField] private float displayDuration = 5f;
+        [SerializeField] private StringEvent uiTextEvent;
+        [SerializeField] private StringEvent onEnterRegionUpdateAnalytics;
         
         private string currentTerrainName;
   
@@ -31,7 +29,7 @@ namespace _Unite._Scripts
 
         private IEnumerator FadeOutUIText()
         {
-            yield return new WaitForSeconds(5f);
+            yield return new WaitForSeconds(displayDuration);
             currentTerrainName = "";
             uiTextEvent.Raise(currentTerrainName);
         }
