@@ -41,6 +41,7 @@ namespace Unite.UI
                 Destroy(child.gameObject);
             }
 
+            if (ObjectiveManager.Instance == null) return;
             List<Objective> activeObjectives = ObjectiveManager.Instance.ActiveObjectives;
             foreach (Objective objective in activeObjectives)
             {
