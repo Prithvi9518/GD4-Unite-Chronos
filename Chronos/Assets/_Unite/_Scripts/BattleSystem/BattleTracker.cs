@@ -1,12 +1,39 @@
-﻿namespace Unite.BattleSystem
+﻿using Unite.EventSystem;
+using UnityEngine;
+
+namespace Unite.BattleSystem
 {
-    public static class BattleTracker
+    public class BattleTracker : MonoBehaviour
     {
-        public static BattleZone CurrentBattleZone { get; private set; }
+        public static BattleTracker Instance { get; private set; }
+
+        [SerializeField]
+        private GameEvent onFirstBattleZone;
         
-        public static void SetCurrentBattleZone(BattleZone zone)
+        private BattleZone currentBattleZone;
+        private int numBattleZonesEncountered;
+
+        private void Awake()
         {
-            CurrentBattleZone = zone;
+            if (Instance != null)
+            {
+                Destroy(gameObject);
+            }
+
+            Instance = this;
+        }
+
+        public void RegisterBattleZone(BattleZone zone)
+        {
+            currentBattleZone = zone;
+            numBattleZonesEncountered++;
+            CheckFirstBattleZone();
+        }
+
+        private void CheckFirstBattleZone()
+        {
+            if(numBattleZonesEncountered == 1)
+                onFirstBattleZone.Raise();
         }
     }
 }
