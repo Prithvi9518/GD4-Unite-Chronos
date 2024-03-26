@@ -1189,12 +1189,15 @@ GameObject:
   m_Component:
   - component: {fileID: 6815184636659958632}
   - component: {fileID: 8158684921327989904}
+  - component: {fileID: 3430650792798578005}
   - component: {fileID: 7343902651091725725}
   - component: {fileID: 4325528508276476651}
   - component: {fileID: 8059832612457359398}
   - component: {fileID: 8716194748342745045}
   - component: {fileID: 6949102941727624316}
   - component: {fileID: 4876578843137474888}
+  - component: {fileID: 7949163305907033837}
+  - component: {fileID: 503950438688503365}
   m_Layer: 5
   m_Name: JournalPagesUI
   m_TagString: Untagged
@@ -1254,6 +1257,19 @@ MonoBehaviour:
   onJournalClosed: {fileID: 11400000, guid: a13b2dd1349de634aaf02c7f0748b5c5, type: 2}
   onOpenJournalUpdateAnalytics: {fileID: 11400000, guid: 951755f30a1d35542893d17a88e04a6f,
     type: 2}
+  promptChecker: {fileID: 3430650792798578005}
+--- !u!114 &3430650792798578005
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8585670041606828181}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 61edb772e6b34868bd93a59f9c0c19dd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &7343902651091725725
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1419,6 +1435,64 @@ MonoBehaviour:
       - m_Target: {fileID: 8158684921327989904}
         m_TargetAssemblyTypeName: Unite.UI.JournalPagesUI, Assembly-CSharp
         m_MethodName: ShowGamepadUI
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &7949163305907033837
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8585670041606828181}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 126a1f2e1dcb443b82e537ff3e4c961f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  description: Listen for journal prompt
+  gameEvent: {fileID: 11400000, guid: 2c4f16ede1c7ede4783847b06011d438, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 3430650792798578005}
+        m_TargetAssemblyTypeName: Unite.JournalSystem.JournalPromptChecker, Assembly-CSharp
+        m_MethodName: OnJournalPromptRaised
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &503950438688503365
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8585670041606828181}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b9893a878b6442144bd9c1283a2b4b18, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  description: Listen for journal prompt hidden
+  gameEvent: {fileID: 11400000, guid: 0f001c84ac07bf7459e9bae8dd181cb5, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 3430650792798578005}
+        m_TargetAssemblyTypeName: Unite.JournalSystem.JournalPromptChecker, Assembly-CSharp
+        m_MethodName: OnJournalPromptHidden
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

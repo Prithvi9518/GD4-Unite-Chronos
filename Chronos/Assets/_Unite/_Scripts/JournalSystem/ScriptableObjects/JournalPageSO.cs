@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Unite.UI
+namespace Unite.JournalSystem
 {
     [CreateAssetMenu(fileName = "JournalPageSO", menuName = "Journal Pages/Journal Page SO")]
     public class JournalPageSO : ScriptableObject
