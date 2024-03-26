@@ -9,9 +9,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5efbe507c13b41feae5e22ea2a80e95f, type: 3}
-  m_Name: All Objectives
+  m_Script: {fileID: 11500000, guid: f9a4e114f03849e783bbeb76fc820bd2, type: 3}
+  m_Name: RoomDoorInteractibleSO
   m_EditorClassIdentifier: 
-  objectives:
-  - {fileID: 11400000, guid: dd456beb0e27e894c960094ff7fbace2, type: 2}
-  - {fileID: 11400000, guid: 38bb88b1c98ea27438f1c9bcec90affa, type: 2}
+  eventOnInteract: {fileID: 0}
+  audioToPlayOnInteract: {fileID: 0}
+  volume: 1
+  destroyAfterInteract: 0
+  interactText: Exit the Room
+  showInteractText: 1
+  actionsOnInteract: []

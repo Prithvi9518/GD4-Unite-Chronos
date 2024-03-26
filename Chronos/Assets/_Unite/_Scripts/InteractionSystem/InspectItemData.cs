@@ -34,6 +34,8 @@ namespace Unite.InteractionSystem
 
         private float zoomFactor;
         
+        private bool isRotationDisabled;
+        
         #endregion
         
         public InspectItemData()
@@ -65,6 +67,12 @@ namespace Unite.InteractionSystem
         {
             get => zoomFactor;
             set => zoomFactor = value;
+        }
+        
+        public bool IsRotationDisabled
+        {
+            get => isRotationDisabled;
+            set => isRotationDisabled = value;
         }
         #endregion
         

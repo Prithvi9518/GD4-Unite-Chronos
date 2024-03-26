@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Unite.ObjectiveSystem;
 using UnityEngine;
 
@@ -15,6 +16,11 @@ namespace Unite.UI
         private void Awake()
         {
             objectiveTemplate.gameObject.SetActive(false);
+        }
+
+        private void OnDisable()
+        {
+            UpdateUI();
         }
 
         public void HandleObjectiveStarted()
