@@ -39,6 +39,18 @@ namespace Unite.SoundScripts
         [Range(0,1)]
         private float combatVolume;
 
+        [SerializeField]
+        private float timeStopPitch;
+        
+        [SerializeField]
+        private float normalPitch;
+
+        [SerializeField] 
+        private float timeStopEQ;
+        
+        [SerializeField] 
+        private float normalEQ;
+
         private EventInstance musicEventInstance;
         private PLAYBACK_STATE playbackState;
 
