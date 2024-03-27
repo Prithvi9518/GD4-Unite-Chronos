@@ -16,8 +16,8 @@ MonoBehaviour:
   audioToPlayOnInteract: {fileID: 0}
   volume: 1
   destroyAfterInteract: 0
-  interactText: Inspect the Sailor Toy
+  interactText: Inspect the Archive
   showInteractText: 1
   actionsOnInteract:
-  - action: {fileID: 11400000, guid: c5e499b395b97bf45bf4d9dbfcdff8f0, type: 2}
-    doOnce: 1
+  - action: {fileID: 11400000, guid: 3a739923e83a4b348b265038ca7447b4, type: 2}
+    doOnce: 0

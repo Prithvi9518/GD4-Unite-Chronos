@@ -15,15 +15,16 @@ MonoBehaviour:
   lines:
   - speakerName: Ava
     text: 'No. I am definitely forgetting something. '
-    audio: {fileID: 8300000, guid: 99918ee3fd2607243b80f9f933aa57af, type: 3}
-    setDelayToClipLength: 0
-    delayOffset: 0
-    manualDelay: 3
-    showSubtitles: 1
-  - speakerName: Ava
-    text: This can't be all I remember from Caleb.
-    audio: {fileID: 8300000, guid: aea4d6570b4cc7842a4d8cfd3513ff23, type: 3}
-    setDelayToClipLength: 0
+    audio: {fileID: 8300000, guid: 03b4041003e6e7c478493350efb8a536, type: 3}
+    setDelayToClipLength: 1
     delayOffset: 0
     manualDelay: 0
     showSubtitles: 1
+  - speakerName: Ava
+    text: This can't be all I remember from Caleb.
+    audio: {fileID: 8300000, guid: 7c619147c6733f244bc3c99fd9654747, type: 3}
+    setDelayToClipLength: 1
+    delayOffset: 0
+    manualDelay: 0
+    showSubtitles: 1
+  isQueued: 0
