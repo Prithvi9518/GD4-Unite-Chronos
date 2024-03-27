@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.12731749, g: 0.13414757, b: 0.1210787, a: 1}
+  m_IndirectSpecularColor: {r: 0.12731704, g: 0.13414727, b: 0.121078536, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -186,6 +186,11 @@ PrefabInstance:
       propertyPath: volume
       value: 
       objectReference: {fileID: 187693401}
+    - target: {fileID: 1432142484505464418, guid: c65cfb3001cfd5d4ca2dc804bcada476,
+        type: 3}
+      propertyPath: color.a
+      value: 0.49019608
+      objectReference: {fileID: 0}
     - target: {fileID: 2969212571774228478, guid: c65cfb3001cfd5d4ca2dc804bcada476,
         type: 3}
       propertyPath: m_Name
@@ -208,11 +213,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: New Global Volume
-      objectReference: {fileID: 0}
-    - target: {fileID: 3207708877392134664, guid: f1272368db107f042808676374b86d42,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5564031796470606579, guid: f1272368db107f042808676374b86d42,
         type: 3}
@@ -264,12 +264,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8575472135718890898, guid: f1272368db107f042808676374b86d42,
-        type: 3}
-      propertyPath: sharedProfile
-      value: 
-      objectReference: {fileID: 11400000, guid: 4abdaa4c2432a7d48beb33af77147586,
-        type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

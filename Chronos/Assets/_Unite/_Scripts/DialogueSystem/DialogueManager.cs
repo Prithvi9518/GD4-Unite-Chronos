@@ -26,6 +26,10 @@ namespace Unite.DialogueSystem
 
         private Coroutine dialogueLinesCoroutine;
 
+        private bool isDialoguePlaying;
+        
+        private Queue<DialogueSO> dialogueQueue = new();
+
         private void Awake()
         {
             if (Instance != null)
@@ -41,6 +45,12 @@ namespace Unite.DialogueSystem
         public void PlayDialogue(DialogueSO dialogue)
         {
             if (!playDialogue) return;
+
+            if (isDialoguePlaying)
+            {
+                dialogueQueue.Enqueue(dialogue);
+                return;
+            }
             
             dialogueAnalyticsEvent.Raise(dialogue);
             
@@ -62,6 +72,8 @@ namespace Unite.DialogueSystem
 
         private IEnumerator DialogueLinesCoroutine(List<DialogueLine> lines)
         {
+            isDialoguePlaying = true;
+            
             for (int i = 0; i < lines.Count; i++)
             {
                 bool hasNextDialogue = i < lines.Count - 1;
@@ -72,6 +84,12 @@ namespace Unite.DialogueSystem
                 if(lines[i].NextLineDelayInSeconds == 0) continue;
                 yield return new WaitForSeconds(lines[i].NextLineDelayInSeconds);
             }
+
+            isDialoguePlaying = false;
+            if (dialogueQueue.Count <= 0) yield break;
+            
+            DialogueSO nextDialogue = dialogueQueue.Dequeue();
+            PlayDialogue(nextDialogue);
         }
     }
 }
