@@ -14,8 +14,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lines:
   - speakerName: Ava
-    text: Five years next week... I tried, Cameron. I really did. You have to believe
-      that. I just... I just couldn't find you. No one could.
+    text: 'Five years next week... I tried, Cameron. I really did. '
+    audio: {fileID: 0}
+    setDelayToClipLength: 0
+    delayOffset: 0
+    manualDelay: 3
+    showSubtitles: 1
+  - speakerName: Ava
+    text: You have to believe that. I just... I just couldn't find you. No one could.
     audio: {fileID: 0}
     setDelayToClipLength: 0
     delayOffset: 0
