@@ -13,9 +13,9 @@ namespace Unite.Core.Game
         [SerializeField]
         private List<GameScene> scenes;
 
-        [Header("Post-processing (optional)")] 
-        [SerializeField]
-        private bool useDefaultPostProcessingVolume;
+        // [Header("Post-processing (optional)")] 
+        // [SerializeField]
+        // private bool useDefaultPostProcessingVolume;
 
         [Header("Event to raise after loading the level:")]
         [SerializeField]
@@ -25,14 +25,14 @@ namespace Unite.Core.Game
         [SerializeField]
         private ActionSO[] actionsOnLoad;
 
-        [Header("Post Processing:")]
-        [SerializeField]
-        private Volume postProcessPrefab;
-
-        [SerializeField]
-        private VolumeProfile defaultPostProcessProfile;
-
-        private Volume instancePostProcessPrefab;
+        // [Header("Post Processing:")]
+        // [SerializeField]
+        // private Volume postProcessPrefab;
+        //
+        // [SerializeField]
+        // private VolumeProfile defaultPostProcessProfile;
+        //
+        // private Volume instancePostProcessPrefab;
         
         public GameEvent OnLoadLevel => onLoadLevel;
         public ActionSO[] ActionsOnLoad => actionsOnLoad;
@@ -47,10 +47,10 @@ namespace Unite.Core.Game
                     scenesToLoad.Add(sceneToLoad);
             }
 
-            if (postProcessPrefab == null || defaultPostProcessProfile == null) return scenesToLoad;
-            
-            instancePostProcessPrefab = Instantiate(postProcessPrefab);
-            instancePostProcessPrefab.profile = defaultPostProcessProfile;
+            // if (postProcessPrefab == null || defaultPostProcessProfile == null) return scenesToLoad;
+            //
+            // instancePostProcessPrefab = Instantiate(postProcessPrefab);
+            // instancePostProcessPrefab.profile = defaultPostProcessProfile;
 
             return scenesToLoad;
         }
@@ -62,8 +62,8 @@ namespace Unite.Core.Game
                 scene.UnloadScene();
             }
 
-            if (instancePostProcessPrefab == null) return;
-            Destroy(instancePostProcessPrefab);
+            // if (instancePostProcessPrefab == null) return;
+            // Destroy(instancePostProcessPrefab);
         }
     }
 }
