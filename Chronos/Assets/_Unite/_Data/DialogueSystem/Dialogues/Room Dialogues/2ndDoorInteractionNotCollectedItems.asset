@@ -10,18 +10,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3169fdde3ded437b9d20f31f184bec8e, type: 3}
-  m_Name: DoorOnExitInteraction
+  m_Name: 2ndDoorInteractionNotCollectedItems
   m_EditorClassIdentifier: 
   lines:
   - speakerName: Ava
-    text: 'Like Dad use to say, "Not all who wander are lost". '
+    text: 'No. I am definitely forgetting something. '
     audio: {fileID: 8300000, guid: 99918ee3fd2607243b80f9f933aa57af, type: 3}
     setDelayToClipLength: 0
     delayOffset: 0
     manualDelay: 0
     showSubtitles: 1
   - speakerName: Ava
-    text: I'm coming Caleb!
+    text: This can't be all I remember from Caleb.
     audio: {fileID: 8300000, guid: aea4d6570b4cc7842a4d8cfd3513ff23, type: 3}
     setDelayToClipLength: 0
     delayOffset: 0
