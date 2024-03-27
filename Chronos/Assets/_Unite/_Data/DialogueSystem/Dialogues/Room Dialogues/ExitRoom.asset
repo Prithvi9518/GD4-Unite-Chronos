@@ -18,7 +18,7 @@ MonoBehaviour:
     audio: {fileID: 8300000, guid: 99918ee3fd2607243b80f9f933aa57af, type: 3}
     setDelayToClipLength: 0
     delayOffset: 0
-    manualDelay: 0
+    manualDelay: 3
     showSubtitles: 1
   - speakerName: Ava
     text: I need to go. I have to be on a boat by sunrise.
@@ -27,3 +27,4 @@ MonoBehaviour:
     delayOffset: 0
     manualDelay: 0
     showSubtitles: 1
+  isQueued: 1

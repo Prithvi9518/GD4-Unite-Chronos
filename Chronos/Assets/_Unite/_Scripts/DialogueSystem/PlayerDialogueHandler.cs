@@ -14,6 +14,8 @@ namespace Unite.DialogueSystem
         private int battleEndedCount;
         private int battleEnteredCount;
 
+        private int exitRoomFailedAttempts;
+
         private void Awake()
         {
             SetupDialogueMap();
@@ -33,24 +35,13 @@ namespace Unite.DialogueSystem
         {
             dialogueTriggerHandlers = new Dictionary<DialogueTrigger, System.Action<List<DialogueSO>>>()
             {
-                { DialogueTrigger.Test1, HandleTest1 },
-                { DialogueTrigger.Test2, HandleTest2 },
                 { DialogueTrigger.BattleEnded , HandleBattleEnded },
                 { DialogueTrigger.EnterIslandLevel , HandleEnterIsland},
-                { DialogueTrigger.EnterBattleZone , HandleEnterBattleZone}
+                { DialogueTrigger.EnterBattleZone , HandleEnterBattleZone},
+                { DialogueTrigger.ExitRoomNotYet , HandleExitRoomNotYet},
             };
         }
         
-        private void HandleTest1(List<DialogueSO> dialogues)
-        {
-            Debug.Log($"test1 - {dialogues[0].Lines[0].Text}");
-        }
-
-        private void HandleTest2(List<DialogueSO> dialogues)
-        {
-            Debug.Log($"test2 - {dialogues[0].Lines[0].Text}");
-        }
-
         private void HandleBattleEnded(List<DialogueSO> dialogues)
         {
             if (dialogues.Count == 0) return;
@@ -78,6 +69,16 @@ namespace Unite.DialogueSystem
             battleEnteredCount++;
         }
 
+        private void HandleExitRoomNotYet(List<DialogueSO> dialogues)
+        {
+            if(exitRoomFailedAttempts <= 0)
+                DialogueManager.Instance.PlayDialogue(dialogues[0]);
+            else
+                DialogueManager.Instance.PlayDialogue(dialogues[1]);
+
+            exitRoomFailedAttempts++;
+        }
+
         public void OnNotify(DialogueTrigger dialogueTrigger)
         {
             if (!dialogueTriggerHandlers.ContainsKey(dialogueTrigger)) return;
@@ -101,6 +102,11 @@ namespace Unite.DialogueSystem
         public void OnEnterBattleZone()
         {
             OnNotify(DialogueTrigger.EnterBattleZone);
+        }
+
+        public void OnExitRoomNotYet()
+        {
+            OnNotify(DialogueTrigger.ExitRoomNotYet);
         }
     }
 }
