@@ -14,14 +14,28 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lines:
   - speakerName: Ava
-    text: 'Caleb''s old action figure. '
+    text: 'Einstein, Napoleon, Caesar... History''s architects. '
     audio: {fileID: 8300000, guid: 99918ee3fd2607243b80f9f933aa57af, type: 3}
     setDelayToClipLength: 0
     delayOffset: 0
     manualDelay: 0
     showSubtitles: 1
   - speakerName: Ava
-    text: He used to carry this thing everywhere.
+    text: 'They all theorised about the Island of Chronos. '
+    audio: {fileID: 8300000, guid: aea4d6570b4cc7842a4d8cfd3513ff23, type: 3}
+    setDelayToClipLength: 0
+    delayOffset: 0
+    manualDelay: 0
+    showSubtitles: 1
+  - speakerName: Ava
+    text: Dad loved to use them as a reference when debating with Caleb.
+    audio: {fileID: 8300000, guid: aea4d6570b4cc7842a4d8cfd3513ff23, type: 3}
+    setDelayToClipLength: 0
+    delayOffset: 0
+    manualDelay: 0
+    showSubtitles: 1
+  - speakerName: Ava
+    text: They used to have so much fun together.
     audio: {fileID: 8300000, guid: aea4d6570b4cc7842a4d8cfd3513ff23, type: 3}
     setDelayToClipLength: 0
     delayOffset: 0
