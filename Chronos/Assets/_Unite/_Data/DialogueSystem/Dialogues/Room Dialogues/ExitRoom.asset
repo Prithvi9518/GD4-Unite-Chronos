@@ -15,15 +15,15 @@ MonoBehaviour:
   lines:
   - speakerName: Ava
     text: 'Right, I got everything I need. '
-    audio: {fileID: 8300000, guid: 99918ee3fd2607243b80f9f933aa57af, type: 3}
-    setDelayToClipLength: 0
+    audio: {fileID: 8300000, guid: fd7f31453caf76f499c4b85fb2d556e2, type: 3}
+    setDelayToClipLength: 1
     delayOffset: 0
-    manualDelay: 3
+    manualDelay: 0
     showSubtitles: 1
   - speakerName: Ava
     text: I need to go. I have to be on a boat by sunrise.
-    audio: {fileID: 8300000, guid: aea4d6570b4cc7842a4d8cfd3513ff23, type: 3}
-    setDelayToClipLength: 0
+    audio: {fileID: 8300000, guid: dfa81c0951743794ba09d01abfa6c2cb, type: 3}
+    setDelayToClipLength: 1
     delayOffset: 0
     manualDelay: 0
     showSubtitles: 1
