@@ -10,18 +10,25 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3169fdde3ded437b9d20f31f184bec8e, type: 3}
-  m_Name: TestDialogue
+  m_Name: BraceletInteraction
   m_EditorClassIdentifier: 
   lines:
   - speakerName: Ava
-    text: Test dialogue 1
+    text: 'He kept it... The bracelet from our childhood. '
     audio: {fileID: 8300000, guid: 99918ee3fd2607243b80f9f933aa57af, type: 3}
     setDelayToClipLength: 0
-    delayOffset: 1
-    manualDelay: 1.5
+    delayOffset: 0
+    manualDelay: 0
     showSubtitles: 1
   - speakerName: Ava
-    text: Test dialogue 2
+    text: We felt safer as these bracelet's would keep us together.
+    audio: {fileID: 8300000, guid: aea4d6570b4cc7842a4d8cfd3513ff23, type: 3}
+    setDelayToClipLength: 0
+    delayOffset: 0
+    manualDelay: 0
+    showSubtitles: 1
+  - speakerName: Ava
+    text: Simpler times, huh?
     audio: {fileID: 8300000, guid: aea4d6570b4cc7842a4d8cfd3513ff23, type: 3}
     setDelayToClipLength: 0
     delayOffset: 0

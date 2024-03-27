@@ -10,14 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f9a4e114f03849e783bbeb76fc820bd2, type: 3}
-  m_Name: ToyInteractableSO
+  m_Name: CoordinatesNoteInteractableSO
   m_EditorClassIdentifier: 
-  eventOnInteract: {fileID: 0}
-  audioToPlayOnInteract: {fileID: 0}
+  eventOnInteract: {fileID: 11400000, guid: bc224a0d765fd4d4d9aa63477ff7146a, type: 2}
+  audioToPlayOnInteract: {fileID: 8300000, guid: b0ec92c52d446f2418997bde17fc02fd,
+    type: 3}
   volume: 1
   destroyAfterInteract: 0
-  interactText: Inspect the Sailor Toy
+  interactText: Inspect Note
   showInteractText: 1
   actionsOnInteract:
-  - action: {fileID: 11400000, guid: c5e499b395b97bf45bf4d9dbfcdff8f0, type: 2}
+  - action: {fileID: 11400000, guid: cd28fd8180d791e47aa7c2724902a1c4, type: 2}
     doOnce: 1

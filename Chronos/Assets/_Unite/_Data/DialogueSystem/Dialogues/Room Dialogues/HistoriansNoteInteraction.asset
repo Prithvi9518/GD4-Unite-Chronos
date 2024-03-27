@@ -10,20 +10,20 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3169fdde3ded437b9d20f31f184bec8e, type: 3}
-  m_Name: Room 4 - Newspaper interact dialogue
+  m_Name: HistoriansNoteInteraction
   m_EditorClassIdentifier: 
   lines:
   - speakerName: Ava
-    text: 'Five years next week... I tried, Cameron. I really did. '
-    audio: {fileID: 0}
+    text: 'Caleb''s old action figure. '
+    audio: {fileID: 8300000, guid: 99918ee3fd2607243b80f9f933aa57af, type: 3}
     setDelayToClipLength: 0
     delayOffset: 0
-    manualDelay: 3
+    manualDelay: 0
     showSubtitles: 1
   - speakerName: Ava
-    text: You have to believe that. I just... I just couldn't find you. No one could.
-    audio: {fileID: 0}
+    text: He used to carry this thing everywhere.
+    audio: {fileID: 8300000, guid: aea4d6570b4cc7842a4d8cfd3513ff23, type: 3}
     setDelayToClipLength: 0
     delayOffset: 0
-    manualDelay: 3
+    manualDelay: 0
     showSubtitles: 1
