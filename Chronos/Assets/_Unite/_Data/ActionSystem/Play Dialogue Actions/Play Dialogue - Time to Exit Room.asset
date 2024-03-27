@@ -9,9 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bd7f2d781c704e58bc89fa6b10b616b1, type: 3}
-  m_Name: Test2 Dialogue Trigger
+  m_Script: {fileID: 11500000, guid: 51278be02c4549d0be694c1b45e8de29, type: 3}
+  m_Name: Play Dialogue - Time to Exit Room
   m_EditorClassIdentifier: 
-  dialogueTrigger: 1
-  dialogues:
-  - {fileID: 11400000, guid: ff54932e95108b24d97f1967e5021930, type: 2}
+  hasDelay: 0
+  delayInSeconds: 0
+  dialogueToPlay: {fileID: 11400000, guid: 43f11c56a0b11234a96b67eac92debbd, type: 2}

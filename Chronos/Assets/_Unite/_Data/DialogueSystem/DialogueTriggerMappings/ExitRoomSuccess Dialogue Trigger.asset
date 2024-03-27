@@ -9,8 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 99a97fdb6ab6430bb8be4373c9ad60aa, type: 3}
-  m_Name: SwitchToNextLevelAction
+  m_Script: {fileID: 11500000, guid: bd7f2d781c704e58bc89fa6b10b616b1, type: 3}
+  m_Name: ExitRoomSuccess Dialogue Trigger
   m_EditorClassIdentifier: 
-  hasDelay: 1
-  delayInSeconds: 4
+  dialogueTrigger: 7
+  dialogues:
+  - {fileID: 11400000, guid: e27d5872f3cb2b64292d48e7e822534f, type: 2}

@@ -10,8 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bd7f2d781c704e58bc89fa6b10b616b1, type: 3}
-  m_Name: Test1 Dialogue Trigger
+  m_Name: ExitRoomNotYet Dialogue Trigger
   m_EditorClassIdentifier: 
-  dialogueTrigger: 0
+  dialogueTrigger: 6
   dialogues:
-  - {fileID: 11400000, guid: ff54932e95108b24d97f1967e5021930, type: 2}
+  - {fileID: 11400000, guid: dbfc99f614271444481816d0627a2b16, type: 2}
+  - {fileID: 11400000, guid: 713d5eef18f53794bb54dfc898019779, type: 2}
