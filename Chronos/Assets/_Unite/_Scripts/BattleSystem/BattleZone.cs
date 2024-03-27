@@ -77,7 +77,7 @@ namespace Unite.BattleSystem
             waveSpawner.SpawnEnemies(enemyWaves[currentWaveIndex], spawnPositionProvider, playerTransform);
             battleState = BattleState.Active;
             
-            BattleTracker.SetCurrentBattleZone(this);
+            BattleTracker.Instance.RegisterBattleZone(this);
 
             timeBattleStarted = Time.realtimeSinceStartup;
 

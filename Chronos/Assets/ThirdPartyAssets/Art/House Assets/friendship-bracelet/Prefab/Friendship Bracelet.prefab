@@ -78,6 +78,16 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: -4683669308469848369, guid: e00f1c37c02ceac4a8bbbe8266a520c2,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 77ce1c91b49bff047b6f5efc5e988c69, type: 2}
+    - target: {fileID: -4683669308469848369, guid: e00f1c37c02ceac4a8bbbe8266a520c2,
+        type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: b6a74bea2c60d1042b62594068ec9328, type: 2}
     - target: {fileID: -1684543897826104800, guid: e00f1c37c02ceac4a8bbbe8266a520c2,
         type: 3}
       propertyPath: m_Layer
@@ -222,6 +232,7 @@ MonoBehaviour:
     type: 2}
   pickupGameEvent: {fileID: 11400000, guid: d8513cb851429324083cad4cc5179807, type: 2}
   zoomFactor: 0.705
+  disableRotation: 0
 --- !u!114 &6300171274821294959
 MonoBehaviour:
   m_ObjectHideFlags: 0
