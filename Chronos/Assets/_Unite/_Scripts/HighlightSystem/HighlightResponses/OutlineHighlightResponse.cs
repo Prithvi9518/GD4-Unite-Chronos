@@ -13,7 +13,7 @@ namespace Unite.HighlightSystem
         [SerializeField]
         private float outlineWidth = 10f;
 
-        private void Awake()
+        private void Start()
         {
             if (outline == null)
             {
