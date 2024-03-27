@@ -5,6 +5,7 @@ using Unite.Core.Game;
 using Unite.Core.Input;
 using Unite.EventSystem;
 using Unite.Player;
+using Unite.SceneTransition;
 using Unite.WeaponSystem;
 using UnityEngine;
 
@@ -47,6 +48,9 @@ namespace Unite.Managers
 
         private bool hasGameStarted;
 
+        private Action startLevelTransition;
+        private Action finishLevelTransition;
+
         public Action<float> OnProgressLevelLoad;
         public Action<GameLevel> OnStartLevel_UpdateTimeTracking;
         public Action<GameLevel> OnFinishLevel_UpdateTimeTracking;
@@ -70,6 +74,18 @@ namespace Unite.Managers
             }
             
             currentState = GameState.Bootstrap;
+        }
+
+        private void OnEnable()
+        {
+            startLevelTransition += OnStartLevelTransition;
+            finishLevelTransition += OnFinishLevelTransition;
+        }
+
+        private void OnDisable()
+        {
+            startLevelTransition -= OnStartLevelTransition;
+            finishLevelTransition -= OnFinishLevelTransition;
         }
 
         public void InitializePlayer(Player.Player p)
@@ -122,6 +138,9 @@ namespace Unite.Managers
             }
             else
                 SpawnPlayerAndEnableMovement();
+            
+            if(SceneTransitionManager.Instance != null)
+                SceneTransitionManager.Instance.FinishTransition(finishLevelTransition);
             
             onFinishSwitchToNextLevel.Raise();
             
@@ -236,6 +255,17 @@ namespace Unite.Managers
             Debug.Log("LOSE");
         }
 
+        private void OnStartLevelTransition()
+        {
+            OnFinishLevel_UpdateTimeTracking?.Invoke(currentLevel);
+            Bootloader.Instance.LoadNextLevel();
+        }
+
+        private void OnFinishLevelTransition()
+        {
+            
+        }
+
         public void HandleRestart()
         {
             Debug.Log("RESTART");
@@ -256,8 +286,11 @@ namespace Unite.Managers
 
         public void SwitchToNextLevel()
         {
-            OnFinishLevel_UpdateTimeTracking?.Invoke(currentLevel);
-            Bootloader.Instance.LoadNextLevel();
+            // OnFinishLevel_UpdateTimeTracking?.Invoke(currentLevel);
+            // Bootloader.Instance.LoadNextLevel();
+
+            if (SceneTransitionManager.Instance == null) return;
+            SceneTransitionManager.Instance.StartTransition(startLevelTransition);
         }
     }
 }
