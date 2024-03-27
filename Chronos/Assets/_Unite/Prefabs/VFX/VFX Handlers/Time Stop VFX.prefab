@@ -46,11 +46,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   volume: {fileID: 0}
-  color: {r: 1, g: 1, b: 1, a: 0}
-  contrast: 14
-  hueShift: 87
-  saturation: 59
-  postExposure: 0
+  color: {r: 1, g: 1, b: 1, a: 1}
+  contrast: 50
+  hueShift: 10
+  saturation: 100
+  postExposure: 0.75
+  bloomThreshold: 7
+  bloomIntensity: 10
+  bloomTint: {r: 0.39215687, g: 0, b: 1, a: 1}
+  bloomDirtIntensity: 20
+  vignetteIntensity: 0.55
+  vignetteSmoothness: 0.2
+  chromaticAberrationIntensity: 1
 --- !u!114 &6932194667997678102
 MonoBehaviour:
   m_ObjectHideFlags: 0
