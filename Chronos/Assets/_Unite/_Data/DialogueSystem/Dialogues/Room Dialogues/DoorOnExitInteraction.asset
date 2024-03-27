@@ -15,15 +15,16 @@ MonoBehaviour:
   lines:
   - speakerName: Ava
     text: 'Like Dad use to say, "Not all who wander are lost". '
-    audio: {fileID: 8300000, guid: 99918ee3fd2607243b80f9f933aa57af, type: 3}
-    setDelayToClipLength: 0
+    audio: {fileID: 8300000, guid: c45075a9b70bd214ba02caef4378cd4c, type: 3}
+    setDelayToClipLength: 1
     delayOffset: 0
-    manualDelay: 3
+    manualDelay: 0
     showSubtitles: 1
   - speakerName: Ava
     text: I'm coming Caleb!
-    audio: {fileID: 8300000, guid: aea4d6570b4cc7842a4d8cfd3513ff23, type: 3}
-    setDelayToClipLength: 0
+    audio: {fileID: 8300000, guid: 01ba9c8b327d813408149ecfa76c171f, type: 3}
+    setDelayToClipLength: 1
     delayOffset: 0
-    manualDelay: 3
+    manualDelay: 0
     showSubtitles: 1
+  isQueued: 0
