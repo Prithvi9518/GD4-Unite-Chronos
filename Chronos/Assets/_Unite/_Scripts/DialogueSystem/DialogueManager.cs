@@ -46,7 +46,7 @@ namespace Unite.DialogueSystem
         {
             if (!playDialogue) return;
 
-            if (isDialoguePlaying)
+            if (isDialoguePlaying && dialogue.IsQueued)
             {
                 dialogueQueue.Enqueue(dialogue);
                 return;
