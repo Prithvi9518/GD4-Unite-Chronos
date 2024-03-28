@@ -7,6 +7,8 @@ namespace Unite.UI
 {
     public class SubtitlesUI : MonoBehaviour
     {
+        [SerializeField]
+        private Transform textBox;
         [SerializeField] 
         private TextMeshProUGUI subtitlesText;
 
@@ -17,7 +19,7 @@ namespace Unite.UI
         
         private void Awake()
         {
-            subtitlesText.gameObject.SetActive(false);
+            textBox.gameObject.SetActive(false);
         }
 
         public void ShowDialogueSubtitles(DialogueLine dialogueLine)
@@ -29,7 +31,7 @@ namespace Unite.UI
             
             string text = $"{dialogueLine.SpeakerName} : {dialogueLine.Text}";
 
-            subtitlesText.gameObject.SetActive(true);
+            textBox.gameObject.SetActive(true);
             subtitlesText.text = text;
 
             disappearCoroutine = StartCoroutine(DisableSubtitleCoroutine());
@@ -38,12 +40,12 @@ namespace Unite.UI
         private IEnumerator DisableSubtitleCoroutine()
         {
             yield return new WaitForSeconds(disappearInSeconds);
-            subtitlesText.gameObject.SetActive(false);
+            textBox.gameObject.SetActive(false);
         }
 
         public void HideSubtitles()
         {
-            subtitlesText.gameObject.SetActive(false);
+            textBox.gameObject.SetActive(false);
         }
     }
 }
