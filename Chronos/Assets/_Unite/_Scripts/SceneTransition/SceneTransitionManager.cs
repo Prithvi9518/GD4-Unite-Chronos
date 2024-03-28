@@ -1,4 +1,5 @@
 ﻿using System;
+using Unite.EventSystem;
 using UnityEngine;
 
 namespace Unite.SceneTransition
@@ -6,6 +7,9 @@ namespace Unite.SceneTransition
     public class SceneTransitionManager : MonoBehaviour
     {
         public static SceneTransitionManager Instance { get; private set; }
+
+        [SerializeField] 
+        private GameEvent onTransitionStart;
 
         public Action<Action> OnStartTransition;
         public Action<Action> OnFinishTransition;
@@ -22,6 +26,7 @@ namespace Unite.SceneTransition
 
         public void StartTransition(Action callback)
         {
+            onTransitionStart.Raise();
             OnStartTransition?.Invoke(callback);
         }
 
