@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3169fdde3ded437b9d20f31f184bec8e, type: 3}
+  m_Name: 1stDoorInteractionNotCollectedItems
+  m_EditorClassIdentifier: 
+  lines:
+  - speakerName: Ava
+    text: 'I don''t feel like I have got everything. '
+    audio: {fileID: 8300000, guid: badb4bebdb867af44b424f535d646197, type: 3}
+    setDelayToClipLength: 1
+    delayOffset: 0
+    manualDelay: 0
+    showSubtitles: 1
+  - speakerName: Ava
+    text: Caleb definitely has other little totems I should take with me.
+    audio: {fileID: 8300000, guid: 532825e394cb3e44eb1e46e9831de4a0, type: 3}
+    setDelayToClipLength: 1
+    delayOffset: 0
+    manualDelay: 0
+    showSubtitles: 1
+  isQueued: 0

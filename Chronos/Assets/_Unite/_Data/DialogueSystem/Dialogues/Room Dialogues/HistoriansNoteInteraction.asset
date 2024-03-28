@@ -1,0 +1,44 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3169fdde3ded437b9d20f31f184bec8e, type: 3}
+  m_Name: HistoriansNoteInteraction
+  m_EditorClassIdentifier: 
+  lines:
+  - speakerName: Ava
+    text: 'Einstein, Napoleon, Caesar... History''s architects. '
+    audio: {fileID: 8300000, guid: dc2687c4d190bf148b8648f3a9c4c3fc, type: 3}
+    setDelayToClipLength: 1
+    delayOffset: 0
+    manualDelay: 0
+    showSubtitles: 1
+  - speakerName: Ava
+    text: 'They all theorised about the Island of Chronos. '
+    audio: {fileID: 8300000, guid: a1dfdbd6e40fb154595579ae1576ddad, type: 3}
+    setDelayToClipLength: 1
+    delayOffset: 0
+    manualDelay: 0
+    showSubtitles: 1
+  - speakerName: Ava
+    text: Dad loved to use them as a reference when debating with Caleb.
+    audio: {fileID: 8300000, guid: 328bf50d709f7154d88038f031a0879e, type: 3}
+    setDelayToClipLength: 1
+    delayOffset: 0
+    manualDelay: 0
+    showSubtitles: 1
+  - speakerName: Ava
+    text: They used to have so much fun together.
+    audio: {fileID: 8300000, guid: 69904d1fd7626b340844c63a38ba0f0c, type: 3}
+    setDelayToClipLength: 1
+    delayOffset: 0
+    manualDelay: 0
+    showSubtitles: 1
+  isQueued: 0

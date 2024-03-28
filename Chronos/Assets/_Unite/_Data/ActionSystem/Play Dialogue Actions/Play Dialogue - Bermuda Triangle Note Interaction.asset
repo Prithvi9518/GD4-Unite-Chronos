@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51278be02c4549d0be694c1b45e8de29, type: 3}
+  m_Name: Play Dialogue - Bermuda Triangle Note Interaction
+  m_EditorClassIdentifier: 
+  hasDelay: 0
+  delayInSeconds: 0
+  dialogueToPlay: {fileID: 11400000, guid: 40adb8aa19835504d9eb3687831809cc, type: 2}

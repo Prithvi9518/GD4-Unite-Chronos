@@ -4,9 +4,16 @@ namespace Unite.Core.Input
 {
     public class CursorLockHandler : MonoBehaviour
     {
-        private void Start()
+        public static CursorLockHandler Instance { get; private set; }
+
+        private void Awake()
         {
-            HideAndLockCursor();
+            if (Instance != null)
+            {
+                Destroy(gameObject);
+            }
+
+            Instance = this;
         }
 
         public void ShowAndUnlockCursor()

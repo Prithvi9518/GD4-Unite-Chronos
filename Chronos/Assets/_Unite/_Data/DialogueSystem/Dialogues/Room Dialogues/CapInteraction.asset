@@ -1,0 +1,58 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3169fdde3ded437b9d20f31f184bec8e, type: 3}
+  m_Name: CapInteraction
+  m_EditorClassIdentifier: 
+  lines:
+  - speakerName: Ava
+    text: 'Ah, Caleb''s old camp cap. '
+    audio: {fileID: 8300000, guid: df6add7fdb50d074792e3ef7c4eb609e, type: 3}
+    setDelayToClipLength: 1
+    delayOffset: 0
+    manualDelay: 0
+    showSubtitles: 1
+  - speakerName: Ava
+    text: Hahaha...his is still squeaky clean.
+    audio: {fileID: 8300000, guid: 50fa743eac14a8c4eab574d42393d90a, type: 3}
+    setDelayToClipLength: 1
+    delayOffset: 0
+    manualDelay: 0
+    showSubtitles: 1
+  - speakerName: Ava
+    text: 'I remember how he''d ALWAYS complain about the bugs and the  '
+    audio: {fileID: 8300000, guid: 146d4890fdea8b149b008ac873376afc, type: 3}
+    setDelayToClipLength: 1
+    delayOffset: 0
+    manualDelay: 0
+    showSubtitles: 1
+  - speakerName: Ava
+    text: 'early mornings, but he kept coming back. '
+    audio: {fileID: 8300000, guid: d7c2c9c4d89413341aa46ba26e9ecead, type: 3}
+    setDelayToClipLength: 1
+    delayOffset: 0
+    manualDelay: 0
+    showSubtitles: 1
+  - speakerName: Ava
+    text: Always said he did it for his "annoying sister."
+    audio: {fileID: 8300000, guid: cd8bbf7e4a7ba3348804449c39c41ba2, type: 3}
+    setDelayToClipLength: 1
+    delayOffset: 0
+    manualDelay: 0
+    showSubtitles: 1
+  - speakerName: Ava
+    text: Thanks for putting up with camp, Caleb.
+    audio: {fileID: 8300000, guid: 5f99fb2ad90b7564392c060787d44ae8, type: 3}
+    setDelayToClipLength: 1
+    delayOffset: 0
+    manualDelay: 0
+    showSubtitles: 1
+  isQueued: 0

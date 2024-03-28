@@ -1,0 +1,58 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3169fdde3ded437b9d20f31f184bec8e, type: 3}
+  m_Name: PoemInteraction
+  m_EditorClassIdentifier: 
+  lines:
+  - speakerName: Ava
+    text: 'Wow, Caleb! This is exceptional! '
+    audio: {fileID: 8300000, guid: 3fc94db1278f1fa46bcfe82216f6b042, type: 3}
+    setDelayToClipLength: 1
+    delayOffset: 0
+    manualDelay: 0
+    showSubtitles: 1
+  - speakerName: Ava
+    text: 'While most students chose fictional heroes for '
+    audio: {fileID: 8300000, guid: 422e088a50e427c4e93671a735ee4f7f, type: 3}
+    setDelayToClipLength: 1
+    delayOffset: 0
+    manualDelay: 0
+    showSubtitles: 1
+  - speakerName: Ava
+    text: 'this assignment, you chose your sister. '
+    audio: {fileID: 8300000, guid: ebc8e65dea34271438d91abdd3ee4f16, type: 3}
+    setDelayToClipLength: 1
+    delayOffset: 0
+    manualDelay: 0
+    showSubtitles: 1
+  - speakerName: Ava
+    text: It's clear she holds a special place in your heart.
+    audio: {fileID: 8300000, guid: 4b6465fe97c7e4e4c94bf7c4e07c0991, type: 3}
+    setDelayToClipLength: 1
+    delayOffset: 0
+    manualDelay: 0
+    showSubtitles: 1
+  - speakerName: Ava
+    text: 'He always was thinking outside the box. '
+    audio: {fileID: 8300000, guid: 9fdf3eb02e9c3af43ba508539aa0fbd6, type: 3}
+    setDelayToClipLength: 1
+    delayOffset: 0
+    manualDelay: 0
+    showSubtitles: 1
+  - speakerName: Ava
+    text: 'I am going to frame this in my new apartment in Porto. '
+    audio: {fileID: 8300000, guid: 02f9c4b0f787b8746b62b6bee5a33504, type: 3}
+    setDelayToClipLength: 1
+    delayOffset: 0
+    manualDelay: 0
+    showSubtitles: 1
+  isQueued: 0

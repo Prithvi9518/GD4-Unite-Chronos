@@ -1,0 +1,192 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &7853511464786290106
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 977599810860244525, guid: 0f73ebf1c07f95e498de1f6b4ede79fc,
+        type: 3}
+      propertyPath: m_Name
+      value: Task - Interact with items in room
+      objectReference: {fileID: 0}
+    - target: {fileID: 3951583333431644120, guid: 0f73ebf1c07f95e498de1f6b4ede79fc,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3951583333431644120, guid: 0f73ebf1c07f95e498de1f6b4ede79fc,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3951583333431644120, guid: 0f73ebf1c07f95e498de1f6b4ede79fc,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3951583333431644120, guid: 0f73ebf1c07f95e498de1f6b4ede79fc,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3951583333431644120, guid: 0f73ebf1c07f95e498de1f6b4ede79fc,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3951583333431644120, guid: 0f73ebf1c07f95e498de1f6b4ede79fc,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3951583333431644120, guid: 0f73ebf1c07f95e498de1f6b4ede79fc,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3951583333431644120, guid: 0f73ebf1c07f95e498de1f6b4ede79fc,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3951583333431644120, guid: 0f73ebf1c07f95e498de1f6b4ede79fc,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3951583333431644120, guid: 0f73ebf1c07f95e498de1f6b4ede79fc,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8291374539159431089, guid: 0f73ebf1c07f95e498de1f6b4ede79fc,
+        type: 3}
+      propertyPath: countToReach
+      value: 3
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 977599810860244525, guid: 0f73ebf1c07f95e498de1f6b4ede79fc,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: -8752477667027723191}
+    - targetCorrespondingSourceObject: {fileID: 977599810860244525, guid: 0f73ebf1c07f95e498de1f6b4ede79fc,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1779915398754057235}
+    - targetCorrespondingSourceObject: {fileID: 977599810860244525, guid: 0f73ebf1c07f95e498de1f6b4ede79fc,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7170472553181715963}
+  m_SourcePrefab: {fileID: 100100000, guid: 0f73ebf1c07f95e498de1f6b4ede79fc, type: 3}
+--- !u!114 &2300677675122655755 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8291374539159431089, guid: 0f73ebf1c07f95e498de1f6b4ede79fc,
+    type: 3}
+  m_PrefabInstance: {fileID: 7853511464786290106}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7020098930370886551}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0485f33f63bb4571889d28bc9c898395, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1 &7020098930370886551 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 977599810860244525, guid: 0f73ebf1c07f95e498de1f6b4ede79fc,
+    type: 3}
+  m_PrefabInstance: {fileID: 7853511464786290106}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &-8752477667027723191
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7020098930370886551}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b9893a878b6442144bd9c1283a2b4b18, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  description: 
+  gameEvent: {fileID: 11400000, guid: 8674131aaf641414eba54004af9cf76a, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2300677675122655755}
+        m_TargetAssemblyTypeName: Unite.ObjectiveSystem.ChecklistObjectiveTask, Assembly-CSharp
+        m_MethodName: UpdateChecklistAndCheckCompletion
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 1
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &1779915398754057235
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7020098930370886551}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b9893a878b6442144bd9c1283a2b4b18, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  description: 
+  gameEvent: {fileID: 11400000, guid: 50df8238cba76be4297834c07015c36d, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2300677675122655755}
+        m_TargetAssemblyTypeName: Unite.ObjectiveSystem.ChecklistObjectiveTask, Assembly-CSharp
+        m_MethodName: UpdateChecklistAndCheckCompletion
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 2
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &7170472553181715963
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7020098930370886551}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b9893a878b6442144bd9c1283a2b4b18, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  description: 
+  gameEvent: {fileID: 11400000, guid: 66b98afa36b95674f8bd20d7d3e9a731, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2300677675122655755}
+        m_TargetAssemblyTypeName: Unite.ObjectiveSystem.ChecklistObjectiveTask, Assembly-CSharp
+        m_MethodName: UpdateChecklistAndCheckCompletion
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 3
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2

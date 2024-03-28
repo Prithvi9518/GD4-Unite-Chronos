@@ -7,6 +7,8 @@ using Unity.Services.Analytics;
 using Unity.Services.Core;
 using Unity.Services.Core.Analytics;
 using UnityEngine.Analytics;
+using Unite.DialogueSystem;
+using Unite.Core.Game;
 
 namespace Unite.Managers
 {
@@ -19,28 +21,62 @@ namespace Unite.Managers
                 // Initialize Unity Services asynchronously
                 await UnityServices.InitializeAsync();
                 GiveConsent(); // Get user consent according to various legislations
-                //OnLevelCompleted();
             }
             catch (ConsentCheckException e)
             {
                 Debug.Log(e.ToString());
             }
         }
-
-        public void PlayerDied(PlayerDiedInfo info)
+        public void EnterNewRegion(string regionName)
         {
             Dictionary<string, object> data = new Dictionary<string, object>();
-            data.Add("Death_Position_x", info.DeathPosition.x);
-            data.Add("Death_Position_y", info.DeathPosition.y);
-            data.Add("Death_Position_z", info.DeathPosition.z);
-            data.Add("Killed_By_Enemy", info.KilledByAttacker);
-            data.Add("Killed_By_Attack", info.KilledByAttack);
-
-            // Add more data related to player death
-            // Example: data.Add("Player_Health", info.PlayerHealth);
+            data.Add("Name", regionName);
 
             // Send analytics event
-            SendAnalyticsEvent("PlayerDied", data);
+            SendAnalyticsEvent("EnteredNewRegion", data);
+        }
+        public void OnInteractWithInteractible(InteractibleObject interactible)
+        {
+            Dictionary<string, object> data = new Dictionary<string, object>();
+            data.Add("Name", interactible.DisplayName);
+
+            // Send analytics event
+            SendAnalyticsEvent("InteractWithInteractible", data);
+        }
+
+        public void OnInteractWithDialogueInteractible(DialogueSO dialogueInteractible)
+        {
+            Dictionary<string, object> data = new Dictionary<string, object>();
+            data.Add("Name", dialogueInteractible.name);
+
+            // Send analytics event
+            SendAnalyticsEvent("InteractWithDialogueInteractible", data);
+        }
+
+        public void JournalUsed()
+        {
+            Dictionary<string, object> data = new Dictionary<string, object>();
+
+            // Send analytics event
+            SendAnalyticsEvent("JournalUsed", data);
+        }
+
+        public void DashUsed()
+        {
+            //Add more data related to time stop usage
+            Dictionary<string, object> data = new Dictionary<string, object>();
+
+            //Send analytics event
+            SendAnalyticsEvent("DashUsed", data);
+        }
+
+        public void TimeStopUsed()
+        {
+            //Add more data related to time stop usage
+            Dictionary<string, object> data = new Dictionary<string, object>();
+
+            //Send analytics event
+            SendAnalyticsEvent("TimeStopUsed", data);
         }
 
         public void EnemyDefeated(Enemy enemy)
@@ -48,75 +84,68 @@ namespace Unite.Managers
             Dictionary<string, object> data = new Dictionary<string, object>();
             data.Add("Name", enemy.DisplayName);
 
-            // Add more data related to enemy defeat
-            // Example: data.Add("Enemy_Type", enemy.Type);
-
-            // Send analytics event
             SendAnalyticsEvent("EnemyDefeated", data);
         }
 
-        public void TimeStopUsed()
-        {
-            // Add more data related to time stop usage
-            // Example: Dictionary<string, object> data = new Dictionary<string, object>();
-            //          data.Add("Player_Level", player.Level);
-
-            // Send analytics event
-            SendAnalyticsEvent("TimeStopUsed", null);
-        }
-
-        public void OnInteractWithInteractible(InteractibleObject interactible)
+        public void PlayerDied(PlayerDiedInfo info)
         {
             Dictionary<string, object> data = new Dictionary<string, object>();
-            data.Add("Name", interactible.DisplayName);
-
-            // Add more data related to interaction with interactible
-            // Example: data.Add("Interaction_Type", interactible.Type);
+            //data.Add("Death_Position_x", info.DeathPosition.x);
+            //data.Add("Death_Position_y", info.DeathPosition.y);
+            //data.Add("Death_Position_z", info.DeathPosition.z);
+            data.Add("Killed_By_Enemy", info.KilledByAttacker);
+            data.Add("Killed_By_Attack", info.KilledByAttack);
 
             // Send analytics event
-            SendAnalyticsEvent("InteractWithInteractible", data);
+            SendAnalyticsEvent("PlayerDied", data);
         }
 
-        public void PlayerReachedCheckpoint(Vector3 checkpointPosition)
+        //public void PlayerReachedCheckpoint(Vector3 checkpointPosition)
+        //{
+        //    Dictionary<string, object> data = new Dictionary<string, object>();
+        //    data.Add("Checkpoint_Position_x", checkpointPosition.x);
+        //    data.Add("Checkpoint_Position_y", checkpointPosition.y);
+        //    data.Add("Checkpoint_Position_z", checkpointPosition.z);
+
+        //    // Add more data related to checkpoint reached event
+        //    // Example: data.Add("Player_Health", player.Health);
+
+        //    // Send analytics event
+        //    SendAnalyticsEvent("PlayerReachedCheckpoint", data);
+        //}
+
+        public void LevelStarted(GameLevel gameLevel)
         {
+            //Add more data related to time stop usage
             Dictionary<string, object> data = new Dictionary<string, object>();
-            data.Add("Checkpoint_Position_x", checkpointPosition.x);
-            data.Add("Checkpoint_Position_y", checkpointPosition.y);
-            data.Add("Checkpoint_Position_z", checkpointPosition.z);
+            data.Add("Name", gameLevel.name);
 
-            // Add more data related to checkpoint reached event
-            // Example: data.Add("Player_Health", player.Health);
-
-            // Send analytics event
-            SendAnalyticsEvent("PlayerReachedCheckpoint", data);
+            //Send analytics event
+            SendAnalyticsEvent("LevelStarted", data);
         }
 
-        public void PlayerUsedPowerup(string powerupType)
+        public void LevelFinished(LevelCompleteInfo levelCompleteInfo)
         {
-            // Add more data related to powerup usage
-            // Example: Dictionary<string, object> data = new Dictionary<string, object>();
-            //          data.Add("Powerup_Type", powerupType);
+            //Add more data related to time stop usage
+            Dictionary<string, object> data = new Dictionary<string, object>();
+            data.Add("Name", levelCompleteInfo.Level.name);
+            data.Add("TimeToComplete", levelCompleteInfo.TimeTakenToComplete);
 
-            // Send analytics event
-            SendAnalyticsEvent("PlayerUsedPowerup", null);
+
+            //Send analytics event
+            SendAnalyticsEvent("LevelFinished", data);
         }
 
-        // Add more events and data as needed
-
-        private void OnLevelCompleted()
+        private void OnLevelCompleted(string levelName)
         {
-            int currentLevel = Random.Range(1, 4); // Gets a random number from 1-3
-
-            // Create a dictionary of custom parameters with the key "levelName"
-            // and a value of the form "levelX," where X is the randomly generated level number.
             Dictionary<string, object> parameters = new Dictionary<string, object>()
             {
-                { "levelName", "level" + currentLevel.ToString()}
+                { "levelName", "level" + levelName}
             };
 
             // The ‘levelCompleted’ event will get cached locally
             // and sent during the next scheduled upload, within 1 minute
-            SendAnalyticsEvent("levelCompleted", parameters, true);
+            SendAnalyticsEvent("LevelCompleted", parameters, true);
         }
 
         private void OnDestroy()
@@ -128,7 +157,7 @@ namespace Unite.Managers
         {
             // Call if consent has been given by the user
             AnalyticsService.Instance.StartDataCollection();
-            Debug.Log($"Consent has been provided. The SDK is now collecting data!");
+            //Debug.Log($"Consent has been provided. The SDK is now collecting data!");
         }
 
         private void SendAnalyticsEvent(string eventName, Dictionary<string, object> data, bool flushImmediately = false)

@@ -19,6 +19,7 @@ namespace Unite.BattleSystem
         [SerializeField]
         private Transform buffSpawnPosition;
 
+        [Header("Events for starting, progressing and finishing a battle:")]
         [SerializeField]
         private BattleZoneInfoEvent onStartBattle;
         
@@ -27,12 +28,22 @@ namespace Unite.BattleSystem
 
         [SerializeField]
         private GameEvent[] onFinishBattleEvents;
+
+        [Header("Events for analytics:")]
+        [SerializeField]
+        private BattleZoneInfoEvent onStartBattleUpdateAnalytics;
+        
+        [SerializeField]
+        private BattleFinishedInfoEvent onFinishBattleUpdateAnalytics;
         
         private BattleState battleState;
         private EnemyWaveSpawner waveSpawner;
         private IProvideSpawnPosition spawnPositionProvider;
         private Transform playerTransform;
         private int currentWaveIndex;
+        
+        private float timeBattleStarted;
+        private float timeBattleFinished;
 
         public string DisplayName => displayName;
         public BattleZoneBarrier Barrier => barrier;
@@ -66,9 +77,13 @@ namespace Unite.BattleSystem
             waveSpawner.SpawnEnemies(enemyWaves[currentWaveIndex], spawnPositionProvider, playerTransform);
             battleState = BattleState.Active;
             
-            BattleTracker.SetCurrentBattleZone(this);
-            
-            onStartBattle.Raise(new BattleZoneInfo(displayName, GetCurrentWave()));
+            BattleTracker.Instance.RegisterBattleZone(this);
+
+            timeBattleStarted = Time.realtimeSinceStartup;
+
+            BattleZoneInfo info = new BattleZoneInfo(displayName, GetCurrentWave());
+            onStartBattle.Raise(info);
+            onStartBattleUpdateAnalytics.Raise(info);
         }
 
         public int GetCurrentWave()
@@ -96,10 +111,15 @@ namespace Unite.BattleSystem
             BuffSpawnManager.Instance.SpawnBuff(buffSpawnPosition);
             barrier.ToggleBarrierColliders(false);
 
+            timeBattleFinished = Time.realtimeSinceStartup;
+            float timeDifference = timeBattleFinished - timeBattleStarted;
+
             foreach (var e in onFinishBattleEvents)
             {
                 e.Raise();
             }
+            
+            onFinishBattleUpdateAnalytics.Raise(new BattleFinishedInfo(displayName, timeDifference));
         }
     }
 }

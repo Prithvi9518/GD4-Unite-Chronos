@@ -1,0 +1,44 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3169fdde3ded437b9d20f31f184bec8e, type: 3}
+  m_Name: PosterInteraction
+  m_EditorClassIdentifier: 
+  lines:
+  - speakerName: Ava
+    text: 'Che Guevara, huh? '
+    audio: {fileID: 8300000, guid: b7b4e4059ecf7594698c8abacc568f80, type: 3}
+    setDelayToClipLength: 1
+    delayOffset: 0
+    manualDelay: 0
+    showSubtitles: 1
+  - speakerName: Ava
+    text: 'You always thought of him as a great war hero, '
+    audio: {fileID: 8300000, guid: 5c3522dcbd0fdae4f9639b365064f2ce, type: 3}
+    setDelayToClipLength: 1
+    delayOffset: 0
+    manualDelay: 0
+    showSubtitles: 1
+  - speakerName: Ava
+    text: didn't you, Caleb?
+    audio: {fileID: 8300000, guid: 07c8ebd04d2093a41ae3163be4f72752, type: 3}
+    setDelayToClipLength: 1
+    delayOffset: 0
+    manualDelay: 0
+    showSubtitles: 1
+  - speakerName: Ava
+    text: Guess you saw a bit of that rebellious spark in yourself.
+    audio: {fileID: 8300000, guid: e72ae9ef4870e964c8e813fa172e2369, type: 3}
+    setDelayToClipLength: 1
+    delayOffset: 0
+    manualDelay: 0
+    showSubtitles: 1
+  isQueued: 0

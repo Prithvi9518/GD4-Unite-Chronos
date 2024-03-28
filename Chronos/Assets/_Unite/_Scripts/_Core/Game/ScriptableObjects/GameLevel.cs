@@ -1,4 +1,6 @@
 using System.Collections.Generic;
+using Unite.ActionSystem;
+using Unite.EventSystem;
 using UnityEngine;
 using UnityEngine.Rendering;
 
@@ -11,28 +13,46 @@ namespace Unite.Core.Game
         [SerializeField]
         private List<GameScene> scenes;
 
-        [Header("Post-processing (optional)")] 
+        // [Header("Post-processing (optional)")] 
+        // [SerializeField]
+        // private bool useDefaultPostProcessingVolume;
+
+        [Header("Event to raise after loading the level:")]
         [SerializeField]
-        private bool useDefaultPostProcessingVolume;
+        private GameEvent onLoadLevel;
 
+        [Header("Actions to execute after loading the level:")]
         [SerializeField]
-        private Volume postProcessPrefab;
+        private ActionSO[] actionsOnLoad;
 
-        [SerializeField]
-        private VolumeProfile defaultPostProcessProfile;
+        // [Header("Post Processing:")]
+        // [SerializeField]
+        // private Volume postProcessPrefab;
+        //
+        // [SerializeField]
+        // private VolumeProfile defaultPostProcessProfile;
+        //
+        // private Volume instancePostProcessPrefab;
+        
+        public GameEvent OnLoadLevel => onLoadLevel;
+        public ActionSO[] ActionsOnLoad => actionsOnLoad;
 
-        private Volume instancePostProcessPrefab;
-
-        public void LoadLevel()
+        public List<AsyncOperation> LoadLevel()
         {
+            List<AsyncOperation> scenesToLoad = new();
             foreach (var scene in scenes)
             {
-                scene.LoadScene();
+                AsyncOperation sceneToLoad = scene.LoadScene();
+                if(sceneToLoad != null)
+                    scenesToLoad.Add(sceneToLoad);
             }
 
-            if (postProcessPrefab == null || defaultPostProcessProfile == null) return;
-            instancePostProcessPrefab = Instantiate(postProcessPrefab);
-            instancePostProcessPrefab.profile = defaultPostProcessProfile;
+            // if (postProcessPrefab == null || defaultPostProcessProfile == null) return scenesToLoad;
+            //
+            // instancePostProcessPrefab = Instantiate(postProcessPrefab);
+            // instancePostProcessPrefab.profile = defaultPostProcessProfile;
+
+            return scenesToLoad;
         }
 
         public void UnloadLevel()
@@ -42,8 +62,8 @@ namespace Unite.Core.Game
                 scene.UnloadScene();
             }
 
-            if (instancePostProcessPrefab == null) return;
-            Destroy(instancePostProcessPrefab);
+            // if (instancePostProcessPrefab == null) return;
+            // Destroy(instancePostProcessPrefab);
         }
     }
 }

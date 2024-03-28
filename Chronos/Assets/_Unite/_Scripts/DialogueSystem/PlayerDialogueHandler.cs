@@ -14,6 +14,8 @@ namespace Unite.DialogueSystem
         private int battleEndedCount;
         private int battleEnteredCount;
 
+        private int exitRoomFailedAttempts;
+
         private void Awake()
         {
             SetupDialogueMap();
@@ -33,24 +35,13 @@ namespace Unite.DialogueSystem
         {
             dialogueTriggerHandlers = new Dictionary<DialogueTrigger, System.Action<List<DialogueSO>>>()
             {
-                { DialogueTrigger.Test1, HandleTest1 },
-                { DialogueTrigger.Test2, HandleTest2 },
                 { DialogueTrigger.BattleEnded , HandleBattleEnded },
-                { DialogueTrigger.GameStart , HandleGameStart},
-                { DialogueTrigger.EnterBattleZone , HandleEnterBattleZone}
+                { DialogueTrigger.EnterIslandLevel , HandleEnterIsland},
+                { DialogueTrigger.EnterBattleZone , HandleEnterBattleZone},
+                { DialogueTrigger.ExitRoomNotYet , HandleExitRoomNotYet},
             };
         }
         
-        private void HandleTest1(List<DialogueSO> dialogues)
-        {
-            Debug.Log($"test1 - {dialogues[0].Lines[0].Text}");
-        }
-
-        private void HandleTest2(List<DialogueSO> dialogues)
-        {
-            Debug.Log($"test2 - {dialogues[0].Lines[0].Text}");
-        }
-
         private void HandleBattleEnded(List<DialogueSO> dialogues)
         {
             if (dialogues.Count == 0) return;
@@ -62,7 +53,7 @@ namespace Unite.DialogueSystem
             }
         }
 
-        private void HandleGameStart(List<DialogueSO> dialogues)
+        private void HandleEnterIsland(List<DialogueSO> dialogues)
         {
             if (dialogues.Count == 0) return;
             
@@ -76,6 +67,16 @@ namespace Unite.DialogueSystem
             if (battleEnteredCount != 0) return;
             DialogueManager.Instance.PlayDialogue(dialogues[0]);
             battleEnteredCount++;
+        }
+
+        private void HandleExitRoomNotYet(List<DialogueSO> dialogues)
+        {
+            if(exitRoomFailedAttempts <= 0)
+                DialogueManager.Instance.PlayDialogue(dialogues[0]);
+            else
+                DialogueManager.Instance.PlayDialogue(dialogues[1]);
+
+            exitRoomFailedAttempts++;
         }
 
         public void OnNotify(DialogueTrigger dialogueTrigger)
@@ -93,14 +94,19 @@ namespace Unite.DialogueSystem
             OnNotify(DialogueTrigger.BattleEnded);
         }
 
-        public void OnGameStart()
+        public void OnEnterIsland()
         {
-            OnNotify(DialogueTrigger.GameStart);
+            OnNotify(DialogueTrigger.EnterIslandLevel);
         }
 
         public void OnEnterBattleZone()
         {
             OnNotify(DialogueTrigger.EnterBattleZone);
+        }
+
+        public void OnExitRoomNotYet()
+        {
+            OnNotify(DialogueTrigger.ExitRoomNotYet);
         }
     }
 }

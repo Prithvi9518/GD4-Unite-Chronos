@@ -44,16 +44,19 @@ namespace Unite.Player
         private void Awake()
         {
             playerHealth = GetComponent<Health>();
-            statsHandler = GetComponent<PlayerStatsHandler>();
         }
 
-        public void PerformSetup()
+        public void PerformSetup(PlayerStatsHandler playerStatsHandler)
         {
             dead = false;
             regenEnabled = false;
+
+            statsHandler = playerStatsHandler;
             
             playerHealth.MaxHealth = statsHandler.GetStat(healthStatType).Value;
             playerHealth.ResetHealth();
+            
+            onHealthChanged.Raise(new HealthInfo(playerHealth.CurrentHealth, playerHealth.MaxHealth));
         }
 
         public void UpdateMaxHealthFromStats()

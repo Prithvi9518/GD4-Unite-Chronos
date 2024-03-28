@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections;
 using Unite.Core.DamageInterfaces;
+using Unite.EventSystem;
 using Unite.ImpactSystem;
+using Unite.Managers;
 using Unite.SoundScripts;
 using Unite.StatusEffectSystem;
 using Unite.VFXScripts;
@@ -43,6 +45,9 @@ namespace Unite.WeaponSystem
 
         [SerializeField] 
         private ImpactType impactType;
+
+        [SerializeField]
+        private bool useBulletTrails;
         
         private IAttacker shooter;
         
@@ -60,6 +65,7 @@ namespace Unite.WeaponSystem
         private float baseDamage;
 
         private Transform shootPoint;
+        private Camera playerCam;
 
         public IAttacker Shooter => shooter;
         public GunType GunType => gunType;
@@ -118,9 +124,10 @@ namespace Unite.WeaponSystem
 
             muzzleFlashHandler = model.GetComponent<MuzzleFlashHandler>();
             shootPoint = model.GetComponent<ShootPointHolder>().ShootPoint;
+            playerCam = GameManager.Instance.PlayerCamera;
         }
 
-        public void Tick(bool wantsToShoot)
+        public void Tick(bool wantsToShoot, GameEvent onShootSuccess)
         {
             model.transform.localRotation = Quaternion.Slerp(
                 model.transform.localRotation,
@@ -131,7 +138,7 @@ namespace Unite.WeaponSystem
             if (wantsToShoot)
             {
                 wantedToShootLastFrame = true;
-                Shoot();
+                Shoot(onShootSuccess);
             }
             else if (!wantsToShoot && wantedToShootLastFrame)
             {
@@ -140,7 +147,7 @@ namespace Unite.WeaponSystem
             }
         }
 
-        public void Shoot()
+        public void Shoot(GameEvent onShootSuccess)
         {
             if (Time.time - lastShootTime - shootData.FireRate > Time.deltaTime)
             {
@@ -153,18 +160,55 @@ namespace Unite.WeaponSystem
             if (!(Time.time > shootData.FireRate + lastShootTime)) return;
             
             lastShootTime = Time.time;
+            
+            onShootSuccess.Raise();
                 
             audioConfig.PlayShootingAudioClip();
+            
+            if(useBulletTrails)
+                HandleRaycastWithTrails();
+            else
+                HandleRaycastWithoutTrails();
+            
+            muzzleFlashHandler.PlayMuzzleFlash();
+        }
 
+        private void HandleRaycastWithoutTrails()
+        {
+            // if (!useBulletTrails)
+            // {
+            //     start = playerCam.transform.position;
+            //     shootDirection = playerCam.transform.forward + bulletSpread;
+            //     maxDistance = shootData.MaxShootDistance;
+            // }
+            
+            
+            Vector3 bulletSpread = shootData.GetSpread(Time.time - initialClickTime);
+            Vector3 shootDirection = playerCam.transform.forward + bulletSpread;
+            Vector3 start = playerCam.transform.position;
+            float maxDistance = shootData.MaxShootDistance;
+
+            if (!Physics.Raycast(start, shootDirection, out RaycastHit hit,
+                    maxDistance, shootData.HitMask)) return;
+            
+            if (hit.collider != null)
+            {
+                HandleBulletImpact(hit, Vector3.Distance(start, hit.point));
+            }
+        }
+
+        private void HandleRaycastWithTrails()
+        {
             Vector3 bulletSpread = shootData.GetSpread(Time.time - initialClickTime);
             model.transform.forward += model.transform.TransformDirection(bulletSpread);
             Vector3 shootDirection = model.transform.forward;
 
-            // Vector3 start = muzzleFlashHandler.transform.position;
             Vector3 start = shootPoint.position;
 
+            float maxDistance = float.MaxValue;
+            
             if (Physics.Raycast(start, shootDirection, out RaycastHit hit,
-                    float.MaxValue, shootData.HitMask))
+                    maxDistance, shootData.HitMask))
             {
                 activeMonoBehaviour.StartCoroutine(
                     FireBulletWithTrail(
@@ -184,8 +228,6 @@ namespace Unite.WeaponSystem
                     )
                 );
             }
-            
-            muzzleFlashHandler.PlayMuzzleFlash();
         }
 
         private void HandleBulletImpact(RaycastHit hit, float distance)
@@ -293,6 +335,8 @@ namespace Unite.WeaponSystem
             clone.modelPrefab = modelPrefab;
             clone.spawnPoint = spawnPoint;
             clone.spawnRotation = spawnRotation;
+            clone.useBulletTrails = useBulletTrails;
+            clone.impactType = impactType;
             
             return clone;
         }

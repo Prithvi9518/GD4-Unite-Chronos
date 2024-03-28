@@ -47,9 +47,9 @@ namespace Unite.Enemies.Spawning
             NavMeshHit hit;
             if (!NavMesh.SamplePosition(spawnPosition, out hit, 1000f, -1)) return;
             
-            Enemy enemy = Instantiate(enemyData.EnemyPrefab, hit.position, Quaternion.identity);
-            enemy.gameObject.SetActive(true);
-            enemy.OnGetFromPool(playerTransform);
+            Enemy enemy = EnemyPoolManager.Instance.EnemyPools[enemyData].Get();
+            enemy.SetEnemyPool(EnemyPoolManager.Instance.EnemyPools[enemyData]);
+            enemy.transform.SetPositionAndRotation(hit.position, Quaternion.identity);
             enemyData.SetupEnemy(enemy, playerTransform);
 
             enemy.Agent.Warp(hit.position);

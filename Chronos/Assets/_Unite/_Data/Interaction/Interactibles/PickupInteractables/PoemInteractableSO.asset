@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f9a4e114f03849e783bbeb76fc820bd2, type: 3}
+  m_Name: PoemInteractableSO
+  m_EditorClassIdentifier: 
+  eventOnInteract: {fileID: 11400000, guid: 8bd6577ce716e1448b4db3e597ba1029, type: 2}
+  audioToPlayOnInteract: {fileID: 0}
+  volume: 1
+  destroyAfterInteract: 0
+  interactText: Read the Poem
+  showInteractText: 1
+  actionsOnInteract:
+  - action: {fileID: 11400000, guid: c3714090729fa4d4b8aa8ca933b50efa, type: 2}
+    doOnce: 1

@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Unite.Managers;
 using UnityEngine;
 
 namespace Unite.UI
@@ -11,7 +12,7 @@ namespace Unite.UI
         [SerializeField]
         private RectTransform holder;
         
-        private Transform player;
+        private Transform playerOrientation;
         private Camera cam;
 
         public Dictionary<Transform, DamageIndicator> Indicators = new();
@@ -21,31 +22,22 @@ namespace Unite.UI
             cam = Camera.main;
         }
         
-        private bool InSightOfPlayer(Transform t)
-        {
-            Vector3 screenPoint = cam.WorldToViewportPoint(t.position);
-            return screenPoint is { z: > 0, x: > 0 and < 1, y: > 0 and < 1 };
-        }
-
         public void TryCreateIndicator(Transform target)
         {
-            // if (!InSightOfPlayer(target)) return;
-            
             if (Indicators.ContainsKey(target))
             {
                 Indicators[target].Restart();
                 return;
             }
-
+            
             DamageIndicator newIndicator = Instantiate(indicatorPrefab, holder);
-            newIndicator.Register(target, player, () => { Indicators.Remove(target);});
+            
+            if(playerOrientation == null)
+                playerOrientation = GameManager.Instance.Player.Orientation;
+            
+            newIndicator.Register(target, playerOrientation, () => { Indicators.Remove(target);});
             
             Indicators.Add(target, newIndicator);
-        }
-
-        public void ListenToPlayerReadyEvent(Player.Player p)
-        { 
-            player = p.transform;
         }
     }
 }

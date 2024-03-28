@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c815f059f40b2db47ae4ff971a9adbbf, type: 3}
+  m_Name: TestStartLevel
+  m_EditorClassIdentifier: 
+  scenes:
+  - {fileID: 11400000, guid: eb39a0a2515eac9439db471d8b2bb5f6, type: 2}
+  - {fileID: 11400000, guid: bc38bd91bd08b70419cd549a5758f4e3, type: 2}
+  - {fileID: 11400000, guid: 2da9f983e0b3fda468e80cdb51ba3953, type: 2}
+  - {fileID: 11400000, guid: e48d373fe122dac468de68d62cb2e6c3, type: 2}
+  - {fileID: 11400000, guid: 547c4e519ae761c4ebbd5bd7df5d8efe, type: 2}
+  - {fileID: 11400000, guid: 44c5058e104eb6444a6c64089f8f9001, type: 2}
+  onLoadLevel: {fileID: 11400000, guid: b96da13a6ca38cf4792a2e7a78f7e116, type: 2}
+  actionsOnLoad:
+  - {fileID: 11400000, guid: 6901edbcf3edb6f4493a69519165606e, type: 2}
+  - {fileID: 11400000, guid: 51a64107d3ec25245825ed5eef3710f7, type: 2}

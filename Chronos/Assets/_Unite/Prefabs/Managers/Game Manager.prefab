@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 7117664564784737883}
   - component: {fileID: 1477690474159289454}
   - component: {fileID: 7034267765708947679}
+  - component: {fileID: 7456789701517330469}
   m_Layer: 0
   m_Name: Game Manager
   m_TagString: Untagged
@@ -45,9 +46,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e636681d74b4135bb051eebf633a960, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  onGameSetup: {fileID: 11400000, guid: 490f88a502b497645bd9a62ad27d755a, type: 2}
   onGameStart: {fileID: 11400000, guid: 1c64a1214fcebc743a76621bff096664, type: 2}
-  onGameWin: {fileID: 0}
-  onGameLose: {fileID: 0}
+  onGameLose: {fileID: 11400000, guid: 3a9f043768808a541b1d1dd8bd969d5b, type: 2}
+  onRestart: {fileID: 11400000, guid: 0b2ae1e4348f026458b78af581efdd42, type: 2}
+  onStartSwitchToNextLevel: {fileID: 11400000, guid: b19c0b7dbb256cc4caaa28fa1ddc459c,
+    type: 2}
+  onFinishSwitchToNextLevel: {fileID: 11400000, guid: 18dd0b4d178be624591980e20039a1df,
+    type: 2}
+  onStartTestScene: {fileID: 11400000, guid: e071dc8c15cf3744daa72e91bbe4530a, type: 2}
 --- !u!114 &7034267765708947679
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -69,6 +76,35 @@ MonoBehaviour:
         m_TargetAssemblyTypeName: Unite.Managers.GameManager, Assembly-CSharp
         m_MethodName: HandleLose
         m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &7456789701517330469
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1976005847003859516}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad4b93f17ea048418740474027a5e07c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  description: Listens for when player is initialized
+  gameEvent: {fileID: 11400000, guid: 805e5580eb6823248afa5b554b93ceea, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1477690474159289454}
+        m_TargetAssemblyTypeName: Unite.Managers.GameManager, Assembly-CSharp
+        m_MethodName: InitializePlayer
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine

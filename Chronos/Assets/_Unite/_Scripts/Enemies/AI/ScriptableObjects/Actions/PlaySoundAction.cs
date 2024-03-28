@@ -5,7 +5,7 @@ using UnityEngine;
 namespace Unite.Enemies.AI
 {
     [CreateAssetMenu(fileName = "PlaySoundAction", menuName = "AI/Actions/PlaySoundAction")]
-    public class PlaySoundAction : Action
+    public class PlaySoundAction : FSMAction
     {
         [SerializeField]
         private AudioClip audioClip;

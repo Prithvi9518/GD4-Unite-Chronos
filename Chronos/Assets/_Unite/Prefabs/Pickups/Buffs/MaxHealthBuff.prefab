@@ -158,6 +158,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: a657b3fa25b5c8b4daef233285d45a8d,
         type: 2}
+    - target: {fileID: 1500556460001997301, guid: 372cf2fa00fa0b94496898bb3e69ef26,
+        type: 3}
+      propertyPath: displayName
+      value: Max Health Buff
+      objectReference: {fileID: 0}
     - target: {fileID: 2578620653873537429, guid: 372cf2fa00fa0b94496898bb3e69ef26,
         type: 3}
       propertyPath: m_IsActive

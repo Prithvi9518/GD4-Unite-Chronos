@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f9a4e114f03849e783bbeb76fc820bd2, type: 3}
+  m_Name: BraceletInteractableSO
+  m_EditorClassIdentifier: 
+  eventOnInteract: {fileID: 11400000, guid: f883588270537d54c9b0a79494e06333, type: 2}
+  audioToPlayOnInteract: {fileID: 0}
+  volume: 1
+  destroyAfterInteract: 0
+  interactText: Inspect the Bracelet
+  showInteractText: 1
+  actionsOnInteract:
+  - action: {fileID: 11400000, guid: 2d3a1ee089faab147957593c7cb855b0, type: 2}
+    doOnce: 1

@@ -4,7 +4,7 @@ using UnityEngine;
 namespace Unite.Enemies.AI
 {
     [CreateAssetMenu(fileName = "EnemyDeathAction", menuName = "AI/Actions/EnemyDeathAction")]
-    public class EnemyDeathAction : Action
+    public class EnemyDeathAction : FSMAction
     {
         public override void ExecuteAction(BaseStateMachine baseStateMachine)
         {

@@ -1,0 +1,51 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3169fdde3ded437b9d20f31f184bec8e, type: 3}
+  m_Name: DadsMissionLogInteraction
+  m_EditorClassIdentifier: 
+  lines:
+  - speakerName: Ava
+    text: 'So, Dad was a spy in Moscow. '
+    audio: {fileID: 8300000, guid: d2b2901b69678c442bba0606e3aa46ab, type: 3}
+    setDelayToClipLength: 1
+    delayOffset: 0
+    manualDelay: 0
+    showSubtitles: 1
+  - speakerName: Ava
+    text: Not the average 9-to-5 job, that's for sure.
+    audio: {fileID: 8300000, guid: 7316e50385cbecf449eb50dfcbff2880, type: 3}
+    setDelayToClipLength: 1
+    delayOffset: 0
+    manualDelay: 0
+    showSubtitles: 1
+  - speakerName: Ava
+    text: 'Gathered intel during the Cold War... '
+    audio: {fileID: 8300000, guid: adb23c495ca637e48a79915322f33bc2, type: 3}
+    setDelayToClipLength: 1
+    delayOffset: 0
+    manualDelay: 0
+    showSubtitles: 1
+  - speakerName: Ava
+    text: 'What were you trying to uncover, Dad? '
+    audio: {fileID: 8300000, guid: fd293396240c17746a20a32ae87c6eae, type: 3}
+    setDelayToClipLength: 1
+    delayOffset: 0
+    manualDelay: 0
+    showSubtitles: 1
+  - speakerName: Ava
+    text: What secrets were worth risking everything for?
+    audio: {fileID: 8300000, guid: f5bb2df841ab73245964b6bfba7f27de, type: 3}
+    setDelayToClipLength: 1
+    delayOffset: 0
+    manualDelay: 0
+    showSubtitles: 1
+  isQueued: 0

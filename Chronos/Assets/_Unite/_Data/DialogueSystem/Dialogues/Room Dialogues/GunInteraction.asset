@@ -1,0 +1,58 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3169fdde3ded437b9d20f31f184bec8e, type: 3}
+  m_Name: GunInteraction
+  m_EditorClassIdentifier: 
+  lines:
+  - speakerName: Ava
+    text: Dad's old revolver... I remember when he gave this to Caleb.
+    audio: {fileID: 8300000, guid: 78951bb5bc3eb1b49b4010128d569059, type: 3}
+    setDelayToClipLength: 1
+    delayOffset: 0
+    manualDelay: 0
+    showSubtitles: 1
+  - speakerName: Ava
+    text: Said it was a symbol of protection.
+    audio: {fileID: 8300000, guid: 700d5234718695c40aea34a71c55d196, type: 3}
+    setDelayToClipLength: 1
+    delayOffset: 0
+    manualDelay: 0
+    showSubtitles: 1
+  - speakerName: Ava
+    text: 'Caleb used to say it made him feel close to Dad. '
+    audio: {fileID: 8300000, guid: 9fa1d94d6b1ddee4d8b67e82bef19bb7, type: 3}
+    setDelayToClipLength: 1
+    delayOffset: 0
+    manualDelay: 0
+    showSubtitles: 1
+  - speakerName: Ava
+    text: Now, it's just a piece of the past, a connection we used to have.
+    audio: {fileID: 8300000, guid: 4dab0e9bb3c58e4408d20813e9dcd7f6, type: 3}
+    setDelayToClipLength: 1
+    delayOffset: 0
+    manualDelay: 0
+    showSubtitles: 1
+  - speakerName: Ava
+    text: 'I should take the gun with me. '
+    audio: {fileID: 8300000, guid: f508f9234cf2e184c9df4f3cd95f8b46, type: 3}
+    setDelayToClipLength: 1
+    delayOffset: 0
+    manualDelay: 0
+    showSubtitles: 1
+  - speakerName: Ava
+    text: It wouldn't feel right leaving it behind.
+    audio: {fileID: 8300000, guid: 988b6d86e7b224c4dbc7ed0a522556dd, type: 3}
+    setDelayToClipLength: 1
+    delayOffset: 0
+    manualDelay: 0
+    showSubtitles: 1
+  isQueued: 0

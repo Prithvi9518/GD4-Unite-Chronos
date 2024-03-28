@@ -1,0 +1,37 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3169fdde3ded437b9d20f31f184bec8e, type: 3}
+  m_Name: BraceletInteraction
+  m_EditorClassIdentifier: 
+  lines:
+  - speakerName: Ava
+    text: 'He kept it... The bracelet from our childhood. '
+    audio: {fileID: 8300000, guid: b362c05f5d54e4d46a0fa3063c0d823d, type: 3}
+    setDelayToClipLength: 1
+    delayOffset: 0
+    manualDelay: 0
+    showSubtitles: 1
+  - speakerName: Ava
+    text: We felt safer as these bracelet's would keep us together.
+    audio: {fileID: 8300000, guid: caac568451b780f4da06934d1bf84c26, type: 3}
+    setDelayToClipLength: 1
+    delayOffset: 0
+    manualDelay: 3
+    showSubtitles: 1
+  - speakerName: Ava
+    text: Simpler times, huh?
+    audio: {fileID: 8300000, guid: 1867e8b5025ce7a4f923eb0d614748c8, type: 3}
+    setDelayToClipLength: 0
+    delayOffset: 0
+    manualDelay: 0
+    showSubtitles: 1
+  isQueued: 0

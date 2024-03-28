@@ -4,7 +4,7 @@ using UnityEngine;
 namespace Unite.Enemies.AI
 {
     [CreateAssetMenu(fileName = "ToggleColliderAction", menuName = "AI/Actions/Toggle Collider")]
-    public class ToggleColliderAction : Action
+    public class ToggleColliderAction : FSMAction
     {
         [SerializeField] 
         private bool colliderEnabled;

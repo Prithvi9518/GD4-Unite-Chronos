@@ -7,6 +7,14 @@ namespace Unite.Core.Input
     public class InputManager : MonoBehaviour
     {
         public static InputManager Instance { get; private set; }
+
+        [Header("Event for jump action")]
+        [SerializeField]
+        private GameEvent onPlayerJumpAction;
+
+        [Header("Event for dash action")]
+        [SerializeField]
+        private GameEvent onPlayerDashAction;
         
         [Header("Event for interact action")]
         [SerializeField] 
@@ -28,16 +36,33 @@ namespace Unite.Core.Input
 
         [SerializeField]
         private GameEvent onJournalCloseAction;
+        
+        [Header("Event for interacting while examining")]
+        [SerializeField]
+        private GameEvent onInteractWhileExamining;
+
+        [Header("Event for exiting image view")] 
+        [SerializeField]
+        private GameEvent onExitImageView;
 
         [SerializeField]
         private GamepadTypeEvent onGamepadUsed;
         [SerializeField]
         private GameEvent onKeyboardUsed;
+
+        private bool mouseLookEnabled;
         
         private PlayerInputActions playerInput;
         private PlayerInputActions.DefaultActions defaultActions;
         private PlayerInputActions.UIActions uiActions;
         private PlayerInputActions.JournalUIActions journalUIActions;
+        private PlayerInputActions.ExamineItemActions examineItemActions;
+        private PlayerInputActions.ViewImageActions viewImageActions;
+
+        public void HandleGameStart()
+        {
+            SwitchToDefaultActionMap();
+        }
 
         private void Awake()
         {
@@ -53,8 +78,8 @@ namespace Unite.Core.Input
             defaultActions = playerInput.Default;
             uiActions = playerInput.UI;
             journalUIActions = playerInput.JournalUI;
-            
-            SwitchToDefaultActionMap();
+            examineItemActions = playerInput.ExamineItem;
+            viewImageActions = playerInput.ViewImage;
         }
 
         private void Start()
@@ -128,6 +153,16 @@ namespace Unite.Core.Input
 
             return GamepadType.Unknown;
         }
+        
+        private void RaisePlayerJumpEvent(InputAction.CallbackContext ctx)
+        {
+            onPlayerJumpAction.Raise();
+        }
+        
+        private void RaisePlayerDashEvent(InputAction.CallbackContext ctx)
+        {
+            onPlayerDashAction.Raise();
+        }
 
         private void RaisePlayerUseAbilityEvent(InputAction.CallbackContext ctx)
         {
@@ -159,10 +194,22 @@ namespace Unite.Core.Input
             onJournalPreviousPageAction.Raise();
         }
 
+        private void RaiseInteractWhileExaminingEvent(InputAction.CallbackContext ctx)
+        {
+            onInteractWhileExamining.Raise();
+        }
+
+        private void RaiseExitImageViewEvent(InputAction.CallbackContext ctx)
+        {
+            onExitImageView.Raise();
+        }
+
         private void SubscribeToActions()
         {
             InputSystem.onDeviceChange += OnDeviceChanged;
-            
+
+            defaultActions.Jump.performed += RaisePlayerJumpEvent;
+            defaultActions.Dash.performed += RaisePlayerDashEvent;
             defaultActions.Ability1.performed += RaisePlayerUseAbilityEvent;
             defaultActions.Interact.performed += RaisePlayerInteractEvent;
             defaultActions.JournalOpen.performed += RaiseJournalOpenEvent;
@@ -170,12 +217,18 @@ namespace Unite.Core.Input
             journalUIActions.CloseJournal.performed += RaiseJournalCloseEvent;
             journalUIActions.NextPage.performed += RaiseJournalNextPageEvent;
             journalUIActions.PreviousPage.performed += RaiseJournalPreviousPageEvent;
+
+            examineItemActions.Interact.performed += RaiseInteractWhileExaminingEvent;
+
+            viewImageActions.ExitView.performed += RaiseExitImageViewEvent;
         }
 
         private void UnsubscribeToActions()
         {
             InputSystem.onDeviceChange -= OnDeviceChanged;
 
+            defaultActions.Jump.performed -= RaisePlayerJumpEvent;
+            defaultActions.Dash.performed -= RaisePlayerDashEvent;
             defaultActions.Ability1.performed -= RaisePlayerUseAbilityEvent;
             defaultActions.Interact.performed -= RaisePlayerInteractEvent;
             defaultActions.JournalOpen.performed -= RaiseJournalOpenEvent;
@@ -183,29 +236,92 @@ namespace Unite.Core.Input
             journalUIActions.CloseJournal.performed -= RaiseJournalCloseEvent;
             journalUIActions.NextPage.performed -= RaiseJournalNextPageEvent;
             journalUIActions.PreviousPage.performed -= RaiseJournalPreviousPageEvent;
+            
+            examineItemActions.Interact.performed -= RaiseInteractWhileExaminingEvent;
+            
+            viewImageActions.ExitView.performed -= RaiseExitImageViewEvent;
         }
         
         public bool IsShootActionPressed() => defaultActions.Shoot.IsPressed();
+        public bool IsSprintActionPressed() => defaultActions.Sprint.IsPressed();
+
+        public Vector2 GetMovementVectorNormalized()
+        {
+            Vector2 inputVector = defaultActions.Move.ReadValue<Vector2>();
+            return inputVector.normalized;
+        }
+
+        public Vector2 GetLookVectorNormalized()
+        {
+            // Using old input system only for mouse input handling
+            // This is due to framerate dependency and jitter issues when using the new input system.
+
+            float mouseX = UnityEngine.Input.GetAxisRaw("Mouse X");
+            float mouseY = UnityEngine.Input.GetAxisRaw("Mouse Y");
+
+            return (mouseLookEnabled) ? new Vector2(mouseX, mouseY) : Vector2.zero;
+        }
 
         public void SwitchToDefaultActionMap()
         {
             defaultActions.Enable();
+            mouseLookEnabled = true;
             uiActions.Disable();
             journalUIActions.Disable();
+            examineItemActions.Disable();
+            viewImageActions.Disable();
         }
         
         public void SwitchToUIActionMap()
         {
             defaultActions.Disable();
+            mouseLookEnabled = false;
             uiActions.Enable();
             journalUIActions.Disable();
+            examineItemActions.Disable();
+            viewImageActions.Disable();
         }
 
         public void SwitchToJournalUIActionMap()
         {
             defaultActions.Disable();
+            mouseLookEnabled = false;
             uiActions.Disable();
             journalUIActions.Enable();
+            examineItemActions.Disable();
+            viewImageActions.Disable();
+        }
+
+        public void SwitchToExamineItemActionMap()
+        {
+            defaultActions.Disable();
+            mouseLookEnabled = false;
+            uiActions.Disable();
+            journalUIActions.Disable();
+            examineItemActions.Enable();
+            viewImageActions.Disable();
+        }
+
+        public void SwitchToViewImageActionMap()
+        {
+            defaultActions.Disable();
+            mouseLookEnabled = false;
+            uiActions.Disable();
+            journalUIActions.Disable();
+            examineItemActions.Disable();
+            viewImageActions.Enable();
+        }
+
+        public void EnableDefaultActions()
+        {
+            defaultActions.Enable();
+            mouseLookEnabled = true;
+        }
+
+        public void DisableDefaultActions()
+        {
+            defaultActions.Disable();
+            mouseLookEnabled = false;
         }
     }
 }
