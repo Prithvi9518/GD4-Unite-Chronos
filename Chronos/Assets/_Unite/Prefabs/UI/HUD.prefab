@@ -6625,20 +6625,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2488093637852371641, guid: 3944111a3050ddc4a9a8cdf8b21f7c50,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 5589101015270640999, guid: 3944111a3050ddc4a9a8cdf8b21f7c50,
         type: 3}
       propertyPath: m_Name
       value: InteractImageUI
-      objectReference: {fileID: 0}
-    - target: {fileID: 5589101015270640999, guid: 3944111a3050ddc4a9a8cdf8b21f7c50,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
