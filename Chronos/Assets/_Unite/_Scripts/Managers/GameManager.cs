@@ -258,6 +258,11 @@ namespace Unite.Managers
         private void OnStartLevelTransition()
         {
             OnFinishLevel_UpdateTimeTracking?.Invoke(currentLevel);
+            //
+            // if(player != null)
+            //     player.MovementHandler.DisableMovement();
+            // onStartSwitchToNextLevel.Raise();
+            //
             Bootloader.Instance.LoadNextLevel();
         }
 
@@ -286,9 +291,6 @@ namespace Unite.Managers
 
         public void SwitchToNextLevel()
         {
-            // OnFinishLevel_UpdateTimeTracking?.Invoke(currentLevel);
-            // Bootloader.Instance.LoadNextLevel();
-
             if (SceneTransitionManager.Instance == null) return;
             SceneTransitionManager.Instance.StartTransition(startLevelTransition);
         }
