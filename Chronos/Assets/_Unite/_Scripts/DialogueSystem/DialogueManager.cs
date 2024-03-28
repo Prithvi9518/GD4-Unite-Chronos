@@ -48,9 +48,12 @@ namespace Unite.DialogueSystem
 
             if (isDialoguePlaying && dialogue.IsQueued)
             {
+                Debug.Log($"Enqueueing dialogue - {dialogue.name}");
                 dialogueQueue.Enqueue(dialogue);
                 return;
             }
+            
+            Debug.Log($"Playing dialogue - {dialogue.name}");
             
             dialogueAnalyticsEvent.Raise(dialogue);
             
@@ -89,6 +92,7 @@ namespace Unite.DialogueSystem
             if (dialogueQueue.Count <= 0) yield break;
             
             DialogueSO nextDialogue = dialogueQueue.Dequeue();
+            Debug.Log($"Dequeued dialogue - {nextDialogue.name}");
             PlayDialogue(nextDialogue);
         }
     }
