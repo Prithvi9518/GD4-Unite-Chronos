@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7637325995767008319}
   - component: {fileID: 6487310378186143484}
   - component: {fileID: 8060398347723660583}
-  m_Layer: 5
+  m_Layer: 6
   m_Name: Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -65,7 +65,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: CHRONOS ISLAND
+  m_text: Mission Archive
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 47f902e9c82a5264ca98bd454e298f4f, type: 2}
   m_sharedMaterial: {fileID: 4662145341869569409, guid: 47f902e9c82a5264ca98bd454e298f4f,
@@ -147,7 +147,7 @@ GameObject:
   - component: {fileID: 8370859396340868612}
   - component: {fileID: 1320095341170981708}
   - component: {fileID: 6197939769606164195}
-  m_Layer: 5
+  m_Layer: 6
   m_Name: Side_Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -246,9 +246,16 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8813652669649818161}
-  m_Layer: 0
+  - component: {fileID: 1210809663143640842}
+  - component: {fileID: 6757635143663409653}
+  - component: {fileID: 7941870430195524343}
+  - component: {fileID: 8202458746078530683}
+  - component: {fileID: 3721853901578981118}
+  - component: {fileID: 6877680273673029972}
+  - component: {fileID: 8882562037514600861}
+  m_Layer: 6
   m_Name: BookWithText
-  m_TagString: Untagged
+  m_TagString: Interactible
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -263,7 +270,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 57.33051, y: 57.33051, z: 57.33051}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3807687837058227651}
@@ -272,6 +279,149 @@ Transform:
   - {fileID: 6512491924523412710}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &1210809663143640842
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2429453186442137770}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.0068112975, y: 0.011362774, z: 0.0076249205}
+  m_Center: {x: -0.000308077, y: -0.0011156263, z: -0.0026662939}
+--- !u!114 &6757635143663409653
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2429453186442137770}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c7f64d21521944cdaca887dbf32ee24f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  displayName: Mission Archive
+  interactibleData: {fileID: 11400000, guid: 83d7f09d6c94d424ca5e5f63a330a319, type: 2}
+  onInteractUpdateAnalytics: {fileID: 11400000, guid: 13708a900b70425458ffed7409591384,
+    type: 2}
+  onFinishInteraction: {fileID: 0}
+  pickupGameEvent: {fileID: 11400000, guid: d8513cb851429324083cad4cc5179807, type: 2}
+  zoomFactor: 0.083
+  disableRotation: 0
+--- !u!114 &7941870430195524343
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2429453186442137770}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c40cc70acc8e40259040f3cc871b3d9a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  responses:
+  - {fileID: 8202458746078530683}
+  - {fileID: 3721853901578981118}
+--- !u!114 &8202458746078530683
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2429453186442137770}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b3f915c5193e480ba7c3922e9e4dd7dd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outline: {fileID: 3125682171010698012}
+  outlineColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
+  outlineWidth: 10
+--- !u!114 &3721853901578981118
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2429453186442137770}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc6db41d317945bc87d594f7dad4fceb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  meshRenderer: {fileID: 828319934335636687}
+  highlightColor: {r: 0.8773585, g: 0.8566661, b: 0.8566661, a: 0.8509804}
+--- !u!114 &6877680273673029972
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2429453186442137770}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b9893a878b6442144bd9c1283a2b4b18, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  description: 
+  gameEvent: {fileID: 11400000, guid: 5007625fabba4ae44a1cc8c880579ac6, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 7941870430195524343}
+        m_TargetAssemblyTypeName: Unite.HighlightSystem.PickupHighlightable, Assembly-CSharp
+        m_MethodName: HandleExamineStart
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &8882562037514600861
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2429453186442137770}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b9893a878b6442144bd9c1283a2b4b18, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  description: 
+  gameEvent: {fileID: 11400000, guid: 98e7932013a6db8498ca9bc957db1d37, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 7941870430195524343}
+        m_TargetAssemblyTypeName: Unite.HighlightSystem.PickupHighlightable, Assembly-CSharp
+        m_MethodName: HandleExamineFinish
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &7549138190501465811
 GameObject:
   m_ObjectHideFlags: 0
@@ -284,7 +434,7 @@ GameObject:
   - component: {fileID: 1743877756835491863}
   - component: {fileID: 1964305378139134907}
   - component: {fileID: 365736305955565894}
-  m_Layer: 5
+  m_Layer: 6
   m_Name: Front_Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -385,7 +535,7 @@ GameObject:
   - component: {fileID: 7698607281830984295}
   - component: {fileID: 9029055318933500485}
   - component: {fileID: 2593525498439618025}
-  m_Layer: 5
+  m_Layer: 6
   m_Name: Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -439,7 +589,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: CHRONOS ISLAND
+  m_text: Mission Archive
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 47f902e9c82a5264ca98bd454e298f4f, type: 2}
   m_sharedMaterial: {fileID: 4662145341869569409, guid: 47f902e9c82a5264ca98bd454e298f4f,
@@ -577,11 +727,50 @@ PrefabInstance:
       propertyPath: m_Name
       value: important_book_outside
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 406e479c163560b44a52ec2a69c90e65,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 406e479c163560b44a52ec2a69c90e65,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3125682171010698012}
   m_SourcePrefab: {fileID: 100100000, guid: 406e479c163560b44a52ec2a69c90e65, type: 3}
+--- !u!23 &828319934335636687 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: -7511558181221131132, guid: 406e479c163560b44a52ec2a69c90e65,
+    type: 3}
+  m_PrefabInstance: {fileID: 2071476842888546379}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1188445519502701850 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 406e479c163560b44a52ec2a69c90e65,
+    type: 3}
+  m_PrefabInstance: {fileID: 2071476842888546379}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &3125682171010698012
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1188445519502701850}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 0
+  outlineColor: {r: 1, g: 1, b: 1, a: 1}
+  outlineWidth: 2
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
 --- !u!4 &1960724227227955104 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 406e479c163560b44a52ec2a69c90e65,
@@ -655,6 +844,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: important_book_inside
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: d8b04c1455ed1314d85140bbeb0b7df5,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
