@@ -57,7 +57,6 @@ namespace Unite.UI
         {
             var tweener = panel.DOFade(0f, fadeInTimeInSeconds);
             yield return tweener.WaitForCompletion();
-            yield return new WaitForSeconds(waitAfterFadeOutSeconds);
             callback?.Invoke();
         }
 
@@ -65,6 +64,7 @@ namespace Unite.UI
         {
             var tweener = panel.DOFade(1f, fadeOutTimeInSeconds);
             yield return tweener.WaitForCompletion();
+            yield return new WaitForSeconds(waitAfterFadeOutSeconds);
             callback?.Invoke();
         }
     }
