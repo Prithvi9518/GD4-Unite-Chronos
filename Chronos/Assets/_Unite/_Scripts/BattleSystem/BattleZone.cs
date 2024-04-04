@@ -1,6 +1,7 @@
 ﻿using Unite.BuffSystem;
 using Unite.Enemies.Spawning;
 using Unite.EventSystem;
+using Unite.VFXScripts;
 using UnityEngine;
 
 namespace Unite.BattleSystem
@@ -15,9 +16,16 @@ namespace Unite.BattleSystem
 
         [SerializeField]
         private BattleZoneBarrier barrier;
+
+        [SerializeField] 
+        private GameObject visual;
         
         [SerializeField]
         private Transform buffSpawnPosition;
+
+        [Header("Force Field VFX:")]
+        [SerializeField] 
+        private ForceFieldController forceFieldController;
 
         [Header("Events for starting, progressing and finishing a battle:")]
         [SerializeField]
@@ -48,6 +56,7 @@ namespace Unite.BattleSystem
         public string DisplayName => displayName;
         public BattleZoneBarrier Barrier => barrier;
         public BattleState BattleState => battleState;
+        public ForceFieldController ForceFieldController => forceFieldController;
 
         private void Awake()
         {
@@ -120,6 +129,8 @@ namespace Unite.BattleSystem
             }
             
             onFinishBattleUpdateAnalytics.Raise(new BattleFinishedInfo(displayName, timeDifference));
+            
+            visual.SetActive(false);
         }
     }
 }

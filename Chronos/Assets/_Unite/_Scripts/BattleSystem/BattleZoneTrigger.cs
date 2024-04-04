@@ -26,6 +26,8 @@ namespace Unite.BattleSystem
                 !collider.bounds.Contains(other.bounds.max)) return;
             
             triggered = true;
+            if(battleZone.ForceFieldController != null)
+                battleZone.ForceFieldController.StopDistortion();
             battleZone.Barrier.ToggleBarrierColliders(true);
             battleZone.StartBattle(player);
         }
