@@ -18,6 +18,4 @@ MonoBehaviour:
   destroyAfterInteract: 0
   interactText: Inspect the Picture
   showInteractText: 1
-  actionsOnInteract:
-  - action: {fileID: 11400000, guid: 351e67b6da428ea4baa41a778196bdda, type: 2}
-    doOnce: 1
+  actionsOnInteract: []
