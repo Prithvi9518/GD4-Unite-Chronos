@@ -310,6 +310,12 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4969767792096511817, guid: 9f8acbefdaba57b448abd2f8a589c82e,
         type: 3}
+      propertyPath: interactibleData
+      value: 
+      objectReference: {fileID: 11400000, guid: 23fd18d9c2523d44cad77e53593abb3e,
+        type: 2}
+    - target: {fileID: 4969767792096511817, guid: 9f8acbefdaba57b448abd2f8a589c82e,
+        type: 3}
       propertyPath: onInteractUpdateAnalytics
       value: 
       objectReference: {fileID: 11400000, guid: 13708a900b70425458ffed7409591384,
