@@ -1,0 +1,44 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3169fdde3ded437b9d20f31f184bec8e, type: 3}
+  m_Name: BeforeEnterteringBattleZoneTwo
+  m_EditorClassIdentifier: 
+  lines:
+  - speakerName: Ava
+    text: 'I should read the behaviours of the '
+    audio: {fileID: 8300000, guid: 628cef0b1ba0a9644a12f93f4d60188b, type: 3}
+    setDelayToClipLength: 1
+    delayOffset: 0
+    manualDelay: 0
+    showSubtitles: 1
+  - speakerName: Ava
+    text: 'wildlife of the island. '
+    audio: {fileID: 8300000, guid: 0af835e70d96f1f4d92e98d5af36d2ce, type: 3}
+    setDelayToClipLength: 1
+    delayOffset: 0
+    manualDelay: 0
+    showSubtitles: 1
+  - speakerName: Ava
+    text: I might pick up something
+    audio: {fileID: 8300000, guid: 3d8139599fd6ee14b82cc122c58a3b06, type: 3}
+    setDelayToClipLength: 1
+    delayOffset: 0
+    manualDelay: 0
+    showSubtitles: 1
+  - speakerName: Ava
+    text: before engaging with them again.
+    audio: {fileID: 8300000, guid: 471883f2c553ce64496a41bab871af99, type: 3}
+    setDelayToClipLength: 1
+    delayOffset: 0
+    manualDelay: 0
+    showSubtitles: 1
+  isQueued: 0
