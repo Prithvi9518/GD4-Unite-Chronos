@@ -1,0 +1,37 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3169fdde3ded437b9d20f31f184bec8e, type: 3}
+  m_Name: Cliff
+  m_EditorClassIdentifier: 
+  lines:
+  - speakerName: Ava
+    text: 'I got a lot more ground to cover. '
+    audio: {fileID: 8300000, guid: 166d151c16dddcb46ac172288a927bc9, type: 3}
+    setDelayToClipLength: 1
+    delayOffset: 0
+    manualDelay: 0
+    showSubtitles: 1
+  - speakerName: Ava
+    text: 'But I won''t stop searching. '
+    audio: {fileID: 8300000, guid: 93d608fdd4cb5c8449b539ec83aa2bfe, type: 3}
+    setDelayToClipLength: 1
+    delayOffset: 0
+    manualDelay: 0
+    showSubtitles: 1
+  - speakerName: Ava
+    text: I'll keep going until I bring you home, brother.
+    audio: {fileID: 8300000, guid: 12b9d70081bde3b49b24009299525670, type: 3}
+    setDelayToClipLength: 1
+    delayOffset: 0
+    manualDelay: 0
+    showSubtitles: 1
+  isQueued: 0
