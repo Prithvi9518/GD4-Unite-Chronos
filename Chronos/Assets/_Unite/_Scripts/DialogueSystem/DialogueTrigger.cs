@@ -6,6 +6,8 @@
         BattleEnded,
         EnterIslandLevel,
         EnterBattleZone,
-        ExitRoomNotYet
+        ExitRoomNotYet,
+        TimeStopTutorial,
+        UseTimeStop
     }
 }

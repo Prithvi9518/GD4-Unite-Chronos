@@ -1,0 +1,44 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3169fdde3ded437b9d20f31f184bec8e, type: 3}
+  m_Name: WeatherWarningNoteInteraction
+  m_EditorClassIdentifier: 
+  lines:
+  - speakerName: Ava
+    text: Looks like the Nexus affects the
+    audio: {fileID: 8300000, guid: 1b760f71df3e2664fb5cc727344c516f, type: 3}
+    setDelayToClipLength: 1
+    delayOffset: 0
+    manualDelay: 0
+    showSubtitles: 1
+  - speakerName: Ava
+    text: 'weather condition on this island. '
+    audio: {fileID: 8300000, guid: 850d229ae24d16c4a8c00375934d0dca, type: 3}
+    setDelayToClipLength: 1
+    delayOffset: 0
+    manualDelay: 0
+    showSubtitles: 1
+  - speakerName: Ava
+    text: That explains the purple clouds.
+    audio: {fileID: 8300000, guid: 0eba3d2a08a4c2a4693e8b156aac188c, type: 3}
+    setDelayToClipLength: 1
+    delayOffset: 0
+    manualDelay: 0
+    showSubtitles: 1
+  - speakerName: Ava
+    text: I shouldn't stay on this island for too much longer.
+    audio: {fileID: 8300000, guid: a1b80c8d604a9094b960a29c1aa7334c, type: 3}
+    setDelayToClipLength: 1
+    delayOffset: 0
+    manualDelay: 0
+    showSubtitles: 1
+  isQueued: 0

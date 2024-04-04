@@ -1,0 +1,44 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3169fdde3ded437b9d20f31f184bec8e, type: 3}
+  m_Name: CrashLand
+  m_EditorClassIdentifier: 
+  lines:
+  - speakerName: Ava
+    text: What... what just happened?
+    audio: {fileID: 8300000, guid: 90e5028da67564a49a216f2db5c464ff, type: 3}
+    setDelayToClipLength: 1
+    delayOffset: 0
+    manualDelay: 0
+    showSubtitles: 1
+  - speakerName: Ava
+    text: Sand? Wait have I made it!
+    audio: {fileID: 8300000, guid: c26bb5109d442b6459fb8445bfed995b, type: 3}
+    setDelayToClipLength: 1
+    delayOffset: 0
+    manualDelay: 0
+    showSubtitles: 1
+  - speakerName: Ava
+    text: 'Last thing I remember was heading into a storm. '
+    audio: {fileID: 8300000, guid: ca856685be8392c40b827c4e0185e54e, type: 3}
+    setDelayToClipLength: 1
+    delayOffset: 0
+    manualDelay: 0
+    showSubtitles: 1
+  - speakerName: Ava
+    text: It seems I must have crashed my boat.
+    audio: {fileID: 8300000, guid: 6ca81797adbc51b44820990c2db0b534, type: 3}
+    setDelayToClipLength: 1
+    delayOffset: 0
+    manualDelay: 0
+    showSubtitles: 1
+  isQueued: 0

@@ -1,0 +1,44 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3169fdde3ded437b9d20f31f184bec8e, type: 3}
+  m_Name: RecordingOneInteraction
+  m_EditorClassIdentifier: 
+  lines:
+  - speakerName: Ava
+    text: It looks like the island itself fought back
+    audio: {fileID: 8300000, guid: aa80c39427750e74589f9658eaf371bd, type: 3}
+    setDelayToClipLength: 1
+    delayOffset: 0
+    manualDelay: 0
+    showSubtitles: 1
+  - speakerName: Ava
+    text: "against the researcher\u2019s presence."
+    audio: {fileID: 8300000, guid: a32d0bc3d2c69da4cbcf101549b61b20, type: 3}
+    setDelayToClipLength: 1
+    delayOffset: 0
+    manualDelay: 0
+    showSubtitles: 1
+  - speakerName: Ava
+    text: Looks like the researchers here knew the impact
+    audio: {fileID: 8300000, guid: 31c9c71871a00ba4db4b28519700d4c4, type: 3}
+    setDelayToClipLength: 1
+    delayOffset: 0
+    manualDelay: 0
+    showSubtitles: 1
+  - speakerName: Ava
+    text: they were causing to the wildlife, but they just didn't care.
+    audio: {fileID: 8300000, guid: d119e7c63d572694aa126d3ae60d9423, type: 3}
+    setDelayToClipLength: 1
+    delayOffset: 0
+    manualDelay: 0
+    showSubtitles: 1
+  isQueued: 0

@@ -1,0 +1,58 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3169fdde3ded437b9d20f31f184bec8e, type: 3}
+  m_Name: TrialsNoteInteraction
+  m_EditorClassIdentifier: 
+  lines:
+  - speakerName: Ava
+    text: 'American Revolution...passed... '
+    audio: {fileID: 8300000, guid: b3c8c8de0b188bd40b7dbf7aeb1db072, type: 3}
+    setDelayToClipLength: 1
+    delayOffset: 0
+    manualDelay: 0
+    showSubtitles: 1
+  - speakerName: Ava
+    text: Cuban missile crisis...failed...
+    audio: {fileID: 8300000, guid: 4d8e033f50f2d3444a6aa88441a1ba02, type: 3}
+    setDelayToClipLength: 1
+    delayOffset: 0
+    manualDelay: 0
+    showSubtitles: 1
+  - speakerName: Ava
+    text: 'Hang on? Russia weren''t actually '
+    audio: {fileID: 8300000, guid: 29b4fff48af2c204cb96e3a2a33e3a18, type: 3}
+    setDelayToClipLength: 1
+    delayOffset: 0
+    manualDelay: 0
+    showSubtitles: 1
+  - speakerName: Ava
+    text: 'trying to go back in time where they? '
+    audio: {fileID: 8300000, guid: 3d9c0509dbd0b1a45a06f6ba2444008a, type: 3}
+    setDelayToClipLength: 1
+    delayOffset: 0
+    manualDelay: 0
+    showSubtitles: 1
+  - speakerName: Ava
+    text: 'It sounds like they were somewhat '
+    audio: {fileID: 8300000, guid: 0989372625c60574c90c2dba93f6a4bd, type: 3}
+    setDelayToClipLength: 1
+    delayOffset: 0
+    manualDelay: 0
+    showSubtitles: 1
+  - speakerName: Ava
+    text: successful in their mission.
+    audio: {fileID: 8300000, guid: 8d6048551db03b14c8c0d908740600be, type: 3}
+    setDelayToClipLength: 1
+    delayOffset: 0
+    manualDelay: 0
+    showSubtitles: 1
+  isQueued: 0
