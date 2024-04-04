@@ -15,6 +15,8 @@ GameObject:
   - component: {fileID: 3270841005411329603}
   - component: {fileID: 3143158959110080258}
   - component: {fileID: 6820000343460652782}
+  - component: {fileID: 6398218249690034257}
+  - component: {fileID: 6009360521248032648}
   m_Layer: 0
   m_Name: PlayerDialogueHandler
   m_TagString: Untagged
@@ -54,6 +56,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 6bd8be0bfe6e7e54d85c62492f2f1c0d, type: 2}
   - {fileID: 11400000, guid: 411696a73e42c2c48aabf5ca551d7b82, type: 2}
   - {fileID: 11400000, guid: e7d318d2262d6ab459d35209333898dc, type: 2}
+  - {fileID: 11400000, guid: 1b156284c8adf1d4db02465b21bd1a29, type: 2}
+  - {fileID: 11400000, guid: f5dafba9f2035af42a7108ef7d6677bb, type: 2}
 --- !u!114 &2670484228375142566
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -190,6 +194,64 @@ MonoBehaviour:
       - m_Target: {fileID: 961527736350545288}
         m_TargetAssemblyTypeName: Unite.DialogueSystem.PlayerDialogueHandler, Assembly-CSharp
         m_MethodName: OnExitRoomNotYet
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &6398218249690034257
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3230454642952135529}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b9893a878b6442144bd9c1283a2b4b18, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  description: Listen for time stop tutorial
+  gameEvent: {fileID: 11400000, guid: 1bb68b75a0c012649b9803858c832ecc, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 961527736350545288}
+        m_TargetAssemblyTypeName: Unite.DialogueSystem.PlayerDialogueHandler, Assembly-CSharp
+        m_MethodName: OnStartTimeStopTutorial
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &6009360521248032648
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3230454642952135529}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b9893a878b6442144bd9c1283a2b4b18, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  description: Listen for time stop use
+  gameEvent: {fileID: 11400000, guid: 11dd035e10decae4495407d205330d5b, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 961527736350545288}
+        m_TargetAssemblyTypeName: Unite.DialogueSystem.PlayerDialogueHandler, Assembly-CSharp
+        m_MethodName: OnUseTimeStop
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

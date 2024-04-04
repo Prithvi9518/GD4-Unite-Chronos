@@ -16,6 +16,8 @@ namespace Unite.DialogueSystem
 
         private int exitRoomFailedAttempts;
 
+        private int timeStopUses;
+
         private void Awake()
         {
             SetupDialogueMap();
@@ -39,6 +41,8 @@ namespace Unite.DialogueSystem
                 { DialogueTrigger.EnterIslandLevel , HandleEnterIsland},
                 { DialogueTrigger.EnterBattleZone , HandleEnterBattleZone},
                 { DialogueTrigger.ExitRoomNotYet , HandleExitRoomNotYet},
+                { DialogueTrigger.TimeStopTutorial , HandleTimeStopTutorial},
+                { DialogueTrigger.UseTimeStop , HandleUseTimeStop}
             };
         }
         
@@ -79,6 +83,19 @@ namespace Unite.DialogueSystem
             exitRoomFailedAttempts++;
         }
 
+        private void HandleTimeStopTutorial(List<DialogueSO> dialogues)
+        {
+            DialogueManager.Instance.PlayDialogue(dialogues[0]);
+        }
+
+        private void HandleUseTimeStop(List<DialogueSO> dialogues)
+        {
+            if (timeStopUses > 0) return;
+            timeStopUses++;
+            
+            DialogueManager.Instance.PlayDialogue(dialogues[0]);
+        }
+
         public void OnNotify(DialogueTrigger dialogueTrigger)
         {
             if (!dialogueTriggerHandlers.ContainsKey(dialogueTrigger)) return;
@@ -107,6 +124,16 @@ namespace Unite.DialogueSystem
         public void OnExitRoomNotYet()
         {
             OnNotify(DialogueTrigger.ExitRoomNotYet);
+        }
+
+        public void OnStartTimeStopTutorial()
+        {
+            OnNotify(DialogueTrigger.TimeStopTutorial);
+        }
+        
+        public void OnUseTimeStop()
+        {
+            OnNotify(DialogueTrigger.UseTimeStop);
         }
     }
 }
