@@ -1,4 +1,4 @@
-﻿using Unite.EventSystem;
+﻿using Unite.ActionSystem;
 using UnityEngine;
 
 namespace Unite.BattleSystem
@@ -7,8 +7,8 @@ namespace Unite.BattleSystem
     {
         public static BattleTracker Instance { get; private set; }
 
-        [SerializeField]
-        private GameEvent onFirstBattleZone;
+        [SerializeField] 
+        private ActionSO[] onFirstBattleZoneActions;
         
         private BattleZone currentBattleZone;
         private int numBattleZonesEncountered;
@@ -32,8 +32,13 @@ namespace Unite.BattleSystem
 
         private void CheckFirstBattleZone()
         {
-            if(numBattleZonesEncountered == 1)
-                onFirstBattleZone.Raise();
+            if (numBattleZonesEncountered != 1) return;
+            
+            if (ActionExecutionManager.Instance == null) return;
+            foreach (var action in onFirstBattleZoneActions)
+            {
+                ActionExecutionManager.Instance.ExecuteAction(action);
+            }
         }
     }
 }

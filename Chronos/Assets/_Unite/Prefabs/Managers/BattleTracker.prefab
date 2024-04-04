@@ -44,4 +44,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff670c1f41254158bf85bdc863a3324b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  onFirstBattleZone: {fileID: 11400000, guid: e0ac1abb3d0c42042a083164f1457d85, type: 2}
+  onFirstBattleZoneActions:
+  - {fileID: 11400000, guid: 543e584fbe786a3479fca28d72e0b8d9, type: 2}
