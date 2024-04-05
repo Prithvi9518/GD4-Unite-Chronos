@@ -344,6 +344,8 @@ GameObject:
   - component: {fileID: 6402671008850746234}
   - component: {fileID: 8478175927266792398}
   - component: {fileID: 6468220431574506076}
+  - component: {fileID: -1458378977649468398}
+  - component: {fileID: -8001901914085455504}
   m_Layer: 6
   m_Name: SpeedBuff
   m_TagString: Interactible
@@ -419,6 +421,58 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b86f6ad25908412bbfc88ec2332ca545, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &-1458378977649468398
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5211760446356415697}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1def569afbbef9e468ff6b6f25aac0d4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objectToAnimate: {fileID: 5211760446356415697}
+  animationType: 1
+  easeType: 1
+  duration: 2
+  delay: 0
+  showOnEnable: 1
+  animateOnDisable: 0
+  loop: 1
+  pingPong: 0
+  from: {x: 0, y: 0, z: 0}
+  to: {x: 0, y: 0.5, z: 0}
+  OnCycle:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!114 &-8001901914085455504
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5211760446356415697}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1def569afbbef9e468ff6b6f25aac0d4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objectToAnimate: {fileID: 5211760446356415697}
+  animationType: 3
+  easeType: 1
+  duration: 5
+  delay: 0
+  showOnEnable: 1
+  animateOnDisable: 0
+  loop: 1
+  pingPong: 0
+  from: {x: 0, y: 0, z: 0}
+  to: {x: 0, y: 360, z: 0}
+  OnCycle:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1001 &2855101073466009380
 PrefabInstance:
   m_ObjectHideFlags: 0

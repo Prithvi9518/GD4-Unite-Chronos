@@ -190,8 +190,74 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 5757745537576241639}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 4473673365344350536, guid: 372cf2fa00fa0b94496898bb3e69ef26,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6677500872761544017}
+    - targetCorrespondingSourceObject: {fileID: 4473673365344350536, guid: 372cf2fa00fa0b94496898bb3e69ef26,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: -8347747063105663338}
   m_SourcePrefab: {fileID: 100100000, guid: 372cf2fa00fa0b94496898bb3e69ef26, type: 3}
+--- !u!1 &5965414434557476915 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4473673365344350536, guid: 372cf2fa00fa0b94496898bb3e69ef26,
+    type: 3}
+  m_PrefabInstance: {fileID: 7844363364996264315}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &6677500872761544017
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5965414434557476915}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1def569afbbef9e468ff6b6f25aac0d4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objectToAnimate: {fileID: 5965414434557476915}
+  animationType: 1
+  easeType: 1
+  duration: 2
+  delay: 0
+  showOnEnable: 1
+  animateOnDisable: 0
+  loop: 1
+  pingPong: 0
+  from: {x: 0, y: 0, z: 0}
+  to: {x: 0, y: 0.5, z: 0}
+  OnCycle:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!114 &-8347747063105663338
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5965414434557476915}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1def569afbbef9e468ff6b6f25aac0d4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objectToAnimate: {fileID: 5965414434557476915}
+  animationType: 3
+  easeType: 1
+  duration: 5
+  delay: 0
+  showOnEnable: 1
+  animateOnDisable: 0
+  loop: 1
+  pingPong: 0
+  from: {x: 0, y: 0, z: 0}
+  to: {x: 0, y: 360, z: 0}
+  OnCycle:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!4 &9028644839392626839 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1265782310504626668, guid: 372cf2fa00fa0b94496898bb3e69ef26,

@@ -298,6 +298,31 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4494318851258288122, guid: 1cb0ae8dfb57a1249acca052f2fbe87b,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.35
+      objectReference: {fileID: 0}
+    - target: {fileID: 6952080058728811379, guid: 1cb0ae8dfb57a1249acca052f2fbe87b,
+        type: 3}
+      propertyPath: field of view
+      value: 75
+      objectReference: {fileID: 0}
+    - target: {fileID: 7874485492082593582, guid: 1cb0ae8dfb57a1249acca052f2fbe87b,
+        type: 3}
+      propertyPath: recoilKickback.y
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 7874485492082593582, guid: 1cb0ae8dfb57a1249acca052f2fbe87b,
+        type: 3}
+      propertyPath: recoilKickback.z
+      value: -2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7874485492082593582, guid: 1cb0ae8dfb57a1249acca052f2fbe87b,
+        type: 3}
+      propertyPath: recoilRotation.y
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 7886819851893817872, guid: 1cb0ae8dfb57a1249acca052f2fbe87b,
         type: 3}
       propertyPath: m_Cameras.Array.size
