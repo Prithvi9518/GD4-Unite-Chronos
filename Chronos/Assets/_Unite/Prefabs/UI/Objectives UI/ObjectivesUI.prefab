@@ -373,6 +373,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   objectiveText: {fileID: 5648633410221831041}
+  enableTween: 1
+  numColorTweens: 5
+  tweenDurationInSeconds: 0.5
+  tweenColor: {r: 1, g: 0.9313141, b: 0.21226418, a: 1}
 --- !u!1 &5879037362696138969
 GameObject:
   m_ObjectHideFlags: 0
