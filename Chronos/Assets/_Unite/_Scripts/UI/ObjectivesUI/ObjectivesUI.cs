@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Unite.ObjectiveSystem;
 using UnityEngine;
 
@@ -49,7 +48,7 @@ namespace Unite.UI
                 
                 Transform taskTransform = Instantiate(objectiveTemplate, container);
                 taskTransform.gameObject.SetActive(true);
-                taskTransform.GetComponent<ObjectiveTemplateUI>().SetObjectiveText(objective);
+                taskTransform.GetComponent<ObjectiveTemplateUI>().UpdateObjectiveText(objective);
             }
         }
     }
