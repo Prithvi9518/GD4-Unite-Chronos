@@ -14,10 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lines:
   - speakerName: Ava
-    text: 'Like Dad use to say, "Not all who wander are lost". '
+    text: 'Like Dad used to say, "Not all who wander are lost". '
     audio: {fileID: 8300000, guid: c45075a9b70bd214ba02caef4378cd4c, type: 3}
     setDelayToClipLength: 1
-    delayOffset: 0
+    delayOffset: 0.5
     manualDelay: 0
     showSubtitles: 1
   - speakerName: Ava
@@ -28,3 +28,4 @@ MonoBehaviour:
     manualDelay: 0
     showSubtitles: 1
   isQueued: 0
+  overrideQueue: 1
