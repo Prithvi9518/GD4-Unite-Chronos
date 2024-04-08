@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7063751028181218624}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: StatusEffectParent
   m_TagString: Untagged
   m_Icon: {fileID: -1412012063857583412, guid: 0000000000000000d000000000000000, type: 0}
@@ -40,7 +40,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5669884112798471897}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: ItemDropPoint
   m_TagString: Untagged
   m_Icon: {fileID: 3936346786652291628, guid: 0000000000000000d000000000000000, type: 0}
@@ -91,7 +91,7 @@ GameObject:
   - component: {fileID: 5567462189996398606}
   - component: {fileID: 7523413669619601264}
   - component: {fileID: 2426432609330623428}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: TestFlyingEnemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -488,7 +488,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1964349951316544131}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: StrafeRight
   m_TagString: Untagged
   m_Icon: {fileID: 419385456094870383, guid: 0000000000000000d000000000000000, type: 0}
@@ -519,7 +519,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4443922012232220894}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: StrafeLeft
   m_TagString: Untagged
   m_Icon: {fileID: 419385456094870383, guid: 0000000000000000d000000000000000, type: 0}
@@ -550,7 +550,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5594393095588736758}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: ProjectileSpawnPoint
   m_TagString: Untagged
   m_Icon: {fileID: 2974397684917235467, guid: 0000000000000000d000000000000000, type: 0}
@@ -580,6 +580,21 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 5458212279052466711}
     m_Modifications:
+    - target: {fileID: 1338753772299818619, guid: 502a811d66dc54846a4de55e684ddcce,
+        type: 3}
+      propertyPath: m_Layer
+      value: 14
+      objectReference: {fileID: 0}
+    - target: {fileID: 3192792395420061499, guid: 502a811d66dc54846a4de55e684ddcce,
+        type: 3}
+      propertyPath: m_Layer
+      value: 14
+      objectReference: {fileID: 0}
+    - target: {fileID: 3314452356260401284, guid: 502a811d66dc54846a4de55e684ddcce,
+        type: 3}
+      propertyPath: m_Layer
+      value: 14
+      objectReference: {fileID: 0}
     - target: {fileID: 3383040252861502642, guid: 502a811d66dc54846a4de55e684ddcce,
         type: 3}
       propertyPath: m_PresetInfoIsWorld
@@ -685,6 +700,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7777866772813591094, guid: 502a811d66dc54846a4de55e684ddcce,
+        type: 3}
+      propertyPath: m_Layer
+      value: 14
+      objectReference: {fileID: 0}
     - target: {fileID: 8513362692783178874, guid: 502a811d66dc54846a4de55e684ddcce,
         type: 3}
       propertyPath: owner
@@ -694,6 +714,11 @@ PrefabInstance:
         type: 3}
       propertyPath: offset.y
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8525667400502772266, guid: 502a811d66dc54846a4de55e684ddcce,
+        type: 3}
+      propertyPath: m_Layer
+      value: 14
       objectReference: {fileID: 0}
     - target: {fileID: 8616598340507220078, guid: 502a811d66dc54846a4de55e684ddcce,
         type: 3}
@@ -709,6 +734,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Enemy Health Bar Canvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 8932469748694489006, guid: 502a811d66dc54846a4de55e684ddcce,
+        type: 3}
+      propertyPath: m_Layer
+      value: 14
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
