@@ -1,0 +1,86 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3169fdde3ded437b9d20f31f184bec8e, type: 3}
+  m_Name: RecordingThreeInteraction
+  m_EditorClassIdentifier: 
+  lines:
+  - speakerName: Researcher
+    text: 'Entry-3: Desperation and Camouflage.'
+    audio: {fileID: 8300000, guid: e60abd22dd9156341a8d9eefb7f8bfd5, type: 3}
+    setDelayToClipLength: 1
+    delayOffset: 0
+    manualDelay: 0
+    showSubtitles: 1
+  - speakerName: Researcher
+    text: 'Our situation grows more desperate with each passing day. '
+    audio: {fileID: 8300000, guid: 8f3acaa12e332874f94034f86078d6bb, type: 3}
+    setDelayToClipLength: 1
+    delayOffset: 0
+    manualDelay: 0
+    showSubtitles: 1
+  - speakerName: Researcher
+    text: 'The Nexus relentless influence is testing our resilience. '
+    audio: {fileID: 8300000, guid: 386d3daf98b6b1b419f93f727df12f3f, type: 3}
+    setDelayToClipLength: 1
+    delayOffset: 0
+    manualDelay: 0
+    showSubtitles: 1
+  - speakerName: Researcher
+    text: We must find more effective means of camouflage
+    audio: {fileID: 8300000, guid: ffd3759793cd2cc49a1a3b02639d42da, type: 3}
+    setDelayToClipLength: 1
+    delayOffset: 0
+    manualDelay: 0
+    showSubtitles: 1
+  - speakerName: Researcher
+    text: to shield ourselves from its impact.
+    audio: {fileID: 8300000, guid: 7c6e0bd0943ba2e44bf63a4649f60a62, type: 3}
+    setDelayToClipLength: 1
+    delayOffset: 0
+    manualDelay: 0
+    showSubtitles: 1
+  - speakerName: Researcher
+    text: 'Our survival hinges on adapting quickly '
+    audio: {fileID: 8300000, guid: dad5039803fd6ce4bbe5ebc557ee875e, type: 3}
+    setDelayToClipLength: 1
+    delayOffset: 0
+    manualDelay: 0
+    showSubtitles: 1
+  - speakerName: Researcher
+    text: and outwitting the Nexus relentless reach.
+    audio: {fileID: 8300000, guid: e632e53db68ca58459163f4b94b3f2f1, type: 3}
+    setDelayToClipLength: 1
+    delayOffset: 1
+    manualDelay: 0
+    showSubtitles: 1
+  - speakerName: Ava
+    text: "The researchers got greedy and\toverstayed their welcome. "
+    audio: {fileID: 8300000, guid: f7ade61cbee8c4d4ca6a9a53b56c4f21, type: 3}
+    setDelayToClipLength: 1
+    delayOffset: 0
+    manualDelay: 0
+    showSubtitles: 1
+  - speakerName: Ava
+    text: 'Seems like the researchers were having a lot of '
+    audio: {fileID: 8300000, guid: 35f432e04abc7ae46ada04d8d07b514b, type: 3}
+    setDelayToClipLength: 1
+    delayOffset: 0
+    manualDelay: 0
+    showSubtitles: 1
+  - speakerName: Ava
+    text: trouble with the wildlife on the island.
+    audio: {fileID: 8300000, guid: ee51f2175599c3d4bae0518e4bcc306d, type: 3}
+    setDelayToClipLength: 1
+    delayOffset: 0
+    manualDelay: 0
+    showSubtitles: 1
+  isQueued: 0
