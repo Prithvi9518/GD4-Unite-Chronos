@@ -1,0 +1,93 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3169fdde3ded437b9d20f31f184bec8e, type: 3}
+  m_Name: RecordingOneInteraction
+  m_EditorClassIdentifier: 
+  lines:
+  - speakerName: Researcher
+    text: 'Entry-1: Nexus''s Impact on Island Wildlife.'
+    audio: {fileID: 8300000, guid: 3b30859228bf33a42bd077771f00205b, type: 3}
+    setDelayToClipLength: 1
+    delayOffset: 0
+    manualDelay: 0
+    showSubtitles: 1
+  - speakerName: Researcher
+    text: 'The Nexus influence on the island''s wildlife is a growing concern. '
+    audio: {fileID: 8300000, guid: 34362331504bb314eba8fcad96712a0b, type: 3}
+    setDelayToClipLength: 1
+    delayOffset: 0
+    manualDelay: 0
+    showSubtitles: 1
+  - speakerName: Researcher
+    text: 'We''ve noted a disturbing trend in recent observations. '
+    audio: {fileID: 8300000, guid: 2a25160bab8022c498d78e093c65717b, type: 3}
+    setDelayToClipLength: 1
+    delayOffset: 0
+    manualDelay: 0
+    showSubtitles: 1
+  - speakerName: Researcher
+    text: 'The animals, once docile and predictable, have become '
+    audio: {fileID: 8300000, guid: b5cff4f243bc49d479d8ec4d43d2bc8b, type: 3}
+    setDelayToClipLength: 1
+    delayOffset: 0
+    manualDelay: 0
+    showSubtitles: 1
+  - speakerName: Researcher
+    text: 'Increasingly aggressive and dangerous. '
+    audio: {fileID: 8300000, guid: dbb7c981ab3f63249bd05f37492ea277, type: 3}
+    setDelayToClipLength: 1
+    delayOffset: 0
+    manualDelay: 0
+    showSubtitles: 1
+  - speakerName: Researcher
+    text: 'It''s as if the very essence of the island''s ecosystem is under siege. '
+    audio: {fileID: 8300000, guid: 91f160d25da1a5e4b926607c12b1943f, type: 3}
+    setDelayToClipLength: 1
+    delayOffset: 0
+    manualDelay: 0
+    showSubtitles: 1
+  - speakerName: Researcher
+    text: We must exercise extreme caution as we continue our research.
+    audio: {fileID: 8300000, guid: 889ec62affc1d7345aa284c654fb7543, type: 3}
+    setDelayToClipLength: 1
+    delayOffset: 1
+    manualDelay: 0
+    showSubtitles: 1
+  - speakerName: Researcher
+    text: It looks like the island itself fought back
+    audio: {fileID: 8300000, guid: aa80c39427750e74589f9658eaf371bd, type: 3}
+    setDelayToClipLength: 1
+    delayOffset: 0
+    manualDelay: 0
+    showSubtitles: 1
+  - speakerName: Ava
+    text: "against the researcher\u2019s presence."
+    audio: {fileID: 8300000, guid: a32d0bc3d2c69da4cbcf101549b61b20, type: 3}
+    setDelayToClipLength: 1
+    delayOffset: 0
+    manualDelay: 0
+    showSubtitles: 1
+  - speakerName: Ava
+    text: Looks like the researchers here knew the impact
+    audio: {fileID: 8300000, guid: 31c9c71871a00ba4db4b28519700d4c4, type: 3}
+    setDelayToClipLength: 1
+    delayOffset: 0
+    manualDelay: 0
+    showSubtitles: 1
+  - speakerName: Ava
+    text: they were causing to the wildlife, but they just didn't care.
+    audio: {fileID: 8300000, guid: d119e7c63d572694aa126d3ae60d9423, type: 3}
+    setDelayToClipLength: 1
+    delayOffset: 0
+    manualDelay: 0
+    showSubtitles: 1
+  isQueued: 0
