@@ -43,7 +43,7 @@ MonoBehaviour:
     showSubtitles: 1
   - speakerName: Ava
     text: 'He found a way there. I thought this was just a fairy tale, '
-    audio: {fileID: 8300000, guid: 65341fc5b01e6ed4d863b03115fda585, type: 3}
+    audio: {fileID: 8300000, guid: edfc5c47ddf0c3f4c916af521ffb179c, type: 3}
     setDelayToClipLength: 1
     delayOffset: 0
     manualDelay: 0
@@ -105,3 +105,4 @@ MonoBehaviour:
     manualDelay: 0
     showSubtitles: 1
   isQueued: 0
+  overrideQueue: 0
