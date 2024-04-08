@@ -18937,9 +18937,20 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6757635143663409653, guid: dc12ddd2c0755ad49ab95ae498b9b273,
         type: 3}
+      propertyPath: zoomFactor
+      value: 0.312
+      objectReference: {fileID: 0}
+    - target: {fileID: 6757635143663409653, guid: dc12ddd2c0755ad49ab95ae498b9b273,
+        type: 3}
       propertyPath: interactibleData
       value: 
       objectReference: {fileID: 11400000, guid: d88620a9e1f61234c95a44394c3ded6f,
+        type: 2}
+    - target: {fileID: 6757635143663409653, guid: dc12ddd2c0755ad49ab95ae498b9b273,
+        type: 3}
+      propertyPath: onFinishInteraction
+      value: 
+      objectReference: {fileID: 11400000, guid: 46f9d8f37a897f74c90d7092c5962ba3,
         type: 2}
     - target: {fileID: 8060398347723660583, guid: dc12ddd2c0755ad49ab95ae498b9b273,
         type: 3}
