@@ -9,9 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 51278be02c4549d0be694c1b45e8de29, type: 3}
-  m_Name: Play Dialogue - Time to Exit Room
+  m_Script: {fileID: 11500000, guid: ad7f5ed906674f6ebbb2695b625700ba, type: 3}
+  m_Name: FirstPageJournalPrompt
   m_EditorClassIdentifier: 
   hasDelay: 1
-  delayInSeconds: 1
-  dialogueToPlay: {fileID: 11400000, guid: 43f11c56a0b11234a96b67eac92debbd, type: 2}
+  delayInSeconds: 0.3
+  promptedPage: {fileID: 11400000, guid: 29df100f79aa86c41a7b1d1b94a8cd96, type: 2}
+  promptEvent: {fileID: 11400000, guid: 2c4f16ede1c7ede4783847b06011d438, type: 2}

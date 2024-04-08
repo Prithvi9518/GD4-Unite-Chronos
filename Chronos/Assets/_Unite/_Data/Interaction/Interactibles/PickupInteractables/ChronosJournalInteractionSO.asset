@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9a4e114f03849e783bbeb76fc820bd2, type: 3}
   m_Name: ChronosJournalInteractionSO
   m_EditorClassIdentifier: 
-  eventOnInteract: {fileID: 0}
+  eventOnInteract: {fileID: 11400000, guid: 46f9d8f37a897f74c90d7092c5962ba3, type: 2}
   audioToPlayOnInteract: {fileID: 0}
   volume: 1
   destroyAfterInteract: 0
@@ -20,4 +20,6 @@ MonoBehaviour:
   showInteractText: 1
   actionsOnInteract:
   - action: {fileID: 11400000, guid: e72f4445d30d7414b92a295b8e081863, type: 2}
+    doOnce: 1
+  - action: {fileID: 11400000, guid: dc6c55a2029108442ba907df81b98f26, type: 2}
     doOnce: 1

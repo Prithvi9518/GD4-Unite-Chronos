@@ -9,6 +9,7 @@
         ExitRoomNotYet,
         TimeStopTutorial,
         UseTimeStop,
-        IslandBounds
+        IslandBounds,
+        OpenJournal
     }
 }
