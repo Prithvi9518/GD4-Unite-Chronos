@@ -9,6 +9,8 @@ namespace Unite.VFXScripts
         [SerializeField]
         private MeshRenderer forceFieldMesh;
 
+        [SerializeField] private Material innerMaterial;
+
         private Material material;
 
         private void Awake()
@@ -19,7 +21,8 @@ namespace Unite.VFXScripts
 
         public void StopDistortion()
         {
-            material.SetFloat(DistortionStrength, 0);
+            // material.SetFloat(DistortionStrength, 0);
+            forceFieldMesh.material = innerMaterial;
         }
 
         private void OnDestroy()
