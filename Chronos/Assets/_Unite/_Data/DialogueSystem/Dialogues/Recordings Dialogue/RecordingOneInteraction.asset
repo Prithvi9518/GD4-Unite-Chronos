@@ -62,7 +62,7 @@ MonoBehaviour:
     delayOffset: 1
     manualDelay: 0
     showSubtitles: 1
-  - speakerName: Researcher
+  - speakerName: Ava
     text: It looks like the island itself fought back
     audio: {fileID: 8300000, guid: aa80c39427750e74589f9658eaf371bd, type: 3}
     setDelayToClipLength: 1
@@ -91,3 +91,4 @@ MonoBehaviour:
     manualDelay: 0
     showSubtitles: 1
   isQueued: 0
+  overrideQueue: 0
