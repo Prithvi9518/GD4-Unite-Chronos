@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: 6820000343460652782}
   - component: {fileID: 6398218249690034257}
   - component: {fileID: 6009360521248032648}
+  - component: {fileID: 9222066207171355415}
   m_Layer: 0
   m_Name: PlayerDialogueHandler
   m_TagString: Untagged
@@ -58,6 +59,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: e7d318d2262d6ab459d35209333898dc, type: 2}
   - {fileID: 11400000, guid: 1b156284c8adf1d4db02465b21bd1a29, type: 2}
   - {fileID: 11400000, guid: f5dafba9f2035af42a7108ef7d6677bb, type: 2}
+  - {fileID: 11400000, guid: 119070ea2a4dc874a86ea85b79891db5, type: 2}
 --- !u!114 &2670484228375142566
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -253,6 +255,35 @@ MonoBehaviour:
         m_TargetAssemblyTypeName: Unite.DialogueSystem.PlayerDialogueHandler, Assembly-CSharp
         m_MethodName: OnUseTimeStop
         m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &9222066207171355415
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3230454642952135529}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62991cb3c4c44b79a86225ee699e597a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  description: Listen for island bounds
+  gameEvent: {fileID: 11400000, guid: ca4d2707bf0c6284f8608e60e8232ba5, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 961527736350545288}
+        m_TargetAssemblyTypeName: Unite.DialogueSystem.PlayerDialogueHandler, Assembly-CSharp
+        m_MethodName: OnNotify
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
