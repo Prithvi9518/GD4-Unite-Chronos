@@ -155,8 +155,10 @@ QualitySettings:
     terrainBillboardStart: 50
     terrainFadeLength: 5
     terrainMaxTrees: 50
-    excludedTargetPlatforms: []
+    excludedTargetPlatforms:
+    - Standalone
   m_TextureMipmapLimitGroupNames: []
   m_PerPlatformDefaultQuality:
-    Server: 0
-    Standalone: 0
+    Server: 1
+    Standalone: 1
+    WebGL: 1
