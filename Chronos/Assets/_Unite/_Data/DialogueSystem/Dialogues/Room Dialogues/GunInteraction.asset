@@ -28,6 +28,13 @@ MonoBehaviour:
     manualDelay: 0
     showSubtitles: 1
   - speakerName: Ava
+    text: It wouldn't feel right leaving it behind.
+    audio: {fileID: 8300000, guid: 364b91f4e0d3c1549afc7c68cb029484, type: 3}
+    setDelayToClipLength: 1
+    delayOffset: 0
+    manualDelay: 0
+    showSubtitles: 1
+  - speakerName: Ava
     text: 'Caleb used to say it made him feel close to Dad. '
     audio: {fileID: 8300000, guid: 9fa1d94d6b1ddee4d8b67e82bef19bb7, type: 3}
     setDelayToClipLength: 1
@@ -50,9 +57,10 @@ MonoBehaviour:
     showSubtitles: 1
   - speakerName: Ava
     text: It wouldn't feel right leaving it behind.
-    audio: {fileID: 8300000, guid: 988b6d86e7b224c4dbc7ed0a522556dd, type: 3}
+    audio: {fileID: 8300000, guid: f87f9b617be45c84ca5f51296cff900d, type: 3}
     setDelayToClipLength: 1
     delayOffset: 0
     manualDelay: 0
     showSubtitles: 1
   isQueued: 0
+  overrideQueue: 0
