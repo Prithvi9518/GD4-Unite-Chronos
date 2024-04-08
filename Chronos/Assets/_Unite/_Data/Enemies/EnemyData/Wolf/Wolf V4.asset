@@ -15,10 +15,10 @@ MonoBehaviour:
   displayName: Wolf - V4
   enemyPrefab: {fileID: -7788192731357639689, guid: 4512e5b2d4cbb8947898acd36075235d,
     type: 3}
-  speed: 5.5
+  speed: 4.5
   angularSpeed: 120
-  acceleration: 6
-  stoppingDistance: 2
+  acceleration: 5
+  stoppingDistance: 1.5
   baseHealth: 100
   baseDamage: 3
   cost: 5
