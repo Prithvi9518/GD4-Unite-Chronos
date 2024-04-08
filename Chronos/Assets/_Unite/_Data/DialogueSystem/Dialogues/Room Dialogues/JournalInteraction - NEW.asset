@@ -10,22 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3169fdde3ded437b9d20f31f184bec8e, type: 3}
-  m_Name: ExitRoom
+  m_Name: JournalInteraction - NEW
   m_EditorClassIdentifier: 
   lines:
   - speakerName: Ava
-    text: 'Right, I got everything I need. '
-    audio: {fileID: 8300000, guid: fd7f31453caf76f499c4b85fb2d556e2, type: 3}
-    setDelayToClipLength: 1
-    delayOffset: 1
-    manualDelay: 0
-    showSubtitles: 1
-  - speakerName: Ava
-    text: I need to go. I have to be on a boat by sunrise.
-    audio: {fileID: 8300000, guid: dfa81c0951743794ba09d01abfa6c2cb, type: 3}
+    text: What's this? Chronos island journal?
+    audio: {fileID: 8300000, guid: 44166871a701a36498958df804d058b2, type: 3}
     setDelayToClipLength: 1
     delayOffset: 0
     manualDelay: 0
     showSubtitles: 1
-  isQueued: 1
+  isQueued: 0
   overrideQueue: 0

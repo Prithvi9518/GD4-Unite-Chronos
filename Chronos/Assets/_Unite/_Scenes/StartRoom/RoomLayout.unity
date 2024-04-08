@@ -19012,10 +19012,23 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -95.316
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 6877680273673029972, guid: dc12ddd2c0755ad49ab95ae498b9b273, type: 3}
+    - {fileID: 8882562037514600861, guid: dc12ddd2c0755ad49ab95ae498b9b273, type: 3}
+    - {fileID: 7941870430195524343, guid: dc12ddd2c0755ad49ab95ae498b9b273, type: 3}
+    - {fileID: 3721853901578981118, guid: dc12ddd2c0755ad49ab95ae498b9b273, type: 3}
+    - {fileID: 6757635143663409653, guid: dc12ddd2c0755ad49ab95ae498b9b273, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 2429453186442137770, guid: dc12ddd2c0755ad49ab95ae498b9b273,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1633357538}
+    - targetCorrespondingSourceObject: {fileID: 2429453186442137770, guid: dc12ddd2c0755ad49ab95ae498b9b273,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1633357537}
   m_SourcePrefab: {fileID: 100100000, guid: dc12ddd2c0755ad49ab95ae498b9b273, type: 3}
 --- !u!4 &1633357534 stripped
 Transform:
@@ -19023,6 +19036,54 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1633357533}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1633357535 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2429453186442137770, guid: dc12ddd2c0755ad49ab95ae498b9b273,
+    type: 3}
+  m_PrefabInstance: {fileID: 1633357533}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1633357536 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8202458746078530683, guid: dc12ddd2c0755ad49ab95ae498b9b273,
+    type: 3}
+  m_PrefabInstance: {fileID: 1633357533}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1633357535}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b3f915c5193e480ba7c3922e9e4dd7dd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1633357537
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1633357535}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 41a31602e7d04206a92bf01e76c6b253, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  responses:
+  - {fileID: 1633357536}
+--- !u!114 &1633357538
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1633357535}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c63e4b1348eb4ef3a3310ef840b1d93d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  displayName: Chronos Journal
+  interactibleData: {fileID: 11400000, guid: d88620a9e1f61234c95a44394c3ded6f, type: 2}
+  onInteractUpdateAnalytics: {fileID: 11400000, guid: 13708a900b70425458ffed7409591384,
+    type: 2}
 --- !u!1001 &1656583983
 PrefabInstance:
   m_ObjectHideFlags: 0

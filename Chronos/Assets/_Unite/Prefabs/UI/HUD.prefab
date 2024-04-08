@@ -126,7 +126,7 @@ GameObject:
   - component: {fileID: 3477290257383586309}
   - component: {fileID: 6924472239114283921}
   m_Layer: 5
-  m_Name: Content
+  m_Name: JournalPromptUI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -139,20 +139,20 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 300082901865312717}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.1132175, y: 1.1132175, z: 1.1132175}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 72268969979120364}
   - {fileID: 3264759724918784733}
   - {fileID: 6524964307102002220}
-  m_Father: {fileID: 1498553224704154963}
+  m_Father: {fileID: 7812154968594572215}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 300, y: -200}
-  m_SizeDelta: {x: 600, y: 300}
+  m_AnchoredPosition: {x: 271.742, y: -232.637}
+  m_SizeDelta: {x: 268.781, y: 130.243}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4624506215517851127
 CanvasRenderer:
@@ -169,14 +169,14 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 300082901865312717}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -245,6 +245,7 @@ GameObject:
   - component: {fileID: 1602945377210511884}
   - component: {fileID: 2047148118006482264}
   - component: {fileID: 6256094617141068293}
+  - component: {fileID: 294257765256242712}
   m_Layer: 5
   m_Name: HUD
   m_TagString: Untagged
@@ -460,7 +461,7 @@ MonoBehaviour:
   response:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2029301397828959479}
+      - m_Target: {fileID: 7626782711502624394}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
         m_Mode: 6
@@ -561,7 +562,7 @@ MonoBehaviour:
   response:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2029301397828959479}
+      - m_Target: {fileID: 7626782711502624394}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
         m_Mode: 6
@@ -774,7 +775,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 2029301397828959479}
+      - m_Target: {fileID: 7626782711502624394}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
         m_Mode: 6
@@ -859,9 +860,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   uiGameObject: {fileID: 300082901865312717}
-  displayDuration: 10
+  background: {fileID: 3477290257383586309}
+  displayDuration: 4
   onJournalPromptHidden: {fileID: 11400000, guid: 0f001c84ac07bf7459e9bae8dd181cb5,
     type: 2}
+  tweenColor: {r: 1, g: 0.7790712, b: 0.1273585, a: 0.70980394}
+  tweenDuration: 0.5
 --- !u!114 &1602945377210511884
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -903,7 +907,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9893a878b6442144bd9c1283a2b4b18, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  description: Listen for journal opened, and hide the prompt ui if so
+  description: Listen for journal opened, and hide some ui if so
   gameEvent: {fileID: 11400000, guid: c119ba835bd4a19459d270603a710018, type: 2}
   response:
     m_PersistentCalls:
@@ -984,6 +988,35 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &294257765256242712
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 363184984748623575}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b9893a878b6442144bd9c1283a2b4b18, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  description: Listen for journal pickup
+  gameEvent: {fileID: 11400000, guid: 46f9d8f37a897f74c90d7092c5962ba3, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 201214141100354694}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
         m_CallState: 2
 --- !u!1 &674847899691226036
 GameObject:
@@ -2901,9 +2934,9 @@ RectTransform:
   - {fileID: 7039665210519258336}
   m_Father: {fileID: 5466438454172424872}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 330, y: -100}
   m_SizeDelta: {x: 320, y: 40}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &431943480785145885
@@ -3125,14 +3158,15 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 4614421977364242139}
   - {fileID: 6053780234879332856}
-  - {fileID: 3132482280366497659}
   - {fileID: 2633906734036472609}
   - {fileID: 1570201604188396529}
   - {fileID: 7143502396228374891}
   - {fileID: 3003705793194858148}
   - {fileID: 7749343268825833811}
   - {fileID: 3007240357173607049}
+  - {fileID: 3132482280366497659}
   - {fileID: 2556387531202479149}
   - {fileID: 3480880775703889204}
   - {fileID: 3539640640192775189}
@@ -4259,10 +4293,10 @@ RectTransform:
   - {fileID: 2265598746017061375}
   m_Father: {fileID: 5452671038195173496}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 300, y: -125}
+  m_SizeDelta: {x: 550, y: 200}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &9102963599774320877
 MonoBehaviour:
@@ -4658,9 +4692,9 @@ RectTransform:
   - {fileID: 3357315871085704581}
   m_Father: {fileID: 5466438454172424872}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 110, y: -100}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &7185551637252355640
@@ -4692,8 +4726,7 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 4614421977364242139}
+  m_Children: []
   m_Father: {fileID: 625515629921434302}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
@@ -4993,7 +5026,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &625515629921434302
 RectTransform:
   m_ObjectHideFlags: 0
@@ -7114,6 +7147,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6681865043439356173, guid: d7bb2a860da668643a9c42ec4b50dfe4,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8430548069727590943, guid: d7bb2a860da668643a9c42ec4b50dfe4,
         type: 3}
