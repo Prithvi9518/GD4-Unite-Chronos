@@ -10,8 +10,10 @@ namespace Unite.DialogueSystem
         private List<DialogueLine> lines;
 
         [SerializeField] private bool isQueued;
+        [SerializeField] private bool overrideQueue;
 
         public List<DialogueLine> Lines => lines;
         public bool IsQueued => isQueued;
+        public bool OverrideQueue => overrideQueue;
     }
 }
