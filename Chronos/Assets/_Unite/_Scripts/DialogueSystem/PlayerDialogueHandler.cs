@@ -18,6 +18,8 @@ namespace Unite.DialogueSystem
 
         private int timeStopUses;
 
+        private int islandBoundsReached;
+
         private void Awake()
         {
             SetupDialogueMap();
@@ -42,7 +44,8 @@ namespace Unite.DialogueSystem
                 { DialogueTrigger.EnterBattleZone , HandleEnterBattleZone},
                 { DialogueTrigger.ExitRoomNotYet , HandleExitRoomNotYet},
                 { DialogueTrigger.TimeStopTutorial , HandleTimeStopTutorial},
-                { DialogueTrigger.UseTimeStop , HandleUseTimeStop}
+                { DialogueTrigger.UseTimeStop , HandleUseTimeStop},
+                { DialogueTrigger.IslandBounds , HandleIslandBounds}
             };
         }
         
@@ -94,6 +97,20 @@ namespace Unite.DialogueSystem
             timeStopUses++;
             
             DialogueManager.Instance.PlayDialogue(dialogues[0]);
+        }
+
+        private void HandleIslandBounds(List<DialogueSO> dialogues)
+        {
+            if (islandBoundsReached > 1) return;
+            
+            islandBoundsReached++;
+
+            int index = 0;
+
+            if (islandBoundsReached == 2)
+                index = 1;
+            
+            DialogueManager.Instance.PlayDialogue(dialogues[index]);
         }
 
         public void OnNotify(DialogueTrigger dialogueTrigger)

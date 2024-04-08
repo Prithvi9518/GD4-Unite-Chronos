@@ -20929,6 +20929,7 @@ GameObject:
   m_Component:
   - component: {fileID: 773804194}
   - component: {fileID: 773804195}
+  - component: {fileID: 773804196}
   m_Layer: 0
   m_Name: IslandOutOfBounds
   m_TagString: Untagged
@@ -20972,6 +20973,21 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &773804196
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 773804193}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c4cb7579d2df434aa88b23cf5377f8ce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dialogueTrigger: 6
+  onBoundsReached: {fileID: 11400000, guid: ca4d2707bf0c6284f8608e60e8232ba5, type: 2}
+  interval: 5
 --- !u!1 &852439042
 GameObject:
   m_ObjectHideFlags: 0
@@ -70329,6 +70345,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1589523119}
   - component: {fileID: 1589523120}
+  - component: {fileID: 1589523121}
   m_Layer: 0
   m_Name: IslandOutOfBounds (14)
   m_TagString: Untagged
@@ -70372,6 +70389,21 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1589523121
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1589523118}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c4cb7579d2df434aa88b23cf5377f8ce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dialogueTrigger: 6
+  onBoundsReached: {fileID: 11400000, guid: ca4d2707bf0c6284f8608e60e8232ba5, type: 2}
+  interval: 5
 --- !u!1 &1614138506
 GameObject:
   m_ObjectHideFlags: 0
@@ -70382,6 +70414,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1614138507}
   - component: {fileID: 1614138508}
+  - component: {fileID: 1614138509}
   m_Layer: 0
   m_Name: IslandOutOfBounds (13)
   m_TagString: Untagged
@@ -70425,6 +70458,21 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1614138509
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1614138506}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c4cb7579d2df434aa88b23cf5377f8ce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dialogueTrigger: 6
+  onBoundsReached: {fileID: 11400000, guid: ca4d2707bf0c6284f8608e60e8232ba5, type: 2}
+  interval: 5
 --- !u!1 &1633006703
 GameObject:
   m_ObjectHideFlags: 0
@@ -71481,6 +71529,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1845098476}
   - component: {fileID: 1845098477}
+  - component: {fileID: 1845098478}
   m_Layer: 0
   m_Name: IslandOutOfBounds (1)
   m_TagString: Untagged
@@ -71524,6 +71573,21 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1845098478
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1845098475}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c4cb7579d2df434aa88b23cf5377f8ce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dialogueTrigger: 6
+  onBoundsReached: {fileID: 11400000, guid: ca4d2707bf0c6284f8608e60e8232ba5, type: 2}
+  interval: 5
 --- !u!1001 &1877769591
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -72676,6 +72740,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2085189890}
   - component: {fileID: 2085189891}
+  - component: {fileID: 2085189892}
   m_Layer: 0
   m_Name: IslandOutOfBounds (2)
   m_TagString: Untagged
@@ -72719,6 +72784,21 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &2085189892
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2085189889}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c4cb7579d2df434aa88b23cf5377f8ce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dialogueTrigger: 6
+  onBoundsReached: {fileID: 11400000, guid: ca4d2707bf0c6284f8608e60e8232ba5, type: 2}
+  interval: 5
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
