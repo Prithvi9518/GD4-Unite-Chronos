@@ -139,7 +139,6 @@ Transform:
   m_Children:
   - {fileID: 3610090348090778793}
   - {fileID: 1145292077584974615}
-  - {fileID: 6009625734519859859}
   - {fileID: 5360627402742302770}
   - {fileID: 4914929914867037143}
   m_Father: {fileID: 0}
@@ -737,6 +736,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da4d9025ae0249a8b8fbe8debac96840, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  displayDuration: 5
   uiTextEvent: {fileID: 11400000, guid: 77a41b72774242b469e2012dff613289, type: 2}
   onEnterRegionUpdateAnalytics: {fileID: 11400000, guid: 8e5cb8d445e8c77479ac544c19f00f0b,
     type: 2}
@@ -939,7 +939,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 6009625734519859859}
   m_Father: {fileID: 6264405710389743357}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7538029204873423997
@@ -1058,7 +1059,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 6264405710389743357}
+    m_TransformParent: {fileID: 4914929914867037143}
     m_Modifications:
     - target: {fileID: 485430986416189745, guid: 9567d682bfab06a4fac03e7b8ee075cd,
         type: 3}
