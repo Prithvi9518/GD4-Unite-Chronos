@@ -12,9 +12,9 @@ EditorBuildSettings:
     path: Assets/_Unite/_Scenes/Main Menu Scene.unity
     guid: c7830dbcbb8c5ec459f929f17cd30a15
   - enabled: 1
-    path: Assets/_Unite/_Scenes/Island.unity
+    path: Assets/_Unite/_Scenes/Old_Island.unity
     guid: b9ca65b843f2aee439a17042db3b7dbf
-  - enabled: 1
+  - enabled: 0
     path: Assets/_Unite/_Scenes/Player.unity
     guid: 597a01d997ed48140ba975a47eef72a7
   - enabled: 0
@@ -30,18 +30,18 @@ EditorBuildSettings:
     path: Assets/_Unite/_Scenes/Lights.unity
     guid: 6c848fd572f22004296f98a43b3646be
   - enabled: 1
-    path: Assets/_Unite/_Scenes/Level_2.unity
+    path: Assets/_Unite/_Scenes/Cave.unity
     guid: c7643f2e2f30ff84aa8a31ccafff745f
   - enabled: 0
     path: Assets/_Unite/_Scenes/Level_3.unity
     guid: 5e4a574e42fb13643b59485910b431de
-  - enabled: 1
+  - enabled: 0
     path: Assets/_Unite/_Scenes/Prithvi - Testing Scene Transitions/TestingSceneTransitions_Main.unity
     guid: e71c9042288a3034e9a12319aefb33cc
-  - enabled: 1
+  - enabled: 0
     path: Assets/_Unite/_Scenes/Prithvi - Testing Scene Transitions/TestingSceneTransition_Scene1.unity
     guid: fa5551d2edf6e60408c965302015156b
-  - enabled: 1
+  - enabled: 0
     path: Assets/_Unite/_Scenes/Prithvi - Testing Scene Transitions/TestingSceneTransition_Scene2.unity
     guid: b6202428d90ecbd4b82b4472702edf7f
   - enabled: 1
@@ -50,6 +50,15 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/_Unite/_Scenes/StartRoom/RoomStructure.unity
     guid: b1a642ccb18f8f74c92cb58b5f49c87d
+  - enabled: 1
+    path: Assets/_Unite/_Scenes/PRITHVI_TESTING/Prithvi_Test.unity
+    guid: 22bb5f15b0c594b469f5f232145b5931
+  - enabled: 1
+    path: Assets/_Unite/_Scenes/Island/Island_Assets.unity
+    guid: 1a3dd8366d7b46442a9a24adb4ea6fc9
+  - enabled: 1
+    path: Assets/_Unite/_Scenes/Island/Island.unity
+    guid: 78dc7a16adf728c4787aa8d9a8167336
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: 9e7be553448fa2546aea5752021cbcf7,
       type: 2}

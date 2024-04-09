@@ -18,3 +18,6 @@ MonoBehaviour:
   destroyAfterInteract: 0
   interactText: Hear Recording
   showInteractText: 1
+  actionsOnInteract:
+  - action: {fileID: 11400000, guid: 162ccee1e2969034fb9fcabc0661436a, type: 2}
+    doOnce: 1

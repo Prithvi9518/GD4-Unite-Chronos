@@ -90,7 +90,6 @@ namespace Unite.Managers
 
         public void InitializePlayer(Player.Player p)
         {
-            Debug.Log("Initializing player");
             player = p;
             
             TryStartGameForTestScenes();
@@ -98,7 +97,6 @@ namespace Unite.Managers
 
         public void InitializeCamera(Camera cam, Transform weaponsHolder)
         {
-            Debug.Log("Initializing player camera.");
             playerCamera = cam;
             playerWeaponsHolder = weaponsHolder.GetComponent<WeaponHolder>();
             
@@ -113,8 +111,6 @@ namespace Unite.Managers
 
         public void OnStartLoadingLevel()
         {
-            Debug.Log($"GameManager.{nameof(OnStartLoadingLevel)}");
-            
             if(player != null)
                 player.MovementHandler.DisableMovement();
             
@@ -128,8 +124,6 @@ namespace Unite.Managers
 
         public void OnFinishedLoadingLevel(GameLevel level)
         {
-            Debug.Log($"GameManager.{nameof(OnFinishedLoadingLevel)}");
-            
             if (!hasGameStarted)
             {
                 PerformSetup();
@@ -158,8 +152,6 @@ namespace Unite.Managers
 
         private void PerformSetup()
         {
-            Debug.Log($"GameManager.{nameof(PerformSetup)} called.");
-
             if (player == null)
             {
                 if (playerSpawn == null)
@@ -192,8 +184,6 @@ namespace Unite.Managers
 
         private void TryStartGameForTestScenes()
         {
-            Debug.Log($"GameManager.{nameof(TryStartGameForTestScenes)} called.");
-
             if (player == null)
             {
                 if (playerSpawn == null) return;
@@ -205,8 +195,6 @@ namespace Unite.Managers
             
             // Check if there is a bootloader present. If no bootloader, just start the game (to support test scenes).
             if (Bootloader.Instance != null) return;
-            
-            Debug.Log("No bootloader found after initializing player and camera. Setting up and starting game.");
             
             PerformSetup();
             SetGameState(GameState.Start);
@@ -237,7 +225,6 @@ namespace Unite.Managers
             
             if (player == null) return;
             
-            Debug.Log("GAME START");
             onGameStart.Raise();
         }
 
@@ -252,7 +239,6 @@ namespace Unite.Managers
                 Bootloader.Instance.UnloadCurrentLevel();
             
             onGameLose.Raise();
-            Debug.Log("LOSE");
         }
 
         private void OnStartLevelTransition()
@@ -268,8 +254,6 @@ namespace Unite.Managers
 
         public void HandleRestart()
         {
-            Debug.Log("RESTART");
-            
             if(Bootloader.Instance != null)
                 Bootloader.Instance.ReloadCurrentLevel();
             
@@ -286,9 +270,6 @@ namespace Unite.Managers
 
         public void SwitchToNextLevel()
         {
-            // OnFinishLevel_UpdateTimeTracking?.Invoke(currentLevel);
-            // Bootloader.Instance.LoadNextLevel();
-
             if (SceneTransitionManager.Instance == null) return;
             SceneTransitionManager.Instance.StartTransition(startLevelTransition);
         }

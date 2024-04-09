@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51278be02c4549d0be694c1b45e8de29, type: 3}
   m_Name: Play Dialogue - Time to Exit Room
   m_EditorClassIdentifier: 
-  hasDelay: 0
-  delayInSeconds: 0
+  hasDelay: 1
+  delayInSeconds: 1
   dialogueToPlay: {fileID: 11400000, guid: 43f11c56a0b11234a96b67eac92debbd, type: 2}

@@ -48,12 +48,14 @@ namespace Unite.DialogueSystem
 
             if (isDialoguePlaying && dialogue.IsQueued)
             {
-                Debug.Log($"Enqueueing dialogue - {dialogue.name}");
                 dialogueQueue.Enqueue(dialogue);
                 return;
             }
-            
-            Debug.Log($"Playing dialogue - {dialogue.name}");
+
+            if (dialogue.OverrideQueue)
+            {
+                dialogueQueue.Clear();
+            }
             
             dialogueAnalyticsEvent.Raise(dialogue);
             
@@ -79,12 +81,7 @@ namespace Unite.DialogueSystem
             
             for (int i = 0; i < lines.Count; i++)
             {
-                bool hasNextDialogue = i < lines.Count - 1;
-                
                 PlayDialogueLine(lines[i]);
-                
-                if(!hasNextDialogue) continue;
-                if(lines[i].NextLineDelayInSeconds == 0) continue;
                 yield return new WaitForSeconds(lines[i].NextLineDelayInSeconds);
             }
 
@@ -92,7 +89,6 @@ namespace Unite.DialogueSystem
             if (dialogueQueue.Count <= 0) yield break;
             
             DialogueSO nextDialogue = dialogueQueue.Dequeue();
-            Debug.Log($"Dequeued dialogue - {nextDialogue.name}");
             PlayDialogue(nextDialogue);
         }
     }

@@ -6,6 +6,10 @@
         BattleEnded,
         EnterIslandLevel,
         EnterBattleZone,
-        ExitRoomNotYet
+        ExitRoomNotYet,
+        TimeStopTutorial,
+        UseTimeStop,
+        IslandBounds,
+        OpenJournal
     }
 }

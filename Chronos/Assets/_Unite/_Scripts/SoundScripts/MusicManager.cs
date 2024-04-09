@@ -11,6 +11,9 @@ namespace Unite.SoundScripts
     {
         public static MusicManager Instance { get; private set; }
 
+        private static string pitchParameter = "Pitch";
+        private static string eqParameter = "EQ";
+
         [Header("Room Soundtrack Audio Source")] 
         [SerializeField]
         private AudioSource roomSoundtrackAudioSource;
@@ -146,6 +149,15 @@ namespace Unite.SoundScripts
         {
             musicEventInstance.setPaused(true);
             musicEventInstance.getPlaybackState(out playbackState);
+        }
+
+        public void OnToggleTimeStop(bool toggle)
+        {
+            float pitch = (toggle) ? timeStopPitch : normalPitch;
+            float eq = (toggle) ? timeStopEQ : normalEQ;
+            
+            musicEventInstance.setParameterByName(pitchParameter, pitch);
+            musicEventInstance.setParameterByName(eqParameter, eq);
         }
 
         private void OnDestroy()

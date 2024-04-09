@@ -26,6 +26,7 @@ namespace Unite.SoundScripts
         public void HandleTimeStopEvent(bool isTimeStopped)
         {
             if (!isTimeStopped) return;
+            if (soundReferences.TimeStopSFX == null) return;
             PlaySoundAtPosition(soundReferences.TimeStopSFX, Camera.main.transform.position);
         }
 

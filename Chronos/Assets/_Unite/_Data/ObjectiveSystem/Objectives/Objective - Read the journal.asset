@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d441dc17d1b64cdab4e05dc415cafbd7, type: 3}
+  m_Name: Objective - Read the journal
+  m_EditorClassIdentifier: 
+  objectiveDescription: Read the journal
+  tasks:
+  - {fileID: 6649038095192926545, guid: b4446692f1bd5b24daea86c015e3e540, type: 3}
+  onCompleteEvent: {fileID: 0}
+  actionsOnComplete:
+  - {fileID: 11400000, guid: f2eb4905222cf3140adc6570b3360d11, type: 2}
+  - {fileID: 11400000, guid: 67a2a6001d3c49c48b5b412349edf6ff, type: 2}
+  showSubtasks: 0

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Unite.DialogueSystem
@@ -15,6 +16,12 @@ namespace Unite.DialogueSystem
         private int battleEnteredCount;
 
         private int exitRoomFailedAttempts;
+
+        private int timeStopUses;
+
+        private int islandBoundsReached;
+
+        private int numTimesJournalOpened;
 
         private void Awake()
         {
@@ -39,6 +46,10 @@ namespace Unite.DialogueSystem
                 { DialogueTrigger.EnterIslandLevel , HandleEnterIsland},
                 { DialogueTrigger.EnterBattleZone , HandleEnterBattleZone},
                 { DialogueTrigger.ExitRoomNotYet , HandleExitRoomNotYet},
+                { DialogueTrigger.TimeStopTutorial , HandleTimeStopTutorial},
+                { DialogueTrigger.UseTimeStop , HandleUseTimeStop},
+                { DialogueTrigger.IslandBounds , HandleIslandBounds},
+                { DialogueTrigger.OpenJournal , HandleOpenJournal}
             };
         }
         
@@ -79,6 +90,46 @@ namespace Unite.DialogueSystem
             exitRoomFailedAttempts++;
         }
 
+        private void HandleTimeStopTutorial(List<DialogueSO> dialogues)
+        {
+            DialogueManager.Instance.PlayDialogue(dialogues[0]);
+        }
+
+        private void HandleUseTimeStop(List<DialogueSO> dialogues)
+        {
+            if (timeStopUses > 0) return;
+            timeStopUses++;
+            
+            DialogueManager.Instance.PlayDialogue(dialogues[0]);
+        }
+
+        private void HandleIslandBounds(List<DialogueSO> dialogues)
+        {
+            if (islandBoundsReached > 1) return;
+            
+            islandBoundsReached++;
+
+            int index = 0;
+
+            if (islandBoundsReached == 2)
+                index = 1;
+            
+            DialogueManager.Instance.PlayDialogue(dialogues[index]);
+        }
+
+        private void HandleOpenJournal(List<DialogueSO> dialogues)
+        {
+            if (numTimesJournalOpened > 0) return;
+            StartCoroutine(FirstTimeJournalCoroutine(dialogues));
+        }
+
+        private IEnumerator FirstTimeJournalCoroutine(List<DialogueSO> dialogues)
+        {
+            yield return new WaitForSeconds(2.5f);
+            numTimesJournalOpened++;
+            DialogueManager.Instance.PlayDialogue(dialogues[0]);
+        }
+
         public void OnNotify(DialogueTrigger dialogueTrigger)
         {
             if (!dialogueTriggerHandlers.ContainsKey(dialogueTrigger)) return;
@@ -107,6 +158,21 @@ namespace Unite.DialogueSystem
         public void OnExitRoomNotYet()
         {
             OnNotify(DialogueTrigger.ExitRoomNotYet);
+        }
+
+        public void OnStartTimeStopTutorial()
+        {
+            OnNotify(DialogueTrigger.TimeStopTutorial);
+        }
+        
+        public void OnUseTimeStop()
+        {
+            OnNotify(DialogueTrigger.UseTimeStop);
+        }
+
+        public void OnOpenJournal()
+        {
+            OnNotify(DialogueTrigger.OpenJournal);
         }
     }
 }

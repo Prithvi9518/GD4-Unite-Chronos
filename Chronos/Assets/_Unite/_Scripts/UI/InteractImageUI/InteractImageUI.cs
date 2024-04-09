@@ -45,12 +45,18 @@ namespace Unite.UI.InteractImageUI
 
         private void OnShowUI()
         {
-            InputManager.Instance.SwitchToViewImageActionMap();
+            if(InputManager.Instance != null)
+                InputManager.Instance.SwitchToViewImageActionMap();
+            if(CursorLockHandler.Instance != null)
+                CursorLockHandler.Instance.ShowAndUnlockCursor();
         }
         
         private void OnHideUI()
         {
-            InputManager.Instance.SwitchToDefaultActionMap();
+            if(InputManager.Instance != null)
+                InputManager.Instance.SwitchToDefaultActionMap();
+            if(CursorLockHandler.Instance != null)
+                CursorLockHandler.Instance.HideAndLockCursor();
         }
     }
 }
