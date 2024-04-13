@@ -6,6 +6,11 @@ using UnityEngine;
 
 namespace Unite.BattleSystem
 {
+    /// <summary>
+    /// Handles the start and end of a battle.
+    /// Stores information about enemy waves and passes it onto the enemy spawner to instantiate enemies.
+    /// Spawns a buff at the end of the battle zone.
+    /// </summary>
     public class BattleZone : MonoBehaviour
     {
         [SerializeField]
@@ -78,6 +83,9 @@ namespace Unite.BattleSystem
                 SpawnNextWave();
         }
 
+        /// <summary>
+        /// Calls the enemy spawner to spawn enemies, and sends some events to track the current battle
+        /// </summary>
         public void StartBattle(Player.Player player)
         {
             if (battleState != BattleState.Idle) return;
@@ -114,6 +122,9 @@ namespace Unite.BattleSystem
             onMoveToNextWave.Raise(new BattleZoneInfo(displayName, GetCurrentWave()));
         }
 
+        /// <summary>
+        /// When the battle ends, a buff is spawned, the barrier is disabled, and some events are raised to track the battle's end
+        /// </summary>
         private void EndBattle()
         {
             battleState = BattleState.End;
