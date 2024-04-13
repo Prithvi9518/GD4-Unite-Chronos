@@ -3,6 +3,12 @@ using UnityEngine;
 
 namespace Unite.AbilitySystem
 {
+    /// <summary>
+    /// Base class storing all parameters of an ability.
+    ///
+    /// Concrete implementations of abilities below:
+    /// <seealso cref="TimeStopAbility"/>
+    /// </summary>
     public abstract class AbilityData : ScriptableObject
     {
         [SerializeField] private string abilityName;
