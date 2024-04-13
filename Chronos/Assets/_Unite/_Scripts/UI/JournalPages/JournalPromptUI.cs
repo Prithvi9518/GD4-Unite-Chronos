@@ -1,13 +1,20 @@
 using UnityEngine;
 using System.Collections;
+using DG.Tweening;
 using Unite.EventSystem;
-using Unite.JournalSystem;
+using UnityEngine.UI;
 
 public class JournalPromptUI : MonoBehaviour
 {
     [SerializeField] private GameObject uiGameObject;
+    [SerializeField] private Image background;
     [SerializeField] private float displayDuration = 5f;
     [SerializeField] private GameEvent onJournalPromptHidden;
+
+    [Header("Tween Settings")] 
+    [SerializeField] private Color tweenColor;
+    [SerializeField] private float tweenDuration;
+    
     
     private bool isDisplaying;
     private Coroutine hideCoroutine;
@@ -40,6 +47,7 @@ public class JournalPromptUI : MonoBehaviour
         if (isDisplaying) return;
         isDisplaying = true;
         uiGameObject.SetActive(true);
+        background.DOColor(tweenColor, tweenDuration).SetLoops(-1, LoopType.Yoyo);
 
         if (hideCoroutine != null)
             StopCoroutine(hideCoroutine);

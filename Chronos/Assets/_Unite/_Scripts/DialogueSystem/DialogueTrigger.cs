@@ -8,6 +8,8 @@
         EnterBattleZone,
         ExitRoomNotYet,
         TimeStopTutorial,
-        UseTimeStop
+        UseTimeStop,
+        IslandBounds,
+        OpenJournal
     }
 }

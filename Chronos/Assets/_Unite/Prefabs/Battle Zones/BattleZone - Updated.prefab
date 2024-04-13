@@ -688,6 +688,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   forceFieldMesh: {fileID: 5432475109584796535}
+  innerMaterial: {fileID: 2100000, guid: 83d913819e0f85045a9b2f2835ae1555, type: 2}
 --- !u!65 &4174459845416754790 stripped
 BoxCollider:
   m_CorrespondingSourceObject: {fileID: 3589093037045854124, guid: 5699c1dcd427e5f42aed13fd000eb941,

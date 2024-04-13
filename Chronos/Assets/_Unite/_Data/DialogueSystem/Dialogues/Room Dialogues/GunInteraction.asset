@@ -28,31 +28,39 @@ MonoBehaviour:
     manualDelay: 0
     showSubtitles: 1
   - speakerName: Ava
-    text: 'Caleb used to say it made him feel close to Dad. '
-    audio: {fileID: 8300000, guid: 9fa1d94d6b1ddee4d8b67e82bef19bb7, type: 3}
+    text: Caleb got Dad's cool gun and I got his lame compass.
+    audio: {fileID: 8300000, guid: 364b91f4e0d3c1549afc7c68cb029484, type: 3}
     setDelayToClipLength: 1
     delayOffset: 0
     manualDelay: 0
     showSubtitles: 1
   - speakerName: Ava
-    text: Now, it's just a piece of the past, a connection we used to have.
+    text: 'Caleb used to say it made him feel close to Dad. '
     audio: {fileID: 8300000, guid: 4dab0e9bb3c58e4408d20813e9dcd7f6, type: 3}
     setDelayToClipLength: 1
     delayOffset: 0
     manualDelay: 0
     showSubtitles: 1
   - speakerName: Ava
-    text: 'I should take the gun with me. '
+    text: Now, it's just a piece of the past, a connection we used to have.
     audio: {fileID: 8300000, guid: f508f9234cf2e184c9df4f3cd95f8b46, type: 3}
     setDelayToClipLength: 1
     delayOffset: 0
     manualDelay: 0
     showSubtitles: 1
   - speakerName: Ava
-    text: It wouldn't feel right leaving it behind.
+    text: 'I should take the gun with me. '
     audio: {fileID: 8300000, guid: 988b6d86e7b224c4dbc7ed0a522556dd, type: 3}
     setDelayToClipLength: 1
     delayOffset: 0
     manualDelay: 0
     showSubtitles: 1
+  - speakerName: Ava
+    text: It wouldn't feel right leaving it behind.
+    audio: {fileID: 8300000, guid: f87f9b617be45c84ca5f51296cff900d, type: 3}
+    setDelayToClipLength: 1
+    delayOffset: 0
+    manualDelay: 0
+    showSubtitles: 1
   isQueued: 0
+  overrideQueue: 0

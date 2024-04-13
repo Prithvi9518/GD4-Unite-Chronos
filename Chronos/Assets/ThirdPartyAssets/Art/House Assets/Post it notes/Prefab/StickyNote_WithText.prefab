@@ -296,7 +296,7 @@ MonoBehaviour:
     type: 2}
   onFinishInteraction: {fileID: 0}
   pickupGameEvent: {fileID: 11400000, guid: d8513cb851429324083cad4cc5179807, type: 2}
-  zoomFactor: 0.738
+  zoomFactor: 0.433
   disableRotation: 1
 --- !u!65 &-5555340297173015914
 BoxCollider:
@@ -317,8 +317,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 2, y: 2, z: 2}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 2, y: 2, z: 4}
+  m_Center: {x: 0, y: 0, z: 1.72}
 --- !u!114 &1512078710543505553
 MonoBehaviour:
   m_ObjectHideFlags: 0

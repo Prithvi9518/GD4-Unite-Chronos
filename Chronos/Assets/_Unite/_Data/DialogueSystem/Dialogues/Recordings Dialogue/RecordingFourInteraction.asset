@@ -1,0 +1,109 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3169fdde3ded437b9d20f31f184bec8e, type: 3}
+  m_Name: RecordingFourInteraction
+  m_EditorClassIdentifier: 
+  lines:
+  - speakerName: Researcher
+    text: 'Entry-4: Fascination with the Islands Wildlife.
+
+'
+    audio: {fileID: 8300000, guid: 8c348ab1680c82a46a23b88e846d4fc0, type: 3}
+    setDelayToClipLength: 1
+    delayOffset: 0
+    manualDelay: 0
+    showSubtitles: 1
+  - speakerName: Researcher
+    text: 'The Nexus'' effects on the island''s wolf population '
+    audio: {fileID: 8300000, guid: 884218a486b4ece4890c5fc49ffe9f03, type: 3}
+    setDelayToClipLength: 1
+    delayOffset: 0
+    manualDelay: 0
+    showSubtitles: 1
+  - speakerName: Researcher
+    text: 'are nothing short of astonishing. '
+    audio: {fileID: 8300000, guid: ff658204d9f109547816001ea8a81dda, type: 3}
+    setDelayToClipLength: 1
+    delayOffset: 0
+    manualDelay: 0
+    showSubtitles: 1
+  - speakerName: Researcher
+    text: These once majestic creatures have undergone a
+    audio: {fileID: 8300000, guid: 9dafd175f764d294ab872497762091c7, type: 3}
+    setDelayToClipLength: 1
+    delayOffset: 0
+    manualDelay: 0
+    showSubtitles: 1
+  - speakerName: Researcher
+    text: 'remarkable transformation, becoming even more vicious and cunning. '
+    audio: {fileID: 8300000, guid: 433c8cd3ae4d8b74f9e70d548e7ad509, type: 3}
+    setDelayToClipLength: 1
+    delayOffset: 0
+    manualDelay: 0
+    showSubtitles: 1
+  - speakerName: Researcher
+    text: 'Their pack behaviour has evolved, and their '
+    audio: {fileID: 8300000, guid: 33dbfa97d3df8c646b211798219c9c45, type: 3}
+    setDelayToClipLength: 1
+    delayOffset: 0
+    manualDelay: 0
+    showSubtitles: 1
+  - speakerName: Researcher
+    text: 'hunting strategies have become eerily efficient. '
+    audio: {fileID: 8300000, guid: e1a1c90c68db63846b594c32de4f7f8d, type: 3}
+    setDelayToClipLength: 1
+    delayOffset: 0
+    manualDelay: 0
+    showSubtitles: 1
+  - speakerName: Researcher
+    text: 'We are fascinated by these anomalous wolves, but '
+    audio: {fileID: 8300000, guid: e38026d231ccb7946853d67b180a394e, type: 3}
+    setDelayToClipLength: 1
+    delayOffset: 0
+    manualDelay: 0
+    showSubtitles: 1
+  - speakerName: Researcher
+    text: we must never forget the danger they pose to us and our research.
+    audio: {fileID: 8300000, guid: 420f1aeb187a1db4184be523614d3dc3, type: 3}
+    setDelayToClipLength: 1
+    delayOffset: 0
+    manualDelay: 0
+    showSubtitles: 1
+  - speakerName: Researcher
+    text: Caution is our best defence.
+    audio: {fileID: 8300000, guid: bf95ae9a6dd79d24e95884c905fa6fb7, type: 3}
+    setDelayToClipLength: 1
+    delayOffset: 1
+    manualDelay: 0
+    showSubtitles: 1
+  - speakerName: Ava
+    text: The wolves' behaviour is alarming
+    audio: {fileID: 8300000, guid: f838523d7a24b3d42bfbd7498290a9fd, type: 3}
+    setDelayToClipLength: 1
+    delayOffset: 0
+    manualDelay: 0
+    showSubtitles: 1
+  - speakerName: Ava
+    text: 'They''ve become more than just predators. '
+    audio: {fileID: 8300000, guid: 92b2edf97b3d2a245b01cb81360cb9f9, type: 3}
+    setDelayToClipLength: 1
+    delayOffset: 0
+    manualDelay: 0
+    showSubtitles: 1
+  - speakerName: Ava
+    text: They're like the guardians of the Nexus now.
+    audio: {fileID: 8300000, guid: 15907855aff42e64abc9638b8263fe32, type: 3}
+    setDelayToClipLength: 1
+    delayOffset: 0
+    manualDelay: 0
+    showSubtitles: 1
+  isQueued: 0
