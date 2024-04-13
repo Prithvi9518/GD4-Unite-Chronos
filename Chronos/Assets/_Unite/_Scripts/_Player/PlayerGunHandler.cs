@@ -9,6 +9,9 @@ using UnityEngine;
 
 namespace Unite.Player
 {
+    /// <summary>
+    /// Handles storage, usage and switching of player guns.
+    /// </summary>
     [DisallowMultipleComponent]
     public class PlayerGunHandler : MonoBehaviour, IAttacker
     {
@@ -50,6 +53,9 @@ namespace Unite.Player
             CheckAndHandleShootAction();
         }
 
+        /// <summary>
+        /// Used to spawn gun at runtime when events are raised.
+        /// </summary>
         public void InitializeActiveGun()
         {
             Debug.Log("PlayerGunHandler - InitializeActiveGun()");
@@ -66,16 +72,26 @@ namespace Unite.Player
             UpdateBaseDamageFromStats();
         }
 
+        /// <summary>
+        /// Used when buffs are acquired by player, and adds modifiers to gun.
+        /// </summary>
         public void ApplyModifier(IGunModifier gunModifier)
         {
             gunModifier.Apply(activeGun);
         }
 
+        /// <summary>
+        /// Used to update the gun's damage during player setup.
+        /// </summary>
         public void UpdateBaseDamageFromStats()
         {
             activeGun.UpdateBaseDamage(statsHandler.GetStat(damageStatType).Value);
         }
 
+        /// <summary>
+        /// Queries InputManager class for whether the shoot action is pressed, and propagates
+        /// the information to the active gun class.
+        /// </summary>
         private void CheckAndHandleShootAction()
         {
             if (activeGun == null) return;

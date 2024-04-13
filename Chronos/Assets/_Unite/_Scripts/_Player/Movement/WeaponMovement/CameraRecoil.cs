@@ -2,6 +2,12 @@
 
 namespace Unite.Player
 {
+    /// <summary>
+    /// Handles camera recoil when the player's gun is shot.
+    /// Reference: Tutorial by Swindle Creative - https://youtu.be/6hyQ2rPkMDY?si=S3wkjWRGJDeajzgl
+    ///
+    /// <seealso cref="WeaponRecoil"/>
+    /// </summary>
     public class CameraRecoil : MonoBehaviour
     {
         [SerializeField]
@@ -23,6 +29,9 @@ namespace Unite.Player
             transform.localRotation = Quaternion.Euler(currentRotation);
         }
 
+        /// <summary>
+        /// Method is called as a response to an event when the gun is shot
+        /// </summary>
         public void ApplyRecoil()
         {
             targetRotation += new Vector3(-hipFireRecoil.x,

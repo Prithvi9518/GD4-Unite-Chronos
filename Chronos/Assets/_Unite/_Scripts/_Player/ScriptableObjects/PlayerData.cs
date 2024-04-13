@@ -3,6 +3,9 @@ using UnityEngine;
 
 namespace Unite.Player
 {
+    /// <summary>
+    /// Stores player stats and handles player setup.
+    /// </summary>
     [CreateAssetMenu(fileName = "PlayerData", menuName = "Player/Player Data")]
     public class PlayerData : ScriptableObject
     {

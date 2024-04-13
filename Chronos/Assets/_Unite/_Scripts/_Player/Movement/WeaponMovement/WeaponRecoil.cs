@@ -3,6 +3,12 @@ using Random = UnityEngine.Random;
 
 namespace Unite.Player
 {
+    /// <summary>
+    /// Used to handle kickback and rotation of the player's gun when it is shot.
+    /// Reference: Tutorial by Swindle Creative - https://youtu.be/6hyQ2rPkMDY?si=S3wkjWRGJDeajzgl
+    /// 
+    /// <seealso cref="CameraRecoil"/>
+    /// </summary>
     public class WeaponRecoil : MonoBehaviour
     {
         [Header("Reference Points")] 

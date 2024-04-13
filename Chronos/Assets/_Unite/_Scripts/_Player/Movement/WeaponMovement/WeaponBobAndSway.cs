@@ -3,6 +3,11 @@ using UnityEngine;
 
 namespace Unite.Player
 {
+    /// <summary>
+    /// Procedurally handles weapon bobbing and swaying during player movement.
+    ///
+    /// Reference: Tutorial by BuffaTwo - https://youtu.be/DR4fTllQnXg?si=LmBrzcATrzRgNBv-
+    /// </summary>
     public class WeaponBobAndSway : MonoBehaviour
     {
         [Header("Toggle Settings")]
