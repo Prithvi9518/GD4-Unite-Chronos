@@ -19029,6 +19029,14 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 1633357537}
+    - targetCorrespondingSourceObject: {fileID: 2429453186442137770, guid: dc12ddd2c0755ad49ab95ae498b9b273,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1633357540}
+    - targetCorrespondingSourceObject: {fileID: 2429453186442137770, guid: dc12ddd2c0755ad49ab95ae498b9b273,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1633357539}
   m_SourcePrefab: {fileID: 100100000, guid: dc12ddd2c0755ad49ab95ae498b9b273, type: 3}
 --- !u!4 &1633357534 stripped
 Transform:
@@ -19084,6 +19092,49 @@ MonoBehaviour:
   interactibleData: {fileID: 11400000, guid: d88620a9e1f61234c95a44394c3ded6f, type: 2}
   onInteractUpdateAnalytics: {fileID: 11400000, guid: 13708a900b70425458ffed7409591384,
     type: 2}
+--- !u!114 &1633357539
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1633357535}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b9893a878b6442144bd9c1283a2b4b18, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  description: Listen for collect items objective complete
+  gameEvent: {fileID: 11400000, guid: c76b65ea70bdffa43bb1419ca4f6c3ac, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1633357540}
+        m_TargetAssemblyTypeName: Unite.Utils.TagSwitcher, Assembly-CSharp
+        m_MethodName: SwitchTag
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &1633357540
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1633357535}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 815b18a15ec74f8eb529d25415baacc2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startingTag: Untagged
+  tagToSwitch: Interactible
 --- !u!1001 &1656583983
 PrefabInstance:
   m_ObjectHideFlags: 0
