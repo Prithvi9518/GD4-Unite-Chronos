@@ -8,6 +8,10 @@ using UnityEngine;
 
 namespace Unite.Player
 {
+    /// <summary>
+    /// New controller - handles movement for the rigidbody-based player
+    /// Reference: Tutorial series by Plai - https://youtube.com/playlist?list=PLRiqz5jhNfSo-Fjsx3vv2kvYbxUDMBZ0u&amp;si=iWsg45tmGZ1Pz9f3
+    /// </summary>
     public class PlayerController : MonoBehaviour, IHandlePlayerMovement
     {
         [SerializeField] 
@@ -109,6 +113,10 @@ namespace Unite.Player
             jumpEnabled = true;
         }
 
+        /// <summary>
+        /// Called when the GameManager starts the game, and grabs a reference to the player camera
+        /// from the GameManager.
+        /// </summary>
         public void InitializeCamera()
         {
             Debug.Log("PlayerController - InitializeCamera()");
@@ -118,6 +126,10 @@ namespace Unite.Player
             cameraInitialized = true;
         }
 
+        /// <summary>
+        /// Called when the GameManager starts the game, and grabs a reference to the player weapon holder
+        /// from the GameManager.
+        /// </summary>
         public void InitializeWeaponHolder()
         {
             Debug.Log("PlayerController - InitializeWeaponHolder()");
@@ -128,6 +140,9 @@ namespace Unite.Player
             weaponBobAndSway.PerformSetup(this);
         }
 
+        /// <summary>
+        /// Ground check, input handing and speed limiting are performed in Update
+        /// </summary>
         private void Update()
         {
             if (!cameraInitialized) return;
@@ -148,6 +163,9 @@ namespace Unite.Player
             dashHandler.DoUpdate();
         }
 
+        /// <summary>
+        /// Adding forces to the rigidbody to move the player is done in FixedUpdate
+        /// </summary>
         private void FixedUpdate()
         {
             if (!cameraInitialized) return;
@@ -156,6 +174,9 @@ namespace Unite.Player
             MovePlayer();
         }
 
+        /// <summary>
+        /// Updates the player's movement by checking for conditions every frame
+        /// </summary>
         private void UpdateState()
         {
             if (isDashing)
@@ -249,6 +270,9 @@ namespace Unite.Player
             }
         }
 
+        /// <summary>
+        /// Used to limit speeds on slopes and in the air
+        /// </summary>
         private void SpeedControl()
         {
             if (OnSlope() && !exitingSlope)
@@ -320,6 +344,10 @@ namespace Unite.Player
             return Vector3.ProjectOnPlane(moveDirection, slopeHit.normal).normalized;
         }
 
+        /// <summary>
+        /// Used to maintain momentum when the player finishes dashing
+        /// Smoothly lerps from the current move speed to the desired move speed
+        /// </summary>
         private IEnumerator SmoothlyLerpMoveSpeed()
         {
             float time = 0;

@@ -5,6 +5,9 @@ using UnityEngine;
 
 namespace Unite.Player
 {
+    /// <summary>
+    /// Main player class, containing references to sub-classes handling different aspects of the player.
+    /// </summary>
     [RequireComponent(typeof(PlayerHealthHandler))]
     [RequireComponent(typeof(PlayerGunHandler))]
     [RequireComponent(typeof(PlayerStatusEffectable))]
@@ -28,7 +31,6 @@ namespace Unite.Player
         private IHandlePlayerMovement movementHandler;
         private PlayerStatusEffectable statusEffectable;
         
-        // Temporary workaround
         private Ability ability;
 
         public PlayerHealthHandler HealthHandler => healthHandler;

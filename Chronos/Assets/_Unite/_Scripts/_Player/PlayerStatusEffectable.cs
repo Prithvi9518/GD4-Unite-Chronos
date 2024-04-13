@@ -1,11 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Unite.Core.DamageInterfaces;
 using Unite.StatusEffectSystem;
 using UnityEngine;
 
 namespace Unite.Player
 {
+    /// <summary>
+    /// Handles the application of status effects (e.g. poison) on the player
+    /// </summary>
     public class PlayerStatusEffectable : MonoBehaviour, IStatusEffectable
     {
         private class StatusEffectInfo
@@ -43,6 +45,9 @@ namespace Unite.Player
             HandleEffect();
         }
         
+        /// <summary>
+        /// Applies the status effect that's passed in when the player takes damage from an attack containing a status effect.
+        /// </summary>
         public void ApplyStatusEffect(StatusEffectSO statusEffect, IAttacker attacker)
         {
             StatusEffectInfo info = new StatusEffectInfo(statusEffect, attacker);
@@ -61,6 +66,9 @@ namespace Unite.Player
         {
         }
 
+        /// <summary>
+        /// Handles the update of effects every frame
+        /// </summary>
         public void HandleEffect()
         {
             List<StatusEffectInfo> values = new List<StatusEffectInfo>(effectsDict.Values);

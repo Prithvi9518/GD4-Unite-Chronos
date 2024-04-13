@@ -4,6 +4,9 @@ using UnityEngine;
 
 namespace Unite.BoundSystem
 {
+    /// <summary>
+    /// Used to trigger a dialogue when the player collides with the island bounds.
+    /// </summary>
     public class IslandBounds : MonoBehaviour
     {
         [SerializeField]

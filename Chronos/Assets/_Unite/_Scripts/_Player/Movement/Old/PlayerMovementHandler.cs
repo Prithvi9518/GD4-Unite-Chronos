@@ -4,6 +4,10 @@ using UnityEngine;
 
 namespace Unite.Player
 {
+    /// <summary>
+    /// DEPRECATED - class used to implement movement for the old player using the first-person controller
+    /// from Unity's Standard Assets pack.
+    /// </summary>
     public class PlayerMovementHandler : MonoBehaviour, IHandlePlayerMovement
     {
         [SerializeField]

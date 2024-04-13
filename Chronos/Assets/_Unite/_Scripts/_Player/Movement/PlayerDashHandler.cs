@@ -4,6 +4,10 @@ using UnityEngine;
 
 namespace Unite.Player
 {
+    /// <summary>
+    /// Handles player dash activation and cooldown
+    /// Reference: Tutorial by Dave/Game Development - https://youtu.be/QRYGrCWumFw?si=9fcVJYdFwb35dOu6
+    /// </summary>
     public class PlayerDashHandler
     {
         private Transform orientation;

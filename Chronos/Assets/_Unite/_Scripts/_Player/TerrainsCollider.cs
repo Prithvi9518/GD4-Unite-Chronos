@@ -2,8 +2,12 @@ using System.Collections;
 using Unite.EventSystem;
 using UnityEngine;
 
-namespace _Unite._Scripts
+namespace Unite.Player
 {
+    /// <summary>
+    /// Handles player collision with region triggers on the island.
+    /// Raises an event with the region name (used to update the UI showing the region name)
+    /// </summary>
     public class TerrainsCollider : MonoBehaviour
     {
         [SerializeField] private float displayDuration = 5f;

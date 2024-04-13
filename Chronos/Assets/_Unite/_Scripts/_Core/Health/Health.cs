@@ -3,6 +3,9 @@ using UnityEngine;
 
 namespace Unite.Core
 {
+    /// <summary>
+    /// This class is used to store and update the health of the player and enemies.
+    /// </summary>
     public class Health : MonoBehaviour
     {
         private static float TOLERANCE = 0.00001f;

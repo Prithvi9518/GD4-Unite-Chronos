@@ -4,6 +4,9 @@ using UnityEngine;
 
 namespace Unite.ActionSystem
 {
+    /// <summary>
+    /// ActionSO used to raise a journal prompt event
+    /// </summary>
     [CreateAssetMenu(fileName = "JournalPromptAction", menuName = "Action System/JournalPromptAction")]
     public class JournalPromptAction : ActionSO
     {

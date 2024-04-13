@@ -1,9 +1,11 @@
 ﻿using System.Collections.Generic;
 using Unite.StatSystem;
-using UnityEngine;
 
 namespace Unite.Player
 {
+    /// <summary>
+    /// Stores all player stats and handles stat modification
+    /// </summary>
     public class PlayerStatsHandler
     {
         private Dictionary<StatTypeSO, Stat> playerStats = new();

@@ -3,6 +3,10 @@ using UnityEngine.SceneManagement;
 
 namespace Unite.Core.Game
 {
+    /// <summary>
+    /// Stores a Unity Scene object to load additively and asynchronously.
+    /// <seealso cref="GameLevel"/>
+    /// </summary>
     [CreateAssetMenu(fileName = "GameScene", menuName = "Game/Scene")]
     public class GameScene : ScriptableObject
     {

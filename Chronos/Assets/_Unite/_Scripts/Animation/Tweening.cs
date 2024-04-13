@@ -15,6 +15,10 @@ public enum TweenAnimationType
     Sequence
 }
 
+/// <summary>
+/// Master script to handle tweening of an object's position/rotation/scale.
+/// Includes several parameters to alter how the object is tweened. 
+/// </summary>
 public class Tweening : MonoBehaviour
 {
     [SerializeField] private GameObject objectToAnimate;

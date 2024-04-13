@@ -8,6 +8,9 @@ using Action = System.Action;
 
 namespace Unite.Core.Game
 {
+    /// <summary>
+    /// Stores all the levels in the game, and contains functionality to load/unload levels.
+    /// </summary>
     [CreateAssetMenu(fileName = "GameLayout", menuName = "Game/Layout")]
     public class GameLayout : ScriptableObject
     {
@@ -89,6 +92,13 @@ namespace Unite.Core.Game
             mainMenu.UnloadScene();
         }
 
+        /// <summary>
+        /// Loads appropriate level using the level index. Takes in callbacks
+        /// as parameters to execute when the loading starts, progresses, and ends.
+        ///
+        /// Each scene in the level is loaded asynchronously, and the progress of the loading is tracked and
+        /// passed around through callbacks. (Used to update the loading screen bar).
+        /// </summary>
         [ContextMenu("Load Layout")]
         public IEnumerator LoadLayout(int levelIndex, Action onStartLoading, Action<float> onProgressLoading, Action onFinishLoading)
         {

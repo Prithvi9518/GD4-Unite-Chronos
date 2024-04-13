@@ -3,6 +3,10 @@ using UnityEngine;
 
 namespace Unite.BattleSystem
 {
+    /// <summary>
+    /// Tracks the current battle zone that the player is in,
+    /// and performs some actions depending on some special conditions (e.g. if it's the player's first battle)
+    /// </summary>
     public class BattleTracker : MonoBehaviour
     {
         public static BattleTracker Instance { get; private set; }

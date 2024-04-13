@@ -8,6 +8,10 @@ using UnityEngine;
 
 namespace Unite.Player
 {
+    /// <summary>
+    /// Acts as a wrapper for the core Health class, and handles player-specific health
+    /// functionality (e.g. damage, healing, etc.)
+    /// </summary>
     [RequireComponent(typeof(Health))]
     public class PlayerHealthHandler : MonoBehaviour, ITakeDamage
     {
@@ -46,6 +50,9 @@ namespace Unite.Player
             playerHealth = GetComponent<Health>();
         }
 
+        /// <summary>
+        /// Called during player setup to set the base health and other parameters
+        /// </summary>
         public void PerformSetup(PlayerStatsHandler playerStatsHandler)
         {
             dead = false;
@@ -59,6 +66,9 @@ namespace Unite.Player
             onHealthChanged.Raise(new HealthInfo(playerHealth.CurrentHealth, playerHealth.MaxHealth));
         }
 
+        /// <summary>
+        /// Called when the player receives a health stat buff, and updates the max health accordingly
+        /// </summary>
         public void UpdateMaxHealthFromStats()
         {
             playerHealth.MaxHealth = statsHandler.GetStat(healthStatType).Value;
