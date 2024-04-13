@@ -7,6 +7,10 @@ namespace Unite.ActionSystem
     /// Child classes contain the concrete implementations of different types of actions.
     ///
     /// The execution of actions are handled by the ActionExecutionManager class
+    ///
+    /// <seealso cref="PlayDialogueAction"/>
+    /// <seealso cref="RaiseGameEventAction"/>
+    /// <seealso cref="JournalPromptAction"/>
     /// </summary>
     public abstract class ActionSO : ScriptableObject
     {
