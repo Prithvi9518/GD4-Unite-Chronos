@@ -5,6 +5,9 @@ using UnityEngine;
 
 namespace Unite.DialogueSystem
 {
+    /// <summary>
+    /// Responsible for playing dialogue sequences upon receiving requests.
+    /// </summary>
     [RequireComponent(typeof(AudioSource))]
     public class DialogueManager : MonoBehaviour
     {
@@ -42,6 +45,13 @@ namespace Unite.DialogueSystem
             audioSource = GetComponent<AudioSource>();
         }
 
+        /// <summary>
+        /// If a dialogue has to be queued after the current dialogue is done playing,
+        /// then it is enqueued and played after the current dialogue is done.
+        ///
+        /// If it doesn't need to be queued, then it is played immediately.
+        /// If there was a dialogue playing already, it stops and the new dialogue is played.
+        /// </summary>
         public void PlayDialogue(DialogueSO dialogue)
         {
             if (!playDialogue) return;
@@ -75,6 +85,13 @@ namespace Unite.DialogueSystem
             onPlayDialogueLine.Raise(line);
         }
 
+        /// <summary>
+        /// Plays dialogue lines while adding a delay between them. The delay is specified in the
+        /// DialogueLine object.
+        ///
+        /// <seealso cref="DialogueLine"/>
+        /// </summary>
+        /// <returns></returns>
         private IEnumerator DialogueLinesCoroutine(List<DialogueLine> lines)
         {
             isDialoguePlaying = true;
