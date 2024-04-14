@@ -4,6 +4,13 @@ using UnityEngine;
 
 namespace Unite.Enemies
 {
+    /// <summary>
+    /// Used by the fire-breath skill to deal damage within
+    /// the area of the flame.
+    ///
+    /// <seealso cref="FireBreathHandler"/>
+    /// <seealso cref="FireBreathAttack"/>
+    /// </summary>
     public class AreaDamage : MonoBehaviour
     {
         private float damage;

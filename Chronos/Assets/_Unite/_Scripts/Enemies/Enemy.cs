@@ -11,6 +11,10 @@ using UnityEngine.Pool;
 
 namespace Unite.Enemies
 {
+    /// <summary>
+    /// Main class for enemies.
+    /// Holds references to all components handling different aspects of enemy logic.
+    /// </summary>
     [RequireComponent(typeof(Health))]
     [RequireComponent(typeof(EnemyDamager))]
     [RequireComponent(typeof(EnemyStateMachine))]

@@ -5,6 +5,9 @@ using UnityEngine;
 
 namespace Unite.Enemies
 {
+    /// <summary>
+    /// Handles enemy health and damage
+    /// </summary>
     [RequireComponent(typeof(Health))]
     public class EnemyDamager : MonoBehaviour, ITakeDamage
     {
@@ -43,6 +46,9 @@ namespace Unite.Enemies
             enemy.StateMachine.TriggerStateEvent(StateEvent.EnemyDead);
         }
 
+        /// <summary>
+        /// Used to delay death until after the time-stop is finished.
+        /// </summary>
         public void ToggleDelayDeath(bool value)
         {
             delayDeath = value;

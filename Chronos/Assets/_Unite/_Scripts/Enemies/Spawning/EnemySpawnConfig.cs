@@ -2,6 +2,10 @@
 
 namespace Unite.Enemies.Spawning
 {
+    /// <summary>
+    /// Assigns weights to enemies - this is used to prioritize certain enemies
+    /// during spawning.
+    /// </summary>
     [System.Serializable]
     public class EnemySpawnConfig
     {
