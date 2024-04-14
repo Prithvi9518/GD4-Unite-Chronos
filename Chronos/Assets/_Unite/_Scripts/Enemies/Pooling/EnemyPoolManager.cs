@@ -5,6 +5,9 @@ using UnityEngine.Pool;
 
 namespace Unite.Enemies
 {
+    /// <summary>
+    /// Orchestrates object-pooling for enemies
+    /// </summary>
     public class EnemyPoolManager : MonoBehaviour
     {
         public static EnemyPoolManager Instance { get; private set; }

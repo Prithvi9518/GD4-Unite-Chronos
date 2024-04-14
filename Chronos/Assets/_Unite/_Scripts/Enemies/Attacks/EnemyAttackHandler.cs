@@ -4,6 +4,12 @@ using UnityEngine;
 
 namespace Unite.Enemies
 {
+    /// <summary>
+    /// Stores all of the enemy's attacks and executes the appropriate attack when called.
+    ///
+    /// <seealso cref="AttackData"/>
+    /// <seealso cref="Attack"/>
+    /// </summary>
     public class EnemyAttackHandler : MonoBehaviour, IAttacker
     {
         private float baseDamage;

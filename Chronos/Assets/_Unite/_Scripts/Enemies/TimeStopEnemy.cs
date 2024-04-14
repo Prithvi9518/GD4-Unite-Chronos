@@ -3,6 +3,9 @@ using UnityEngine;
 
 namespace Unite.Enemies
 {
+    /// <summary>
+    /// Handles the pause/un-pause of enemy logic when time is stopped.
+    /// </summary>
     public class TimeStopEnemy : MonoBehaviour, ITimeStopSubscriber
     {
         private Enemy enemy;

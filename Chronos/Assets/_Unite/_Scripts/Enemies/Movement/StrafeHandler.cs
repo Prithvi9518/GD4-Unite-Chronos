@@ -1,11 +1,13 @@
-﻿using System;
-using Unite.Enemies.AI;
+﻿using Unite.Enemies.AI;
 using UnityEngine;
 using UnityEngine.AI;
 using Random = UnityEngine.Random;
 
 namespace Unite.Enemies.Movement
 {
+    /// <summary>
+    /// Handles left-right strafe movement of enemies
+    /// </summary>
     public class StrafeHandler : MonoBehaviour
     {
         [SerializeField]

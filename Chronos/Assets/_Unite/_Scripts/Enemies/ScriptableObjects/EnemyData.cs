@@ -4,6 +4,9 @@ using UnityEngine;
 
 namespace Unite.Enemies
 {
+    /// <summary>
+    /// Stores all data regarding enemies, and handles enemy setup upon instantiation
+    /// </summary>
     [CreateAssetMenu(fileName = "EnemyData", menuName = "Enemies/Base Enemy Data")]
     public class EnemyData : ScriptableObject
     {

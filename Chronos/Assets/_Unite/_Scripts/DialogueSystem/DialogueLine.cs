@@ -1,8 +1,12 @@
 ﻿using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace Unite.DialogueSystem
 {
+    /// <summary>
+    /// Single line of dialogue. Makes up a part of a dialogue sequence within the DialogueSO.
+    /// Contains information about the dialogue line and the speaker.
+    /// <seealso cref="DialogueSO"/>
+    /// </summary>
     [System.Serializable]
     public class DialogueLine
     {

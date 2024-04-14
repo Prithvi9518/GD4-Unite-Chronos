@@ -4,6 +4,10 @@ using UnityEngine;
 
 namespace Unite.BuffSystem
 {
+    /// <summary>
+    /// Used to track the buffs that the player has acquired throughout the game.
+    /// Raises an event whenever a new buff is added.
+    /// </summary>
     public class BuffsTrackingManager : MonoBehaviour
     {
         public static BuffsTrackingManager Instance { get; private set; }

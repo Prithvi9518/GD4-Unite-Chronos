@@ -1,5 +1,9 @@
 ﻿namespace Unite.BuffSystem.ScriptableObjects
 {
+    /// <summary>
+    /// Runtime configuration of a buff, used to update and track the number
+    /// of times it has been spawned so far, and whether it can still be spawned.
+    /// </summary>
     public class BuffSpawnConfig
     {
         private BuffSpawnSO buffSpawnSO;
@@ -17,6 +21,10 @@
             numTimesSpawned = 0;
         }
 
+        /// <summary>
+        /// Called after a buff has been spawned to check and update whether the buff
+        /// can be spawned the next time.
+        /// </summary>
         public void UpdateCanSpawn()
         {
             if (buffSpawnSO.UnlimitedSpawning)
