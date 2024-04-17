@@ -58,10 +58,55 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -2502215695886173905, guid: b7e6ad1779cf0e241ae2eaf78843eaf5,
+        type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -2502215695886173905, guid: b7e6ad1779cf0e241ae2eaf78843eaf5,
+        type: 3}
+      propertyPath: m_StaticShadowCaster
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: b7e6ad1779cf0e241ae2eaf78843eaf5,
         type: 3}
       propertyPath: m_Name
       value: mushroom-poster
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: b7e6ad1779cf0e241ae2eaf78843eaf5,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 1282219121056404672, guid: b7e6ad1779cf0e241ae2eaf78843eaf5,
+        type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1282219121056404672, guid: b7e6ad1779cf0e241ae2eaf78843eaf5,
+        type: 3}
+      propertyPath: m_StaticShadowCaster
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3672548509089925874, guid: b7e6ad1779cf0e241ae2eaf78843eaf5,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 127
+      objectReference: {fileID: 0}
+    - target: {fileID: 4340423644140328716, guid: b7e6ad1779cf0e241ae2eaf78843eaf5,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 127
+      objectReference: {fileID: 0}
+    - target: {fileID: 7510089802060981170, guid: b7e6ad1779cf0e241ae2eaf78843eaf5,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.06
+      objectReference: {fileID: 0}
+    - target: {fileID: 7510089802060981170, guid: b7e6ad1779cf0e241ae2eaf78843eaf5,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -6.99
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

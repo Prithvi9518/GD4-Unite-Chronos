@@ -58,10 +58,25 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7906351407375733665, guid: c62b754b539b5f743843d7577df814fc,
+        type: 3}
+      propertyPath: m_StaticShadowCaster
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -2844733038556365690, guid: c62b754b539b5f743843d7577df814fc,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: c62b754b539b5f743843d7577df814fc,
         type: 3}
       propertyPath: m_Name
       value: desk
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c62b754b539b5f743843d7577df814fc,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

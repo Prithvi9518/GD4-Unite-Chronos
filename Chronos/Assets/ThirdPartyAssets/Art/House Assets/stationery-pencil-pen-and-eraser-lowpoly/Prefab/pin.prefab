@@ -58,10 +58,45 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -4710114468240010920, guid: 872a0bb1049f76e4eabbd2bd26108567,
+        type: 3}
+      propertyPath: m_StaticShadowCaster
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -4487638605530825313, guid: 872a0bb1049f76e4eabbd2bd26108567,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: -3926133416468689895, guid: 872a0bb1049f76e4eabbd2bd26108567,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: -3619281518325698039, guid: 872a0bb1049f76e4eabbd2bd26108567,
+        type: 3}
+      propertyPath: m_StaticShadowCaster
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 872a0bb1049f76e4eabbd2bd26108567,
         type: 3}
       propertyPath: m_Name
       value: pin
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 872a0bb1049f76e4eabbd2bd26108567,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 5253134942631304623, guid: 872a0bb1049f76e4eabbd2bd26108567,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 6060796904488525902, guid: 872a0bb1049f76e4eabbd2bd26108567,
+        type: 3}
+      propertyPath: m_StaticShadowCaster
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

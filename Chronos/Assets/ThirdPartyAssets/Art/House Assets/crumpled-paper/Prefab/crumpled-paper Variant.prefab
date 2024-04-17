@@ -8,10 +8,40 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1144553373905596226, guid: 2292b186a2d810f4693d02546aca81c7,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 1214935841522526725, guid: 2292b186a2d810f4693d02546aca81c7,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 1810360198046077750, guid: 2292b186a2d810f4693d02546aca81c7,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 4378894099503777728, guid: 2292b186a2d810f4693d02546aca81c7,
         type: 3}
       propertyPath: m_LocalPosition.x
       value: 1.49
+      objectReference: {fileID: 0}
+    - target: {fileID: 5477321651335743067, guid: 2292b186a2d810f4693d02546aca81c7,
+        type: 3}
+      propertyPath: m_StaticShadowCaster
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6205060864303699066, guid: 2292b186a2d810f4693d02546aca81c7,
+        type: 3}
+      propertyPath: m_StaticShadowCaster
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7103598726040203413, guid: 2292b186a2d810f4693d02546aca81c7,
+        type: 3}
+      propertyPath: m_StaticShadowCaster
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8187168102673763223, guid: 2292b186a2d810f4693d02546aca81c7,
         type: 3}
@@ -87,6 +117,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: crumpled-paper Variant
+      objectReference: {fileID: 0}
+    - target: {fileID: 8851115537237217581, guid: 2292b186a2d810f4693d02546aca81c7,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

@@ -8,6 +8,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -8897383911118771007, guid: c4aa22ea33f56ae4aab678b02cd04166,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: c4aa22ea33f56ae4aab678b02cd04166,
         type: 3}
       propertyPath: m_LocalScale.x
@@ -83,6 +88,11 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[1]
       value: 
       objectReference: {fileID: 2100000, guid: 4d4989b7f3cc7754596afd21dddca41c, type: 2}
+    - target: {fileID: -2796492743467506607, guid: c4aa22ea33f56ae4aab678b02cd04166,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 493434894012011630, guid: c4aa22ea33f56ae4aab678b02cd04166,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -92,6 +102,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Chest
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c4aa22ea33f56ae4aab678b02cd04166,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 4027228791024609348, guid: c4aa22ea33f56ae4aab678b02cd04166,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 7418098771544918504, guid: c4aa22ea33f56ae4aab678b02cd04166,
         type: 3}
