@@ -1084,7 +1084,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &492017485525346170
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3123,7 +3123,7 @@ GameObject:
   - component: {fileID: 3477249006831414508}
   - component: {fileID: 1571094390233858404}
   m_Layer: 0
-  m_Name: F Key Image
+  m_Name: G Key Image
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3177,7 +3177,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 21660cfc7aeb4884eaef99bf372e8416, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 363de56d2c3d3944a8723dcf0dff6596, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -3216,9 +3216,9 @@ MonoBehaviour:
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
-    m_HighlightedSprite: {fileID: 21300000, guid: 9b65749096209014cb2f9d2189bd0729,
+    m_HighlightedSprite: {fileID: 21300000, guid: 3af87487671e5ad4d880bbd001c25adf,
       type: 3}
-    m_PressedSprite: {fileID: 21300000, guid: 9b65749096209014cb2f9d2189bd0729, type: 3}
+    m_PressedSprite: {fileID: 21300000, guid: 3af87487671e5ad4d880bbd001c25adf, type: 3}
     m_SelectedSprite: {fileID: 0}
     m_DisabledSprite: {fileID: 0}
   m_AnimationTriggers:

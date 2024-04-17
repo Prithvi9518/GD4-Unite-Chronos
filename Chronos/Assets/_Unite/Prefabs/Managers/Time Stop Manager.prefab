@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5448900622167604455}
   - component: {fileID: 705958769117644388}
+  - component: {fileID: 4146605725540821550}
   m_Layer: 0
   m_Name: Time Stop Manager
   m_TagString: Untagged
@@ -45,3 +46,32 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   onToggleTimeStop: {fileID: 11400000, guid: 3cabbd1187974e040a2c4a58bde42e1b, type: 2}
+--- !u!114 &4146605725540821550
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2184498972971517123}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b9893a878b6442144bd9c1283a2b4b18, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  description: Listen for island level start, enable time stop
+  gameEvent: {fileID: 11400000, guid: ab1fe381c42cace468c5b6bda1edaad4, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 705958769117644388}
+        m_TargetAssemblyTypeName: Unite.TimeStop.TimeStopManager, Assembly-CSharp
+        m_MethodName: EnableTimeStop
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2

@@ -16,6 +16,8 @@ namespace Unite.AbilitySystem
         private float remainingActiveTimeMs;
         private float remainingCooldownTimeMs;
 
+        private bool canUse;
+
         public AbilityData Data => abilityData;
         public AbilityState CurrentState => currentState;
         public float RemainingActiveTimeMs => remainingActiveTimeMs;
@@ -23,6 +25,7 @@ namespace Unite.AbilitySystem
 
         private void Start()
         {
+            canUse = true;
             onAbilityInstantiate.Raise(this);
         }
 
@@ -57,6 +60,7 @@ namespace Unite.AbilitySystem
 
         public void ProcessActivation()
         {
+            if (!canUse) return;
             if (currentState != AbilityState.Ready) return;
             
             abilityData.Activate();
@@ -99,6 +103,8 @@ namespace Unite.AbilitySystem
             remainingCooldownTimeMs = 0;
         }
 
+        public void DisableAbility() => canUse = false;
+        public void EnableAbility() => canUse = true;
     }
 }
 

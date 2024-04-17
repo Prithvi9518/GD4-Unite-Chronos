@@ -817,6 +817,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 4852113630607956632}
+        m_TargetAssemblyTypeName: Unite.AbilitySystem.Ability, Assembly-CSharp
+        m_MethodName: EnableAbility
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &7855902728584936824
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -858,7 +870,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9893a878b6442144bd9c1283a2b4b18, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  description: Listen for enter room level, enable slow walking, disable dash
+  description: Listen for enter room level, enable slow walking, disable dash, disable
+    time stop
   gameEvent: {fileID: 11400000, guid: b96da13a6ca38cf4792a2e7a78f7e116, type: 2}
   response:
     m_PersistentCalls:
@@ -902,6 +915,18 @@ MonoBehaviour:
       - m_Target: {fileID: 4508471836421242003}
         m_TargetAssemblyTypeName: Unite.Player.PlayerController, Assembly-CSharp
         m_MethodName: DisableJump
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 4852113630607956632}
+        m_TargetAssemblyTypeName: Unite.AbilitySystem.Ability, Assembly-CSharp
+        m_MethodName: DisableAbility
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
