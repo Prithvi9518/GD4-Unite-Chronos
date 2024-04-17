@@ -72312,8 +72312,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5184096773395273484, guid: 459787fc0534eaf4daaf97b7b621a33d,
         type: 3}
+      propertyPath: enemyWaves.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5184096773395273484, guid: 459787fc0534eaf4daaf97b7b621a33d,
+        type: 3}
       propertyPath: enemyWaves.Array.data[0].currencyToSpend
-      value: 25
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 5184096773395273484, guid: 459787fc0534eaf4daaf97b7b621a33d,
+        type: 3}
+      propertyPath: enemyWaves.Array.data[1].currencyToSpend
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 5184096773395273484, guid: 459787fc0534eaf4daaf97b7b621a33d,
+        type: 3}
+      propertyPath: enemyWaves.Array.data[1].enemySpawns.Array.size
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5184096773395273484, guid: 459787fc0534eaf4daaf97b7b621a33d,
         type: 3}
@@ -72345,6 +72360,38 @@ PrefabInstance:
     - target: {fileID: 5184096773395273484, guid: 459787fc0534eaf4daaf97b7b621a33d,
         type: 3}
       propertyPath: enemyWaves.Array.data[0].enemySpawns.Array.data[1].minWeight
+      value: 0.45
+      objectReference: {fileID: 0}
+    - target: {fileID: 5184096773395273484, guid: 459787fc0534eaf4daaf97b7b621a33d,
+        type: 3}
+      propertyPath: enemyWaves.Array.data[1].enemySpawns.Array.data[0].enemyData
+      value: 
+      objectReference: {fileID: 11400000, guid: cf0d05e062065184bb18e71dd7b3f1eb,
+        type: 2}
+    - target: {fileID: 5184096773395273484, guid: 459787fc0534eaf4daaf97b7b621a33d,
+        type: 3}
+      propertyPath: enemyWaves.Array.data[1].enemySpawns.Array.data[0].maxWeight
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 5184096773395273484, guid: 459787fc0534eaf4daaf97b7b621a33d,
+        type: 3}
+      propertyPath: enemyWaves.Array.data[1].enemySpawns.Array.data[0].minWeight
+      value: 0.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 5184096773395273484, guid: 459787fc0534eaf4daaf97b7b621a33d,
+        type: 3}
+      propertyPath: enemyWaves.Array.data[1].enemySpawns.Array.data[1].enemyData
+      value: 
+      objectReference: {fileID: 11400000, guid: 9ab990075b745984fa13e233d5cb8f6c,
+        type: 2}
+    - target: {fileID: 5184096773395273484, guid: 459787fc0534eaf4daaf97b7b621a33d,
+        type: 3}
+      propertyPath: enemyWaves.Array.data[1].enemySpawns.Array.data[1].maxWeight
+      value: 0.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 5184096773395273484, guid: 459787fc0534eaf4daaf97b7b621a33d,
+        type: 3}
+      propertyPath: enemyWaves.Array.data[1].enemySpawns.Array.data[1].minWeight
       value: 0.45
       objectReference: {fileID: 0}
     - target: {fileID: 5678123593860802358, guid: 459787fc0534eaf4daaf97b7b621a33d,
