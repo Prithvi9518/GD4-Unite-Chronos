@@ -4,6 +4,9 @@ using UnityEngine;
 
 namespace Unite.Enemies
 {
+    /// <summary>
+    /// Used to handle status effects being applied on enemies. (e.g. Poison)
+    /// </summary>
     public class EnemyStatusEffectable : MonoBehaviour, IStatusEffectable
     {
         [SerializeField]

@@ -4,11 +4,11 @@ using DG.Tweening;
 
 namespace Unite.Player
 {
+    /// <summary>
+    /// Handles player camera movement and sensitivity settings
+    /// </summary>
     public class PlayerCameraHandler : MonoBehaviour
     {
-        // [SerializeField] 
-        // private Camera cam;
-        
         [Header("Sensitivity Settings")]
         [SerializeField]
         private float xSensitivity;
@@ -44,12 +44,10 @@ namespace Unite.Player
         public Camera PlayerCamera => cam;
         public float DefaultFOV => defaultFOV;
 
-        // private void Start()
-        // {
-        //     Cursor.lockState = CursorLockMode.Locked;
-        //     Cursor.visible = false;
-        // }
-
+        /// <summary>
+        /// Gets mouse input from the input manager and updates the camera's rotation.
+        /// <see cref="InputManager"/>
+        /// </summary>
         private void Update()
         {
             if (!initializedCamera) return;
@@ -71,11 +69,18 @@ namespace Unite.Player
             orientation.rotation = targetOrientationRotation;
         }
 
+        /// <summary>
+        /// Used to tween the camera FOV when the player dashes
+        /// </summary>
         public void DoFov(float endValue, float endDuration)
         {
             cam.DOFieldOfView(endValue, endDuration);
         }
 
+        /// <summary>
+        /// The camera is injected into this class from the Player Controller. <see cref="PlayerController"/>
+        /// Once this is done, a flag is set to true, which begins the update of the camera' rotation based on mouse movement.
+        /// </summary>
         public void InitializeCamera(Camera playerCamera)
         {
             cam = playerCamera;

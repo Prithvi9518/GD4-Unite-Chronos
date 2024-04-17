@@ -1,10 +1,12 @@
-using System;
 using Unite.EventSystem;
 using Unite.Managers;
 using UnityEngine;
 
 namespace Unite.AbilitySystem
 {
+    /// <summary>
+    /// MonoBehaviour that handles the timing of an ability's activation and cooldown in Update
+    /// </summary>
     public class Ability : MonoBehaviour
     {
         [SerializeField] private AbilityData abilityData;

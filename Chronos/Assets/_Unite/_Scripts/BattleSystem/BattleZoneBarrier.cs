@@ -2,6 +2,9 @@
 
 namespace Unite.BattleSystem
 {
+    /// <summary>
+    /// Handles the enabling/disabling of a battle zone's barrier colliders
+    /// </summary>
     public class BattleZoneBarrier : MonoBehaviour
     {
         [SerializeField]

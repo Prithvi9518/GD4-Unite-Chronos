@@ -4,6 +4,12 @@ using UnityEngine.AI;
 
 namespace Unite.Enemies.Spawning
 {
+    /// <summary>
+    /// Spawns enemies in waves, after selecting them using a weighted-random
+    /// selection strategy.
+    ///
+    /// <seealso cref="EnemyWave"/>
+    /// </summary>
     public class EnemyWaveSpawner : MonoBehaviour
     {
         private int numEnemiesAlive;
@@ -12,6 +18,15 @@ namespace Unite.Enemies.Spawning
 
         public int NumEnemiesAlive => numEnemiesAlive;
         
+        /// <summary>
+        /// Spawns enemies using a currency-based system.
+        /// Each enemy wave has a set amount of currency to spend, and each enemy type has an associated cost.
+        /// The spawner can spend currency to spawn enemies until it cannot afford any more enemies.
+        /// </summary>
+        /// 
+        /// <param name="enemyWave">Holds information about the enemy wave to spawn</param>
+        /// <param name="spawnPositionProvider">Provides the enemy's spawn position.</param>
+        /// <param name="playerTransform">Player's transform, which is set as the enemy's target after spawning.</param>
         public void SpawnEnemies(EnemyWave enemyWave, IProvideSpawnPosition spawnPositionProvider, Transform playerTransform)
         {
             numEnemiesAlive = 0;

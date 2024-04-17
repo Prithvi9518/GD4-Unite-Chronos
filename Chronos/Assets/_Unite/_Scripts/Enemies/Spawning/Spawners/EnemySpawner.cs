@@ -9,6 +9,13 @@ using Random = UnityEngine.Random;
 
 namespace Unite.Enemies.Spawning
 {
+    /// <summary>
+    /// DEPRECATED - Enemy spawner used to spawn enemies endlessly.
+    /// As of now, we are spawning enemies in waves within confined battle zones,
+    /// using the EnemyWaveSpawner class.
+    ///
+    /// <seealso cref="EnemyWaveSpawner"/>
+    /// </summary>
     public class EnemySpawner : MonoBehaviour, ITimeStopSubscriber
     {
         [SerializeField]

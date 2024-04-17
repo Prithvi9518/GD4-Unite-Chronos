@@ -2,6 +2,9 @@
 
 namespace Unite.ActionSystem
 {
+    /// <summary>
+    /// Wrapper class for an ActionSO, to control whether the action can only be performed once.
+    /// </summary>
     [System.Serializable]
     public class ActionContext
     {

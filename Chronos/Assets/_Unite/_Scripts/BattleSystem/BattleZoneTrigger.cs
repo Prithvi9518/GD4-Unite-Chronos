@@ -2,6 +2,10 @@ using UnityEngine;
 
 namespace Unite.BattleSystem
 {
+    /// <summary>
+    /// When the player enters the battle zone's trigger collider, this script
+    /// communicates to the BattleZone and starts the battle
+    /// </summary>
     public class BattleZoneTrigger : MonoBehaviour
     {
         private BattleZone battleZone;

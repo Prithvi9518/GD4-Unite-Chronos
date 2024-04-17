@@ -2,6 +2,9 @@ using UnityEngine;
 
 namespace Unite.Enemies
 {
+    /// <summary>
+    /// Script to handle switching between enemy animator states
+    /// </summary>
     [RequireComponent(typeof(Animator))]
     public class EnemyAnimationHandler : MonoBehaviour
     {

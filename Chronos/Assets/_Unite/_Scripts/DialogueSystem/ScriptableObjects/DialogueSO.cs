@@ -3,6 +3,10 @@ using UnityEngine;
 
 namespace Unite.DialogueSystem
 {
+    /// <summary>
+    /// Stores all dialogue lines that make up a single dialogue sequence.
+    /// <seealso cref="DialogueLine"/>
+    /// </summary>
     [CreateAssetMenu(fileName = "DialogueSO", menuName = "Dialogue System/Dialogue SO")]
     public class DialogueSO : ScriptableObject
     {

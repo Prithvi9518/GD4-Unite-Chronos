@@ -4,6 +4,10 @@ using UnityEngine.InputSystem;
 
 namespace Unite.Core.Input
 {
+    /// <summary>
+    /// Monolithic manager class to handle all input actions, switching action maps,
+    /// and sending events when an input action is triggered.
+    /// </summary>
     public class InputManager : MonoBehaviour
     {
         public static InputManager Instance { get; private set; }
@@ -104,6 +108,8 @@ namespace Unite.Core.Input
             UnsubscribeToActions();
         }
 
+        #region Gamepad Detection Methods
+
         private bool GamepadDetected(out Gamepad gamepad)
         {
             InputDevice[] devices = InputSystem.devices.ToArray();
@@ -153,6 +159,8 @@ namespace Unite.Core.Input
 
             return GamepadType.Unknown;
         }
+
+        #endregion
         
         private void RaisePlayerJumpEvent(InputAction.CallbackContext ctx)
         {

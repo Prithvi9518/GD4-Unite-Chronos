@@ -3,6 +3,12 @@ using UnityEngine;
 
 namespace Unite.Enemies
 {
+    /// <summary>
+    /// Base class for enemy attacks
+    ///
+    /// <seealso cref="FireBreathAttack"/>
+    /// <seealso cref="ProjectileAttack"/>
+    /// </summary>
     public abstract class AttackData : ScriptableObject, IDoDamage
     {
         [SerializeField]

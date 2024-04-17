@@ -4,6 +4,10 @@ using Random = UnityEngine.Random;
 
 namespace Unite.Player
 {
+    /// <summary>
+    /// Used to play footstep SFX when player moves.
+    /// Switches between footstep types when certain events are triggered.
+    /// </summary>
     public class PlayerFootsteps : MonoBehaviour
     {
         [SerializeField]

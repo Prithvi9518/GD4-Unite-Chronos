@@ -4,6 +4,10 @@ using UnityEngine;
 
 namespace Unite.Enemies.AI
 {
+    /// <summary>
+    /// Condition used by the enemy state machine to check whether the target is in range of the provided attack, and
+    /// whether the attack is currently not in cooldown.
+    /// </summary>
     [CreateAssetMenu(fileName = "CanUseAttackInRangeCondition", menuName = "AI/Conditions/CanUseAttackInRangeCondition")]
     public class CanUseAttackInRangeCondition : Condition
     {

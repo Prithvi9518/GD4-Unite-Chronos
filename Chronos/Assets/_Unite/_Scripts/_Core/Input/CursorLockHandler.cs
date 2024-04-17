@@ -2,6 +2,9 @@ using UnityEngine;
 
 namespace Unite.Core.Input
 {
+    /// <summary>
+    /// Manager class to control the hiding/un-hiding of the mouse cursor.
+    /// </summary>
     public class CursorLockHandler : MonoBehaviour
     {
         public static CursorLockHandler Instance { get; private set; }

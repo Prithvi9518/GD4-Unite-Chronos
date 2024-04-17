@@ -5,6 +5,11 @@ using Random = UnityEngine.Random;
 
 namespace Unite.BuffSystem
 {
+    /// <summary>
+    /// Picks buffs based on a weighted priority which is set in the buff spawn configuration.
+    ///
+    /// <seealso cref="BuffSpawnSO"/>
+    /// </summary>
     public class WeightedRandomBuffSelector : BuffSelector
     {
         [SerializeField] 

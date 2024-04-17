@@ -3,6 +3,12 @@ using UnityEngine;
 
 namespace Unite.Enemies.Spawning
 {
+    /// <summary>
+    /// Selects enemies based on a weighted priority system.
+    /// The weights are assigned in the enemy's spawn configuration.
+    ///
+    /// <seealso cref="EnemySpawnConfig"/>
+    /// </summary>
     public class WeightedRandomEnemySelector : ISelectEnemy
     {
         private List<EnemySpawnConfig> enemySpawnConfigs;

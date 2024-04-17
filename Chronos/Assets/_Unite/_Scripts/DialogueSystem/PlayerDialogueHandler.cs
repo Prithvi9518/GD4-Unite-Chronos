@@ -4,6 +4,15 @@ using UnityEngine;
 
 namespace Unite.DialogueSystem
 {
+    /// <summary>
+    /// Keeps track of specific conditions that must be met to play certain dialogues.
+    ///
+    /// Uses a dictionary mapping between DialogueTrigger enums and DialogueSO objects.
+    /// Upon receiving an event with a DialogueTrigger enum value, it plays the appropriate dialogue.
+    ///
+    /// <seealso cref="DialogueTrigger"/>
+    /// <seealso cref="DialogueTriggerMappingSO"/>
+    /// </summary>
     public class PlayerDialogueHandler : MonoBehaviour
     {
         [SerializeField]
@@ -38,6 +47,10 @@ namespace Unite.DialogueSystem
             }
         }
 
+        /// <summary>
+        /// Each DialogueTrigger value is mapped to an Action that is invoked when the handler is notified with the
+        /// appropriate enum value.
+        /// </summary>
         private void SetupDialogueTriggerHandlers()
         {
             dialogueTriggerHandlers = new Dictionary<DialogueTrigger, System.Action<List<DialogueSO>>>()
@@ -53,6 +66,9 @@ namespace Unite.DialogueSystem
             };
         }
         
+        /// <summary>
+        /// Plays a dialogue only for the first time a battle ends.
+        /// </summary>
         private void HandleBattleEnded(List<DialogueSO> dialogues)
         {
             if (dialogues.Count == 0) return;
@@ -71,6 +87,9 @@ namespace Unite.DialogueSystem
             DialogueManager.Instance.PlayDialogue(dialogues[0]);
         }
 
+        /// <summary>
+        /// Plays dialogue during the first time the player enters a battle zone.
+        /// </summary>
         private void HandleEnterBattleZone(List<DialogueSO> dialogues)
         {
             if(dialogues.Count == 0) return;
@@ -80,6 +99,10 @@ namespace Unite.DialogueSystem
             battleEnteredCount++;
         }
 
+        /// <summary>
+        /// Tracks the number of failed attempts to exit the room level.
+        /// Plays unique dialogues for the first 2 failed attempts.
+        /// </summary>
         private void HandleExitRoomNotYet(List<DialogueSO> dialogues)
         {
             if(exitRoomFailedAttempts <= 0)
@@ -95,6 +118,9 @@ namespace Unite.DialogueSystem
             DialogueManager.Instance.PlayDialogue(dialogues[0]);
         }
 
+        /// <summary>
+        /// Plays dialogue after the player's first time using the time-stop ability.
+        /// </summary>
         private void HandleUseTimeStop(List<DialogueSO> dialogues)
         {
             if (timeStopUses > 0) return;
@@ -103,6 +129,10 @@ namespace Unite.DialogueSystem
             DialogueManager.Instance.PlayDialogue(dialogues[0]);
         }
 
+        /// <summary>
+        /// Tracks the number of times the player has tried to go outside the island's bounds.
+        /// Plays different dialogues for the first 2 attempts at going out of bounds.
+        /// </summary>
         private void HandleIslandBounds(List<DialogueSO> dialogues)
         {
             if (islandBoundsReached > 1) return;
@@ -117,6 +147,10 @@ namespace Unite.DialogueSystem
             DialogueManager.Instance.PlayDialogue(dialogues[index]);
         }
 
+        /// <summary>
+        /// Plays dialogue after the first time the journal has been opened.
+        /// </summary>
+        /// <param name="dialogues"></param>
         private void HandleOpenJournal(List<DialogueSO> dialogues)
         {
             if (numTimesJournalOpened > 0) return;
@@ -130,6 +164,12 @@ namespace Unite.DialogueSystem
             DialogueManager.Instance.PlayDialogue(dialogues[0]);
         }
 
+        /// <summary>
+        /// Method called upon receiving a DialogueTrigger event.
+        /// Gets the Action mapped to the received DialogueTrigger value, and
+        /// invokes it.
+        /// </summary>
+        /// <param name="dialogueTrigger"></param>
         public void OnNotify(DialogueTrigger dialogueTrigger)
         {
             if (!dialogueTriggerHandlers.ContainsKey(dialogueTrigger)) return;
