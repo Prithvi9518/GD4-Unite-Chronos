@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-6952359959230493721
+--- !u!114 &-1439195774387615982
 MonoBehaviour:
   m_ObjectHideFlags: 3
   m_CorrespondingSourceObject: {fileID: 0}
@@ -27,7 +27,7 @@ MonoBehaviour:
     m_Value: 0
   saturation:
     m_OverrideState: 1
-    m_Value: -13
+    m_Value: -9.1
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -42,7 +42,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   components:
   - {fileID: 831710825501346030}
-  - {fileID: -6952359959230493721}
+  - {fileID: -1439195774387615982}
 --- !u!114 &831710825501346030
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -64,10 +64,10 @@ MonoBehaviour:
     m_Value: {x: 0.5, y: 0.5}
   intensity:
     m_OverrideState: 1
-    m_Value: 0.3
+    m_Value: 0.334
   smoothness:
     m_OverrideState: 1
-    m_Value: 0.653
+    m_Value: 0.09
   rounded:
-    m_OverrideState: 1
+    m_OverrideState: 0
     m_Value: 0

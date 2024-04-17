@@ -58,10 +58,45 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -6231234508264606981, guid: e71ad69a4b9c36c4eafb84eae9e5fb97,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: -5051178716805453561, guid: e71ad69a4b9c36c4eafb84eae9e5fb97,
+        type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -2630729482818967874, guid: e71ad69a4b9c36c4eafb84eae9e5fb97,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: -914624662024409502, guid: e71ad69a4b9c36c4eafb84eae9e5fb97,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: -573946040806042236, guid: e71ad69a4b9c36c4eafb84eae9e5fb97,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: e71ad69a4b9c36c4eafb84eae9e5fb97,
         type: 3}
       propertyPath: m_Name
       value: Books 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: e71ad69a4b9c36c4eafb84eae9e5fb97,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 2347709022789875872, guid: e71ad69a4b9c36c4eafb84eae9e5fb97,
+        type: 3}
+      propertyPath: m_CastShadows
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

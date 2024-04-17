@@ -73,6 +73,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3098936108234673973, guid: d48d4759e60aa0f478793cdf0aa7a348,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 4813542193458602252, guid: d48d4759e60aa0f478793cdf0aa7a348,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 5520347935928194803, guid: d48d4759e60aa0f478793cdf0aa7a348,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 6518030724863429801, guid: d48d4759e60aa0f478793cdf0aa7a348,
         type: 3}
       propertyPath: m_text
@@ -138,10 +153,20 @@ PrefabInstance:
       propertyPath: m_HorizontalAlignment
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 7097788355836560296, guid: d48d4759e60aa0f478793cdf0aa7a348,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 9075026913863267681, guid: d48d4759e60aa0f478793cdf0aa7a348,
         type: 3}
       propertyPath: m_Name
       value: WoodenSignWithText
+      objectReference: {fileID: 0}
+    - target: {fileID: 9075026913863267681, guid: d48d4759e60aa0f478793cdf0aa7a348,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 3207501197187310052, guid: d48d4759e60aa0f478793cdf0aa7a348, type: 3}
