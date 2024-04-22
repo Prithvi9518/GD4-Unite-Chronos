@@ -52,7 +52,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
-  m_StaticShadowCaster: 0
+  m_StaticShadowCaster: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -136,7 +136,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
-  m_StaticShadowCaster: 0
+  m_StaticShadowCaster: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -240,7 +240,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
-  m_StaticShadowCaster: 0
+  m_StaticShadowCaster: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -404,6 +404,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -3608461930495782078, guid: 2676e78c7f3295e4fafa83bedcf2c7af,
         type: 3}
+      propertyPath: m_StaticShadowCaster
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -3608461930495782078, guid: 2676e78c7f3295e4fafa83bedcf2c7af,
+        type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: fd0f411072abac7438aba85e685bbb81, type: 2}
@@ -424,6 +429,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2320200679321707337, guid: 2676e78c7f3295e4fafa83bedcf2c7af,
         type: 3}
+      propertyPath: m_StaticShadowCaster
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2320200679321707337, guid: 2676e78c7f3295e4fafa83bedcf2c7af,
+        type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: fd0f411072abac7438aba85e685bbb81, type: 2}
@@ -441,6 +451,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LODs.Array.data[2].screenRelativeHeight
       value: 0.015218699
+      objectReference: {fileID: 0}
+    - target: {fileID: 5471911466157583170, guid: 2676e78c7f3295e4fafa83bedcf2c7af,
+        type: 3}
+      propertyPath: m_StaticShadowCaster
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5471911466157583170, guid: 2676e78c7f3295e4fafa83bedcf2c7af,
         type: 3}

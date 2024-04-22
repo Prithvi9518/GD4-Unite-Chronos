@@ -40,6 +40,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 7704083737561874031}
     m_Modifications:
+    - target: {fileID: -8698576162589513634, guid: 006fb49c547b45043b6037559e90beb9,
+        type: 3}
+      propertyPath: m_ReceiveGI
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 006fb49c547b45043b6037559e90beb9,
         type: 3}
       propertyPath: m_RootOrder
@@ -113,12 +118,22 @@ PrefabInstance:
     - target: {fileID: -6850489020827713761, guid: 006fb49c547b45043b6037559e90beb9,
         type: 3}
       propertyPath: m_StaticEditorFlags
-      value: 64
+      value: 65
+      objectReference: {fileID: 0}
+    - target: {fileID: -3188892688128277277, guid: 006fb49c547b45043b6037559e90beb9,
+        type: 3}
+      propertyPath: m_ReceiveGI
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: -3188892688128277277, guid: 006fb49c547b45043b6037559e90beb9,
+        type: 3}
+      propertyPath: m_StaticShadowCaster
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -164481825537149297, guid: 006fb49c547b45043b6037559e90beb9,
         type: 3}
       propertyPath: m_StaticEditorFlags
-      value: 64
+      value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 006fb49c547b45043b6037559e90beb9,
         type: 3}

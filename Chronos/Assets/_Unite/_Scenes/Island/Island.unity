@@ -1200,6 +1200,11 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0.086
       objectReference: {fileID: 0}
+    - target: {fileID: 1610116511456129653, guid: 5f1199ce40fa1a74cb132f857adf437e,
+        type: 3}
+      propertyPath: m_ScaleInLightmap
+      value: 0.2
+      objectReference: {fileID: 0}
     - target: {fileID: 1673086068202475491, guid: 5f1199ce40fa1a74cb132f857adf437e,
         type: 3}
       propertyPath: zoomFactor
@@ -1702,6 +1707,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchoredPosition.y
       value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8636704910519904930, guid: 5f1199ce40fa1a74cb132f857adf437e,
+        type: 3}
+      propertyPath: m_ScaleInLightmap
+      value: 0.7
       objectReference: {fileID: 0}
     - target: {fileID: 9041411815166208698, guid: 5f1199ce40fa1a74cb132f857adf437e,
         type: 3}
@@ -3354,6 +3364,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1069034613}
     m_Modifications:
+    - target: {fileID: 744843344270101693, guid: 3dd7d59de8a84b94d842f97035616245,
+        type: 3}
+      propertyPath: m_ScaleInLightmap
+      value: 0.1
+      objectReference: {fileID: 0}
     - target: {fileID: 744843344270101693, guid: 3dd7d59de8a84b94d842f97035616245,
         type: 3}
       propertyPath: m_SelectedEditorRenderState
@@ -23005,6 +23020,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 744843344270101693, guid: 3dd7d59de8a84b94d842f97035616245,
         type: 3}
+      propertyPath: m_ScaleInLightmap
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 744843344270101693, guid: 3dd7d59de8a84b94d842f97035616245,
+        type: 3}
       propertyPath: m_SelectedEditorRenderState
       value: 2
       objectReference: {fileID: 0}
@@ -38650,6 +38670,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1069034613}
     m_Modifications:
+    - target: {fileID: 744843344270101693, guid: 3dd7d59de8a84b94d842f97035616245,
+        type: 3}
+      propertyPath: m_ScaleInLightmap
+      value: 0.1
+      objectReference: {fileID: 0}
     - target: {fileID: 744843344270101693, guid: 3dd7d59de8a84b94d842f97035616245,
         type: 3}
       propertyPath: m_SelectedEditorRenderState
@@ -55136,6 +55161,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1069034613}
     m_Modifications:
+    - target: {fileID: 744843344270101693, guid: 3dd7d59de8a84b94d842f97035616245,
+        type: 3}
+      propertyPath: m_ScaleInLightmap
+      value: 0.1
+      objectReference: {fileID: 0}
     - target: {fileID: 744843344270101693, guid: 3dd7d59de8a84b94d842f97035616245,
         type: 3}
       propertyPath: m_SelectedEditorRenderState
@@ -73549,6 +73579,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Directional Light
+      objectReference: {fileID: 0}
+    - target: {fileID: 6271803351437874267, guid: 6d540c5e77b2bf64c8049b3c68c51341,
+        type: 3}
+      propertyPath: m_Lightmapping
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
