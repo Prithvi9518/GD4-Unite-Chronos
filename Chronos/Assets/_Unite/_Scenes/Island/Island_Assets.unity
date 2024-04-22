@@ -14282,6 +14282,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: SmallBoat
       objectReference: {fileID: 0}
+    - target: {fileID: 1542036735189341752, guid: a8abf0e5202774e48a51491da557a333,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 2824325778483984349, guid: a8abf0e5202774e48a51491da557a333,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 2861922163582182427, guid: a8abf0e5202774e48a51491da557a333,
         type: 3}
       propertyPath: m_LocalScale.x
@@ -14346,6 +14356,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 10.655
+      objectReference: {fileID: 0}
+    - target: {fileID: 3370797897132729689, guid: a8abf0e5202774e48a51491da557a333,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 6442551218036952141, guid: a8abf0e5202774e48a51491da557a333,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 6883930390584412625, guid: a8abf0e5202774e48a51491da557a333,
         type: 3}
@@ -24268,6 +24288,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 965646055}
     m_Modifications:
+    - target: {fileID: 5502278310867994567, guid: 123a4f5ce5b9ace4fa37f6dd210408b4,
+        type: 3}
+      propertyPath: m_ScaleInLightmap
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 6295179644709643794, guid: 123a4f5ce5b9ace4fa37f6dd210408b4,
         type: 3}
       propertyPath: m_Name
@@ -25397,7 +25422,7 @@ PrefabInstance:
     - target: {fileID: 6298293515804775796, guid: 9cf4cca6be6d72b4191cec509848f6ac,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 99.92062
+      value: 99.7
       objectReference: {fileID: 0}
     - target: {fileID: 6298293515804775796, guid: 9cf4cca6be6d72b4191cec509848f6ac,
         type: 3}
@@ -25819,7 +25844,7 @@ PrefabInstance:
     - target: {fileID: 5433789866761489791, guid: 4d24a9e449595ec488bab6e51a800f88,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 99.3
+      value: 99.65
       objectReference: {fileID: 0}
     - target: {fileID: 5433789866761489791, guid: 4d24a9e449595ec488bab6e51a800f88,
         type: 3}
@@ -28670,6 +28695,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -0.517
       objectReference: {fileID: 0}
+    - target: {fileID: 6536751399164362321, guid: eaf0424188db8314dbd2822acb91e91c,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -28743,6 +28773,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: fantasy-tower-top
+      objectReference: {fileID: 0}
+    - target: {fileID: 3511922109000767839, guid: c01695d47cbf7f44c81a0707f34c9cd2,
+        type: 3}
+      propertyPath: m_ScaleInLightmap
+      value: 0.4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -37919,6 +37954,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 514813713}
     m_Modifications:
+    - target: {fileID: 557523781204226147, guid: f9e13c5be43ec494981c8cebd3560496,
+        type: 3}
+      propertyPath: m_StaticShadowCaster
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1727011918022789900, guid: f9e13c5be43ec494981c8cebd3560496,
         type: 3}
       propertyPath: m_LocalPosition.x
