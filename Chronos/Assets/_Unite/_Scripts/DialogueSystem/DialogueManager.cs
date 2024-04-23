@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Unite.ActionSystem;
 using Unite.EventSystem;
 using Unite.Managers;
 using UnityEngine;
@@ -84,7 +85,7 @@ namespace Unite.DialogueSystem
             
             if(dialogueLinesCoroutine != null)
                     StopCoroutine(dialogueLinesCoroutine);
-            dialogueLinesCoroutine = StartCoroutine(DialogueLinesCoroutine(dialogue.Lines));
+            dialogueLinesCoroutine = StartCoroutine(DialogueLinesCoroutine(dialogue.Lines, dialogue.ActionsAfterFinish));
         }
 
         private void PlayDialogueLine(DialogueLine line)
@@ -105,7 +106,7 @@ namespace Unite.DialogueSystem
         /// <seealso cref="DialogueLine"/>
         /// </summary>
         /// <returns></returns>
-        private IEnumerator DialogueLinesCoroutine(List<DialogueLine> lines)
+        private IEnumerator DialogueLinesCoroutine(List<DialogueLine> lines, ActionSO[] actionsAfterFinish)
         {
             isDialoguePlaying = true;
             
@@ -116,6 +117,15 @@ namespace Unite.DialogueSystem
             }
 
             isDialoguePlaying = false;
+
+            if (actionsAfterFinish != null)
+            {
+                foreach (var action in actionsAfterFinish)
+                {
+                    ActionExecutionManager.Instance.ExecuteAction(action);
+                }
+            }
+            
             if (dialogueQueue.Count <= 0) yield break;
             
             DialogueSO nextDialogue = dialogueQueue.Dequeue();

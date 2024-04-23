@@ -23,6 +23,8 @@ namespace Unite.InteractionSystem
 
         private void Awake()
         {
+            if (interactibleData.ActionsOnInteract == null) return;
+            if (interactibleData.ActionsOnInteract.Length <= 0) return;
             actionsOnInteract = new ActionContext[interactibleData.ActionsOnInteract.Length];
             for (int i = 0; i < actionsOnInteract.Length; i++)
             {

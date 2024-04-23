@@ -13,14 +13,6 @@ namespace Unite.UI
             panel.gameObject.SetActive(false);
         }
 
-        private void Update()
-        {
-            if (Input.GetKeyDown(KeyCode.L))
-            {
-                ShowEndScreen();
-            }
-        }
-
         public void ShowEndScreen()
         {
             InputManager.Instance.SwitchToUIActionMap();
