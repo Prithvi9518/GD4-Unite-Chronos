@@ -273,5 +273,13 @@ namespace Unite.Managers
             if (SceneTransitionManager.Instance == null) return;
             SceneTransitionManager.Instance.StartTransition(startLevelTransition);
         }
+
+        public void SwitchToMainMenu()
+        {
+            if (Bootloader.Instance == null) return;
+            
+            Bootloader.Instance.LoadMainMenu();
+            SetGameState(GameState.Bootstrap);
+        }
     }
 }
