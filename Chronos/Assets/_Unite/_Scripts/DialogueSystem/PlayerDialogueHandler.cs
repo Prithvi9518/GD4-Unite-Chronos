@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Unite.Managers;
 using UnityEngine;
 
 namespace Unite.DialogueSystem
@@ -38,6 +39,18 @@ namespace Unite.DialogueSystem
             SetupDialogueTriggerHandlers();
         }
 
+        private void OnEnable()
+        {
+            if (GameManager.Instance == null) return;
+            GameManager.Instance.OnBackToMainMenu += ResetTrackedVariables;
+        }
+
+        private void OnDisable()
+        {
+            if (GameManager.Instance == null) return;
+            GameManager.Instance.OnBackToMainMenu -= ResetTrackedVariables;
+        }
+
         private void SetupDialogueMap()
         {
             dialogueMap = new();
@@ -45,6 +58,16 @@ namespace Unite.DialogueSystem
             {
                 dialogueMap.Add(mapping.DialogueTrigger, mapping.Dialogues);
             }
+        }
+
+        private void ResetTrackedVariables()
+        {
+            battleEndedCount = 0;
+            battleEnteredCount = 0;
+            exitRoomFailedAttempts = 0;
+            timeStopUses = 0;
+            islandBoundsReached = 0;
+            numTimesJournalOpened = 0;
         }
 
         /// <summary>

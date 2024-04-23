@@ -56,6 +56,13 @@ namespace Unite.Bootstrap
                 LoadStartLevelLayout();
         }
 
+        public void LoadMainMenu()
+        {
+            if (gameLayout.MainMenuScene == null) return;
+            gameLayout.LoadMainMenu();
+            UnloadCurrentLevel();
+        }
+
         public void UnloadMainMenu()
         {
             if (gameLayout.MainMenuScene == null) return;

@@ -1,4 +1,5 @@
 ﻿using Unite.EventSystem;
+using Unite.Managers;
 using UnityEngine;
 
 namespace Unite.ObjectiveSystem
@@ -23,6 +24,22 @@ namespace Unite.ObjectiveSystem
         private bool isCompleted;
 
         public string Description => taskDescription;
+
+        private void OnEnable()
+        {
+            if (GameManager.Instance == null) return;
+            GameManager.Instance.OnBackToMainMenu += DeleteTask;
+        }
+
+        private void OnDisable()
+        {
+            GameManager.Instance.OnBackToMainMenu -= DeleteTask;
+        }
+
+        private void DeleteTask()
+        {
+            Destroy(gameObject);
+        }
 
         public void InitializeTask(string objectiveName)
         {
