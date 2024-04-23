@@ -57,6 +57,7 @@ namespace Unite.Managers
 
         public Action OnGameLose;
         public Action OnGameRestart;
+        public Action OnBackToMainMenu;
 
         public Player.Player Player => player;
         public Camera PlayerCamera => playerCamera;
@@ -278,6 +279,7 @@ namespace Unite.Managers
         {
             if (Bootloader.Instance == null) return;
             
+            OnBackToMainMenu?.Invoke();
             Bootloader.Instance.LoadMainMenu();
             SetGameState(GameState.Bootstrap);
         }

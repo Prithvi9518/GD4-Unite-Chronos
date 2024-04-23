@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using Unite.EventSystem;
+using Unite.Managers;
 using UnityEngine;
 
 namespace Unite.DialogueSystem
@@ -43,6 +44,18 @@ namespace Unite.DialogueSystem
 
             Instance = this;
             audioSource = GetComponent<AudioSource>();
+        }
+
+        private void OnEnable()
+        {
+            if (GameManager.Instance == null) return;
+            GameManager.Instance.OnBackToMainMenu += ClearDialogues;
+        }
+
+        private void OnDisable()
+        {
+            if (GameManager.Instance == null) return;
+            GameManager.Instance.OnBackToMainMenu -= ClearDialogues;
         }
 
         /// <summary>
@@ -107,6 +120,14 @@ namespace Unite.DialogueSystem
             
             DialogueSO nextDialogue = dialogueQueue.Dequeue();
             PlayDialogue(nextDialogue);
+        }
+
+        private void ClearDialogues()
+        {
+            dialogueQueue.Clear();
+            if(dialogueLinesCoroutine != null)
+                StopCoroutine(dialogueLinesCoroutine);
+            audioSource.Stop();
         }
     }
 }

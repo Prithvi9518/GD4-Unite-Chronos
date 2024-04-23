@@ -13,6 +13,14 @@ namespace Unite.UI
             panel.gameObject.SetActive(false);
         }
 
+        private void Update()
+        {
+            if (Input.GetKeyDown(KeyCode.L))
+            {
+                ShowEndScreen();
+            }
+        }
+
         public void ShowEndScreen()
         {
             InputManager.Instance.SwitchToUIActionMap();
@@ -29,7 +37,10 @@ namespace Unite.UI
 
         public void OnBackToMainMenu()
         {
+            HideEndScreen();
             GameManager.Instance.SwitchToMainMenu();
+            InputManager.Instance.SwitchToUIActionMap();
+            CursorLockHandler.Instance.ShowAndUnlockCursor();
         }
     }
 }
