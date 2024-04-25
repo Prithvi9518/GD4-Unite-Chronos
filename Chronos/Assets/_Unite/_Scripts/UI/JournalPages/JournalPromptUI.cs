@@ -11,7 +11,8 @@ public class JournalPromptUI : MonoBehaviour
     [SerializeField] private float displayDuration = 5f;
     [SerializeField] private GameEvent onJournalPromptHidden;
 
-    [Header("Tween Settings")] 
+    [Header("Tween Settings")]
+    [SerializeField] private Color defaultColor;
     [SerializeField] private Color tweenColor;
     [SerializeField] private float tweenDuration;
     
@@ -21,6 +22,7 @@ public class JournalPromptUI : MonoBehaviour
 
     void Start()
     {
+        background.color = defaultColor;
         uiGameObject.SetActive(false);
     }
 
@@ -47,6 +49,7 @@ public class JournalPromptUI : MonoBehaviour
         if (isDisplaying) return;
         isDisplaying = true;
         uiGameObject.SetActive(true);
+        background.color = defaultColor;
         background.DOColor(tweenColor, tweenDuration).SetLoops(-1, LoopType.Yoyo);
 
         if (hideCoroutine != null)
@@ -58,6 +61,9 @@ public class JournalPromptUI : MonoBehaviour
     {
         if (!isDisplaying) return;
         isDisplaying = false;
+
+        background.color = defaultColor;
+        
         uiGameObject.SetActive(false);
         onJournalPromptHidden.Raise();
 

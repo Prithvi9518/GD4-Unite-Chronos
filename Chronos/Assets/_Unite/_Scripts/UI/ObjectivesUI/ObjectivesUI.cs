@@ -17,6 +17,11 @@ namespace Unite.UI
             objectiveTemplate.gameObject.SetActive(false);
         }
 
+        private void OnEnable()
+        {
+            UpdateUI();
+        }
+
         private void OnDisable()
         {
             UpdateUI();
@@ -34,6 +39,7 @@ namespace Unite.UI
 
         private void UpdateUI()
         {
+            if (container == null) return;
             foreach (Transform child in container)
             {
                 if(child == objectiveTemplate) continue;

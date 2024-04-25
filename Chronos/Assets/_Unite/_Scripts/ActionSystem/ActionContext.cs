@@ -21,5 +21,14 @@ namespace Unite.ActionSystem
         {
             executedOnce = true;
         }
+
+        public ActionContext Clone()
+        {
+            ActionContext ctx = new ActionContext();
+            ctx.action = action;
+            ctx.doOnce = doOnce;
+            ctx.executedOnce = false;
+            return ctx;
+        }
     }
 }

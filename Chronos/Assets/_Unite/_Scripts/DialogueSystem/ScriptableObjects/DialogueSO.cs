@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Unite.ActionSystem;
 using UnityEngine;
 
 namespace Unite.DialogueSystem
@@ -15,9 +16,12 @@ namespace Unite.DialogueSystem
 
         [SerializeField] private bool isQueued;
         [SerializeField] private bool overrideQueue;
+        
+        [SerializeField] private ActionSO[] actionsAfterFinish;
 
         public List<DialogueLine> Lines => lines;
         public bool IsQueued => isQueued;
         public bool OverrideQueue => overrideQueue;
+        public ActionSO[] ActionsAfterFinish => actionsAfterFinish;
     }
 }
