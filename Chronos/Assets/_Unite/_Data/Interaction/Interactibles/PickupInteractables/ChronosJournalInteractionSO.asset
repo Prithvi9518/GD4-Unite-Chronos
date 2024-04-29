@@ -15,7 +15,7 @@ MonoBehaviour:
   eventOnInteract: {fileID: 11400000, guid: 46f9d8f37a897f74c90d7092c5962ba3, type: 2}
   audioToPlayOnInteract: {fileID: 0}
   volume: 1
-  destroyAfterInteract: 0
+  destroyAfterInteract: 1
   interactText: Inspect the Journal
   showInteractText: 1
   actionsOnInteract:

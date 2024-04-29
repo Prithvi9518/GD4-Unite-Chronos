@@ -1,6 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Unite.ActionSystem;
 using Unite.EventSystem;
+using Unite.Managers;
 using UnityEngine;
 
 namespace Unite.ObjectiveSystem
@@ -46,6 +48,18 @@ namespace Unite.ObjectiveSystem
             Instance = this;
             objectiveMap = CreateObjectiveMap();
             activeObjectives = new();
+        }
+
+        private void OnEnable()
+        {
+            if (GameManager.Instance == null) return;
+            GameManager.Instance.OnBackToMainMenu += ClearObjectives;
+        }
+
+        private void OnDisable()
+        {
+            if (GameManager.Instance == null) return;
+            GameManager.Instance.OnBackToMainMenu -= ClearObjectives;
         }
 
         public void StartObjective(string objectiveName)
@@ -136,6 +150,13 @@ namespace Unite.ObjectiveSystem
         {
             Objective objective = GetObjectiveByName(objectiveName);
             objective.SetState(state);
+        }
+
+        private void ClearObjectives()
+        {
+            activeObjectives.Clear();
+            objectiveMap.Clear();
+            objectiveMap = CreateObjectiveMap();
         }
     }
 }

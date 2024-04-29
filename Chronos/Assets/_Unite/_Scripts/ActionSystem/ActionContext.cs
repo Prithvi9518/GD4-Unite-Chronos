@@ -2,6 +2,9 @@
 
 namespace Unite.ActionSystem
 {
+    /// <summary>
+    /// Wrapper class for an ActionSO, to control whether the action can only be performed once.
+    /// </summary>
     [System.Serializable]
     public class ActionContext
     {
@@ -17,6 +20,15 @@ namespace Unite.ActionSystem
         public void RegisterFirstExecution()
         {
             executedOnce = true;
+        }
+
+        public ActionContext Clone()
+        {
+            ActionContext ctx = new ActionContext();
+            ctx.action = action;
+            ctx.doOnce = doOnce;
+            ctx.executedOnce = false;
+            return ctx;
         }
     }
 }

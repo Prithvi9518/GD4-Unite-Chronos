@@ -4,6 +4,12 @@ using UnityEngine;
 
 namespace Unite.AbilitySystem
 {
+    /// <summary>
+    /// Handles activation and de-activation of the time stop ability.
+    /// Calls the TimeStopManager singleton to handle stopping time.
+    ///
+    /// <seealso cref="TimeStopManager"/>
+    /// </summary>
     [CreateAssetMenu(fileName ="TimeStopAbility", menuName ="Abilities/Time Stop")]
     public class TimeStopAbility : AbilityData
     {

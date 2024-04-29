@@ -7,6 +7,9 @@ using UnityEngine.Pool;
 
 namespace Unite.Enemies
 {
+    /// <summary>
+    /// Handles enemy projectile shooting and object-pooling of projectiles
+    /// </summary>
     public class EnemyProjectileShooter : MonoBehaviour, IShootProjectile, ITimeStopSubscriber
     {
         [SerializeField]

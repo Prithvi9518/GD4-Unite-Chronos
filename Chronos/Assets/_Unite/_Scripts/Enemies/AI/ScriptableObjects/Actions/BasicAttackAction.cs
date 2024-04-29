@@ -5,6 +5,10 @@ using UnityEngine;
 
 namespace Unite.Enemies.AI
 {
+    /// <summary>
+    /// Attack action used by the enemy state machine to perform an attack.
+    /// Uses the AttackData ScriptableObject to get the concrete implementation of the attack.
+    /// </summary>
     [CreateAssetMenu(fileName = "BasicAttack", menuName = "AI/Actions/Basic Attack")]
     public class BasicAttackAction : FSMAction
     {

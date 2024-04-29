@@ -2,6 +2,9 @@
 
 namespace Unite.Player
 {
+    /// <summary>
+    /// Used to constantly update the camera's position to match that of the player.
+    /// </summary>
     public class CameraFollowPlayer : MonoBehaviour
     {
         private Transform follow;

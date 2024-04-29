@@ -3,6 +3,13 @@ using UnityEngine;
 
 namespace Unite.Enemies.AI
 {
+    /// <summary>
+    /// Detection handler for enemy AI - uses the provided detection logic to detect
+    /// the provided target (player).
+    ///
+    /// <seealso cref="IDetectTarget"/>
+    /// <seealso cref="LineOfSightDetection"/>
+    /// </summary>
     public class EnemyDetectionHandler : MonoBehaviour
     {
         [SerializeField]

@@ -2,6 +2,11 @@
 
 namespace Unite.BuffSystem
 {
+    /// <summary>
+    /// Uses the provided buff selector to spawn a buff when a battle zone is completed.
+    ///
+    /// <seealso cref="WeightedRandomBuffSelector"/>
+    /// </summary>
     public class BuffSpawnManager : MonoBehaviour
     {
         public static BuffSpawnManager Instance { get; private set; }

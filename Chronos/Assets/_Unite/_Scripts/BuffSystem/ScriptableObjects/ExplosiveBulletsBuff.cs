@@ -21,6 +21,12 @@ namespace Unite.BuffSystem
         [SerializeField] 
         private int maxEnemiesAffected;
 
+        /// <summary>
+        /// Adds explosion effect modifier onto the player's gun.
+        ///
+        /// <seealso cref="ImpactTypeModifier"/>
+        /// <seealso cref="ExplodeEffect"/>
+        /// </summary>
         public override void ApplyBuff(Player.Player player)
         {
             base.ApplyBuff(player);

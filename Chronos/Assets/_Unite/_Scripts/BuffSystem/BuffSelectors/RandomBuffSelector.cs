@@ -4,6 +4,9 @@ using Random = UnityEngine.Random;
 
 namespace Unite.BuffSystem
 {
+    /// <summary>
+    /// Randomly selects a buff from an array of prefabs
+    /// </summary>
     public class RandomBuffSelector : BuffSelector
     {
         [SerializeField]

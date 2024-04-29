@@ -4,6 +4,9 @@ using UnityEngine;
 
 namespace Unite.Enemies.AI
 {
+    /// <summary>
+    /// Detection logic to search for the target within a specified radius.
+    /// </summary>
     public class EnemyRadiusDetection : MonoBehaviour, IDetectTarget
     {
         [SerializeField]

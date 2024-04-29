@@ -4,6 +4,9 @@ using UnityEngine.AI;
 
 namespace Unite.Enemies.AI
 {
+    /// <summary>
+    /// Action used by the enemy state machine to chase the target
+    /// </summary>
     [CreateAssetMenu(fileName = "ChasePlayerAction", menuName = "AI/Actions/ChasePlayerAction")]
     public class ChasePlayerAction : FSMAction
     {

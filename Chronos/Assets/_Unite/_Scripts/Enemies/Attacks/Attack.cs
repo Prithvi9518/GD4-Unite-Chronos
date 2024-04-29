@@ -2,6 +2,10 @@ using UnityEngine;
 
 namespace Unite.Enemies
 {
+    /// <summary>
+    /// Runtime wrapper around the AttackData scriptable object
+    /// to check and update the cooldown for the attack
+    /// </summary>
     public class Attack
     {
         private AttackData attackData;

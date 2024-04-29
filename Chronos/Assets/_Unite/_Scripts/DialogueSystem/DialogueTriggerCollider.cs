@@ -2,6 +2,9 @@
 
 namespace Unite.DialogueSystem
 {
+    /// <summary>
+    /// Used to play dialogue when the player enters a trigger collider.
+    /// </summary>
     public class DialogueTriggerCollider : MonoBehaviour
     {
         [SerializeField]

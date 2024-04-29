@@ -63,6 +63,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: Red_CaveCrystal
       objectReference: {fileID: 0}
+    - target: {fileID: 1563503363506698386, guid: 8f95666145997a641ade6e20bcfd1a2e,
+        type: 3}
+      propertyPath: m_StaticShadowCaster
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5775252944660859018, guid: 8f95666145997a641ade6e20bcfd1a2e,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:
     - {fileID: 3515717276090252278, guid: 8f95666145997a641ade6e20bcfd1a2e, type: 3}

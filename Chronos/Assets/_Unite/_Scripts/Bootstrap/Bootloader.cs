@@ -5,6 +5,11 @@ using UnityEngine;
 
 namespace Unite.Bootstrap
 {
+    /// <summary>
+    /// Handles loading/unloading of levels within a specified game layout
+    ///
+    /// <seealso cref="gameLayout"/>
+    /// </summary>
     public class Bootloader : MonoBehaviour
     {
         public static Bootloader Instance { get; private set; }
@@ -49,6 +54,13 @@ namespace Unite.Bootstrap
                 gameLayout.LoadMainMenu();
             else
                 LoadStartLevelLayout();
+        }
+
+        public void LoadMainMenu()
+        {
+            if (gameLayout.MainMenuScene == null) return;
+            gameLayout.LoadMainMenu();
+            UnloadCurrentLevel();
         }
 
         public void UnloadMainMenu()

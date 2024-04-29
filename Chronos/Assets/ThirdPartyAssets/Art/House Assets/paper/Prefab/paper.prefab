@@ -13,6 +13,11 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: -8963371299448360135, guid: 42885678f07ed364c802d7eb472acab3,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 42885678f07ed364c802d7eb472acab3,
         type: 3}
       propertyPath: m_LocalScale.x
@@ -81,7 +86,7 @@ PrefabInstance:
     - target: {fileID: -4515342136042857132, guid: 42885678f07ed364c802d7eb472acab3,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -0.08
       objectReference: {fileID: 0}
     - target: {fileID: -4515342136042857132, guid: 42885678f07ed364c802d7eb472acab3,
         type: 3}
@@ -126,6 +131,11 @@ PrefabInstance:
     - target: {fileID: -4515342136042857132, guid: 42885678f07ed364c802d7eb472acab3,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -810796963239613141, guid: 42885678f07ed364c802d7eb472acab3,
+        type: 3}
+      propertyPath: m_CastShadows
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -810796963239613141, guid: 42885678f07ed364c802d7eb472acab3,

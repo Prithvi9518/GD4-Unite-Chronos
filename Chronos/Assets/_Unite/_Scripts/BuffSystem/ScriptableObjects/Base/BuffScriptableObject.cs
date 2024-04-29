@@ -2,6 +2,12 @@
 
 namespace Unite.BuffSystem
 {
+    /// <summary>
+    /// Base ScriptableObject for a buff
+    ///
+    /// <seealso cref="StatBuff"/>
+    /// <seealso cref="ExplosiveBulletsBuff"/>
+    /// </summary>
     public abstract class BuffScriptableObject : ScriptableObject
     {
         [SerializeField] 

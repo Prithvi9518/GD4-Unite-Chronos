@@ -8,6 +8,10 @@ namespace Unite.BuffSystem
     {
         [SerializeField]
         private float amount;
+        
+        /// <summary>
+        /// Modifies the fire rate on the player's gun by the set amount
+        /// </summary>
         public override void ApplyBuff(Player.Player player)
         {
             base.ApplyBuff(player);

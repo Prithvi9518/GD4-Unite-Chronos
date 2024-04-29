@@ -18,7 +18,20 @@ namespace Unite.InteractionSystem
 
         public string DisplayName => displayName;
         public bool ShowInteractText => interactibleData.ShowInteractText;
-        
+
+        private ActionContext[] actionsOnInteract;
+
+        private void Awake()
+        {
+            if (interactibleData.ActionsOnInteract == null) return;
+            if (interactibleData.ActionsOnInteract.Length <= 0) return;
+            actionsOnInteract = new ActionContext[interactibleData.ActionsOnInteract.Length];
+            for (int i = 0; i < actionsOnInteract.Length; i++)
+            {
+                actionsOnInteract[i] = interactibleData.ActionsOnInteract[i].Clone();
+            }
+        }
+
         public virtual void HandleInteraction()
         {
             if (interactibleData == null) return;
@@ -38,9 +51,9 @@ namespace Unite.InteractionSystem
                 );
             }
 
-            if (interactibleData.ActionsOnInteract != null)
+            if (actionsOnInteract != null)
             {
-                foreach (var actionCtx in interactibleData.ActionsOnInteract)
+                foreach (var actionCtx in actionsOnInteract)
                 {
                     if (actionCtx.DoOnce)
                     {

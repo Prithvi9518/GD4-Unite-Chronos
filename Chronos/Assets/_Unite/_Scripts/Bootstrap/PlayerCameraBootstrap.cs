@@ -2,6 +2,9 @@
 
 namespace Unite.Bootstrap
 {
+    /// <summary>
+    /// Registers the camera with the GameManager when the camera is initialized.
+    /// </summary>
     public class PlayerCameraBootstrap : MonoBehaviour
     {
         [SerializeField]

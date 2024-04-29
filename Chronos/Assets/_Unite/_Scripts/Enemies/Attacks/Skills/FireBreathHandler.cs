@@ -5,6 +5,9 @@ using UnityEngine.Pool;
 
 namespace Unite.Enemies
 {
+    /// <summary>
+    /// Used to instantiate a fire breath attack and manage its lifecycle
+    /// </summary>
     public class FireBreathHandler : MonoBehaviour, ITimeStopSubscriber
     {
         [SerializeField]

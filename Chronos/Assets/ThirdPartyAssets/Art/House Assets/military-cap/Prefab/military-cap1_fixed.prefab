@@ -58,6 +58,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 0c3813982437d4343af128b7ef716a31,
+        type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 0c3813982437d4343af128b7ef716a31,
         type: 3}
       propertyPath: m_Name
@@ -72,6 +77,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_TagString
       value: Interactible
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 0c3813982437d4343af128b7ef716a31,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -143,6 +153,7 @@ MonoBehaviour:
   onFinishInteraction: {fileID: 0}
   pickupGameEvent: {fileID: 11400000, guid: d8513cb851429324083cad4cc5179807, type: 2}
   zoomFactor: 0.276
+  disableRotation: 0
 --- !u!114 &5662311336390090307
 MonoBehaviour:
   m_ObjectHideFlags: 0

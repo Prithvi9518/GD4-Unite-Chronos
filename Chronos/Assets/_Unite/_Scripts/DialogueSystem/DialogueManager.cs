@@ -1,10 +1,15 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Unite.ActionSystem;
 using Unite.EventSystem;
+using Unite.Managers;
 using UnityEngine;
 
 namespace Unite.DialogueSystem
 {
+    /// <summary>
+    /// Responsible for playing dialogue sequences upon receiving requests.
+    /// </summary>
     [RequireComponent(typeof(AudioSource))]
     public class DialogueManager : MonoBehaviour
     {
@@ -42,6 +47,25 @@ namespace Unite.DialogueSystem
             audioSource = GetComponent<AudioSource>();
         }
 
+        private void OnEnable()
+        {
+            if (GameManager.Instance == null) return;
+            GameManager.Instance.OnBackToMainMenu += ClearDialogues;
+        }
+
+        private void OnDisable()
+        {
+            if (GameManager.Instance == null) return;
+            GameManager.Instance.OnBackToMainMenu -= ClearDialogues;
+        }
+
+        /// <summary>
+        /// If a dialogue has to be queued after the current dialogue is done playing,
+        /// then it is enqueued and played after the current dialogue is done.
+        ///
+        /// If it doesn't need to be queued, then it is played immediately.
+        /// If there was a dialogue playing already, it stops and the new dialogue is played.
+        /// </summary>
         public void PlayDialogue(DialogueSO dialogue)
         {
             if (!playDialogue) return;
@@ -61,7 +85,7 @@ namespace Unite.DialogueSystem
             
             if(dialogueLinesCoroutine != null)
                     StopCoroutine(dialogueLinesCoroutine);
-            dialogueLinesCoroutine = StartCoroutine(DialogueLinesCoroutine(dialogue.Lines));
+            dialogueLinesCoroutine = StartCoroutine(DialogueLinesCoroutine(dialogue.Lines, dialogue.ActionsAfterFinish));
         }
 
         private void PlayDialogueLine(DialogueLine line)
@@ -75,7 +99,14 @@ namespace Unite.DialogueSystem
             onPlayDialogueLine.Raise(line);
         }
 
-        private IEnumerator DialogueLinesCoroutine(List<DialogueLine> lines)
+        /// <summary>
+        /// Plays dialogue lines while adding a delay between them. The delay is specified in the
+        /// DialogueLine object.
+        ///
+        /// <seealso cref="DialogueLine"/>
+        /// </summary>
+        /// <returns></returns>
+        private IEnumerator DialogueLinesCoroutine(List<DialogueLine> lines, ActionSO[] actionsAfterFinish)
         {
             isDialoguePlaying = true;
             
@@ -86,10 +117,27 @@ namespace Unite.DialogueSystem
             }
 
             isDialoguePlaying = false;
+
+            if (actionsAfterFinish != null)
+            {
+                foreach (var action in actionsAfterFinish)
+                {
+                    ActionExecutionManager.Instance.ExecuteAction(action);
+                }
+            }
+            
             if (dialogueQueue.Count <= 0) yield break;
             
             DialogueSO nextDialogue = dialogueQueue.Dequeue();
             PlayDialogue(nextDialogue);
+        }
+
+        private void ClearDialogues()
+        {
+            dialogueQueue.Clear();
+            if(dialogueLinesCoroutine != null)
+                StopCoroutine(dialogueLinesCoroutine);
+            audioSource.Stop();
         }
     }
 }

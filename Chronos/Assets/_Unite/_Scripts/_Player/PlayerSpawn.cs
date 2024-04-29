@@ -3,6 +3,9 @@ using UnityEngine;
 
 namespace Unite.Player
 {
+    /// <summary>
+    /// Stores player prefab and contains methods called to spawn the player at runtime
+    /// </summary>
     public class PlayerSpawn : MonoBehaviour
     {
         [SerializeField]

@@ -35,3 +35,6 @@ MonoBehaviour:
     manualDelay: 0
     showSubtitles: 1
   isQueued: 0
+  overrideQueue: 0
+  actionsAfterFinish:
+  - {fileID: 11400000, guid: 5502c66e23e99ba40b2938ad1494e2d2, type: 2}

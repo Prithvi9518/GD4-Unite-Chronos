@@ -2,6 +2,14 @@
 
 namespace Unite.BuffSystem
 {
+    /// <summary>
+    /// ScriptableObject to store a buff's spawn configuration.
+    /// This includes the buff's priority/weight, and the number of times the buff can be spawned.
+    ///
+    /// Used when a buff is selected in one of the buff selector classes.
+    /// <seealso cref="WeightedRandomBuffSelector"/>
+    /// <seealso cref="BuffSpawnManager"/>
+    /// </summary>
     [CreateAssetMenu(fileName = "BuffSpawnSO", menuName = "Buffs/BuffSpawnSO")]
     public class BuffSpawnSO : ScriptableObject
     {

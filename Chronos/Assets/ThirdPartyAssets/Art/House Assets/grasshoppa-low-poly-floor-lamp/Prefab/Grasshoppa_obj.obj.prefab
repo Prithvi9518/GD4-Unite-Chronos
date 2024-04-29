@@ -75,13 +75,28 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -7581761269017582073, guid: ecd445f21194be046b78c3fe8dee1c86,
         type: 3}
+      propertyPath: m_StaticShadowCaster
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -7581761269017582073, guid: ecd445f21194be046b78c3fe8dee1c86,
+        type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 88f2ef339b191744fa29dc44b8b78a8f, type: 2}
+    - target: {fileID: -2667852970395740033, guid: ecd445f21194be046b78c3fe8dee1c86,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: ecd445f21194be046b78c3fe8dee1c86,
         type: 3}
       propertyPath: m_Name
       value: Grasshoppa_obj.obj
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: ecd445f21194be046b78c3fe8dee1c86,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
