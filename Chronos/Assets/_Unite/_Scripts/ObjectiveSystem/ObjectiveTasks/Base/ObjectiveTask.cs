@@ -28,12 +28,12 @@ namespace Unite.ObjectiveSystem
         private void OnEnable()
         {
             if (GameManager.Instance == null) return;
-            GameManager.Instance.OnBackToMainMenu += DeleteTask;
+            GameManager.Instance.OnResetPersistentValues += DeleteTask;
         }
 
         private void OnDisable()
         {
-            GameManager.Instance.OnBackToMainMenu -= DeleteTask;
+            GameManager.Instance.OnResetPersistentValues -= DeleteTask;
         }
 
         private void DeleteTask()
