@@ -8,6 +8,7 @@ using Unite.Player;
 using Unite.SceneTransition;
 using Unite.WeaponSystem;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Unite.Managers
 {
@@ -57,7 +58,7 @@ namespace Unite.Managers
 
         public Action OnGameLose;
         public Action OnGameRestart;
-        public Action OnBackToMainMenu;
+        public Action OnResetPersistentValues;
 
         public Player.Player Player => player;
         public Camera PlayerCamera => playerCamera;
@@ -279,9 +280,21 @@ namespace Unite.Managers
         {
             if (Bootloader.Instance == null) return;
             
-            OnBackToMainMenu?.Invoke();
+            OnResetPersistentValues?.Invoke();
             Bootloader.Instance.LoadMainMenu();
             SetGameState(GameState.Bootstrap);
         }
+
+        #region Convenience Methods for Demo Purposes
+
+        public void SkipToNextLevel()
+        {
+            if (Bootloader.Instance == null) return;
+            
+            OnResetPersistentValues?.Invoke();
+            SceneTransitionManager.Instance.StartTransition(startLevelTransition);
+        }
+
+        #endregion
     }
 }

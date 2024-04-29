@@ -84,6 +84,13 @@ namespace Unite.Bootstrap
             LoadCurrentLayout();
         }
 
+        public void LoadPreviousLevel()
+        {
+            gameLayout.UnloadLayout(currentLevelIndex);
+            currentLevelIndex--;
+            LoadCurrentLayout();
+        }
+
         public void UnloadCurrentLevel()
         {
             gameLayout.UnloadLayout(currentLevelIndex);

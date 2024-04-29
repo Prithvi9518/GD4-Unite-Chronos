@@ -50,13 +50,13 @@ namespace Unite.DialogueSystem
         private void OnEnable()
         {
             if (GameManager.Instance == null) return;
-            GameManager.Instance.OnBackToMainMenu += ClearDialogues;
+            GameManager.Instance.OnResetPersistentValues += ClearDialogues;
         }
 
         private void OnDisable()
         {
             if (GameManager.Instance == null) return;
-            GameManager.Instance.OnBackToMainMenu -= ClearDialogues;
+            GameManager.Instance.OnResetPersistentValues -= ClearDialogues;
         }
 
         /// <summary>
