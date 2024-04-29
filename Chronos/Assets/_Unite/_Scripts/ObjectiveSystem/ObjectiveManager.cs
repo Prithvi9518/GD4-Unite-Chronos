@@ -53,13 +53,13 @@ namespace Unite.ObjectiveSystem
         private void OnEnable()
         {
             if (GameManager.Instance == null) return;
-            GameManager.Instance.OnBackToMainMenu += ClearObjectives;
+            GameManager.Instance.OnResetPersistentValues += ClearObjectives;
         }
 
         private void OnDisable()
         {
             if (GameManager.Instance == null) return;
-            GameManager.Instance.OnBackToMainMenu -= ClearObjectives;
+            GameManager.Instance.OnResetPersistentValues -= ClearObjectives;
         }
 
         public void StartObjective(string objectiveName)

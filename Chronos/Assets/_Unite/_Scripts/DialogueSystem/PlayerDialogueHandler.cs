@@ -42,13 +42,13 @@ namespace Unite.DialogueSystem
         private void OnEnable()
         {
             if (GameManager.Instance == null) return;
-            GameManager.Instance.OnBackToMainMenu += ResetTrackedVariables;
+            GameManager.Instance.OnResetPersistentValues += ResetTrackedVariables;
         }
 
         private void OnDisable()
         {
             if (GameManager.Instance == null) return;
-            GameManager.Instance.OnBackToMainMenu -= ResetTrackedVariables;
+            GameManager.Instance.OnResetPersistentValues -= ResetTrackedVariables;
         }
 
         private void SetupDialogueMap()

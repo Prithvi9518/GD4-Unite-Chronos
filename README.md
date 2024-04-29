@@ -2,7 +2,7 @@
 
 ![Chronos Background Image](Images/chronos-background.png)
 
-## Overview
+## 📝&ensp;Overview
 Chronos is a first-person narrative-driven shooter with the challenging mechanics of a roguelike game. Upon her arrival on the island of Chronos, Ava must unravel the dark history of a strange island to find her missing brother.  
 
 You’ll explore, discover and fight your way through an unforgiving journey, where every step is shrouded in mystery.
@@ -10,7 +10,7 @@ You’ll explore, discover and fight your way through an unforgiving journey, wh
 > Watch our [Promotional Trailer](https://www.youtube.com/watch?v=dpf8nFKAG-Q) on YouTube
 
 
-## Gameplay Captures
+## 📷&ensp;Gameplay Captures
 ![island-1](Images/island-1.jpg)
 
 ![island-2](Images/island-2.jpg)
@@ -27,7 +27,7 @@ You’ll explore, discover and fight your way through an unforgiving journey, wh
 
 ![newspaper](Images/newspaper.jpg)
 
-## Team Unite - Members
+## 📚&ensp;Team Unite - Members
 - [Niall O'Reilly](https://mahara.dkit.ie/view/view.php?t=dUGQgCmIsEav3OR4o9yK) - Team Lead, Lead User Tester, Lead Narrative Designer, Level Designer
 
 - [Leanne Creedon](https://mahara.dkit.ie/view/view.php?t=knRr93FJx1B5p04mWv6C) - Lead Artist, 3D Modeler, Level Designer, UI Designer, VFX Artist
@@ -41,10 +41,8 @@ You’ll explore, discover and fight your way through an unforgiving journey, wh
 More details about our development process can be found in our [Team Portfolio]( https://mahara.dkit.ie/view/view.php?t=h9vaBP4flnZWVjM2IwbC ).
 
 
-### Special Acknowledgements
+## 🎵&ensp;Special Acknowledgements
 > We want to say a big thank you to [Derynta Jannadhiya](https://www.linkedin.com/in/derynta-jannadhiya-826602225/?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app), for lending her wonderful voice acting skills for the character Ava. She was a pleasure to work with and we are most grateful for her valuable contributions to our project.
-
-## Assets and References
 
 
 
